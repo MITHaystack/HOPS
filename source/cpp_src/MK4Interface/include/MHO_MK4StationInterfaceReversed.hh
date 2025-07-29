@@ -127,7 +127,6 @@ class MHO_MK4StationInterfaceReversed
             std::string channel_name;
             std::string polarization;
             std::string net_sideband;
-            int channel_index;
             int tone_start;
             int ntones;
             int accumulator_start_index;
