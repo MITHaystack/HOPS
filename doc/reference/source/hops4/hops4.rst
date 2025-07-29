@@ -12,6 +12,7 @@ HOPS4 Applications and Libraries
     applications/alist4
     applications/fplot4
     applications/mark42hops
+    applications/hops2mark4
     applications/hops2json
     applications/hops2flat
     applications/difx2hops

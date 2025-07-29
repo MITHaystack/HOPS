@@ -11,9 +11,9 @@ capability (i.e. to read HDF5 data back into the HOPS4 format).
 The HDF5 plugin includes a command-line application for data conversion:
 
 **hops2hdf5 Application:**
-- Converts HOPS4 files to HDF5 format
-- Supports batch processing of multiple files
-- Configurable output organization
+    - Converts HOPS4 files to HDF5 format
+    - Supports batch processing of multiple files
+    - Configurable output organization
 
 
 :hops:`MHO_HDF5TypeCode`
@@ -34,11 +34,11 @@ C++ data types and their corresponding HDF5 type codes. It supports all fundamen
 types used in VLBI data processing and including handling for complex numbers.
 
 **Supported Types:**
-- Signed integers: int8_t, int16_t, int32_t, int64_t
-- Unsigned integers: uint8_t, uint16_t, uint32_t, uint64_t
-- Floating-point: float, double, long double
-- Complex numbers: std::complex<float>, std::complex<double>
-- Boolean and character types
+    - Signed integers: int8_t, int16_t, int32_t, int64_t
+    - Unsigned integers: uint8_t, uint16_t, uint32_t, uint64_t
+    - Floating-point: float, double, long double
+    - Complex numbers: std::complex<float>, std::complex<double>
+    - Boolean and character types
 
 :hops:`MHO_HDF5Datasets`
 ------------------------
@@ -57,11 +57,11 @@ The MHO_HDF5Datasets header provides a collection of template functions
 for creating various types of HDF5 datasets from HOPS4 data structures.
 
 **Dataset Types Supported:**
-- Scalar datasets with automatic HDF5 type mapping
-- Multi-dimensional arrays with dimension scales
-- String datasets with variable-length encoding
-- Coordinate axis datasets with proper labeling
-- Metadata tagged datasets with JSON attribute conversion (to attributes or string pack)
+    - Scalar datasets with automatic HDF5 type mapping
+    - Multi-dimensional arrays with dimension scales
+    - String datasets with variable-length encoding
+    - Coordinate axis datasets with proper labeling
+    - Metadata tagged datasets with JSON attribute conversion (to attributes or string pack)
 
 :hops:`MHO_HDF5Attributes`
 --------------------------
@@ -80,10 +80,10 @@ The MHO_HDF5Attributes header provides template functions for creating HDF5
 attributes that store metadata associated with datasets and groups.
 
 **Attribute Types:**
-- Scalar attributes for individual metadata values
-- Vector attributes for array-based metadata
-- String attributes with proper encoding
-- JSON (serialized to string) for complex metadata structures
+    - Scalar attributes for individual metadata values
+    - Vector attributes for array-based metadata
+    - String attributes with proper encoding
+    - JSON (serialized to string) for complex metadata structures
 
 :hops:`MHO_ContainerHDF5Converter`
 ----------------------------------
@@ -104,16 +104,16 @@ converting HOPS4 container objects to HDF5 format. It uses SFINAE to handle diff
 container types appropriately.
 
 **Container Types Supported:**
-- Scalar containers (single values with metadata)
-- Vector containers (1D arrays with coordinate axes)
-- Axis containers (coordinate axis definitions)
-- Table containers (multi-dimensional arrays with axes)
+    - Scalar containers (single values with metadata)
+    - Vector containers (1D arrays with coordinate axes)
+    - Axis containers (coordinate axis definitions)
+    - Table containers (multi-dimensional arrays with axes)
 
 **Conversion Features:**
-- Automatic metadata preservation as HDF5 attributes
-- Coordinate axis information retention
-- Proper handling of complex number data
-- JSON metadata conversion to HDF5 attributes or serialized strings
+    - Automatic metadata preservation as HDF5 attributes
+    - Coordinate axis information retention
+    - Proper handling of complex number data
+    - JSON metadata conversion to HDF5 attributes or serialized strings
 
 :hops:`MHO_HDF5ContainerFileInterface`
 --------------------------------------
@@ -131,11 +131,11 @@ for converting entire HOPS4 files to HDF5 format. It orchestrates the conversion
 of all data stores and maintains proper hierarchical organization.
 
 **File Conversion Features:**
-- Complete fringe file conversion to HDF5
-- Preservation of all data stores (parameters, containers, scan data)
-- Hierarchical group organization
-- Configurable naming conventions
-- Metadata preservation throughout conversion
+    - Complete fringe file conversion to HDF5
+    - Preservation of all data stores (parameters, containers, scan data)
+    - Hierarchical group organization
+    - Configurable naming conventions
+    - Metadata preservation throughout conversion
 
 :hops:`MHO_HDF5ConverterDictionary`
 -----------------------------------
