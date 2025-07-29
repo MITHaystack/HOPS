@@ -156,7 +156,6 @@ MHO_MK4StationInterfaceReversed::GenerateStationStructure()
         //     std::cout<<"name: "<<fPCalChannelList[i].channel_name<<std::endl;
         //     std::cout<<"pol: "<<fPCalChannelList[i].polarization<<std::endl;
         //     std::cout<<"net sb: "<<fPCalChannelList[i].net_sideband<<std::endl;
-        //     std::cout<<"chan idx: "<<fPCalChannelList[i].channel_index<<std::endl;
         //     std::cout<<"tone start: "<<fPCalChannelList[i].tone_start<<std::endl;
         //     std::cout<<"ntones: "<<fPCalChannelList[i].ntones<<std::endl;
         //     std::cout<<"accumulator idx: "<<fPCalChannelList[i].accumulator_start_index<<std::endl;
@@ -457,7 +456,8 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                 if(tone_idx >= (int)fNTones) break;
                 //need to know the offset into the accumulation array for this channel/tone-set, assume USB
                 int acc_idx = ch_info.accumulator_start_index + tone;
-                //tone order for LSB channels is backwards....but possibly also for USB channels that were created from LSB channels (zoom-bands)?
+                //tone order for LSB channels is backwards....but possibly also 
+                //for USB channels that were created from LSB channels (zoom-bands)?
                 //how can we detect the zoom-bands issue?
                 if(ch_info.net_sideband == "L")
                 {
@@ -475,7 +475,7 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
 
                 //calculate offset from the channel edge
                 double ch_freq = ch_info.sky_freq;
-                double freq_delta = tone_freq - ch_freq;  //TODO FIXME LSB & USB
+                double freq_delta = tone_freq - ch_freq;
                 freq_delta *= MHZ_TO_HZ; //stored as Hz 
 
                 //set this freq offset value in the type_309 array
@@ -522,8 +522,6 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo()
 
         for(const auto& label : matching_labels)
         {
-            std::string index_key = "channel_index";
-            
             if(label.contains(name_key) )
             {
                 PCalChannelInfo ch_info;
@@ -644,7 +642,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
             {
                 std::size_t idx = start_idx + j;
                 double tone_freq = tone_freq_ax->at(idx);
-                double freq_delta = tone_freq - ch_info.sky_freq;  //TODO FIXME LSB & USB
+                double freq_delta = tone_freq - ch_info.sky_freq;
                 freq_delta *= MHZ_TO_HZ; //offsets are calculated/stored as Hz
 
                 //dumb brute force search 
@@ -667,9 +665,11 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
                 }
             }
 
-            //cannot rely on the channel name for this info...ought to extract it from the vex file
+            //in general, we cannot rely on the channel name for this info, and  
+            //we ought to extract it from the vex file (painful). However, both difx2mar4 and difx2hops 
+            //will populate the vex file with 'Mark4' style channel names before we see this 
+            //so it should be reasonably safe to use this method
             ch_info.polarization = std::string(1, ch_info.channel_name[ ch_info.channel_name.size() - 1 ] );
-            ch_info.channel_index = 0;
 
             // Default sample period (could be extracted from bandwidth if available)
             ch_info.sample_period = 1.0/(2.0*ch_info.bandwidth*MHZ_TO_HZ); //assuming bandwidth is in MHz
@@ -677,8 +677,7 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
             fPCalChannelList.push_back(ch_info);
             
             msg_debug("mk4interface", "Extracted PCal channel: " << ch_info.channel_name << " acc idx: "<< ch_info.accumulator_start_index
-                      << " pol=" << ch_info.polarization << " idx=" << ch_info.channel_index 
-                      << " tones=" << ch_info.ntones << eom);
+                      << " pol=" << ch_info.polarization << " tones=" << ch_info.ntones << eom);
         }
     }
 
