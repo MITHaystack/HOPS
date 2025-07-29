@@ -1,7 +1,7 @@
 Python Examples
 ~~~~~~~~~~~~~~~
 
-The Python examples demonstrate practical applications of the Python bindings 
+The Python examples demonstrate a couple practical applications of the Python bindings 
 for solving real-world VLBI data processing problems. These examples show how 
 to use the Python API for custom calibration, data correction, and analysis tasks.
 
@@ -20,7 +20,7 @@ Key Features                                    | Channel-specific phase correct
 =============================================== ====================================================================
 
 The NOEMA phase jump correction example demonstrates how to use the Python API 
-to correct known instrumental phase jumps in data from the NOEMA telescope array.
+to correct known instrumental phase jumps in visibility data involving the NOEMA telescope array.
 
 **Implementation Details:**
 
@@ -182,7 +182,7 @@ The examples demonstrate several important usage patterns for the Python API:
 6. **Testing**: Include validation and testing code
 
 **Integration with HOPS4 Pipeline:**
-The Python examples show how custom Python functions can be seamlessly integrated 
+The Python examples show how custom Python functions can be integrated 
 into the HOPS4 processing pipeline through the operator framework, enabling:
 
 - **Custom Preprocessing**: Data correction before fringe fitting

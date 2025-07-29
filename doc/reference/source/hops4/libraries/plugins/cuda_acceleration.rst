@@ -5,7 +5,7 @@ The CUDA plugin provides GPU-acceleration for computationally intensive
 operations during VLBI fringe fitting. At the moment this is primarily focusing on the (multi-band) 
 delay search algorithm using NVIDIA's CUDA framework and cuFFT library. 
 
-**This plugin is experimental and not recommended for broad use.**
+**This plugin is experimental and not recommended for production use.**
 
 :hops:`MHO_MBDelaySearchCUDA`
 -----------------------------
