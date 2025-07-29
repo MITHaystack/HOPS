@@ -30,6 +30,53 @@ MHO_MK4ScanConverterReversed::MHO_MK4ScanConverterReversed(){};
 MHO_MK4ScanConverterReversed::~MHO_MK4ScanConverterReversed(){};
 
 
+
+int MHO_MK4ScanConverterReversed::DetermineDirectoryType(const std::string& in_dir)
+{
+    //directory interface
+    MHO_DirectoryInterface dirInterface;
+    std::string input_dir = dirInterface.GetDirectoryFullPath(in_dir);
+
+    //get list of all the files (and directories) in the input directory
+    std::vector< std::string > allFiles;
+    std::vector< std::string > allDirs;
+
+    dirInterface.SetCurrentDirectory(input_dir);
+    dirInterface.ReadCurrentDirectory();
+    dirInterface.GetFileList(allFiles);
+    dirInterface.GetSubDirectoryList(allDirs);
+
+    //sort files, locate root, corel and station files
+    std::vector< std::string > corelFiles;
+    std::vector< std::string > stationFiles;
+    std::vector< std::string > rootFiles;
+    dirInterface.GetFilesMatchingExtention(rootFiles, ".root.json");
+
+    //definitely a scan directory (a root file and no subdirs)
+    if(rootFiles.size() >= 1 && allDirs.size() == 0)
+    {
+        return HOPS4_SCANDIR;
+    }
+
+    //likely an experiment directory (no root and 1 or more subdir)
+    if(rootFiles.size() == 0 && allDirs.size() >= 1)
+    {
+        //TODO check that the directory name is 4 digit number
+        return HOPS4_EXPDIR;
+    }
+
+    //probably a scan directory
+    //for some reason it has a sub-dir, but we found a root file
+    if(rootFiles.size() >= 1)
+    {
+        return HOPS4_SCANDIR;
+    }
+
+    //don't know what we have here, but probably cannot process it
+    return HOPS4_UNKNOWNDIR;
+}
+
+
 void MHO_MK4ScanConverterReversed::ProcessScan(const std::string& in_dir, const std::string& out_dir)
 {
     fOutputVexFile = "";
