@@ -93,6 +93,9 @@ class MHO_DiFXInterface
          */
         void SetPreserveDiFXScanNamesFalse() { fPreserveDiFXScanNames = false; };
 
+        void SetExportAsMark4True(){fExportAsMark4 = true;}
+        void SetExportAsMark4False(){fExportAsMark4 = false;}
+
         /**
          * @brief Setter for frequency bands (label, frequency limits)
          * 
@@ -161,6 +164,7 @@ class MHO_DiFXInterface
         bool fNormalize;
         bool fPreserveDiFXScanNames;
         bool fAttachDiFXInput;
+        bool fExportAsMark4;
 
         std::vector< std::tuple< std::string, double, double > > fFreqBands; //frequency band/group labels and ranges
         std::vector< std::string > fFreqGroups;                              //limit output to matching frequency groups

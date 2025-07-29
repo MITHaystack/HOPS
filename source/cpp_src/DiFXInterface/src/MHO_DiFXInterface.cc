@@ -12,6 +12,7 @@ MHO_DiFXInterface::MHO_DiFXInterface(): fInputDirectory(""), fOutputDirectory(""
     fOnlyBandwidth = 0;
     fSelectByBandwidth = false;
     fAttachDiFXInput = false;
+    fExportAsMark4 = false;
 };
 
 MHO_DiFXInterface::~MHO_DiFXInterface(){};
