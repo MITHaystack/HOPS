@@ -46,12 +46,13 @@ find_package(Sphinx REQUIRED)
 
         #set the URL base manually until we can find a work around for this sphinx/github pages quirk
         set(MIT_BASE_URL "https://github.mit.edu/pages/barrettj/hops-git")
-        set(GITHUB_BASE_URL "https://github.com/pages/MITHaystack/HOPS")
+        set(GITHUB_BASE_URL "https://mithaystack.github.io/HOPS")
+
         # we use REF_BUILD_DIR to direct sphinx-doxylink to the local file system, 
         # MIT_BASE_URL for github.mit.edu and GITHUB_BASE_URL for github.com (deployment)
         set(DOC_BASE_URL "${REF_BUILD_DIR}") 
         if(DEPLOY_DOCS)
-            set(DOC_BASE_URL "${MIT_BASE_URL}") 
+            set(DOC_BASE_URL "${GITHUB_BASE_URL}") 
         endif(DEPLOY_DOCS)
 
         #first generate the doxygen C++ API reference
