@@ -5,7 +5,7 @@ The HDF5 plugin provides some data export capabilities for converting
 HOPS4 internal data structures to the HDF5 format. The output HDF5 file structure 
 should **NOT** be considered stable until it has been evaluated for inter-operability 
 with other tools and evaluated for long-term data archival. There is currently *NO* import
-capability -- to read HDF5 data back into the HOPS4 format.
+capability (i.e. to read HDF5 data back into the HOPS4 format).
 
 **HDF5 Export Applications:**
 The HDF5 plugin includes a command-line application for data conversion:
@@ -152,4 +152,3 @@ Key Features                                    | Converter registration and man
 The :hops:`MHO_HDF5ConverterDictionary` class manages the registry of available 
 HDF5 converters and provides lookup functionality for appropriate converters 
 based on data types (see the implementation of :hops:`MHO_ContainerJSONConverter` upon which it is based).
-
