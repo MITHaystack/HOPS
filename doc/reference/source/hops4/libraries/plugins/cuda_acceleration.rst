@@ -25,16 +25,16 @@ coarse multi-band delay (MBD) search algorithm. This implementation uses NVIDIA'
 cuFFT library to accelerate the  computationally intensive FFT operations required for delay search.
 
 **Implementation Details:**
-- Uses CUDA runtime API for device memory management
-- Integrates cuFFT for device FFT operations
-- Supports cuComplex data types for complex number operations
-- Requires CUDA-capable GPU hardware for execution
+    - Uses CUDA runtime API for device memory management
+    - Integrates cuFFT for device FFT operations
+    - Supports cuComplex data types for complex number operations
+    - Requires CUDA-capable GPU hardware for execution
 
 **Performance Notes:**
 The current implementation ultra basic and very primitive with significant optimization remaining to be done.
 The main current limitation is excessive data movement between host and device memory, which will be improved in future versions.
 
 **Usage Requirements:**
-- NVIDIA GPU with CUDA Compute Capability 2.0 or higher
-- CUDA Runtime and cuFFT libraries installed
-- Appropriately sized GPU memory for processing large datasets
+    - NVIDIA GPU with CUDA Compute Capability 2.0 or higher
+    - CUDA Runtime and cuFFT libraries installed
+    - Appropriately sized GPU memory for processing large datasets
