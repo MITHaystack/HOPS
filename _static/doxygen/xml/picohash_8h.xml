@@ -34,12 +34,12 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="92">
+      <node id="95">
         <label>MHO_FringePlotInfo.hh</label>
         <link refid="MHO__FringePlotInfo_8hh"/>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="94" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -52,15 +52,15 @@
         <label>MHO_IonosphericFringeFitter.cc</label>
         <link refid="MHO__IonosphericFringeFitter_8cc"/>
       </node>
-      <node id="164">
+      <node id="167">
         <label>MHO_MinWeight.cc</label>
         <link refid="MHO__MinWeight_8cc"/>
       </node>
-      <node id="83">
+      <node id="86">
         <label>hops2hdf5.cc</label>
         <link refid="hops2hdf5_8cc"/>
       </node>
-      <node id="146">
+      <node id="149">
         <label>MHO_EstimatePCManual.cc</label>
         <link refid="MHO__EstimatePCManual_8cc"/>
       </node>
@@ -76,24 +76,24 @@
         <label>MHO_BasicFringeFitter.cc</label>
         <link refid="MHO__BasicFringeFitter_8cc"/>
       </node>
-      <node id="171">
+      <node id="174">
         <label>MHO_NormFX.hh</label>
         <link refid="MHO__NormFX_8hh"/>
-        <childnode refid="167" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
       </node>
-      <node id="144">
+      <node id="147">
         <label>MHO_DoubleSidebandChannelLabeler.hh</label>
         <link refid="MHO__DoubleSidebandChannelLabeler_8hh"/>
-        <childnode refid="110" relation="include">
+        <childnode refid="113" relation="include">
         </childnode>
-        <childnode refid="106" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
       </node>
       <node id="76">
@@ -104,16 +104,16 @@
         <label>MHO_FringeData.cc</label>
         <link refid="MHO__FringeData_8cc"/>
       </node>
-      <node id="209">
+      <node id="216">
         <label>MHO_OpenCLFastFourierTransformPlan.cc</label>
         <link refid="MHO__OpenCLFastFourierTransformPlan_8cc"/>
       </node>
-      <node id="200">
+      <node id="207">
         <label>MHO_SelectRepack.hh</label>
         <link refid="MHO__SelectRepack_8hh"/>
-        <childnode refid="179" relation="include">
+        <childnode refid="182" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="93" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
@@ -126,31 +126,31 @@
         <childnode refid="76" relation="include">
         </childnode>
       </node>
-      <node id="206">
+      <node id="213">
         <label>MHO_MultidimensionalFastFourierTransformFFTW.hh</label>
         <link refid="MHO__MultidimensionalFastFourierTransformFFTW_8hh"/>
       </node>
-      <node id="93">
+      <node id="96">
         <label>MHO_InitialFringeInfo.hh</label>
         <link refid="MHO__InitialFringeInfo_8hh"/>
         <childnode refid="21" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="101">
+      <node id="104">
         <label>TestVexStripper.cc</label>
         <link refid="TestVexStripper_8cc"/>
       </node>
-      <node id="87">
+      <node id="90">
         <label>MHO_ContainerStore.cc</label>
         <link refid="MHO__ContainerStore_8cc"/>
       </node>
-      <node id="198">
+      <node id="203">
         <label>MHO_MK4StationInterface.cc</label>
         <link refid="MHO__MK4StationInterface_8cc"/>
       </node>
@@ -158,31 +158,31 @@
         <label>MHO_LinearDParCorrectionBuilder.cc</label>
         <link refid="MHO__LinearDParCorrectionBuilder_8cc"/>
       </node>
-      <node id="111">
+      <node id="114">
         <label>MHO_ClassIdentity.hh</label>
         <link refid="MHO__ClassIdentity_8hh"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
         </childnode>
         <childnode refid="115" relation="include">
         </childnode>
         <childnode refid="116" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
-        </childnode>
         <childnode refid="117" relation="include">
         </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
       </node>
-      <node id="192">
+      <node id="195">
         <label>MHO_WeightChannelizer.cc</label>
         <link refid="MHO__WeightChannelizer_8cc"/>
       </node>
-      <node id="86">
+      <node id="89">
         <label>MHO_ContainerStore.hh</label>
         <link refid="MHO__ContainerStore_8hh"/>
         <childnode refid="6" relation="include">
@@ -199,25 +199,25 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="90" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="88" relation="include">
+        <childnode refid="91" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
+        <childnode refid="95" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
@@ -225,22 +225,22 @@
         </childnode>
         <childnode refid="75" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="98" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
-      <node id="166">
+      <node id="169">
         <label>MHO_MixedPolYShift.cc</label>
         <link refid="MHO__MixedPolYShift_8cc"/>
       </node>
-      <node id="173">
+      <node id="176">
         <label>MHO_SingleSidebandNormFX.cc</label>
         <link refid="MHO__SingleSidebandNormFX_8cc"/>
       </node>
@@ -263,11 +263,11 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="101" relation="include">
         </childnode>
-        <childnode refid="99" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="107" relation="include">
         </childnode>
       </node>
       <node id="73">
@@ -276,38 +276,38 @@
         <childnode refid="70" relation="include">
         </childnode>
       </node>
-      <node id="197">
+      <node id="202">
         <label>MHO_MK4StationInterface.hh</label>
         <link refid="MHO__MK4StationInterface_8hh"/>
-        <childnode refid="104" relation="include">
+        <childnode refid="107" relation="include">
         </childnode>
-        <childnode refid="198" relation="include">
+        <childnode refid="203" relation="include">
         </childnode>
       </node>
-      <node id="114">
+      <node id="117">
         <label>MHO_HDF5Attributes.hh</label>
         <link refid="MHO__HDF5Attributes_8hh"/>
-        <childnode refid="115" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
-        <childnode refid="116" relation="include">
+        <childnode refid="119" relation="include">
         </childnode>
       </node>
       <node id="45">
         <label>MHO_ManualPolDelayCorrectionBuilder.cc</label>
         <link refid="MHO__ManualPolDelayCorrectionBuilder_8cc"/>
       </node>
-      <node id="161">
+      <node id="164">
         <label>MHO_ManualPolPhaseCorrection.hh</label>
         <link refid="MHO__ManualPolPhaseCorrection_8hh"/>
-        <childnode refid="162" relation="include">
+        <childnode refid="165" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
       </node>
-      <node id="116">
+      <node id="119">
         <label>MHO_HDF5Datasets.hh</label>
         <link refid="MHO__HDF5Datasets_8hh"/>
-        <childnode refid="115" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
       </node>
       <node id="36">
@@ -318,7 +318,7 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="85">
         <label>MHO_AFileInfoExtractor.cc</label>
         <link refid="MHO__AFileInfoExtractor_8cc"/>
       </node>
@@ -326,25 +326,25 @@
         <label>MHO_ScanDataStore.cc</label>
         <link refid="MHO__ScanDataStore_8cc"/>
       </node>
-      <node id="148">
+      <node id="151">
         <label>MHO_InterpolateFringePeak.cc</label>
         <link refid="MHO__InterpolateFringePeak_8cc"/>
       </node>
-      <node id="187">
+      <node id="190">
         <label>MHO_StationModel.hh</label>
         <link refid="MHO__StationModel_8hh"/>
-        <childnode refid="136" relation="include">
+        <childnode refid="139" relation="include">
         </childnode>
-        <childnode refid="188" relation="include">
+        <childnode refid="191" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
       </node>
-      <node id="137">
+      <node id="140">
         <label>MHO_CircularFieldRotationCorrection.cc</label>
         <link refid="MHO__CircularFieldRotationCorrection_8cc"/>
       </node>
-      <node id="152">
+      <node id="155">
         <label>MHO_LinearDParCorrection.cc</label>
         <link refid="MHO__LinearDParCorrection_8cc"/>
       </node>
@@ -356,104 +356,104 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="142">
+      <node id="145">
         <label>MHO_DelayRate.hh</label>
         <link refid="MHO__DelayRate_8hh"/>
-        <childnode refid="128" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="143" relation="include">
+        <childnode refid="146" relation="include">
         </childnode>
       </node>
-      <node id="123">
+      <node id="126">
         <label>MHO_DiFXVisibilityProcessor.hh</label>
         <link refid="MHO__DiFXVisibilityProcessor_8hh"/>
-        <childnode refid="99" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
-        <childnode refid="124" relation="include">
+        <childnode refid="127" relation="include">
         </childnode>
       </node>
-      <node id="135">
+      <node id="138">
         <label>MHO_ChannelLabeler.hh</label>
         <link refid="MHO__ChannelLabeler_8hh"/>
         <childnode refid="28" relation="include">
         </childnode>
       </node>
-      <node id="215">
+      <node id="222">
         <label>MHO_PyTableContainer.hh</label>
         <link refid="MHO__PyTableContainer_8hh"/>
-        <childnode refid="95" relation="include">
+        <childnode refid="98" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="99" relation="include">
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
-        <childnode refid="216" relation="include">
+        <childnode refid="223" relation="include">
         </childnode>
-        <childnode refid="217" relation="include">
+        <childnode refid="224" relation="include">
         </childnode>
       </node>
-      <node id="186">
+      <node id="189">
         <label>MHO_StationDelayCorrection.cc</label>
         <link refid="MHO__StationDelayCorrection_8cc"/>
       </node>
-      <node id="103">
+      <node id="106">
         <label>MHO_DiFXScanProcessor.cc</label>
         <link refid="MHO__DiFXScanProcessor_8cc"/>
       </node>
-      <node id="120">
+      <node id="123">
         <label>MHO_Taggable.hh</label>
         <link refid="MHO__Taggable_8hh"/>
-        <childnode refid="112" relation="include">
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
         </childnode>
         <childnode refid="121" relation="include">
         </childnode>
-        <childnode refid="118" relation="include">
-        </childnode>
-        <childnode refid="125" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
-        <childnode refid="115" relation="include">
+        <childnode refid="128" relation="include">
         </childnode>
         <childnode refid="116" relation="include">
         </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
       </node>
-      <node id="207">
+      <node id="214">
         <label>MHO_MultidimensionalFastFourierTransformInterface.hh</label>
         <link refid="MHO__MultidimensionalFastFourierTransformInterface_8hh"/>
-        <childnode refid="205" relation="include">
+        <childnode refid="212" relation="include">
         </childnode>
-        <childnode refid="206" relation="include">
+        <childnode refid="213" relation="include">
         </childnode>
-        <childnode refid="208" relation="include">
+        <childnode refid="215" relation="include">
         </childnode>
-        <childnode refid="210" relation="include">
+        <childnode refid="217" relation="include">
         </childnode>
-        <childnode refid="211" relation="include">
+        <childnode refid="218" relation="include">
         </childnode>
       </node>
-      <node id="89">
+      <node id="92">
         <label>MHO_ComputePlotData.hh</label>
         <link refid="MHO__ComputePlotData_8hh"/>
-        <childnode refid="80" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="93" relation="include">
         </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="94" relation="include">
         </childnode>
       </node>
-      <node id="153">
+      <node id="156">
         <label>MHO_LSBOffset.hh</label>
         <link refid="MHO__LSBOffset_8hh"/>
-        <childnode refid="154" relation="include">
+        <childnode refid="157" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
@@ -466,25 +466,25 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="113">
+      <node id="116">
         <label>MHO_ContainerHDF5Converter.hh</label>
         <link refid="MHO__ContainerHDF5Converter_8hh"/>
-        <childnode refid="107" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
       </node>
-      <node id="134">
+      <node id="137">
         <label>TestSignalFFT.cc</label>
         <link refid="TestSignalFFT_8cc"/>
       </node>
-      <node id="189">
+      <node id="192">
         <label>MHO_VisibilityChannelizer.hh</label>
         <link refid="MHO__VisibilityChannelizer_8hh"/>
-        <childnode refid="190" relation="include">
+        <childnode refid="193" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="107" relation="include">
         </childnode>
       </node>
-      <node id="80">
+      <node id="83">
         <label>MHO_BasicFringeUtilities.cc</label>
         <link refid="MHO__BasicFringeUtilities_8cc"/>
       </node>
@@ -492,7 +492,7 @@
         <label>MHO_DCBlockBuilder.cc</label>
         <link refid="MHO__DCBlockBuilder_8cc"/>
       </node>
-      <node id="77">
+      <node id="80">
         <label>MHO_PyScanStoreInterface.hh</label>
         <link refid="MHO__PyScanStoreInterface_8hh"/>
         <childnode refid="71" relation="include">
@@ -504,10 +504,10 @@
         <label>MHO_PassbandBuilder.cc</label>
         <link refid="MHO__PassbandBuilder_8cc"/>
       </node>
-      <node id="165">
+      <node id="168">
         <label>MHO_MixedPolYShift.hh</label>
         <link refid="MHO__MixedPolYShift_8hh"/>
-        <childnode refid="166" relation="include">
+        <childnode refid="169" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
@@ -517,14 +517,14 @@
         <link refid="MHO__MD5HashGenerator_8hh"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="112" relation="include">
         </childnode>
-        <childnode refid="111" relation="include">
+        <childnode refid="114" relation="include">
         </childnode>
       </node>
-      <node id="181">
+      <node id="184">
         <label>MHO_PolProductSummation.cc</label>
         <link refid="MHO__PolProductSummation_8cc"/>
       </node>
@@ -536,74 +536,74 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="112">
+      <node id="115">
         <label>MHO_ContainerJSONConverter.hh</label>
         <link refid="MHO__ContainerJSONConverter_8hh"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="205">
+      <node id="212">
         <label>MHO_MultidimensionalFastFourierTransform.hh</label>
         <link refid="MHO__MultidimensionalFastFourierTransform_8hh"/>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="134" relation="include">
+        <childnode refid="137" relation="include">
         </childnode>
-        <childnode refid="142" relation="include">
+        <childnode refid="145" relation="include">
         </childnode>
-        <childnode refid="128" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
-        </childnode>
-        <childnode refid="169" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
         <childnode refid="172" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
         </childnode>
       </node>
-      <node id="96">
+      <node id="99">
         <label>MHO_PyFringeFitterInstance.hh</label>
         <link refid="MHO__PyFringeFitterInstance_8hh"/>
       </node>
-      <node id="217">
+      <node id="224">
         <label>MHO_PyUnaryTableOperator.hh</label>
         <link refid="MHO__PyUnaryTableOperator_8hh"/>
       </node>
-      <node id="140">
+      <node id="143">
         <label>MHO_DelayModel.hh</label>
         <link refid="MHO__DelayModel_8hh"/>
-        <childnode refid="141" relation="include">
+        <childnode refid="144" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
       </node>
-      <node id="169">
+      <node id="172">
         <label>MHO_MultitonePhaseCorrection.hh</label>
         <link refid="MHO__MultitonePhaseCorrection_8hh"/>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="173" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="212">
+      <node id="219">
         <label>MHO_Reducer.hh</label>
         <link refid="MHO__Reducer_8hh"/>
-        <childnode refid="136" relation="include">
+        <childnode refid="139" relation="include">
         </childnode>
-        <childnode refid="151" relation="include">
+        <childnode refid="154" relation="include">
         </childnode>
-        <childnode refid="180" relation="include">
+        <childnode refid="183" relation="include">
         </childnode>
-        <childnode refid="103" relation="include">
+        <childnode refid="106" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="93" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
       </node>
       <node id="48">
@@ -625,22 +625,22 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
-        </childnode>
         <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="84" relation="include">
         </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
       </node>
-      <node id="179">
+      <node id="182">
         <label>MHO_PhaseCalibrationTrim.cc</label>
         <link refid="MHO__PhaseCalibrationTrim_8cc"/>
       </node>
-      <node id="156">
+      <node id="159">
         <label>MHO_ManualChannelDelayCorrection.cc</label>
         <link refid="MHO__ManualChannelDelayCorrection_8cc"/>
       </node>
@@ -648,19 +648,19 @@
         <label>MHO_BasicFringeDataConfiguration.cc</label>
         <link refid="MHO__BasicFringeDataConfiguration_8cc"/>
       </node>
-      <node id="167">
+      <node id="170">
         <label>MHO_MixedSidebandNormFX.hh</label>
         <link refid="MHO__MixedSidebandNormFX_8hh"/>
-        <childnode refid="168" relation="include">
+        <childnode refid="171" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="160">
+      <node id="163">
         <label>MHO_ManualPolDelayCorrection.cc</label>
         <link refid="MHO__ManualPolDelayCorrection_8cc"/>
       </node>
-      <node id="108">
+      <node id="111">
         <label>MHO_HDF5ConverterDictionary.cc</label>
         <link refid="MHO__HDF5ConverterDictionary_8cc"/>
       </node>
@@ -668,30 +668,30 @@
         <label>MHO_ManualChannelPhaseCorrectionBuilder.cc</label>
         <link refid="MHO__ManualChannelPhaseCorrectionBuilder_8cc"/>
       </node>
-      <node id="121">
+      <node id="124">
         <label>MHO_ObjectTags.hh</label>
         <link refid="MHO__ObjectTags_8hh"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="122" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
         <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="125" relation="include">
         </childnode>
         <childnode refid="116" relation="include">
         </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
       </node>
-      <node id="145">
+      <node id="148">
         <label>MHO_EstimatePCManual.hh</label>
         <link refid="MHO__EstimatePCManual_8hh"/>
-        <childnode refid="146" relation="include">
+        <childnode refid="149" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
@@ -704,10 +704,22 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="176">
+      <node id="200">
+        <label>MHO_MK4CorelInterfaceReversed.hh</label>
+        <link refid="MHO__MK4CorelInterfaceReversed_8hh"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="201">
+        <label>MHO_MK4CorelInterfaceReversed.cc</label>
+        <link refid="MHO__MK4CorelInterfaceReversed_8cc"/>
+      </node>
+      <node id="179">
         <label>MHO_Passband.hh</label>
         <link refid="MHO__Passband_8hh"/>
-        <childnode refid="177" relation="include">
+        <childnode refid="180" relation="include">
         </childnode>
         <childnode refid="63" relation="include">
         </childnode>
@@ -728,71 +740,71 @@
         <label>MHO_PolProductSummationBuilder.cc</label>
         <link refid="MHO__PolProductSummationBuilder_8cc"/>
       </node>
-      <node id="147">
+      <node id="150">
         <label>MHO_InterpolateFringePeak.hh</label>
         <link refid="MHO__InterpolateFringePeak_8hh"/>
-        <childnode refid="148" relation="include">
+        <childnode refid="151" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
       </node>
-      <node id="100">
+      <node id="103">
         <label>MHO_DiFXInterface.hh</label>
         <link refid="MHO__DiFXInterface_8hh"/>
-        <childnode refid="98" relation="include">
-        </childnode>
         <childnode refid="101" relation="include">
         </childnode>
-        <childnode refid="102" relation="include">
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
         </childnode>
       </node>
-      <node id="182">
+      <node id="185">
         <label>MHO_SamplerLabeler.hh</label>
         <link refid="MHO__SamplerLabeler_8hh"/>
         <childnode refid="67" relation="include">
         </childnode>
       </node>
-      <node id="124">
+      <node id="127">
         <label>MHO_DiFXVisibilityProcessor.cc</label>
         <link refid="MHO__DiFXVisibilityProcessor_8cc"/>
       </node>
-      <node id="133">
+      <node id="136">
         <label>alist4.cc</label>
         <link refid="alist4_8cc"/>
       </node>
-      <node id="118">
+      <node id="121">
         <label>MHO_ScalarContainer.hh</label>
         <link refid="MHO__ScalarContainer_8hh"/>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
         <childnode refid="115" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
         </childnode>
         <childnode refid="116" relation="include">
         </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
       </node>
-      <node id="157">
+      <node id="160">
         <label>MHO_ManualChannelPhaseCorrection.hh</label>
         <link refid="MHO__ManualChannelPhaseCorrection_8hh"/>
-        <childnode refid="158" relation="include">
+        <childnode refid="161" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
       </node>
-      <node id="210">
+      <node id="217">
         <label>MHO_OpenCLFastFourierTransformRadix2Stage.hh</label>
         <link refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh"/>
       </node>
@@ -800,12 +812,12 @@
         <label>MHO_SamplerLabelerBuilder.cc</label>
         <link refid="MHO__SamplerLabelerBuilder_8cc"/>
       </node>
-      <node id="88">
+      <node id="91">
         <label>MHO_BasicFringeUtilities.hh</label>
         <link refid="MHO__BasicFringeUtilities_8hh"/>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -814,28 +826,32 @@
         <label>MHO_ManualChannelDelayCorrectionBuilder.cc</label>
         <link refid="MHO__ManualChannelDelayCorrectionBuilder_8cc"/>
       </node>
-      <node id="125">
+      <node id="78">
+        <label>hops2mark4.cc</label>
+        <link refid="hops2mark4_8cc"/>
+      </node>
+      <node id="128">
         <label>MHO_VectorContainer.hh</label>
         <link refid="MHO__VectorContainer_8hh"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="126" relation="include">
+        <childnode refid="129" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="201" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
         <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="208" relation="include">
         </childnode>
         <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
         </childnode>
       </node>
       <node id="57">
@@ -854,10 +870,10 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="174">
+      <node id="177">
         <label>MHO_Notches.hh</label>
         <link refid="MHO__Notches_8hh"/>
-        <childnode refid="175" relation="include">
+        <childnode refid="178" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
@@ -866,47 +882,55 @@
         <label>MHO_PyContainersModuleDefinition.cc</label>
         <link refid="MHO__PyContainersModuleDefinition_8cc"/>
       </node>
-      <node id="126">
+      <node id="204">
+        <label>MHO_MK4StationInterfaceReversed.hh</label>
+        <link refid="MHO__MK4StationInterfaceReversed_8hh"/>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="205" relation="include">
+        </childnode>
+      </node>
+      <node id="129">
         <label>MHO_Axis.hh</label>
         <link refid="MHO__Axis_8hh"/>
-        <childnode refid="127" relation="include">
+        <childnode refid="130" relation="include">
         </childnode>
-        <childnode refid="132" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="201" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
         <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="208" relation="include">
         </childnode>
         <childnode refid="116" relation="include">
         </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
       </node>
-      <node id="180">
+      <node id="183">
         <label>MHO_PolProductSummation.hh</label>
         <link refid="MHO__PolProductSummation_8hh"/>
-        <childnode refid="181" relation="include">
+        <childnode refid="184" relation="include">
         </childnode>
         <childnode refid="65" relation="include">
         </childnode>
       </node>
-      <node id="141">
+      <node id="144">
         <label>MHO_DelayModel.cc</label>
         <link refid="MHO__DelayModel_8cc"/>
       </node>
-      <node id="129">
+      <node id="132">
         <label>MHO_MBDelaySearch.cc</label>
         <link refid="MHO__MBDelaySearch_8cc"/>
       </node>
-      <node id="109">
+      <node id="112">
         <label>MHO_BinaryFileInterface.hh</label>
         <link refid="MHO__BinaryFileInterface_8hh"/>
         <childnode refid="9" relation="include">
@@ -919,64 +943,64 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="101" relation="include">
         </childnode>
-        <childnode refid="99" relation="include">
-        </childnode>
-        <childnode refid="110" relation="include">
-        </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="84" relation="include">
-        </childnode>
-      </node>
-      <node id="188">
-        <label>MHO_StationModel.cc</label>
-        <link refid="MHO__StationModel_8cc"/>
-      </node>
-      <node id="195">
-        <label>MHO_MK4CorelInterface.hh</label>
-        <link refid="MHO__MK4CorelInterface_8hh"/>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="196" relation="include">
-        </childnode>
-      </node>
-      <node id="127">
-        <label>MHO_AxisPack.hh</label>
-        <link refid="MHO__AxisPack_8hh"/>
-        <childnode refid="128" relation="include">
-        </childnode>
-        <childnode refid="132" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="201" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
         <childnode refid="113" relation="include">
         </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
-        <childnode refid="115" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
         <childnode refid="107" relation="include">
         </childnode>
-        <childnode refid="116" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
       </node>
-      <node id="172">
+      <node id="191">
+        <label>MHO_StationModel.cc</label>
+        <link refid="MHO__StationModel_8cc"/>
+      </node>
+      <node id="198">
+        <label>MHO_MK4CorelInterface.hh</label>
+        <link refid="MHO__MK4CorelInterface_8hh"/>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="199" relation="include">
+        </childnode>
+      </node>
+      <node id="130">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="208" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+      </node>
+      <node id="175">
         <label>MHO_SingleSidebandNormFX.hh</label>
         <link refid="MHO__SingleSidebandNormFX_8hh"/>
-        <childnode refid="173" relation="include">
+        <childnode refid="176" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="177">
+      <node id="180">
         <label>MHO_Passband.cc</label>
         <link refid="MHO__Passband_8cc"/>
       </node>
@@ -1000,19 +1024,19 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="193">
+      <node id="196">
         <label>MHO_DiFXPCalProcessor.hh</label>
         <link refid="MHO__DiFXPCalProcessor_8hh"/>
-        <childnode refid="99" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
-        <childnode refid="194" relation="include">
+        <childnode refid="197" relation="include">
         </childnode>
       </node>
-      <node id="105">
+      <node id="108">
         <label>mark42hops.cc</label>
         <link refid="mark42hops_8cc"/>
       </node>
-      <node id="106">
+      <node id="109">
         <label>MHO_MK4ScanConverter.cc</label>
         <link refid="MHO__MK4ScanConverter_8cc"/>
       </node>
@@ -1029,64 +1053,64 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
-        <childnode refid="97" relation="include">
+        <childnode refid="100" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="98" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
-      <node id="130">
+      <node id="133">
         <label>MHO_MBDelaySearchCUDA.hh</label>
         <link refid="MHO__MBDelaySearchCUDA_8hh"/>
-        <childnode refid="131" relation="include">
+        <childnode refid="134" relation="include">
         </childnode>
       </node>
-      <node id="159">
+      <node id="162">
         <label>MHO_ManualPolDelayCorrection.hh</label>
         <link refid="MHO__ManualPolDelayCorrection_8hh"/>
-        <childnode refid="160" relation="include">
+        <childnode refid="163" relation="include">
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
       </node>
-      <node id="213">
+      <node id="220">
         <label>MHO_SubSample.hh</label>
         <link refid="MHO__SubSample_8hh"/>
-        <childnode refid="142" relation="include">
+        <childnode refid="145" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
       </node>
-      <node id="203">
+      <node id="210">
         <label>MHO_EndZeroPadder.hh</label>
         <link refid="MHO__EndZeroPadder_8hh"/>
-        <childnode refid="142" relation="include">
+        <childnode refid="145" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="93" relation="include">
         </childnode>
       </node>
-      <node id="143">
+      <node id="146">
         <label>MHO_DelayRate.cc</label>
         <link refid="MHO__DelayRate_8cc"/>
       </node>
@@ -1117,6 +1141,10 @@
         </childnode>
         <childnode refid="77" relation="include">
         </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
       </node>
       <node id="55">
         <label>MHO_NotchesBuilder.cc</label>
@@ -1132,18 +1160,18 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="196">
+      <node id="199">
         <label>MHO_MK4CorelInterface.cc</label>
         <link refid="MHO__MK4CorelInterface_8cc"/>
       </node>
-      <node id="95">
+      <node id="98">
         <label>MHO_PyContainerStoreInterface.hh</label>
         <link refid="MHO__PyContainerStoreInterface_8hh"/>
         <childnode refid="71" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="99" relation="include">
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
@@ -1152,14 +1180,14 @@
         <label>MHO_LSBOffsetBuilder.cc</label>
         <link refid="MHO__LSBOffsetBuilder_8cc"/>
       </node>
-      <node id="168">
+      <node id="171">
         <label>MHO_MixedSidebandNormFX.cc</label>
         <link refid="MHO__MixedSidebandNormFX_8cc"/>
       </node>
-      <node id="208">
+      <node id="215">
         <label>MHO_OpenCLFastFourierTransformPlan.hh</label>
         <link refid="MHO__OpenCLFastFourierTransformPlan_8hh"/>
-        <childnode refid="209" relation="include">
+        <childnode refid="216" relation="include">
         </childnode>
       </node>
       <node id="52">
@@ -1170,42 +1198,42 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="136">
+      <node id="139">
         <label>MHO_CircularFieldRotationCorrection.hh</label>
         <link refid="MHO__CircularFieldRotationCorrection_8hh"/>
-        <childnode refid="137" relation="include">
+        <childnode refid="140" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="81">
+      <node id="84">
         <label>MHO_ContainerFileInterface.cc</label>
         <link refid="MHO__ContainerFileInterface_8cc"/>
       </node>
-      <node id="199">
+      <node id="206">
         <label>MHO_ElementTypeCaster.hh</label>
         <link refid="MHO__ElementTypeCaster_8hh"/>
-        <childnode refid="110" relation="include">
+        <childnode refid="113" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
       </node>
-      <node id="202">
+      <node id="209">
         <label>MHO_CyclicRotator.hh</label>
         <link refid="MHO__CyclicRotator_8hh"/>
-        <childnode refid="134" relation="include">
+        <childnode refid="137" relation="include">
         </childnode>
-        <childnode refid="142" relation="include">
+        <childnode refid="145" relation="include">
         </childnode>
-        <childnode refid="128" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
-        <childnode refid="172" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="93" relation="include">
         </childnode>
       </node>
       <node id="34">
@@ -1216,10 +1244,10 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="155">
+      <node id="158">
         <label>MHO_ManualChannelDelayCorrection.hh</label>
         <link refid="MHO__ManualChannelDelayCorrection_8hh"/>
-        <childnode refid="156" relation="include">
+        <childnode refid="159" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
         </childnode>
@@ -1228,10 +1256,10 @@
         <label>TestPCalExtraction.cc</label>
         <link refid="TestPCalExtraction_8cc"/>
       </node>
-      <node id="185">
+      <node id="188">
         <label>MHO_StationDelayCorrection.hh</label>
         <link refid="MHO__StationDelayCorrection_8hh"/>
-        <childnode refid="186" relation="include">
+        <childnode refid="189" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
@@ -1268,10 +1296,10 @@
         <label>hops2keys.cc</label>
         <link refid="hops2keys_8cc"/>
       </node>
-      <node id="163">
+      <node id="166">
         <label>MHO_MinWeight.hh</label>
         <link refid="MHO__MinWeight_8hh"/>
-        <childnode refid="164" relation="include">
+        <childnode refid="167" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
@@ -1284,7 +1312,7 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="91">
+      <node id="94">
         <label>MHO_FringePlotInfo.cc</label>
         <link refid="MHO__FringePlotInfo_8cc"/>
       </node>
@@ -1294,24 +1322,24 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="98">
+      <node id="101">
         <label>difx2hops.cc</label>
         <link refid="difx2hops_8cc"/>
       </node>
-      <node id="85">
+      <node id="88">
         <label>MHO_HDF5ContainerFileInterface.cc</label>
         <link refid="MHO__HDF5ContainerFileInterface_8cc"/>
       </node>
-      <node id="90">
+      <node id="93">
         <label>MHO_ComputePlotData.cc</label>
         <link refid="MHO__ComputePlotData_8cc"/>
       </node>
-      <node id="178">
+      <node id="181">
         <label>MHO_PhaseCalibrationTrim.hh</label>
         <link refid="MHO__PhaseCalibrationTrim_8hh"/>
-        <childnode refid="169" relation="include">
+        <childnode refid="172" relation="include">
         </childnode>
-        <childnode refid="179" relation="include">
+        <childnode refid="182" relation="include">
         </childnode>
       </node>
       <node id="32">
@@ -1322,7 +1350,7 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="214">
+      <node id="221">
         <label>MHO_TableContainerBufferBuilder.hh</label>
         <link refid="MHO__TableContainerBufferBuilder_8hh"/>
       </node>
@@ -1330,12 +1358,12 @@
         <label>MHO_MixedPolYShiftBuilder.cc</label>
         <link refid="MHO__MixedPolYShiftBuilder_8cc"/>
       </node>
-      <node id="183">
+      <node id="186">
         <label>MHO_SBDTableGenerator.hh</label>
         <link refid="MHO__SBDTableGenerator_8hh"/>
-        <childnode refid="172" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="184" relation="include">
+        <childnode refid="187" relation="include">
         </childnode>
       </node>
       <node id="26">
@@ -1382,38 +1410,38 @@
         <childnode refid="70" relation="include">
         </childnode>
       </node>
-      <node id="216">
+      <node id="223">
         <label>MHO_PyUnaryOperator.hh</label>
         <link refid="MHO__PyUnaryOperator_8hh"/>
       </node>
-      <node id="128">
+      <node id="131">
         <label>MHO_MBDelaySearch.hh</label>
         <link refid="MHO__MBDelaySearch_8hh"/>
-        <childnode refid="129" relation="include">
+        <childnode refid="132" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="130" relation="include">
+        <childnode refid="133" relation="include">
         </childnode>
       </node>
-      <node id="119">
+      <node id="122">
         <label>MHO_SerializableObjectFactory.hh</label>
         <link refid="MHO__SerializableObjectFactory_8hh"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="194">
+      <node id="197">
         <label>MHO_DiFXPCalProcessor.cc</label>
         <link refid="MHO__DiFXPCalProcessor_8cc"/>
       </node>
-      <node id="151">
+      <node id="154">
         <label>MHO_LinearDParCorrection.hh</label>
         <link refid="MHO__LinearDParCorrection_8hh"/>
-        <childnode refid="152" relation="include">
+        <childnode refid="155" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="93" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
@@ -1422,26 +1450,26 @@
         <label>hops2flat.cc</label>
         <link refid="hops2flat_8cc"/>
       </node>
-      <node id="84">
+      <node id="87">
         <label>MHO_HDF5ContainerFileInterface.hh</label>
         <link refid="MHO__HDF5ContainerFileInterface_8hh"/>
-        <childnode refid="83" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="88" relation="include">
         </childnode>
       </node>
-      <node id="131">
+      <node id="134">
         <label>MHO_MBDelaySearchCUDA.cc</label>
         <link refid="MHO__MBDelaySearchCUDA_8cc"/>
       </node>
-      <node id="158">
+      <node id="161">
         <label>MHO_ManualChannelPhaseCorrection.cc</label>
         <link refid="MHO__ManualChannelPhaseCorrection_8cc"/>
       </node>
-      <node id="149">
+      <node id="152">
         <label>MHO_IonosphericPhaseCorrection.hh</label>
         <link refid="MHO__IonosphericPhaseCorrection_8hh"/>
-        <childnode refid="150" relation="include">
+        <childnode refid="153" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -1476,10 +1504,10 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="138">
+      <node id="141">
         <label>MHO_DCBlock.hh</label>
         <link refid="MHO__DCBlock_8hh"/>
-        <childnode refid="139" relation="include">
+        <childnode refid="142" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
         </childnode>
@@ -1492,16 +1520,24 @@
         <label>MHO_MinWeightBuilder.cc</label>
         <link refid="MHO__MinWeightBuilder_8cc"/>
       </node>
-      <node id="150">
+      <node id="77">
+        <label>MHO_MK4ScanConverterReversed.hh</label>
+        <link refid="MHO__MK4ScanConverterReversed_8hh"/>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="153">
         <label>MHO_IonosphericPhaseCorrection.cc</label>
         <link refid="MHO__IonosphericPhaseCorrection_8cc"/>
       </node>
-      <node id="107">
+      <node id="110">
         <label>MHO_HDF5ConverterDictionary.hh</label>
         <link refid="MHO__HDF5ConverterDictionary_8hh"/>
-        <childnode refid="84" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
+        <childnode refid="111" relation="include">
         </childnode>
       </node>
       <node id="24">
@@ -1528,19 +1564,19 @@
         <childnode refid="73" relation="include">
         </childnode>
       </node>
-      <node id="122">
+      <node id="125">
         <label>MHO_DiFXBaselineProcessor.hh</label>
         <link refid="MHO__DiFXBaselineProcessor_8hh"/>
-        <childnode refid="123" relation="include">
+        <childnode refid="126" relation="include">
         </childnode>
-        <childnode refid="110" relation="include">
+        <childnode refid="113" relation="include">
         </childnode>
       </node>
       <node id="33">
         <label>MHO_DataSelectionBuilder.cc</label>
         <link refid="MHO__DataSelectionBuilder_8cc"/>
       </node>
-      <node id="175">
+      <node id="178">
         <label>MHO_Notches.cc</label>
         <link refid="MHO__Notches_8cc"/>
       </node>
@@ -1560,34 +1596,38 @@
         <label>fourfit4.cc</label>
         <link refid="fourfit4_8cc"/>
       </node>
-      <node id="117">
+      <node id="120">
         <label>MHO_Serializable.hh</label>
         <link refid="MHO__Serializable_8hh"/>
-        <childnode refid="86" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
-        <childnode refid="118" relation="include">
+        <childnode refid="121" relation="include">
         </childnode>
-        <childnode refid="119" relation="include">
+        <childnode refid="122" relation="include">
         </childnode>
-        <childnode refid="120" relation="include">
+        <childnode refid="123" relation="include">
         </childnode>
-        <childnode refid="125" relation="include">
+        <childnode refid="128" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="112" relation="include">
         </childnode>
       </node>
-      <node id="99">
+      <node id="205">
+        <label>MHO_MK4StationInterfaceReversed.cc</label>
+        <link refid="MHO__MK4StationInterfaceReversed_8cc"/>
+      </node>
+      <node id="102">
         <label>MHO_DiFXScanProcessor.hh</label>
         <link refid="MHO__DiFXScanProcessor_8hh"/>
-        <childnode refid="100" relation="include">
-        </childnode>
         <childnode refid="103" relation="include">
         </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
       </node>
-      <node id="132">
+      <node id="135">
         <label>MHO_ContainerDefinitions.hh</label>
         <link refid="MHO__ContainerDefinitions_8hh"/>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
@@ -1595,93 +1635,93 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="134" relation="include">
-        </childnode>
-        <childnode refid="135" relation="include">
-        </childnode>
-        <childnode refid="136" relation="include">
+        <childnode refid="137" relation="include">
         </childnode>
         <childnode refid="138" relation="include">
         </childnode>
-        <childnode refid="140" relation="include">
+        <childnode refid="139" relation="include">
         </childnode>
-        <childnode refid="142" relation="include">
+        <childnode refid="141" relation="include">
         </childnode>
-        <childnode refid="144" relation="include">
+        <childnode refid="143" relation="include">
         </childnode>
         <childnode refid="145" relation="include">
         </childnode>
         <childnode refid="147" relation="include">
         </childnode>
-        <childnode refid="149" relation="include">
+        <childnode refid="148" relation="include">
         </childnode>
-        <childnode refid="151" relation="include">
+        <childnode refid="150" relation="include">
         </childnode>
-        <childnode refid="153" relation="include">
+        <childnode refid="152" relation="include">
         </childnode>
-        <childnode refid="155" relation="include">
+        <childnode refid="154" relation="include">
         </childnode>
-        <childnode refid="157" relation="include">
+        <childnode refid="156" relation="include">
         </childnode>
-        <childnode refid="159" relation="include">
+        <childnode refid="158" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="160" relation="include">
         </childnode>
-        <childnode refid="128" relation="include">
+        <childnode refid="162" relation="include">
         </childnode>
-        <childnode refid="163" relation="include">
+        <childnode refid="164" relation="include">
         </childnode>
-        <childnode refid="165" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="166" relation="include">
         </childnode>
-        <childnode refid="169" relation="include">
+        <childnode refid="168" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
-        </childnode>
-        <childnode refid="174" relation="include">
-        </childnode>
-        <childnode refid="176" relation="include">
-        </childnode>
-        <childnode refid="178" relation="include">
-        </childnode>
-        <childnode refid="180" relation="include">
-        </childnode>
-        <childnode refid="182" relation="include">
-        </childnode>
-        <childnode refid="183" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
         <childnode refid="172" relation="include">
         </childnode>
+        <childnode refid="174" relation="include">
+        </childnode>
+        <childnode refid="177" relation="include">
+        </childnode>
+        <childnode refid="179" relation="include">
+        </childnode>
+        <childnode refid="181" relation="include">
+        </childnode>
+        <childnode refid="183" relation="include">
+        </childnode>
         <childnode refid="185" relation="include">
         </childnode>
-        <childnode refid="187" relation="include">
+        <childnode refid="186" relation="include">
         </childnode>
-        <childnode refid="189" relation="include">
+        <childnode refid="175" relation="include">
         </childnode>
-        <childnode refid="191" relation="include">
+        <childnode refid="188" relation="include">
+        </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
+        <childnode refid="192" relation="include">
+        </childnode>
+        <childnode refid="194" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
-        <childnode refid="97" relation="include">
+        <childnode refid="100" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="101" relation="include">
         </childnode>
-        <childnode refid="122" relation="include">
+        <childnode refid="125" relation="include">
         </childnode>
-        <childnode refid="193" relation="include">
+        <childnode refid="196" relation="include">
         </childnode>
-        <childnode refid="99" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
@@ -1689,47 +1729,53 @@
         </childnode>
         <childnode refid="67" relation="include">
         </childnode>
-        <childnode refid="195" relation="include">
-        </childnode>
-        <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="197" relation="include">
-        </childnode>
-        <childnode refid="199" relation="include">
+        <childnode refid="198" relation="include">
         </childnode>
         <childnode refid="200" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="107" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
+        <childnode refid="202" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="204" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="206" relation="include">
+        </childnode>
+        <childnode refid="207" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="99" relation="include">
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
       </node>
-      <node id="78">
+      <node id="81">
         <label>MHO_Snapshot.hh</label>
         <link refid="MHO__Snapshot_8hh"/>
         <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="79" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -1756,41 +1802,41 @@
         <childnode refid="65" relation="include">
         </childnode>
       </node>
-      <node id="191">
+      <node id="194">
         <label>MHO_WeightChannelizer.hh</label>
         <link refid="MHO__WeightChannelizer_8hh"/>
-        <childnode refid="192" relation="include">
+        <childnode refid="195" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="107" relation="include">
         </childnode>
       </node>
-      <node id="139">
+      <node id="142">
         <label>MHO_DCBlock.cc</label>
         <link refid="MHO__DCBlock_8cc"/>
       </node>
-      <node id="110">
+      <node id="113">
         <label>MHO_DiFXBaselineProcessor.cc</label>
         <link refid="MHO__DiFXBaselineProcessor_8cc"/>
       </node>
-      <node id="204">
+      <node id="211">
         <label>MHO_ExtremaSearch.hh</label>
         <link refid="MHO__ExtremaSearch_8hh"/>
-        <childnode refid="128" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
       </node>
-      <node id="97">
+      <node id="100">
         <label>MHO_ContainerDictionary.cc</label>
         <link refid="MHO__ContainerDictionary_8cc"/>
       </node>
-      <node id="79">
+      <node id="82">
         <label>MHO_Snapshot.cc</label>
         <link refid="MHO__Snapshot_8cc"/>
       </node>
-      <node id="170">
+      <node id="173">
         <label>MHO_MultitonePhaseCorrection.cc</label>
         <link refid="MHO__MultitonePhaseCorrection_8cc"/>
       </node>
-      <node id="184">
+      <node id="187">
         <label>MHO_SBDTableGenerator.cc</label>
         <link refid="MHO__SBDTableGenerator_8cc"/>
       </node>
@@ -1802,7 +1848,7 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="190">
+      <node id="193">
         <label>MHO_VisibilityChannelizer.cc</label>
         <link refid="MHO__VisibilityChannelizer_8cc"/>
       </node>
@@ -1810,11 +1856,11 @@
         <label>MHO_MultitonePhaseCorrectionBuilder.cc</label>
         <link refid="MHO__MultitonePhaseCorrectionBuilder_8cc"/>
       </node>
-      <node id="211">
+      <node id="218">
         <label>MHO_OpenCLMultidimensionalFastFourierTransform.hh</label>
         <link refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh"/>
       </node>
-      <node id="102">
+      <node id="105">
         <label>MHO_DiFXInterface.cc</label>
         <link refid="MHO__DiFXInterface_8cc"/>
       </node>
@@ -1822,15 +1868,15 @@
         <label>CompareCorFiles.cc</label>
         <link refid="CompareCorFiles_8cc"/>
       </node>
-      <node id="104">
+      <node id="107">
         <label>MHO_MK4ScanConverter.hh</label>
         <link refid="MHO__MK4ScanConverter_8hh"/>
-        <childnode refid="105" relation="include">
+        <childnode refid="108" relation="include">
         </childnode>
-        <childnode refid="106" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
       </node>
-      <node id="162">
+      <node id="165">
         <label>MHO_ManualPolPhaseCorrection.cc</label>
         <link refid="MHO__ManualPolPhaseCorrection_8cc"/>
       </node>
@@ -1838,124 +1884,128 @@
         <label>MHO_StationDelayCorrectionBuilder.cc</label>
         <link refid="MHO__StationDelayCorrectionBuilder_8cc"/>
       </node>
-      <node id="115">
+      <node id="118">
         <label>MHO_HDF5ConversionHelpers.hh</label>
         <link refid="MHO__HDF5ConversionHelpers_8hh"/>
-        <childnode refid="113" relation="include">
+        <childnode refid="116" relation="include">
         </childnode>
       </node>
-      <node id="94">
+      <node id="97">
         <label>MHO_InitialFringeInfo.cc</label>
         <link refid="MHO__InitialFringeInfo_8cc"/>
       </node>
-      <node id="154">
+      <node id="157">
         <label>MHO_LSBOffset.cc</label>
         <link refid="MHO__LSBOffset_8cc"/>
       </node>
-      <node id="201">
+      <node id="79">
+        <label>MHO_MK4ScanConverterReversed.cc</label>
+        <link refid="MHO__MK4ScanConverterReversed_8cc"/>
+      </node>
+      <node id="208">
         <label>MHO_TableContainer.hh</label>
         <link refid="MHO__TableContainer_8hh"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="135" relation="include">
-        </childnode>
-        <childnode refid="136" relation="include">
-        </childnode>
         <childnode refid="138" relation="include">
         </childnode>
-        <childnode refid="140" relation="include">
+        <childnode refid="139" relation="include">
         </childnode>
-        <childnode refid="142" relation="include">
+        <childnode refid="141" relation="include">
         </childnode>
-        <childnode refid="144" relation="include">
+        <childnode refid="143" relation="include">
         </childnode>
         <childnode refid="145" relation="include">
         </childnode>
-        <childnode refid="149" relation="include">
+        <childnode refid="147" relation="include">
         </childnode>
-        <childnode refid="151" relation="include">
+        <childnode refid="148" relation="include">
         </childnode>
-        <childnode refid="153" relation="include">
+        <childnode refid="152" relation="include">
         </childnode>
-        <childnode refid="155" relation="include">
+        <childnode refid="154" relation="include">
         </childnode>
-        <childnode refid="157" relation="include">
+        <childnode refid="156" relation="include">
         </childnode>
-        <childnode refid="159" relation="include">
+        <childnode refid="158" relation="include">
         </childnode>
-        <childnode refid="161" relation="include">
+        <childnode refid="160" relation="include">
         </childnode>
-        <childnode refid="128" relation="include">
+        <childnode refid="162" relation="include">
         </childnode>
-        <childnode refid="163" relation="include">
+        <childnode refid="164" relation="include">
         </childnode>
-        <childnode refid="165" relation="include">
+        <childnode refid="131" relation="include">
         </childnode>
-        <childnode refid="167" relation="include">
+        <childnode refid="166" relation="include">
         </childnode>
-        <childnode refid="169" relation="include">
+        <childnode refid="168" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
-        </childnode>
-        <childnode refid="174" relation="include">
-        </childnode>
-        <childnode refid="176" relation="include">
-        </childnode>
-        <childnode refid="178" relation="include">
-        </childnode>
-        <childnode refid="180" relation="include">
-        </childnode>
-        <childnode refid="182" relation="include">
-        </childnode>
-        <childnode refid="183" relation="include">
+        <childnode refid="170" relation="include">
         </childnode>
         <childnode refid="172" relation="include">
         </childnode>
+        <childnode refid="174" relation="include">
+        </childnode>
+        <childnode refid="177" relation="include">
+        </childnode>
+        <childnode refid="179" relation="include">
+        </childnode>
+        <childnode refid="181" relation="include">
+        </childnode>
+        <childnode refid="183" relation="include">
+        </childnode>
         <childnode refid="185" relation="include">
         </childnode>
-        <childnode refid="187" relation="include">
+        <childnode refid="186" relation="include">
         </childnode>
-        <childnode refid="132" relation="include">
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="188" relation="include">
+        </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="112" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="202" relation="include">
-        </childnode>
-        <childnode refid="203" relation="include">
-        </childnode>
-        <childnode refid="204" relation="include">
-        </childnode>
-        <childnode refid="205" relation="include">
-        </childnode>
-        <childnode refid="206" relation="include">
-        </childnode>
-        <childnode refid="207" relation="include">
-        </childnode>
-        <childnode refid="212" relation="include">
-        </childnode>
-        <childnode refid="213" relation="include">
-        </childnode>
-        <childnode refid="113" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
         <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
-        <childnode refid="116" relation="include">
-        </childnode>
-        <childnode refid="214" relation="include">
+        <childnode refid="209" relation="include">
         </childnode>
         <childnode refid="210" relation="include">
         </childnode>
         <childnode refid="211" relation="include">
         </childnode>
-        <childnode refid="215" relation="include">
+        <childnode refid="212" relation="include">
+        </childnode>
+        <childnode refid="213" relation="include">
+        </childnode>
+        <childnode refid="214" relation="include">
+        </childnode>
+        <childnode refid="219" relation="include">
+        </childnode>
+        <childnode refid="220" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="221" relation="include">
+        </childnode>
+        <childnode refid="217" relation="include">
+        </childnode>
+        <childnode refid="218" relation="include">
+        </childnode>
+        <childnode refid="222" relation="include">
         </childnode>
       </node>
       <node id="66">

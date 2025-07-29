@@ -1,0 +1,754 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__MK4CorelInterfaceReversed_8hh" kind="file" language="C++">
+    <compoundname>MHO_MK4CorelInterfaceReversed.hh</compoundname>
+    <includes local="no">cstdlib</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes refid="MHO__ContainerDefinitions_8hh" local="yes">MHO_ContainerDefinitions.hh</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includedby refid="MHO__MK4CorelInterfaceReversed_8cc" local="yes">MHO_MK4CorelInterfaceReversed.cc</includedby>
+    <includedby refid="MHO__MK4ScanConverterReversed_8cc" local="yes">MHO_MK4ScanConverterReversed.cc</includedby>
+    <incdepgraph>
+      <node id="21">
+        <label>atomic</label>
+      </node>
+      <node id="66">
+        <label>MHO_UUIDGenerator.hh</label>
+        <link refid="MHO__UUIDGenerator_8hh"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>iomanip</label>
+      </node>
+      <node id="60">
+        <label>assert.h</label>
+      </node>
+      <node id="41">
+        <label>iterator</label>
+      </node>
+      <node id="47">
+        <label>MHO_NDArrayView.hh</label>
+        <link refid="MHO__NDArrayView_8hh"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>cstdint</label>
+      </node>
+      <node id="72">
+        <label>MHO_ElementTypes.hh</label>
+        <link refid="MHO__ElementTypes_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>MHO_ClassIdentity.hh</label>
+        <link refid="MHO__ClassIdentity_8hh"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>endian.h</label>
+      </node>
+      <node id="56">
+        <label>stdint.h</label>
+      </node>
+      <node id="11">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>MHO_Meta.hh</label>
+        <link refid="MHO__Meta_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>cmath</label>
+      </node>
+      <node id="68">
+        <label>MHO_Taggable.hh</label>
+        <link refid="MHO__Taggable_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>stdexcept</label>
+      </node>
+      <node id="29">
+        <label>MHO_IntervalLabelInterface.hh</label>
+        <link refid="MHO__IntervalLabelInterface_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="53">
+        <label>MHO_MD5HashGenerator.hh</label>
+        <link refid="MHO__MD5HashGenerator_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>cinttypes</label>
+      </node>
+      <node id="31">
+        <label>map</label>
+      </node>
+      <node id="14">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>MHO_FileStreamer.hh</label>
+        <link refid="MHO__FileStreamer_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>stddef.h</label>
+      </node>
+      <node id="54">
+        <label>fstream</label>
+      </node>
+      <node id="1">
+        <label>MHO_MK4CorelInterfaceReversed.hh</label>
+        <link refid="MHO__MK4CorelInterfaceReversed_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>MHO_NDArrayMath.hh</label>
+        <link refid="MHO__NDArrayMath_8hh"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>ostream</label>
+      </node>
+      <node id="57">
+        <label>MHO_UUID.hh</label>
+        <link refid="MHO__UUID_8hh"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>MHO_NDArrayWrapper_0.hh</label>
+        <link refid="MHO__NDArrayWrapper__0_8hh"/>
+      </node>
+      <node id="34">
+        <label>MHO_VectorContainer.hh</label>
+        <link refid="MHO__VectorContainer_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>MHO_Axis.hh</label>
+        <link refid="MHO__Axis_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MHO_IndexLabelInterface.hh</label>
+        <link refid="MHO__IndexLabelInterface_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>MHO_NDArrayWrapper_1.hh</label>
+        <link refid="MHO__NDArrayWrapper__1_8hh"/>
+      </node>
+      <node id="67">
+        <label>random</label>
+      </node>
+      <node id="70">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>string.h</label>
+      </node>
+      <node id="40">
+        <label>MHO_BidirectionalIterator.hh</label>
+        <link refid="MHO__BidirectionalIterator_8hh"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>tuple</label>
+      </node>
+      <node id="73">
+        <label>MHO_AxisTypes.hh</label>
+        <link refid="MHO__AxisTypes_8hh"/>
+      </node>
+      <node id="27">
+        <label>ctime</label>
+      </node>
+      <node id="26">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="48">
+        <label>MHO_BidirectionalIndexedIterator.hh</label>
+        <link refid="MHO__BidirectionalIndexedIterator_8hh"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="69">
+        <label>utility</label>
+      </node>
+      <node id="37">
+        <label>array</label>
+      </node>
+      <node id="13">
+        <label>sstream</label>
+      </node>
+      <node id="20">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>MHO_BidirectionalStrideIterator.hh</label>
+        <link refid="MHO__BidirectionalStrideIterator_8hh"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>MHO_NDArrayWrapper.hh</label>
+        <link refid="MHO__NDArrayWrapper_8hh"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstdlib</label>
+      </node>
+      <node id="28">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>iostream</label>
+      </node>
+      <node id="46">
+        <label>cstddef</label>
+      </node>
+      <node id="58">
+        <label>MHO_Types.hh</label>
+        <link refid="MHO__Types_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>mutex</label>
+      </node>
+      <node id="74">
+        <label>MHO_BaselineContainers.hh</label>
+        <link refid="MHO__BaselineContainers_8hh"/>
+      </node>
+      <node id="76">
+        <label>MHO_FringeContainers.hh</label>
+        <link refid="MHO__FringeContainers_8hh"/>
+      </node>
+      <node id="22">
+        <label>thread</label>
+      </node>
+      <node id="33">
+        <label>type_traits</label>
+      </node>
+      <node id="51">
+        <label>MHO_Serializable.hh</label>
+        <link refid="MHO__Serializable_8hh"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>set</label>
+      </node>
+      <node id="12">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="7">
+        <label>complex</label>
+      </node>
+      <node id="6">
+        <label>MHO_ContainerDefinitions.hh</label>
+        <link refid="MHO__ContainerDefinitions_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>algorithm</label>
+      </node>
+      <node id="59">
+        <label>picohash.h</label>
+        <link refid="picohash_8h"/>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>stdio.h</label>
+      </node>
+      <node id="44">
+        <label>MHO_ExtensibleElement.hh</label>
+        <link refid="MHO__ExtensibleElement_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cstring</label>
+      </node>
+      <node id="75">
+        <label>MHO_StationContainers.hh</label>
+        <link refid="MHO__StationContainers_8hh"/>
+      </node>
+      <node id="61">
+        <label>inttypes.h</label>
+      </node>
+      <node id="71">
+        <label>MHO_TableContainer.hh</label>
+        <link refid="MHO__TableContainer_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>MHO_MK4CorelInterfaceReversed.hh</label>
+        <link refid="MHO__MK4CorelInterfaceReversed_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_MK4CorelInterfaceReversed.cc</label>
+        <link refid="MHO__MK4CorelInterfaceReversed_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_MK4ScanConverterReversed.cc</label>
+        <link refid="MHO__MK4ScanConverterReversed_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__MK4CorelInterfaceReversed" prot="public">hops::MHO_MK4CorelInterfaceReversed</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_MK4CorelInterfaceReversed_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_MK4CorelInterfaceReversed_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdlib&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__ContainerDefinitions_8hh" kindref="compound">MHO_ContainerDefinitions.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//forward<sp/>declaration<sp/>of<sp/>mk4_corel<sp/>structs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//we<sp/>do<sp/>this<sp/>to<sp/>keep<sp/>the<sp/>mk4<sp/>structures<sp/>from<sp/>&apos;leaking&apos;<sp/>into<sp/>the<sp/>new<sp/>code<sp/>via<sp/>includes,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//We<sp/>want<sp/>to<sp/>make<sp/>sure<sp/>any<sp/>interface<sp/>to<sp/>the<sp/>old<sp/>mk4<sp/>IO<sp/>libraries<sp/>is<sp/>kept<sp/>only</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//within<sp/>the<sp/>MK4Interface<sp/>library<sp/>implementation<sp/>(.cc)<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>HOPS3_USE_CXX</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmk4__corel" kindref="compound">mk4_corel</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>HOPS3_USE_CXX</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classhops_1_1MHO__MK4CorelInterfaceReversed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed" kindref="compound">MHO_MK4CorelInterfaceReversed</ref></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1ad0f5b0a2c1cbdd8270740e9790ed4a24" kindref="member">MHO_MK4CorelInterfaceReversed</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6f428c91807338d7a0055d7848dd3750" kindref="member">~MHO_MK4CorelInterfaceReversed</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a711d52d195f45f3e43b8aa11585f18de" kindref="member">SetRootFileName</ref>(std::string<sp/>root_filename);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6c05fa4abb5384680589d01c4f80d939" kindref="member">SetOutputDirectory</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>output_dir);</highlight></codeline>
+<codeline lineno="48" refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a0bdb1474562b04caf8b24ce89d93a38e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a0bdb1474562b04caf8b24ce89d93a38e" kindref="member">SetVisibilityData</ref>(<ref refid="classhops_1_1MHO__TableContainer" kindref="compound">visibility_store_type</ref>*<sp/>vis_data)<sp/>{<sp/>fVisibilityData<sp/>=<sp/>vis_data;<sp/>}</highlight></codeline>
+<codeline lineno="49" refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a40e6b9a40530243348bc1e1692da6a93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a40e6b9a40530243348bc1e1692da6a93" kindref="member">SetWeightData</ref>(<ref refid="classhops_1_1MHO__TableContainer" kindref="compound">weight_store_type</ref>*<sp/>weight_data)<sp/>{<sp/>fWeightData<sp/>=<sp/>weight_data;<sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a2f3490e13f5b299847278f1303b6fe25" kindref="member">GenerateCorelStructure</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a3056ff60d4ce19032133171b094dc5e1" kindref="member">WriteCorelFile</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a947210ad9296f645d8aecaea95f6c2f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmk4__corel" kindref="compound">mk4_corel</ref>*<sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a947210ad9296f645d8aecaea95f6c2f7" kindref="member">GetCorelStructure</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fGeneratedCorel;<sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1af94f8a5969e5a871e369f5edcfc7bcc2" kindref="member">FreeAllocated</ref>();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>ConstructMK4ChannelID(std::string<sp/>fgroup,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structmk4__corel_1a6f78e597fa70c404d6aa36df5709dc90" kindref="member">index</ref>,<sp/>std::string<sp/>sideband,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>pol);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GenerateType000();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GenerateType100();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GenerateType101Records();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GenerateType120Records();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InitializeCorelStructure();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CreateType101Record(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>count,<sp/>std::size_t<sp/>ch,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ref_pol,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>rem_pol);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>ConstructType000FileName();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setstr(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>str,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>char_array,<sp/>std::size_t<sp/>max_size);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__TableContainer" kindref="compound">visibility_store_type</ref>*<sp/>fVisibilityData;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__TableContainer" kindref="compound">weight_store_type</ref>*<sp/>fWeightData;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmk4__corel" kindref="compound">mk4_corel</ref>*<sp/>fGeneratedCorel;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>fOutputDir;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>fOutputFile;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//not<sp/>read,<sp/>but<sp/>used<sp/>to<sp/>construct<sp/>meta-data<sp/>info<sp/>in<sp/>type_000<sp/>and<sp/>type_100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>fRootFilename;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>fRootFileBasename;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Container<sp/>dimensions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>fNPPs;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>fNAPs;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>fNChannels;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>fNSpectral;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//keep<sp/>track<sp/>of<sp/>allocated<sp/>memory<sp/>(outside<sp/>of<sp/>mark4<sp/>mechanism)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>void*<sp/>&gt;<sp/>fAllocated;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh"/>
+  </compounddef>
+</doxygen>

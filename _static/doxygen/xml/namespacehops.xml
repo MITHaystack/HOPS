@@ -169,9 +169,12 @@
     <innerclass refid="classhops_1_1MHO__MixedPolYShiftBuilder" prot="public">hops::MHO_MixedPolYShiftBuilder</innerclass>
     <innerclass refid="classhops_1_1MHO__MixedSidebandNormFX" prot="public">hops::MHO_MixedSidebandNormFX</innerclass>
     <innerclass refid="classhops_1_1MHO__MK4CorelInterface" prot="public">hops::MHO_MK4CorelInterface</innerclass>
+    <innerclass refid="classhops_1_1MHO__MK4CorelInterfaceReversed" prot="public">hops::MHO_MK4CorelInterfaceReversed</innerclass>
     <innerclass refid="classhops_1_1MHO__MK4FringeExport" prot="public">hops::MHO_MK4FringeExport</innerclass>
     <innerclass refid="classhops_1_1MHO__MK4ScanConverter" prot="public">hops::MHO_MK4ScanConverter</innerclass>
+    <innerclass refid="classhops_1_1MHO__MK4ScanConverterReversed" prot="public">hops::MHO_MK4ScanConverterReversed</innerclass>
     <innerclass refid="classhops_1_1MHO__MK4StationInterface" prot="public">hops::MHO_MK4StationInterface</innerclass>
+    <innerclass refid="classhops_1_1MHO__MK4StationInterfaceReversed" prot="public">hops::MHO_MK4StationInterfaceReversed</innerclass>
     <innerclass refid="classhops_1_1MHO__MK4VexInterface" prot="public">hops::MHO_MK4VexInterface</innerclass>
     <innerclass refid="classhops_1_1MHO__MPIInterface" prot="public">hops::MHO_MPIInterface</innerclass>
     <innerclass refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public">hops::MHO_MultidimensionalFastFourierTransform</innerclass>
@@ -6414,6 +6417,48 @@ col40    col41    col42    col43      col44      col45         col46\n\
         <inbodydescription>
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformCalls.hh" line="37" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformCalls.hh" bodystart="37" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops_1a89ca0e9a12cdc77628b52f6bd9e11174" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::FillDate</definition>
+        <argsstring>(struct date *destination, struct legacy_hops_date &amp;a_date)</argsstring>
+        <name>FillDate</name>
+        <param>
+          <type>struct <ref refid="structdate" kindref="compound">date</ref> *</type>
+          <declname>destination</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> &amp;</type>
+          <declname>a_date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" line="25" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="25" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops_1aa36b5429472f9eab39202f6535614112" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::FillDateStation</definition>
+        <argsstring>(struct date *destination, struct legacy_hops_date &amp;a_date)</argsstring>
+        <name>FillDateStation</name>
+        <param>
+          <type>struct <ref refid="structdate" kindref="compound">date</ref> *</type>
+          <declname>destination</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> &amp;</type>
+          <declname>a_date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" line="39" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="39" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="namespacehops_1a3f6f79dab809bb2fca3a8a7c59292cd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>

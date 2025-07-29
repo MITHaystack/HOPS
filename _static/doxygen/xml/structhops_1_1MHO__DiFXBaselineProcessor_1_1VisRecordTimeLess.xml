@@ -22,14 +22,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="251" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="251" bodyend="261"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="252" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="252" bodyend="262"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="249" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="250" bodyend="262"/>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="250" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="251" bodyend="263"/>
     <listofallmembers>
       <member refid="structhops_1_1MHO__DiFXBaselineProcessor_1_1VisRecordTimeLess_1aaa47c2a48764e7bbb295e1e872bf99d9" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor::VisRecordTimeLess</scope><name>operator()</name></member>
     </listofallmembers>

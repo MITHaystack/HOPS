@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MK4ScanConverterReversed" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MK4ScanConverterReversed</compoundname>
+    <includes refid="MHO__MK4ScanConverterReversed_8hh" local="no">MHO_MK4ScanConverterReversed.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4ScanConverterReversed_1aa9af274c00f49c07a19ec532b50b4ddf" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__DirectoryInterface" kindref="compound">MHO_DirectoryInterface</ref></type>
+        <definition>MHO_DirectoryInterface hops::MHO_MK4ScanConverterReversed::fDirInterface</definition>
+        <argsstring></argsstring>
+        <name>fDirInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="45" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4ScanConverterReversed_1abbe3859299c900e73e119ab018dc616f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4ScanConverterReversed::fInputDir</definition>
+        <argsstring></argsstring>
+        <name>fInputDir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="47" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4ScanConverterReversed_1aaae170be649661aa2a465295c1dda7cc" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4ScanConverterReversed::fOutputDir</definition>
+        <argsstring></argsstring>
+        <name>fOutputDir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="48" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4ScanConverterReversed_1afe8176f8ce78fc21a6dba2151fc5dd4e" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4ScanConverterReversed::fOutputVexFile</definition>
+        <argsstring></argsstring>
+        <name>fOutputVexFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="49" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4ScanConverterReversed_1a16f45620ada55ac42317bc34f3f208a3" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_MK4ScanConverterReversed::fRootJSON</definition>
+        <argsstring></argsstring>
+        <name>fRootJSON</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="46" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4ScanConverterReversed_1ad9b53432a34f874179b976157c4af3f3" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref></type>
+        <definition>MHO_ScanDataStore hops::MHO_MK4ScanConverterReversed::fStore</definition>
+        <argsstring></argsstring>
+        <name>fStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="44" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverterReversed_1adf5aecba320673a06646aad4df7cfdb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MK4ScanConverterReversed::MHO_MK4ScanConverterReversed</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MK4ScanConverterReversed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverterReversed.cc" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverterReversed_1ab396cb89353241f25852d525ba483d3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MK4ScanConverterReversed::~MHO_MK4ScanConverterReversed</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MK4ScanConverterReversed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverterReversed.cc" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverterReversed_1a57dc54cad703d8fdf6aadcbcca594dbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4ScanConverterReversed::ProcessScan</definition>
+        <argsstring>(const std::string &amp;input_dir, const std::string &amp;output_dir)</argsstring>
+        <name>ProcessScan</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>input_dir</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="35" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverterReversed.cc" bodystart="80" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverterReversed_1ad10db3ed68d3640995fff5ca3af0eb25" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MK4ScanConverterReversed::DetermineDirectoryType</definition>
+        <argsstring>(const std::string &amp;in_dir)</argsstring>
+        <name>DetermineDirectoryType</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>in_dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="33" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverterReversed.cc" bodystart="34" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverterReversed_1a48c9ea694eacc15ed92a7f06de2f4fbb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4ScanConverterReversed::ProcessCorel</definition>
+        <argsstring>()</argsstring>
+        <name>ProcessCorel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="40" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverterReversed.cc" bodystart="129" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverterReversed_1ad8fd422fafea0fba51e15725ec0cb3df" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4ScanConverterReversed::ProcessStation</definition>
+        <argsstring>()</argsstring>
+        <name>ProcessStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="41" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverterReversed.cc" bodystart="169" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverterReversed_1ab53f9499a973811a549cd43d8e4a5249" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4ScanConverterReversed::ProcessVex</definition>
+        <argsstring>()</argsstring>
+        <name>ProcessVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="39" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverterReversed.cc" bodystart="113" bodyend="126"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MK4ScanConverterReversed" kindref="compound">MHO_MK4ScanConverterReversed</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Converts HOPS4 format data back to Mark4 directory format (reverse of <ref refid="classhops_1_1MHO__MK4ScanConverter" kindref="compound">MHO_MK4ScanConverter</ref>)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Jul 20 13:15:14 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverterReversed.hh" bodystart="28" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ad10db3ed68d3640995fff5ca3af0eb25" prot="public" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>DetermineDirectoryType</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1aa9af274c00f49c07a19ec532b50b4ddf" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>fDirInterface</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1abbe3859299c900e73e119ab018dc616f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>fInputDir</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1aaae170be649661aa2a465295c1dda7cc" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>fOutputDir</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1afe8176f8ce78fc21a6dba2151fc5dd4e" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>fOutputVexFile</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1a16f45620ada55ac42317bc34f3f208a3" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>fRootJSON</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ad9b53432a34f874179b976157c4af3f3" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>fStore</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1adf5aecba320673a06646aad4df7cfdb0" prot="public" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>MHO_MK4ScanConverterReversed</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1a48c9ea694eacc15ed92a7f06de2f4fbb" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>ProcessCorel</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1a57dc54cad703d8fdf6aadcbcca594dbc" prot="public" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>ProcessScan</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ad8fd422fafea0fba51e15725ec0cb3df" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>ProcessStation</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ab53f9499a973811a549cd43d8e4a5249" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>ProcessVex</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ab396cb89353241f25852d525ba483d3f" prot="public" virt="virtual"><scope>hops::MHO_MK4ScanConverterReversed</scope><name>~MHO_MK4ScanConverterReversed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

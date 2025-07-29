@@ -13916,6 +13916,22 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>hops2mark4.cc</name>
+    <path>/home/barrettj/work/projects/hops-git/source/cpp_src/Applications/</path>
+    <filename>hops2mark4_8cc.html</filename>
+    <includes id="MHO__MK4ScanConverterReversed_8hh" name="MHO_MK4ScanConverterReversed.hh" local="yes" imported="no">MHO_MK4ScanConverterReversed.hh</includes>
+    <includes id="MHO__Message_8hh" name="MHO_Message.hh" local="yes" imported="no">MHO_Message.hh</includes>
+    <includes id="MHO__DirectoryInterface_8hh" name="MHO_DirectoryInterface.hh" local="yes" imported="no">MHO_DirectoryInterface.hh</includes>
+    <includes id="MHO__MPIInterfaceWrapper_8hh" name="MHO_MPIInterfaceWrapper.hh" local="yes" imported="no">MHO_MPIInterfaceWrapper.hh</includes>
+    <member kind="function">
+      <type>int</type>
+      <name>main</name>
+      <anchorfile>hops2mark4_8cc.html</anchorfile>
+      <anchor>a3c04138a5bfe5d72780bb7e82a18e627</anchor>
+      <arglist>(int argc, char **argv)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>hops_complex.c</name>
     <path>/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/</path>
     <filename>hops__complex_8c.html</filename>
@@ -22099,6 +22115,34 @@
     <namespace>hops</namespace>
   </compound>
   <compound kind="file">
+    <name>MHO_MK4CorelInterfaceReversed.cc</name>
+    <path>/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/</path>
+    <filename>MHO__MK4CorelInterfaceReversed_8cc.html</filename>
+    <includes id="MHO__MK4CorelInterfaceReversed_8hh" name="MHO_MK4CorelInterfaceReversed.hh" local="yes" imported="no">MHO_MK4CorelInterfaceReversed.hh</includes>
+    <includes id="MHO__LegacyDateConverter_8hh" name="MHO_LegacyDateConverter.hh" local="yes" imported="no">MHO_LegacyDateConverter.hh</includes>
+    <includes id="MHO__DirectoryInterface_8hh" name="MHO_DirectoryInterface.hh" local="yes" imported="no">MHO_DirectoryInterface.hh</includes>
+    <includes id="mk4__data_8h" name="mk4_data.h" local="yes" imported="no">mk4_data.h</includes>
+    <includes id="mk4__dfio_8h" name="mk4_dfio.h" local="yes" imported="no">mk4_dfio.h</includes>
+    <includes id="mk4__records_8h" name="mk4_records.h" local="yes" imported="no">mk4_records.h</includes>
+    <namespace>hops</namespace>
+    <member kind="function">
+      <type>void</type>
+      <name>FillDate</name>
+      <anchorfile>namespacehops.html</anchorfile>
+      <anchor>a89ca0e9a12cdc77628b52f6bd9e11174</anchor>
+      <arglist>(struct date *destination, struct legacy_hops_date &amp;a_date)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>MHO_MK4CorelInterfaceReversed.hh</name>
+    <path>/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/</path>
+    <filename>MHO__MK4CorelInterfaceReversed_8hh.html</filename>
+    <includes id="MHO__ContainerDefinitions_8hh" name="MHO_ContainerDefinitions.hh" local="yes" imported="no">MHO_ContainerDefinitions.hh</includes>
+    <includes id="MHO__Message_8hh" name="MHO_Message.hh" local="yes" imported="no">MHO_Message.hh</includes>
+    <class kind="class">hops::MHO_MK4CorelInterfaceReversed</class>
+    <namespace>hops</namespace>
+  </compound>
+  <compound kind="file">
     <name>MHO_MK4FringeExport.cc</name>
     <path>/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/</path>
     <filename>MHO__MK4FringeExport_8cc.html</filename>
@@ -22271,6 +22315,52 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>MHO_MK4ScanConverterReversed.cc</name>
+    <path>/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/</path>
+    <filename>MHO__MK4ScanConverterReversed_8cc.html</filename>
+    <includes id="MHO__MK4ScanConverterReversed_8hh" name="MHO_MK4ScanConverterReversed.hh" local="yes" imported="no">MHO_MK4ScanConverterReversed.hh</includes>
+    <includes id="MHO__Message_8hh" name="MHO_Message.hh" local="yes" imported="no">MHO_Message.hh</includes>
+    <includes id="MHO__DirectoryInterface_8hh" name="MHO_DirectoryInterface.hh" local="yes" imported="no">MHO_DirectoryInterface.hh</includes>
+    <includes id="MHO__ContainerDefinitions_8hh" name="MHO_ContainerDefinitions.hh" local="yes" imported="no">MHO_ContainerDefinitions.hh</includes>
+    <includes id="MHO__ScanDataStore_8hh" name="MHO_ScanDataStore.hh" local="yes" imported="no">MHO_ScanDataStore.hh</includes>
+    <includes id="MHO__VexGenerator_8hh" name="MHO_VexGenerator.hh" local="yes" imported="no">MHO_VexGenerator.hh</includes>
+    <includes id="MHO__MK4CorelInterfaceReversed_8hh" name="MHO_MK4CorelInterfaceReversed.hh" local="yes" imported="no">MHO_MK4CorelInterfaceReversed.hh</includes>
+    <includes id="MHO__MK4StationInterfaceReversed_8hh" name="MHO_MK4StationInterfaceReversed.hh" local="yes" imported="no">MHO_MK4StationInterfaceReversed.hh</includes>
+    <includes id="mk4__data_8h" name="mk4_data.h" local="yes" imported="no">mk4_data.h</includes>
+    <includes id="mk4__dfio_8h" name="mk4_dfio.h" local="yes" imported="no">mk4_dfio.h</includes>
+    <includes id="mk4__records_8h" name="mk4_records.h" local="yes" imported="no">mk4_records.h</includes>
+    <namespace>hops</namespace>
+  </compound>
+  <compound kind="file">
+    <name>MHO_MK4ScanConverterReversed.hh</name>
+    <path>/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/</path>
+    <filename>MHO__MK4ScanConverterReversed_8hh.html</filename>
+    <includes id="MHO__ScanDataStore_8hh" name="MHO_ScanDataStore.hh" local="yes" imported="no">MHO_ScanDataStore.hh</includes>
+    <class kind="class">hops::MHO_MK4ScanConverterReversed</class>
+    <namespace>hops</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>HOPS4_EXPDIR</name>
+      <anchorfile>MHO__MK4ScanConverterReversed_8hh.html</anchorfile>
+      <anchor>aadcda31934e096e2d96c34307297f947</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>HOPS4_SCANDIR</name>
+      <anchorfile>MHO__MK4ScanConverterReversed_8hh.html</anchorfile>
+      <anchor>a1c7d4accc2fe1ddb0e866f4e646ab7fb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>HOPS4_UNKNOWNDIR</name>
+      <anchorfile>MHO__MK4ScanConverterReversed_8hh.html</anchorfile>
+      <anchor>a21c4d38b0969de70d1060973c4f022a6</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>MHO_MK4StationInterface.cc</name>
     <path>/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/</path>
     <filename>MHO__MK4StationInterface_8cc.html</filename>
@@ -22319,6 +22409,77 @@
     <includes id="MHO__MK4VexInterface_8hh" name="MHO_MK4VexInterface.hh" local="yes" imported="no">MHO_MK4VexInterface.hh</includes>
     <includes id="MHO__Message_8hh" name="MHO_Message.hh" local="yes" imported="no">MHO_Message.hh</includes>
     <class kind="class">hops::MHO_MK4StationInterface</class>
+    <namespace>hops</namespace>
+  </compound>
+  <compound kind="file">
+    <name>MHO_MK4StationInterfaceReversed.cc</name>
+    <path>/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/</path>
+    <filename>MHO__MK4StationInterfaceReversed_8cc.html</filename>
+    <includes id="MHO__MK4StationInterfaceReversed_8hh" name="MHO_MK4StationInterfaceReversed.hh" local="yes" imported="no">MHO_MK4StationInterfaceReversed.hh</includes>
+    <includes id="MHO__LegacyDateConverter_8hh" name="MHO_LegacyDateConverter.hh" local="yes" imported="no">MHO_LegacyDateConverter.hh</includes>
+    <includes id="MHO__DirectoryInterface_8hh" name="MHO_DirectoryInterface.hh" local="yes" imported="no">MHO_DirectoryInterface.hh</includes>
+    <includes id="MHO__MathUtilities_8hh" name="MHO_MathUtilities.hh" local="yes" imported="no">MHO_MathUtilities.hh</includes>
+    <includes id="mk4__data_8h" name="mk4_data.h" local="yes" imported="no">mk4_data.h</includes>
+    <includes id="mk4__dfio_8h" name="mk4_dfio.h" local="yes" imported="no">mk4_dfio.h</includes>
+    <includes id="mk4__records_8h" name="mk4_records.h" local="yes" imported="no">mk4_records.h</includes>
+    <namespace>hops</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>MHZ_TO_HZ</name>
+      <anchorfile>MHO__MK4StationInterfaceReversed_8cc.html</anchorfile>
+      <anchor>a025af2a4a05cf4eee84d9c6cb893dad0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MK4_MAX_COEFF</name>
+      <anchorfile>MHO__MK4StationInterfaceReversed_8cc.html</anchorfile>
+      <anchor>a124f59549a046737ad5ff5226b272f5f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T309_MAX_CHAN</name>
+      <anchorfile>MHO__MK4StationInterfaceReversed_8cc.html</anchorfile>
+      <anchor>a35afb7d323316dc671160e63016d06f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>T309_MAX_PHASOR</name>
+      <anchorfile>MHO__MK4StationInterfaceReversed_8cc.html</anchorfile>
+      <anchor>a2c80be61c2c87dbb366f9d38ec5a5810</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TWO31</name>
+      <anchorfile>MHO__MK4StationInterfaceReversed_8cc.html</anchorfile>
+      <anchor>a42cf1e6775231cf1ca1e873889f58dd7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>TWO32</name>
+      <anchorfile>MHO__MK4StationInterfaceReversed_8cc.html</anchorfile>
+      <anchor>a9296cb585de000681fc929e5ec247e74</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FillDateStation</name>
+      <anchorfile>namespacehops.html</anchorfile>
+      <anchor>aa36b5429472f9eab39202f6535614112</anchor>
+      <arglist>(struct date *destination, struct legacy_hops_date &amp;a_date)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>MHO_MK4StationInterfaceReversed.hh</name>
+    <path>/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/</path>
+    <filename>MHO__MK4StationInterfaceReversed_8hh.html</filename>
+    <includes id="MHO__ContainerDefinitions_8hh" name="MHO_ContainerDefinitions.hh" local="yes" imported="no">MHO_ContainerDefinitions.hh</includes>
+    <includes id="MHO__Message_8hh" name="MHO_Message.hh" local="yes" imported="no">MHO_Message.hh</includes>
+    <class kind="class">hops::MHO_MK4StationInterfaceReversed</class>
     <namespace>hops</namespace>
   </compound>
   <compound kind="file">
@@ -59667,6 +59828,80 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>hops::MHO_MK4CorelInterfaceReversed</name>
+    <filename>classhops_1_1MHO__MK4CorelInterfaceReversed.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MHO_MK4CorelInterfaceReversed</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>ad0f5b0a2c1cbdd8270740e9790ed4a24</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~MHO_MK4CorelInterfaceReversed</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>a6f428c91807338d7a0055d7848dd3750</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FreeAllocated</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>af94f8a5969e5a871e369f5edcfc7bcc2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>GenerateCorelStructure</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>a2f3490e13f5b299847278f1303b6fe25</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>struct mk4_corel *</type>
+      <name>GetCorelStructure</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>a947210ad9296f645d8aecaea95f6c2f7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetOutputDirectory</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>a6c05fa4abb5384680589d01c4f80d939</anchor>
+      <arglist>(const std::string &amp;output_dir)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetRootFileName</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>a711d52d195f45f3e43b8aa11585f18de</anchor>
+      <arglist>(std::string root_filename)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetVisibilityData</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>a0bdb1474562b04caf8b24ce89d93a38e</anchor>
+      <arglist>(visibility_store_type *vis_data)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetWeightData</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>a40e6b9a40530243348bc1e1692da6a93</anchor>
+      <arglist>(weight_store_type *weight_data)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>WriteCorelFile</name>
+      <anchorfile>classhops_1_1MHO__MK4CorelInterfaceReversed.html</anchorfile>
+      <anchor>a3056ff60d4ce19032133171b094dc5e1</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>hops::MHO_MK4FringeExport</name>
     <filename>classhops_1_1MHO__MK4FringeExport.html</filename>
     <member kind="function">
@@ -59745,6 +59980,38 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>hops::MHO_MK4ScanConverterReversed</name>
+    <filename>classhops_1_1MHO__MK4ScanConverterReversed.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MHO_MK4ScanConverterReversed</name>
+      <anchorfile>classhops_1_1MHO__MK4ScanConverterReversed.html</anchorfile>
+      <anchor>adf5aecba320673a06646aad4df7cfdb0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~MHO_MK4ScanConverterReversed</name>
+      <anchorfile>classhops_1_1MHO__MK4ScanConverterReversed.html</anchorfile>
+      <anchor>ab396cb89353241f25852d525ba483d3f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ProcessScan</name>
+      <anchorfile>classhops_1_1MHO__MK4ScanConverterReversed.html</anchorfile>
+      <anchor>a57dc54cad703d8fdf6aadcbcca594dbc</anchor>
+      <arglist>(const std::string &amp;input_dir, const std::string &amp;output_dir)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static int</type>
+      <name>DetermineDirectoryType</name>
+      <anchorfile>classhops_1_1MHO__MK4ScanConverterReversed.html</anchorfile>
+      <anchor>ad10db3ed68d3640995fff5ca3af0eb25</anchor>
+      <arglist>(const std::string &amp;in_dir)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>hops::MHO_MK4StationInterface</name>
     <filename>classhops_1_1MHO__MK4StationInterface.html</filename>
     <member kind="function">
@@ -59795,6 +60062,87 @@
       <anchorfile>classhops_1_1MHO__MK4StationInterface.html</anchorfile>
       <anchor>a33d9bbc5ce6bd09eaddf58f13b98f471</anchor>
       <arglist>(const std::string &amp;vex)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>hops::MHO_MK4StationInterfaceReversed</name>
+    <filename>classhops_1_1MHO__MK4StationInterfaceReversed.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>MHO_MK4StationInterfaceReversed</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a0219d18745ba579079a69197da69ffef</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~MHO_MK4StationInterfaceReversed</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a2f69a7da78b1e813858bff5497cc6833</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FreeAllocated</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a085a374e78389db9a23e91a537422572</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>GenerateStationStructure</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a4e4d9caaeb1f175b629a9868f7b3db32</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>struct mk4_sdata *</type>
+      <name>GetStationStructure</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>afda6c3089f472cfd3a1338633f8505d0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetOutputDirectory</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a23b92450347ba86c0a9685915f5e344a</anchor>
+      <arglist>(const std::string &amp;output_dir)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetOutputFile</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>af58c8ec986eb4568792d59528b328cf2</anchor>
+      <arglist>(const std::string &amp;output_file)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetPCalData</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a0e8bcb7f17f3c07be387c453002f741c</anchor>
+      <arglist>(multitone_pcal_type *pcal_data)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetStationCoordData</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a07c85d3393795c5c9f7c1acee1c1f43d</anchor>
+      <arglist>(station_coord_type *coord_data)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetVexData</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a14e4499ecbc809b4b166d966a576dc04</anchor>
+      <arglist>(const mho_json &amp;vex_data)</arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>WriteStationFile</name>
+      <anchorfile>classhops_1_1MHO__MK4StationInterfaceReversed.html</anchorfile>
+      <anchor>a90dbc75ef4c41a8ae76c21812b2cef40</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -85610,9 +85958,12 @@
     <class kind="class">hops::MHO_MixedPolYShiftBuilder</class>
     <class kind="class">hops::MHO_MixedSidebandNormFX</class>
     <class kind="class">hops::MHO_MK4CorelInterface</class>
+    <class kind="class">hops::MHO_MK4CorelInterfaceReversed</class>
     <class kind="class">hops::MHO_MK4FringeExport</class>
     <class kind="class">hops::MHO_MK4ScanConverter</class>
+    <class kind="class">hops::MHO_MK4ScanConverterReversed</class>
     <class kind="class">hops::MHO_MK4StationInterface</class>
+    <class kind="class">hops::MHO_MK4StationInterfaceReversed</class>
     <class kind="class">hops::MHO_MK4VexInterface</class>
     <class kind="class">hops::MHO_MPIInterface</class>
     <class kind="class">hops::MHO_MultidimensionalFastFourierTransform</class>
@@ -87896,6 +88247,20 @@
       <anchorfile>namespacehops.html</anchorfile>
       <anchor>afcf03d23bacb0b9a76beda3a26854384</anchor>
       <arglist>(std::complex&lt; XFloatType &gt; *data, MHO_FastFourierTransformWorkspace&lt; XFloatType &gt; &amp;work, bool isForward, unsigned int stride=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FillDate</name>
+      <anchorfile>namespacehops.html</anchorfile>
+      <anchor>a89ca0e9a12cdc77628b52f6bd9e11174</anchor>
+      <arglist>(struct date *destination, struct legacy_hops_date &amp;a_date)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>FillDateStation</name>
+      <anchorfile>namespacehops.html</anchorfile>
+      <anchor>aa36b5429472f9eab39202f6535614112</anchor>
+      <arglist>(struct date *destination, struct legacy_hops_date &amp;a_date)</arglist>
     </member>
     <member kind="function">
       <type>void</type>

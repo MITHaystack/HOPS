@@ -1,0 +1,1533 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__MK4ScanConverterReversed_8cc" kind="file" language="C++">
+    <compoundname>MHO_MK4ScanConverterReversed.cc</compoundname>
+    <includes refid="MHO__MK4ScanConverterReversed_8hh" local="yes">MHO_MK4ScanConverterReversed.hh</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includes refid="MHO__DirectoryInterface_8hh" local="yes">MHO_DirectoryInterface.hh</includes>
+    <includes refid="MHO__ContainerDefinitions_8hh" local="yes">MHO_ContainerDefinitions.hh</includes>
+    <includes refid="MHO__ScanDataStore_8hh" local="yes">MHO_ScanDataStore.hh</includes>
+    <includes refid="MHO__VexGenerator_8hh" local="yes">MHO_VexGenerator.hh</includes>
+    <includes refid="MHO__MK4CorelInterfaceReversed_8hh" local="yes">MHO_MK4CorelInterfaceReversed.hh</includes>
+    <includes refid="MHO__MK4StationInterfaceReversed_8hh" local="yes">MHO_MK4StationInterfaceReversed.hh</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="mk4__dfio_8h" local="yes">mk4_dfio.h</includes>
+    <includes refid="mk4__records_8h" local="yes">mk4_records.h</includes>
+    <incdepgraph>
+      <node id="93">
+        <label>list</label>
+      </node>
+      <node id="86">
+        <label>MHO_FileKey.hh</label>
+        <link refid="MHO__FileKey_8hh"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>atomic</label>
+      </node>
+      <node id="69">
+        <label>MHO_UUIDGenerator.hh</label>
+        <link refid="MHO__UUIDGenerator_8hh"/>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="127">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="117">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="104">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="131">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>iomanip</label>
+      </node>
+      <node id="110">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="100" relation="include">
+        </childnode>
+      </node>
+      <node id="114">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="88">
+        <label>MHO_NumpyTypeCode.hh</label>
+        <link refid="MHO__NumpyTypeCode_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>assert.h</label>
+      </node>
+      <node id="44">
+        <label>iterator</label>
+      </node>
+      <node id="50">
+        <label>MHO_NDArrayView.hh</label>
+        <link refid="MHO__NDArrayView_8hh"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstdint</label>
+      </node>
+      <node id="75">
+        <label>MHO_ElementTypes.hh</label>
+        <link refid="MHO__ElementTypes_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>MHO_ClassIdentity.hh</label>
+        <link refid="MHO__ClassIdentity_8hh"/>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>MHO_ContainerStore.hh</label>
+        <link refid="MHO__ContainerStore_8hh"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>endian.h</label>
+      </node>
+      <node id="83">
+        <label>MHO_ClassIdentityMap.hh</label>
+        <link refid="MHO__ClassIdentityMap_8hh"/>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>stdint.h</label>
+      </node>
+      <node id="136">
+        <label>mk4_dfio.h</label>
+        <link refid="mk4__dfio_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+      </node>
+      <node id="119">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="30">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>MHO_Meta.hh</label>
+        <link refid="MHO__Meta_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>cmath</label>
+      </node>
+      <node id="71">
+        <label>MHO_Taggable.hh</label>
+        <link refid="MHO__Taggable_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>stdexcept</label>
+      </node>
+      <node id="32">
+        <label>MHO_IntervalLabelInterface.hh</label>
+        <link refid="MHO__IntervalLabelInterface_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="126">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>MHO_MD5HashGenerator.hh</label>
+        <link refid="MHO__MD5HashGenerator_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+      <node id="130">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>MHO_ContainerJSONConverter.hh</label>
+        <link refid="MHO__ContainerJSONConverter_8hh"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>cinttypes</label>
+      </node>
+      <node id="34">
+        <label>map</label>
+      </node>
+      <node id="95">
+        <label>regex</label>
+      </node>
+      <node id="109">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="90">
+        <label>MHO_ContainerFileInterface.hh</label>
+        <link refid="MHO__ContainerFileInterface_8hh"/>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>MHO_FileStreamer.hh</label>
+        <link refid="MHO__FileStreamer_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="113">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="81">
+        <label>MHO_ObjectTags.hh</label>
+        <link refid="MHO__ObjectTags_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>stddef.h</label>
+      </node>
+      <node id="85">
+        <label>MHO_BinaryFileStreamer.hh</label>
+        <link refid="MHO__BinaryFileStreamer_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="97">
+        <label>MHO_MK4CorelInterfaceReversed.hh</label>
+        <link refid="MHO__MK4CorelInterfaceReversed_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>fstream</label>
+      </node>
+      <node id="48">
+        <label>MHO_NDArrayMath.hh</label>
+        <link refid="MHO__NDArrayMath_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>ostream</label>
+      </node>
+      <node id="60">
+        <label>MHO_UUID.hh</label>
+        <link refid="MHO__UUID_8hh"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>MHO_DirectoryInterface.hh</label>
+        <link refid="MHO__DirectoryInterface_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>MHO_NDArrayWrapper_0.hh</label>
+        <link refid="MHO__NDArrayWrapper__0_8hh"/>
+      </node>
+      <node id="82">
+        <label>MHO_ScalarContainer.hh</label>
+        <link refid="MHO__ScalarContainer_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>MHO_VectorContainer.hh</label>
+        <link refid="MHO__VectorContainer_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+      </node>
+      <node id="98">
+        <label>MHO_MK4StationInterfaceReversed.hh</label>
+        <link refid="MHO__MK4StationInterfaceReversed_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>MHO_Axis.hh</label>
+        <link refid="MHO__Axis_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="118">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="29">
+        <label>MHO_IndexLabelInterface.hh</label>
+        <link refid="MHO__IndexLabelInterface_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>MHO_NDArrayWrapper_1.hh</label>
+        <link refid="MHO__NDArrayWrapper__1_8hh"/>
+      </node>
+      <node id="84">
+        <label>MHO_BinaryFileInterface.hh</label>
+        <link refid="MHO__BinaryFileInterface_8hh"/>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>random</label>
+      </node>
+      <node id="73">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="106">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="134">
+        <label>sys/types.h</label>
+      </node>
+      <node id="125">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="116">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="102">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="65">
+        <label>string.h</label>
+      </node>
+      <node id="43">
+        <label>MHO_BidirectionalIterator.hh</label>
+        <link refid="MHO__BidirectionalIterator_8hh"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="129">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="133">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>MHO_ContainerDictionary.hh</label>
+        <link refid="MHO__ContainerDictionary_8hh"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>tuple</label>
+      </node>
+      <node id="94">
+        <label>MHO_VexDefinitions.hh</label>
+        <link refid="MHO__VexDefinitions_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>MHO_AxisTypes.hh</label>
+        <link refid="MHO__AxisTypes_8hh"/>
+      </node>
+      <node id="23">
+        <label>ctime</label>
+      </node>
+      <node id="108">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="137">
+        <label>type_110.h</label>
+        <link refid="type__110_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="112">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_ScanDataStore.hh</label>
+        <link refid="MHO__ScanDataStore_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>vector</label>
+      </node>
+      <node id="51">
+        <label>MHO_BidirectionalIndexedIterator.hh</label>
+        <link refid="MHO__BidirectionalIndexedIterator_8hh"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="105">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="123">
+        <label>complex.h</label>
+      </node>
+      <node id="121">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>utility</label>
+      </node>
+      <node id="40">
+        <label>array</label>
+      </node>
+      <node id="12">
+        <label>sstream</label>
+      </node>
+      <node id="14">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>MHO_BidirectionalStrideIterator.hh</label>
+        <link refid="MHO__BidirectionalStrideIterator_8hh"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="100">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="92">
+        <label>MHO_VexGenerator.hh</label>
+        <link refid="MHO__VexGenerator_8hh"/>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+      </node>
+      <node id="122">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="123" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>MHO_NDArrayWrapper.hh</label>
+        <link refid="MHO__NDArrayWrapper_8hh"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstdlib</label>
+      </node>
+      <node id="25">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>iostream</label>
+      </node>
+      <node id="49">
+        <label>cstddef</label>
+      </node>
+      <node id="124">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="96">
+        <label>MHO_VexElementLineGenerator.hh</label>
+        <link refid="MHO__VexElementLineGenerator_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="128">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>MHO_Types.hh</label>
+        <link refid="MHO__Types_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="89">
+        <label>MHO_SerializableObjectFactory.hh</label>
+        <link refid="MHO__SerializableObjectFactory_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="132">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>mutex</label>
+      </node>
+      <node id="107">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="111">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>MHO_BaselineContainers.hh</label>
+        <link refid="MHO__BaselineContainers_8hh"/>
+      </node>
+      <node id="2">
+        <label>MHO_MK4ScanConverterReversed.hh</label>
+        <link refid="MHO__MK4ScanConverterReversed_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>MHO_FringeContainers.hh</label>
+        <link refid="MHO__FringeContainers_8hh"/>
+      </node>
+      <node id="115">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="16">
+        <label>thread</label>
+      </node>
+      <node id="135">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="103">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="104" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_traits</label>
+      </node>
+      <node id="54">
+        <label>MHO_Serializable.hh</label>
+        <link refid="MHO__Serializable_8hh"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>set</label>
+      </node>
+      <node id="31">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="27">
+        <label>complex</label>
+      </node>
+      <node id="26">
+        <label>MHO_ContainerDefinitions.hh</label>
+        <link refid="MHO__ContainerDefinitions_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>algorithm</label>
+      </node>
+      <node id="62">
+        <label>picohash.h</label>
+        <link refid="picohash_8h"/>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>stdio.h</label>
+      </node>
+      <node id="47">
+        <label>MHO_ExtensibleElement.hh</label>
+        <link refid="MHO__ExtensibleElement_8hh"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>cstring</label>
+      </node>
+      <node id="120">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="78">
+        <label>MHO_StationContainers.hh</label>
+        <link refid="MHO__StationContainers_8hh"/>
+      </node>
+      <node id="99">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>inttypes.h</label>
+      </node>
+      <node id="1">
+        <label>MHO_MK4ScanConverterReversed.cc</label>
+        <link refid="MHO__MK4ScanConverterReversed_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>MHO_TableContainer.hh</label>
+        <link refid="MHO__TableContainer_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__MK4ScanConverterReversed_8hh" kindref="compound">MHO_MK4ScanConverterReversed.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__DirectoryInterface_8hh" kindref="compound">MHO_DirectoryInterface.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__ContainerDefinitions_8hh" kindref="compound">MHO_ContainerDefinitions.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__ScanDataStore_8hh" kindref="compound">MHO_ScanDataStore.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__VexGenerator_8hh" kindref="compound">MHO_VexGenerator.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__MK4CorelInterfaceReversed_8hh" kindref="compound">MHO_MK4CorelInterfaceReversed.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__MK4StationInterfaceReversed_8hh" kindref="compound">MHO_MK4StationInterfaceReversed.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>HOPS3_USE_CXX</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&quot;<ref refid="mk4__dfio_8h" kindref="compound">mk4_dfio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&quot;<ref refid="mk4__records_8h" kindref="compound">mk4_records.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>HOPS3_USE_CXX</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="classhops_1_1MHO__MK4ScanConverterReversed_1adf5aecba320673a06646aad4df7cfdb0" kindref="member">MHO_MK4ScanConverterReversed::MHO_MK4ScanConverterReversed</ref>(){};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><ref refid="classhops_1_1MHO__MK4ScanConverterReversed_1ab396cb89353241f25852d525ba483d3f" kindref="member">MHO_MK4ScanConverterReversed::~MHO_MK4ScanConverterReversed</ref>(){};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4ScanConverterReversed_1ad10db3ed68d3640995fff5ca3af0eb25" kindref="member">MHO_MK4ScanConverterReversed::DetermineDirectoryType</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>in_dir)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//directory<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>MHO_DirectoryInterface<sp/>dirInterface;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>input_dir<sp/>=<sp/>dirInterface.GetDirectoryFullPath(in_dir);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//get<sp/>list<sp/>of<sp/>all<sp/>the<sp/>files<sp/>(and<sp/>directories)<sp/>in<sp/>the<sp/>input<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/>allFiles;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/>allDirs;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>dirInterface.SetCurrentDirectory(input_dir);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>dirInterface.ReadCurrentDirectory();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>dirInterface.GetFileList(allFiles);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>dirInterface.GetSubDirectoryList(allDirs);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//sort<sp/>files,<sp/>locate<sp/>root,<sp/>corel<sp/>and<sp/>station<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/>corelFiles;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/>stationFiles;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/>rootFiles;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>dirInterface.GetFilesMatchingExtention(rootFiles,<sp/></highlight><highlight class="stringliteral">&quot;.root.json&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//definitely<sp/>a<sp/>scan<sp/>directory<sp/>(a<sp/>root<sp/>file<sp/>and<sp/>no<sp/>subdirs)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(rootFiles.size()<sp/>&gt;=<sp/>1<sp/>&amp;&amp;<sp/>allDirs.size()<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="MHO__MK4ScanConverterReversed_8hh_1a1c7d4accc2fe1ddb0e866f4e646ab7fb" kindref="member">HOPS4_SCANDIR</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//likely<sp/>an<sp/>experiment<sp/>directory<sp/>(no<sp/>root<sp/>and<sp/>1<sp/>or<sp/>more<sp/>subdir)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(rootFiles.size()<sp/>==<sp/>0<sp/>&amp;&amp;<sp/>allDirs.size()<sp/>&gt;=<sp/>1)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//TODO<sp/>check<sp/>that<sp/>the<sp/>directory<sp/>name<sp/>is<sp/>4<sp/>digit<sp/>number</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="MHO__MK4ScanConverterReversed_8hh_1aadcda31934e096e2d96c34307297f947" kindref="member">HOPS4_EXPDIR</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//probably<sp/>a<sp/>scan<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//for<sp/>some<sp/>reason<sp/>it<sp/>has<sp/>a<sp/>sub-dir,<sp/>but<sp/>we<sp/>found<sp/>a<sp/>root<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(rootFiles.size()<sp/>&gt;=<sp/>1)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="MHO__MK4ScanConverterReversed_8hh_1a1c7d4accc2fe1ddb0e866f4e646ab7fb" kindref="member">HOPS4_SCANDIR</ref>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//don&apos;t<sp/>know<sp/>what<sp/>we<sp/>have<sp/>here,<sp/>but<sp/>probably<sp/>cannot<sp/>process<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="MHO__MK4ScanConverterReversed_8hh_1a21c4d38b0969de70d1060973c4f022a6" kindref="member">HOPS4_UNKNOWNDIR</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MK4ScanConverterReversed_1a57dc54cad703d8fdf6aadcbcca594dbc" kindref="member">MHO_MK4ScanConverterReversed::ProcessScan</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>in_dir,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>out_dir)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>fOutputVexFile<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>fOutputDir<sp/>=<sp/>fDirInterface.<ref refid="classhops_1_1MHO__DirectoryInterface_1a4e8abe866f1901ccfee6271ad93dae83" kindref="member">GetDirectoryFullPath</ref>(out_dir);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>fInputDir<sp/>=<sp/>fDirInterface.<ref refid="classhops_1_1MHO__DirectoryInterface_1a4e8abe866f1901ccfee6271ad93dae83" kindref="member">GetDirectoryFullPath</ref>(in_dir);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1ac49d9ac431ca6ab8af1259fdf32a58a8" kindref="member">SetDirectory</ref>(fInputDir);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1ac5f6781466a3f91e37bc396ee2af5486" kindref="member">Initialize</ref>();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1a48b1f769e1bb1923f223360401d0e16d" kindref="member">IsValid</ref>())</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1acd8d50c6722941e40e21c59ffba48011" kindref="member">msg_error</ref>(</highlight><highlight class="stringliteral">&quot;mk4interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;the<sp/>directory:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/>fInputDir<sp/>&lt;&lt;</highlight><highlight class="stringliteral">&quot;,<sp/>does<sp/>not<sp/>contain<sp/>a<sp/>valid<sp/>HOPS4<sp/>scan&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1ac5bed42036d39970084a79ac0f3f9591" kindref="member">msg_status</ref>(</highlight><highlight class="stringliteral">&quot;mk4interface_reversed&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;processing<sp/>scan<sp/>from<sp/>HOPS4<sp/>input<sp/>directory:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>fInputDir<sp/>&lt;&lt;<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/>to<sp/>Mark4<sp/>output<sp/>directory:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>fOutputDir<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//create<sp/>output<sp/>directory<sp/>if<sp/>it<sp/>doesn&apos;t<sp/>exist</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!fDirInterface.<ref refid="classhops_1_1MHO__DirectoryInterface_1a0d4014887a8d80ba1cad3eeafa9bf711" kindref="member">DoesDirectoryExist</ref>(fOutputDir))</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fDirInterface.<ref refid="classhops_1_1MHO__DirectoryInterface_1a3d83b85b4acb982093d180cf36afc9f3" kindref="member">CreateDirectory</ref>(fOutputDir);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//process<sp/>the<sp/>scan<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>ProcessVex();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>ProcessCorel();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>ProcessStation();</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal">MHO_MK4ScanConverterReversed::ProcessVex()</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//first<sp/>convert<sp/>the<sp/>json<sp/>ovex<sp/>back<sp/>to<sp/>traditional<sp/>ovex<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>MHO_VexGenerator<sp/>vex_generator;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>fRootJSON<sp/>=<sp/>fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1a65876bfb0034d67722da73e6d4c0dea7" kindref="member">GetRootFileData</ref>();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>root_json_basename<sp/>=<sp/>fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1acd4504547babe6a5cb480517919e687b" kindref="member">GetRootFileBasename</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>root_json_basename<sp/>=<sp/>fDirInterface.<ref refid="classhops_1_1MHO__DirectoryInterface_1a716e41bea8d463cfef9fcd60dbe31fb1" kindref="member">StripExtensionFromBasename</ref>(root_json_basename);<sp/></highlight><highlight class="comment">//strips<sp/>.json</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>ovex_basename<sp/>=<sp/>fDirInterface.<ref refid="classhops_1_1MHO__DirectoryInterface_1a716e41bea8d463cfef9fcd60dbe31fb1" kindref="member">StripExtensionFromBasename</ref>(root_json_basename);<sp/></highlight><highlight class="comment">//strips<sp/>.root</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>output_vex_file<sp/>=<sp/>fOutputDir<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>ovex_basename;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>fOutputVexFile<sp/>=<sp/>output_vex_file;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>vex_generator.SetFilename(output_vex_file);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>vex_generator.GenerateVex(fRootJSON);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal">MHO_MK4ScanConverterReversed::ProcessCorel()</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/>baselines<sp/>=<sp/><sp/>fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1af1304258fc944b994a2009fc19aceec7" kindref="member">GetBaselinesPresent</ref>();</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//loop<sp/>over<sp/>baselines<sp/>and<sp/>convert<sp/>.cor<sp/>files<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>baselines.begin();<sp/>it<sp/>!=<sp/>baselines.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>bl<sp/>=<sp/>*it;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_ContainerStore<sp/>cStore;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1a75c61055e33f44cf225d3ce6709d92cb" kindref="member">LoadBaseline</ref>(bl,<sp/>&amp;cStore);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>nvis<sp/>=<sp/>cStore.GetNObjects&lt;<sp/><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref><sp/>&gt;();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>nwt<sp/>=<sp/>cStore.GetNObjects&lt;<sp/><ref refid="namespacehops_1a6d71a9ffaa068345a980f1e1613d97bd" kindref="member">weight_store_type</ref><sp/>&gt;();</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref>*<sp/>vis_store_data<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nvis<sp/>&gt;=<sp/>1){vis_store_data<sp/>=<sp/><sp/>cStore.GetObject&lt;<sp/><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref><sp/>&gt;(0);<sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1acd8d50c6722941e40e21c59ffba48011" kindref="member">msg_error</ref>(</highlight><highlight class="stringliteral">&quot;mk4interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;error<sp/>retrieving<sp/>visibility<sp/>data<sp/>for<sp/>baseline:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;bl&lt;&lt;<sp/>eom);<sp/></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehops_1a6d71a9ffaa068345a980f1e1613d97bd" kindref="member">weight_store_type</ref>*<sp/>wt_store_data<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nwt<sp/>&gt;=<sp/>1){wt_store_data<sp/>=<sp/>cStore.GetObject&lt;<sp/><ref refid="namespacehops_1a6d71a9ffaa068345a980f1e1613d97bd" kindref="member">weight_store_type</ref><sp/>&gt;(0);}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1acd8d50c6722941e40e21c59ffba48011" kindref="member">msg_error</ref>(</highlight><highlight class="stringliteral">&quot;mk4interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;error<sp/>retrieving<sp/>weight<sp/>data<sp/>for<sp/>baseline:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;bl&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_MK4CorelInterfaceReversed<sp/>converter;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.SetOutputDirectory(fOutputDir);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.SetRootFileName(fOutputVexFile);<sp/></highlight><highlight class="comment">//have<sp/>to<sp/>set<sp/>the<sp/>ovex<sp/>file<sp/>name<sp/>in<sp/>the<sp/>type_100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.SetVisibilityData(vis_store_data);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.SetWeightData(wt_store_data);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.GenerateCorelStructure();</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.WriteCorelFile();</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.FreeAllocated();</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="169"><highlight class="normal">MHO_MK4ScanConverterReversed::ProcessStation()</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/><ref refid="structstations" kindref="compound">stations</ref><sp/>=<sp/>fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1aab7b0ce1c83fc3a2b1ad1c8036bcca75" kindref="member">GetStationsPresent</ref>();</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//loop<sp/>over<sp/>stations<sp/>and<sp/>convert<sp/>.sta<sp/>files<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/><ref refid="structstations" kindref="compound">stations</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="structstations" kindref="compound">stations</ref>.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>st<sp/>=<sp/>*it;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_ContainerStore<sp/>cStore;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fStore.<ref refid="classhops_1_1MHO__ScanDataStore_1a9e37329ff80cf0149403f94ba98fe048" kindref="member">LoadStation</ref>(st,<sp/>&amp;cStore);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref>*<sp/>sta_data<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>ncoord<sp/>=<sp/>cStore.GetNObjects&lt;<sp/><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref><sp/>&gt;();</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ncoord<sp/>&gt;=<sp/>1){<sp/>sta_data<sp/>=<sp/>cStore.GetObject&lt;<sp/><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref><sp/>&gt;(0);}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1acd8d50c6722941e40e21c59ffba48011" kindref="member">msg_error</ref>(</highlight><highlight class="stringliteral">&quot;mk4interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;error<sp/>retrieving<sp/>station<sp/>data<sp/>for<sp/>:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;st&lt;&lt;<sp/>eom);<sp/></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//pcal<sp/>may<sp/>or<sp/>may<sp/>not<sp/>be<sp/>present</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref>*<sp/>pcal_data<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>npcal<sp/>=<sp/>cStore.GetNObjects&lt;<sp/><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref><sp/>&gt;();</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(npcal<sp/>&gt;=<sp/>1){<sp/>pcal_data<sp/>=<sp/>cStore.GetObject&lt;<sp/><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref><sp/>&gt;(0);<sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_MK4StationInterfaceReversed<sp/>converter;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.SetVexData(fRootJSON);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.SetOutputDirectory(fOutputDir);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.SetStationCoordData(sta_data);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.SetPCalData(pcal_data);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.GenerateStationStructure();</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.WriteStationFile();</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>converter.FreeAllocated();</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverterReversed.cc"/>
+  </compounddef>
+</doxygen>

@@ -288,6 +288,11 @@
     <member refid="classhops_1_1chan__label__freq__predicate_1ae46b707c4a28a2899c51282355a7d081" kind="function"><name>operator()</name></member>
     <member refid="classhops_1_1chan__label__freq__predicate_1a72f0f8380554b7a65bbbc15a9409fd47" kind="function"><name>operator()</name></member>
   </compound>
+  <compound refid="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate" kind="class"><name>hops::MHO_MK4StationInterfaceReversed::chan_predicate</name>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate_1ae624267fe7a2051192ccb1b70f5495ac" kind="function"><name>chan_predicate</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate_1a8d397427366568b1101a5eda4065b4d7" kind="function"><name>~chan_predicate</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate_1abff01a540ab223ca83a61b6fd9dc994a" kind="function"><name>operator()</name></member>
+  </compound>
   <compound refid="structchan__struct" kind="struct"><name>chan_struct</name>
     <member refid="structchan__struct_1abd44e27247d40002c8d4b69c463bb4dc" kind="variable"><name>band_id</name></member>
     <member refid="structchan__struct_1aaf6877105412bc1d0e04fa9d54711461" kind="variable"><name>bandwidth</name></member>
@@ -2433,6 +2438,7 @@
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a0e1c446e2a4fc67b71eac366646789f8" kind="variable"><name>fStartMJD</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a8378cb1c298d05876539c3af33a69f1b" kind="variable"><name>fStartTime</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aea3bc68387afb61d647363859b0853ec" kind="variable"><name>fStationCodeMap</name></member>
+    <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a99dbfcfda7cc22148ae636b72d7faf6a" kind="variable"><name>fStopTime</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a05f0b50b5275742954d5becce33933e7" kind="variable"><name>fTags</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a27a75a60e6688d6756ad23ad58e98e34" kind="variable"><name>fTimePredicate</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ad844feb6e4db50666603905ec2b381c7" kind="variable"><name>fV</name></member>
@@ -3951,6 +3957,39 @@
     <member refid="classhops_1_1MHO__MK4CorelInterface_1ad0825bc8ae2389b63f53f869f06e5c34" kind="function"><name>ReadCorelFile</name></member>
     <member refid="classhops_1_1MHO__MK4CorelInterface_1a4e9595bb8cd3e1c8e53cf6016099198f" kind="function"><name>ReadVexFile</name></member>
   </compound>
+  <compound refid="classhops_1_1MHO__MK4CorelInterfaceReversed" kind="class"><name>hops::MHO_MK4CorelInterfaceReversed</name>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a875c83c807ada312ad00b4711e85b3c4" kind="variable"><name>fAllocated</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1afe998f589e2a991752bd147ab3b7f18d" kind="variable"><name>fGeneratedCorel</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1aeddea456e629dc948baa13a3d27fdb2f" kind="variable"><name>fNAPs</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a3041c1705b494fb1517184c125ca9023" kind="variable"><name>fNChannels</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1ad0bca958a6dd38d69c6912431adeaa9e" kind="variable"><name>fNPPs</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6facbb9c80d3eb88b0175bdffd5fd55b" kind="variable"><name>fNSpectral</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a4adfb73368f6df576decd081b3f180b9" kind="variable"><name>fOutputDir</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a402c4ec76486fbd0bb40d896d9ea4b22" kind="variable"><name>fOutputFile</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1aba2b273c6409cc5c39c18ce8e4216399" kind="variable"><name>fRootFileBasename</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a218bcb0f35acad1875a4ddc7b89e3733" kind="variable"><name>fRootFilename</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a26f9d204ff7472d86df907b48af6cf5f" kind="variable"><name>fVisibilityData</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a5d5785cd6b27ab1f114c7d452409ba18" kind="variable"><name>fWeightData</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1ad0f5b0a2c1cbdd8270740e9790ed4a24" kind="function"><name>MHO_MK4CorelInterfaceReversed</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6f428c91807338d7a0055d7848dd3750" kind="function"><name>~MHO_MK4CorelInterfaceReversed</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1af94f8a5969e5a871e369f5edcfc7bcc2" kind="function"><name>FreeAllocated</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a2f3490e13f5b299847278f1303b6fe25" kind="function"><name>GenerateCorelStructure</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a947210ad9296f645d8aecaea95f6c2f7" kind="function"><name>GetCorelStructure</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6c05fa4abb5384680589d01c4f80d939" kind="function"><name>SetOutputDirectory</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a711d52d195f45f3e43b8aa11585f18de" kind="function"><name>SetRootFileName</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a0bdb1474562b04caf8b24ce89d93a38e" kind="function"><name>SetVisibilityData</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a40e6b9a40530243348bc1e1692da6a93" kind="function"><name>SetWeightData</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a3056ff60d4ce19032133171b094dc5e1" kind="function"><name>WriteCorelFile</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a304b11d92f7b342b67aacb8fad06bc13" kind="function"><name>ConstructMK4ChannelID</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a4c8ea7dfe1f839d163f375eb573e9ae8" kind="function"><name>ConstructType000FileName</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a7d17fe7a8708323a25b0d1aa99471264" kind="function"><name>CreateType101Record</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a378cac6ca6b4daef96860c73859e0a36" kind="function"><name>GenerateType000</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a541711e6f7e86a4241a3d464bd447b34" kind="function"><name>GenerateType100</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a2b7029fff09b3a185a7d2e568c1b5560" kind="function"><name>GenerateType101Records</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a8818e8f6467ecfda788ad89a47149397" kind="function"><name>GenerateType120Records</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a28d23e1aef8ce92e0b3babd28f85d8c9" kind="function"><name>InitializeCorelStructure</name></member>
+    <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1aff4b7f54a74e8f2bac9d9e2b3eaecb1b" kind="function"><name>setstr</name></member>
+  </compound>
   <compound refid="classhops_1_1MHO__MK4FringeExport" kind="class"><name>hops::MHO_MK4FringeExport</name>
     <member refid="classhops_1_1MHO__MK4FringeExport_1a8e45ef2281c6ef54df1dca5fef1cde01" kind="variable"><name>fCStore</name></member>
     <member refid="classhops_1_1MHO__MK4FringeExport_1a7fe8bec6e237fb2a246827ebad932f7b" kind="variable"><name>fPlotData</name></member>
@@ -3999,6 +4038,21 @@
     <member refid="classhops_1_1MHO__MK4ScanConverter_1a94f76c07c7dd17a477b9c4baabcc4855" kind="function"><name>ConvertCorel</name></member>
     <member refid="classhops_1_1MHO__MK4ScanConverter_1a4c9b809590387cb3c328ab980d2dbeb4" kind="function"><name>ConvertStation</name></member>
   </compound>
+  <compound refid="classhops_1_1MHO__MK4ScanConverterReversed" kind="class"><name>hops::MHO_MK4ScanConverterReversed</name>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1aa9af274c00f49c07a19ec532b50b4ddf" kind="variable"><name>fDirInterface</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1abbe3859299c900e73e119ab018dc616f" kind="variable"><name>fInputDir</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1aaae170be649661aa2a465295c1dda7cc" kind="variable"><name>fOutputDir</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1afe8176f8ce78fc21a6dba2151fc5dd4e" kind="variable"><name>fOutputVexFile</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1a16f45620ada55ac42317bc34f3f208a3" kind="variable"><name>fRootJSON</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ad9b53432a34f874179b976157c4af3f3" kind="variable"><name>fStore</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1adf5aecba320673a06646aad4df7cfdb0" kind="function"><name>MHO_MK4ScanConverterReversed</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ab396cb89353241f25852d525ba483d3f" kind="function"><name>~MHO_MK4ScanConverterReversed</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1a57dc54cad703d8fdf6aadcbcca594dbc" kind="function"><name>ProcessScan</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ad10db3ed68d3640995fff5ca3af0eb25" kind="function"><name>DetermineDirectoryType</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1a48c9ea694eacc15ed92a7f06de2f4fbb" kind="function"><name>ProcessCorel</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ad8fd422fafea0fba51e15725ec0cb3df" kind="function"><name>ProcessStation</name></member>
+    <member refid="classhops_1_1MHO__MK4ScanConverterReversed_1ab53f9499a973811a549cd43d8e4a5249" kind="function"><name>ProcessVex</name></member>
+  </compound>
   <compound refid="classhops_1_1MHO__MK4StationInterface" kind="class"><name>hops::MHO_MK4StationInterface</name>
     <member refid="classhops_1_1MHO__MK4StationInterface_1a6797fed53ff9bf30fe1faabe7b134bde" kind="variable"><name>fAllPCalData</name></member>
     <member refid="classhops_1_1MHO__MK4StationInterface_1a54e1cc22969f96ee6c0247f658a0ed0c" kind="variable"><name>fChannelPredicate</name></member>
@@ -4037,6 +4091,53 @@
     <member refid="classhops_1_1MHO__MK4StationInterface_1a436a33f691213630f068692fa8c4af4e" kind="function"><name>ReadStationFile</name></member>
     <member refid="classhops_1_1MHO__MK4StationInterface_1a234c6d70361fdfd8f08bab9a7196c742" kind="function"><name>ReadVexFile</name></member>
     <member refid="classhops_1_1MHO__MK4StationInterface_1ad444df89ba16a4c4934337a61c53ef33" kind="function"><name>SidebandFromMK4ChannelId</name></member>
+  </compound>
+  <compound refid="classhops_1_1MHO__MK4StationInterfaceReversed" kind="class"><name>hops::MHO_MK4StationInterfaceReversed</name>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a2182db3ab66f6b238a702dff67875ff1" kind="variable"><name>fAllocated</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a0e3054acb25ec625d3f942555e01cdcf" kind="variable"><name>fFreqSetupName</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a7c29b46f37e056909400744a69f879e4" kind="variable"><name>fGeneratedStation</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ac89ff78b8a79a7d4a84d5160eda600fe" kind="variable"><name>fMode</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a499be4a698c6f82ef86fe3d647ed699a" kind="variable"><name>fNAPs</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1aef5a741f9f5e327182f12bdd902c79e0" kind="variable"><name>fNCoeffs</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a300d02aa7919c1033772b81ab250fd70" kind="variable"><name>fNCoord</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ad72c69ae6e3f49bb541d5eee6dd94435" kind="variable"><name>fNIntervals</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a7ff8230c32302fd30885b77edfb53ecf" kind="variable"><name>fNPols</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a59e1afd9fe8d8afdb16ca49a7b0527fd" kind="variable"><name>fNTones</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1aa1e659650b90c224f4c2a6ceb8e1b24a" kind="variable"><name>fOutputDir</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ae3990715051ae9bb337f1985c64e9423" kind="variable"><name>fOutputFile</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1aabcf32a22ad01f132f0a6f8012f54be3" kind="variable"><name>fPCalChannelList</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a8233560f6c3641c7c116696b4cb208f5" kind="variable"><name>fPCalData</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a041e167c00964e5ffeef7c193811500d" kind="variable"><name>fStationCode</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ac2acf16ccd258c364395b7960abdb989" kind="variable"><name>fStationCoordData</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ac6c8317a88a5762298171101222bd898" kind="variable"><name>fVexData</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a0219d18745ba579079a69197da69ffef" kind="function"><name>MHO_MK4StationInterfaceReversed</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a2f69a7da78b1e813858bff5497cc6833" kind="function"><name>~MHO_MK4StationInterfaceReversed</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a085a374e78389db9a23e91a537422572" kind="function"><name>FreeAllocated</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a4e4d9caaeb1f175b629a9868f7b3db32" kind="function"><name>GenerateStationStructure</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1afda6c3089f472cfd3a1338633f8505d0" kind="function"><name>GetStationStructure</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a23b92450347ba86c0a9685915f5e344a" kind="function"><name>SetOutputDirectory</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1af58c8ec986eb4568792d59528b328cf2" kind="function"><name>SetOutputFile</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a0e8bcb7f17f3c07be387c453002f741c" kind="function"><name>SetPCalData</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a07c85d3393795c5c9f7c1acee1c1f43d" kind="function"><name>SetStationCoordData</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a14e4499ecbc809b4b166d966a576dc04" kind="function"><name>SetVexData</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a90dbc75ef4c41a8ae76c21812b2cef40" kind="function"><name>WriteStationFile</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1af1509f54209c2f4800c188b0fc7700bc" kind="function"><name>ComputeType309Rot</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ad28de16258b61e0793622e27c17a25b5" kind="function"><name>ComputeType309RotFallback</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a31187e05f9826b7daae15f9b5b4ca9ac" kind="function"><name>ConstructType000FileName</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1adee6332422ceb261157b3c55c73ad9f4" kind="function"><name>ConvertPhasorToCounts</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1af7c0c7f5c3b876b86c4a1e0626ad5671" kind="function"><name>DetermineChannelToneIndexes</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a8a92011d969efc97677f0b7f9dcdcbc9" kind="function"><name>DeterminePCalToneSpacing</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a42e555c6db6f4cfff5be92a7db80afba" kind="function"><name>ExtractPCalChannelInfo</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a8874b36c26eece0f79e06e3d8d2aa058" kind="function"><name>ExtractPCalChannelInfoFromVex</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a10b6ebe7183b10367f09b501a1b077a7" kind="function"><name>FactorConvertToMHz</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a6fdaa3f54ee528fb1661f3887210b5e7" kind="function"><name>GenerateType000</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ab80a357326903dbd6a28190400af4fea" kind="function"><name>GenerateType300</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a093bc54d4ea2d9191897d971636a985f" kind="function"><name>GenerateType301Records</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a566fe04e89400c8bb1711950a4d0ba36" kind="function"><name>GenerateType303Records</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a62139a29aa10b7bb606e6777f90666cd" kind="function"><name>GenerateType309Records</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a2312268f472bf23e9f42abd668e10fcc" kind="function"><name>GetStationMode</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a9fbef082bd0becb232244ddb5f1a1d3c" kind="function"><name>InitializeStationStructure</name></member>
+    <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a2805e73309ecdfdcfa5a6deff333ca4c" kind="function"><name>setstr</name></member>
   </compound>
   <compound refid="classhops_1_1MHO__MK4VexInterface" kind="class"><name>hops::MHO_MK4VexInterface</name>
     <member refid="classhops_1_1MHO__MK4VexInterface_1a751c32cfb43130bbfcc9895bf205e6d3" kind="variable"><name>fHaveVex</name></member>
@@ -6232,6 +6333,17 @@
   </compound>
   <compound refid="classmk4io_1_1mk4io_1_1pcal__struct" kind="class"><name>mk4io::mk4io::pcal_struct</name>
     <member refid="classmk4io_1_1mk4io_1_1pcal__struct_1a79524e9a4a7ddf0f7cc76869dbd7a8c2" kind="variable"><name>_fields_</name></member>
+  </compound>
+  <compound refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo" kind="struct"><name>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</name>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a86a67e95cdd57449b8eeb1ba1781739c" kind="variable"><name>accumulator_start_index</name></member>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a57723895986e667745794af461401276" kind="variable"><name>bandwidth</name></member>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1ae92ab34409f0eaa20a9ad5beb04ed315" kind="variable"><name>channel_name</name></member>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a90c18772f1382ea2d95c241fc74f4e01" kind="variable"><name>net_sideband</name></member>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1ae7aa576c4dc86481a92eb8c1feed27a8" kind="variable"><name>ntones</name></member>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1add9bd2edfc22fe04dc07b12edb30ce6b" kind="variable"><name>polarization</name></member>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1addaeae930db6fd260ddca07e3bb77cba" kind="variable"><name>sample_period</name></member>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a80e38409c1928634674b1cabb7095ffa" kind="variable"><name>sky_freq</name></member>
+    <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a10932d5bbd1480bff4a345fe26c872d4" kind="variable"><name>tone_start</name></member>
   </compound>
   <compound refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration" kind="class"><name>vpal::proxy_cable_cal::PccConfiguration</name>
     <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a1763eea77789d02220a8c3e9b279b6d2" kind="variable"><name>band_list</name></member>
@@ -8750,6 +8862,8 @@
     <member refid="namespacehops_1a1aec64eb770cf9fe2ea0dff3b4f9a779" kind="function"><name>encode_value</name></member>
     <member refid="namespacehops_1ac1bdf8477fb0b742fb1151553218c088" kind="function"><name>FFTBluestein</name></member>
     <member refid="namespacehops_1afcf03d23bacb0b9a76beda3a26854384" kind="function"><name>FFTRadix2</name></member>
+    <member refid="namespacehops_1a89ca0e9a12cdc77628b52f6bd9e11174" kind="function"><name>FillDate</name></member>
+    <member refid="namespacehops_1aa36b5429472f9eab39202f6535614112" kind="function"><name>FillDateStation</name></member>
     <member refid="namespacehops_1a3f6f79dab809bb2fca3a8a7c59292cd8" kind="function"><name>FillJSONFromTaggable</name></member>
     <member refid="namespacehops_1a1fdde9fc3b75f424635db92c8f07f54c" kind="function"><name>from_stream</name></member>
     <member refid="namespacehops_1a2579b3c114b4ef0d652c92dfbfa96e40" kind="function"><name>get_vexdate_from_mjd_sec</name></member>
@@ -11275,6 +11389,9 @@
     <member refid="hops2keys_8cc_1a5f82efbfde9ab6ddcfb6a36c55400482" kind="function"><name>ConvertKey</name></member>
     <member refid="hops2keys_8cc_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
   </compound>
+  <compound refid="hops2mark4_8cc" kind="file"><name>hops2mark4.cc</name>
+    <member refid="hops2mark4_8cc_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
   <compound refid="hops__complex_8c" kind="file"><name>hops_complex.c</name>
     <member refid="hops__complex_8c_1ac13fd503dc891a8ca5e7fd9025608c8e" kind="variable"><name>cmplx_unit_I</name></member>
     <member refid="hops__complex_8c_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kind="function"><name>abs_complex</name></member>
@@ -12408,6 +12525,10 @@
   </compound>
   <compound refid="MHO__MK4CorelInterface_8hh" kind="file"><name>MHO_MK4CorelInterface.hh</name>
   </compound>
+  <compound refid="MHO__MK4CorelInterfaceReversed_8cc" kind="file"><name>MHO_MK4CorelInterfaceReversed.cc</name>
+  </compound>
+  <compound refid="MHO__MK4CorelInterfaceReversed_8hh" kind="file"><name>MHO_MK4CorelInterfaceReversed.hh</name>
+  </compound>
   <compound refid="MHO__MK4FringeExport_8cc" kind="file"><name>MHO_MK4FringeExport.cc</name>
     <member refid="MHO__MK4FringeExport_8cc_1a680d6306c359d72e483fad9ebc01e605" kind="define"><name>LOCK_STATUS_OK</name></member>
     <member refid="MHO__MK4FringeExport_8cc_1a0dff171c2773de00b3f678d3cee156f6" kind="define"><name>MOD_ADLER</name></member>
@@ -12432,6 +12553,13 @@
     <member refid="MHO__MK4ScanConverter_8hh_1ad92672cff1da2fcf8d787dec1bc68790" kind="define"><name>MK4_SCANDIR</name></member>
     <member refid="MHO__MK4ScanConverter_8hh_1a4904858ed5dca80f2e47ee322edf55b7" kind="define"><name>MK4_UNKNOWNDIR</name></member>
   </compound>
+  <compound refid="MHO__MK4ScanConverterReversed_8cc" kind="file"><name>MHO_MK4ScanConverterReversed.cc</name>
+  </compound>
+  <compound refid="MHO__MK4ScanConverterReversed_8hh" kind="file"><name>MHO_MK4ScanConverterReversed.hh</name>
+    <member refid="MHO__MK4ScanConverterReversed_8hh_1aadcda31934e096e2d96c34307297f947" kind="define"><name>HOPS4_EXPDIR</name></member>
+    <member refid="MHO__MK4ScanConverterReversed_8hh_1a1c7d4accc2fe1ddb0e866f4e646ab7fb" kind="define"><name>HOPS4_SCANDIR</name></member>
+    <member refid="MHO__MK4ScanConverterReversed_8hh_1a21c4d38b0969de70d1060973c4f022a6" kind="define"><name>HOPS4_UNKNOWNDIR</name></member>
+  </compound>
   <compound refid="MHO__MK4StationInterface_8cc" kind="file"><name>MHO_MK4StationInterface.cc</name>
     <member refid="MHO__MK4StationInterface_8cc_1a35afb7d323316dc671160e63016d06f7" kind="define"><name>T309_MAX_CHAN</name></member>
     <member refid="MHO__MK4StationInterface_8cc_1a2c80be61c2c87dbb366f9d38ec5a5810" kind="define"><name>T309_MAX_PHASOR</name></member>
@@ -12439,6 +12567,16 @@
     <member refid="MHO__MK4StationInterface_8cc_1a9296cb585de000681fc929e5ec247e74" kind="define"><name>TWO32</name></member>
   </compound>
   <compound refid="MHO__MK4StationInterface_8hh" kind="file"><name>MHO_MK4StationInterface.hh</name>
+  </compound>
+  <compound refid="MHO__MK4StationInterfaceReversed_8cc" kind="file"><name>MHO_MK4StationInterfaceReversed.cc</name>
+    <member refid="MHO__MK4StationInterfaceReversed_8cc_1a025af2a4a05cf4eee84d9c6cb893dad0" kind="define"><name>MHZ_TO_HZ</name></member>
+    <member refid="MHO__MK4StationInterfaceReversed_8cc_1a124f59549a046737ad5ff5226b272f5f" kind="define"><name>MK4_MAX_COEFF</name></member>
+    <member refid="MHO__MK4StationInterfaceReversed_8cc_1a35afb7d323316dc671160e63016d06f7" kind="define"><name>T309_MAX_CHAN</name></member>
+    <member refid="MHO__MK4StationInterfaceReversed_8cc_1a2c80be61c2c87dbb366f9d38ec5a5810" kind="define"><name>T309_MAX_PHASOR</name></member>
+    <member refid="MHO__MK4StationInterfaceReversed_8cc_1a42cf1e6775231cf1ca1e873889f58dd7" kind="define"><name>TWO31</name></member>
+    <member refid="MHO__MK4StationInterfaceReversed_8cc_1a9296cb585de000681fc929e5ec247e74" kind="define"><name>TWO32</name></member>
+  </compound>
+  <compound refid="MHO__MK4StationInterfaceReversed_8hh" kind="file"><name>MHO_MK4StationInterfaceReversed.hh</name>
   </compound>
   <compound refid="MHO__MK4VexInterface_8cc" kind="file"><name>MHO_MK4VexInterface.cc</name>
   </compound>

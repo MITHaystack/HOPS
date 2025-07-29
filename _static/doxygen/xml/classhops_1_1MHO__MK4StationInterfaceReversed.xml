@@ -1,0 +1,788 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MK4StationInterfaceReversed" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MK4StationInterfaceReversed</compoundname>
+    <includes refid="MHO__MK4StationInterfaceReversed_8hh" local="no">MHO_MK4StationInterfaceReversed.hh</includes>
+    <innerclass refid="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate" prot="private">hops::MHO_MK4StationInterfaceReversed::chan_predicate</innerclass>
+    <innerclass refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo" prot="private">hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a2182db3ab66f6b238a702dff67875ff1" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; void * &gt;</type>
+        <definition>std::vector&lt; void* &gt; hops::MHO_MK4StationInterfaceReversed::fAllocated</definition>
+        <argsstring></argsstring>
+        <name>fAllocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="157" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a0e3054acb25ec625d3f942555e01cdcf" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::fFreqSetupName</definition>
+        <argsstring></argsstring>
+        <name>fFreqSetupName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="114" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a7c29b46f37e056909400744a69f879e4" prot="private" static="no" mutable="no">
+        <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+        <definition>struct mk4_sdata* hops::MHO_MK4StationInterfaceReversed::fGeneratedStation</definition>
+        <argsstring></argsstring>
+        <name>fGeneratedStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="106" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1ac89ff78b8a79a7d4a84d5160eda600fe" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::fMode</definition>
+        <argsstring></argsstring>
+        <name>fMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="113" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a499be4a698c6f82ef86fe3d647ed699a" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterfaceReversed::fNAPs</definition>
+        <argsstring></argsstring>
+        <name>fNAPs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="121" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1aef5a741f9f5e327182f12bdd902c79e0" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterfaceReversed::fNCoeffs</definition>
+        <argsstring></argsstring>
+        <name>fNCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="119" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a300d02aa7919c1033772b81ab250fd70" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterfaceReversed::fNCoord</definition>
+        <argsstring></argsstring>
+        <name>fNCoord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="117" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1ad72c69ae6e3f49bb541d5eee6dd94435" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterfaceReversed::fNIntervals</definition>
+        <argsstring></argsstring>
+        <name>fNIntervals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="118" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a7ff8230c32302fd30885b77edfb53ecf" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterfaceReversed::fNPols</definition>
+        <argsstring></argsstring>
+        <name>fNPols</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="120" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a59e1afd9fe8d8afdb16ca49a7b0527fd" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterfaceReversed::fNTones</definition>
+        <argsstring></argsstring>
+        <name>fNTones</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="122" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1aa1e659650b90c224f4c2a6ceb8e1b24a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::fOutputDir</definition>
+        <argsstring></argsstring>
+        <name>fOutputDir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="107" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1ae3990715051ae9bb337f1985c64e9423" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::fOutputFile</definition>
+        <argsstring></argsstring>
+        <name>fOutputFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="108" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1aabcf32a22ad01f132f0a6f8012f54be3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; PCalChannelInfo &gt;</type>
+        <definition>std::vector&lt;PCalChannelInfo&gt; hops::MHO_MK4StationInterfaceReversed::fPCalChannelList</definition>
+        <argsstring></argsstring>
+        <name>fPCalChannelList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="155" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a8233560f6c3641c7c116696b4cb208f5" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+        <definition>multitone_pcal_type* hops::MHO_MK4StationInterfaceReversed::fPCalData</definition>
+        <argsstring></argsstring>
+        <name>fPCalData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="105" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a041e167c00964e5ffeef7c193811500d" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::fStationCode</definition>
+        <argsstring></argsstring>
+        <name>fStationCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="112" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1ac2acf16ccd258c364395b7960abdb989" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+        <definition>station_coord_type* hops::MHO_MK4StationInterfaceReversed::fStationCoordData</definition>
+        <argsstring></argsstring>
+        <name>fStationCoordData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="104" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterfaceReversed_1ac6c8317a88a5762298171101222bd898" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_MK4StationInterfaceReversed::fVexData</definition>
+        <argsstring></argsstring>
+        <name>fVexData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="111" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a0219d18745ba579079a69197da69ffef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MK4StationInterfaceReversed::MHO_MK4StationInterfaceReversed</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MK4StationInterfaceReversed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="49" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a2f69a7da78b1e813858bff5497cc6833" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MK4StationInterfaceReversed::~MHO_MK4StationInterfaceReversed</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MK4StationInterfaceReversed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="65" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a085a374e78389db9a23e91a537422572" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::FreeAllocated</definition>
+        <argsstring>()</argsstring>
+        <name>FreeAllocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="63" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="78" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a4e4d9caaeb1f175b629a9868f7b3db32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::GenerateStationStructure</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateStationStructure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="95" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1afda6c3089f472cfd3a1338633f8505d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+        <definition>struct mk4_sdata* hops::MHO_MK4StationInterfaceReversed::GetStationStructure</definition>
+        <argsstring>()</argsstring>
+        <name>GetStationStructure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="61" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a23b92450347ba86c0a9685915f5e344a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::SetOutputDirectory</definition>
+        <argsstring>(const std::string &amp;output_dir)</argsstring>
+        <name>SetOutputDirectory</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="52" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="89" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1af58c8ec986eb4568792d59528b328cf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::SetOutputFile</definition>
+        <argsstring>(const std::string &amp;output_file)</argsstring>
+        <name>SetOutputFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="55" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a0e8bcb7f17f3c07be387c453002f741c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::SetPCalData</definition>
+        <argsstring>(multitone_pcal_type *pcal_data)</argsstring>
+        <name>SetPCalData</name>
+        <param>
+          <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>pcal_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a07c85d3393795c5c9f7c1acee1c1f43d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::SetStationCoordData</definition>
+        <argsstring>(station_coord_type *coord_data)</argsstring>
+        <name>SetStationCoordData</name>
+        <param>
+          <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+          <declname>coord_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="53" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a14e4499ecbc809b4b166d966a576dc04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::SetVexData</definition>
+        <argsstring>(const mho_json &amp;vex_data)</argsstring>
+        <name>SetVexData</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>vex_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="50" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a90dbc75ef4c41a8ae76c21812b2cef40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MK4StationInterfaceReversed::WriteStationFile</definition>
+        <argsstring>()</argsstring>
+        <name>WriteStationFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="59" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="688" bodyend="710"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1af1509f54209c2f4800c188b0fc7700bc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_MK4StationInterfaceReversed::ComputeType309Rot</definition>
+        <argsstring>(double ap_offset, std::string start_time, double start_time_mjd)</argsstring>
+        <name>ComputeType309Rot</name>
+        <param>
+          <type>double</type>
+          <declname>ap_offset</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>start_time</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>start_time_mjd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="77" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="785" bodyend="815"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1ad28de16258b61e0793622e27c17a25b5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_MK4StationInterfaceReversed::ComputeType309RotFallback</definition>
+        <argsstring>(double ap_offset)</argsstring>
+        <name>ComputeType309RotFallback</name>
+        <param>
+          <type>double</type>
+          <declname>ap_offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="78" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="819" bodyend="835"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a31187e05f9826b7daae15f9b5b4ca9ac" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::ConstructType000FileName</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructType000FileName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="69" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="748" bodyend="781"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1adee6332422ceb261157b3c55c73ad9f4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::ConvertPhasorToCounts</definition>
+        <argsstring>(const std::complex&lt; double &gt; &amp;phasor, double acc_period, double sample_period, uint32_t &amp;real_count, uint32_t &amp;imag_count)</argsstring>
+        <name>ConvertPhasorToCounts</name>
+        <param>
+          <type>const std::complex&lt; double &gt; &amp;</type>
+          <declname>phasor</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>acc_period</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sample_period</declname>
+        </param>
+        <param>
+          <type>uint32_t &amp;</type>
+          <declname>real_count</declname>
+        </param>
+        <param>
+          <type>uint32_t &amp;</type>
+          <declname>imag_count</declname>
+        </param>
+        <briefdescription>
+<para>Convert multitone PCal phasor back to uint32_t counts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phasor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Complex phasor value </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>acc_period</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Accumulation period in seconds </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sample_period</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sample period in seconds </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>real_count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output real component count </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imag_count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output imaginary component count </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="89" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="712" bodyend="738"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1af7c0c7f5c3b876b86c4a1e0626ad5671" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::DetermineChannelToneIndexes</definition>
+        <argsstring>(double lower_freq, double upper_freq, std::size_t &amp;start_idx, std::size_t &amp;ntones)</argsstring>
+        <name>DetermineChannelToneIndexes</name>
+        <param>
+          <type>double</type>
+          <declname>lower_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>upper_freq</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>start_idx</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>ntones</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="100" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="849" bodyend="872"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a8a92011d969efc97677f0b7f9dcdcbc9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_MK4StationInterfaceReversed::DeterminePCalToneSpacing</definition>
+        <argsstring>()</argsstring>
+        <name>DeterminePCalToneSpacing</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="97" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="875" bodyend="902"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a42e555c6db6f4cfff5be92a7db80afba" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfo</definition>
+        <argsstring>()</argsstring>
+        <name>ExtractPCalChannelInfo</name>
+        <briefdescription>
+<para>Extract channel information from PCal frequency axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="95" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="504" bodyend="563"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a8874b36c26eece0f79e06e3d8d2aa058" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex</definition>
+        <argsstring>()</argsstring>
+        <name>ExtractPCalChannelInfoFromVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="96" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="590" bodyend="684"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a10b6ebe7183b10367f09b501a1b077a7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_MK4StationInterfaceReversed::FactorConvertToMHz</definition>
+        <argsstring>(std::string units)</argsstring>
+        <name>FactorConvertToMHz</name>
+        <param>
+          <type>std::string</type>
+          <declname>units</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="99" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="838" bodyend="847"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a6fdaa3f54ee528fb1661f3887210b5e7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::GenerateType000</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType000</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="68" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="185" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1ab80a357326903dbd6a28190400af4fea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::GenerateType300</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType300</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="71" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="205" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a093bc54d4ea2d9191897d971636a985f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::GenerateType301Records</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType301Records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="72" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="273" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a566fe04e89400c8bb1711950a4d0ba36" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::GenerateType303Records</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType303Records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="313" bodyend="359"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a62139a29aa10b7bb606e6777f90666cd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::GenerateType309Records</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType309Records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="74" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="361" bodyend="500"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a2312268f472bf23e9f42abd668e10fcc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::GetStationMode</definition>
+        <argsstring>()</argsstring>
+        <name>GetStationMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="102" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="565" bodyend="587"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a9fbef082bd0becb232244ddb5f1a1d3c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::InitializeStationStructure</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeStationStructure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="67" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="171" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1a2805e73309ecdfdcfa5a6deff333ca4c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterfaceReversed::setstr</definition>
+        <argsstring>(const std::string &amp;str, char *char_array, std::size_t max_size)</argsstring>
+        <name>setstr</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>char_array</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="75" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc" bodystart="740" bodyend="745"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classhops_1_1MHO__MK4StationInterfaceReversed" kindref="compound">MHO_MK4StationInterfaceReversed</ref> - Converts HOPS4 station containers back to <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> format. This class performs the reverse conversion of <ref refid="classhops_1_1MHO__MK4StationInterface" kindref="compound">MHO_MK4StationInterface</ref>, taking <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> objects (station_coord_type and multitone_pcal_type) and generating the corresponding <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> C structs. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="42" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="43" bodyend="158"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1af1509f54209c2f4800c188b0fc7700bc" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>ComputeType309Rot</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ad28de16258b61e0793622e27c17a25b5" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>ComputeType309RotFallback</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a31187e05f9826b7daae15f9b5b4ca9ac" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>ConstructType000FileName</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1adee6332422ceb261157b3c55c73ad9f4" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>ConvertPhasorToCounts</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1af7c0c7f5c3b876b86c4a1e0626ad5671" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>DetermineChannelToneIndexes</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a8a92011d969efc97677f0b7f9dcdcbc9" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>DeterminePCalToneSpacing</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a42e555c6db6f4cfff5be92a7db80afba" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>ExtractPCalChannelInfo</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a8874b36c26eece0f79e06e3d8d2aa058" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>ExtractPCalChannelInfoFromVex</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a10b6ebe7183b10367f09b501a1b077a7" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>FactorConvertToMHz</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a2182db3ab66f6b238a702dff67875ff1" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fAllocated</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a0e3054acb25ec625d3f942555e01cdcf" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fFreqSetupName</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a7c29b46f37e056909400744a69f879e4" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fGeneratedStation</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ac89ff78b8a79a7d4a84d5160eda600fe" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fMode</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a499be4a698c6f82ef86fe3d647ed699a" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fNAPs</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1aef5a741f9f5e327182f12bdd902c79e0" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fNCoeffs</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a300d02aa7919c1033772b81ab250fd70" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fNCoord</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ad72c69ae6e3f49bb541d5eee6dd94435" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fNIntervals</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a7ff8230c32302fd30885b77edfb53ecf" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fNPols</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a59e1afd9fe8d8afdb16ca49a7b0527fd" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fNTones</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1aa1e659650b90c224f4c2a6ceb8e1b24a" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fOutputDir</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ae3990715051ae9bb337f1985c64e9423" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fOutputFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1aabcf32a22ad01f132f0a6f8012f54be3" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fPCalChannelList</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a8233560f6c3641c7c116696b4cb208f5" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fPCalData</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a085a374e78389db9a23e91a537422572" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>FreeAllocated</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a041e167c00964e5ffeef7c193811500d" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fStationCode</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ac2acf16ccd258c364395b7960abdb989" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fStationCoordData</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ac6c8317a88a5762298171101222bd898" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>fVexData</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a4e4d9caaeb1f175b629a9868f7b3db32" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>GenerateStationStructure</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a6fdaa3f54ee528fb1661f3887210b5e7" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>GenerateType000</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1ab80a357326903dbd6a28190400af4fea" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>GenerateType300</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a093bc54d4ea2d9191897d971636a985f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>GenerateType301Records</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a566fe04e89400c8bb1711950a4d0ba36" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>GenerateType303Records</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a62139a29aa10b7bb606e6777f90666cd" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>GenerateType309Records</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a2312268f472bf23e9f42abd668e10fcc" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>GetStationMode</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1afda6c3089f472cfd3a1338633f8505d0" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>GetStationStructure</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a9fbef082bd0becb232244ddb5f1a1d3c" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>InitializeStationStructure</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a0219d18745ba579079a69197da69ffef" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>MHO_MK4StationInterfaceReversed</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a23b92450347ba86c0a9685915f5e344a" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>SetOutputDirectory</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1af58c8ec986eb4568792d59528b328cf2" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>SetOutputFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a0e8bcb7f17f3c07be387c453002f741c" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>SetPCalData</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a07c85d3393795c5c9f7c1acee1c1f43d" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>SetStationCoordData</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a2805e73309ecdfdcfa5a6deff333ca4c" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>setstr</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a14e4499ecbc809b4b166d966a576dc04" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>SetVexData</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a90dbc75ef4c41a8ae76c21812b2cef40" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>WriteStationFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1a2f69a7da78b1e813858bff5497cc6833" prot="public" virt="virtual"><scope>hops::MHO_MK4StationInterfaceReversed</scope><name>~MHO_MK4StationInterfaceReversed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

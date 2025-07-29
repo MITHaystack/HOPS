@@ -13,6 +13,7 @@
     <includes refid="MHO__VexDefinitions_8hh" local="yes">MHO_VexDefinitions.hh</includes>
     <includes refid="MHO__VexElementLineGenerator_8hh" local="yes">MHO_VexElementLineGenerator.hh</includes>
     <includedby refid="MHO__DiFXScanProcessor_8cc" local="yes">MHO_DiFXScanProcessor.cc</includedby>
+    <includedby refid="MHO__MK4ScanConverterReversed_8cc" local="yes">MHO_MK4ScanConverterReversed.cc</includedby>
     <includedby refid="MHO__VexGenerator_8cc" local="yes">MHO_VexGenerator.cc</includedby>
     <incdepgraph>
       <node id="2">
@@ -236,10 +237,16 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
-      <node id="3">
+      <node id="4">
         <label>MHO_VexGenerator.cc</label>
         <link refid="MHO__VexGenerator_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_MK4ScanConverterReversed.cc</label>
+        <link refid="MHO__MK4ScanConverterReversed_8cc"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classhops_1_1MHO__VexGenerator" prot="public">hops::MHO_VexGenerator</innerclass>

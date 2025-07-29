@@ -117,14 +117,14 @@
              
   <section id="data-object-object-tags">
 <h1>Data Object: <cite>object_tags</cite><a class="headerlink" href="#data-object-object-tags" title="Link to this heading"></a></h1>
-<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a> class is used as a means to attach arbitrary information to a separate object or collection of objects.
+<p>The <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a> class is used as a means to attach arbitrary information to a separate object or collection of objects.
 The object collection associated with a particular object tag object is specified by a list of object unique identifiers (UUIDs) stored as strings.
-The objects with the associated UUIDs are generally contained in the same file, or if in memory, in the same <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>.
+The objects with the associated UUIDs are generally contained in the same file, or if in memory, in the same <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>.
 The underlying type of the <code class="docutils literal notranslate"><span class="pre">MHO_ObjectTags</span></code> class is a <code class="docutils literal notranslate"><span class="pre">json</span></code> object provided by the external <code class="docutils literal notranslate"><span class="pre">nlohmann::json</span></code> library.</p>
 <section id="general-information">
 <h2>General Information<a class="headerlink" href="#general-information" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Class</strong>: <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a></p></li>
+<li><p><strong>Class</strong>: <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a></p></li>
 <li><p><strong>Class UUID</strong>: 330c5f9889eaa350f8955c6e709a536c</p></li>
 </ul>
 </section>
@@ -132,8 +132,8 @@ The underlying type of the <code class="docutils literal notranslate"><span clas
 <h2>Tags<a class="headerlink" href="#tags" title="Link to this heading"></a></h2>
 <p>The object collection is referenced by a list of 128 bit object UUIDs. The object UUIDs are stored as hex-strings (e.g. “c159826f284e416985db47c926080274”)
 under a list object called <code class="docutils literal notranslate"><span class="pre">object_uuids</span></code>. The UUIDs stored here are also present in the object
-file keys (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileKey.html">hops::MHO_FileKey</a>) that precede the binary data of each respective object in a file. In memory objects
-can also be retrieved from the container store (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>) using the same unique object UUID as a key.</p>
+file keys (<a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileKey.html">hops::MHO_FileKey</a>) that precede the binary data of each respective object in a file. In memory objects
+can also be retrieved from the container store (<a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>) using the same unique object UUID as a key.</p>
 <p>The meta-data tags (key:value pairs) that are associated with the object collection, can take on any
 nested structure that is available to the <code class="docutils literal notranslate"><span class="pre">json</span></code> format. However, the top level object which contains
 all such information is called <code class="docutils literal notranslate"><span class="pre">tags</span></code>. For example, in the <code class="docutils literal notranslate"><span class="pre">fourfit4</span></code> fringe output,

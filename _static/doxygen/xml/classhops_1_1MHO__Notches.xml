@@ -343,7 +343,7 @@
 <para>Class <ref refid="classhops_1_1MHO__Notches" kindref="compound">MHO_Notches</ref>. </para>
     </briefdescription>
     <detaileddescription>
-<para>operator which &apos;notches&apos; out probablatic chunks of visiblities in frequency space</para>
+<para>operator which &apos;notches&apos; out problematic chunks of visiblities in frequency space</para>
 <para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
 </simplesect>
 <simplesect kind="date"><para>Tue Apr 2 09:41:24 AM EDT 2024 </para>

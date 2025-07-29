@@ -517,12 +517,12 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="90">
+      <node id="93">
         <label>MHO_FringePlotInfo.hh</label>
         <link refid="MHO__FringePlotInfo_8hh"/>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -535,7 +535,7 @@
         <label>MHO_IonosphericFringeFitter.cc</label>
         <link refid="MHO__IonosphericFringeFitter_8cc"/>
       </node>
-      <node id="81">
+      <node id="84">
         <label>hops2hdf5.cc</label>
         <link refid="hops2hdf5_8cc"/>
       </node>
@@ -567,23 +567,23 @@
         <childnode refid="74" relation="include">
         </childnode>
       </node>
-      <node id="91">
+      <node id="94">
         <label>MHO_InitialFringeInfo.hh</label>
         <link refid="MHO__InitialFringeInfo_8hh"/>
         <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
+        <childnode refid="95" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="101">
+      <node id="104">
         <label>TestVexStripper.cc</label>
         <link refid="TestVexStripper_8cc"/>
       </node>
-      <node id="85">
+      <node id="88">
         <label>MHO_ContainerStore.cc</label>
         <link refid="MHO__ContainerStore_8cc"/>
       </node>
@@ -591,7 +591,7 @@
         <label>MHO_LinearDParCorrectionBuilder.cc</label>
         <link refid="MHO__LinearDParCorrectionBuilder_8cc"/>
       </node>
-      <node id="84">
+      <node id="87">
         <label>MHO_ContainerStore.hh</label>
         <link refid="MHO__ContainerStore_8hh"/>
         <childnode refid="4" relation="include">
@@ -608,25 +608,25 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="88" relation="include">
         </childnode>
         <childnode refid="55" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="90" relation="include">
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="93" relation="include">
         </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="94" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
@@ -634,33 +634,33 @@
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
       </node>
       <node id="23">
         <label>MHO_DefaultPythonPlotVisitor.cc</label>
         <link refid="MHO__DefaultPythonPlotVisitor_8cc"/>
       </node>
-      <node id="97">
+      <node id="100">
         <label>MHO_ClassIdentityMap.hh</label>
         <link refid="MHO__ClassIdentityMap_8hh"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="101" relation="include">
         </childnode>
-        <childnode refid="99" relation="include">
+        <childnode refid="102" relation="include">
         </childnode>
-        <childnode refid="104" relation="include">
+        <childnode refid="107" relation="include">
         </childnode>
       </node>
       <node id="48">
@@ -677,22 +677,22 @@
         <childnode refid="68" relation="include">
         </childnode>
       </node>
-      <node id="110">
+      <node id="113">
         <label>MHO_HDF5Attributes.hh</label>
         <link refid="MHO__HDF5Attributes_8hh"/>
-        <childnode refid="111" relation="include">
+        <childnode refid="114" relation="include">
         </childnode>
-        <childnode refid="112" relation="include">
+        <childnode refid="115" relation="include">
         </childnode>
       </node>
       <node id="43">
         <label>MHO_ManualPolDelayCorrectionBuilder.cc</label>
         <link refid="MHO__ManualPolDelayCorrectionBuilder_8cc"/>
       </node>
-      <node id="112">
+      <node id="115">
         <label>MHO_HDF5Datasets.hh</label>
         <link refid="MHO__HDF5Datasets_8hh"/>
-        <childnode refid="111" relation="include">
+        <childnode refid="114" relation="include">
         </childnode>
       </node>
       <node id="34">
@@ -703,7 +703,7 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="80">
+      <node id="83">
         <label>MHO_AFileInfoExtractor.cc</label>
         <link refid="MHO__AFileInfoExtractor_8cc"/>
       </node>
@@ -719,18 +719,18 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="103">
+      <node id="106">
         <label>MHO_DiFXScanProcessor.cc</label>
         <link refid="MHO__DiFXScanProcessor_8cc"/>
       </node>
-      <node id="87">
+      <node id="90">
         <label>MHO_ComputePlotData.hh</label>
         <link refid="MHO__ComputePlotData_8hh"/>
-        <childnode refid="78" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
-        <childnode refid="88" relation="include">
+        <childnode refid="91" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
       </node>
       <node id="44">
@@ -741,13 +741,13 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="107">
+      <node id="110">
         <label>MHO_ContainerHDF5Converter.hh</label>
         <link refid="MHO__ContainerHDF5Converter_8hh"/>
-        <childnode refid="108" relation="include">
+        <childnode refid="111" relation="include">
         </childnode>
       </node>
-      <node id="78">
+      <node id="81">
         <label>MHO_BasicFringeUtilities.cc</label>
         <link refid="MHO__BasicFringeUtilities_8cc"/>
       </node>
@@ -755,7 +755,7 @@
         <label>MHO_DCBlockBuilder.cc</label>
         <link refid="MHO__DCBlockBuilder_8cc"/>
       </node>
-      <node id="75">
+      <node id="78">
         <label>MHO_PyScanStoreInterface.hh</label>
         <link refid="MHO__PyScanStoreInterface_8hh"/>
         <childnode refid="69" relation="include">
@@ -775,13 +775,13 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="96">
+      <node id="99">
         <label>MHO_ContainerJSONConverter.hh</label>
         <link refid="MHO__ContainerJSONConverter_8hh"/>
-        <childnode refid="97" relation="include">
+        <childnode refid="100" relation="include">
         </childnode>
       </node>
-      <node id="94">
+      <node id="97">
         <label>MHO_PyFringeFitterInstance.hh</label>
         <link refid="MHO__PyFringeFitterInstance_8hh"/>
       </node>
@@ -804,22 +804,22 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
-        </childnode>
         <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
-        </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
         <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
         </childnode>
       </node>
       <node id="57">
         <label>MHO_BasicFringeDataConfiguration.cc</label>
         <link refid="MHO__BasicFringeDataConfiguration_8cc"/>
       </node>
-      <node id="109">
+      <node id="112">
         <label>MHO_HDF5ConverterDictionary.cc</label>
         <link refid="MHO__HDF5ConverterDictionary_8cc"/>
       </node>
@@ -851,14 +851,14 @@
         <label>MHO_PolProductSummationBuilder.cc</label>
         <link refid="MHO__PolProductSummationBuilder_8cc"/>
       </node>
-      <node id="100">
+      <node id="103">
         <label>MHO_DiFXInterface.hh</label>
         <link refid="MHO__DiFXInterface_8hh"/>
-        <childnode refid="98" relation="include">
-        </childnode>
         <childnode refid="101" relation="include">
         </childnode>
-        <childnode refid="102" relation="include">
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -868,29 +868,29 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
+        <childnode refid="99" relation="include">
         </childnode>
         <childnode refid="110" relation="include">
         </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
         <childnode refid="111" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
-        </childnode>
-        <childnode refid="112" relation="include">
+        <childnode refid="115" relation="include">
         </childnode>
       </node>
       <node id="65">
         <label>MHO_SamplerLabelerBuilder.cc</label>
         <link refid="MHO__SamplerLabelerBuilder_8cc"/>
       </node>
-      <node id="86">
+      <node id="89">
         <label>MHO_BasicFringeUtilities.hh</label>
         <link refid="MHO__BasicFringeUtilities_8hh"/>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -898,6 +898,10 @@
       <node id="39">
         <label>MHO_ManualChannelDelayCorrectionBuilder.cc</label>
         <link refid="MHO__ManualChannelDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="76">
+        <label>hops2mark4.cc</label>
+        <link refid="hops2mark4_8cc"/>
       </node>
       <node id="55">
         <label>MHO_BasicFringeDataConfiguration.hh</label>
@@ -939,11 +943,11 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="105">
+      <node id="108">
         <label>mark42hops.cc</label>
         <link refid="mark42hops_8cc"/>
       </node>
-      <node id="106">
+      <node id="109">
         <label>MHO_MK4ScanConverter.cc</label>
         <link refid="MHO__MK4ScanConverter_8cc"/>
       </node>
@@ -960,25 +964,25 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="98" relation="include">
         </childnode>
-        <childnode refid="80" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="81" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
       </node>
       <node id="58">
@@ -1008,6 +1012,10 @@
         </childnode>
         <childnode refid="75" relation="include">
         </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
       </node>
       <node id="53">
         <label>MHO_NotchesBuilder.cc</label>
@@ -1023,14 +1031,14 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="93">
+      <node id="96">
         <label>MHO_PyContainerStoreInterface.hh</label>
         <link refid="MHO__PyContainerStoreInterface_8hh"/>
         <childnode refid="69" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
@@ -1047,7 +1055,7 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="79">
+      <node id="82">
         <label>MHO_ContainerFileInterface.cc</label>
         <link refid="MHO__ContainerFileInterface_8cc"/>
       </node>
@@ -1103,7 +1111,7 @@
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="89">
+      <node id="92">
         <label>MHO_FringePlotInfo.cc</label>
         <link refid="MHO__FringePlotInfo_8cc"/>
       </node>
@@ -1113,15 +1121,15 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="98">
+      <node id="101">
         <label>difx2hops.cc</label>
         <link refid="difx2hops_8cc"/>
       </node>
-      <node id="83">
+      <node id="86">
         <label>MHO_HDF5ContainerFileInterface.cc</label>
         <link refid="MHO__HDF5ContainerFileInterface_8cc"/>
       </node>
-      <node id="88">
+      <node id="91">
         <label>MHO_ComputePlotData.cc</label>
         <link refid="MHO__ComputePlotData_8cc"/>
       </node>
@@ -1185,12 +1193,12 @@
         <label>hops2flat.cc</label>
         <link refid="hops2flat_8cc"/>
       </node>
-      <node id="82">
+      <node id="85">
         <label>MHO_HDF5ContainerFileInterface.hh</label>
         <link refid="MHO__HDF5ContainerFileInterface_8hh"/>
-        <childnode refid="81" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
       </node>
       <node id="59">
@@ -1231,12 +1239,20 @@
         <label>MHO_MinWeightBuilder.cc</label>
         <link refid="MHO__MinWeightBuilder_8cc"/>
       </node>
-      <node id="108">
+      <node id="75">
+        <label>MHO_MK4ScanConverterReversed.hh</label>
+        <link refid="MHO__MK4ScanConverterReversed_8hh"/>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+      </node>
+      <node id="111">
         <label>MHO_HDF5ConverterDictionary.hh</label>
         <link refid="MHO__HDF5ConverterDictionary_8hh"/>
-        <childnode refid="82" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="112" relation="include">
         </childnode>
       </node>
       <node id="22">
@@ -1283,28 +1299,28 @@
         <label>fourfit4.cc</label>
         <link refid="fourfit4_8cc"/>
       </node>
-      <node id="99">
+      <node id="102">
         <label>MHO_DiFXScanProcessor.hh</label>
         <link refid="MHO__DiFXScanProcessor_8hh"/>
-        <childnode refid="100" relation="include">
-        </childnode>
         <childnode refid="103" relation="include">
         </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
       </node>
-      <node id="76">
+      <node id="79">
         <label>MHO_Snapshot.hh</label>
         <link refid="MHO__Snapshot_8hh"/>
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -1325,11 +1341,11 @@
         <childnode refid="63" relation="include">
         </childnode>
       </node>
-      <node id="95">
+      <node id="98">
         <label>MHO_ContainerDictionary.cc</label>
         <link refid="MHO__ContainerDictionary_8cc"/>
       </node>
-      <node id="77">
+      <node id="80">
         <label>MHO_Snapshot.cc</label>
         <link refid="MHO__Snapshot_8cc"/>
       </node>
@@ -1345,7 +1361,7 @@
         <label>MHO_MultitonePhaseCorrectionBuilder.cc</label>
         <link refid="MHO__MultitonePhaseCorrectionBuilder_8cc"/>
       </node>
-      <node id="102">
+      <node id="105">
         <label>MHO_DiFXInterface.cc</label>
         <link refid="MHO__DiFXInterface_8cc"/>
       </node>
@@ -1353,27 +1369,31 @@
         <label>CompareCorFiles.cc</label>
         <link refid="CompareCorFiles_8cc"/>
       </node>
-      <node id="104">
+      <node id="107">
         <label>MHO_MK4ScanConverter.hh</label>
         <link refid="MHO__MK4ScanConverter_8hh"/>
-        <childnode refid="105" relation="include">
+        <childnode refid="108" relation="include">
         </childnode>
-        <childnode refid="106" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
       </node>
       <node id="67">
         <label>MHO_StationDelayCorrectionBuilder.cc</label>
         <link refid="MHO__StationDelayCorrectionBuilder_8cc"/>
       </node>
-      <node id="111">
+      <node id="114">
         <label>MHO_HDF5ConversionHelpers.hh</label>
         <link refid="MHO__HDF5ConversionHelpers_8hh"/>
-        <childnode refid="107" relation="include">
+        <childnode refid="110" relation="include">
         </childnode>
       </node>
-      <node id="92">
+      <node id="95">
         <label>MHO_InitialFringeInfo.cc</label>
         <link refid="MHO__InitialFringeInfo_8cc"/>
+      </node>
+      <node id="77">
+        <label>MHO_MK4ScanConverterReversed.cc</label>
+        <link refid="MHO__MK4ScanConverterReversed_8cc"/>
       </node>
       <node id="64">
         <label>MHO_SamplerLabelerBuilder.hh</label>

@@ -139,8 +139,8 @@ the time of retrieval, the object type must be known in order for a proper cast
 to be done before the data can be used directly.</p>
 <p>Since we would like to avoid tight coupling to external libraries (in case they
 need to be replaced), we have chosen to wrap most of the interaction with the
-nlohmann::json library through the classes <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__JSONWrapper.html">hops::MHO_JSONWrapper</a> and
-<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a>. We have also chosen to capture a version of this
+nlohmann::json library through the classes <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__JSONWrapper.html">hops::MHO_JSONWrapper</a> and
+<a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a>. We have also chosen to capture a version of this
 single-header library under the <cite>extern</cite> directory, so it can be distributed along
 with the rest of the HOPS4 source code.</p>
 </section>
@@ -150,12 +150,12 @@ with the rest of the HOPS4 source code.</p>
 construct most in-memory objects used for the manipulation of correlated
 observation data and its associated station data:</p>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ScalarContainer.html">hops::MHO_ScalarContainer</a>.- encapsulates scalar-like data</p></li>
-<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__VectorContainer.html">hops::MHO_VectorContainer</a> - encapsulates vector-like data</p></li>
-<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Axis.html">hops::MHO_Axis</a> -  encapsulates vector-like data to be used as a coordinate axis</p></li>
-<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a> -  encapsulates a collection of axes</p></li>
-<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> - encapsulates rank-N tensor-like data with
-associated axes collection (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a>)</p></li>
+<li><p><a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ScalarContainer.html">hops::MHO_ScalarContainer</a>.- encapsulates scalar-like data</p></li>
+<li><p><a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__VectorContainer.html">hops::MHO_VectorContainer</a> - encapsulates vector-like data</p></li>
+<li><p><a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Axis.html">hops::MHO_Axis</a> -  encapsulates vector-like data to be used as a coordinate axis</p></li>
+<li><p><a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a> -  encapsulates a collection of axes</p></li>
+<li><p><a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> - encapsulates rank-N tensor-like data with
+associated axes collection (<a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a>)</p></li>
 </ol>
 <p>These template classes are to serve as a simple wrapper around the
 management of the raw memory needed to store a data item and keep track
@@ -166,7 +166,7 @@ metadata <cite>tags</cite> can be attached to these objects as well.</p>
 memory intensive data needed within HOPS and can largely be derived from
 a N-dimensional array of some numeric or integral type. Therefore a
 generic template class for N-dimensional arrays is needed. This is
-implemented by the template class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__NDArrayWrapper.html">hops::MHO_NDArrayWrapper</a>. The following
+implemented by the template class <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__NDArrayWrapper.html">hops::MHO_NDArrayWrapper</a>. The following
 shows a stub of this class to demonstrate its structure:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">XValueType</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">RANK</span><span class="o">&gt;</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">MHO_NDArrayWrapper</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_ExtensibleElement</span>
@@ -234,13 +234,13 @@ random access is best done via indexes using the operator().</p>
 </pre></div>
 </div>
 <p>In addition to the raw data stored in the N-dimensional array, in the
-case of the <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> it is important to associate a
+case of the <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> it is important to associate a
 coordinate axis with each dimension in order to provide various data
 operators with the ability to look-up the location of a datum beyond a
 simple integer-index. To enable this, we pair an N-dimensional
-array with a tuple of axis objects (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a>) associated with each dimension.
+array with a tuple of axis objects (<a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a>) associated with each dimension.
 The following code shows an outline of the template class
-structure for a <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> (along with other) objects.</p>
+structure for a <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> (along with other) objects.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">XValueType</span><span class="w"> </span><span class="o">&gt;</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">MHO_ScalarContainer</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_ScalarContainerBase</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_NDArrayWrapper</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XValueType</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_Taggable</span>
 
@@ -264,14 +264,14 @@ structure for a <a class="reference external" href="https://github.com/pages/MIT
 </pre></div>
 </div>
 <p>The axis objects themselves also inherit from
-<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IndexLabelInterface.html">hops::MHO_IndexLabelInterface</a> and <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IntervalLabelInterface.html">hops::MHO_IntervalLabelInterface</a>.
+<a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IndexLabelInterface.html">hops::MHO_IndexLabelInterface</a> and <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IntervalLabelInterface.html">hops::MHO_IntervalLabelInterface</a>.
 These classes provide the to associate and index or a pair of indexes with additional
 key-value pairs. A simple example of this might be tagging a
 section of the frequency axis with a particular channel ID (e.g
 <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">32]</span></code> <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">{&quot;channel_id&quot;:</span> <span class="pre">&quot;X17LY&quot;}</span></code>). These two classes
 supports tagging axis locations with any type that is supported by the
 underlying json library.</p>
-<p>A graphical representation of a <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> object is shown below:</p>
+<p>A graphical representation of a <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> object is shown below:</p>
 <figure class="align-default">
 <img alt="../../../_images/data-container-baseline.png" src="../../../_images/data-container-baseline.png" />
 </figure>
@@ -289,14 +289,14 @@ done using unsigned integer index values.</p>
 <section id="container-dictionary-and-store">
 <h3>Container Dictionary and Store<a class="headerlink" href="#container-dictionary-and-store" title="Link to this heading"></a></h3>
 <p>The data containers in HOPS4 are organized by the dictionary class:
-<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> and the storage class: <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>.
+<a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> and the storage class: <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>.
 Because the majority of the data containers in HOPS4 are instances of handful of template
-classes, the dictionary class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> is responsible
+classes, the dictionary class <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> is responsible
 for the explicit instantiation (full specialization of all template parameters)
-of each type in use by HOPS4. It also inherits from <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ClassIdentityMap.html">hops::MHO_ClassIdentityMap</a> which
+of each type in use by HOPS4. It also inherits from <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ClassIdentityMap.html">hops::MHO_ClassIdentityMap</a> which
 allows for the association of each class type and its 128-bit class UUID. This class UUID is
 used to identify the object type on disk or in a byte stream, so that it can be cast to
-the appropriate type after stream. The storage class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a> is
+the appropriate type after stream. The storage class <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a> is
 used to store all of the in-memory containers. Objects can be retrieved from the store
 by specifying a the exact object UUID or an associated <cite>shortname</cite> (human readable string).
 Collections of objects can be retrieved from the store by specifying the class UUID.</p>
@@ -460,10 +460,10 @@ under:</p>
 <section id="adding-metadata-to-table-containers">
 <h3>Adding Metadata to Table Containers<a class="headerlink" href="#adding-metadata-to-table-containers" title="Link to this heading"></a></h3>
 <p>Adding metadata to a table container object is quite straight forward. Since all
-table container types inherit from <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Taggable.html">hops::MHO_Taggable</a> they permit the
+table container types inherit from <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Taggable.html">hops::MHO_Taggable</a> they permit the
 addition of nearly arbitrary key:value meta data via the json library. It is however,
 encouraged that this mechanism is primarily used for scalar (i.e. single valued) key:value pairs,
-while more complex nested metadata is specified via the use of <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a>.</p>
+while more complex nested metadata is specified via the use of <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a>.</p>
 </section>
 <section id="adding-new-container-types">
 <h3>Adding New Container Types<a class="headerlink" href="#adding-new-container-types" title="Link to this heading"></a></h3>
@@ -478,7 +478,7 @@ the second of integer labels, and the last of doubles). This object can be decla
 </pre></div>
 </div>
 <p>Then all that is needed in order to use this new table container type (both for disk-I/O and in the container store)
-is to add its definition to the container dictionary <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> via the <code class="docutils literal notranslate"><span class="pre">AddClassType</span></code> function:</p>
+is to add its definition to the container dictionary <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> via the <code class="docutils literal notranslate"><span class="pre">AddClassType</span></code> function:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//add to the constructor: MHO_ContainerDictionary::MHO_ContainerDictionary()</span>
 <span class="n">AddClassType</span><span class="o">&lt;</span><span class="w"> </span><span class="n">my_new_table_type</span><span class="w"> </span><span class="o">&gt;</span><span class="p">();</span>
 </pre></div>
@@ -514,10 +514,10 @@ basic as a data container. However, it is a good candidate for something
 to may be stored in an extension.</p>
 <p>In order to provide the ability to append extensions to the data
 containers, they must all inherit from a base class,
-<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ExtensibleElement.html">hops::MHO_ExtensibleElement</a>, which in turn stores a vector of
+<a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ExtensibleElement.html">hops::MHO_ExtensibleElement</a>, which in turn stores a vector of
 type-erased <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> pointers to the extensions themselves. The extensions
 are templated on the the class providing the additional functionality
-and must all inherit from the base class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ExtendedElement.html">hops::MHO_ExtendedElement</a> (so
+and must all inherit from the base class <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ExtendedElement.html">hops::MHO_ExtendedElement</a> (so
 they can be stored in the vector) A brief
 sketch of the code that allows for this is shown below.
 One draw back of this method is that requires <span class="math notranslate nohighlight">\(N\)</span> <code class="docutils literal notranslate"><span class="pre">dynamic_cast</span></code>
@@ -602,9 +602,9 @@ high overhead.</p>
 <p><a class="reference external" href="https://davekilian.com/cpp-type-erasure.html">https://davekilian.com/cpp-type-erasure.html</a></p>
 </aside>
 </aside>
-<p>This extensible element mechanism is made use of in <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerJSONConverter.html">hops::MHO_ContainerJSONConverter</a> and
-in <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerHDF5Converter.html">hops::MHO_ContainerHDF5Converter</a> for data format conversion, as well as
-in <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OpenCLNDArrayBuffer.html">hops::MHO_OpenCLNDArrayBuffer</a> for OpenCL buffer construction/manipulation.</p>
+<p>This extensible element mechanism is made use of in <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerJSONConverter.html">hops::MHO_ContainerJSONConverter</a> and
+in <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerHDF5Converter.html">hops::MHO_ContainerHDF5Converter</a> for data format conversion, as well as
+in <a class="reference external" href="https://mithaystack.github.io/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OpenCLNDArrayBuffer.html">hops::MHO_OpenCLNDArrayBuffer</a> for OpenCL buffer construction/manipulation.</p>
 </section>
 </section>
 

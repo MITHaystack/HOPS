@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo" kind="struct" language="C++" prot="private">
+    <compoundname>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a86a67e95cdd57449b8eeb1ba1781739c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::accumulator_start_index</definition>
+        <argsstring></argsstring>
+        <name>accumulator_start_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="132" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a57723895986e667745794af461401276" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::bandwidth</definition>
+        <argsstring></argsstring>
+        <name>bandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="134" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1ae92ab34409f0eaa20a9ad5beb04ed315" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::channel_name</definition>
+        <argsstring></argsstring>
+        <name>channel_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="127" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a90c18772f1382ea2d95c241fc74f4e01" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::net_sideband</definition>
+        <argsstring></argsstring>
+        <name>net_sideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="129" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1ae7aa576c4dc86481a92eb8c1feed27a8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::ntones</definition>
+        <argsstring></argsstring>
+        <name>ntones</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="131" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1add9bd2edfc22fe04dc07b12edb30ce6b" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::polarization</definition>
+        <argsstring></argsstring>
+        <name>polarization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="128" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1addaeae930db6fd260ddca07e3bb77cba" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::sample_period</definition>
+        <argsstring></argsstring>
+        <name>sample_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="135" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a80e38409c1928634674b1cabb7095ffa" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::sky_freq</definition>
+        <argsstring></argsstring>
+        <name>sky_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="133" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a10932d5bbd1480bff4a345fe26c872d4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo::tone_start</definition>
+        <argsstring></argsstring>
+        <name>tone_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="130" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bandwidth</edgelabel>
+          <edgelabel>sample_period</edgelabel>
+          <edgelabel>sky_freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>accumulator_start_index</edgelabel>
+          <edgelabel>ntones</edgelabel>
+          <edgelabel>tone_start</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>channel_name</edgelabel>
+          <edgelabel>net_sideband</edgelabel>
+          <edgelabel>polarization</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::string</label>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="125" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="126" bodyend="136"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a86a67e95cdd57449b8eeb1ba1781739c" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>accumulator_start_index</name></member>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a57723895986e667745794af461401276" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>bandwidth</name></member>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1ae92ab34409f0eaa20a9ad5beb04ed315" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>channel_name</name></member>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a90c18772f1382ea2d95c241fc74f4e01" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>net_sideband</name></member>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1ae7aa576c4dc86481a92eb8c1feed27a8" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>ntones</name></member>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1add9bd2edfc22fe04dc07b12edb30ce6b" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>polarization</name></member>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1addaeae930db6fd260ddca07e3bb77cba" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>sample_period</name></member>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a80e38409c1928634674b1cabb7095ffa" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>sky_freq</name></member>
+      <member refid="structhops_1_1MHO__MK4StationInterfaceReversed_1_1PCalChannelInfo_1a10932d5bbd1480bff4a345fe26c872d4" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::PCalChannelInfo</scope><name>tone_start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

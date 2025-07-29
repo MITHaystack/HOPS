@@ -1,0 +1,518 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MK4CorelInterfaceReversed" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MK4CorelInterfaceReversed</compoundname>
+    <includes refid="MHO__MK4CorelInterfaceReversed_8hh" local="no">MHO_MK4CorelInterfaceReversed.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a875c83c807ada312ad00b4711e85b3c4" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; void * &gt;</type>
+        <definition>std::vector&lt; void* &gt; hops::MHO_MK4CorelInterfaceReversed::fAllocated</definition>
+        <argsstring></argsstring>
+        <name>fAllocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="93" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1afe998f589e2a991752bd147ab3b7f18d" prot="private" static="no" mutable="no">
+        <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+        <definition>struct mk4_corel* hops::MHO_MK4CorelInterfaceReversed::fGeneratedCorel</definition>
+        <argsstring></argsstring>
+        <name>fGeneratedCorel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="77" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1aeddea456e629dc948baa13a3d27fdb2f" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterfaceReversed::fNAPs</definition>
+        <argsstring></argsstring>
+        <name>fNAPs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="88" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a3041c1705b494fb1517184c125ca9023" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterfaceReversed::fNChannels</definition>
+        <argsstring></argsstring>
+        <name>fNChannels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="89" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1ad0bca958a6dd38d69c6912431adeaa9e" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterfaceReversed::fNPPs</definition>
+        <argsstring></argsstring>
+        <name>fNPPs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="87" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6facbb9c80d3eb88b0175bdffd5fd55b" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterfaceReversed::fNSpectral</definition>
+        <argsstring></argsstring>
+        <name>fNSpectral</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="90" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a4adfb73368f6df576decd081b3f180b9" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterfaceReversed::fOutputDir</definition>
+        <argsstring></argsstring>
+        <name>fOutputDir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="79" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a402c4ec76486fbd0bb40d896d9ea4b22" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterfaceReversed::fOutputFile</definition>
+        <argsstring></argsstring>
+        <name>fOutputFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="80" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1aba2b273c6409cc5c39c18ce8e4216399" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterfaceReversed::fRootFileBasename</definition>
+        <argsstring></argsstring>
+        <name>fRootFileBasename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="84" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a218bcb0f35acad1875a4ddc7b89e3733" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterfaceReversed::fRootFilename</definition>
+        <argsstring></argsstring>
+        <name>fRootFilename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="83" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a26f9d204ff7472d86df907b48af6cf5f" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref> *</type>
+        <definition>visibility_store_type* hops::MHO_MK4CorelInterfaceReversed::fVisibilityData</definition>
+        <argsstring></argsstring>
+        <name>fVisibilityData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="75" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a5d5785cd6b27ab1f114c7d452409ba18" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a6d71a9ffaa068345a980f1e1613d97bd" kindref="member">weight_store_type</ref> *</type>
+        <definition>weight_store_type* hops::MHO_MK4CorelInterfaceReversed::fWeightData</definition>
+        <argsstring></argsstring>
+        <name>fWeightData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="76" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1ad0f5b0a2c1cbdd8270740e9790ed4a24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MK4CorelInterfaceReversed::MHO_MK4CorelInterfaceReversed</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MK4CorelInterfaceReversed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="43" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="34" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6f428c91807338d7a0055d7848dd3750" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MK4CorelInterfaceReversed::~MHO_MK4CorelInterfaceReversed</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MK4CorelInterfaceReversed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="49" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1af94f8a5969e5a871e369f5edcfc7bcc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::FreeAllocated</definition>
+        <argsstring>()</argsstring>
+        <name>FreeAllocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="61" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a2f3490e13f5b299847278f1303b6fe25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::GenerateCorelStructure</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateCorelStructure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="51" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="87" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a947210ad9296f645d8aecaea95f6c2f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+        <definition>struct mk4_corel* hops::MHO_MK4CorelInterfaceReversed::GetCorelStructure</definition>
+        <argsstring>()</argsstring>
+        <name>GetCorelStructure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="55" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6c05fa4abb5384680589d01c4f80d939" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::SetOutputDirectory</definition>
+        <argsstring>(const std::string &amp;output_dir)</argsstring>
+        <name>SetOutputDirectory</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="47" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="80" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a711d52d195f45f3e43b8aa11585f18de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::SetRootFileName</definition>
+        <argsstring>(std::string root_filename)</argsstring>
+        <name>SetRootFileName</name>
+        <param>
+          <type>std::string</type>
+          <declname>root_filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="46" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="72" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a0bdb1474562b04caf8b24ce89d93a38e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::SetVisibilityData</definition>
+        <argsstring>(visibility_store_type *vis_data)</argsstring>
+        <name>SetVisibilityData</name>
+        <param>
+          <type><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref> *</type>
+          <declname>vis_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="48" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a40e6b9a40530243348bc1e1692da6a93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::SetWeightData</definition>
+        <argsstring>(weight_store_type *weight_data)</argsstring>
+        <name>SetWeightData</name>
+        <param>
+          <type><ref refid="namespacehops_1a6d71a9ffaa068345a980f1e1613d97bd" kindref="member">weight_store_type</ref> *</type>
+          <declname>weight_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="49" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a3056ff60d4ce19032133171b094dc5e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MK4CorelInterfaceReversed::WriteCorelFile</definition>
+        <argsstring>()</argsstring>
+        <name>WriteCorelFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="53" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="406" bodyend="428"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a304b11d92f7b342b67aacb8fad06bc13" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterfaceReversed::ConstructMK4ChannelID</definition>
+        <argsstring>(std::string fgroup, int index, std::string sideband, char pol)</argsstring>
+        <name>ConstructMK4ChannelID</name>
+        <param>
+          <type>std::string</type>
+          <declname>fgroup</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>sideband</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="61" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="438" bodyend="450"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a4c8ea7dfe1f839d163f375eb573e9ae8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterfaceReversed::ConstructType000FileName</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructType000FileName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="71" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="453" bodyend="486"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a7d17fe7a8708323a25b0d1aa99471264" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::CreateType101Record</definition>
+        <argsstring>(int count, std::size_t ch, char ref_pol, char rem_pol)</argsstring>
+        <name>CreateType101Record</name>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>ref_pol</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>rem_pol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="69" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="296" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a378cac6ca6b4daef96860c73859e0a36" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::GenerateType000</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType000</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="63" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="162" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a541711e6f7e86a4241a3d464bd447b34" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::GenerateType100</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType100</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="64" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="182" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a2b7029fff09b3a185a7d2e568c1b5560" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::GenerateType101Records</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType101Records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="65" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="257" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a8818e8f6467ecfda788ad89a47149397" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::GenerateType120Records</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateType120Records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="66" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="340" bodyend="403"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1a28d23e1aef8ce92e0b3babd28f85d8c9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::InitializeCorelStructure</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeCorelStructure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="67" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="143" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterfaceReversed_1aff4b7f54a74e8f2bac9d9e2b3eaecb1b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterfaceReversed::setstr</definition>
+        <argsstring>(const std::string &amp;str, char *char_array, std::size_t max_size)</argsstring>
+        <name>setstr</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>char_array</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterfaceReversed.cc" bodystart="430" bodyend="435"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classhops_1_1MHO__MK4CorelInterfaceReversed" kindref="compound">MHO_MK4CorelInterfaceReversed</ref> - Converts HOPS4 visibility and weight containers back to <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> format. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterfaceReversed.hh" bodystart="41" bodyend="96"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a304b11d92f7b342b67aacb8fad06bc13" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>ConstructMK4ChannelID</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a4c8ea7dfe1f839d163f375eb573e9ae8" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>ConstructType000FileName</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a7d17fe7a8708323a25b0d1aa99471264" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>CreateType101Record</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a875c83c807ada312ad00b4711e85b3c4" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fAllocated</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1afe998f589e2a991752bd147ab3b7f18d" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fGeneratedCorel</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1aeddea456e629dc948baa13a3d27fdb2f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fNAPs</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a3041c1705b494fb1517184c125ca9023" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fNChannels</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1ad0bca958a6dd38d69c6912431adeaa9e" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fNPPs</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6facbb9c80d3eb88b0175bdffd5fd55b" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fNSpectral</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a4adfb73368f6df576decd081b3f180b9" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fOutputDir</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a402c4ec76486fbd0bb40d896d9ea4b22" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fOutputFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1af94f8a5969e5a871e369f5edcfc7bcc2" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>FreeAllocated</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1aba2b273c6409cc5c39c18ce8e4216399" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fRootFileBasename</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a218bcb0f35acad1875a4ddc7b89e3733" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fRootFilename</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a26f9d204ff7472d86df907b48af6cf5f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fVisibilityData</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a5d5785cd6b27ab1f114c7d452409ba18" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>fWeightData</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a2f3490e13f5b299847278f1303b6fe25" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>GenerateCorelStructure</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a378cac6ca6b4daef96860c73859e0a36" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>GenerateType000</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a541711e6f7e86a4241a3d464bd447b34" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>GenerateType100</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a2b7029fff09b3a185a7d2e568c1b5560" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>GenerateType101Records</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a8818e8f6467ecfda788ad89a47149397" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>GenerateType120Records</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a947210ad9296f645d8aecaea95f6c2f7" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>GetCorelStructure</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a28d23e1aef8ce92e0b3babd28f85d8c9" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>InitializeCorelStructure</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1ad0f5b0a2c1cbdd8270740e9790ed4a24" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>MHO_MK4CorelInterfaceReversed</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6c05fa4abb5384680589d01c4f80d939" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>SetOutputDirectory</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a711d52d195f45f3e43b8aa11585f18de" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>SetRootFileName</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1aff4b7f54a74e8f2bac9d9e2b3eaecb1b" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>setstr</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a0bdb1474562b04caf8b24ce89d93a38e" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>SetVisibilityData</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a40e6b9a40530243348bc1e1692da6a93" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>SetWeightData</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a3056ff60d4ce19032133171b094dc5e1" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>WriteCorelFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterfaceReversed_1a6f428c91807338d7a0055d7848dd3750" prot="public" virt="virtual"><scope>hops::MHO_MK4CorelInterfaceReversed</scope><name>~MHO_MK4CorelInterfaceReversed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

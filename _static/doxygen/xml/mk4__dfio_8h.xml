@@ -167,8 +167,11 @@
     <includedby refid="make__postplot_8c" local="yes">make_postplot.c</includedby>
     <includedby refid="output_8c" local="yes">output.c</includedby>
     <includedby refid="MHO__MK4CorelInterface_8cc" local="yes">MHO_MK4CorelInterface.cc</includedby>
+    <includedby refid="MHO__MK4CorelInterfaceReversed_8cc" local="yes">MHO_MK4CorelInterfaceReversed.cc</includedby>
     <includedby refid="MHO__MK4FringeExport_8cc" local="yes">MHO_MK4FringeExport.cc</includedby>
+    <includedby refid="MHO__MK4ScanConverterReversed_8cc" local="yes">MHO_MK4ScanConverterReversed.cc</includedby>
     <includedby refid="MHO__MK4StationInterface_8cc" local="yes">MHO_MK4StationInterface.cc</includedby>
+    <includedby refid="MHO__MK4StationInterfaceReversed_8cc" local="yes">MHO_MK4StationInterfaceReversed.cc</includedby>
     <incdepgraph>
       <node id="31">
         <label>type_303.h</label>
@@ -568,7 +571,7 @@
         <label>clear_203.c</label>
         <link refid="clear__203_8c"/>
       </node>
-      <node id="150">
+      <node id="151">
         <label>MHO_MK4FringeExport.cc</label>
         <link refid="MHO__MK4FringeExport_8cc"/>
       </node>
@@ -600,7 +603,7 @@
         <label>copy_100.c</label>
         <link refid="copy__100_8c"/>
       </node>
-      <node id="151">
+      <node id="153">
         <label>MHO_MK4StationInterface.cc</label>
         <link refid="MHO__MK4StationInterface_8cc"/>
       </node>
@@ -923,6 +926,12 @@
         </childnode>
         <childnode refid="151" relation="include">
         </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="153" relation="include">
+        </childnode>
+        <childnode refid="154" relation="include">
+        </childnode>
       </node>
       <node id="94">
         <label>copy_200.c</label>
@@ -1051,6 +1060,10 @@
       <node id="5">
         <label>ps_fplot.c</label>
         <link refid="ps__fplot_8c"/>
+      </node>
+      <node id="150">
+        <label>MHO_MK4CorelInterfaceReversed.cc</label>
+        <link refid="MHO__MK4CorelInterfaceReversed_8cc"/>
       </node>
       <node id="53">
         <label>addr_306.c</label>
@@ -1380,6 +1393,10 @@
         <label>addr_304.c</label>
         <link refid="addr__304_8c"/>
       </node>
+      <node id="154">
+        <label>MHO_MK4StationInterfaceReversed.cc</label>
+        <link refid="MHO__MK4StationInterfaceReversed_8cc"/>
+      </node>
       <node id="57">
         <label>clear_100.c</label>
         <link refid="clear__100_8c"/>
@@ -1415,6 +1432,10 @@
       <node id="113">
         <label>copy_305.c</label>
         <link refid="copy__305_8c"/>
+      </node>
+      <node id="152">
+        <label>MHO_MK4ScanConverterReversed.cc</label>
+        <link refid="MHO__MK4ScanConverterReversed_8cc"/>
       </node>
       <node id="45">
         <label>addr_222.c</label>

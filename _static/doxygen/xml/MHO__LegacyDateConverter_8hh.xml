@@ -6,8 +6,10 @@
     <includes local="no">string</includes>
     <includedby refid="MHO__BasicFringeUtilities_8cc" local="yes">MHO_BasicFringeUtilities.cc</includedby>
     <includedby refid="MHO__MK4CorelInterface_8cc" local="yes">MHO_MK4CorelInterface.cc</includedby>
+    <includedby refid="MHO__MK4CorelInterfaceReversed_8cc" local="yes">MHO_MK4CorelInterfaceReversed.cc</includedby>
     <includedby refid="MHO__MK4FringeExport_8cc" local="yes">MHO_MK4FringeExport.cc</includedby>
     <includedby refid="MHO__MK4StationInterface_8cc" local="yes">MHO_MK4StationInterface.cc</includedby>
+    <includedby refid="MHO__MK4StationInterfaceReversed_8cc" local="yes">MHO_MK4StationInterfaceReversed.cc</includedby>
     <includedby refid="MHO__LegacyDateConverter_8cc" local="yes">MHO_LegacyDateConverter.cc</includedby>
     <incdepgraph>
       <node id="2">
@@ -27,11 +29,11 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4">
+      <node id="5">
         <label>MHO_MK4FringeExport.cc</label>
         <link refid="MHO__MK4FringeExport_8cc"/>
       </node>
-      <node id="5">
+      <node id="6">
         <label>MHO_MK4StationInterface.cc</label>
         <link refid="MHO__MK4StationInterface_8cc"/>
       </node>
@@ -39,11 +41,15 @@
         <label>MHO_BasicFringeUtilities.cc</label>
         <link refid="MHO__BasicFringeUtilities_8cc"/>
       </node>
+      <node id="4">
+        <label>MHO_MK4CorelInterfaceReversed.cc</label>
+        <link refid="MHO__MK4CorelInterfaceReversed_8cc"/>
+      </node>
       <node id="3">
         <label>MHO_MK4CorelInterface.cc</label>
         <link refid="MHO__MK4CorelInterface_8cc"/>
       </node>
-      <node id="6">
+      <node id="8">
         <label>MHO_LegacyDateConverter.cc</label>
         <link refid="MHO__LegacyDateConverter_8cc"/>
       </node>
@@ -60,6 +66,14 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_MK4StationInterfaceReversed.cc</label>
+        <link refid="MHO__MK4StationInterfaceReversed_8cc"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classhops_1_1MHO__LegacyDateConverter" prot="public">hops::MHO_LegacyDateConverter</innerclass>

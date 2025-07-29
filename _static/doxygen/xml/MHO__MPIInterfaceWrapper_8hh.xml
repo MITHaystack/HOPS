@@ -3,6 +3,7 @@
   <compounddef id="MHO__MPIInterfaceWrapper_8hh" kind="file" language="C++">
     <compoundname>MHO_MPIInterfaceWrapper.hh</compoundname>
     <includedby refid="fourfit4_8cc" local="yes">fourfit4.cc</includedby>
+    <includedby refid="hops2mark4_8cc" local="yes">hops2mark4.cc</includedby>
     <includedby refid="mark42hops_8cc" local="yes">mark42hops.cc</includedby>
     <invincdepgraph>
       <node id="1">
@@ -12,8 +13,14 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
       <node id="3">
+        <label>hops2mark4.cc</label>
+        <link refid="hops2mark4_8cc"/>
+      </node>
+      <node id="4">
         <label>mark42hops.cc</label>
         <link refid="mark42hops_8cc"/>
       </node>
