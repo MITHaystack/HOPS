@@ -27,7 +27,6 @@ set(SOURCE_BASENAMES
     TestMK4Import
     TestHOPS2Corel
     TestHOPS2StationData
-    hops2mark4
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
