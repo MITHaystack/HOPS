@@ -6,15 +6,16 @@ The Python bindings plugin provides a set of features for integrating the HOPS4 
 This plugin enables Python access to HOPS4 data structures, operators, and processing. This enables custom 
 user analysis scripts (written in python) to be injected into the fringe-fitter control flow and execution.
 
-It uses pybind11 for creating language bindings and supports a numpy nd-array interface for direct access to MHO_TableContainer (array) data.
-Type safety is handled through automatic type checking and conversion. Error handling allows exceptions to pass from Python to a C++ caller and be caught.
+It uses pybind11 for creating language bindings and supports a numpy ND-array interface for direct access to MHO_TableContainer (array) data.
+Type safety is handled through automatic type checking and conversion. Error handling allows exceptions to pass from Python to a C++ caller
+and be caught.
 
 For performance, the system supports zero-copy operations when possible, allowing direct memory access to MHO_TableContainer array 
-data (but not meta-data). Data transfer between C++ and Python is designed to minimize copying. On-demand loading is used to 
-load data structures only when required.
+data (but not meta-data or axis-data). Data transfer between C++ and Python is designed to minimize copying. 
+On-demand loading is used to load data structures only when required.
 
-Common use cases include custom calibration and data treatment with user Python scripts, 
-algorithm prototyping and user supplied visualization through custom plots
+Use cases for this library include custom calibration and data treatment with user Python scripts, 
+algorithm prototyping and user supplied visualization through custom plotting routines.
 
 
 :hops:`MHO_PyTableContainer`
