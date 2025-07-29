@@ -4,6 +4,12 @@
 #include <string>
 #include "MHO_ScanDataStore.hh"
 
+//distinguish directory types
+#define HOPS4_SCANDIR 0
+#define HOPS4_EXPDIR 1
+#define HOPS4_UNKNOWNDIR 2
+
+
 namespace hops
 {
 
@@ -23,6 +29,8 @@ class MHO_MK4ScanConverterReversed
     public:
         MHO_MK4ScanConverterReversed();
         virtual ~MHO_MK4ScanConverterReversed();
+
+        static int DetermineDirectoryType(const std::string& in_dir);
 
         void ProcessScan(const std::string& input_dir, const std::string& output_dir);
 

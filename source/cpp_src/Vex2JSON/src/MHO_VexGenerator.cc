@@ -53,7 +53,6 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
         {
             if( it->contains("source_type") )
             {
-                std::cout<< it->dump(2) <<std::endl;
                 std::string phys_type = "dummy";
                 std::string exp_type = "dummy";
                 if((*it)["source_type"].contains("physical_type"))
