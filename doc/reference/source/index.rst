@@ -13,10 +13,8 @@ HOPS - Haystack Observatory Post-processing System
     Home <self>
     Introduction <introduction.rst>
     Getting Started <compiling.rst>
-
-    HOPS3 <hops3/hops3.rst>
     HOPS4 <hops4/hops4.rst>
-
+    HOPS3 <hops3/hops3.rst>
     License <license.rst>
     Authors <authors.rst>
 

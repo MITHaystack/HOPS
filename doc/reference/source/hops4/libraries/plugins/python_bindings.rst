@@ -6,9 +6,10 @@ The Python bindings plugin provides a set of features for integrating the HOPS4 
 This plugin enables Python access to HOPS4 data structures, operators, and processing. This enables custom 
 user analysis scripts (written in python) to be injected into the fringe-fitter control flow and execution.
 
-It uses pybind11 for creating language bindings and supports a numpy ND-array interface for direct access to MHO_TableContainer (array) data.
-Type safety is handled through automatic type checking and conversion. Error handling allows exceptions to pass from Python to a C++ caller
-and be caught.
+It uses pybind11 for creating language bindings and supports a numpy ND-array 
+interface for direct access to MHO_TableContainer (array) data. Type safety is 
+handled through automatic type checking and conversion. 
+Error handling allows exceptions to pass from Python to a C++ caller and be caught.
 
 For performance, the system supports zero-copy operations when possible, allowing direct memory access to MHO_TableContainer array 
 data (but not meta-data or axis-data). Data transfer between C++ and Python is designed to minimize copying. 
@@ -36,11 +37,11 @@ containers, and allows efficient access to multi-dimensional data arrays via a
 Numpy interface.
 
 **Python Interface Features:**
-- **Zero-copy Access**: Direct access to C++ memory through NumPy arrays
-- **Metadata Integration**: Python dictionary access to container metadata
-- **Axis Management**: Python list access to coordinate axis labels
-- **Type Safety**: Maintains type integrity across Python/C++ boundary
-- **Performance**: Efficient data access without memory copying
+    - **Zero-copy Access**: Direct access to C++ memory through NumPy arrays
+    - **Metadata Integration**: Python dictionary access to container metadata
+    - **Axis Management**: Python list access to coordinate axis labels
+    - **Type Safety**: Maintains type integrity across Python/C++ boundary
+    - **Performance**: Efficient data access without memory copying
 
 :hops:`MHO_PyContainerStoreInterface`
 -------------------------------------
@@ -59,10 +60,10 @@ HOPS4 container store, allowing Python scripts to retrieve and manipulate
 data containers created during fringe fitting.
 
 **Container Store Features:**
-- **UUID Lookup**: Retrieve containers by unique identifiers
-- **Type Safety**: Automatic type checking and casting
-- **Object Enumeration**: Lists all containers and their metadata
-- **Dynamic Wrapping**: Create Python wrappers on demand (invisible to python user)
+    - **UUID Lookup**: Retrieve containers by unique identifiers
+    - **Type Safety**: Automatic type checking and casting
+    - **Object Enumeration**: Lists all containers and their metadata
+    - **Dynamic Wrapping**: Create Python wrappers on demand (invisible to python user)
 
 :hops:`MHO_PyParameterStoreInterface`
 -------------------------------------
@@ -81,10 +82,10 @@ HOPS4 parameter store, enabling Python scripts to read and modify processing
 parameters during fringe fitting operations.
 
 **Parameter Access Features:**
-- **Path-based Access**: Hierarchical parameter access using path strings
-- **JSON Integration**: Automatic conversion between JSON and Python objects
-- **Type Preservation**: Maintains parameter types across language boundaries
-- **Bulk Operations**: Complete parameter store dumping and loading
+    - **Path-based Access**: Hierarchical parameter access using path strings
+    - **JSON Integration**: Automatic conversion between JSON and Python objects
+    - **Type Preservation**: Maintains parameter types across language boundaries
+    - **Bulk Operations**: Complete parameter store dumping and loading
 
 :hops:`MHO_PyScanStoreInterface`
 --------------------------------
@@ -102,10 +103,10 @@ The :hops:`MHO_PyScanStoreInterface` class provides Python access to VLBI scan
 data, enabling Python scripts to load and process/inspect multiple observational data files.
 
 **Scan Data Features:**
-- **File Management**: Automatic loading of .cor, .frng, and root files
-- **Lazy Loading**: Efficient memory usage through on-demand data loading and caching
-- **Metadata Access**: Station, baseline, and observation metadata
-- **VEX Integration**: Access to experiment and observation parameters
+    - **File Management**: Handles loading and memory management of .cor, .frng, and root files
+    - **Lazy Loading**: Efficient memory usage through on-demand data loading and caching
+    - **Metadata Access**: Station, baseline, and observation metadata
+    - **VEX Integration**: Access to experiment and observation parameters
 
 :hops:`MHO_PyFringeDataInterface`
 ---------------------------------
@@ -178,8 +179,7 @@ Python-based operators that can be integrated into the HOPS4 processing pipeline
 
 **Python Module Integration:**
 The Python bindings are organized into several modules (available via import):
-
-- **mho_containers**: Container and data access functionality
-- **mho_operators**: Operator framework and custom operator support
-- **mho_parameters**: Parameter management and configuration
-- **mho_scan_data**: Scan data loading and management
+    - **mho_containers**: Container and data access functionality
+    - **mho_operators**: Operator framework and custom operator support
+    - **mho_parameters**: Parameter management and configuration
+    - **mho_scan_data**: Scan data loading and management
