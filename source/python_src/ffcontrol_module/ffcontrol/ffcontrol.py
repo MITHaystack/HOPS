@@ -201,6 +201,7 @@ c_block._fields_ = [
     ('noautofringes', ctypes.c_int),
     ('mod4numbering', ctypes.c_int),
     ('mbdrplopt', (ctypes.c_int) * 3),
+    ('fringeout_dir', (ctypes.c_char *256) )
 ] #end of c_block._fields_
 
 #TODO IMPORTANT - make sure the above struct matches the c structure EXACTLY 
