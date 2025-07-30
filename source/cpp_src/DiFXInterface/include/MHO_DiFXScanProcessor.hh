@@ -103,6 +103,9 @@ class MHO_DiFXScanProcessor
          * @brief Setter for attach difx .input data false
          */
         void SetAttachDiFXInputFalse() {fAttachDiFXInput = false; }
+        
+        void SetExportAsMark4True(){fExportAsMark4 = true;}
+        void SetExportAsMark4False(){fExportAsMark4 = false;}
 
         /**
          * @brief Setter for frequency bands (name, limits)
@@ -226,6 +229,7 @@ class MHO_DiFXScanProcessor
         //integer experiment number
         int fExperNum;
         bool fNormalize;
+        bool fExportAsMark4;
 
         //the output directory for this scan
         std::string fOutputDirectory;
