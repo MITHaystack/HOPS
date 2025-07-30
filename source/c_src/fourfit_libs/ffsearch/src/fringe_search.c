@@ -27,14 +27,11 @@ int fringe_search ( struct vex* root, struct type_pass* pass)
     {
     int fr, ap, size, oret, rc;
     oret = 0;
-
     struct data_corel *datum;
     hops_complex *sbarray, *sbptr;
 
-    extern int do_accounting;
     extern struct type_status status;
     extern struct type_param param;
-
     extern int output (struct vex*, struct type_pass*);
 
                                         /* Currently does default filtering */
@@ -76,6 +73,7 @@ int fringe_search ( struct vex* root, struct type_pass* pass)
               2, size * sizeof (hops_complex), pass->num_ap, param.nlags, pass->nfreq);
         return (-1);
         }
+    // working pointer that walks through the sbarray allocation
     sbptr = sbarray;
 
     for (fr=0; fr<pass->nfreq; fr++)
@@ -131,6 +129,8 @@ int fringe_search ( struct vex* root, struct type_pass* pass)
         free (sbarray);
         return (-1);
         }
+    else if (oret == 0)
+        msg ("normal paging", 1);
     else if (oret < 0)
         {
         msg ("User quit request", 1);

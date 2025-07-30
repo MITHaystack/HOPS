@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_passband.sh 3332 2021-09-07 18:13:41Z gbc $
+# $Id: chk_passband.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # Something to check passband with the geodetic 3372 sample
 #
@@ -29,11 +29,11 @@ grep -v $os $ALTDDIR/3372/cf3372 >> ./cf3372-pb-lsb
 #
 rm -f ff-3372-pb-lsb.ps ff-3372-pb-g-lsb.ps
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3372-pb-lsb.ps -b TV:X \\ && echo \
+$fourfit -t -d diskfile:ff-3372-pb-lsb.ps -b TV:X \\ && echo \
     -c ./cf3372-pb-lsb \\ && echo \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 #
-fourfit3 -t -d diskfile:ff-3372-pb-lsb.ps -b TV:X \
+$fourfit -t -d diskfile:ff-3372-pb-lsb.ps -b TV:X \
     -c ./cf3372-pb-lsb \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 
@@ -41,11 +41,11 @@ fourfit3 -t -d diskfile:ff-3372-pb-lsb.ps -b TV:X \
 echo freqs g- > ./cf3372-pb-g-lsb
 grep -v $os $ALTDDIR/3372/cf3372 >> ./cf3372-pb-g-lsb
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3372-pb-g-lsb.ps -b TV:X \\ && echo \
+$fourfit -t -d diskfile:ff-3372-pb-g-lsb.ps -b TV:X \\ && echo \
     -c ./cf3372-pb-g-lsb \\ && echo \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 #
-fourfit3 -t -d diskfile:ff-3372-pb-g-lsb.ps -b TV:X \
+$fourfit -t -d diskfile:ff-3372-pb-g-lsb.ps -b TV:X \
     -c ./cf3372-pb-g-lsb \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 
@@ -59,11 +59,11 @@ grep -v $os $ALTDDIR/3372/cf3372 >> ./cf3372-pb-usb
 #
 rm -f ff-3372-pb-usb.ps ff-3372-pb-g+usb.ps
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3372-pb-usb.ps -b TV:X \\ && echo \
+$fourfit -t -d diskfile:ff-3372-pb-usb.ps -b TV:X \\ && echo \
     -c ./cf3372-pb-usb \\ && echo \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 #
-fourfit3 -t -d diskfile:ff-3372-pb-usb.ps -b TV:X \
+$fourfit -t -d diskfile:ff-3372-pb-usb.ps -b TV:X \
     -c ./cf3372-pb-usb \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 
@@ -71,11 +71,11 @@ fourfit3 -t -d diskfile:ff-3372-pb-usb.ps -b TV:X \
 echo freqs g+ > ./cf3372-pb-g+usb
 grep -v $os $ALTDDIR/3372/cf3372 >> ./cf3372-pb-g+usb
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3372-pb-g+usb.ps -b TV:X \\ && echo \
+$fourfit -t -d diskfile:ff-3372-pb-g+usb.ps -b TV:X \\ && echo \
     -c ./cf3372-pb-g+usb \\ && echo \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 #
-fourfit3 -t -d diskfile:ff-3372-pb-g+usb.ps -b TV:X \
+$fourfit -t -d diskfile:ff-3372-pb-g+usb.ps -b TV:X \
     -c ./cf3372-pb-g+usb \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 
@@ -85,11 +85,11 @@ echo plot_data_dir pdd3372-asb >> ./cf3372-pb-asb
 echo freqs g >> ./cf3372-pb-asb
 grep -v $os $ALTDDIR/3372/cf3372 >> ./cf3372-pb-asb
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3372-pb-asb.ps -b TV:X \\ && echo \
+$fourfit -t -d diskfile:ff-3372-pb-asb.ps -b TV:X \\ && echo \
     -c ./cf3372-pb-asb \\ && echo \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 #
-fourfit3 -t -d diskfile:ff-3372-pb-asb.ps -b TV:X \
+$fourfit -t -d diskfile:ff-3372-pb-asb.ps -b TV:X \
     -c ./cf3372-pb-asb \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 
@@ -97,11 +97,11 @@ fourfit3 -t -d diskfile:ff-3372-pb-asb.ps -b TV:X \
 echo freqs g > ./cf3372-pb-g-all
 grep -v $os $ALTDDIR/3372/cf3372 >> ./cf3372-pb-g-all
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3372-pb-g-all.ps -b TV:X \\ && echo \
+$fourfit -t -d diskfile:ff-3372-pb-g-all.ps -b TV:X \\ && echo \
     -c ./cf3372-pb-g-all \\ && echo \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 #
-fourfit3 -t -d diskfile:ff-3372-pb-g-all.ps -b TV:X \
+$fourfit -t -d diskfile:ff-3372-pb-g-all.ps -b TV:X \
     -c ./cf3372-pb-g-all \
     $ALTDDIR/3372/193-1757/0529+483.vtqbsq
 

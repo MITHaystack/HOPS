@@ -76,6 +76,10 @@ int do_record_merge(char *fileAName, char *fileBName,
          
     get_abs_path (fileAName, fileAFullName);
     get_abs_path (fileBName, fileBFullName);
+
+    /* wipe garbage from these stack variables */
+    memset(&fsetA, 0, sizeof(struct fileset));
+    memset(&fsetB, 0, sizeof(struct fileset));
     
     get_fileset (fileAFullName, &fsetA);
                         // loop through all type-1 files related to A

@@ -77,6 +77,113 @@ int mbuff;          /* Number of data read into buff[] */
 short int word = 0x0001;
 char *byte = (char*)&word;
 
+//polarization values in pass array structure
+#define POL_LL 0
+#define POL_RR 1
+#define POL_LR 2
+#define POL_RL 3
+
+//polarization values in param array structure
+#define POL_ALL 0
+#define POLMASK_LL 1
+#define POLMASK_RR 2
+#define POLMASK_LR 4
+#define POLMASK_RL 8
+#define POL_IXY 31
+#define POLCHAR_OFFSET 64
+#define NPOLCHAR 32
+
+void determine_polprod(char* polstr, char* pol_list)
+{
+    int i;
+    int mode = 0; //0 for linear, 1 for circular, 2 for mixe-mode (only linear implemented right now)
+    int index = 0;
+    char offset = 64;
+    char passpol;
+    char parampol;
+    char polcode;
+    
+    for(i=0; i<NPOLCHAR; i++){pol_list[i] = '\0';}
+
+    // offset = 64 //offset used to make it an alphanum char
+    // polstr = ff.t208.contents.unused1
+    passpol = polstr[0] - offset;
+    parampol = polstr[1] - offset;
+    polcode = 0;
+
+    if(mode == 0)
+    {
+        if(parampol == 0)
+        {
+            polcode = passpol;
+            if(polcode == 0){strncpy( &(pol_list[index]), "XX",2); index += 2;}
+            
+            if(polcode == 1)
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), "YY",2); index += 2;
+            }
+            
+            if(index != 0)
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), ",", 1); index+=1;
+            }
+            
+            if(polcode == 2)
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), "XY",2); index += 2;
+            }
+            
+            if(index != 0)
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), ",", 1); index+=1;
+            }
+            
+            if(polcode == 3)
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), "YX",2); index += 2;
+            }
+        }
+        else
+        {
+            polcode = parampol;
+            if( (polcode & POLMASK_LL) && (polcode != POL_IXY) )
+            {
+                
+                strncpy( &(pol_list[index]), "XX",2); index += 2;
+            }
+            if( (polcode & POLMASK_RR) && (polcode != POL_IXY) )
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), "YY",2); index += 2;
+            }
+
+            if( (polcode & POLMASK_LR) && (polcode != POL_IXY) )
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), "XY",2); index += 2;
+            }
+
+            if( (polcode & POLMASK_RL) && (polcode != POL_IXY) )
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), "YX",2); index += 2;
+            }
+
+            if( polcode == 31)
+            {
+                if(index != 0){strncpy( &(pol_list[index]), ",", 1); index+=1;}
+                strncpy( &(pol_list[index]), "I", 3); index += 2;
+            }
+        }
+    }
+}
+
+
 int main (int argc, char *argv[])
     {               /* CorAsc2 */
 
@@ -90,7 +197,7 @@ int main (int argc, char *argv[])
                                     // change NNAMES to match above array
     #define NNAMES 35
     int countt[NNAMES];                 /* Count number of times each record was found */
-
+    char pol_list[NPOLCHAR]; //place for store pol-product strings
     char flip = *byte;
 
     int i, j, k, len, n, nt;
@@ -487,7 +594,7 @@ int main (int argc, char *argv[])
                     "%s%s set_string_hash = %u at %dB\n",
                     me,DBGMSG,flip_int(t222->setstring_hash),tlast);
             }
-            nbuff = sizeof(struct type_222) + t222_sspad + t222_cfpad - k;
+            nbuff = sizeof(struct type_222) + t222_sspad + t222_cfpad - k; 
             // if (flip_short(t222->padded) && nbuff % 8 > 0)  /* Pad to 8 bytes? */
             //     nbuff += 8 - nbuff % 8; /* Yes */
             countt[24]++;       /* Increment record count */
@@ -1296,6 +1403,8 @@ int main (int argc, char *argv[])
         if (strncmp (t1->recId, "208", 3) == 0)
             {           /* Type 208? */
             /* Solution parameters */
+            determine_polprod(t208->unused1, pol_list);
+            (void) printf (" pol_prod = %s \n", pol_list);
             (void) printf (" quality = %c ", t208->quality);
             (void) printf (" errcode = %c ", t208->errcode);
             (void) printf (" tape_qcode = %.6s \n", t208->tape_qcode);
@@ -1386,7 +1495,7 @@ int main (int argc, char *argv[])
             (void) printf (" set_string_hash = %u \n", flip_int(t222->setstring_hash));
             (void) printf (" control_hash = %u \n", flip_int(t222->control_hash));
             t222_sspad = ( ( flip_int(t222->setstring_length) + 7 ) & ~7) + 8;
-            t222_cfpad = ( ( flip_int(t222->cf_length) + 7 ) & ~7) + 8;
+            t222_cfpad = ( ( flip_int(t222->cf_length) + 7 ) & ~7) + 8;            
             (void) printf (" set_string contents = %s \n", t222->control_contents);
             (void) printf (" control_file contents = %s \n", &(t222->control_contents[t222_sspad]) );
             continue;
