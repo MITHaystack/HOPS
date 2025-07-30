@@ -104,7 +104,7 @@ parse_cmdline (int argc,
 
             case '?':
             default:
-                syntax("$HeadURL: https://vault.haystack.mit.edu/svn/hops/trunk/postproc/average/parse_cmdline.c $");
+                syntax("average/parse_cmdline.c");
                 return (1);
             }
         }

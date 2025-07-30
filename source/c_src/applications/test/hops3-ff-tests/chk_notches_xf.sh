@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_notches_xf.sh 3333 2021-09-07 20:30:41Z gbc $
+# $Id: chk_notches_xf.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # Something to check notches using the fourmered data 3365 sample
 #
@@ -69,12 +69,12 @@ mv $cf $cf.got
 export HOPS_PLOT_DATA_MASK=0x87FFFFFF
 rm -rf pdd3365
 $verb && echo \
-    fourfit3 -t -c $cf.not -d diskfile:ff-3365-OP.not.ps -b OP -P LL $root
-    fourfit3 -t -c $cf.not -d diskfile:ff-3365-OP.not.ps -b OP -P LL $root
+    $fourfit -t -c $cf.not -d diskfile:ff-3365-OP.not.ps -b OP -P LL $root
+    $fourfit -t -c $cf.not -d diskfile:ff-3365-OP.not.ps -b OP -P LL $root
 for o in `ls pdd3365/*` ; do mv $o $o.not ; done
 $verb && echo \
-    fourfit3 -t -c $cf.got -d diskfile:ff-3365-OP.got.ps -b OP -P LL $root
-    fourfit3 -t -c $cf.got -d diskfile:ff-3365-OP.got.ps -b OP -P LL $root
+    $fourfit -t -c $cf.got -d diskfile:ff-3365-OP.got.ps -b OP -P LL $root
+    $fourfit -t -c $cf.got -d diskfile:ff-3365-OP.got.ps -b OP -P LL $root
 for o in `ls pdd3365/* | grep -a -v not` ; do mv $o $o.got ; done
 
 [ -s ff-3365-OP.not.ps -a -s ff-3365-OP.got.ps ] && second=true || second=false

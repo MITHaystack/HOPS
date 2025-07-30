@@ -126,12 +126,12 @@ get_filelist (int argc, char **argv, int type, fstruct **files)
                 if (c == '/') lastslash = j;
             fname = argv[i] + lastslash;
                                         /* Is this a valid filename? */
+            prep_fstruct((*files)+filenum);
             if (check_name (fname, (*files)+filenum) != 0) continue;
                                         /* Is it of the desired type? */
             if (((*files)[filenum].type != type) && (type != -1)) continue;
                                         /* fill in filename */
-            (*files)[filenum].nalloc = strlen(argv[i]) + 1;
-            (*files)[filenum].name = (char *)malloc((*files)[filenum].nalloc);
+            (*files)[filenum].name = (char *)malloc(strlen(argv[i]) + 1);
             if ((*files)[filenum].name == NULL)
                 {
                 msg ("Unable to allocate space for file names", 2);
@@ -139,8 +139,9 @@ get_filelist (int argc, char **argv, int type, fstruct **files)
                 return (1);
                 }
             strcpy ((*files)[filenum].name, argv[i]);
+            (*files)[filenum].namealloc = strlen((*files)[filenum].name) + 1;
                                         /* OK, this one is accepted and */
-                                        /* nalloc registers a later free */
+                                        /* namealloc registers a later free */
             filenum++;
             if (ddalloc) free(ddargv);  /* not needed anymore */
             }

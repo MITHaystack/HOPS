@@ -131,7 +131,7 @@ int main(int argc, char **argv)
     //so we may need to find some other way to determine how to trigger it
     //probably the way to is to check the environmental variable DIFX_VERSION at configure
     //time and pass a define flag if >2.8.1
-    // /* pass along the desire */
+    // (comment: pass along the desire)
     // #if DIFXIO_VERSION_MAJOR > 3 && DIFXIO_VERSION_MINOR >= 7
     // difxioSetOption(DIFXIO_OPT_VERBOSITY, &(opts->verbose));
     // difxioSetOption(DIFXIO_OPT_LOCALDIR, &(opts->localdir));
