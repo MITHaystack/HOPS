@@ -77,7 +77,7 @@ do
     echo ..$sum $lines $cmd.
     [ -z "$cmd" ] && continue
     echo  PAGER=cksum aedit -m 3 -b \"help $cmd\"
-    check=`PAGER=cksum aedit -m 3 -b "help $cmd"`
+    check=$(PAGER=cksum aedit -m 3 -b "help $cmd")
     echo "#" $check $cmd
     [ "$check" = "$sum $lines" ] && touch aeherrs ||
         echo $check $cmd >> aeherrs
