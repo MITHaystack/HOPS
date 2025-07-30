@@ -5,6 +5,8 @@
 
 #include "MHO_Reducer.hh"
 
+#include "MHO_MK4StationInterfaceReversed.hh"
+
 #include <ctime>
 #include <iomanip>
 #include <math.h>
@@ -105,17 +107,17 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
     {
         MHO_VexParser vparser;
         vparser.SetVexFile(vexfile);
-        mho_json vex_root = vparser.ParseVex();
+        fRootJSON = vparser.ParseVex();
 
         //now convert the 'vex' to 'ovex' (using only subset of information)
-        vex_root[MHO_VexDefinitions::VexRevisionFlag()] = "ovex";
+        fRootJSON[MHO_VexDefinitions::VexRevisionFlag()] = "ovex";
 
         std::string scan_id = fInput["scan"][fFileSet->fLocalIndex]["identifier"];
         std::vector< std::string > source_ids;
 
         //rip out all scans but the one we are processing
         mho_json sched;
-        mho_json sched_copy = vex_root["$SCHED"];
+        mho_json sched_copy = fRootJSON["$SCHED"];
         std::string mode_name; //grab this in this loop, we'll need it for the $TRACKS info later
         for(auto it = sched_copy.begin(); it != sched_copy.end(); ++it)
         {
@@ -131,13 +133,13 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
                 break;
             }
         }
-        vex_root.erase("$SCHED");
-        vex_root["$SCHED"] = sched;
+        fRootJSON.erase("$SCHED");
+        fRootJSON["$SCHED"] = sched;
 
         //rip out all sources but the one specified for this scan
         std::string src_name = "unknown";
         mho_json src;
-        mho_json src_copy = vex_root["$SOURCE"];
+        mho_json src_copy = fRootJSON["$SOURCE"];
         for(auto it = src_copy.begin(); it != src_copy.end(); ++it)
         {
             for(std::size_t n = 0; n < source_ids.size(); n++)
@@ -150,11 +152,11 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
                 }
             }
         }
-        vex_root.erase("$SOURCE");
-        vex_root["$SOURCE"] = src;
+        fRootJSON.erase("$SOURCE");
+        fRootJSON["$SOURCE"] = src;
 
         //patch up the vex info to make it conform to the HOPS3 ovex parser
-        PatchOvexStructures(vex_root, mode_name);
+        PatchOvexStructures(fRootJSON, mode_name);
         
         //grab the difx input file name
         std::string difx_input_filename = fInput["difx_input_filename"].get<std::string>();
@@ -163,7 +165,7 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         MHO_VexGenerator gen;
         std::string ovex_output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
         gen.SetFilename(ovex_output_file);
-        gen.GenerateVex(vex_root);
+        gen.GenerateVex(fRootJSON);
         
         std::ofstream ovex_out(ovex_output_file, std::ios::app);
         if(ovex_out.is_open())
@@ -173,11 +175,11 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         ovex_out.close();
 
         //write out the 'ovex'/'vex' json object as a json file
-        vex_root["difx_input_filename"] = difx_input_filename;
+        fRootJSON["difx_input_filename"] = difx_input_filename;
         std::string output_file = ConstructRootFileName(fOutputDirectory, fRootCode, src_name);
         //open and dump to file
         std::ofstream outFile(output_file.c_str(), std::ofstream::out);
-        outFile << vex_root.dump(2);
+        outFile << fRootJSON.dump(2);
         outFile.close();
     }
     else
@@ -225,6 +227,9 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         
         if(fAttachDiFXInput){it->second.SetAttachDiFXInputTrue();}
         else{it->second.SetAttachDiFXInputFalse();}
+        
+        if(fExportAsMark4){it->second.SetExportAsMark4True();}
+        else{it->second.SetExportAsMark4False();}
         
         it->second.SetRootCode(fRootCode);
         it->second.SetCorrelationDate(fCorrDate);
@@ -476,13 +481,27 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
 
         if(status)
         {
-            inter.Write(tags, "tags");
-            inter.Write(*station_coord_data_ptr, "sta");
-            if(pcal_data_ptr)
+            if(!fExportAsMark4)
             {
-                inter.Write(*pcal_data_ptr, "pcal");
+                inter.Write(tags, "tags");
+                inter.Write(*station_coord_data_ptr, "sta");
+                if(pcal_data_ptr)
+                {
+                    inter.Write(*pcal_data_ptr, "pcal");
+                }
+                inter.Close();
             }
-            inter.Close();
+            else 
+            {
+                MHO_MK4StationInterfaceReversed converter;
+                converter.SetVexData(fRootJSON);
+                converter.SetOutputDirectory(fOutputDirectory);
+                converter.SetStationCoordData(station_coord_data_ptr);
+                converter.SetPCalData(pcal_data_ptr);
+                converter.GenerateStationStructure();
+                converter.WriteStationFile();
+                converter.FreeAllocated();
+            }
         }
         else
         {
@@ -736,23 +755,6 @@ std::string MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_ob
     return frt;
 }
 
-// std::string MHO_DiFXScanProcessor::get_vexdate_from_mjd_sec(double mjd, double sec)
-// {
-//     double total_mjd = (double)mjd + (double)sec / 86400.0;
-//     auto difx_mjd_epoch = hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601);
-//     //figure out the approximate time of this mjd (ignoring leap seconds)
-//     auto approx_tp = hops_clock::from_mjd(difx_mjd_epoch, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
-//     //calculate the number of leap seconds
-//     auto n_leaps = hops_clock::get_leap_seconds_between(difx_mjd_epoch, approx_tp);
-//     //now correct the nominal difx start epoch to deal with the number of leap seconds
-//     auto actual_epoch_start = difx_mjd_epoch + n_leaps;
-//     msg_debug("difx_interface", "the leap-second corrected difx mjd epoch start is: "
-//                                     << hops_clock::to_iso8601_format(actual_epoch_start) << eom);
-//     auto mjd_tp = hops_clock::from_mjd(actual_epoch_start, DIFX_J2000_MJD_EPOCH_OFFSET, total_mjd);
-//     msg_debug("difx_interface",
-//               "the MJD value: " << total_mjd << " as a vex timestamp is: " << hops_clock::to_vex_format(mjd_tp) << eom);
-//     return hops_clock::to_vex_format(mjd_tp);
-// }
 
 void MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly,
                                                                station_coord_type* st_coord)
