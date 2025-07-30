@@ -282,7 +282,7 @@ void MHO_DiFXBaselineProcessor::Organize()
     msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);
     
     //grab the source name (so we can add it to the data tags)
-    fSourceName = (*fInput)["source"][fIndex]["name"].get<double>();
+    fSourceName = (*fInput)["source"][fIndex]["name"].get<std::string>();
 
     //construct the table of frequencies for this baseline and sort in asscending order
     fNChannels = fFreqIndexSet.size();

@@ -16,12 +16,8 @@ extern "C"
 {
 #endif
 
+//forward declare this struct
 struct mk4_sdata;
-struct type_300;
-struct type_301;
-struct type_303;
-struct type_309;
-struct date;
 
 #ifndef HOPS3_USE_CXX
 }
