@@ -33,6 +33,7 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
     fPreserveDiFXScanNames = false;
     fAttachDiFXInput = false;
     fNormalize = false;
+    fExportAsMark4 = false;
     MICROSEC_TO_SEC = 1e-6; //needed to match difx2mark4 convention
     fFreqBands.clear();
     fFreqGroups.clear();

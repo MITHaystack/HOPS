@@ -86,6 +86,9 @@ class MHO_DiFXBaselineProcessor
          * @brief Setter for attach difx input false (do not attach difx .input info to visibilities)
          */
         void SetAttachDiFXInputFalse() {fAttachDiFXInput = false; }
+        
+        void SetExportAsMark4True(){fExportAsMark4 = true;}
+        void SetExportAsMark4False(){fExportAsMark4 = false;}
 
         /**
          * @brief Adds a visibility record (chunk of difx data) to the processor if it matches baseline and selection criteria.
@@ -222,6 +225,7 @@ class MHO_DiFXBaselineProcessor
         double fStartMJD; //scan start time in MJD
         std::string fStartTime;
         std::string fStopTime;
+        std::string fSourceName;
         bool fCanChannelize;
         bool fHaveBaselineData;
 
@@ -230,6 +234,7 @@ class MHO_DiFXBaselineProcessor
         double fScaleFactor;
     
         bool fAttachDiFXInput;
+        bool fExportAsMark4;
 
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair< int, mho_json > > fBaselineFreqs;
