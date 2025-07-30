@@ -15,6 +15,7 @@ Description
 
 `difx2hops` processes one or more DiFX output directories and generates HOPS-compatible output. 
 Various optional filtering, labeling and other configuration options (similar to difx2mark4) are supported.
+Export to the legacy mark4 format is also supported via the ``-k`` option.
 
 Positional Arguments
 --------------------
@@ -78,6 +79,8 @@ Options
        Narrower bands take precedence during assignment.
    * - ``-C, --legacy-station-codes``
      - Use legacy station code map for assigning Mk4 station IDs.
+   * - ``-k, --mark4``
+     - Export data in the legacy mark4 format (type1xx, type3xx) instead of hops format.
    * - ``-g, --freq-groups TEXT ...``
      - Include only the specified frequency groups.
    * - ``-w, --bandwidth FLOAT``
