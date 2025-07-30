@@ -5,6 +5,8 @@
 #include "MHO_ElementTypeCaster.hh"
 #include "MHO_DiFXTimeUtilities.hh"
 
+#include "MHO_MK4CorelInterfaceReversed.hh"
+
 #include <cctype>
 #include <cmath>
 
@@ -29,6 +31,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor(): fInput(nullptr), fV(null
     fBaselineDelim = "-";
     fIndex = 0;
     fAttachDiFXInput = false;
+    fExportAsMark4 = false;
 
     /* The following coefficients are taken directly from difx2mark4 new_type1.c */
 
@@ -277,7 +280,9 @@ void MHO_DiFXBaselineProcessor::Organize()
     fStopTime = hops_clock::to_vex_format(stop_tp);
 
     msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);
-
+    
+    //grab the source name (so we can add it to the data tags)
+    fSourceName = (*fInput)["source"][fIndex]["name"].get<double>();
 
     //construct the table of frequencies for this baseline and sort in asscending order
     fNChannels = fFreqIndexSet.size();
@@ -377,6 +382,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fTags.SetTagValue("name", "object_tags");
         fTags.SetTagValue("start", fStartTime);
         fTags.SetTagValue("stop", fStopTime);
+        fTags.SetTagValue("source", fSourceName);
 
         fV = new visibility_store_type();
         fW = new weight_store_type();
@@ -399,6 +405,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fV->Insert(std::string("origin"), "difx");
         fV->Insert(std::string("start"), fStartTime);
         fV->Insert(std::string("stop"), fStopTime);
+        fV->Insert(std::string("source"), fSourceName);
 
         //tags for the weights
         //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
@@ -419,6 +426,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
         fW->Insert(std::string("origin"), "difx");
         fW->Insert(std::string("start"), fStartTime);
         fW->Insert(std::string("stop"), fStopTime);
+        fW->Insert(std::string("source"), fSourceName);
 
         //polarization product axis
         auto* polprod_axis = &(std::get< POLPROD_AXIS >(*fV));
@@ -604,23 +612,39 @@ void MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
         std::string root_code = fRootCode;
         std::string output_file = ConstructCorFileName(output_dir, root_code, fBaselineName, fBaselineShortName);
 
-        MHO_BinaryFileInterface inter;
-        bool status = inter.OpenToWrite(output_file);
-        if(status)
+        if(!fExportAsMark4)
         {
-            fTags.AddObjectUUID(fV->GetObjectUUID());
-            fTags.AddObjectUUID(fW->GetObjectUUID());
-            inter.Write(fTags, "tags");
-            inter.Write(*fV, "vis");
-            inter.Write(*fW, "weight");
+            //write out the data in HOPS4 format
+            MHO_BinaryFileInterface inter;
+            bool status = inter.OpenToWrite(output_file);
+            if(status)
+            {
+                fTags.AddObjectUUID(fV->GetObjectUUID());
+                fTags.AddObjectUUID(fW->GetObjectUUID());
+                inter.Write(fTags, "tags");
+                inter.Write(*fV, "vis");
+                inter.Write(*fW, "weight");
+                inter.Close();
+            }
+            else
+            {
+                msg_error("file", "error opening corel output file: " << output_file << eom);
+            }
             inter.Close();
         }
-        else
+        else 
         {
-            msg_error("file", "error opening corel output file: " << output_file << eom);
+            //write out the data in Mark4 legacy type_1xx format
+            MHO_MK4CorelInterfaceReversed converter;
+            converter.SetOutputDirectory(output_dir);
+            std::string ovex_file_name = fSourceName + "." + root_code;
+            converter.SetRootFileName(ovex_file_name); //have to set the ovex file name in the type_100
+            converter.SetVisibilityData(fV);
+            converter.SetWeightData(fW);
+            converter.GenerateCorelStructure();
+            converter.WriteCorelFile();
+            converter.FreeAllocated();
         }
-
-        inter.Close();
     }
     delete fV;
     fV = nullptr;
