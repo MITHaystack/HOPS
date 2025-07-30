@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../">
 <head>
@@ -5,20 +7,16 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>difx2hops &mdash; HOPS 4.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5bd962b8" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=9f5556dd"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9f5556dd"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -120,7 +118,8 @@
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p><cite>difx2hops</cite> processes one or more DiFX output directories and generates HOPS-compatible output.
-Various optional filtering, labeling and other configuration options (similar to difx2mark4) are supported.</p>
+Various optional filtering, labeling and other configuration options (similar to difx2mark4) are supported.
+Export to the legacy mark4 format is also supported via the <code class="docutils literal notranslate"><span class="pre">-k</span></code> option.</p>
 </section>
 <section id="positional-arguments">
 <h2>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading"></a></h2>
@@ -206,13 +205,16 @@ Various optional filtering, labeling and other configuration options (similar to
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-C,</span> <span class="pre">--legacy-station-codes</span></code></p></td>
 <td><p>Use legacy station code map for assigning Mk4 station IDs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-g,</span> <span class="pre">--freq-groups</span> <span class="pre">TEXT</span> <span class="pre">...</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-k,</span> <span class="pre">--mark4</span></code></p></td>
+<td><p>Export data in the legacy mark4 format (type1xx, type3xx) instead of hops format.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-g,</span> <span class="pre">--freq-groups</span> <span class="pre">TEXT</span> <span class="pre">...</span></code></p></td>
 <td><p>Include only the specified frequency groups.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-w,</span> <span class="pre">--bandwidth</span> <span class="pre">FLOAT</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-w,</span> <span class="pre">--bandwidth</span> <span class="pre">FLOAT</span></code></p></td>
 <td><p>Include only channels matching this bandwidth (in MHz).</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-a,</span> <span class="pre">--attach-difx-input</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-a,</span> <span class="pre">--attach-difx-input</span></code></p></td>
 <td><p>Attach the original DiFX <code class="docutils literal notranslate"><span class="pre">.input</span></code> file to the visibility object tags.</p></td>
 </tr>
 </tbody>
