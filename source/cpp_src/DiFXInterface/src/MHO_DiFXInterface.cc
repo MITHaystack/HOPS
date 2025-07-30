@@ -373,6 +373,15 @@ void MHO_DiFXInterface::ProcessScans()
         {
             fScanProcessor.SetOnlyBandwidth(fOnlyBandwidth);
         }
+        
+        if(fExportAsMark4)
+        {
+            fScanProcessor.SetExportAsMark4True();
+        }
+        else
+        {
+            fScanProcessor.SetExportAsMark4False();
+        }
 
         fScanProcessor.ProcessScan(fScanFileSetList[i]);
     }

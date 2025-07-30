@@ -230,6 +230,10 @@ class MHO_DiFXScanProcessor
         int fExperNum;
         bool fNormalize;
         bool fExportAsMark4;
+        
+        //place to cache the OVEX/ROOT file data
+        //this object only needs to be cached if we are exporting to mark4 types
+        mho_json fRootJSON; 
 
         //the output directory for this scan
         std::string fOutputDirectory;
