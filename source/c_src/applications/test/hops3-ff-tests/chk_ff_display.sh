@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_ff_display.sh 4140 2023-10-18 20:47:04Z barrettj $
+# $Id: chk_ff_display.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # canonical test suite for fourfit3
 #
@@ -11,6 +11,7 @@ verb=false
 [ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
 ${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
 export DATADIR=`cd $srcdir/testdata; pwd`
+echo DATADIR=$DATADIR
 
 [ -n "$DISPLAY" ] || {
     $verb && echo Skipping test--DISPLAY is undefined;
@@ -21,13 +22,22 @@ os=`uname -s` || os=idunno
 grep -v $os $DATADIR/2836/cf2836 > ./cf2836
 
 rm -f ff-display-2836.ps
+
+# apparently, newer versions of GCC are so efficient that the
+# commands come too soon and cause problems...no clue
+[ -z "$s1" ] && s1=2
+[ -z "$s2" ] && s2=2
+
+$verb && echo -n \( sleep $s1 \; echo sff-display-2836.ps \;
+$verb && echo sleep $s2 \; echo q \) \| \\
 $verb && echo \
-fourfit3 -pt -b AE:X \\ && echo \
+$fourfit -pt -b AE:X \\ && echo \
     -c ./cf2836 \\ && echo \
     $DATADIR/2836/scan001/2145+067.olomfh
 
-( echo sff-display-2836.ps ; echo q ) |
-fourfit3 -pt -b AE:X \
+type -f $fourfit
+( sleep $s1 ; echo sff-display-2836.ps ; sleep $s2 ; echo q ) |
+$fourfit -pt -b AE:X \
     -c ./cf2836 \
     $DATADIR/2836/scan001/2145+067.olomfh 2>/dev/null 1>&2
 

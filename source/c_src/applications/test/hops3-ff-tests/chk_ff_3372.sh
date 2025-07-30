@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# $Id: chk_ff_3372.sh 3995 2023-06-09 20:39:39Z gbc $
+# $Id: chk_ff_3372.sh 4383 2025-07-20 21:38:08Z gbc $
 #
 # canonical test suite for fourfit3
 #
@@ -17,11 +17,11 @@ grep -v $os $DATADIR/3372/cf3372 > ./cf3372
 
 rm -f ff-3372.ps
 $verb && echo \
-fourfit3 -t -d diskfile:ff-3372.ps -b TV:X \\ && echo \
+$fourfit -t -d diskfile:ff-3372.ps -b TV:X \\ && echo \
     -c ./cf3372 \\ && echo \
     $DATADIR/3372/193-1757/0529+483.vtqbsq
 
-fourfit3 -t -d diskfile:ff-3372.ps -b TV:X \
+$fourfit -t -d diskfile:ff-3372.ps -b TV:X \
     -c ./cf3372 \
     $DATADIR/3372/193-1757/0529+483.vtqbsq 2>/dev/null 1>&2
 [ -f ./ff-3372.ps ] || { echo ./ff-3372.ps missing && exit 2 ; }

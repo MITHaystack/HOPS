@@ -7,8 +7,8 @@ if(HOPS_ENABLE_TEST)
     add_subdirectory(hops3-ff-tests)
 endif(HOPS_ENABLE_TEST)
 
-# if(HOPS_ENABLE_TEST)
-#    add_subdirectory(hops3-ae-tests)
-# endif(HOPS_ENABLE_TEST)
+if(HOPS_ENABLE_TEST)
+    add_subdirectory(hops3-ae-tests)
+endif(HOPS_ENABLE_TEST)
 
 # eof
