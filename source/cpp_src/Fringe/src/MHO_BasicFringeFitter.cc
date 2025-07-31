@@ -62,13 +62,7 @@ void MHO_BasicFringeFitter::Configure()
     //now build the operator build manager
     fOperatorBuildManager =
         new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
-
-    profiler_stop();
-}
-
-void MHO_BasicFringeFitter::Initialize()
-{
-    profiler_start();
+        
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped)
     {
@@ -165,6 +159,110 @@ void MHO_BasicFringeFitter::Initialize()
         take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
         take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
 
+    }
+
+    profiler_stop();
+}
+
+void MHO_BasicFringeFitter::Initialize()
+{
+    profiler_start();
+    bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
+    if(!skipped)
+    {
+        // std::string baseline = fParameterStore->GetAs< std::string >("/config/baseline");
+        // std::string polprod = fParameterStore->GetAs< std::string >("/config/polprod");
+        // 
+        // ////////////////////////////////////////////////////////////////////////////
+        // //LOAD DATA AND ASSEMBLE THE DATA STORE
+        // ////////////////////////////////////////////////////////////////////////////
+        // 
+        // //load baseline data
+        // fScanStore->LoadBaseline(baseline, fContainerStore);
+        // fParameterStore->Set("/files/baseline_input_file", fScanStore->GetBaselineFilename(baseline));
+        // 
+        // //loads visibility data and performs float -> double cast
+        // MHO_BasicFringeDataConfiguration::configure_visibility_data(fContainerStore);
+        // 
+        // vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
+        // wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
+        // if(vis_data == nullptr || wt_data == nullptr)
+        // {
+        //     msg_error("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
+        //     fParameterStore->Set("/status/skipped", true); //skipped
+        //     return;
+        // }
+        // 
+        // //safety check
+        // if(vis_data->GetSize() == 0)
+        // {
+        //     msg_error("fringe", "visibility data has size 0, skipping." << eom);
+        //     fParameterStore->Set("/status/skipped", true);
+        //     fParameterStore->Set("/status/is_finished", true);
+        // }
+        // 
+        // if(wt_data->GetSize() == 0)
+        // {
+        //     msg_error("fringe", "weight data has size 0, skipping." << eom);
+        //     fParameterStore->Set("/status/skipped", true);
+        //     fParameterStore->Set("/status/is_finished", true);
+        // }
+        // 
+        // std::string vis_uuid = vis_data->GetObjectUUID().as_string();
+        // std::string wt_uuid = wt_data->GetObjectUUID().as_string();
+        // fParameterStore->Set("/uuid/visibilities", vis_uuid);
+        // fParameterStore->Set("/uuid/weights", wt_uuid);
+        // 
+        // //load and rename station data according to reference/remote
+        // //also load pcal data if it is present
+        // std::string ref_station_mk4id = std::string(1, baseline[0]);
+        // std::string rem_station_mk4id = std::string(1, baseline[1]);
+        // MHO_BasicFringeDataConfiguration::configure_station_data(fScanStore, fContainerStore, ref_station_mk4id,
+        //                                                          rem_station_mk4id);
+        // fParameterStore->Set("/files/ref_station_input_file", fScanStore->GetStationFilename(ref_station_mk4id));
+        // fParameterStore->Set("/files/rem_station_input_file", fScanStore->GetStationFilename(rem_station_mk4id));
+        // 
+        // station_coord_type* ref_data = fContainerStore->GetObject< station_coord_type >(std::string("ref_sta"));
+        // station_coord_type* rem_data = fContainerStore->GetObject< station_coord_type >(std::string("rem_sta"));
+        // if(ref_data == nullptr || rem_data == nullptr)
+        // {
+        //     msg_error("fringe", "could not find station coordinate data with names (ref_sta, rem_sta)." << eom);
+        //     fParameterStore->Set("/status/skipped", true); //skipped
+        //     return;
+        // }
+        // std::string ref_uuid = ref_data->GetObjectUUID().as_string();
+        // std::string rem_uuid = rem_data->GetObjectUUID().as_string();
+        // fParameterStore->Set("/uuid/ref_coord", ref_uuid);
+        // fParameterStore->Set("/uuid/rem_coord", rem_uuid);
+        // 
+        // multitone_pcal_type* ref_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("ref_pcal"));
+        // multitone_pcal_type* rem_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("rem_pcal"));
+        // if(ref_pcal_data != nullptr)
+        // {
+        //     std::string ref_pcal_uuid = ref_pcal_data->GetObjectUUID().as_string();
+        //     fParameterStore->Set("/uuid/ref_pcal", ref_pcal_uuid);
+        // }
+        // if(rem_pcal_data != nullptr)
+        // {
+        //     std::string rem_pcal_uuid = rem_pcal_data->GetObjectUUID().as_string();
+        //     fParameterStore->Set("/uuid/rem_pcal", rem_pcal_uuid);
+        // }
+        // 
+        // ////////////////////////////////////////////////////////////////////////////
+        // //PARAMETER SETTING
+        // ////////////////////////////////////////////////////////////////////////////
+        // MHO_InitialFringeInfo::configure_reference_frequency(fContainerStore, fParameterStore);
+        // 
+        // ////////////////////////////////////////////////////////////////////////////
+        // //CONFIGURE THE OPERATOR BUILD MANAGER
+        // ////////////////////////////////////////////////////////////////////////////
+        // fOperatorBuildManager->CreateDefaultBuilders();
+        // fOperatorBuildManager->SetControlStatements(&(fFringeData->GetControlStatements()));
+        // 
+        // //take a snapshot if enabled
+        // take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
+        // take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
+
         ////////////////////////////////////////////////////////////////////////////
         //OPERATOR CONSTRUCTION
         ////////////////////////////////////////////////////////////////////////////
@@ -173,8 +271,6 @@ void MHO_BasicFringeFitter::Initialize()
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
-        //calculate useful quantities to stash in the parameter store
-        MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
         //safety check
         if(vis_data->GetSize() == 0)
         {
@@ -189,9 +285,11 @@ void MHO_BasicFringeFitter::Initialize()
             fParameterStore->Set("/status/skipped", true);
             fParameterStore->Set("/status/is_finished", true);
         }
+        
+        //calculate useful quantities to stash in the parameter store
+        MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
 
         bool is_skipped = fParameterStore->GetAs< bool >("/status/skipped");
-
         if(!is_skipped)
         {
             //compute the sum of all weights and stash in the parameter store (before any other operations (e.g. passband, notches) modify them)
@@ -201,57 +299,6 @@ void MHO_BasicFringeFitter::Initialize()
 
             MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
             MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
-
-            //initialize the fringe search operators ///////////////////////////////
-            //create space for the visibilities transformed into single-band-delay space
-            sbd_data = fContainerStore->GetObject< visibility_type >(std::string("sbd"));
-            if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
-            {
-                sbd_data = new sbd_type();
-                fContainerStore->AddObject(sbd_data);
-                fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
-            }
-
-            //determine the type of NormFX operator we need (either mixed sideband or single-sideband)
-            if(ContainsMixedSideband(vis_data))
-            {
-                fNormFXOp = &fMSBNormFXOp;
-            }
-            else
-            {
-                fNormFXOp = &fSSBNormFXOp;
-                //fNormFXOp = &fMSBNormFXOp;
-            }
-
-            //initialize norm-fx (x-form to SBD space)
-            fNormFXOp->SetArgs(vis_data, sbd_data);
-            fNormFXOp->SetWeights(wt_data);
-            bool ok = fNormFXOp->Initialize(); //initialize takes care of properly re-sizing SBD data
-            check_step_fatal(ok, "fringe", "normfx initialization." << eom);
-
-            //configure the coarse SBD/DR/MBD search
-            double ref_freq = fParameterStore->GetAs< double >("/control/config/ref_freq");
-            fMBDSearch->SetWeights(wt_data);
-            fMBDSearch->SetReferenceFrequency(ref_freq);
-            fMBDSearch->SetArgs(sbd_data);
-            ok = fMBDSearch->Initialize();
-            check_step_fatal(ok, "fringe", "mbd initialization." << eom);
-
-            //configure the fringe-peak interpolator
-            bool optimize_closure_flag = false;
-            bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag);
-            double frt_offset = fParameterStore->GetAs< double >("/config/frt_offset");
-            //NOTE: the optimize_closure_flag has no effect on fringe-phase when
-            //using the 'simul' algorithm, which is currently the only one implemented
-            //This is also true of the legacy code 'simul' implementation.
-            if(optimize_closure_flag)
-            {
-                fPeakInterpolator.EnableOptimizeClosure();
-            }
-            fPeakInterpolator.SetReferenceFrequency(ref_freq);
-            fPeakInterpolator.SetReferenceTimeOffset(frt_offset);
-            fPeakInterpolator.SetSBDArray(sbd_data);
-            fPeakInterpolator.SetWeights(wt_data);
         }
     }
 
@@ -265,8 +312,62 @@ void MHO_BasicFringeFitter::PreRun()
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped) //execute if we are not finished and are not skipping
     {
-        //TODO FILL ME IN -- need to call specified user-scripts here
+        //create space for the visibilities transformed into single-band-delay space
+        sbd_data = fContainerStore->GetObject< visibility_type >(std::string("sbd"));
+        if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
+        {
+            sbd_data = new sbd_type();
+            fContainerStore->AddObject(sbd_data);
+            fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
+        }
+
+        //user specified python scripts that are in the 'prefit' category are run here
+        //as well as the 'pol-product' summation operator (which is applied last if applicable)
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "prefit");
+
+        //initialize the fringe search operators ///////////////////////////////
+        //determine the type of NormFX operator we need (either mixed sideband or single-sideband)
+        if(ContainsMixedSideband(vis_data))
+        {
+            fNormFXOp = &fMSBNormFXOp;
+        }
+        else
+        {
+            fNormFXOp = &fSSBNormFXOp;
+        }
+
+        //initialize norm-fx (x-form to SBD space)
+        fNormFXOp->SetArgs(vis_data, sbd_data);
+        fNormFXOp->SetWeights(wt_data);
+        bool ok = fNormFXOp->Initialize(); //initialize takes care of properly re-sizing SBD data
+        check_step_fatal(ok, "fringe", "normfx initialization." << eom);
+
+        //configure the coarse SBD/DR/MBD search
+        double ref_freq = fParameterStore->GetAs< double >("/control/config/ref_freq");
+        fMBDSearch->SetWeights(wt_data);
+        fMBDSearch->SetReferenceFrequency(ref_freq);
+        fMBDSearch->SetArgs(sbd_data);
+        ok = fMBDSearch->Initialize();
+        check_step_fatal(ok, "fringe", "mbd initialization." << eom);
+
+        //configure the fringe-peak interpolator
+        bool optimize_closure_flag = false;
+        bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag);
+        double frt_offset = fParameterStore->GetAs< double >("/config/frt_offset");
+        //NOTE: the optimize_closure_flag has no effect on fringe-phase when
+        //using the 'simul' algorithm, which is currently the only one implemented
+        //This is also true of the legacy code 'simul' implementation.
+        if(optimize_closure_flag)
+        {
+            fPeakInterpolator.EnableOptimizeClosure();
+        }
+        fPeakInterpolator.SetReferenceFrequency(ref_freq);
+        fPeakInterpolator.SetReferenceTimeOffset(frt_offset);
+        fPeakInterpolator.SetSBDArray(sbd_data);
+        fPeakInterpolator.SetWeights(wt_data);
+        
+        
+
     }
 }
 
