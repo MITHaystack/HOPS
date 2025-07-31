@@ -31,8 +31,6 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
         {
             if(IsConfigurationOk())
             {
-                msg_debug("initialization", "building python operator." << eom);
-
                 MHO_PyGenericOperator* op = new MHO_PyGenericOperator();
 
                 //pass the data container and parameter stores to the python operator
