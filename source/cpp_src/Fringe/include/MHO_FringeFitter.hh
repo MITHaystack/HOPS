@@ -159,6 +159,12 @@ class MHO_FringeFitter
         virtual void Accept(MHO_FringeFitterVisitor* visitor) = 0;
 
     protected:
+        
+        //optional caching mechanism (stash the configured visibilities/weights)
+        //before they are modified by flagging/calibration/prefit operators
+        virtual void Cache(){}; 
+        virtual void Refresh(){};
+        
         //data objects
         MHO_FringeData* fFringeData;
 

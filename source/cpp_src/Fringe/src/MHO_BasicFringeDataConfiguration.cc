@@ -959,7 +959,7 @@ void MHO_BasicFringeDataConfiguration::init_and_exec_operators(MHO_OperatorBuild
 
     msg_debug("fringe", "initializing and executing operators in " << cat << " category." << eom);
 
-    build_manager->BuildOperatorCategory(cat);
+    //build_manager->BuildOperatorCategory(cat);
     auto ops = opToolbox->GetOperatorsByCategory(cat);
     for(auto opIt = ops.begin(); opIt != ops.end(); opIt++)
     {

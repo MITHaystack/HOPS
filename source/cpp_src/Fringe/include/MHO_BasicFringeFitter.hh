@@ -95,7 +95,6 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         
         /**
          * @brief Performs coarse search in delay/delay-rate space for fringe fitting.
-         * 
          * @param set_windows Flag to set windows for SBD/MBD/DR searches.
          */
         void coarse_fringe_search(bool set_windows = true);
@@ -112,6 +111,12 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
          * @return True if mixed sidebands are present, false otherwise
          */
         bool ContainsMixedSideband(visibility_type* vis);
+        
+        //visibility/weight caching mechanism 
+        //to allow for user-determined outside-loop iteration (prerun, run, postrun)
+        bool fEnableCaching;
+        virtual void Cache() override;
+        virtual void Refresh() override;
 
         //ptr to the operator to transform vis from frequency to single-band delay space
         //(we switch depending on the type of freq setup)

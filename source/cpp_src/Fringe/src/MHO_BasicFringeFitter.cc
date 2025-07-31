@@ -40,11 +40,16 @@ namespace hops
 
 MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFitter(data)
 {
+    fEnableCaching = false;
     vis_data = nullptr;
     wt_data = nullptr;
     sbd_data = nullptr;
     fNormFXOp = nullptr; //does not need to be deleted
     fMBDSearch = new MBD_SEARCH_TYPE();
+    
+    //must build the operator build manager
+    fOperatorBuildManager =
+        new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
 };
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
@@ -59,16 +64,6 @@ void MHO_BasicFringeFitter::Configure()
     //load root file and keep around (eventually eliminate this in favor of param store only)
     fVexInfo = fScanStore->GetRootFileData();
 
-    //now build the operator build manager
-    fOperatorBuildManager =
-        new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
-
-    profiler_stop();
-}
-
-void MHO_BasicFringeFitter::Initialize()
-{
-    profiler_start();
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped)
     {
@@ -160,21 +155,20 @@ void MHO_BasicFringeFitter::Initialize()
         ////////////////////////////////////////////////////////////////////////////
         fOperatorBuildManager->CreateDefaultBuilders();
         fOperatorBuildManager->SetControlStatements(&(fFringeData->GetControlStatements()));
+        fOperatorBuildManager->BuildOperatorCategory("default");
 
         //take a snapshot if enabled
         take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
         take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
-
+        
         ////////////////////////////////////////////////////////////////////////////
         //OPERATOR CONSTRUCTION
         ////////////////////////////////////////////////////////////////////////////
-
-        fOperatorBuildManager->BuildOperatorCategory("default");
+        fOperatorBuildManager->BuildOperatorCategory("labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
+        fOperatorBuildManager->BuildOperatorCategory("selection");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
-        //calculate useful quantities to stash in the parameter store
-        MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
         //safety check
         if(vis_data->GetSize() == 0)
         {
@@ -189,70 +183,110 @@ void MHO_BasicFringeFitter::Initialize()
             fParameterStore->Set("/status/skipped", true);
             fParameterStore->Set("/status/is_finished", true);
         }
+        
+        //calculate useful quantities to stash in the parameter store
+        MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
+        
+        //if we have any additional prefit and postfit operators there is a possibility 
+        //that more than one fitting loop is run, in that case we will
+        //cache the configured visibilities and weights
+        
+        //build the rest of the operator categories
+        fOperatorBuildManager->BuildOperatorCategory("flagging");
+        fOperatorBuildManager->BuildOperatorCategory("calibration");
+        fOperatorBuildManager->BuildOperatorCategory("prefit");
+        fOperatorBuildManager->BuildOperatorCategory("postfit");
+        fOperatorBuildManager->BuildOperatorCategory("finalize");
+        
+        // if(fOperatorBuildManager->GetNBuildersInCategory("prefit") >= 1 && 
+        //    fOperatorBuildManager->GetNBuildersInCategory("postfit") > 0)
+        // {
+        //     msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators (" <<
+        //         fOperatorBuildManager->GetNBuildersInCategory("prefit") << ", " <<
+        //         fOperatorBuildManager->GetNBuildersInCategory("postfit") << ")" << eom);
+        //     fEnableCaching = true;
+        // }
 
-        bool is_skipped = fParameterStore->GetAs< bool >("/status/skipped");
+        fEnableCaching = true;
+        Cache();
+        
 
-        if(!is_skipped)
+    }
+
+    profiler_stop();
+}
+
+void MHO_BasicFringeFitter::Cache()
+{
+    if(fEnableCaching)
+    {
+        vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
+        wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
+        if(vis_data != nullptr)
         {
-            //compute the sum of all weights and stash in the parameter store (before any other operations (e.g. passband, notches) modify them)
-            MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
-            //figure out the number of channels which have data with weights >0 in at least 1 AP
-            MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
-
-            MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
-            MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
-
-            //initialize the fringe search operators ///////////////////////////////
-            //create space for the visibilities transformed into single-band-delay space
-            sbd_data = fContainerStore->GetObject< visibility_type >(std::string("sbd"));
-            if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
-            {
-                sbd_data = new sbd_type();
-                fContainerStore->AddObject(sbd_data);
-                fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
-            }
-
-            //determine the type of NormFX operator we need (either mixed sideband or single-sideband)
-            if(ContainsMixedSideband(vis_data))
-            {
-                fNormFXOp = &fMSBNormFXOp;
-            }
-            else
-            {
-                fNormFXOp = &fSSBNormFXOp;
-                //fNormFXOp = &fMSBNormFXOp;
-            }
-
-            //initialize norm-fx (x-form to SBD space)
-            fNormFXOp->SetArgs(vis_data, sbd_data);
-            fNormFXOp->SetWeights(wt_data);
-            bool ok = fNormFXOp->Initialize(); //initialize takes care of properly re-sizing SBD data
-            check_step_fatal(ok, "fringe", "normfx initialization." << eom);
-
-            //configure the coarse SBD/DR/MBD search
-            double ref_freq = fParameterStore->GetAs< double >("/control/config/ref_freq");
-            fMBDSearch->SetWeights(wt_data);
-            fMBDSearch->SetReferenceFrequency(ref_freq);
-            fMBDSearch->SetArgs(sbd_data);
-            ok = fMBDSearch->Initialize();
-            check_step_fatal(ok, "fringe", "mbd initialization." << eom);
-
-            //configure the fringe-peak interpolator
-            bool optimize_closure_flag = false;
-            bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag);
-            double frt_offset = fParameterStore->GetAs< double >("/config/frt_offset");
-            //NOTE: the optimize_closure_flag has no effect on fringe-phase when
-            //using the 'simul' algorithm, which is currently the only one implemented
-            //This is also true of the legacy code 'simul' implementation.
-            if(optimize_closure_flag)
-            {
-                fPeakInterpolator.EnableOptimizeClosure();
-            }
-            fPeakInterpolator.SetReferenceFrequency(ref_freq);
-            fPeakInterpolator.SetReferenceTimeOffset(frt_offset);
-            fPeakInterpolator.SetSBDArray(sbd_data);
-            fPeakInterpolator.SetWeights(wt_data);
+            auto cached_vis_data = vis_data->Clone();
+            msg_debug("fringe", "caching visibility data to object: " << cached_vis_data->GetObjectUUID().as_string() << eom );
+            fContainerStore->AddObject(cached_vis_data);
+            std::string shortname = "cached_v";
+            fContainerStore->SetShortName(cached_vis_data->GetObjectUUID(), shortname);
         }
+        
+        if(wt_data != nullptr)
+        {
+            auto cached_wt_data = wt_data->Clone();
+            msg_debug("fringe", "caching weight data to object: " << cached_wt_data->GetObjectUUID().as_string() << eom );
+            fContainerStore->AddObject(cached_wt_data);
+            std::string shortname = "cached_w";
+            fContainerStore->SetShortName(cached_wt_data->GetObjectUUID(), shortname);
+        }
+    }
+}; 
+
+void MHO_BasicFringeFitter::Refresh()
+{
+    if(fEnableCaching)
+    {
+        auto vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
+        auto wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
+        auto cached_vis_data = fContainerStore->GetObject< visibility_type >(std::string("cached_v"));
+        auto cached_wt_data = fContainerStore->GetObject< weight_type >(std::string("cached_w"));
+        if(vis_data != nullptr && cached_vis_data != nullptr)
+        {
+            //deep copy
+            msg_debug("fringe", "refreshing visibility data from cache" << eom );
+            vis_data->Copy(*cached_vis_data);
+        }
+        
+        if(wt_data != nullptr && cached_wt_data != nullptr)
+        {
+            //deep copy
+            msg_debug("fringe", "refreshing weight data from cache" << eom );
+            wt_data->Copy(*cached_wt_data);
+        }
+    }
+};
+
+
+void MHO_BasicFringeFitter::Initialize()
+{
+    profiler_start();
+    bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
+    if(!skipped)
+    {
+        //refresh the visibility/weight data from the cache 
+        //this mechanism is necessary if we want to be able to provide that ability for a user-specified 
+        //outer layer of iteration, where they are able to modify operator parameters
+        //until some convergence criteria is met
+        Refresh();
+        
+        //compute the sum of all weights and stash in the parameter store 
+        //(before any other operations (e.g. passband, notches) modify them)
+        MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
+        //figure out the number of channels which have data with weights >0 in at least 1 AP
+        MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
+
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
     }
 
     // std::cout<<"PARAMETERS = "<<std::endl;
@@ -265,8 +299,59 @@ void MHO_BasicFringeFitter::PreRun()
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped) //execute if we are not finished and are not skipping
     {
-        //TODO FILL ME IN -- need to call specified user-scripts here
+        //create space for the visibilities transformed into single-band-delay space
+        sbd_data = fContainerStore->GetObject< visibility_type >(std::string("sbd"));
+        if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
+        {
+            sbd_data = new sbd_type();
+            fContainerStore->AddObject(sbd_data);
+            fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
+        }
+
+        //user specified python scripts that are in the 'prefit' category are run here
+        //as well as the 'pol-product' summation operator (which is applied last if applicable)
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "prefit");
+
+        //initialize the fringe search operators ///////////////////////////////
+        //determine the type of NormFX operator we need (either mixed sideband or single-sideband)
+        if(ContainsMixedSideband(vis_data))
+        {
+            fNormFXOp = &fMSBNormFXOp;
+        }
+        else
+        {
+            fNormFXOp = &fSSBNormFXOp;
+        }
+
+        //initialize norm-fx (x-form to SBD space)
+        fNormFXOp->SetArgs(vis_data, sbd_data);
+        fNormFXOp->SetWeights(wt_data);
+        bool ok = fNormFXOp->Initialize(); //initialize takes care of properly re-sizing SBD data
+        check_step_fatal(ok, "fringe", "normfx initialization." << eom);
+
+        //configure the coarse SBD/DR/MBD search
+        double ref_freq = fParameterStore->GetAs< double >("/control/config/ref_freq");
+        fMBDSearch->SetWeights(wt_data);
+        fMBDSearch->SetReferenceFrequency(ref_freq);
+        fMBDSearch->SetArgs(sbd_data);
+        ok = fMBDSearch->Initialize();
+        check_step_fatal(ok, "fringe", "mbd initialization." << eom);
+
+        //configure the fringe-peak interpolator
+        bool optimize_closure_flag = false;
+        bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag);
+        double frt_offset = fParameterStore->GetAs< double >("/config/frt_offset");
+        //NOTE: the optimize_closure_flag has no effect on fringe-phase when
+        //using the 'simul' algorithm, which is currently the only one implemented
+        //This is also true of the legacy code 'simul' implementation.
+        if(optimize_closure_flag)
+        {
+            fPeakInterpolator.EnableOptimizeClosure();
+        }
+        fPeakInterpolator.SetReferenceFrequency(ref_freq);
+        fPeakInterpolator.SetReferenceTimeOffset(frt_offset);
+        fPeakInterpolator.SetSBDArray(sbd_data);
+        fPeakInterpolator.SetWeights(wt_data);
     }
 }
 
@@ -277,8 +362,7 @@ void MHO_BasicFringeFitter::Run()
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!is_finished && !skipped) //execute if we are not finished and are not skipping
     {
-        //execute the basic fringe search algorithm
-        //basic_fringe_search();
+        //execute the coarse fringe search algorithm
         coarse_fringe_search();
     }
 
@@ -302,7 +386,6 @@ void MHO_BasicFringeFitter::PostRun()
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped) //execute if we are not finished and are not skipping
     {
-        //TODO FILL ME IN -- need to call specified user-scripts here
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "postfit");
     }
 }
@@ -348,7 +431,7 @@ void MHO_BasicFringeFitter::Finalize()
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
 
-        //TODO FIXME...remove this (we should build this as and operator in the 'finalize category'), just for testing
+        //TODO FIXME...remove this (we should build this as an operator in the 'finalize category'), just for testing
         MHO_EstimatePCManual est_pc_man;
         auto vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
         auto wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
