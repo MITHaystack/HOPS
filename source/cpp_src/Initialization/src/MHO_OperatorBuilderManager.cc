@@ -231,17 +231,23 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     circ_field_rotation_corr["priority"] = 3.98;
     AddBuilderTypeWithFormat< MHO_CircularFieldRotationBuilder >("circ_field_rotation_corr", circ_field_rotation_corr);
 
-    mho_json polprod_sum;
-    polprod_sum["name"] = "polproduct_sum";
-    polprod_sum["operator_category"] = "calibration";
-    polprod_sum["priority"] = 3.99;
-    AddBuilderTypeWithFormat< MHO_PolProductSummationBuilder >("polproduct_sum", polprod_sum);
-
     mho_json dpar_corr;
     dpar_corr["name"] = "dpar_corr";
     dpar_corr["operator_category"] = "calibration";
     dpar_corr["priority"] = 3.99;
     AddBuilderTypeWithFormat< MHO_LinearDParCorrectionBuilder >("dpar_corr", dpar_corr);
+
+
+    //this is the last (optional) operation done before NormFX/(SBD, MBD, DR)-search
+    //this is done during the 'prefit' section, so that user 'prefit' scripts have a 
+    //chance to modify the data before it is applied 
+    //(otherwise per-pol data modifications wouldn't be possible)
+    mho_json polprod_sum;
+    polprod_sum["name"] = "polproduct_sum";
+    polprod_sum["operator_category"] = "prefit";
+    polprod_sum["priority"] = 9.99;
+    AddBuilderTypeWithFormat< MHO_PolProductSummationBuilder >("polproduct_sum", polprod_sum);
+
 }
 
 } // namespace hops

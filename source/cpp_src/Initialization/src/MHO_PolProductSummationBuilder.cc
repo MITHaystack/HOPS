@@ -16,7 +16,7 @@ bool MHO_PolProductSummationBuilder::Build()
 
         std::string op_name = fAttributes["name"].get< std::string >();
         double priority = fFormat["priority"].get< double >();
-        std::string op_category = "calibration";
+        std::string op_category = "prefit";
 
         std::string polprod;
         std::vector< std::string > pp_set;
