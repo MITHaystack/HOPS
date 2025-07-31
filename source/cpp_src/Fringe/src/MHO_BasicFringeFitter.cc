@@ -198,15 +198,15 @@ void MHO_BasicFringeFitter::Configure()
         fOperatorBuildManager->BuildOperatorCategory("postfit");
         fOperatorBuildManager->BuildOperatorCategory("finalize");
         
-        std::cout<<"n prefit = "<<fOperatorBuildManager->GetNBuildersInCategory("prefit")<<std::endl;
-        std::cout<<"n postfit = "<<fOperatorBuildManager->GetNBuildersInCategory("postfit")<<std::endl;
-        
-        if(fOperatorBuildManager->GetNBuildersInCategory("prefit") > 0 && 
-           fOperatorBuildManager->GetNBuildersInCategory("postfit") > 0)
-        {
-            msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators" << eom);
-            fEnableCaching = true;
-        }
+        // if(fOperatorBuildManager->GetNBuildersInCategory("prefit") >= 1 && 
+        //    fOperatorBuildManager->GetNBuildersInCategory("postfit") > 0)
+        // {
+        //     msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators (" <<
+        //         fOperatorBuildManager->GetNBuildersInCategory("prefit") << ", " <<
+        //         fOperatorBuildManager->GetNBuildersInCategory("postfit") << ")" << eom);
+        //     fEnableCaching = true;
+        // }
+
         fEnableCaching = true;
         Cache();
         
