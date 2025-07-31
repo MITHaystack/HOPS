@@ -52,7 +52,6 @@ and is a work in progress.
 - Lynn Matthews
 - Pedro Elosegui
 - Lindy Blackburn
-- Violet Pfeiffer
 
 
 
