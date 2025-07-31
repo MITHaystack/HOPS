@@ -155,7 +155,15 @@ void MHO_BasicFringeFitter::Configure()
         ////////////////////////////////////////////////////////////////////////////
         fOperatorBuildManager->CreateDefaultBuilders();
         fOperatorBuildManager->SetControlStatements(&(fFringeData->GetControlStatements()));
-
+        fOperatorBuildManager->BuildOperatorCategory("default");
+        // fOperatorBuildManager->BuildOperatorCategory("labeling");
+        // fOperatorBuildManager->BuildOperatorCategory("selection");
+        // fOperatorBuildManager->BuildOperatorCategory("flagging");
+        // fOperatorBuildManager->BuildOperatorCategory("calibration");
+        // fOperatorBuildManager->BuildOperatorCategory("prefit");
+        // fOperatorBuildManager->BuildOperatorCategory("postfit");
+        // fOperatorBuildManager->BuildOperatorCategory("finalize");
+        // 
         //take a snapshot if enabled
         take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
         take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
@@ -163,7 +171,7 @@ void MHO_BasicFringeFitter::Configure()
         ////////////////////////////////////////////////////////////////////////////
         //OPERATOR CONSTRUCTION
         ////////////////////////////////////////////////////////////////////////////
-        fOperatorBuildManager->BuildOperatorCategory("default");
+        
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
@@ -188,12 +196,17 @@ void MHO_BasicFringeFitter::Configure()
         //if we have any additional prefit and postfit operators there is a possibility 
         //that more than one fitting loop is run, in that case we will
         //cache the configured visibilities and weights
+        
+        std::cout<<"n prefit = "<<fOperatorBuildManager->GetNBuildersInCategory("prefit")<<std::endl;
+        std::cout<<"n postfit = "<<fOperatorBuildManager->GetNBuildersInCategory("postfit")<<std::endl;
+        
         if(fOperatorBuildManager->GetNBuildersInCategory("prefit") > 0 && 
            fOperatorBuildManager->GetNBuildersInCategory("postfit") > 0)
         {
             msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators" << eom);
             fEnableCaching = true;
         }
+        fEnableCaching = true;
         Cache();
     }
 
