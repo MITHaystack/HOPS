@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" line="36" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeFitterFactory.cc" bodystart="34" bodyend="76"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" line="36" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeFitterFactory.cc" bodystart="34" bodyend="78"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

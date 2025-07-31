@@ -547,7 +547,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/alist/alist.c" line="35" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/alist/src/summarize_mk4fringe.c" bodystart="23" bodyend="179" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/alist/alist.c" declline="35" declcolumn="12"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/alist/alist.c" line="35" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/alist/src/summarize_mk4fringe.c" bodystart="23" bodyend="187" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/alist/alist.c" declline="35" declcolumn="12"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

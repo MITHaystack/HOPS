@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="164" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="164" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="168" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="168" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1ab3b80396c8c46c403433c901141e1d8b" prot="private" static="no" mutable="no">
         <type>std::multimap&lt; std::string, <ref refid="classhops_1_1MHO__OperatorBuilder" kindref="compound">MHO_OperatorBuilder</ref> * &gt;</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="170" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="170" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="174" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="174" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1aceb03f19b12c0cbe22a53efc0ca72795" prot="private" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="160" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="160" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="164" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="164" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a025fcd15d585649f81e5df6ed81ef7b9" prot="private" static="no" mutable="no">
         <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="153" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="153" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="157" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="157" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a1fb6ce62473634ac080a55881681b4ba" prot="private" static="no" mutable="no">
         <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="152" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="149" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="156" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="153" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a2a04d5d11add0fb502c4c74635554ff3" prot="private" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="159" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="159" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="163" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="163" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a237c223c79e8722b1dc5a941ac4a4677" prot="private" static="no" mutable="no">
         <type>std::map&lt; std::string, <ref refid="classhops_1_1MHO__OperatorBuilder" kindref="compound">MHO_OperatorBuilder</ref> * &gt;</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="167" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="167" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="171" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="171" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a138e127a670903955c4527aa503f3429" prot="private" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="156" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="156" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="160" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="160" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a5d112f0d1c2200aab44a383c53c783ab" prot="private" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="161" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="161" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="165" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="165" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -206,7 +206,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="88" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="88" bodyend="115"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="93" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="93" bodyend="119"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a21f4516d641876a9ce3892f0b997bd70" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -262,7 +262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="77" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="76" bodyend="183"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="77" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="86" bodyend="196"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a717fee40b605e74f944ff3014dc1adf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -276,7 +276,35 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="26" bodyend="74"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="36" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1aee6fd6a47c21d83afbd3abe8f2668147" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_OperatorBuilderManager::GetNBuildersInCategory</definition>
+        <argsstring>(std::string cat)</argsstring>
+        <name>GetNBuildersInCategory</name>
+        <param>
+          <type>std::string</type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+<para>return the number of operator builders in the specified category </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>operator category </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="84" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="26" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1ae5fe234a1b7e5b146976a88c848f1756" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -353,7 +381,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="130" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="130" bodyend="149"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="134" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="134" bodyend="153"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a20c6dd670da103b6fd3ba9cf1ce22439" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -367,7 +395,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="121" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="187" bodyend="245"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="125" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="200" bodyend="264"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -380,7 +408,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="24" bodyend="171"/>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="24" bodyend="175"/>
     <listofallmembers>
       <member refid="classhops_1_1MHO__OperatorBuilderManager_1a7e75bbbeacbfadf088cd6729858fc363" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>AddBuilderType</name></member>
       <member refid="classhops_1_1MHO__OperatorBuilderManager_1a583c21826a126efdc7129a5ce5b62dcc" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>AddBuilderTypeWithFormat</name></member>
@@ -397,6 +425,7 @@
       <member refid="classhops_1_1MHO__OperatorBuilderManager_1a237c223c79e8722b1dc5a941ac4a4677" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fNameToBuilderMap</name></member>
       <member refid="classhops_1_1MHO__OperatorBuilderManager_1a138e127a670903955c4527aa503f3429" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fOperatorToolbox</name></member>
       <member refid="classhops_1_1MHO__OperatorBuilderManager_1a5d112f0d1c2200aab44a383c53c783ab" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fParameterStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1aee6fd6a47c21d83afbd3abe8f2668147" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>GetNBuildersInCategory</name></member>
       <member refid="classhops_1_1MHO__OperatorBuilderManager_1ab282bcbc77f783bbbcd0e2797e6ed127" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>MHO_OperatorBuilderManager</name></member>
       <member refid="classhops_1_1MHO__OperatorBuilderManager_1ae5fe234a1b7e5b146976a88c848f1756" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>SetControlStatements</name></member>
       <member refid="classhops_1_1MHO__OperatorBuilderManager_1a984fa0e1627f764a95bdd2847d939e41" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>~MHO_OperatorBuilderManager</name></member>

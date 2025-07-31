@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/default_cblock.c" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/default_cblock.c" bodystart="18" bodyend="153"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/default_cblock.c" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/default_cblock.c" bodystart="18" bodyend="164"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -157,95 +157,106 @@
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="control_8h_1ad7ece38e6d90386017888bdf649d9403" kindref="member">MAXNOTCH</ref>;<sp/>i++)</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>notches[i][0]<sp/>=<sp/>0.0;</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>notches[i][1]<sp/>=<sp/>1.0E6;</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>t_cohere<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-1.0;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ionosphere.ref=<sp/>0.0;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ionosphere.rem=<sp/>0.0;</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>dc_block<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_codes[0]<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>nsamplers<sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>optimize_closure<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ion_window[0]<sp/><sp/>=<sp/>-20.0;</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ion_window[1]<sp/><sp/>=<sp/><sp/>20.0;</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ion_npts<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>interpolator<sp/><sp/><sp/>=<sp/><ref refid="control_8h_1aa11c9c27878218cc7f02b64edc9f9622" kindref="member">SIMUL</ref>;</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>station_delay.ref<sp/><sp/>=<sp/>0;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>a<sp/>priori<sp/>station<sp/>delay<sp/>(default<sp/>changed<sp/>from<sp/>150ns<sp/>to<sp/>0<sp/>per<sp/>AEN<sp/>request<sp/>on<sp/>02/20/18<sp/>JPB)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>station_delay.rem<sp/><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_delay_l.ref=<sp/>0.0;</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_delay_l.rem=<sp/>0.0;</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_delay_r.ref=<sp/>0.0;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_delay_r.rem=<sp/>0.0;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>weak_channel<sp/><sp/>=<sp/>0.5;</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_amp_hcode<sp/><sp/>=<sp/>0.005;</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>fmatch_bw_pct<sp/>=<sp/>25.0;</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mbd_anchor<sp/><sp/><sp/><sp/>=<sp/><ref refid="control_8h_1a7c60e913478d07a44ac15c6fb2c5937f" kindref="member">MODEL</ref>;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ion_smooth<sp/><sp/><sp/><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/><ref refid="est__pc__manual_8c_1a020f165cc7cddf3f192d653100eda2b5" kindref="member">est_pc_manual</ref><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_correct<sp/><sp/><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_fit<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mixed_mode_rot<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>noautofringes<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mod4numbering<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mbdrplopt[0]<sp/><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mbdrplopt[1]<sp/><sp/>=<sp/>1;</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mbdrplopt[2]<sp/><sp/>=<sp/>1;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;2;<sp/>i++)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>clear<sp/>ref<sp/>and<sp/>rem<sp/>values</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>adhoc_file[i][0]<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>adhoc_file_chans[i][0]<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>adhoc_flag_files[i][0]<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>plot_data_dir[i][0]<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase_offset[i].ref<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase_offset[i].rem<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_file[i][0]<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mount_type[i]<sp/>=<sp/><ref refid="control_8h_1ae813e60d1f7363764de79f97c39eda6f" kindref="member">NO_MOUNT_TYPE</ref>;</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;5;<sp/>i++)</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>clear<sp/>video<sp/>bandpass<sp/>model<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_coeffs[i].ref<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_coeffs[i].rem<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;6;<sp/>i++)</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>adhoc_poly[i]<sp/>=<sp/>0.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>clear<sp/>ad<sp/>hoc<sp/>phase<sp/>polynomial<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="control_8h_1a678faea446144870675381df53c5f69d" kindref="member">MAX_SAMP</ref>;<sp/>i++)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>clear<sp/>sampler<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>psamplers[i]<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_delay[i][0].ref<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_delay[i][1].ref<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_delay[i][0].rem<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_delay[i][1].rem<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>;<sp/>i++)</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>accept_sbs[i]<sp/>=<sp/><ref refid="control_8h_1ac222db61ccc923f24415d8085bef26df" kindref="member">DSB</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>accept<sp/>all<sp/>frequency<sp/>channels<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase[i][0].ref<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase[i][1].ref<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase[i][0].rem<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase[i][1].rem<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_freq[i].ref<sp/>=<sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>default<sp/>to<sp/>1st<sp/>phase<sp/>cal<sp/>tone<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_freq[i].rem<sp/>=<sp/>1;</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_tonemask[i].ref<sp/>=<sp/>0;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>default<sp/>is<sp/>to<sp/>include<sp/>all<sp/>tones</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_tonemask[i].rem<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>gates[i].on_delay<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>default<sp/>gate<sp/>always<sp/>on<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>gates[i].duration<sp/>=<sp/>32767;</highlight></codeline>
-<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs[i].ref<sp/>=<sp/>0.0;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>##DELAY_OFFS##</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs[i].rem<sp/>=<sp/>0.0;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>##DELAY_OFFS##</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs_pol[i][0].ref<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs_pol[i][1].ref<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs_pol[i][0].rem<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs_pol[i][1].rem<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>chid_rf[i]<sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy<sp/>(cb_ptr-&gt;<ref refid="structc__block_1a0110ef1e2eae572bd64fb774ba385168" kindref="member">chid</ref>,<sp/><ref refid="control_8h_1a88d4b0d51a88c8074d394a47bdfa408e" kindref="member">FCHARS</ref>,<sp/><ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>);<sp/></highlight><highlight class="comment">//<sp/>default<sp/>single<sp/>letter<sp/>freq<sp/>codes<sp/>abc...</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal"></highlight></codeline>
-<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(cb_ptr-&gt;<ref refid="structc__block_1a2ede4e60530e134757f7170ea943e666" kindref="member">chan_notches</ref>,<sp/></highlight><highlight class="charliteral">&apos;@&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(cb_ptr-&gt;<ref refid="structc__block_1a2ede4e60530e134757f7170ea943e666" kindref="member">chan_notches</ref>));</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>t_cohere<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ionosphere.ref=<sp/>0.0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ionosphere.rem=<sp/>0.0;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>dc_block<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_codes[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>nsamplers<sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>optimize_closure<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ion_window[0]<sp/><sp/>=<sp/>-20.0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ion_window[1]<sp/><sp/>=<sp/><sp/>20.0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ion_npts<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>interpolator<sp/><sp/><sp/>=<sp/><ref refid="control_8h_1aa11c9c27878218cc7f02b64edc9f9622" kindref="member">SIMUL</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>a<sp/>priori<sp/>station<sp/>delay<sp/>(default<sp/>changed<sp/>from<sp/>150ns<sp/>to<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>per<sp/>AEN<sp/>request<sp/>on<sp/>02/20/18<sp/>JPB)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>station_delay.ref<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>station_delay.rem<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_delay_l.ref=<sp/>0.0;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_delay_l.rem=<sp/>0.0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_delay_r.ref=<sp/>0.0;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_delay_r.rem=<sp/>0.0;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>weak_channel<sp/><sp/>=<sp/>0.5;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_amp_hcode<sp/><sp/>=<sp/>0.005;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>fmatch_bw_pct<sp/>=<sp/>25.0;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mbd_anchor<sp/><sp/><sp/><sp/>=<sp/><ref refid="control_8h_1a7c60e913478d07a44ac15c6fb2c5937f" kindref="member">MODEL</ref>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>ion_smooth<sp/><sp/><sp/><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/><ref refid="est__pc__manual_8c_1a020f165cc7cddf3f192d653100eda2b5" kindref="member">est_pc_manual</ref><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>clone_snr_chk<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_correct<sp/><sp/><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_fit<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mixed_mode_rot<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>noautofringes<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mod4numbering<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>polfringnames<sp/>=<sp/><ref refid="default__cblock_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mbdrplopt[0]<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mbdrplopt[1]<sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mbdrplopt[2]<sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>fringeout_dir[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>display_chans[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;2;<sp/>i++)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>clear<sp/>ref<sp/>and<sp/>rem<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>adhoc_file[i][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>adhoc_file_chans[i][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>adhoc_flag_files[i][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>plot_data_dir[i][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase_offset[i].ref<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase_offset[i].rem<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_file[i][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>mount_type[i]<sp/>=<sp/><ref refid="control_8h_1ae813e60d1f7363764de79f97c39eda6f" kindref="member">NO_MOUNT_TYPE</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;5;<sp/>i++)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>clear<sp/>video<sp/>bandpass<sp/>model<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_coeffs[i].ref<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>vbp_coeffs[i].rem<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;6;<sp/>i++)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>adhoc_poly[i]<sp/>=<sp/>0.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>clear<sp/>ad<sp/>hoc<sp/>phase<sp/>polynomial<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="control_8h_1a678faea446144870675381df53c5f69d" kindref="member">MAX_SAMP</ref>;<sp/>i++)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>clear<sp/>sampler<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>psamplers[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_delay[i][0].ref<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_delay[i][1].ref<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_delay[i][0].rem<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>sampler_delay[i][1].rem<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>accept_sbs[i]<sp/>=<sp/><ref refid="control_8h_1ac222db61ccc923f24415d8085bef26df" kindref="member">DSB</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>accept<sp/>all<sp/>frequency<sp/>channels<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase[i][0].ref<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase[i][1].ref<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase[i][0].rem<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_phase[i][1].rem<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_freq[i].ref<sp/>=<sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>default<sp/>to<sp/>1st<sp/>phase<sp/>cal<sp/>tone<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_freq[i].rem<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_tonemask[i].ref<sp/>=<sp/>0;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>default<sp/>is<sp/>to<sp/>include<sp/>all<sp/>tones</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>pc_tonemask[i].rem<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>gates[i].on_delay<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>default<sp/>gate<sp/>always<sp/>on<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>gates[i].duration<sp/>=<sp/>32767;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs[i].ref<sp/>=<sp/>0.0;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>##DELAY_OFFS##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs[i].rem<sp/>=<sp/>0.0;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>##DELAY_OFFS##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs_pol[i][0].ref<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs_pol[i][1].ref<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs_pol[i][0].rem<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>delay_offs_pol[i][1].rem<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr<sp/>-&gt;<sp/>chid_rf[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy<sp/>(cb_ptr-&gt;<ref refid="structc__block_1a0929b88d9c4350a530823c72e4ef7306" kindref="member">chid</ref>,<sp/><ref refid="control_8h_1a88d4b0d51a88c8074d394a47bdfa408e" kindref="member">FCHARS</ref>,<sp/><ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>);<sp/></highlight><highlight class="comment">//<sp/>default<sp/>freq<sp/>codes<sp/>abc...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>/2+1;<sp/>i++)</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cb_ptr-&gt;<ref refid="structc__block_1a6ae4f2766e4f4c63ad5cb291894a5a36" kindref="member">clones</ref>[0][i]<sp/>=<sp/>cb_ptr-&gt;<ref refid="structc__block_1a6ae4f2766e4f4c63ad5cb291894a5a36" kindref="member">clones</ref>[1][i]<sp/>=<sp/>0;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>no<sp/>clones</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr-&gt;<ref refid="structc__block_1a0929b88d9c4350a530823c72e4ef7306" kindref="member">chid</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr-&gt;<ref refid="structc__block_1a6ae4f2766e4f4c63ad5cb291894a5a36" kindref="member">clones</ref>[0][<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>/2]<sp/>=<sp/>cb_ptr-&gt;<ref refid="structc__block_1a6ae4f2766e4f4c63ad5cb291894a5a36" kindref="member">clones</ref>[1][<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>/2]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
     </programlisting>
     <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/default_cblock.c"/>
   </compounddef>

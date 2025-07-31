@@ -232,7 +232,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="21" column="12" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="21" declcolumn="12"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="24" column="12" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="24" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a1509af0fb856111ee313879f84a5fc77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -253,7 +253,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="6" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/copy_cblock_parts.c" bodystart="17" bodyend="333" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="6" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="6" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/copy_cblock_parts.c" bodystart="17" bodyend="359" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="6" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a9c36a9fc6bb0ec18d292d2607710382e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -266,7 +266,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="7" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/create_fsm.c" bodystart="30" bodyend="127" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="7" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="7" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/create_fsm.c" bodystart="30" bodyend="136" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="7" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a68db5088343ba432982d15fddc5b4a21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -318,20 +318,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="9" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/default_cblock.c" bodystart="18" bodyend="153" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="9" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="10" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/default_cblock.c" bodystart="18" bodyend="164" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="10" declcolumn="5"/>
       </memberdef>
-      <memberdef kind="function" id="ffcontrol_8h_1ad96669c35f3eeca0d0153394f193357f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int fcode</definition>
-        <argsstring>(char c, char *codes)</argsstring>
-        <name>fcode</name>
+      <memberdef kind="function" id="ffcontrol_8h_1a5f7b3883bd8ecaa031acbaee597bcb14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void free_tokens</definition>
+        <argsstring>(int where)</argsstring>
+        <name>free_tokens</name>
         <param>
-          <type>char</type>
-          <declname>c</declname>
-        </param>
-        <param>
-          <type>char *</type>
-          <declname>codes</declname>
+          <type>int</type>
+          <declname>where</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -339,7 +335,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="26" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parser.c" bodystart="113" bodyend="121" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="26" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="13" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/init_tokens.c" bodystart="25" bodyend="29" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="13" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a76e607b480ca2fe15aea237c170478b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char *</type>
@@ -356,20 +352,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="10" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/get_bfstring.c" bodystart="26" bodyend="79" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="10" declcolumn="6"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="11" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/get_bfstring.c" bodystart="26" bodyend="79" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="11" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="ffcontrol_8h_1af773e7385850540b832aff590170ceb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>int</type>
-        <definition>int init_tokens</definition>
-        <argsstring>()</argsstring>
+      <memberdef kind="function" id="ffcontrol_8h_1a4cd6e0dbda1229a5ef4a394e1da29703" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void init_tokens</definition>
+        <argsstring>(int where)</argsstring>
         <name>init_tokens</name>
+        <param>
+          <type>int</type>
+          <declname>where</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="11" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/init_tokens.c" bodystart="24" bodyend="169" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="11" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="12" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/init_tokens.c" bodystart="43" bodyend="192" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="12" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1ae76ed1e347bf8e3a599366747f911a3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -386,7 +386,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="16" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="170" bodyend="190" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="16" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="18" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="170" bodyend="182" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="18" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a8f4eb4ff70ff5e27fc671b5f16cd288d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -407,7 +407,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="15" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="145" bodyend="159" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="15" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="17" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="145" bodyend="159" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="17" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1abca49c9d3308c7561e359a6791a1bfd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -428,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="14" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="110" bodyend="132" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="14" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="16" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="110" bodyend="132" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="16" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1ace2a0aa3ce2eba14f5465e23af306cd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -445,7 +445,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="12" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="27" bodyend="44" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="12" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="14" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="27" bodyend="44" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="14" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a75aa02c466ed2b254fe35c4a8b52804c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -466,7 +466,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="13" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="57" bodyend="98" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="13" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="15" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="57" bodyend="98" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="15" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1aded062758c98d3a296703cce34d87d41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -483,7 +483,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="17" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="193" bodyend="309" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="17" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="19" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/lex.c" bodystart="185" bodyend="304" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="19" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -500,12 +500,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="18" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/nullify_cblock.c" bodystart="19" bodyend="161" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="18" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="20" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/nullify_cblock.c" bodystart="20" bodyend="175" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="20" declcolumn="5"/>
       </memberdef>
-      <memberdef kind="function" id="ffcontrol_8h_1a804eebb12c988144bbacf70dd38d0caf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="ffcontrol_8h_1ad60782e1673608ef58f9c9536f0a0746" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
         <definition>int parse_control_file</definition>
-        <argsstring>(char *control_file_name, char **control_file_buff, char **set_string_buff)</argsstring>
+        <argsstring>(char *control_file_name, char **control_file_buff, char **set_string_buff, int where)</argsstring>
         <name>parse_control_file</name>
         <param>
           <type>char *</type>
@@ -519,13 +519,17 @@
           <type>char **</type>
           <declname>set_string_buff</declname>
         </param>
+        <param>
+          <type>int</type>
+          <declname>where</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="19" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="32" bodyend="107" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="19" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="21" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="34" bodyend="113" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="21" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a7190520c0d971601304fd6c9dff56bc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -541,7 +545,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="20" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parser.c" bodystart="128" bodyend="1197" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="20" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="23" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parser.c" bodystart="145" bodyend="1303" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="23" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a3c11e1e93b54435da7463f4344b1ff2a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -562,7 +566,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="22" column="13" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="22" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="26" column="13" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="26" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a1ed7b0d1282a3f66d11968aaeceb92aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -587,7 +591,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="23" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/read_control_file.c" bodystart="41" bodyend="156" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="23" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="27" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/read_control_file.c" bodystart="41" bodyend="156" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="27" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a3777b750fde85a11033720bd55366bf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -616,7 +620,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="24" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/skip_data.c" bodystart="29" bodyend="60" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="24" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="29" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/skip_data.c" bodystart="29" bodyend="60" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="29" declcolumn="5"/>
       </memberdef>
       <memberdef kind="function" id="ffcontrol_8h_1a053407e30227121ef5aa4d1f15f52746" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -637,7 +641,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="25" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/skip_index.c" bodystart="16" bodyend="39" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="25" declcolumn="5"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" line="30" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/skip_index.c" bodystart="16" bodyend="39" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h" declline="30" declcolumn="5"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -652,27 +656,32 @@
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a1509af0fb856111ee313879f84a5fc77" kindref="member">copy_cblock_parts</ref><sp/>(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>f,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>);</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a9c36a9fc6bb0ec18d292d2607710382e" kindref="member">create_fsm</ref>();</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a68db5088343ba432982d15fddc5b4a21" kindref="member">criteria_match</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>cb_ptr,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="fourfit3_8c_1a19437a5875428e719515fb20de8a6927" kindref="member">base</ref>[2],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>sour[31],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>group,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>time);</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1adb2d3007c1a3a5a5f94c8640c875fcd8" kindref="member">default_cblock</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref><sp/>*cb_ptr);</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="ffcontrol_8h_1a76e607b480ca2fe15aea237c170478b6" kindref="member">get_bfstring</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>barg);</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1af773e7385850540b832aff590170ceb0" kindref="member">init_tokens</ref>();</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1ace2a0aa3ce2eba14f5465e23af306cd0" kindref="member">is_keyword</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>next_token);</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a75aa02c466ed2b254fe35c4a8b52804c" kindref="member">is_timeval</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*next_token,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*i_value);</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1abca49c9d3308c7561e359a6791a1bfd7" kindref="member">is_integer</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*next_token,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*i_value);</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a8f4eb4ff70ff5e27fc671b5f16cd288d" kindref="member">is_float</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*next_token,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*f_value);</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1ae76ed1e347bf8e3a599366747f911a3c" kindref="member">is_char</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*next_token);</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1aded062758c98d3a296703cce34d87d41" kindref="member">lex</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>input_string);</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" kindref="member">nullify_cblock</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref><sp/>*cb_ptr);</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a804eebb12c988144bbacf70dd38d0caf" kindref="member">parse_control_file</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>control_file_name,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/><ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref>,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/><ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref>);</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a7190520c0d971601304fd6c9dff56bc2" kindref="member">parser</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>append_cblocks<sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref><sp/>**cb_start,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref><sp/>**cb_end,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>parsing_error<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>state_num,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ntok);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a1ed7b0d1282a3f66d11968aaeceb92aa" kindref="member">read_control_file</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>control_file_name,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>input_string,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>flag);</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a3777b750fde85a11033720bd55366bf2" kindref="member">skip_data</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>scantime,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>source,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>group);</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a053407e30227121ef5aa4d1f15f52746" kindref="member">skip_index</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ind,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>cblock);</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1ad96669c35f3eeca0d0153394f193357f" kindref="member">fcode</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>c,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*codes);</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>include<sp/>guard:<sp/>FFCONTROL_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a68db5088343ba432982d15fddc5b4a21" kindref="member">criteria_match</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>cb_ptr,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="fourfit3_8c_1a19437a5875428e719515fb20de8a6927" kindref="member">base</ref>[2],</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>sour[31],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>group,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>time);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1adb2d3007c1a3a5a5f94c8640c875fcd8" kindref="member">default_cblock</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref><sp/>*cb_ptr);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="ffcontrol_8h_1a76e607b480ca2fe15aea237c170478b6" kindref="member">get_bfstring</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>barg);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a4cd6e0dbda1229a5ef4a394e1da29703" kindref="member">init_tokens</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>where);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a5f7b3883bd8ecaa031acbaee597bcb14" kindref="member">free_tokens</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>where);<sp/></highlight><highlight class="comment">/*<sp/>stub<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1ace2a0aa3ce2eba14f5465e23af306cd0" kindref="member">is_keyword</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>next_token);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a75aa02c466ed2b254fe35c4a8b52804c" kindref="member">is_timeval</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*next_token,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*i_value);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1abca49c9d3308c7561e359a6791a1bfd7" kindref="member">is_integer</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*next_token,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*i_value);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a8f4eb4ff70ff5e27fc671b5f16cd288d" kindref="member">is_float</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*next_token,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*f_value);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1ae76ed1e347bf8e3a599366747f911a3c" kindref="member">is_char</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*next_token);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1aded062758c98d3a296703cce34d87d41" kindref="member">lex</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>input_string);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" kindref="member">nullify_cblock</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref><sp/>*cb_ptr);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1ad60782e1673608ef58f9c9536f0a0746" kindref="member">parse_control_file</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>control_file_name,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/><ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref>,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/><ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>where);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a7190520c0d971601304fd6c9dff56bc2" kindref="member">parser</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>append_cblocks<sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref><sp/>**cb_start,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref><sp/>**cb_end,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>parsing_error<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>state_num,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ntok);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a1ed7b0d1282a3f66d11968aaeceb92aa" kindref="member">read_control_file</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>control_file_name,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>input_string,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>flag);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a3777b750fde85a11033720bd55366bf2" kindref="member">skip_data</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>scantime,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>source,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>group);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a053407e30227121ef5aa4d1f15f52746" kindref="member">skip_index</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ind,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>cblock);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>int<sp/>fcode<sp/>(char<sp/>c,<sp/>char<sp/>*codes);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>include<sp/>guard:<sp/>FFCONTROL_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
     </programlisting>
     <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/ffcontrol.h"/>
   </compounddef>

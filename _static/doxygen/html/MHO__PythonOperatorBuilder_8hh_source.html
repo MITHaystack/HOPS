@@ -95,46 +95,43 @@ $(function() {
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">        </span>{</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a69adf0a5a08b4ac142aa650c8ba032aa">IsConfigurationOk</a>())</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <a class="code" href="MHO__Message_8hh.html#a1e1991911fa5625912e391fd7876c575">msg_debug</a>(<span class="stringliteral">&quot;initialization&quot;</span>, <span class="stringliteral">&quot;building python operator.&quot;</span> &lt;&lt; eom);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <a class="code" href="classhops_1_1MHO__PyGenericOperator.html">MHO_PyGenericOperator</a>* op = <span class="keyword">new</span> <a class="code" href="classhops_1_1MHO__PyGenericOperator.html">MHO_PyGenericOperator</a>();</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <a class="code" href="classhops_1_1MHO__PyGenericOperator.html">MHO_PyGenericOperator</a>* op = <span class="keyword">new</span> <a class="code" href="classhops_1_1MHO__PyGenericOperator.html">MHO_PyGenericOperator</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="comment">//pass the data container and parameter stores to the python operator</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="comment">// op-&gt;SetParameterStore(this-&gt;fParameterStore);</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="comment">// op-&gt;SetContainerStore(this-&gt;fContainerStore);</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__PyGenericOperator.html#ab25fce0911c02f35392527714bab8bba">SetFringeData</a>(this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a96641993c4ee83b5dcf7bebb8eab7fbf">fFringeData</a>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="comment">//retrieve pass the module/function name info from the control file</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                std::string op_name = this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a710c592e8aa8d33264aa78f5910efd8c">fFormat</a>[<span class="stringliteral">&quot;name&quot;</span>].get&lt; std::string &gt;();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                std::string op_category = this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a710c592e8aa8d33264aa78f5910efd8c">fFormat</a>[<span class="stringliteral">&quot;operator_category&quot;</span>].get&lt; std::string &gt;();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                std::string module_name = <a class="code" href="classhops_1_1MHO__OperatorBuilder.html#ae50472a8a3daeec0655cf85fdaaf35cf">fAttributes</a>[<span class="stringliteral">&quot;value&quot;</span>][<span class="stringliteral">&quot;module_name&quot;</span>].get&lt; std::string &gt;();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                std::string function_name = <a class="code" href="classhops_1_1MHO__OperatorBuilder.html#ae50472a8a3daeec0655cf85fdaaf35cf">fAttributes</a>[<span class="stringliteral">&quot;value&quot;</span>][<span class="stringliteral">&quot;function_name&quot;</span>].get&lt; std::string &gt;();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">double</span> priority = this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a710c592e8aa8d33264aa78f5910efd8c">fFormat</a>[<span class="stringliteral">&quot;priority&quot;</span>].get&lt; <span class="keywordtype">double</span> &gt;();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__Operator.html#ae336e78d21bfcdcb355bc9c057411859">SetPriority</a>(priority);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__Operator.html#a258fbfb617f811155923b477066fed85">SetName</a>(module_name + <span class="stringliteral">&quot;:&quot;</span> + function_name);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__PyGenericOperator.html#a954b8c8de11c685499b4cedd21775442">SetModuleName</a>(module_name);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__PyGenericOperator.html#a8a2eca9fed48579d5ca21890acf87b54">SetFunctionName</a>(function_name);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="comment">//TODO handle naming scheme for multiple python operators (should they have a name parameter?)</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordtype">bool</span> replace_duplicates = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a43237b05f41b152f504c987df53bd72b">fOperatorToolbox</a>-&gt;<a class="code" href="classhops_1_1MHO__OperatorToolbox.html#a8e3e76f459d0a295d3ddae9d58cd3840">AddOperator</a>(op, op-&gt;<a class="code" href="classhops_1_1MHO__Operator.html#ae944174d27ebc2a0978b3bad9e97cfca">GetName</a>(), op_category, replace_duplicates);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <a class="code" href="MHO__Message_8hh.html#acd8d50c6722941e40e21c59ffba48011">msg_error</a>(<span class="stringliteral">&quot;initialization&quot;</span>, <span class="stringliteral">&quot;cannot build python operator.&quot;</span> &lt;&lt; eom);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <span class="comment">//pass the data container and parameter stores to the python operator</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="comment">// op-&gt;SetParameterStore(this-&gt;fParameterStore);</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="comment">// op-&gt;SetContainerStore(this-&gt;fContainerStore);</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__PyGenericOperator.html#ab25fce0911c02f35392527714bab8bba">SetFringeData</a>(this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a96641993c4ee83b5dcf7bebb8eab7fbf">fFringeData</a>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="comment">//retrieve pass the module/function name info from the control file</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                std::string op_name = this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a710c592e8aa8d33264aa78f5910efd8c">fFormat</a>[<span class="stringliteral">&quot;name&quot;</span>].get&lt; std::string &gt;();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                std::string op_category = this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a710c592e8aa8d33264aa78f5910efd8c">fFormat</a>[<span class="stringliteral">&quot;operator_category&quot;</span>].get&lt; std::string &gt;();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                std::string module_name = <a class="code" href="classhops_1_1MHO__OperatorBuilder.html#ae50472a8a3daeec0655cf85fdaaf35cf">fAttributes</a>[<span class="stringliteral">&quot;value&quot;</span>][<span class="stringliteral">&quot;module_name&quot;</span>].get&lt; std::string &gt;();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                std::string function_name = <a class="code" href="classhops_1_1MHO__OperatorBuilder.html#ae50472a8a3daeec0655cf85fdaaf35cf">fAttributes</a>[<span class="stringliteral">&quot;value&quot;</span>][<span class="stringliteral">&quot;function_name&quot;</span>].get&lt; std::string &gt;();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordtype">double</span> priority = this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a710c592e8aa8d33264aa78f5910efd8c">fFormat</a>[<span class="stringliteral">&quot;priority&quot;</span>].get&lt; <span class="keywordtype">double</span> &gt;();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__Operator.html#ae336e78d21bfcdcb355bc9c057411859">SetPriority</a>(priority);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__Operator.html#a258fbfb617f811155923b477066fed85">SetName</a>(module_name + <span class="stringliteral">&quot;:&quot;</span> + function_name);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__PyGenericOperator.html#a954b8c8de11c685499b4cedd21775442">SetModuleName</a>(module_name);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                op-&gt;<a class="code" href="classhops_1_1MHO__PyGenericOperator.html#a8a2eca9fed48579d5ca21890acf87b54">SetFunctionName</a>(function_name);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="comment">//TODO handle naming scheme for multiple python operators (should they have a name parameter?)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordtype">bool</span> replace_duplicates = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                this-&gt;<a class="code" href="classhops_1_1MHO__OperatorBuilder.html#a43237b05f41b152f504c987df53bd72b">fOperatorToolbox</a>-&gt;<a class="code" href="classhops_1_1MHO__OperatorToolbox.html#a8e3e76f459d0a295d3ddae9d58cd3840">AddOperator</a>(op, op-&gt;<a class="code" href="classhops_1_1MHO__Operator.html#ae944174d27ebc2a0978b3bad9e97cfca">GetName</a>(), op_category, replace_duplicates);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <a class="code" href="MHO__Message_8hh.html#acd8d50c6722941e40e21c59ffba48011">msg_error</a>(<span class="stringliteral">&quot;initialization&quot;</span>, <span class="stringliteral">&quot;cannot build python operator.&quot;</span> &lt;&lt; eom);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;} <span class="comment">// namespace hops</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;} <span class="comment">// namespace hops</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif </span></div>
-<div class="ttc" id="aMHO__Message_8hh_html_a1e1991911fa5625912e391fd7876c575"><div class="ttname"><a href="MHO__Message_8hh.html#a1e1991911fa5625912e391fd7876c575">msg_debug</a></div><div class="ttdeci">#define msg_debug(xKEY, xCONTENT)</div><div class="ttdef"><b>Definition:</b> MHO_Message.hh:297</div></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif </span></div>
 <div class="ttc" id="aMHO__Message_8hh_html_acd8d50c6722941e40e21c59ffba48011"><div class="ttname"><a href="MHO__Message_8hh.html#acd8d50c6722941e40e21c59ffba48011">msg_error</a></div><div class="ttdeci">#define msg_error(xKEY, xCONTENT)</div><div class="ttdef"><b>Definition:</b> MHO_Message.hh:244</div></div>
 <div class="ttc" id="aMHO__OperatorBuilder_8hh_html"><div class="ttname"><a href="MHO__OperatorBuilder_8hh.html">MHO_OperatorBuilder.hh</a></div></div>
 <div class="ttc" id="aMHO__PyGenericOperator_8hh_html"><div class="ttname"><a href="MHO__PyGenericOperator_8hh.html">MHO_PyGenericOperator.hh</a></div></div>
@@ -165,7 +162,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

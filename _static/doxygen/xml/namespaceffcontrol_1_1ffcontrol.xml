@@ -399,7 +399,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="284" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="284" bodyend="292"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="285" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="285" bodyend="293"/>
       </memberdef>
       <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a99f21242802b2a3b466fd44ed402457d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structdef" kindref="compound">def</ref></type>
@@ -433,7 +433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="293" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="293" bodyend="310"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="294" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="294" bodyend="311"/>
       </memberdef>
       <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a70931e8c8dc064a920e6ed9ae8d15f9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structdef" kindref="compound">def</ref></type>
@@ -467,7 +467,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="254" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="254" bodyend="265"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="255" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="255" bodyend="266"/>
       </memberdef>
       <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a3c43d9861557e022c2fff862e973ec68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structdef" kindref="compound">def</ref></type>
@@ -485,7 +485,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="274" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="274" bodyend="283"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="275" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="275" bodyend="284"/>
       </memberdef>
       <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1abf84620bcb2b0ebf4e9ba29d3d18bfae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structdef" kindref="compound">def</ref></type>
@@ -502,7 +502,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="266" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="266" bodyend="273"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="267" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="267" bodyend="274"/>
       </memberdef>
       <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a6852ee618b36895c2c8c5e6770d27bff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structdef" kindref="compound">def</ref></type>
@@ -516,7 +516,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="212" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="212" bodyend="253"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="213" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="213" bodyend="254"/>
       </memberdef>
       <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a91e57c76f9171c15e1ace363a535c452" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structdef" kindref="compound">def</ref></type>
@@ -550,7 +550,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="311" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="311" bodyend="331"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="312" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="312" bodyend="332"/>
       </memberdef>
       <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a8a32cee72b98fca1af0532d1adffab07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structdef" kindref="compound">def</ref></type>
@@ -580,7 +580,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="332" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="332" bodyend="357"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="333" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="333" bodyend="358"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

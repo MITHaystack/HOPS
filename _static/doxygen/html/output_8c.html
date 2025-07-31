@@ -67,13 +67,18 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">output.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;glob.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="msg_8h_source.html">msg.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mk4__data_8h_source.html">mk4_data.h</a>&quot;</code><br />
@@ -88,11 +93,151 @@ $(function() {
 <code>#include &quot;<a class="el" href="write__lock__mechanism_8h_source.html">write_lock_mechanism.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="plot__data__dir_8h_source.html">plot_data_dir.h</a>&quot;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a0a3cc33a425ed3bb2335f95c074a4fcc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="output_8c.html#a0a3cc33a425ed3bb2335f95c074a4fcc">MSGRETURN0</a>(<a class="el" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>,  ARG,  ERR)</td></tr>
+<tr class="separator:a0a3cc33a425ed3bb2335f95c074a4fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62674fbd78a43945eb9efc156eac825b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="output_8c.html#a62674fbd78a43945eb9efc156eac825b">MSGRETURN1</a>(<a class="el" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>,  ARG,  ERR,  FRE)</td></tr>
+<tr class="separator:a62674fbd78a43945eb9efc156eac825b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad950f69c4aa4c821f9f10602ad486aef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="output_8c.html#ad950f69c4aa4c821f9f10602ad486aef">MSGRETURN2</a>(<a class="el" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>,  ARG,  ERR,  FR1,  FR2)</td></tr>
+<tr class="separator:ad950f69c4aa4c821f9f10602ad486aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:af2d4b10d37ace6f45e5b22e96b944c7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="output_8c.html#af2d4b10d37ace6f45e5b22e96b944c7b">output</a> (struct <a class="el" href="vex_8h.html#structvex">vex</a> *root, struct <a class="el" href="pass__struct_8h.html#structtype__pass">type_pass</a> *pass)</td></tr>
 <tr class="separator:af2d4b10d37ace6f45e5b22e96b944c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a0a3cc33a425ed3bb2335f95c074a4fcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a3cc33a425ed3bb2335f95c074a4fcc">&#9670;&nbsp;</a></span>MSGRETURN0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MSGRETURN0</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ARG, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ERR&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {\</div>
+<div class="line">    msg(<a class="code" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>,3,ARG);\</div>
+<div class="line">    fflush(stderr);<span class="keywordflow">return</span>(ERR);} <span class="keywordflow">while</span>(0)</div>
+<div class="ttc" id="aMHO__Message_8hh_html_a977fb55869ebbffea7d9e0626869a8f1"><div class="ttname"><a href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a></div><div class="ttdeci">#define STR(str)</div><div class="ttdef"><b>Definition:</b> MHO_Message.hh:21</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a62674fbd78a43945eb9efc156eac825b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62674fbd78a43945eb9efc156eac825b">&#9670;&nbsp;</a></span>MSGRETURN1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MSGRETURN1</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ARG, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ERR, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">FRE&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {\</div>
+<div class="line">    msg(<a class="code" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>,3,ARG);<span class="keywordflow">if</span>(FRE)free(FRE);\</div>
+<div class="line">    fflush(stderr);<span class="keywordflow">return</span>(ERR);} <span class="keywordflow">while</span>(0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad950f69c4aa4c821f9f10602ad486aef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad950f69c4aa4c821f9f10602ad486aef">&#9670;&nbsp;</a></span>MSGRETURN2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MSGRETURN2</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><a class="el" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ARG, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ERR, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">FR1, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">FR2&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {\</div>
+<div class="line">    msg(<a class="code" href="MHO__Message_8hh.html#a977fb55869ebbffea7d9e0626869a8f1">STR</a>,3,ARG);<span class="keywordflow">if</span>(FR1)free(FR1);<span class="keywordflow">if</span>(FR2)free(FR2);\</div>
+<div class="line">    fflush(stderr);<span class="keywordflow">return</span>(ERR);} <span class="keywordflow">while</span>(0)</div>
+</div><!-- fragment -->
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="af2d4b10d37ace6f45e5b22e96b944c7b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af2d4b10d37ace6f45e5b22e96b944c7b">&#9670;&nbsp;</a></span>output()</h2>
@@ -125,7 +270,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

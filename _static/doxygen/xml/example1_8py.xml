@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="example1_8py" kind="file" language="Python">
+    <compoundname>example1.py</compoundname>
+    <innernamespace refid="namespaceexample1">example1</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespaceexample1" refkind="compound"><highlight class="keyword">import</highlight><highlight class="normal"><sp/>pyMHO_Containers</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceexample1_1a3db0c416b643a1ad8a1f5b4ffeadf9d0" kindref="member">dummy</ref>(fringe_data_interface):</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/>param_interface_obj<sp/>=<sp/>fringe_data_interface.get_parameter_store()</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>ref_station_id<sp/>=<sp/>param_interface_obj.get_by_path(</highlight><highlight class="stringliteral">&quot;/ref_station/mk4id&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>rem_station_id<sp/>=<sp/>param_interface_obj.get_by_path(</highlight><highlight class="stringliteral">&quot;/rem_station/mk4id&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;reference<sp/>station&quot;</highlight><highlight class="normal">,<sp/>ref_station_id,<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>remote<sp/>station:<sp/>&quot;</highlight><highlight class="normal">,<sp/>rem_station_id)</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example1.py"/>
+  </compounddef>
+</doxygen>

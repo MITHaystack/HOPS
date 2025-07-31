@@ -1025,7 +1025,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="109" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/src/fill_aline.c" bodystart="24" bodyend="161" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" declline="109" declcolumn="12"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="109" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/src/fill_aline.c" bodystart="24" bodyend="167" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" declline="109" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="fringex_8h_1ab4eaa79e15392a8ae929e7d28667058d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

@@ -3593,7 +3593,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="155" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/init_000.c" bodystart="27" bodyend="94" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="155" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="155" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/init_000.c" bodystart="27" bodyend="84" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="155" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="mk4__dfio_8h_1aa11d07f94b4fe7e35439cb4d2c47a0f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -3619,7 +3619,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="156" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/open_datafile.c" bodystart="32" bodyend="126" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="156" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="156" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/open_datafile.c" bodystart="32" bodyend="127" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="156" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="mk4__dfio_8h_1acddcc424d1909109dbfeab3bc534e45a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -3837,7 +3837,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="167" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/write_mk4corel.c" bodystart="28" bodyend="114" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="167" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="167" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/write_mk4corel.c" bodystart="28" bodyend="115" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="167" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="mk4__dfio_8h_1a4483cf18b2ef7baf230c41f1211ecae8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -3858,7 +3858,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="168" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/write_mk4fringe.c" bodystart="25" bodyend="107" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="168" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="168" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/write_mk4fringe.c" bodystart="25" bodyend="108" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="168" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="mk4__dfio_8h_1a4eb6c936939c5cdd5bfef6169062f847" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -3898,7 +3898,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="170" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/write_mk4sdata.c" bodystart="26" bodyend="134" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="170" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" line="170" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/write_mk4sdata.c" bodystart="26" bodyend="135" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_dfio.h" declline="170" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="mk4__dfio_8h_1a34fdcb882b2987a9d2561165bbe923fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>

@@ -459,7 +459,7 @@
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="plot__header_8c_1ac8330845f1092175c146eba90f817d57" kindref="member">plot_header</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfrqexp" kindref="compound">frqexp</ref><sp/>fqex,<sp/><ref refid="structsrcsum" kindref="compound">srcsum</ref><sp/>*sptr)</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buf[100],<sp/>*dummy<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buf[100],<sp/>*<ref refid="namespaceexample1_1a3db0c416b643a1ad8a1f5b4ffeadf9d0" kindref="member">dummy</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>cpgsvp<sp/>(0.0,<sp/>1.0,<sp/>0.0,<sp/>0.9);</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
@@ -473,7 +473,7 @@
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>cpgsch<sp/>(1.0);</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>cpgscf<sp/>(2);</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>cpgslw<sp/>(2);</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>cpglab<sp/>(dummy,<sp/>dummy,<sp/>buf);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>cpglab<sp/>(<ref refid="namespaceexample1_1a3db0c416b643a1ad8a1f5b4ffeadf9d0" kindref="member">dummy</ref>,<sp/><ref refid="namespaceexample1_1a3db0c416b643a1ad8a1f5b4ffeadf9d0" kindref="member">dummy</ref>,<sp/>buf);</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>cpgscf<sp/>(1);</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>cpgslw<sp/>(1);</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>cpgiden();<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Doesn&apos;t<sp/>work!<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>

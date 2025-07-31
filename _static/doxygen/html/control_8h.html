@@ -241,15 +241,33 @@ cb_chain</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a0110ef1e2eae572bd64fb774ba385168"></a>char</td>
+<a id="a2ede4e60530e134757f7170ea943e666"></a>char</td>
 <td class="fieldname">
-chid[<a class="el" href="mk4__sizes_8h.html#af8269d8159f700256b8bd0fb67b5a882">MAXFREQ</a>]</td>
+chan_notches[<a class="el" href="param__struct_8h.html#ad7ece38e6d90386017888bdf649d9403">MAXNOTCH</a>+1]</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a0929b88d9c4350a530823c72e4ef7306"></a>char</td>
+<td class="fieldname">
+chid[<a class="el" href="mk4__sizes_8h.html#af8269d8159f700256b8bd0fb67b5a882">MAXFREQ</a>+1]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
 <a id="adf17d126984b5c9401587b135511aa89"></a>double</td>
 <td class="fieldname">
 chid_rf[<a class="el" href="mk4__sizes_8h.html#af8269d8159f700256b8bd0fb67b5a882">MAXFREQ</a>]</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a267b20b31d69d71b64da01699343e8d8"></a>int</td>
+<td class="fieldname">
+clone_snr_chk</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a6ae4f2766e4f4c63ad5cb291894a5a36"></a>char</td>
+<td class="fieldname">
+clones[2][<a class="el" href="mk4__sizes_8h.html#af8269d8159f700256b8bd0fb67b5a882">MAXFREQ</a>/2+1]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -277,6 +295,12 @@ delay_offs_pol[<a class="el" href="mk4__sizes_8h.html#af8269d8159f700256b8bd0fb6
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="a9147ed70197e6ac12cf68238fa08b189"></a>char</td>
+<td class="fieldname">
+display_chans[<a class="el" href="mk4__sizes_8h.html#af8269d8159f700256b8bd0fb67b5a882">MAXFREQ</a>+5]</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
 <a id="a0ba396197f1e475ea2299984b0766a83"></a>double</td>
 <td class="fieldname">
 dr_window[2]</td>
@@ -298,6 +322,12 @@ f_group</td>
 <a id="a9166b78a6e0ead14dfb5206f74e06c0e"></a>double</td>
 <td class="fieldname">
 fmatch_bw_pct</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a649884d78d1387ae014e6e929942e618"></a>char</td>
+<td class="fieldname">
+fringeout_dir[256]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -496,6 +526,12 @@ pc_tonemask[<a class="el" href="mk4__sizes_8h.html#af8269d8159f700256b8bd0fb67b5
 <a id="a2d5d02667c61abde863e80dffeda13a0"></a>char</td>
 <td class="fieldname">
 plot_data_dir[2][256]</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a0d0ec9de2e314381cb6a3d213c3c778c"></a>int</td>
+<td class="fieldname">
+polfringnames</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -1099,7 +1135,7 @@ on_delay</td>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

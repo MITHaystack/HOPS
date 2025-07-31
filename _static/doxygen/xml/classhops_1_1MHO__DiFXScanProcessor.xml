@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="233" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="233" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="241" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="241" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a5c25068a0566433e86cf817d0b20a2f0" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="250" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="250" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="258" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="258" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1ae1ce3b6e9d73f72e4c8cb893ccde9ef6" prot="private" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__DiFXChannelNameConstructor" kindref="compound">MHO_DiFXChannelNameConstructor</ref></type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="247" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="247" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="255" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="255" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1ae7816de7a891f92415a300d67f37b460" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="224" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="224" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="227" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="227" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a644023d91ffcbf63cd8f4b6574c1f676" prot="private" static="no" mutable="no">
         <type>std::map&lt; std::string, std::string &gt;</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="242" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="242" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="250" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="250" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a134d66e8201c8bc61fdff24a511d03dd" prot="private" static="no" mutable="no">
         <type>std::map&lt; std::string, std::string &gt;</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="243" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="243" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="251" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="251" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1af0b0c18d12b9c0635b973728a529666d" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -93,7 +93,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="227" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="227" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="230" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a19cc3a8bea1e9a79454b890c621909ac" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXScanProcessor::fExportAsMark4</definition>
+        <argsstring></argsstring>
+        <name>fExportAsMark4</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="232" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="232" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1ac7ac70fefa659d6c35d1da10d6d59dd4" prot="private" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__DiFXScanFileSet" kindref="compound">MHO_DiFXScanFileSet</ref> *</type>
@@ -106,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="198" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="198" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="201" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="201" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a4246c7a7c7e35e69493a9a573745298c" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt;</type>
@@ -119,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="255" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="255" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="263" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="263" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1ac8618c2e5da36ecfb5930d1178bb2f7d" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::string &gt;</type>
@@ -132,7 +145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="256" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="256" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="264" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="264" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1aef7fbb74d68006535d7d87dd6e18b23b" prot="private" static="no" mutable="no">
         <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
@@ -145,7 +158,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="220" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="220" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="223" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="223" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1ad23fc462f09319966dfb0b02225adbe3" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -158,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="228" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="228" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="231" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="231" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1ad7016968c3210aeb34434472c94d0d8a" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -171,7 +184,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="258" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="258" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="266" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="266" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1abf78901e6e0f8d32b432adfafbd17a29" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -184,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="231" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="231" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="239" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="239" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a9c15e21c20d2b9dde64185663786fe3b" prot="private" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__DiFXPCalProcessor" kindref="compound">MHO_DiFXPCalProcessor</ref></type>
@@ -197,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="234" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="234" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="242" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="242" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1ac00b1096819f263dc34ba07a55325be3" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -210,7 +223,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="249" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="249" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="257" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="257" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1aef625ac7469b9e40d3369924e241f3ab" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -223,7 +236,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="223" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="223" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="226" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1aa1bb2c63e21721d26ed25b7939a9ab73" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXScanProcessor::fRootJSON</definition>
+        <argsstring></argsstring>
+        <name>fRootJSON</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="236" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="236" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a440cce31bde3e029db21ba316fae6ef8" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -236,7 +262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="257" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="257" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="265" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="265" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a4ddfa325cd491c092378e1a749b80bd6" prot="private" static="no" mutable="no">
         <type>std::map&lt; std::string, <ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> * &gt;</type>
@@ -249,7 +275,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="237" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="237" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="245" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="245" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1aa848dc02c5e90d122b72aa963572281d" prot="private" static="no" mutable="no">
         <type>std::map&lt; std::string, <ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> * &gt;</type>
@@ -262,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="236" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="236" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="244" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="244" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1a62f622d0ff8fd038c95030e47f5c48c4" prot="private" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__StationCodeMap" kindref="compound">MHO_StationCodeMap</ref> *</type>
@@ -275,7 +301,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="194" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="194" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="197" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="197" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__DiFXScanProcessor_1aa7f5c774c25d85060c985109919d0737" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -288,7 +314,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="252" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="252" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="260" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="260" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -303,7 +329,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="29" bodyend="41"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="31" bodyend="44"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1ac65f2e5a6db0ff704b1445092f583803" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
@@ -316,7 +342,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="43" bodyend="43"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="46" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a8e7148d6557e9296d0930eefa7745b80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -333,7 +359,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="157" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="157" bodyend="157"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="160" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="160" bodyend="160"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a1c8bf812e5735ac85289f64601b5d054" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -363,7 +389,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="147" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="703" bodyend="736"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="150" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="723" bodyend="756"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1ae840003f60739ce490f4ef401ebbf28f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -391,7 +417,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="75" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="50" bodyend="72"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="75" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="53" bodyend="75"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a728890ad2de09019fc5b8255d3540ffb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -449,6 +475,32 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="62" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="62" bodyend="62"/>
       </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a3b58118ef73563985e6187fda852d64e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXScanProcessor::SetExportAsMark4False</definition>
+        <argsstring>()</argsstring>
+        <name>SetExportAsMark4False</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="108" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a0ac59a65e389e885695de1e4156ec0e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXScanProcessor::SetExportAsMark4True</definition>
+        <argsstring>()</argsstring>
+        <name>SetExportAsMark4True</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="107" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="107" bodyend="107"/>
+      </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a4442c8ab35cf2245601a72c4886f0d5b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void hops::MHO_DiFXScanProcessor::SetFreqGroups</definition>
@@ -475,7 +527,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="127" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="127" bodyend="127"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="130" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="130" bodyend="130"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a1e5ac96edce10a2889e18238583c7abc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -503,7 +555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="112" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="112" bodyend="120"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="115" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="115" bodyend="123"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a4111c77d448ebd333514de1a927e1cce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -559,7 +611,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="134" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="134" bodyend="138"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="137" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="137" bodyend="141"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1aeb4afcd29903a5857f862b63d1c00226" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -643,7 +695,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="69" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="45" bodyend="48"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="69" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="48" bodyend="51"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -697,7 +749,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="167" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="756" bodyend="787"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="170" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="759" bodyend="790"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1ad03c4e59c418b0b89f4400233ab1a926" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -785,7 +837,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="190" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="842" bodyend="881"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="193" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="845" bodyend="884"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a6b45de6cbff0c50150c1742211c37260" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -798,7 +850,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="209" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="494" bodyend="513"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="212" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="514" bodyend="533"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a38a88d61290c0b1c699357b47448f94e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -823,7 +875,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="211" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="883" bodyend="888"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="214" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="886" bodyend="891"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a9f51252e228b056ae67b1c6c98323adf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -852,7 +904,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="214" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="890" bodyend="895"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="217" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="893" bodyend="898"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a77edd8ece2312b0efb01d63959d30f9d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -865,7 +917,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="205" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="411" bodyend="492"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="208" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="417" bodyend="512"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a826894e51e375e8a79c4a47d6307a37d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -878,7 +930,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="203" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="189" bodyend="255"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="206" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="192" bodyend="261"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a265172550ad4b8253fa242bd1d1570a5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -895,7 +947,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="202" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="101" bodyend="187"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="205" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="104" bodyend="190"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a9df9aa308d2526f4dddf788913d03162" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -908,7 +960,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="200" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="74" bodyend="99"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="203" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="77" bodyend="102"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a9e0c580cc3731667d2f3b4960413c0a8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -921,7 +973,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="207" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="548" bodyend="564"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="210" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="568" bodyend="584"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a6c01e09504b74bb6480b980d97fe3e20" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -934,7 +986,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="208" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="566" bodyend="701"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="211" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="586" bodyend="721"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a0830d0993556c95f671030480353f179" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -947,7 +999,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="201" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="515" bodyend="546"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="204" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="535" bodyend="566"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1afdf1bcd6e22151a2f4cc1a27c31e59fd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1013,7 +1065,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="178" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="791" bodyend="839"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="181" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="794" bodyend="842"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1a8e690310568e63d84b51c71c22a20ee1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1026,7 +1078,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="204" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="257" bodyend="409"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="207" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="263" bodyend="415"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__DiFXScanProcessor_1ab97862174093d4548f9f2b361660d91d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1047,7 +1099,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="217" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="897" bodyend="1093"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="220" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXScanProcessor.cc" bodystart="900" bodyend="1096"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1060,7 +1112,7 @@
 </simplesect>
 </para>
     </detaileddescription>
-    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="44" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="45" bodyend="259"/>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" line="44" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanProcessor.hh" bodystart="45" bodyend="267"/>
     <listofallmembers>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a95c13d777f904e47dd14a2d970538cd1" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>apply_delay_model_clock_correction</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1ad03c4e59c418b0b89f4400233ab1a926" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>calculateZerothOrderParallacticAngle</name></member>
@@ -1080,6 +1132,7 @@
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a644023d91ffcbf63cd8f4b6574c1f676" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fDiFX2VexStationCodes</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a134d66e8201c8bc61fdff24a511d03dd" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fDiFX2VexStationNames</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1af0b0c18d12b9c0635b973728a529666d" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fExperNum</name></member>
+      <member refid="classhops_1_1MHO__DiFXScanProcessor_1a19cc3a8bea1e9a79454b890c621909ac" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fExportAsMark4</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1ac7ac70fefa659d6c35d1da10d6d59dd4" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fFileSet</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a4246c7a7c7e35e69493a9a573745298c" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fFreqBands</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1ac8618c2e5da36ecfb5930d1178bb2f7d" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fFreqGroups</name></member>
@@ -1090,6 +1143,7 @@
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a9c15e21c20d2b9dde64185663786fe3b" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fPCalProcessor</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1ac00b1096819f263dc34ba07a55325be3" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fPreserveDiFXScanNames</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1aef625ac7469b9e40d3369924e241f3ab" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fRootCode</name></member>
+      <member refid="classhops_1_1MHO__DiFXScanProcessor_1aa1bb2c63e21721d26ed25b7939a9ab73" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fRootJSON</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a440cce31bde3e029db21ba316fae6ef8" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fSelectByBandwidth</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a4ddfa325cd491c092378e1a749b80bd6" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fStationCode2Coords</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1aa848dc02c5e90d122b72aa963572281d" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>fStationCode2PCal</name></member>
@@ -1106,6 +1160,8 @@
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a728890ad2de09019fc5b8255d3540ffb" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>SetAttachDiFXInputFalse</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a371fb181976a0c60fbd512bdfe712097" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>SetAttachDiFXInputTrue</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1af5faf6dccb60528137578228701f758d" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>SetExperimentNumber</name></member>
+      <member refid="classhops_1_1MHO__DiFXScanProcessor_1a3b58118ef73563985e6187fda852d64e" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>SetExportAsMark4False</name></member>
+      <member refid="classhops_1_1MHO__DiFXScanProcessor_1a0ac59a65e389e885695de1e4156ec0e1" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>SetExportAsMark4True</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a4442c8ab35cf2245601a72c4886f0d5b" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>SetFreqGroups</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a1e5ac96edce10a2889e18238583c7abc" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>SetFrequencyBands</name></member>
       <member refid="classhops_1_1MHO__DiFXScanProcessor_1a4111c77d448ebd333514de1a927e1cce" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXScanProcessor</scope><name>SetNormalizeFalse</name></member>

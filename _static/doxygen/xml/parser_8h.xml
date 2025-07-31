@@ -143,7 +143,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="187" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="187" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="194" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="194" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a165f1f595a496744f235eb57a241041a" prot="public" static="no">
         <name>AND_</name>
@@ -198,7 +198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="182" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="182" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="189" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="189" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ae761facc48559b5247abe6b6a72f0e93" prot="public" static="no">
         <name>BASELINE_</name>
@@ -220,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="201" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="201" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="209" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="209" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ac3114f4d637dd8b9e95f1ea62aba330b" prot="public" static="no">
         <name>CASSEGRAIN_</name>
@@ -244,6 +244,17 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="145" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="145" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="define" id="parser_8h_1ac129990fa7b17b2fb5a3775463de6ba6" prot="public" static="no">
+        <name>CHAN_NOTCHES_</name>
+        <initializer>134</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="165" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="165" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="define" id="parser_8h_1af8af12b3ae1fec4053dde0c57e3f50d6" prot="public" static="no">
         <name>CHAN_PARAM</name>
         <initializer>22</initializer>
@@ -253,7 +264,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="188" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="188" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="195" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="195" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1af48dd0e438759fb58224f4100b93840d" prot="public" static="no">
         <name>CLEAR_CONDS</name>
@@ -264,7 +275,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="240" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="240" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="249" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="249" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a528f6dfd44873fe6ddecca80c35ce7ea" prot="public" static="no">
         <name>CLEAR_FREQS</name>
@@ -275,7 +286,29 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="243" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="243" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="252" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="252" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="parser_8h_1a6f38d5630ee24ea88f45949f458ea39a" prot="public" static="no">
+        <name>CLONE_IDS_</name>
+        <initializer>133</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="164" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="parser_8h_1a621e4f811d95170b405af05af36c5809" prot="public" static="no">
+        <name>CLONE_SNR_CHK_</name>
+        <initializer>135</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="166" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="166" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ae3172d6c9e63979c9f40176cd97112cc" prot="public" static="no">
         <name>DC_BLOCK_</name>
@@ -365,6 +398,17 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="69" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="69" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="define" id="parser_8h_1a8484226345ac169fcdce2404f4f80588" prot="public" static="no">
+        <name>DISPLAY_CHANS_</name>
+        <initializer>136</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="167" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="167" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="define" id="parser_8h_1ae4d7d8f875a03b9519c2730d8d0ba5d1" prot="public" static="no">
         <name>DR_WIN_</name>
         <initializer>26</initializer>
@@ -407,7 +451,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="210" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="210" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="218" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="218" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a9f9ba87b0033a8c56841200083855559" prot="public" static="no">
         <name>EOF_CLEANUP</name>
@@ -418,7 +462,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="229" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="229" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="238" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="238" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a9746cabc5aea236e7ccef2db79d22ef7" prot="public" static="no">
         <name>EST_PC_MANUAL_</name>
@@ -440,7 +484,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="185" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="185" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="192" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="192" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a4facb10599874ef8ca196a8056c3e667" prot="public" static="no">
         <name>F_GROUP_</name>
@@ -484,7 +528,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="173" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="173" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="180" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="180" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1af5579e24afdb0a707d14105f1965b7e3" prot="public" static="no">
         <name>FLOAT_</name>
@@ -506,7 +550,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="168" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="168" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="175" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="175" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a573008ea230363e9cb08e5cbe6d6907b" prot="public" static="no">
         <name>FMATCH_BW_PCT_</name>
@@ -530,6 +574,28 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="51" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="51" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="define" id="parser_8h_1a682e6a5afb62dfb0b10b2841beaea62c" prot="public" static="no">
+        <name>FRINGEOUT_DIR_</name>
+        <initializer>131</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="162" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="parser_8h_1a4fd0116244f70df68aef4d5dcec01e6e" prot="public" static="no">
+        <name>FRQS_</name>
+        <initializer>132</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="163" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="define" id="parser_8h_1a136370eb4c09ecdd45911741ef84cf54" prot="public" static="no">
         <name>GATES_</name>
         <initializer>48</initializer>
@@ -550,7 +616,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="233" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="233" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="242" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="242" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ab0531b386c99cbd17bf3d0ebfd3e7ba1" prot="public" static="no">
         <name>GEN_CF_RECORD_</name>
@@ -572,7 +638,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="192" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="192" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="199" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="199" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1adaf8b9a5f493eced49b78d0ce087a708" prot="public" static="no">
         <name>GREATER_THAN_</name>
@@ -594,7 +660,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="175" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="175" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="182" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="182" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a6470684dfed4aa735967ed3afee962e0" prot="public" static="no">
         <name>IF_</name>
@@ -627,7 +693,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="230" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="230" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="239" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="239" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a49456cacde35bae6745466f7ec10b747" prot="public" static="no">
         <name>INSERT_STRING</name>
@@ -638,7 +704,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="245" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="245" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="254" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="254" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ad6583460222fa4569448d8bc2e150bd5" prot="public" static="no">
         <name>INSERT_V_CHAR</name>
@@ -649,7 +715,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="241" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="241" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="250" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="250" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a704229e43d3b4f3f35cfb48e57a6fd03" prot="public" static="no">
         <name>INSERT_V_PAR</name>
@@ -660,7 +726,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="231" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="231" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="240" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="240" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a7cd8b2290447e586a3db92af68bef353" prot="public" static="no">
         <name>INT_</name>
@@ -682,7 +748,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="196" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="196" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="204" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="204" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ab4e5ee3f9b64a9207b83a7be06a6cf16" prot="public" static="no">
         <name>INT_PARAM</name>
@@ -693,7 +759,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="167" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="167" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="174" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="174" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a91d43eadec33c80149f92e5abf5df58c" prot="public" static="no">
         <name>INTEGER</name>
@@ -704,7 +770,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="172" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="172" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="179" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="179" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a94af8ff2fb3d7b14978249a6f1a006c4" prot="public" static="no">
         <name>INTERPOLATOR_</name>
@@ -792,7 +858,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="191" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="191" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="198" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="198" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aefdff33ba18886142a13bef485f1a3a0" prot="public" static="no">
         <name>LESS_THAN_</name>
@@ -847,7 +913,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="179" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="179" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="186" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="186" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a6b483562887ec71b2a65c6f5a48eff6e" prot="public" static="no">
         <name>MANY_CHAR_</name>
@@ -869,7 +935,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="176" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="176" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="183" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="183" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a9568de9296df1e94aeb0b7f24cc678a9" prot="public" static="no">
         <name>MAX_STATES</name>
@@ -880,18 +946,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="223" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="223" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="232" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="232" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a09886d6ba96e67553bf3c49ed8ade975" prot="public" static="no">
         <name>MAX_TOKENS</name>
-        <initializer>130  /* increase to equal or exceed # <ref refid="ffcontrol__module__extern_8c_1a5fa05140bf6690c8fea8250127dd3336" kindref="member">tokens</ref> */</initializer>
+        <initializer>137  /* increase to equal or exceed # <ref refid="ffcontrol__module__extern_8c_1a5fa05140bf6690c8fea8250127dd3336" kindref="member">tokens</ref> */</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="162" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="162" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="169" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="169" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a7f5f0e72155fdfcbf0de56bd9e8d9d6d" prot="public" static="no">
         <name>MAY_HAVE_TO</name>
@@ -902,7 +968,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="218" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="218" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="226" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="226" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aa203d7754c2de64254e2a06c4f2dc24b" prot="public" static="no">
         <name>MB_WIN_</name>
@@ -928,14 +994,14 @@
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a29c72bce69b64bf85445dd979d1c7783" prot="public" static="no">
         <name>MBDRPLOPT_</name>
-        <initializer>129</initializer>
+        <initializer>130</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="160" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="160" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="161" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="161" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1abe321e7966771ae1617c3e0a445ea56e" prot="public" static="no">
         <name>MIN_WEIGHT_</name>
@@ -1034,7 +1100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="219" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="219" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="227" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="227" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aede6c311f162625620f1e6dcfa7bb37f" prot="public" static="no">
         <name>NEED_BASELINE</name>
@@ -1045,7 +1111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="214" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="214" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="222" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="222" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a30a072baa1c21c9fa02c168dff02ce7b" prot="public" static="no">
         <name>NEED_CODES</name>
@@ -1056,7 +1122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="216" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="216" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="224" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="224" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aa4de6a1af4eea1d3aec58ed61fb12c5e" prot="public" static="no">
         <name>NEED_CONDITION</name>
@@ -1067,7 +1133,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="208" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="208" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="216" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="216" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aa359ce8002ce5d435cf1662ac454ebfb" prot="public" static="no">
         <name>NEED_F_GROUP</name>
@@ -1078,7 +1144,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="209" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="209" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="217" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="217" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a84c698128521d1d84e73ee351f78d889" prot="public" static="no">
         <name>NEED_FLOAT</name>
@@ -1089,7 +1155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="203" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="203" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="211" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="211" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a40c813b71b22807bad501567bb223c3a" prot="public" static="no">
         <name>NEED_INT</name>
@@ -1100,7 +1166,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="202" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="202" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="210" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="210" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a710ba7cfa206f71496d14fb052c2fe94" prot="public" static="no">
         <name>NEED_OR</name>
@@ -1111,7 +1177,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="217" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="217" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="225" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a69b0db21b9d06ce704eabe92c2274572" prot="public" static="no">
         <name>NEED_SCAN</name>
@@ -1122,7 +1188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="212" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="212" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="220" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="220" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aaef41944a9e76d8bf98364e97dea9426" prot="public" static="no">
         <name>NEED_SOURCE</name>
@@ -1133,7 +1199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="213" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="213" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="221" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="221" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a446cc6a7a66586213529968a87e1f48f" prot="public" static="no">
         <name>NEED_STATION</name>
@@ -1144,7 +1210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="211" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="211" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="219" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="219" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a8a1075d05fdcd3d1b48dd35b6626d7cd" prot="public" static="no">
         <name>NEED_STRING</name>
@@ -1155,7 +1221,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="222" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="222" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="230" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="parser_8h_1a00eafef993413baf1f984390bbd54c98" prot="public" static="no">
+        <name>NEED_STRING_CHANS</name>
+        <initializer>23</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="231" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="231" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a06451f83f5496b021e1d42c690dec61f" prot="public" static="no">
         <name>NEED_TWO_FLOAT_1</name>
@@ -1166,7 +1243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="204" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="204" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="212" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="212" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a66c92ddc22255a8b7c3de5469b064259" prot="public" static="no">
         <name>NEED_TWO_FLOAT_2</name>
@@ -1177,7 +1254,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="205" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="205" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="213" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="213" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a7ce4ab900b687359f4fea968085b8d37" prot="public" static="no">
         <name>NEED_VECTOR_CHAR</name>
@@ -1188,7 +1265,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="215" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="215" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="223" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="223" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a1200c74e45a6012175efced73b20bc12" prot="public" static="no">
         <name>NEED_VECTOR_FLOAT</name>
@@ -1199,7 +1276,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="207" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="207" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="215" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="215" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aba5ca91f4a8b5e7a8187b91f6f8ce7b0" prot="public" static="no">
         <name>NEED_VECTOR_INT</name>
@@ -1210,7 +1287,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="206" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="206" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="214" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="214" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ac6d1640fe6ae761dbb88c97a6bce76d3" prot="public" static="no">
         <name>NEED_VECTOR_STRING</name>
@@ -1221,7 +1298,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="220" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="220" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="228" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="228" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a9a049464e8a92abee85f29d2fece838e" prot="public" static="no">
         <name>NEED_VS_NUMBER</name>
@@ -1232,7 +1309,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="221" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="221" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="229" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="229" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a10f3b04b9e8311aac01fcf058309a111" prot="public" static="no">
         <name>NEGATE</name>
@@ -1243,7 +1320,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="234" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="234" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="243" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="parser_8h_1a8969fe2352b1191fd6fabaa841f4d7df" prot="public" static="no">
+        <name>NEW_CODES</name>
+        <initializer>21</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="256" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="256" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a6b6f5df80ba434292839e7e66aa5f658" prot="public" static="no">
         <name>NO_MOUNT_TYPE_</name>
@@ -1265,7 +1353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="227" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="227" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="236" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="236" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ad7434751973fa902493be8369a32deea" prot="public" static="no">
         <name>NOAUTOFRINGES_</name>
@@ -1298,7 +1386,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="186" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="186" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="193" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="193" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a507e7f50eea0043459b9ee9c4f858c89" prot="public" static="no">
         <name>NOT_</name>
@@ -1331,7 +1419,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="177" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="177" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="184" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="184" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ae681ee77edffd835292288f35a17d2b5" prot="public" static="no">
         <name>ONE_CHAR_</name>
@@ -1364,7 +1452,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="190" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="190" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="197" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="197" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a219a3aaa869060d9c15eb16e087f179e" prot="public" static="no">
         <name>OR_</name>
@@ -1386,7 +1474,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="174" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="174" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="181" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="181" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a54c6f9b769510cd03e05f352abd86751" prot="public" static="no">
         <name>PASSBAND_</name>
@@ -1619,6 +1707,17 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="144" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="144" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="define" id="parser_8h_1af5dbfb6002a5464fea86d2732aec0e61" prot="public" static="no">
+        <name>POLFRINGNAMES_</name>
+        <initializer>129</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="160" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="define" id="parser_8h_1a5bafffeed5dceb4a0e04eaa0e3cbcd99" prot="public" static="no">
         <name>POLYNOMIAL_</name>
         <initializer>56</initializer>
@@ -1639,7 +1738,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="232" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="232" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="241" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="241" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1acf16882a69e36ecef8a76889eaa90833" prot="public" static="no">
         <name>RA_OFFSET_</name>
@@ -1738,7 +1837,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="244" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="244" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="253" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="253" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ae955964b7eaeeeadff890734d18def52" prot="public" static="no">
         <name>SAVE_BASE</name>
@@ -1749,7 +1848,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="237" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="237" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="246" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="parser_8h_1a300f1c68e636416274ddbeca9d6b967a" prot="public" static="no">
+        <name>SAVE_CHAR_PARAM</name>
+        <initializer>30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="203" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1af313d556af413c34d4da449a34798758" prot="public" static="no">
         <name>SAVE_CODES</name>
@@ -1760,7 +1870,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="242" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="242" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="251" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="251" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ad0eb2d970e6b7863d50100e4780194b5" prot="public" static="no">
         <name>SAVE_CSV_LIST</name>
@@ -1771,7 +1881,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="246" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="246" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="255" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="255" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a7a3ee998e9e393cc90e8c4cfb64278a2" prot="public" static="no">
         <name>SAVE_FG</name>
@@ -1782,7 +1892,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="235" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="235" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="244" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="244" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aa32f2dcf608f96b71084901e3a17c32a" prot="public" static="no">
         <name>SAVE_SCAN</name>
@@ -1793,7 +1903,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="238" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="238" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="247" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="247" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a350624cf5065dfaddf7bb4f41dc519b0" prot="public" static="no">
         <name>SAVE_SOURCE</name>
@@ -1804,7 +1914,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="239" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="239" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="248" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="248" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a4a9adb8dfcd86ae737937c70ded2c6a1" prot="public" static="no">
         <name>SAVE_STAT</name>
@@ -1815,7 +1925,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="236" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="236" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="245" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="245" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a5985c522c6a896bb4820c27f1d5c31a0" prot="public" static="no">
         <name>SAVE_TOKEN_NUM</name>
@@ -1826,7 +1936,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="228" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="228" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="237" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="237" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a8bf69fd5a404f9869a856ff8e6271d7a" prot="public" static="no">
         <name>SB_WIN_</name>
@@ -1859,7 +1969,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="184" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="184" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="191" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="191" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ae8a4952855960a57124a1b8f7e6cbb59" prot="public" static="no">
         <name>SCAN_</name>
@@ -1925,7 +2035,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="183" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="183" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="190" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="190" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a8ef6cd558112f81227e40c11673af78a" prot="public" static="no">
         <name>SOURCE_</name>
@@ -1958,7 +2068,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="181" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="181" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="188" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="188" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a347a4c1e1471e676d6a8deab9862785e" prot="public" static="no">
         <name>STATION_</name>
@@ -2002,7 +2112,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="195" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="195" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="202" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="202" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1af822ca012be213fc5cdc92faa8e3baef" prot="public" static="no">
         <name>SWITCHED_</name>
@@ -2035,7 +2145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="180" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="180" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="187" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="187" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aadc25c37d515ad5d304502c44fcf56c8" prot="public" static="no">
         <name>TIME_VAL_</name>
@@ -2057,7 +2167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="193" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="193" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="200" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="200" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1aa9b4d6ee3a2dd13db0861edd8a2fd290" prot="public" static="no">
         <name>TO_</name>
@@ -2090,7 +2200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="178" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="178" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="185" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="185" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1ac35697ca5e97c9eb440dd1b9f42dbeb5" prot="public" static="no">
         <name>TWO_CHAR_</name>
@@ -2112,7 +2222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="169" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="169" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="176" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="176" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a4719ce7aa138bf824637f5f85a1b312f" prot="public" static="no">
         <name>USE_SAMPLES_</name>
@@ -2178,7 +2288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="189" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="189" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="196" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="196" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a50aa1ba3945ffc698f5cb61db0a0f2a2" prot="public" static="no">
         <name>VECTOR_FLOAT_PARAM</name>
@@ -2189,7 +2299,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="171" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="171" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="178" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="178" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a8089941cc7f4c74af0aad0f82aa78b6f" prot="public" static="no">
         <name>VECTOR_INT_PARAM</name>
@@ -2200,7 +2310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="170" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="170" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="177" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="177" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1a28c366101ee1f52c2186faf995b97551" prot="public" static="no">
         <name>VECTOR_STRING_PARAM</name>
@@ -2211,7 +2321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="194" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="194" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="201" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="201" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="parser_8h_1af76489fd91fd7b40d04939ade4e6cd4e" prot="public" static="no">
         <name>WEAK_CHANNEL_</name>
@@ -2444,95 +2554,105 @@
 <codeline lineno="157" refid="parser_8h_1a7df3ac8733484d0be7dbe9ebfcb94031" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MIXED_MODE_ROT_<sp/><sp/><sp/><sp/>126</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="158" refid="parser_8h_1ad7434751973fa902493be8369a32deea" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NOAUTOFRINGES_<sp/><sp/><sp/><sp/><sp/>127</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="159" refid="parser_8h_1a4bb06eac0ca82c437ac632807e3e3f82" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOD4NUMBERING_<sp/><sp/><sp/><sp/><sp/>128</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="160" refid="parser_8h_1a29c72bce69b64bf85445dd979d1c7783" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MBDRPLOPT_<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>129</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>add<sp/>new<sp/>tokens<sp/>at<sp/>the<sp/>bottom<sp/>of<sp/>the<sp/>list<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="162" refid="parser_8h_1a09886d6ba96e67553bf3c49ed8ade975" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_TOKENS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>130<sp/><sp/></highlight><highlight class="comment">/*<sp/>increase<sp/>to<sp/>equal<sp/>or<sp/>exceed<sp/>#<sp/>tokens<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="164"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Definitions<sp/>of<sp/>token<sp/>categories<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="166"><highlight class="normal"></highlight></codeline>
-<codeline lineno="167" refid="parser_8h_1ab4e5ee3f9b64a9207b83a7be06a6cf16" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INT_PARAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="168" refid="parser_8h_1ae6b401e34ffea76e115b32c232b2116c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLOAT_PARAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="169" refid="parser_8h_1a95c418bca49044e50f390b9c2955c1d7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TWO_FLOAT_PARAM<sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="170" refid="parser_8h_1a8089941cc7f4c74af0aad0f82aa78b6f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VECTOR_INT_PARAM<sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="171" refid="parser_8h_1a50aa1ba3945ffc698f5cb61db0a0f2a2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VECTOR_FLOAT_PARAM<sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="172" refid="parser_8h_1a91d43eadec33c80149f92e5abf5df58c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTEGER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="173" refid="parser_8h_1ae8690abbffa85934d64d545920e2b108" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLOAT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="174" refid="parser_8h_1a303a3b4b6cb38455acf5b288fbfd622e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PARAMETER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="175" refid="parser_8h_1ac138c68a0709c57bc5f7567abc1558eb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="176" refid="parser_8h_1a58b3e6cd80d3e3bff941d7b7f7dfbfbf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MATCH_ALL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="177" refid="parser_8h_1aaaa077d065115b02ae1fc89b0a242833" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ONE_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="178" refid="parser_8h_1a04b002e9c00b6ce2d9383f8f5bece2fe" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TWO_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="179" refid="parser_8h_1a6c14596df6f14e7c55adf22877299f21" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MANY_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="180" refid="parser_8h_1ae5edf03c8b04269edf63afc3057c1592" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIME_VAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="181" refid="parser_8h_1a9d84cb76c4d83e1453e40a14897228e1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STATION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="182" refid="parser_8h_1a7f75e0f0b14506d1bb91cdcb6516daed" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BASELINE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="183" refid="parser_8h_1a88cabaa30cba6807a1c75eaa7e4c188e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SOURCE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="184" refid="parser_8h_1a7b114f85cab70531adc738c2e499df6a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="185" refid="parser_8h_1aacbda055c445dacbfd21502f47961937" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_GROUP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="186" refid="parser_8h_1ad3e9fe0ec59d2dbb3982ababa042720c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NOT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="187" refid="parser_8h_1acd1b97556dfbbac61063a63031d2f91d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="188" refid="parser_8h_1af8af12b3ae1fec4053dde0c57e3f50d6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CHAN_PARAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>22</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="189" refid="parser_8h_1ac5ea58e43e86c454d1c527866aa99f48" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VECTOR_CHAR_PARAM<sp/><sp/><sp/>23</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="190" refid="parser_8h_1a3363ca4d6d3cc0230b2804280591c991" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>24</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="191" refid="parser_8h_1a46d8b45dad2bfd8f4d4e876d20e65a97" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LESS_THAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>25</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="192" refid="parser_8h_1a4d75bd4207a322aeb9b14557322dad9a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GREATER_THAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>26</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="193" refid="parser_8h_1af75a3636100d46e8e30e2797e2ec7471" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>27</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="194" refid="parser_8h_1a28c366101ee1f52c2186faf995b97551" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VECTOR_STRING_PARAM<sp/>28</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="195" refid="parser_8h_1a9135c9461c4870f9027c19bc5f7afbb5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STRING_PARAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>29</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="196" refid="parser_8h_1a0b6a52eac1528b5566241dd9ec5ecc98" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INT_CONST<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1048576</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="197"><highlight class="normal"></highlight></codeline>
-<codeline lineno="198"><highlight class="normal"></highlight></codeline>
-<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Definitions<sp/>of<sp/>various<sp/>FSM<sp/>states<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="200"><highlight class="normal"></highlight></codeline>
-<codeline lineno="201" refid="parser_8h_1a8f7b83e05b6d02730ba9742235d5f3a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BLOCK_INTERIOR<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="202" refid="parser_8h_1a40c813b71b22807bad501567bb223c3a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_INT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="203" refid="parser_8h_1a84c698128521d1d84e73ee351f78d889" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_FLOAT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="204" refid="parser_8h_1a06451f83f5496b021e1d42c690dec61f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_TWO_FLOAT_1<sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="205" refid="parser_8h_1a66c92ddc22255a8b7c3de5469b064259" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_TWO_FLOAT_2<sp/><sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="206" refid="parser_8h_1aba5ca91f4a8b5e7a8187b91f6f8ce7b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VECTOR_INT<sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="207" refid="parser_8h_1a1200c74e45a6012175efced73b20bc12" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VECTOR_FLOAT<sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="208" refid="parser_8h_1aa4de6a1af4eea1d3aec58ed61fb12c5e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_CONDITION<sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="209" refid="parser_8h_1aa359ce8002ce5d435cf1662ac454ebfb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_F_GROUP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="210" refid="parser_8h_1a216a83b1eaf55faee62e569b0a1929e5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>END_STATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="211" refid="parser_8h_1a446cc6a7a66586213529968a87e1f48f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_STATION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="212" refid="parser_8h_1a69b0db21b9d06ce704eabe92c2274572" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="213" refid="parser_8h_1aaef41944a9e76d8bf98364e97dea9426" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_SOURCE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="214" refid="parser_8h_1aede6c311f162625620f1e6dcfa7bb37f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_BASELINE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="215" refid="parser_8h_1a7ce4ab900b687359f4fea968085b8d37" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VECTOR_CHAR<sp/><sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="216" refid="parser_8h_1a30a072baa1c21c9fa02c168dff02ce7b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_CODES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="217" refid="parser_8h_1a710ba7cfa206f71496d14fb052c2fe94" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_OR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="218" refid="parser_8h_1a7f5f0e72155fdfcbf0de56bd9e8d9d6d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAY_HAVE_TO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="219" refid="parser_8h_1a12c1b9778c43988094aeaa1b25eec290" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_2ND_SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="220" refid="parser_8h_1ac6d1640fe6ae761dbb88c97a6bce76d3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VECTOR_STRING<sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="221" refid="parser_8h_1a9a049464e8a92abee85f29d2fece838e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VS_NUMBER<sp/><sp/><sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="222" refid="parser_8h_1a8a1075d05fdcd3d1b48dd35b6626d7cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_STRING<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>22</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="223" refid="parser_8h_1a9568de9296df1e94aeb0b7f24cc678a9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_STATES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>25<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Increase<sp/>to<sp/>equal<sp/>or<sp/>exceed<sp/>#<sp/>states<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="224"><highlight class="normal"></highlight></codeline>
-<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Definitions<sp/>of<sp/>FSM<sp/>actions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="226"><highlight class="normal"></highlight></codeline>
-<codeline lineno="227" refid="parser_8h_1a8623d9a06ad6dbcf3aa30c92d35b5cce" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NO_OP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="228" refid="parser_8h_1a5985c522c6a896bb4820c27f1d5c31a0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_TOKEN_NUM<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="229" refid="parser_8h_1a9f9ba87b0033a8c56841200083855559" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EOF_CLEANUP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="230" refid="parser_8h_1a677290e54e115f717b6774b64e246ae3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INSERT_PAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="231" refid="parser_8h_1a704229e43d3b4f3f35cfb48e57a6fd03" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INSERT_V_PAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="232" refid="parser_8h_1aa7e21a148b5df6edb08f52597f987d06" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POP_TOKEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="233" refid="parser_8h_1abe0be4658fb8366c80cdef6b13f474b4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GEN_CBLOCKS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="234" refid="parser_8h_1a10f3b04b9e8311aac01fcf058309a111" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEGATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="235" refid="parser_8h_1a7a3ee998e9e393cc90e8c4cfb64278a2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_FG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="236" refid="parser_8h_1a4a9adb8dfcd86ae737937c70ded2c6a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_STAT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="237" refid="parser_8h_1ae955964b7eaeeeadff890734d18def52" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_BASE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="238" refid="parser_8h_1aa32f2dcf608f96b71084901e3a17c32a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="239" refid="parser_8h_1a350624cf5065dfaddf7bb4f41dc519b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_SOURCE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="240" refid="parser_8h_1af48dd0e438759fb58224f4100b93840d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLEAR_CONDS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="241" refid="parser_8h_1ad6583460222fa4569448d8bc2e150bd5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INSERT_V_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="242" refid="parser_8h_1af313d556af413c34d4da449a34798758" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_CODES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="243" refid="parser_8h_1a528f6dfd44873fe6ddecca80c35ce7ea" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLEAR_FREQS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="244" refid="parser_8h_1ac27c00a556f72169a887a10a157b1bdc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_2ND_SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="245" refid="parser_8h_1a49456cacde35bae6745466f7ec10b747" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INSERT_STRING<sp/><sp/><sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="246" refid="parser_8h_1ad0eb2d970e6b7863d50100e4780194b5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_CSV_LIST<sp/><sp/><sp/><sp/><sp/><sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="247"><highlight class="normal"></highlight></codeline>
-<codeline lineno="248"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="160" refid="parser_8h_1af5dbfb6002a5464fea86d2732aec0e61" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POLFRINGNAMES_<sp/><sp/><sp/><sp/><sp/>129</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="parser_8h_1a29c72bce69b64bf85445dd979d1c7783" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MBDRPLOPT_<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>130</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="parser_8h_1a682e6a5afb62dfb0b10b2841beaea62c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FRINGEOUT_DIR_<sp/><sp/><sp/><sp/><sp/>131</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163" refid="parser_8h_1a4fd0116244f70df68aef4d5dcec01e6e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FRQS_<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>132</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="parser_8h_1a6f38d5630ee24ea88f45949f458ea39a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLONE_IDS_<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>133</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="parser_8h_1ac129990fa7b17b2fb5a3775463de6ba6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CHAN_NOTCHES_<sp/><sp/><sp/><sp/><sp/><sp/>134</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="parser_8h_1a621e4f811d95170b405af05af36c5809" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLONE_SNR_CHK_<sp/><sp/><sp/><sp/><sp/>135</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="parser_8h_1a8484226345ac169fcdce2404f4f80588" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHANS_<sp/><sp/><sp/><sp/><sp/>136</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>add<sp/>new<sp/>tokens<sp/>at<sp/>the<sp/>bottom<sp/>of<sp/>the<sp/>list<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="parser_8h_1a09886d6ba96e67553bf3c49ed8ade975" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_TOKENS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>137<sp/><sp/></highlight><highlight class="comment">/*<sp/>increase<sp/>to<sp/>equal<sp/>or<sp/>exceed<sp/>#<sp/>tokens<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Definitions<sp/>of<sp/>token<sp/>categories<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="parser_8h_1ab4e5ee3f9b64a9207b83a7be06a6cf16" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INT_PARAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175" refid="parser_8h_1ae6b401e34ffea76e115b32c232b2116c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLOAT_PARAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176" refid="parser_8h_1a95c418bca49044e50f390b9c2955c1d7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TWO_FLOAT_PARAM<sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="parser_8h_1a8089941cc7f4c74af0aad0f82aa78b6f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VECTOR_INT_PARAM<sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178" refid="parser_8h_1a50aa1ba3945ffc698f5cb61db0a0f2a2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VECTOR_FLOAT_PARAM<sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179" refid="parser_8h_1a91d43eadec33c80149f92e5abf5df58c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTEGER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180" refid="parser_8h_1ae8690abbffa85934d64d545920e2b108" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLOAT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181" refid="parser_8h_1a303a3b4b6cb38455acf5b288fbfd622e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PARAMETER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182" refid="parser_8h_1ac138c68a0709c57bc5f7567abc1558eb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="parser_8h_1a58b3e6cd80d3e3bff941d7b7f7dfbfbf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MATCH_ALL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="parser_8h_1aaaa077d065115b02ae1fc89b0a242833" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ONE_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185" refid="parser_8h_1a04b002e9c00b6ce2d9383f8f5bece2fe" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TWO_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186" refid="parser_8h_1a6c14596df6f14e7c55adf22877299f21" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MANY_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187" refid="parser_8h_1ae5edf03c8b04269edf63afc3057c1592" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIME_VAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188" refid="parser_8h_1a9d84cb76c4d83e1453e40a14897228e1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STATION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189" refid="parser_8h_1a7f75e0f0b14506d1bb91cdcb6516daed" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BASELINE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190" refid="parser_8h_1a88cabaa30cba6807a1c75eaa7e4c188e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SOURCE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="parser_8h_1a7b114f85cab70531adc738c2e499df6a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192" refid="parser_8h_1aacbda055c445dacbfd21502f47961937" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_GROUP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193" refid="parser_8h_1ad3e9fe0ec59d2dbb3982ababa042720c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NOT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194" refid="parser_8h_1acd1b97556dfbbac61063a63031d2f91d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195" refid="parser_8h_1af8af12b3ae1fec4053dde0c57e3f50d6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CHAN_PARAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>22</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196" refid="parser_8h_1ac5ea58e43e86c454d1c527866aa99f48" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VECTOR_CHAR_PARAM<sp/><sp/><sp/>23</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197" refid="parser_8h_1a3363ca4d6d3cc0230b2804280591c991" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>24</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198" refid="parser_8h_1a46d8b45dad2bfd8f4d4e876d20e65a97" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LESS_THAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>25</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="parser_8h_1a4d75bd4207a322aeb9b14557322dad9a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GREATER_THAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>26</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200" refid="parser_8h_1af75a3636100d46e8e30e2797e2ec7471" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>27</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201" refid="parser_8h_1a28c366101ee1f52c2186faf995b97551" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VECTOR_STRING_PARAM<sp/>28</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202" refid="parser_8h_1a9135c9461c4870f9027c19bc5f7afbb5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STRING_PARAM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>29</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="parser_8h_1a300f1c68e636416274ddbeca9d6b967a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_CHAR_PARAM<sp/><sp/><sp/><sp/><sp/>30</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204" refid="parser_8h_1a0b6a52eac1528b5566241dd9ec5ecc98" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INT_CONST<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1048576</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Definitions<sp/>of<sp/>various<sp/>FSM<sp/>states<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209" refid="parser_8h_1a8f7b83e05b6d02730ba9742235d5f3a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BLOCK_INTERIOR<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210" refid="parser_8h_1a40c813b71b22807bad501567bb223c3a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_INT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211" refid="parser_8h_1a84c698128521d1d84e73ee351f78d889" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_FLOAT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212" refid="parser_8h_1a06451f83f5496b021e1d42c690dec61f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_TWO_FLOAT_1<sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213" refid="parser_8h_1a66c92ddc22255a8b7c3de5469b064259" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_TWO_FLOAT_2<sp/><sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214" refid="parser_8h_1aba5ca91f4a8b5e7a8187b91f6f8ce7b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VECTOR_INT<sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215" refid="parser_8h_1a1200c74e45a6012175efced73b20bc12" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VECTOR_FLOAT<sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216" refid="parser_8h_1aa4de6a1af4eea1d3aec58ed61fb12c5e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_CONDITION<sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217" refid="parser_8h_1aa359ce8002ce5d435cf1662ac454ebfb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_F_GROUP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218" refid="parser_8h_1a216a83b1eaf55faee62e569b0a1929e5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>END_STATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219" refid="parser_8h_1a446cc6a7a66586213529968a87e1f48f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_STATION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="parser_8h_1a69b0db21b9d06ce704eabe92c2274572" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221" refid="parser_8h_1aaef41944a9e76d8bf98364e97dea9426" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_SOURCE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222" refid="parser_8h_1aede6c311f162625620f1e6dcfa7bb37f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_BASELINE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223" refid="parser_8h_1a7ce4ab900b687359f4fea968085b8d37" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VECTOR_CHAR<sp/><sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224" refid="parser_8h_1a30a072baa1c21c9fa02c168dff02ce7b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_CODES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225" refid="parser_8h_1a710ba7cfa206f71496d14fb052c2fe94" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_OR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226" refid="parser_8h_1a7f5f0e72155fdfcbf0de56bd9e8d9d6d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAY_HAVE_TO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227" refid="parser_8h_1a12c1b9778c43988094aeaa1b25eec290" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_2ND_SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228" refid="parser_8h_1ac6d1640fe6ae761dbb88c97a6bce76d3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VECTOR_STRING<sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229" refid="parser_8h_1a9a049464e8a92abee85f29d2fece838e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_VS_NUMBER<sp/><sp/><sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230" refid="parser_8h_1a8a1075d05fdcd3d1b48dd35b6626d7cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_STRING<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>22</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231" refid="parser_8h_1a00eafef993413baf1f984390bbd54c98" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEED_STRING_CHANS<sp/><sp/><sp/>23</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232" refid="parser_8h_1a9568de9296df1e94aeb0b7f24cc678a9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_STATES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>25<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Increase<sp/>to<sp/>equal<sp/>or<sp/>exceed<sp/>#<sp/>states<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Definitions<sp/>of<sp/>FSM<sp/>actions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236" refid="parser_8h_1a8623d9a06ad6dbcf3aa30c92d35b5cce" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NO_OP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="237" refid="parser_8h_1a5985c522c6a896bb4820c27f1d5c31a0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_TOKEN_NUM<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238" refid="parser_8h_1a9f9ba87b0033a8c56841200083855559" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EOF_CLEANUP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239" refid="parser_8h_1a677290e54e115f717b6774b64e246ae3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INSERT_PAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240" refid="parser_8h_1a704229e43d3b4f3f35cfb48e57a6fd03" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INSERT_V_PAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241" refid="parser_8h_1aa7e21a148b5df6edb08f52597f987d06" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POP_TOKEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="parser_8h_1abe0be4658fb8366c80cdef6b13f474b4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GEN_CBLOCKS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243" refid="parser_8h_1a10f3b04b9e8311aac01fcf058309a111" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEGATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244" refid="parser_8h_1a7a3ee998e9e393cc90e8c4cfb64278a2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_FG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245" refid="parser_8h_1a4a9adb8dfcd86ae737937c70ded2c6a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_STAT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246" refid="parser_8h_1ae955964b7eaeeeadff890734d18def52" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_BASE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247" refid="parser_8h_1aa32f2dcf608f96b71084901e3a17c32a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248" refid="parser_8h_1a350624cf5065dfaddf7bb4f41dc519b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_SOURCE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249" refid="parser_8h_1af48dd0e438759fb58224f4100b93840d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLEAR_CONDS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250" refid="parser_8h_1ad6583460222fa4569448d8bc2e150bd5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INSERT_V_CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251" refid="parser_8h_1af313d556af413c34d4da449a34798758" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_CODES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252" refid="parser_8h_1a528f6dfd44873fe6ddecca80c35ce7ea" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLEAR_FREQS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253" refid="parser_8h_1ac27c00a556f72169a887a10a157b1bdc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_2ND_SCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254" refid="parser_8h_1a49456cacde35bae6745466f7ec10b747" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INSERT_STRING<sp/><sp/><sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255" refid="parser_8h_1ad0eb2d970e6b7863d50100e4780194b5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SAVE_CSV_LIST<sp/><sp/><sp/><sp/><sp/><sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256" refid="parser_8h_1a8969fe2352b1191fd6fabaa841f4d7df" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NEW_CODES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h"/>
   </compounddef>

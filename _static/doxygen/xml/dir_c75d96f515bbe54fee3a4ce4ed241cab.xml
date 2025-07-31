@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_c75d96f515bbe54fee3a4ce4ed241cab" kind="dir">
     <compoundname>plugins</compoundname>
+    <innerfile refid="example1_8py">example1.py</innerfile>
     <innerfile refid="example2_8py">example2.py</innerfile>
     <innerfile refid="example3_8py">example3.py</innerfile>
     <briefdescription>

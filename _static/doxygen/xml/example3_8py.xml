@@ -21,9 +21,9 @@
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>plot_data<sp/>=<sp/>fringe_data_interface.get_plot_data()</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>param_interface_obj<sp/>=<sp/>fringe_data_interface.get_parameter_store()</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#get<sp/>the<sp/>reference<sp/>station<sp/>mk4id<sp/>(this<sp/>function<sp/>always<sp/>generates<sp/>pc_phases)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#as<sp/>if<sp/>they<sp/>were<sp/>for<sp/>the<sp/>reference_station</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>ref_station_id<sp/>=<sp/>param_interface_obj.get_by_path(</highlight><highlight class="stringliteral">&quot;/ref_station/mk4id&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#get<sp/>the<sp/>remote<sp/>station<sp/>mk4id<sp/>(this<sp/>function<sp/>always<sp/>generates<sp/>pc_phases)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#as<sp/>if<sp/>they<sp/>were<sp/>for<sp/>the<sp/>remote_station</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>rem_station_id<sp/>=<sp/>param_interface_obj.get_by_path(</highlight><highlight class="stringliteral">&quot;/rem_station/mk4id&quot;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#get<sp/>channel<sp/>label<sp/>and<sp/>phase</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>ch_labels<sp/>=<sp/>plot_data[</highlight><highlight class="stringliteral">&quot;PLOT_INFO&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;#Ch&quot;</highlight><highlight class="normal">]</highlight></codeline>
@@ -63,7 +63,7 @@
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chan_names<sp/>+=<sp/>elem</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase_list_str<sp/>+=<sp/>str(round(phase_corrections[elem],2)<sp/>)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;if<sp/>station&quot;</highlight><highlight class="normal">,<sp/>ref_station_id,<sp/></highlight><highlight class="stringliteral">&quot;<sp/>pc_phases<sp/>&quot;</highlight><highlight class="normal">,<sp/>chan_names,<sp/>phase_list_str)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;if<sp/>station&quot;</highlight><highlight class="normal">,<sp/>rem_station_id,<sp/></highlight><highlight class="stringliteral">&quot;<sp/>pc_phases<sp/>&quot;</highlight><highlight class="normal">,<sp/>chan_names,<sp/>phase_list_str)</highlight></codeline>
     </programlisting>
     <location file="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example3.py"/>
   </compounddef>

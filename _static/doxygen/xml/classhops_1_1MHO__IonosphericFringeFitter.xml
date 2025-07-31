@@ -809,6 +809,9 @@
         <childnode refid="81" relation="usage">
           <edgelabel>fNormFXOp</edgelabel>
         </childnode>
+        <childnode refid="42" relation="usage">
+          <edgelabel>fEnableCaching</edgelabel>
+        </childnode>
         <childnode refid="83" relation="usage">
           <edgelabel>fMSBNormFXOp</edgelabel>
         </childnode>
@@ -1048,11 +1051,13 @@
     <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_IonosphericFringeFitter.hh" line="21" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_IonosphericFringeFitter.hh" bodystart="22" bodyend="93"/>
     <listofallmembers>
       <member refid="classhops_1_1MHO__IonosphericFringeFitter_1a00021859be474bc5069fa7522b9c025f" prot="public" virt="virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>Accept</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeFitter_1ae696671b6b79dd8a99933fd63b1d16e3" prot="protected" virt="virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>Cache</name></member>
       <member refid="classhops_1_1MHO__IonosphericFringeFitter_1a6c6cb01da47447cc4b8f10e40807c2b0" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>calculate_approx_snr</name></member>
       <member refid="classhops_1_1MHO__BasicFringeFitter_1a98689ee536ea0b8bbace549370406160" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>coarse_fringe_search</name></member>
       <member refid="classhops_1_1MHO__BasicFringeFitter_1ab8d798db7e4134eef77c973b4819e886" prot="public" virt="virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>Configure</name></member>
       <member refid="classhops_1_1MHO__BasicFringeFitter_1aafa89e0f84923867a37587657f758eab" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>ContainsMixedSideband</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1aa4580b5aa98be362d47e3c129e54faf7" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>fContainerStore</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeFitter_1a8c202ff27a87c159a12304a17833d6ca" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>fEnableCaching</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1ad1f65ef397a9cff8b4d872a423749bd2" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>fFringeData</name></member>
       <member refid="classhops_1_1MHO__IonosphericFringeFitter_1a32cacaf342c183867d234ca3ff582eec" prot="public" virt="virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>Finalize</name></member>
       <member refid="classhops_1_1MHO__IonosphericFringeFitter_1a828c8338526fba86196b691f21742edb" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>fInitialSBWin</name></member>
@@ -1083,6 +1088,7 @@
       <member refid="classhops_1_1MHO__IonosphericFringeFitter_1ad5909791a8bf2f4099f9e06a41979e77" prot="public" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>MHO_IonosphericFringeFitter</name></member>
       <member refid="classhops_1_1MHO__BasicFringeFitter_1a0796e9ac42b8c2371648f30a10d943db" prot="public" virt="virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>PostRun</name></member>
       <member refid="classhops_1_1MHO__BasicFringeFitter_1ac9a9fb03262d63caef1c47af1a2bee8a" prot="public" virt="virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>PreRun</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeFitter_1a9427fe68d42a1fbe8b245221b9e07494" prot="protected" virt="virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>Refresh</name></member>
       <member refid="classhops_1_1MHO__IonosphericFringeFitter_1a8140fdfdaa8170938fb501427827e621" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>rjc_ion_search</name></member>
       <member refid="classhops_1_1MHO__IonosphericFringeFitter_1aba56fabb762a4ee3b775fea58c96aec6" prot="public" virt="virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>Run</name></member>
       <member refid="classhops_1_1MHO__BasicFringeFitter_1a1962234920eff8d92d0d2405d9ed7f21" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericFringeFitter</scope><name>sbd_data</name></member>

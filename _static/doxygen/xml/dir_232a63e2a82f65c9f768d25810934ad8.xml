@@ -6,7 +6,6 @@
     <innerfile refid="adler32__checksum_8c">adler32_checksum.c</innerfile>
     <innerfile refid="check__name_8c">check_name.c</innerfile>
     <innerfile refid="clear__date_8c">clear_date.c</innerfile>
-    <innerfile refid="clear__fstruct_8c">clear_fstruct.c</innerfile>
     <innerfile refid="confirm_8c">confirm.c</innerfile>
     <innerfile refid="datec__to__datef_8c">datec_to_datef.c</innerfile>
     <innerfile refid="datef__to__datec_8c">datef_to_datec.c</innerfile>

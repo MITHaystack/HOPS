@@ -131,8 +131,8 @@ $(function() {
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                    {</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        std::string ch_label = fIndexToChannelLabel[label_count];</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        std::string dummy; <span class="comment">//check if this channel was already labeled</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        <span class="keywordtype">bool</span> already_labeled = chan_axis_ptr-&gt;RetrieveIndexLabelKeyValue(i, <span class="stringliteral">&quot;channel_label&quot;</span>, dummy);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        std::string <a class="code" href="namespaceexample1.html#a3db0c416b643a1ad8a1f5b4ffeadf9d0">dummy</a>; <span class="comment">//check if this channel was already labeled</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        <span class="keywordtype">bool</span> already_labeled = chan_axis_ptr-&gt;RetrieveIndexLabelKeyValue(i, <span class="stringliteral">&quot;channel_label&quot;</span>, <a class="code" href="namespaceexample1.html#a3db0c416b643a1ad8a1f5b4ffeadf9d0">dummy</a>);</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        <span class="keywordflow">if</span>(!already_labeled)</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                        {</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                            chan_axis_ptr-&gt;InsertIndexLabelKeyValue(i, fChannelLabelKey, ch_label);</div>
@@ -249,11 +249,12 @@ $(function() {
 <div class="ttc" id="aclasshops_1_1MHO__ChannelLabeler_html_ab8700886919ea1c518f075587129ab87"><div class="ttname"><a href="classhops_1_1MHO__ChannelLabeler.html#ab8700886919ea1c518f075587129ab87">hops::MHO_ChannelLabeler::~MHO_ChannelLabeler</a></div><div class="ttdeci">virtual ~MHO_ChannelLabeler()</div><div class="ttdef"><b>Definition:</b> MHO_ChannelLabeler.hh:44</div></div>
 <div class="ttc" id="aclasshops_1_1MHO__ChannelLabeler_html_ad5aadccbc59bebabe2d4b02d58127994"><div class="ttname"><a href="classhops_1_1MHO__ChannelLabeler.html#ad5aadccbc59bebabe2d4b02d58127994">hops::MHO_ChannelLabeler::ExecuteInPlace</a></div><div class="ttdeci">virtual bool ExecuteInPlace(XArrayType *in) override</div><div class="ttdoc">Function ExecuteInPlace - attaches channel labels based on sky frequency or user specified map.</div><div class="ttdef"><b>Definition:</b> MHO_ChannelLabeler.hh:87</div></div>
 <div class="ttc" id="aclasshops_1_1MHO__UnaryOperator_html"><div class="ttname"><a href="classhops_1_1MHO__UnaryOperator.html">hops::MHO_UnaryOperator</a></div><div class="ttdoc">Class MHO_UnaryOperator.</div><div class="ttdef"><b>Definition:</b> MHO_UnaryOperator.hh:24</div></div>
+<div class="ttc" id="anamespaceexample1_html_a3db0c416b643a1ad8a1f5b4ffeadf9d0"><div class="ttname"><a href="namespaceexample1.html#a3db0c416b643a1ad8a1f5b4ffeadf9d0">example1.dummy</a></div><div class="ttdeci">def dummy(fringe_data_interface)</div><div class="ttdef"><b>Definition:</b> example1.py:3</div></div>
 <div class="ttc" id="anamespacehops_html"><div class="ttname"><a href="namespacehops.html">hops</a></div><div class="ttdef"><b>Definition:</b> MHO_ChannelLabeler.hh:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

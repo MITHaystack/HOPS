@@ -644,7 +644,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="16" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/fringename.c" bodystart="29" bodyend="97" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="16" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="16" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/fringename.c" bodystart="54" bodyend="135" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="16" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="mk4__afio_8h_1a3deb5a067e905e6eb299732fbc9ac3fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>char</type>

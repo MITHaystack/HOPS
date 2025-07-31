@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="11" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="11" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="11" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="11" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structfileset_1a2db7ed0d980f7ea6c3927289884c01d7" prot="public" static="no" mutable="no">
         <type><ref refid="structfstruct" kindref="compound">fstruct</ref></type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="15" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="15" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="16" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structfileset_1a14d23479117564d5fabb31a1890c678d" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -41,7 +41,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="14" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="14" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="12" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfileset_1a16f4429f8e092da838e6a9cb1b4fc5f4" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fileset::mxfiles[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>mxfiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="15" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="15" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structfileset_1aaeb98c6594107d61ed7ea3bbd6aa17bd" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -54,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="13" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="14" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structfileset_1af21ae88cc0cf2bfd27de3e12d9c48d85" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -67,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="10" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="10" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="10" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="10" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structfileset_1a4062ead97675b88a97ebe180b272d1ee" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -80,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="12" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="12" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="13" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="13" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -97,6 +110,7 @@
         <childnode refid="2" relation="usage">
           <edgelabel>expno</edgelabel>
           <edgelabel>maxfile</edgelabel>
+          <edgelabel>mxfiles</edgelabel>
         </childnode>
         <childnode refid="3" relation="usage">
           <edgelabel>rootname</edgelabel>
@@ -132,7 +146,7 @@
         <childnode refid="6" relation="usage">
           <edgelabel>filenum</edgelabel>
           <edgelabel>intparm</edgelabel>
-          <edgelabel>nalloc</edgelabel>
+          <edgelabel>namealloc</edgelabel>
           <edgelabel>order</edgelabel>
         </childnode>
       </node>
@@ -143,11 +157,12 @@
         <label>char</label>
       </node>
     </collaborationgraph>
-    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="8" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="9" bodyend="16"/>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="8" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="9" bodyend="17"/>
     <listofallmembers>
       <member refid="structfileset_1aa97284d05e1496152eebec876ee4f5ae" prot="public" virt="non-virtual"><scope>fileset</scope><name>expno</name></member>
       <member refid="structfileset_1a2db7ed0d980f7ea6c3927289884c01d7" prot="public" virt="non-virtual"><scope>fileset</scope><name>file</name></member>
       <member refid="structfileset_1a14d23479117564d5fabb31a1890c678d" prot="public" virt="non-virtual"><scope>fileset</scope><name>maxfile</name></member>
+      <member refid="structfileset_1a16f4429f8e092da838e6a9cb1b4fc5f4" prot="public" virt="non-virtual"><scope>fileset</scope><name>mxfiles</name></member>
       <member refid="structfileset_1aaeb98c6594107d61ed7ea3bbd6aa17bd" prot="public" virt="non-virtual"><scope>fileset</scope><name>rootname</name></member>
       <member refid="structfileset_1af21ae88cc0cf2bfd27de3e12d9c48d85" prot="public" virt="non-virtual"><scope>fileset</scope><name>scandir</name></member>
       <member refid="structfileset_1a4062ead97675b88a97ebe180b272d1ee" prot="public" virt="non-virtual"><scope>fileset</scope><name>scanname</name></member>

@@ -145,6 +145,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:ae696671b6b79dd8a99933fd63b1d16e3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__BasicFringeFitter.html#ae696671b6b79dd8a99933fd63b1d16e3">Cache</a> () override</td></tr>
+<tr class="separator:ae696671b6b79dd8a99933fd63b1d16e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98689ee536ea0b8bbace549370406160"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__BasicFringeFitter.html#a98689ee536ea0b8bbace549370406160">coarse_fringe_search</a> (bool set_windows=true)</td></tr>
 <tr class="memdesc:a98689ee536ea0b8bbace549370406160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs coarse search in delay/delay-rate space for fringe fitting.  <a href="classhops_1_1MHO__BasicFringeFitter.html#a98689ee536ea0b8bbace549370406160">More...</a><br /></td></tr>
 <tr class="separator:a98689ee536ea0b8bbace549370406160"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,9 +156,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a9508e0ae3528dc203cf49d30260d8c23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__BasicFringeFitter.html#a9508e0ae3528dc203cf49d30260d8c23">interpolate_peak</a> ()</td></tr>
 <tr class="memdesc:a9508e0ae3528dc203cf49d30260d8c23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs fine interpolation step to search for peak over a 5x5x5 grid around the peak.  <a href="classhops_1_1MHO__BasicFringeFitter.html#a9508e0ae3528dc203cf49d30260d8c23">More...</a><br /></td></tr>
 <tr class="separator:a9508e0ae3528dc203cf49d30260d8c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9427fe68d42a1fbe8b245221b9e07494"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__BasicFringeFitter.html#a9427fe68d42a1fbe8b245221b9e07494">Refresh</a> () override</td></tr>
+<tr class="separator:a9427fe68d42a1fbe8b245221b9e07494"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a8c202ff27a87c159a12304a17833d6ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__BasicFringeFitter.html#a8c202ff27a87c159a12304a17833d6ca">fEnableCaching</a></td></tr>
+<tr class="separator:a8c202ff27a87c159a12304a17833d6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af144357ab7f675dd33db4d4fe56639a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhops_1_1MHO__MBDelaySearch.html">MHO_MBDelaySearch</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__BasicFringeFitter.html#af144357ab7f675dd33db4d4fe56639a5">fMBDSearch</a></td></tr>
 <tr class="separator:af144357ab7f675dd33db4d4fe56639a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad26add6d5a71141d21fbf788ee35a183"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhops_1_1MHO__MixedSidebandNormFX.html">MHO_MixedSidebandNormFX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__BasicFringeFitter.html#ad26add6d5a71141d21fbf788ee35a183">fMSBNormFXOp</a></td></tr>
@@ -275,6 +281,33 @@ Protected Attributes</h2></td></tr>
 <p>Implements <a class="el" href="classhops_1_1MHO__FringeFitter.html#a21e99c6584831c290306318c2c1bd073">hops::MHO_FringeFitter</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classhops_1_1MHO__IonosphericFringeFitter.html#a00021859be474bc5069fa7522b9c025f">hops::MHO_IonosphericFringeFitter</a>.</p>
+
+</div>
+</div>
+<a id="ae696671b6b79dd8a99933fd63b1d16e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae696671b6b79dd8a99933fd63b1d16e3">&#9670;&nbsp;</a></span>Cache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hops::MHO_BasicFringeFitter::Cache </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classhops_1_1MHO__FringeFitter.html#ab36e1f2de255c799c2630ee87543af98">hops::MHO_FringeFitter</a>.</p>
 
 </div>
 </div>
@@ -557,6 +590,33 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a9427fe68d42a1fbe8b245221b9e07494"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9427fe68d42a1fbe8b245221b9e07494">&#9670;&nbsp;</a></span>Refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hops::MHO_BasicFringeFitter::Refresh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classhops_1_1MHO__FringeFitter.html#ad727e4c59def3a322c0c788af2fd9102">hops::MHO_FringeFitter</a>.</p>
+
+</div>
+</div>
 <a id="ac9000cc4ccbde299b9255ac5de8b54d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac9000cc4ccbde299b9255ac5de8b54d4">&#9670;&nbsp;</a></span>Run()</h2>
 
@@ -591,6 +651,28 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8c202ff27a87c159a12304a17833d6ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c202ff27a87c159a12304a17833d6ca">&#9670;&nbsp;</a></span>fEnableCaching</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hops::MHO_BasicFringeFitter::fEnableCaching</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="af144357ab7f675dd33db4d4fe56639a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af144357ab7f675dd33db4d4fe56639a5">&#9670;&nbsp;</a></span>fMBDSearch</h2>
 
@@ -796,7 +878,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

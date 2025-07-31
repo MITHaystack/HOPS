@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="142" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="142" bodyend="142"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="138" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="138" bodyend="138"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate_1a8d397427366568b1101a5eda4065b4d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type></type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="143" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="143" bodyend="143"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="139" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="139" bodyend="139"/>
       </memberdef>
       <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate_1abff01a540ab223ca83a61b6fd9dc994a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>bool</type>
@@ -48,14 +48,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="145" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="145" bodyend="149"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="141" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="141" bodyend="145"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="139" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="140" bodyend="150"/>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" line="135" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh" bodystart="136" bodyend="146"/>
     <listofallmembers>
       <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate_1ae624267fe7a2051192ccb1b70f5495ac" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterfaceReversed::chan_predicate</scope><name>chan_predicate</name></member>
       <member refid="classhops_1_1MHO__MK4StationInterfaceReversed_1_1chan__predicate_1abff01a540ab223ca83a61b6fd9dc994a" prot="public" virt="virtual"><scope>hops::MHO_MK4StationInterfaceReversed::chan_predicate</scope><name>operator()</name></member>

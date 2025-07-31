@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="51" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="51" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="42" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1af2c4ab8df819cbf751c796c0031fde7d" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="83" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="83" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="77" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="77" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a9f22f4d2161369cde07d309781a06276" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="85" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="85" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="79" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1afcb49d714671f1129722cbf4d78408bf" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="86" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="86" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="80" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a60888ec3971c6e49bd96bda5ca7d9fa0" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="87" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="87" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="81" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aefcb8c582c5cd62e7d6fe76bf15abd26" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="82" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="82" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="76" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a34acf33412797087d554e0a6b58af8b1" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="80" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="80" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="74" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aea8b4884b443a10d4549de084ee49dd9" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="84" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="84" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="78" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a3a11f780ca7ae83a57da841bafef3614" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="81" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="81" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="75" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a7032747ad2b374a1811d18e820182bfb" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -132,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="91" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="91" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="85" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="85" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1acb13bf40f45f3b31507604692d3e6086" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -145,7 +145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="90" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="90" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="84" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="84" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1acf2bffda72c897b2955a3ec3d5fa9288" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -158,7 +158,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="37" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1afa7aec728aad53f339dc6ccd57a75317" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structc__block" kindref="compound">c_block</ref> *</type>
@@ -171,12 +171,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="33" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="24" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="24" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structc__block_1a0110ef1e2eae572bd64fb774ba385168" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="structc__block_1a2ede4e60530e134757f7170ea943e666" prot="public" static="no" mutable="no">
         <type>char</type>
-        <definition>char c_block::chid[MAXFREQ]</definition>
-        <argsstring>[MAXFREQ]</argsstring>
+        <definition>char c_block::chan_notches[MAXNOTCH+1]</definition>
+        <argsstring>[MAXNOTCH+1]</argsstring>
+        <name>chan_notches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="89" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a0929b88d9c4350a530823c72e4ef7306" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::chid[MAXFREQ+1]</definition>
+        <argsstring>[MAXFREQ+1]</argsstring>
         <name>chid</name>
         <briefdescription>
         </briefdescription>
@@ -184,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="113" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="113" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="108" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="108" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1adf17d126984b5c9401587b135511aa89" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -197,7 +210,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="114" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="114" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="109" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a267b20b31d69d71b64da01699343e8d8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::clone_snr_chk</definition>
+        <argsstring></argsstring>
+        <name>clone_snr_chk</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="111" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a6ae4f2766e4f4c63ad5cb291894a5a36" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::clones[2][MAXFREQ/2+1]</definition>
+        <argsstring>[2][MAXFREQ/2+1]</argsstring>
+        <name>clones</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="110" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aac01ec0b94b64d2c34ed04cd4a1f00a2" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -210,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="77" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="77" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="71" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a41462db6cc8b61600345d612bde9af4b" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -223,7 +262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="70" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="70" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="64" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="64" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1af9f56633bde3053c35ad64b546b94d71" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -236,7 +275,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="97" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="90" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a22575c2489b5de8da2432a09f0f9a8a8" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -249,7 +288,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="98" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="90" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a9147ed70197e6ac12cf68238fa08b189" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::display_chans[MAXFREQ+5]</definition>
+        <argsstring>[MAXFREQ+5]</argsstring>
+        <name>display_chans</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="112" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a0ba396197f1e475ea2299984b0766a83" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -262,7 +314,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="67" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="67" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="61" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="61" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aa3b849f48f0d30939623684568fe85c4" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -275,7 +327,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="104" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="104" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="99" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="99" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a3edd51c2270cdd8033eceeb1a832b69e" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -288,7 +340,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="40" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="40" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a9166b78a6e0ead14dfb5206f74e06c0e" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -301,7 +353,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="112" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="112" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="107" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a649884d78d1387ae014e6e929942e618" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::fringeout_dir[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>fringeout_dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="123" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="123" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aefd3f62d073ea97a0080ef12701e8572" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structgat__struct" kindref="compound">gat_struct</ref></type>
@@ -314,7 +379,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="78" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="79" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="72" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a383a082add7fc5badcdbe83042dcfb67" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -327,7 +392,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="92" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="92" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="86" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1af29b1a4eefb0a9426bcb98845a3937f8" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -340,7 +405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="52" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a1373fc2cf778d3ac1a5516a52ed1f83f" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -353,7 +418,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="105" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="105" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="100" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="100" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1ac160d04a6e887807169c9392bbafb8f1" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -366,7 +431,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="71" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="71" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="65" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="65" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1ac675ca5bab6a82e45421968530df41ee" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -379,7 +444,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="73" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="73" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="67" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a7b1b010891f3e7fac8de77ca3d9629a2" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -392,7 +457,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="68" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="68" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="62" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="62" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a0db8b039cd82c161227254f44de0a7ad" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -405,7 +470,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="96" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="90" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a96ac09561a63e47ab116603edced26d9" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -418,7 +483,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="43" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="43" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="34" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="34" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a1f12c0546cea88e32f19dd3855927fce" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -431,7 +496,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="60" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1ac5ca554cab981630c4a702178d9a789a" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -444,7 +509,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="66" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="66" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="60" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="60" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a03ed01ffabf4f7a1d35a1f0e920e8002" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -457,7 +522,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="106" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="101" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a662e3ec1304ff6098cc211c6c1e9003d" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -470,7 +535,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="123" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="123" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="122" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="122" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a50de18918ce4a0c09b37ef07689abf1a" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -483,7 +548,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="49" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="49" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="40" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a13c2c00c255b973a5cc279c34c3f2182" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -496,7 +561,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="120" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="120" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="118" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="118" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a90e930a9ecebe098965ea32fd8819615" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -509,7 +574,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="122" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="122" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="120" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="120" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a6cbf9ecf2f44528342d2e3080263a237" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -522,7 +587,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="119" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="119" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="117" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="117" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aa13b64c175225c55e349e973836f5ef9" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -535,7 +600,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="93" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="93" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="87" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a20a6410dfc3e35c90b9818769349fa98" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -548,7 +613,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="121" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="121" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="119" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="119" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aa062c6d0fdd281e803a76d5cdb563935" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -561,7 +626,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="94" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="94" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="88" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a08cca6177dd98a079309f3ffa13cd986" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -574,7 +639,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="99" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="99" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="94" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="94" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a73addde4cbcbd377d1f22ca2f733680e" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -587,7 +652,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="78" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="78" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="72" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aa35555ce63668639e5a62a2942969b93" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -600,7 +665,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="89" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="89" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="83" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1acebe7155fc5d3c243fb70f91c7a9da6e" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -613,7 +678,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="111" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="111" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="106" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a56f805b864bed2ba864e21cd001b1dc5" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -626,7 +691,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="108" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="101" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a0ce6860363af42f10ee4392c23519a2d" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -639,7 +704,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="109" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="101" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a0b01950c509fd30f6fb87cbaa756e888" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -652,7 +717,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="55" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a7921106a8bdcc58991e483296d981bfd" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structistats" kindref="compound">istats</ref></type>
@@ -665,7 +730,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="53" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a8c7917c34b1a809c1412fce84e039e34" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structistats" kindref="compound">istats</ref></type>
@@ -678,7 +743,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="54" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a3360e10a8a5ff1e1c29ba30a3f2cfccc" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -691,7 +756,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="57" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -704,7 +769,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="56" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a5d7c990ae136886d5ce1412820d25c49" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structistats" kindref="compound">istats</ref></type>
@@ -717,7 +782,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="59" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="51" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a2d5d02667c61abde863e80dffeda13a0" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -730,7 +795,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="88" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="88" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="82" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a0d0ec9de2e314381cb6a3d213c3c778c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::polfringnames</definition>
+        <argsstring></argsstring>
+        <name>polfringnames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="121" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="121" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1af3d3a2a36b00854cf26d7b02f366e8c4" prot="public" static="no" mutable="no">
         <type>char *</type>
@@ -743,7 +821,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="100" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="100" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="95" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1af606985e9ef67d9d372132de6640129c" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -756,7 +834,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="69" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="69" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="63" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="63" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1ab1531f4dbd9642bc858cbff2f73e2351" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -769,7 +847,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="50" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="50" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="41" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a770ca4840da62327710454694b3b888d" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -782,7 +860,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="101" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="101" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="96" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="96" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a6011a7af5ec3da8fcb66c027d20f269d" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -795,7 +873,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="101" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="102" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="96" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="97" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a9768dfaed4bae878370d872b2f0d01c5" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -808,7 +886,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="65" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="65" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="59" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1abd22adaf8407d0129c6d9abd9f57b728" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -821,7 +899,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="41" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="41" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="32" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1ad7572e7b87010ec11e499c961c4f5d35" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -834,7 +912,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="48" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="48" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="39" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a7b9ac952c48e90fb0026a0f3f1891740" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -847,7 +925,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="39" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="39" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a7b7050b9c6534170ae26678249333543" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -860,7 +938,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="107" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="101" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="102" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a37976e62191a9cade3e4b0a690a89796" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -873,7 +951,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="74" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="74" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="68" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a204130c9a7cff6f7961a3b0ae1e46060" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -886,7 +964,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="75" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="75" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="69" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="69" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a6313374a22f707f51db3ac16511f4109" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -899,7 +977,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="95" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="90" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="90" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a9f4e841c60a3ba375292269a6d0442ad" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -912,7 +990,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="72" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="72" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="66" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a24a9d7c918eb439cd19f2fb9bbe44c51" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -925,7 +1003,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="76" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="76" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="70" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1acec71fe3c19fc4297561ee47cd73d963" prot="public" static="no" mutable="no">
         <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
@@ -938,7 +1016,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="116" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="117" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="114" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a972025f18a0e611fd859d25cfa2464e8" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -951,7 +1029,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="115" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="115" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="113" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="113" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a04c1c22ef63905d30f73dd44a13a40e0" prot="public" static="no" mutable="no">
         <type>char</type>
@@ -964,7 +1042,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="118" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="118" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="116" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a682498537b5396f1b2ed3890be64b29f" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -977,7 +1055,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="116" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="116" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="114" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="114" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1ad7d8a611b1fd9ddd4cf4c4729b0a4cfd" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -990,7 +1068,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="110" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="110" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="105" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="105" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a4261b6058cca532809519c5fcffce1d5" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -1003,7 +1081,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="61" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="61" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="54" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1a653fbac03f0a3d6fdb9c397aedf2f5f2" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -1016,7 +1094,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="63" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="63" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="56" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1aa8fa310b754316d588dc7fefda27bcdb" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -1029,7 +1107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="62" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="62" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="55" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structc__block_1ad43e027d8dbbdfb562057bc6ce0e3671" prot="public" static="no" mutable="no">
         <type>short</type>
@@ -1042,7 +1120,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="64" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="64" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="57" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="57" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1108,12 +1186,12 @@
           <edgelabel>adhoc_file_chans</edgelabel>
           <edgelabel>adhoc_flag_files</edgelabel>
           <edgelabel>baseline</edgelabel>
+          <edgelabel>chan_notches</edgelabel>
           <edgelabel>chid</edgelabel>
+          <edgelabel>clones</edgelabel>
+          <edgelabel>display_chans</edgelabel>
           <edgelabel>f_group</edgelabel>
-          <edgelabel>plot_data_dir</edgelabel>
-          <edgelabel>psamplers</edgelabel>
-          <edgelabel>sampler_codes</edgelabel>
-          <edgelabel>source</edgelabel>
+          <edgelabel>fringeout_dir</edgelabel>
           <edgelabel>...</edgelabel>
         </childnode>
         <childnode refid="5" relation="usage">
@@ -1125,13 +1203,13 @@
           <edgelabel>accept_sbs</edgelabel>
           <edgelabel>adhoc_phase</edgelabel>
           <edgelabel>avxplopt</edgelabel>
+          <edgelabel>clone_snr_chk</edgelabel>
           <edgelabel>est_pc_manual</edgelabel>
           <edgelabel>gen_cf_record</edgelabel>
           <edgelabel>interpolator</edgelabel>
           <edgelabel>ion_npts</edgelabel>
           <edgelabel>mbd_anchor</edgelabel>
           <edgelabel>mbdrplopt</edgelabel>
-          <edgelabel>mixed_mode_rot</edgelabel>
           <edgelabel>...</edgelabel>
         </childnode>
         <childnode refid="1" relation="usage">
@@ -1167,7 +1245,7 @@
         <label>char</label>
       </node>
     </collaborationgraph>
-    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="32" bodyend="124"/>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="23" bodyend="124"/>
     <listofallmembers>
       <member refid="structc__block_1aee6b5d4ebabd12f0933dd6813f3808a4" prot="public" virt="non-virtual"><scope>c_block</scope><name>accept_sbs</name></member>
       <member refid="structc__block_1af2c4ab8df819cbf751c796c0031fde7d" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_amp</name></member>
@@ -1182,16 +1260,21 @@
       <member refid="structc__block_1acb13bf40f45f3b31507604692d3e6086" prot="public" virt="non-virtual"><scope>c_block</scope><name>avxpzoom</name></member>
       <member refid="structc__block_1acf2bffda72c897b2955a3ec3d5fa9288" prot="public" virt="non-virtual"><scope>c_block</scope><name>baseline</name></member>
       <member refid="structc__block_1afa7aec728aad53f339dc6ccd57a75317" prot="public" virt="non-virtual"><scope>c_block</scope><name>cb_chain</name></member>
-      <member refid="structc__block_1a0110ef1e2eae572bd64fb774ba385168" prot="public" virt="non-virtual"><scope>c_block</scope><name>chid</name></member>
+      <member refid="structc__block_1a2ede4e60530e134757f7170ea943e666" prot="public" virt="non-virtual"><scope>c_block</scope><name>chan_notches</name></member>
+      <member refid="structc__block_1a0929b88d9c4350a530823c72e4ef7306" prot="public" virt="non-virtual"><scope>c_block</scope><name>chid</name></member>
       <member refid="structc__block_1adf17d126984b5c9401587b135511aa89" prot="public" virt="non-virtual"><scope>c_block</scope><name>chid_rf</name></member>
+      <member refid="structc__block_1a267b20b31d69d71b64da01699343e8d8" prot="public" virt="non-virtual"><scope>c_block</scope><name>clone_snr_chk</name></member>
+      <member refid="structc__block_1a6ae4f2766e4f4c63ad5cb291894a5a36" prot="public" virt="non-virtual"><scope>c_block</scope><name>clones</name></member>
       <member refid="structc__block_1aac01ec0b94b64d2c34ed04cd4a1f00a2" prot="public" virt="non-virtual"><scope>c_block</scope><name>dc_block</name></member>
       <member refid="structc__block_1a41462db6cc8b61600345d612bde9af4b" prot="public" virt="non-virtual"><scope>c_block</scope><name>dec_offset</name></member>
       <member refid="structc__block_1af9f56633bde3053c35ad64b546b94d71" prot="public" virt="non-virtual"><scope>c_block</scope><name>delay_offs</name></member>
       <member refid="structc__block_1a22575c2489b5de8da2432a09f0f9a8a8" prot="public" virt="non-virtual"><scope>c_block</scope><name>delay_offs_pol</name></member>
+      <member refid="structc__block_1a9147ed70197e6ac12cf68238fa08b189" prot="public" virt="non-virtual"><scope>c_block</scope><name>display_chans</name></member>
       <member refid="structc__block_1a0ba396197f1e475ea2299984b0766a83" prot="public" virt="non-virtual"><scope>c_block</scope><name>dr_window</name></member>
       <member refid="structc__block_1aa3b849f48f0d30939623684568fe85c4" prot="public" virt="non-virtual"><scope>c_block</scope><name>est_pc_manual</name></member>
       <member refid="structc__block_1a3edd51c2270cdd8033eceeb1a832b69e" prot="public" virt="non-virtual"><scope>c_block</scope><name>f_group</name></member>
       <member refid="structc__block_1a9166b78a6e0ead14dfb5206f74e06c0e" prot="public" virt="non-virtual"><scope>c_block</scope><name>fmatch_bw_pct</name></member>
+      <member refid="structc__block_1a649884d78d1387ae014e6e929942e618" prot="public" virt="non-virtual"><scope>c_block</scope><name>fringeout_dir</name></member>
       <member refid="structc__block_1aefd3f62d073ea97a0080ef12701e8572" prot="public" virt="non-virtual"><scope>c_block</scope><name>gates</name></member>
       <member refid="structc__block_1a383a082add7fc5badcdbe83042dcfb67" prot="public" virt="non-virtual"><scope>c_block</scope><name>gen_cf_record</name></member>
       <member refid="structc__block_1af29b1a4eefb0a9426bcb98845a3937f8" prot="public" virt="non-virtual"><scope>c_block</scope><name>index</name></member>
@@ -1225,6 +1308,7 @@
       <member refid="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_phase_offset</name></member>
       <member refid="structc__block_1a5d7c990ae136886d5ce1412820d25c49" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_tonemask</name></member>
       <member refid="structc__block_1a2d5d02667c61abde863e80dffeda13a0" prot="public" virt="non-virtual"><scope>c_block</scope><name>plot_data_dir</name></member>
+      <member refid="structc__block_1a0d0ec9de2e314381cb6a3d213c3c778c" prot="public" virt="non-virtual"><scope>c_block</scope><name>polfringnames</name></member>
       <member refid="structc__block_1af3d3a2a36b00854cf26d7b02f366e8c4" prot="public" virt="non-virtual"><scope>c_block</scope><name>psamplers</name></member>
       <member refid="structc__block_1af606985e9ef67d9d372132de6640129c" prot="public" virt="non-virtual"><scope>c_block</scope><name>ra_offset</name></member>
       <member refid="structc__block_1ab1531f4dbd9642bc858cbff2f73e2351" prot="public" virt="non-virtual"><scope>c_block</scope><name>ref_freq</name></member>

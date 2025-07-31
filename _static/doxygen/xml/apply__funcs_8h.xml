@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="24" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/adjust_snr.c" bodystart="96" bodyend="128" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="24" declcolumn="15"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="24" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/adjust_snr.c" bodystart="95" bodyend="129" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="24" declcolumn="15"/>
       </memberdef>
       <memberdef kind="function" id="apply__funcs_8h_1a1fcdb75c824f3d512af4efb62c707ce4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -169,7 +169,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_notches.c" bodystart="102" bodyend="186" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="13" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_notches.c" bodystart="108" bodyend="207" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="13" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="apply__funcs_8h_1a155d44ce851d17e5342c6cd53c9946c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

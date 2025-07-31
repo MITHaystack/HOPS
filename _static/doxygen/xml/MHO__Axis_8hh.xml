@@ -1148,6 +1148,8 @@
       <node id="174">
         <label>MHO_MK4CorelInterfaceReversed.hh</label>
         <link refid="MHO__MK4CorelInterfaceReversed_8hh"/>
+        <childnode refid="33" relation="include">
+        </childnode>
         <childnode refid="175" relation="include">
         </childnode>
         <childnode refid="149" relation="include">
@@ -1282,6 +1284,8 @@
       <node id="178">
         <label>MHO_MK4StationInterfaceReversed.hh</label>
         <link refid="MHO__MK4StationInterfaceReversed_8hh"/>
+        <childnode refid="166" relation="include">
+        </childnode>
         <childnode refid="149" relation="include">
         </childnode>
         <childnode refid="179" relation="include">

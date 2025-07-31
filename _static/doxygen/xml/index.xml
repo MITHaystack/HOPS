@@ -178,16 +178,21 @@
     <member refid="structc__block_1acb13bf40f45f3b31507604692d3e6086" kind="variable"><name>avxpzoom</name></member>
     <member refid="structc__block_1acf2bffda72c897b2955a3ec3d5fa9288" kind="variable"><name>baseline</name></member>
     <member refid="structc__block_1afa7aec728aad53f339dc6ccd57a75317" kind="variable"><name>cb_chain</name></member>
-    <member refid="structc__block_1a0110ef1e2eae572bd64fb774ba385168" kind="variable"><name>chid</name></member>
+    <member refid="structc__block_1a2ede4e60530e134757f7170ea943e666" kind="variable"><name>chan_notches</name></member>
+    <member refid="structc__block_1a0929b88d9c4350a530823c72e4ef7306" kind="variable"><name>chid</name></member>
     <member refid="structc__block_1adf17d126984b5c9401587b135511aa89" kind="variable"><name>chid_rf</name></member>
+    <member refid="structc__block_1a267b20b31d69d71b64da01699343e8d8" kind="variable"><name>clone_snr_chk</name></member>
+    <member refid="structc__block_1a6ae4f2766e4f4c63ad5cb291894a5a36" kind="variable"><name>clones</name></member>
     <member refid="structc__block_1aac01ec0b94b64d2c34ed04cd4a1f00a2" kind="variable"><name>dc_block</name></member>
     <member refid="structc__block_1a41462db6cc8b61600345d612bde9af4b" kind="variable"><name>dec_offset</name></member>
     <member refid="structc__block_1af9f56633bde3053c35ad64b546b94d71" kind="variable"><name>delay_offs</name></member>
     <member refid="structc__block_1a22575c2489b5de8da2432a09f0f9a8a8" kind="variable"><name>delay_offs_pol</name></member>
+    <member refid="structc__block_1a9147ed70197e6ac12cf68238fa08b189" kind="variable"><name>display_chans</name></member>
     <member refid="structc__block_1a0ba396197f1e475ea2299984b0766a83" kind="variable"><name>dr_window</name></member>
     <member refid="structc__block_1aa3b849f48f0d30939623684568fe85c4" kind="variable"><name>est_pc_manual</name></member>
     <member refid="structc__block_1a3edd51c2270cdd8033eceeb1a832b69e" kind="variable"><name>f_group</name></member>
     <member refid="structc__block_1a9166b78a6e0ead14dfb5206f74e06c0e" kind="variable"><name>fmatch_bw_pct</name></member>
+    <member refid="structc__block_1a649884d78d1387ae014e6e929942e618" kind="variable"><name>fringeout_dir</name></member>
     <member refid="structc__block_1aefd3f62d073ea97a0080ef12701e8572" kind="variable"><name>gates</name></member>
     <member refid="structc__block_1a383a082add7fc5badcdbe83042dcfb67" kind="variable"><name>gen_cf_record</name></member>
     <member refid="structc__block_1af29b1a4eefb0a9426bcb98845a3937f8" kind="variable"><name>index</name></member>
@@ -221,6 +226,7 @@
     <member refid="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" kind="variable"><name>pc_phase_offset</name></member>
     <member refid="structc__block_1a5d7c990ae136886d5ce1412820d25c49" kind="variable"><name>pc_tonemask</name></member>
     <member refid="structc__block_1a2d5d02667c61abde863e80dffeda13a0" kind="variable"><name>plot_data_dir</name></member>
+    <member refid="structc__block_1a0d0ec9de2e314381cb6a3d213c3c778c" kind="variable"><name>polfringnames</name></member>
     <member refid="structc__block_1af3d3a2a36b00854cf26d7b02f366e8c4" kind="variable"><name>psamplers</name></member>
     <member refid="structc__block_1af606985e9ef67d9d372132de6640129c" kind="variable"><name>ra_offset</name></member>
     <member refid="structc__block_1ab1531f4dbd9642bc858cbff2f73e2351" kind="variable"><name>ref_freq</name></member>
@@ -927,6 +933,7 @@
     <member refid="structfileset_1aa97284d05e1496152eebec876ee4f5ae" kind="variable"><name>expno</name></member>
     <member refid="structfileset_1a2db7ed0d980f7ea6c3927289884c01d7" kind="variable"><name>file</name></member>
     <member refid="structfileset_1a14d23479117564d5fabb31a1890c678d" kind="variable"><name>maxfile</name></member>
+    <member refid="structfileset_1a16f4429f8e092da838e6a9cb1b4fc5f4" kind="variable"><name>mxfiles</name></member>
     <member refid="structfileset_1aaeb98c6594107d61ed7ea3bbd6aa17bd" kind="variable"><name>rootname</name></member>
     <member refid="structfileset_1af21ae88cc0cf2bfd27de3e12d9c48d85" kind="variable"><name>scandir</name></member>
     <member refid="structfileset_1a4062ead97675b88a97ebe180b272d1ee" kind="variable"><name>scanname</name></member>
@@ -951,14 +958,18 @@
     <member refid="structfreq__corel_1a304d528feabdfeddf680e47a08b87687" kind="variable"><name>ch_lsb_rcp</name></member>
     <member refid="structfreq__corel_1aa847baec0da3ff20062ed8d995835f32" kind="variable"><name>ch_usb_lcp</name></member>
     <member refid="structfreq__corel_1a803f6e8f545fac9b0bc9f2cfb2704fb6" kind="variable"><name>ch_usb_rcp</name></member>
+    <member refid="structfreq__corel_1a223a2c8abc4d8d5fe5eb27c6acdbb12f" kind="variable"><name>corel_index</name></member>
     <member refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kind="variable"><name>data</name></member>
     <member refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" kind="variable"><name>data_alloc</name></member>
+    <member refid="structfreq__corel_1a457b9abce953217facee3d927440c9a1" kind="variable"><name>data_peers</name></member>
+    <member refid="structfreq__corel_1a3410fa55ff89891c2f06a1a9ac911075" kind="variable"><name>fcode_index</name></member>
     <member refid="structfreq__corel_1a932d416dc5899efbbc8b700f17de162d" kind="variable"><name>fgroup</name></member>
     <member refid="structfreq__corel_1a99a5c15e2518b197ef3408ae2a65e793" kind="variable"><name>freq_code</name></member>
     <member refid="structfreq__corel_1aa3a89400497ddcd5df56ce62c067dfa3" kind="variable"><name>frequency</name></member>
     <member refid="structfreq__corel_1a5c470da35f1cfd104f929340d42ec029" kind="variable"><name>index</name></member>
     <member refid="structfreq__corel_1a59f3e60d818c76137c153a93c43de49c" kind="variable"><name>mean_lcp_trk_err</name></member>
     <member refid="structfreq__corel_1a0803ab8df440d569e994460c1396b828" kind="variable"><name>mean_rcp_trk_err</name></member>
+    <member refid="structfreq__corel_1aac5bc39453cc4ff205da26e592d4fffa" kind="variable"><name>nsb_channels</name></member>
     <member refid="structfreq__corel_1a7fac770145f3c395b4b98eb7268e5a29" kind="variable"><name>pc_freqs</name></member>
     <member refid="structfreq__corel_1a2d9e821497cbbf1fab67da0df9fa7188" kind="variable"><name>trk_lcp</name></member>
     <member refid="structfreq__corel_1a74f00236cf118f51d51df195d871e076" kind="variable"><name>trk_rcp</name></member>
@@ -1150,8 +1161,8 @@
     <member refid="structfstruct_1a87f87ca61b5722c2a68521aa28e5e7ec" kind="variable"><name>floatparm</name></member>
     <member refid="structfstruct_1a27d07fcae29e21849c15ada683cc92d0" kind="variable"><name>freq_code</name></member>
     <member refid="structfstruct_1a6f47a027420f4bd19233431a81a9d497" kind="variable"><name>intparm</name></member>
-    <member refid="structfstruct_1a1230848eb75bd9545ee895dad319a45c" kind="variable"><name>nalloc</name></member>
     <member refid="structfstruct_1a629e521213a65490fe769b29f2e6b014" kind="variable"><name>name</name></member>
+    <member refid="structfstruct_1a6af1c9f00b9b6c2e329f4e4ef300a988" kind="variable"><name>namealloc</name></member>
     <member refid="structfstruct_1a7342dea4c48ad1856c47eb4d4a2d8575" kind="variable"><name>order</name></member>
     <member refid="structfstruct_1a394281bfe5461adbe46c03ca2f47cc72" kind="variable"><name>poln</name></member>
     <member refid="structfstruct_1a00739bd3f7047d7fdb826ebd2fdd03d7" kind="variable"><name>rootcode</name></member>
@@ -1562,6 +1573,7 @@
     <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a74cf09a928618eb8f5c8251b21b6231a" kind="function"><name>split_passes</name></member>
   </compound>
   <compound refid="classhops_1_1MHO__BasicFringeFitter" kind="class"><name>hops::MHO_BasicFringeFitter</name>
+    <member refid="classhops_1_1MHO__BasicFringeFitter_1a8c202ff27a87c159a12304a17833d6ca" kind="variable"><name>fEnableCaching</name></member>
     <member refid="classhops_1_1MHO__BasicFringeFitter_1af144357ab7f675dd33db4d4fe56639a5" kind="variable"><name>fMBDSearch</name></member>
     <member refid="classhops_1_1MHO__BasicFringeFitter_1ad26add6d5a71141d21fbf788ee35a183" kind="variable"><name>fMSBNormFXOp</name></member>
     <member refid="classhops_1_1MHO__BasicFringeFitter_1abae171c2eb5e6126f4cfc7d3f3e5e2a1" kind="variable"><name>fNormFXOp</name></member>
@@ -1581,9 +1593,11 @@
     <member refid="classhops_1_1MHO__BasicFringeFitter_1a0796e9ac42b8c2371648f30a10d943db" kind="function"><name>PostRun</name></member>
     <member refid="classhops_1_1MHO__BasicFringeFitter_1ac9a9fb03262d63caef1c47af1a2bee8a" kind="function"><name>PreRun</name></member>
     <member refid="classhops_1_1MHO__BasicFringeFitter_1ac9000cc4ccbde299b9255ac5de8b54d4" kind="function"><name>Run</name></member>
+    <member refid="classhops_1_1MHO__BasicFringeFitter_1ae696671b6b79dd8a99933fd63b1d16e3" kind="function"><name>Cache</name></member>
     <member refid="classhops_1_1MHO__BasicFringeFitter_1a98689ee536ea0b8bbace549370406160" kind="function"><name>coarse_fringe_search</name></member>
     <member refid="classhops_1_1MHO__BasicFringeFitter_1aafa89e0f84923867a37587657f758eab" kind="function"><name>ContainsMixedSideband</name></member>
     <member refid="classhops_1_1MHO__BasicFringeFitter_1a9508e0ae3528dc203cf49d30260d8c23" kind="function"><name>interpolate_peak</name></member>
+    <member refid="classhops_1_1MHO__BasicFringeFitter_1a9427fe68d42a1fbe8b245221b9e07494" kind="function"><name>Refresh</name></member>
   </compound>
   <compound refid="classhops_1_1MHO__BasicFringeInfo" kind="class"><name>hops::MHO_BasicFringeInfo</name>
     <member refid="classhops_1_1MHO__BasicFringeInfo_1a8dfa0326eecd2b67d1bc61709213ec35" kind="function"><name>MHO_BasicFringeInfo</name></member>
@@ -2406,6 +2420,7 @@
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ab8d7676d405d6642412ee0acf0aa6fb4" kind="variable"><name>fCorrDate</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ac1e0d88336742d2b96b8c42fcc5e1b09" kind="variable"><name>fDiFX2VexStationCodes</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1afa15e75c9abadb4a08011b43d7efbb7e" kind="variable"><name>fDiFX2VexStationNames</name></member>
+    <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a3639537b625fa6d6c2902f9a90ad6f4f" kind="variable"><name>fExportAsMark4</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ad5ec4c0d54f8917307909b0f0d9f0444" kind="variable"><name>fFreqBandLabelSet</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ade5eed95052fb1c2014929dd7f68d3f0" kind="variable"><name>fFreqBands</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ab73ee0f307e10959beba644c2a8c3111" kind="variable"><name>fFreqIndexSet</name></member>
@@ -2434,6 +2449,7 @@
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ae506d355a26cefb0d4bfd31863b28ba3" kind="variable"><name>fRootCode</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a1b5aea920cab1efc21473266e80b2873" kind="variable"><name>fScaleFactor</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1af385ded07738ca6cd354ba2e421916b8" kind="variable"><name>fSelectByBandwidth</name></member>
+    <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a27df18d1ba47fe8e228d240fad0780b0" kind="variable"><name>fSourceName</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a679d6590b07ece1bd8d84b4030dbbca8" kind="variable"><name>fSpecPointSet</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a0e1c446e2a4fc67b71eac366646789f8" kind="variable"><name>fStartMJD</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a8378cb1c298d05876539c3af33a69f1b" kind="variable"><name>fStartTime</name></member>
@@ -2461,6 +2477,8 @@
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a20e954ff105a2e610044cef630f8f9e3" kind="function"><name>SetDiFXCodes2VexCodes</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aeaf8c3caea36bfdda7af416f2fdbefad" kind="function"><name>SetDiFXCodes2VexNames</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a59a4d555e247d4559f1452d092b3ab57" kind="function"><name>SetDiFXInputData</name></member>
+    <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a18ccaa849680e100d2f86dc52df8d131" kind="function"><name>SetExportAsMark4False</name></member>
+    <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aaafa750a3e16cb146d444d60ee876c62" kind="function"><name>SetExportAsMark4True</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1acad8456535dad0f91717f797576b744b" kind="function"><name>SetFreqGroups</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a24b9d8f389280af27c91c77674ca3366" kind="function"><name>SetFrequencyBands</name></member>
     <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a350fa71223aec3b0880a8189d708e03a" kind="function"><name>SetOnlyBandwidth</name></member>
@@ -2513,6 +2531,7 @@
     <member refid="classhops_1_1MHO__DiFXInterface_1a39a2e3226324864c0e1ea8fe721476f8" kind="variable"><name>fAttachDiFXInput</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1a0b4e55b1eea06a6b763072c5889e9001" kind="variable"><name>fDirInterface</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1a7c36079df4cdafda8a652a756d116978" kind="variable"><name>fExperNum</name></member>
+    <member refid="classhops_1_1MHO__DiFXInterface_1a8f4c9a9eb3591c8b47a12c792f1cbdbf" kind="variable"><name>fExportAsMark4</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1a94f8c5ff57189e76ecc24692abacd0da" kind="variable"><name>fFreqBands</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1ac91bde2aa4442db47f494ccfd2734284" kind="variable"><name>fFreqGroups</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1a45f0ad6bbe34b8bba67937349fb2770d" kind="variable"><name>fInputDirectory</name></member>
@@ -2532,6 +2551,8 @@
     <member refid="classhops_1_1MHO__DiFXInterface_1a166a915132d8dc9683a8de61609cfe74" kind="function"><name>SetAttachDiFXInputFalse</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1a4caacd47508a9d8072876a817993ffab" kind="function"><name>SetAttachDiFXInputTrue</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1a6f57577d8d6427bf6a4718a3cc68f7fd" kind="function"><name>SetExperimentNumber</name></member>
+    <member refid="classhops_1_1MHO__DiFXInterface_1a53115b745c2211c326b64fc654d7946b" kind="function"><name>SetExportAsMark4False</name></member>
+    <member refid="classhops_1_1MHO__DiFXInterface_1aa9e47f2c4091ad60eccdaad3a993a500" kind="function"><name>SetExportAsMark4True</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1a48453de117add80b3f6480833efa9300" kind="function"><name>SetFreqGroups</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1ac5cb2d30961cd51f59edc0c9552ec009" kind="function"><name>SetFrequencyBands</name></member>
     <member refid="classhops_1_1MHO__DiFXInterface_1a705141bc710412cad98861dca0b9c3bf" kind="function"><name>SetInputDirectory</name></member>
@@ -2605,6 +2626,7 @@
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a644023d91ffcbf63cd8f4b6574c1f676" kind="variable"><name>fDiFX2VexStationCodes</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a134d66e8201c8bc61fdff24a511d03dd" kind="variable"><name>fDiFX2VexStationNames</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1af0b0c18d12b9c0635b973728a529666d" kind="variable"><name>fExperNum</name></member>
+    <member refid="classhops_1_1MHO__DiFXScanProcessor_1a19cc3a8bea1e9a79454b890c621909ac" kind="variable"><name>fExportAsMark4</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1ac7ac70fefa659d6c35d1da10d6d59dd4" kind="variable"><name>fFileSet</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a4246c7a7c7e35e69493a9a573745298c" kind="variable"><name>fFreqBands</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1ac8618c2e5da36ecfb5930d1178bb2f7d" kind="variable"><name>fFreqGroups</name></member>
@@ -2615,6 +2637,7 @@
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a9c15e21c20d2b9dde64185663786fe3b" kind="variable"><name>fPCalProcessor</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1ac00b1096819f263dc34ba07a55325be3" kind="variable"><name>fPreserveDiFXScanNames</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1aef625ac7469b9e40d3369924e241f3ab" kind="variable"><name>fRootCode</name></member>
+    <member refid="classhops_1_1MHO__DiFXScanProcessor_1aa1bb2c63e21721d26ed25b7939a9ab73" kind="variable"><name>fRootJSON</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a440cce31bde3e029db21ba316fae6ef8" kind="variable"><name>fSelectByBandwidth</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a4ddfa325cd491c092378e1a749b80bd6" kind="variable"><name>fStationCode2Coords</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1aa848dc02c5e90d122b72aa963572281d" kind="variable"><name>fStationCode2PCal</name></member>
@@ -2628,6 +2651,8 @@
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a728890ad2de09019fc5b8255d3540ffb" kind="function"><name>SetAttachDiFXInputFalse</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a371fb181976a0c60fbd512bdfe712097" kind="function"><name>SetAttachDiFXInputTrue</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1af5faf6dccb60528137578228701f758d" kind="function"><name>SetExperimentNumber</name></member>
+    <member refid="classhops_1_1MHO__DiFXScanProcessor_1a3b58118ef73563985e6187fda852d64e" kind="function"><name>SetExportAsMark4False</name></member>
+    <member refid="classhops_1_1MHO__DiFXScanProcessor_1a0ac59a65e389e885695de1e4156ec0e1" kind="function"><name>SetExportAsMark4True</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a4442c8ab35cf2245601a72c4886f0d5b" kind="function"><name>SetFreqGroups</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a1e5ac96edce10a2889e18238583c7abc" kind="function"><name>SetFrequencyBands</name></member>
     <member refid="classhops_1_1MHO__DiFXScanProcessor_1a4111c77d448ebd333514de1a927e1cce" kind="function"><name>SetNormalizeFalse</name></member>
@@ -3100,6 +3125,8 @@
     <member refid="classhops_1_1MHO__FringeFitter_1a1f5d68aca05e2d073a4c0a4e4d2669db" kind="function"><name>PostRun</name></member>
     <member refid="classhops_1_1MHO__FringeFitter_1ae7ba8747965b781e1b3513ee66196bb4" kind="function"><name>PreRun</name></member>
     <member refid="classhops_1_1MHO__FringeFitter_1a13a538c0e673ada9797bc7571da73573" kind="function"><name>Run</name></member>
+    <member refid="classhops_1_1MHO__FringeFitter_1ab36e1f2de255c799c2630ee87543af98" kind="function"><name>Cache</name></member>
+    <member refid="classhops_1_1MHO__FringeFitter_1ad727e4c59def3a322c0c788af2fd9102" kind="function"><name>Refresh</name></member>
   </compound>
   <compound refid="classhops_1_1MHO__FringeFitterFactory" kind="class"><name>hops::MHO_FringeFitterFactory</name>
     <member refid="classhops_1_1MHO__FringeFitterFactory_1a1deb2b6ebe41d1b64533e8d00c1ddabb" kind="variable"><name>fFringeData</name></member>
@@ -4959,6 +4986,7 @@
     <member refid="classhops_1_1MHO__OperatorBuilderManager_1a21f4516d641876a9ce3892f0b997bd70" kind="function"><name>BuildOperatorCategory</name></member>
     <member refid="classhops_1_1MHO__OperatorBuilderManager_1acb2a099082519fa8b158548edeac0727" kind="function"><name>BuildOperatorCategory</name></member>
     <member refid="classhops_1_1MHO__OperatorBuilderManager_1a717fee40b605e74f944ff3014dc1adf3" kind="function"><name>CreateDefaultBuilders</name></member>
+    <member refid="classhops_1_1MHO__OperatorBuilderManager_1aee6fd6a47c21d83afbd3abe8f2668147" kind="function"><name>GetNBuildersInCategory</name></member>
     <member refid="classhops_1_1MHO__OperatorBuilderManager_1ae5fe234a1b7e5b146976a88c848f1756" kind="function"><name>SetControlStatements</name></member>
     <member refid="classhops_1_1MHO__OperatorBuilderManager_1a583c21826a126efdc7129a5ce5b62dcc" kind="function"><name>AddBuilderTypeWithFormat</name></member>
     <member refid="classhops_1_1MHO__OperatorBuilderManager_1a20c6dd670da103b6fd3ba9cf1ce22439" kind="function"><name>CreateNullFormatBuilders</name></member>
@@ -8096,6 +8124,7 @@
     <member refid="structtype__meta_1a165876d290f421897bcc948be1862de4" kind="variable"><name>exper_num</name></member>
     <member refid="structtype__meta_1af0c6c8caf837f08408abe9963fda1635" kind="variable"><name>ff_time</name></member>
     <member refid="structtype__meta_1a7bab1721872eb2186487f65994ff9c2a" kind="variable"><name>fourfitcmd</name></member>
+    <member refid="structtype__meta_1a2aac4210d4ae83b97009ba11a145b43f" kind="variable"><name>limit_plot</name></member>
     <member refid="structtype__meta_1a7b70699220a70e49aeeaf8c92af66bd9" kind="variable"><name>nplots</name></member>
     <member refid="structtype__meta_1ae6f40aecd445903ac3ab79653658c598" kind="variable"><name>pass_frt</name></member>
     <member refid="structtype__meta_1a60ebf032d7bf6401b0557997ca7b4066" kind="variable"><name>pass_start</name></member>
@@ -8103,7 +8132,9 @@
     <member refid="structtype__meta_1aac02380271cfe416e42785f6f5287f9f" kind="variable"><name>polstr</name></member>
     <member refid="structtype__meta_1a172dfe0bb96f69acb79eb5cf26a5d6ef" kind="variable"><name>ra</name></member>
     <member refid="structtype__meta_1ac51706098428d5c9af887808bd2c076a" kind="variable"><name>rt_sn_bl</name></member>
+    <member refid="structtype__meta_1ae615d350d94cf2befba7b79dd7581b68" kind="variable"><name>skip_plots</name></member>
     <member refid="structtype__meta_1a4c809fd7a902c745c9e57edc460d03e5" kind="variable"><name>start_plot</name></member>
+    <member refid="structtype__meta_1a8569693708a1f9be6b065036e0f0ba8d" kind="variable"><name>vplots</name></member>
     <member refid="structtype__meta_1ad8f5e36b171a70c1f5609ccfa7c86131" kind="variable"><name>yr_doy</name></member>
   </compound>
   <compound refid="structtype__param" kind="struct"><name>type_param</name>
@@ -8122,17 +8153,22 @@
     <member refid="structtype__param_1a9016d54514b2cc325f3928c7c343067b" kind="variable"><name>bits_sample</name></member>
     <member refid="structtype__param_1a8dd39cb67c0f29dde8ff038b9426bcc4" kind="variable"><name>bocf_period</name></member>
     <member refid="structtype__param_1aafa47c4bcbd4e6f4bc179d1a0c28f6f4" kind="variable"><name>bocfs_per_ap</name></member>
+    <member refid="structtype__param_1a5d815fe0bd60b48fd3d4f3722ab420f2" kind="variable"><name>chan_notches</name></member>
+    <member refid="structtype__param_1a37ba36255db0e46778e4e6885773a9c8" kind="variable"><name>clone_snr_chk</name></member>
+    <member refid="structtype__param_1a2f3989acc1adb474ded201f0bbc5f6bb" kind="variable"><name>clones</name></member>
     <member refid="structtype__param_1a786b84253e01bec118e66ca776950a8d" kind="variable"><name>control_file_buff</name></member>
     <member refid="structtype__param_1a5ae1abb4e7b179739eb25339cc1635fc" kind="variable"><name>cor_limit</name></member>
     <member refid="structtype__param_1a62c0ec6022e6f68ff5969902a9fd52ce" kind="variable"><name>cormode</name></member>
     <member refid="structtype__param_1abfe2f5a8f14382ee80eddd436b5dd7af" kind="variable"><name>corr_type</name></member>
     <member refid="structtype__param_1a491438ab65f685ff92ababc783243ffc" kind="variable"><name>dc_block</name></member>
+    <member refid="structtype__param_1acaaba075d8d5ea81550b336d930774d1" kind="variable"><name>display_chans</name></member>
     <member refid="structtype__param_1a9984ea37b05e868eb868738f49425a96" kind="variable"><name>elevation</name></member>
     <member refid="structtype__param_1a63ae510c742d8c39e832e051b91878a7" kind="variable"><name>epoch_time</name></member>
     <member refid="structtype__param_1a3c3c03b7d1839da41b14617f01405417" kind="variable"><name>error_mask</name></member>
     <member refid="structtype__param_1a0da3df9424947c1393d13e551b2090b8" kind="variable"><name>est_pc_manual</name></member>
     <member refid="structtype__param_1af440e1de7b43fe6aaed95ffc9ca85a99" kind="variable"><name>first_plot</name></member>
     <member refid="structtype__param_1a6bd3264e8b0cd9b565a97cd09ada9ef1" kind="variable"><name>fmatch_bw_pct</name></member>
+    <member refid="structtype__param_1ab42f95a2aa287faae4c0fc45e7616f92" kind="variable"><name>fringeout_dir</name></member>
     <member refid="structtype__param_1aa6370ab66564d6db387d0e36d73ca163" kind="variable"><name>frt_offset</name></member>
     <member refid="structtype__param_1a1e0457c248fbbb025a490fa999c366c2" kind="variable"><name>gen_cf_record</name></member>
     <member refid="structtype__param_1ae7ae98d49580e521feb401ec35439c5c" kind="variable"><name>interpol</name></member>
@@ -8164,6 +8200,7 @@
     <member refid="structtype__param_1a734a7cbf0b388202649e003982c6236f" kind="variable"><name>pcal_spacing</name></member>
     <member refid="structtype__param_1ac4acff2fdb5bd5feccb6ecb38381f08e" kind="variable"><name>plot_data_dir</name></member>
     <member refid="structtype__param_1a425f6a555164c64ef40dca34c7359d0f" kind="variable"><name>pol</name></member>
+    <member refid="structtype__param_1af82c17e97fa88875a5932aebc76ad11f" kind="variable"><name>polfringnames</name></member>
     <member refid="structtype__param_1afcd199da31a26e7885853c902b413b90" kind="variable"><name>ref_freq</name></member>
     <member refid="structtype__param_1aa839955ea8b858f5738ef36187c13c21" kind="variable"><name>reftime</name></member>
     <member refid="structtype__param_1a785734a88d84327387700670c12954cf" kind="variable"><name>rf_fglist</name></member>
@@ -8465,6 +8502,9 @@
     <member refid="namespaceafio_1_1afio_1a6977ac95996187d29c4c21c1209c974f" kind="function"><name>alist</name></member>
   </compound>
   <compound refid="namespacectypes" kind="namespace"><name>ctypes</name>
+  </compound>
+  <compound refid="namespaceexample1" kind="namespace"><name>example1</name>
+    <member refid="namespaceexample1_1a3db0c416b643a1ad8a1f5b4ffeadf9d0" kind="function"><name>dummy</name></member>
   </compound>
   <compound refid="namespaceexample2" kind="namespace"><name>example2</name>
     <member refid="namespaceexample2_1aa8aabf4e4cc861b4c8fce69b5bd73dff" kind="function"><name>fix_noema_jumps</name></member>
@@ -9824,6 +9864,8 @@
   </compound>
   <compound refid="check__name_8c" kind="file"><name>check_name.c</name>
     <member refid="check__name_8c_1a803cb3d54b0578d91167a3007b828874" kind="function"><name>check_name</name></member>
+    <member refid="check__name_8c_1a0c7120cf102e10f3283062b380d4432d" kind="function"><name>prep_fstruct</name></member>
+    <member refid="check__name_8c_1a2538742a47870222cb8b58fd4db5bf23" kind="function"><name>wipe_fstruct</name></member>
   </compound>
   <compound refid="check__realrange_8c" kind="file"><name>check_realrange.c</name>
     <member refid="check__realrange_8c_1abaab8d42f075ee8ddc9b70951d3fd6cd" kind="define"><name>EQ</name></member>
@@ -9982,9 +10024,6 @@
   </compound>
   <compound refid="clear__freq__corel_8c" kind="file"><name>clear_freq_corel.c</name>
     <member refid="clear__freq__corel_8c_1aa7f3bc22f78b3c75c61d5d2bdae43739" kind="function"><name>clear_freq_corel</name></member>
-  </compound>
-  <compound refid="clear__fstruct_8c" kind="file"><name>clear_fstruct.c</name>
-    <member refid="clear__fstruct_8c_1a037d7ecf1ee7ea6b6d2bfb7112e4a402" kind="function"><name>clear_fstruct</name></member>
   </compound>
   <compound refid="clear__fsumm_8c" kind="file"><name>clear_fsumm.c</name>
     <member refid="clear__fsumm_8c_1a4e66006c1ba68e4f49a7df48e9947c4d" kind="function"><name>clear_fsumm</name></member>
@@ -10258,6 +10297,18 @@
     <member refid="CorAsc2_8c_1a93f42f7f46575cb47b162e703bb26ba1" kind="define"><name>flip_unsig</name></member>
     <member refid="CorAsc2_8c_1a9e81c59cf213dafb87ada0e564f62f0b" kind="define"><name>MBUFF</name></member>
     <member refid="CorAsc2_8c_1a71bf80a643bcc6db346468d01abc470f" kind="define"><name>NNAMES</name></member>
+    <member refid="CorAsc2_8c_1aef46dd7638c56d658a1e4e2e22465e75" kind="define"><name>NPOLCHAR</name></member>
+    <member refid="CorAsc2_8c_1aa95e2f85444e56d7c826b0713ba74c12" kind="define"><name>POL_ALL</name></member>
+    <member refid="CorAsc2_8c_1aa3e95a123f5758bd1cc18ea74ecc4119" kind="define"><name>POL_IXY</name></member>
+    <member refid="CorAsc2_8c_1a0ae1498d31a9eb8ad1f38aa70188136d" kind="define"><name>POL_LL</name></member>
+    <member refid="CorAsc2_8c_1ae09f2d599dad8f523d1489c2f982abb2" kind="define"><name>POL_LR</name></member>
+    <member refid="CorAsc2_8c_1ab9a7453c1deb1ece02aad3953c42d0d0" kind="define"><name>POL_RL</name></member>
+    <member refid="CorAsc2_8c_1a8933d10561b3a974a83569ee74ad4a01" kind="define"><name>POL_RR</name></member>
+    <member refid="CorAsc2_8c_1ae570aec987d5621c1e53525c5769fb73" kind="define"><name>POLCHAR_OFFSET</name></member>
+    <member refid="CorAsc2_8c_1a39ec457f686b4335eca0c9e3dcede62f" kind="define"><name>POLMASK_LL</name></member>
+    <member refid="CorAsc2_8c_1af5c1f702453f08e14ef6091b7292a07f" kind="define"><name>POLMASK_LR</name></member>
+    <member refid="CorAsc2_8c_1a7317001adabe10724c7b927c33a3a458" kind="define"><name>POLMASK_RL</name></member>
+    <member refid="CorAsc2_8c_1a6bf46f28458c301ec9f0c058ebc1e660" kind="define"><name>POLMASK_RR</name></member>
     <member refid="CorAsc2_8c_1a97ee8be60ff9ae1cfface03bc50f1d94" kind="define"><name>SYSCLK</name></member>
     <member refid="CorAsc2_8c_1a42cf1e6775231cf1ca1e873889f58dd7" kind="define"><name>TWO31</name></member>
     <member refid="CorAsc2_8c_1a9296cb585de000681fc929e5ec247e74" kind="define"><name>TWO32</name></member>
@@ -10267,6 +10318,7 @@
     <member refid="CorAsc2_8c_1afab6786a33e77b214966ec78132329de" kind="variable"><name>me</name></member>
     <member refid="CorAsc2_8c_1ac4693c7c31653d6304e6b816726f4482" kind="variable"><name>msglev</name></member>
     <member refid="CorAsc2_8c_1a6be08dc66fc94b823681cf6025cbf0cf" kind="variable"><name>word</name></member>
+    <member refid="CorAsc2_8c_1abf6df40adf00a927f305715fbe12e80a" kind="function"><name>determine_polprod</name></member>
     <member refid="CorAsc2_8c_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
     <member refid="CorAsc2_8c_1a9fe313dc6920e406144b96ac9b2ba142" kind="function"><name>r_double_reverse</name></member>
     <member refid="CorAsc2_8c_1adf748f6a8e911ce83849a3b2b295d5dd" kind="function"><name>r_float_reverse</name></member>
@@ -10310,7 +10362,8 @@
     <member refid="CorPrune_8c_1a2abc96030029529984475f8a57d69c33" kind="function"><name>t2s</name></member>
   </compound>
   <compound refid="create__fname_8c" kind="file"><name>create_fname.c</name>
-    <member refid="create__fname_8c_1acd476560e485b71b981c0f760f2e4cc0" kind="function"><name>create_fname</name></member>
+    <member refid="create__fname_8c_1ae47d02de26d69eb3a8fe668d179f3815" kind="function"><name>create_fname</name></member>
+    <member refid="create__fname_8c_1aed70fda90fc94604f54a4dabf7d7247b" kind="function"><name>zpolab</name></member>
   </compound>
   <compound refid="create__fsm_8c" kind="file"><name>create_fsm.c</name>
     <member refid="create__fsm_8c_1ae5e1b1ca4289cd78bfa8b46185a33f61" kind="define"><name>fsm_table</name></member>
@@ -10706,6 +10759,8 @@
     <member refid="evex__info_8c_1a97382308533703e394c3ea1e471b2848" kind="define"><name>ISNAME</name></member>
     <member refid="evex__info_8c_1a8838f2a13c5aca7e22192c4fd8151bf3" kind="function"><name>evex_info</name></member>
   </compound>
+  <compound refid="example1_8py" kind="file"><name>example1.py</name>
+  </compound>
   <compound refid="example2_8py" kind="file"><name>example2.py</name>
   </compound>
   <compound refid="example3_8py" kind="file"><name>example3.py</name>
@@ -10727,9 +10782,9 @@
     <member refid="ffcontrol_8h_1a9c36a9fc6bb0ec18d292d2607710382e" kind="function"><name>create_fsm</name></member>
     <member refid="ffcontrol_8h_1a68db5088343ba432982d15fddc5b4a21" kind="function"><name>criteria_match</name></member>
     <member refid="ffcontrol_8h_1adb2d3007c1a3a5a5f94c8640c875fcd8" kind="function"><name>default_cblock</name></member>
-    <member refid="ffcontrol_8h_1ad96669c35f3eeca0d0153394f193357f" kind="function"><name>fcode</name></member>
+    <member refid="ffcontrol_8h_1a5f7b3883bd8ecaa031acbaee597bcb14" kind="function"><name>free_tokens</name></member>
     <member refid="ffcontrol_8h_1a76e607b480ca2fe15aea237c170478b6" kind="function"><name>get_bfstring</name></member>
-    <member refid="ffcontrol_8h_1af773e7385850540b832aff590170ceb0" kind="function"><name>init_tokens</name></member>
+    <member refid="ffcontrol_8h_1a4cd6e0dbda1229a5ef4a394e1da29703" kind="function"><name>init_tokens</name></member>
     <member refid="ffcontrol_8h_1ae76ed1e347bf8e3a599366747f911a3c" kind="function"><name>is_char</name></member>
     <member refid="ffcontrol_8h_1a8f4eb4ff70ff5e27fc671b5f16cd288d" kind="function"><name>is_float</name></member>
     <member refid="ffcontrol_8h_1abca49c9d3308c7561e359a6791a1bfd7" kind="function"><name>is_integer</name></member>
@@ -10737,7 +10792,7 @@
     <member refid="ffcontrol_8h_1a75aa02c466ed2b254fe35c4a8b52804c" kind="function"><name>is_timeval</name></member>
     <member refid="ffcontrol_8h_1aded062758c98d3a296703cce34d87d41" kind="function"><name>lex</name></member>
     <member refid="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" kind="function"><name>nullify_cblock</name></member>
-    <member refid="ffcontrol_8h_1a804eebb12c988144bbacf70dd38d0caf" kind="function"><name>parse_control_file</name></member>
+    <member refid="ffcontrol_8h_1ad60782e1673608ef58f9c9536f0a0746" kind="function"><name>parse_control_file</name></member>
     <member refid="ffcontrol_8h_1a7190520c0d971601304fd6c9dff56bc2" kind="function"><name>parser</name></member>
     <member refid="ffcontrol_8h_1a3c11e1e93b54435da7463f4344b1ff2a" kind="function"><name>parsing_error</name></member>
     <member refid="ffcontrol_8h_1a1ed7b0d1282a3f66d11968aaeceb92aa" kind="function"><name>read_control_file</name></member>
@@ -10826,6 +10881,7 @@
     <member refid="filelist_8c_1a8c8eb7f46bdd0c5524d7fc8db51b6d7b" kind="function"><name>filelist</name></member>
   </compound>
   <compound refid="fileset_8c" kind="file"><name>fileset.c</name>
+    <member refid="fileset_8c_1acfeb780ba16cc8bb80a77132b101503e" kind="function"><name>clear_fset</name></member>
     <member refid="fileset_8c_1abe8e940f2df812f05ba4c3c0c36bdce4" kind="function"><name>get_fileset</name></member>
   </compound>
   <compound refid="fileset_8h" kind="file"><name>fileset.h</name>
@@ -10989,7 +11045,6 @@
     <member refid="fourfit3_8c_1ac338fd2bd47bb64e711c167a64c196a1" kind="variable"><name>cdata</name></member>
     <member refid="fourfit3_8c_1a1694ec06658d3602fb03de93a6842b8d" kind="variable"><name>do_accounting</name></member>
     <member refid="fourfit3_8c_1ac73280bf10db4900c2891abe5c82aeeb" kind="variable"><name>do_estimation</name></member>
-    <member refid="fourfit3_8c_1a34fdcb39ad657adc1668ecdeb1a704d2" kind="variable"><name>do_only_new</name></member>
     <member refid="fourfit3_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kind="variable"><name>fringe</name></member>
     <member refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kind="variable"><name>global_lockfile_data</name></member>
     <member refid="fourfit3_8c_1a2175ebdecdc733051c4fc8d9fa00e7e8" kind="variable"><name>lo_offset</name></member>
@@ -11100,6 +11155,7 @@
   </compound>
   <compound refid="fringename_8c" kind="file"><name>fringename.c</name>
     <member refid="fringename_8c_1adda794c4c9a8c4ded6f2b8a7eb446dd9" kind="function"><name>fringename</name></member>
+    <member refid="fringename_8c_1a7ccf176bb80fb4030178857c520d18ad" kind="function"><name>resolve_fringename</name></member>
   </compound>
   <compound refid="fringex_8c" kind="file"><name>fringex.c</name>
     <member refid="fringex_8c_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
@@ -11141,11 +11197,14 @@
     <member refid="fringex_8h_1a193040aaea1cb79fab120c7baefd9908" kind="function"><name>realloc_segs</name></member>
     <member refid="fringex_8h_1aac8ce1795583cbf172893e76b9cd5786" kind="function"><name>set_loops</name></member>
   </compound>
+  <compound refid="frqsupport_8h" kind="file"><name>frqsupport.h</name>
+  </compound>
   <compound refid="fstruct_8h" kind="file"><name>fstruct.h</name>
     <member refid="fstruct_8h_1a8cb4e5c4349daa2af7ff42fc29aeb02a" kind="define"><name>BADBASE</name></member>
     <member refid="fstruct_8h_1acd85a97620c7618ba53eeea9097c8caa" kind="define"><name>BADFNUM</name></member>
     <member refid="fstruct_8h_1abce6a0ca241a9d2977f33dfd65d9cc36" kind="define"><name>BADFORM</name></member>
     <member refid="fstruct_8h_1abdbeccab2a8a8744f43c31609be2cbe6" kind="define"><name>BADFREQ</name></member>
+    <member refid="fstruct_8h_1a78e1fae1d741800150b620433ee99e3c" kind="define"><name>BADMALLOC</name></member>
     <member refid="fstruct_8h_1adf21ee6ffc311dc2a74dfe64a47a11a4" kind="define"><name>BADROOT</name></member>
     <member refid="fstruct_8h_1a12c1f0304ca65e8cf8e709fe2e3aa868" kind="define"><name>BADSRC</name></member>
     <member refid="fstruct_8h_1a52788b756b42d63dcacb015ae616248e" kind="define"><name>BADSTAT</name></member>
@@ -11156,9 +11215,9 @@
     <member refid="fstruct_8h_1aa074ea212aa43a186cdfa0fb1531d53c" kind="define"><name>MAXFNDIGITS</name></member>
     <member refid="fstruct_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" kind="define"><name>TRUE</name></member>
     <member refid="fstruct_8h_1addf47aa14c39b79a935cc0a4ef595e41" kind="function"><name>check_name</name></member>
-    <member refid="fstruct_8h_1ac9806f9f34754bf59f2424ad208426c8" kind="function"><name>clear_fstruct</name></member>
     <member refid="fstruct_8h_1acf4969b4c59930e9e05c6954ec631183" kind="function"><name>extract_filenames</name></member>
     <member refid="fstruct_8h_1a3c9988d1a76e36c2e17771c027772076" kind="function"><name>get_filelist</name></member>
+    <member refid="fstruct_8h_1a1c72adc3e23abcc2d4d0a7fde9d1fd6d" kind="function"><name>prep_fstruct</name></member>
   </compound>
   <compound refid="gate__off_8c" kind="file"><name>gate_off.c</name>
     <member refid="gate__off_8c_1a44c1e6d3db8ca7cb16613890a8adba49" kind="function"><name>gate_off</name></member>
@@ -11177,7 +11236,13 @@
     <member refid="generate__cblock_8c_1a8578c972e5673c81248e5e4864cb3e8a" kind="function"><name>generate_cblock</name></member>
   </compound>
   <compound refid="generate__graphs_8c" kind="file"><name>generate_graphs.c</name>
+    <member refid="generate__graphs_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kind="variable"><name>fringe</name></member>
+    <member refid="generate__graphs_8c_1ae0c109f7f2e4ad615807454126123586" kind="variable"><name>meta</name></member>
+    <member refid="generate__graphs_8c_1aa665147429eaf1e446ee01b47099af4e" kind="variable"><name>param</name></member>
+    <member refid="generate__graphs_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kind="variable"><name>plot</name></member>
+    <member refid="generate__graphs_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kind="variable"><name>status</name></member>
     <member refid="generate__graphs_8c_1ab2766d83fd0369c10257c8df62729409" kind="function"><name>generate_graphs</name></member>
+    <member refid="generate__graphs_8c_1a5b3a71909fb6c2ed4cb4d9298775194c" kind="function"><name>set_seg_plot_limits</name></member>
   </compound>
   <compound refid="generate__text_8c" kind="file"><name>generate_text.c</name>
     <member refid="generate__text_8c_1a29f1bad874b6b8a247b95c4cd1461665" kind="define"><name>LREF</name></member>
@@ -11769,7 +11834,8 @@
   </compound>
   <compound refid="init__tokens_8c" kind="file"><name>init_tokens.c</name>
     <member refid="init__tokens_8c_1a514d0d7146cbc5eb0e630930c64478ba" kind="define"><name>tokenize</name></member>
-    <member refid="init__tokens_8c_1af773e7385850540b832aff590170ceb0" kind="function"><name>init_tokens</name></member>
+    <member refid="init__tokens_8c_1a5f7b3883bd8ecaa031acbaee597bcb14" kind="function"><name>free_tokens</name></member>
+    <member refid="init__tokens_8c_1a4cd6e0dbda1229a5ef4a394e1da29703" kind="function"><name>init_tokens</name></member>
   </compound>
   <compound refid="int__to__time_8c" kind="file"><name>int_to_time.c</name>
     <member refid="int__to__time_8c_1a4a7431c54fab5d51566a9c051e8abb4d" kind="function"><name>int_to_time</name></member>
@@ -12002,6 +12068,8 @@
     <member refid="max555_8c_1aea074dcf34218c472a79b94ecb2addac" kind="function"><name>max555</name></member>
   </compound>
   <compound refid="meta__struct_8h" kind="file"><name>meta_struct.h</name>
+    <member refid="meta__struct_8h_1ab2766d83fd0369c10257c8df62729409" kind="function"><name>generate_graphs</name></member>
+    <member refid="meta__struct_8h_1a728a9506544f4a8eab36bb5b248dcb7f" kind="function"><name>generate_text</name></member>
   </compound>
   <compound refid="MHO__AbsoluteValue_8hh" kind="file"><name>MHO_AbsoluteValue.hh</name>
   </compound>
@@ -13299,7 +13367,6 @@
     <member refid="norm__fx_8c_1a66049f3b67e32250007ec4a8ac252683" kind="define"><name>LIN_MODE</name></member>
     <member refid="norm__fx_8c_1ace49a0ca82b5fe9c2d00ac8deb86de40" kind="define"><name>MIXED_MODE</name></member>
     <member refid="norm__fx_8c_1a34b0a373ed8bc3a7cd512552f08fa7b8" kind="define"><name>signum</name></member>
-    <member refid="norm__fx_8c_1a19b66799c9978354aac24387610e4dad" kind="define"><name>STATUS_AP_ACCOUNTING</name></member>
     <member refid="norm__fx_8c_1ac1e8c496362a20bfdb88d14fa98f6def" kind="function"><name>norm_fx</name></member>
   </compound>
   <compound refid="norm__xf_8c" kind="file"><name>norm_xf.c</name>
@@ -13346,6 +13413,13 @@
     <member refid="other_8h_1afda2810527d7fb1a7ab986cc821ec1f8" kind="function"><name>rad2hms</name></member>
   </compound>
   <compound refid="output_8c" kind="file"><name>output.c</name>
+    <member refid="output_8c_1a0a3cc33a425ed3bb2335f95c074a4fcc" kind="define"><name>MSGRETURN0</name></member>
+    <member refid="output_8c_1a62674fbd78a43945eb9efc156eac825b" kind="define"><name>MSGRETURN1</name></member>
+    <member refid="output_8c_1ad950f69c4aa4c821f9f10602ad486aef" kind="define"><name>MSGRETURN2</name></member>
+    <member refid="output_8c_1a353f0c674f21dd31f0969511d3891d63" kind="function"><name>create_dirpath</name></member>
+    <member refid="output_8c_1a67c9766e49c5b84930349c63d60bc5c3" kind="function"><name>ensure</name></member>
+    <member refid="output_8c_1a26251bb339be8f3eb76d11729d7aa5ba" kind="function"><name>link_root_and_station_files</name></member>
+    <member refid="output_8c_1a8ebc13f590973dcf323303006508e530" kind="function"><name>origin</name></member>
     <member refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kind="function"><name>output</name></member>
   </compound>
   <compound refid="ovex_8h" kind="file"><name>ovex.h</name>
@@ -13464,7 +13538,7 @@
     <member refid="parse__control__file_8c_1a8f9834ea429d800d7fa9dbc517b4d6a2" kind="variable"><name>token_cat</name></member>
     <member refid="parse__control__file_8c_1a27456e1d601373e0a7c37af8490b5cf5" kind="variable"><name>token_string</name></member>
     <member refid="parse__control__file_8c_1a5fa05140bf6690c8fea8250127dd3336" kind="variable"><name>tokens</name></member>
-    <member refid="parse__control__file_8c_1a804eebb12c988144bbacf70dd38d0caf" kind="function"><name>parse_control_file</name></member>
+    <member refid="parse__control__file_8c_1ad60782e1673608ef58f9c9536f0a0746" kind="function"><name>parse_control_file</name></member>
   </compound>
   <compound refid="parse__csumm_8c" kind="file"><name>parse_csumm.c</name>
     <member refid="parse__csumm_8c_1aa93f0eb578d23995850d61f7d61c55c1" kind="define"><name>FALSE</name></member>
@@ -13551,10 +13625,19 @@
     <member refid="parse__vexfile_8c_1a19676f744dabe016154155b7f5330023" kind="function"><name>parse_vexfile</name></member>
   </compound>
   <compound refid="parser_8c" kind="file"><name>parser.c</name>
+    <member refid="parser_8c_1ae60c9bf0cdbf361d53828c43eda5a64f" kind="define"><name>ALLOW_FRQS_CODE</name></member>
     <member refid="parser_8c_1aa93f0eb578d23995850d61f7d61c55c1" kind="define"><name>FALSE</name></member>
     <member refid="parser_8c_1a175d6712cc0796abfa13c05c4e3bbe59" kind="define"><name>LXH</name></member>
     <member refid="parser_8c_1a5f606ab7ca368002ef97c13c528637a3" kind="define"><name>RYV</name></member>
     <member refid="parser_8c_1aa8cecfc5c5c054d2875c03e77b7be15d" kind="define"><name>TRUE</name></member>
+    <member refid="parser_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kind="variable"><name>cb_head</name></member>
+    <member refid="parser_8c_1a60d5aa5945374d3928ea4852513bbc8a" kind="variable"><name>char_values</name></member>
+    <member refid="parser_8c_1ad6d23835b07f1486d02781beae1fba5d" kind="variable"><name>float_values</name></member>
+    <member refid="parser_8c_1a2f20d1bdda76b8e24273c759fd9e1517" kind="variable"><name>fsm_base</name></member>
+    <member refid="parser_8c_1aaa038716920473315c2bd7ecd54f4de1" kind="variable"><name>master_codes</name></member>
+    <member refid="parser_8c_1ac4693c7c31653d6304e6b816726f4482" kind="variable"><name>msglev</name></member>
+    <member refid="parser_8c_1a5fa05140bf6690c8fea8250127dd3336" kind="variable"><name>tokens</name></member>
+    <member refid="parser_8c_1a359d5b071598ca63aa144d7f1979f790" kind="variable"><name>withfrqs</name></member>
     <member refid="parser_8c_1a3a00496ffebcaed4f9c78b9ac1f516e5" kind="function"><name>append_cblocks</name></member>
     <member refid="parser_8c_1ad96669c35f3eeca0d0153394f193357f" kind="function"><name>fcode</name></member>
     <member refid="parser_8c_1a6dc5ac4998488dc0ce4b6881573035d6" kind="function"><name>nullify_cblock</name></member>
@@ -13580,9 +13663,12 @@
     <member refid="parser_8h_1a8f7b83e05b6d02730ba9742235d5f3a1" kind="define"><name>BLOCK_INTERIOR</name></member>
     <member refid="parser_8h_1ac3114f4d637dd8b9e95f1ea62aba330b" kind="define"><name>CASSEGRAIN_</name></member>
     <member refid="parser_8h_1aba447e4fd71bd56121c5b8f80d32f4a3" kind="define"><name>CHAN_IDS_</name></member>
+    <member refid="parser_8h_1ac129990fa7b17b2fb5a3775463de6ba6" kind="define"><name>CHAN_NOTCHES_</name></member>
     <member refid="parser_8h_1af8af12b3ae1fec4053dde0c57e3f50d6" kind="define"><name>CHAN_PARAM</name></member>
     <member refid="parser_8h_1af48dd0e438759fb58224f4100b93840d" kind="define"><name>CLEAR_CONDS</name></member>
     <member refid="parser_8h_1a528f6dfd44873fe6ddecca80c35ce7ea" kind="define"><name>CLEAR_FREQS</name></member>
+    <member refid="parser_8h_1a6f38d5630ee24ea88f45949f458ea39a" kind="define"><name>CLONE_IDS_</name></member>
+    <member refid="parser_8h_1a621e4f811d95170b405af05af36c5809" kind="define"><name>CLONE_SNR_CHK_</name></member>
     <member refid="parser_8h_1ae3172d6c9e63979c9f40176cd97112cc" kind="define"><name>DC_BLOCK_</name></member>
     <member refid="parser_8h_1a70da70d21615f89959be5107f6892b1e" kind="define"><name>DEC_OFFSET_</name></member>
     <member refid="parser_8h_1a7208619983617e09602054c8ba43cd7e" kind="define"><name>DELAY_OFFS_</name></member>
@@ -13591,6 +13677,7 @@
     <member refid="parser_8h_1aab2a3069502a72c5197570e870fa6675" kind="define"><name>DELAY_OFFS_X_</name></member>
     <member refid="parser_8h_1a061a22cb1fb1ee5e156d69588e1c470c" kind="define"><name>DELAY_OFFS_Y_</name></member>
     <member refid="parser_8h_1abec574fe16dbc6529d000b7a8567ce69" kind="define"><name>DISCARD_</name></member>
+    <member refid="parser_8h_1a8484226345ac169fcdce2404f4f80588" kind="define"><name>DISPLAY_CHANS_</name></member>
     <member refid="parser_8h_1ae4d7d8f875a03b9519c2730d8d0ba5d1" kind="define"><name>DR_WIN_</name></member>
     <member refid="parser_8h_1a276f9e3c0abbc3a9e7ebd546bc31c9f6" kind="define"><name>EACH_MINUTE_</name></member>
     <member refid="parser_8h_1ae1d29e8df17f1071abac1f06212b4f62" kind="define"><name>ELSE_</name></member>
@@ -13606,6 +13693,8 @@
     <member refid="parser_8h_1ae6b401e34ffea76e115b32c232b2116c" kind="define"><name>FLOAT_PARAM</name></member>
     <member refid="parser_8h_1a573008ea230363e9cb08e5cbe6d6907b" kind="define"><name>FMATCH_BW_PCT_</name></member>
     <member refid="parser_8h_1acd7ad9396bed5c9359bc6f0548945481" kind="define"><name>FREQS_</name></member>
+    <member refid="parser_8h_1a682e6a5afb62dfb0b10b2841beaea62c" kind="define"><name>FRINGEOUT_DIR_</name></member>
+    <member refid="parser_8h_1a4fd0116244f70df68aef4d5dcec01e6e" kind="define"><name>FRQS_</name></member>
     <member refid="parser_8h_1a136370eb4c09ecdd45911741ef84cf54" kind="define"><name>GATES_</name></member>
     <member refid="parser_8h_1abe0be4658fb8366c80cdef6b13f474b4" kind="define"><name>GEN_CBLOCKS</name></member>
     <member refid="parser_8h_1ab0531b386c99cbd17bf3d0ebfd3e7ba1" kind="define"><name>GEN_CF_RECORD_</name></member>
@@ -13663,6 +13752,7 @@
     <member refid="parser_8h_1aaef41944a9e76d8bf98364e97dea9426" kind="define"><name>NEED_SOURCE</name></member>
     <member refid="parser_8h_1a446cc6a7a66586213529968a87e1f48f" kind="define"><name>NEED_STATION</name></member>
     <member refid="parser_8h_1a8a1075d05fdcd3d1b48dd35b6626d7cd" kind="define"><name>NEED_STRING</name></member>
+    <member refid="parser_8h_1a00eafef993413baf1f984390bbd54c98" kind="define"><name>NEED_STRING_CHANS</name></member>
     <member refid="parser_8h_1a06451f83f5496b021e1d42c690dec61f" kind="define"><name>NEED_TWO_FLOAT_1</name></member>
     <member refid="parser_8h_1a66c92ddc22255a8b7c3de5469b064259" kind="define"><name>NEED_TWO_FLOAT_2</name></member>
     <member refid="parser_8h_1a7ce4ab900b687359f4fea968085b8d37" kind="define"><name>NEED_VECTOR_CHAR</name></member>
@@ -13671,6 +13761,7 @@
     <member refid="parser_8h_1ac6d1640fe6ae761dbb88c97a6bce76d3" kind="define"><name>NEED_VECTOR_STRING</name></member>
     <member refid="parser_8h_1a9a049464e8a92abee85f29d2fece838e" kind="define"><name>NEED_VS_NUMBER</name></member>
     <member refid="parser_8h_1a10f3b04b9e8311aac01fcf058309a111" kind="define"><name>NEGATE</name></member>
+    <member refid="parser_8h_1a8969fe2352b1191fd6fabaa841f4d7df" kind="define"><name>NEW_CODES</name></member>
     <member refid="parser_8h_1a6b6f5df80ba434292839e7e66aa5f658" kind="define"><name>NO_MOUNT_TYPE_</name></member>
     <member refid="parser_8h_1a8623d9a06ad6dbcf3aa30c92d35b5cce" kind="define"><name>NO_OP</name></member>
     <member refid="parser_8h_1ad7434751973fa902493be8369a32deea" kind="define"><name>NOAUTOFRINGES_</name></member>
@@ -13705,6 +13796,7 @@
     <member refid="parser_8h_1a76ead9733b2f395a9275a4faec696466" kind="define"><name>PC_TONEMASK_</name></member>
     <member refid="parser_8h_1a53f0d11b4cb6af66e839b2664fddd7ad" kind="define"><name>PERIOD_</name></member>
     <member refid="parser_8h_1a54a6eda4a82a0cbc5d52970772f57eeb" kind="define"><name>PLOT_DATA_DIR_</name></member>
+    <member refid="parser_8h_1af5dbfb6002a5464fea86d2732aec0e61" kind="define"><name>POLFRINGNAMES_</name></member>
     <member refid="parser_8h_1a5bafffeed5dceb4a0e04eaa0e3cbcd99" kind="define"><name>POLYNOMIAL_</name></member>
     <member refid="parser_8h_1aa7e21a148b5df6edb08f52597f987d06" kind="define"><name>POP_TOKEN</name></member>
     <member refid="parser_8h_1acf16882a69e36ecef8a76889eaa90833" kind="define"><name>RA_OFFSET_</name></member>
@@ -13717,6 +13809,7 @@
     <member refid="parser_8h_1ab6da1999cd5fad850dff950da0ad0e47" kind="define"><name>SAMPLERS_</name></member>
     <member refid="parser_8h_1ac27c00a556f72169a887a10a157b1bdc" kind="define"><name>SAVE_2ND_SCAN</name></member>
     <member refid="parser_8h_1ae955964b7eaeeeadff890734d18def52" kind="define"><name>SAVE_BASE</name></member>
+    <member refid="parser_8h_1a300f1c68e636416274ddbeca9d6b967a" kind="define"><name>SAVE_CHAR_PARAM</name></member>
     <member refid="parser_8h_1af313d556af413c34d4da449a34798758" kind="define"><name>SAVE_CODES</name></member>
     <member refid="parser_8h_1ad0eb2d970e6b7863d50100e4780194b5" kind="define"><name>SAVE_CSV_LIST</name></member>
     <member refid="parser_8h_1a7a3ee998e9e393cc90e8c4cfb64278a2" kind="define"><name>SAVE_FG</name></member>
@@ -13782,6 +13875,7 @@
     <member refid="pass__struct_8h_1a29cd98c10290f6484a8d6d59f6c7e1e6" kind="define"><name>USB_FLAG</name></member>
     <member refid="pass__struct_8h_1aeb8edeb860dfc6c4af221f6b9d34283a" kind="variable"><name>fchars</name></member>
     <member refid="pass__struct_8h_1a6622f991c7367e88b0aba7d0221b2873" kind="variable"><name>polab</name></member>
+    <member refid="pass__struct_8h_1af32316653e135da0967a9f83277ff3b8" kind="function"><name>modify_pol</name></member>
   </compound>
   <compound refid="pcal__interp_8c" kind="file"><name>pcal_interp.c</name>
     <member refid="pcal__interp_8c_1a42cf1e6775231cf1ca1e873889f58dd7" kind="define"><name>TWO31</name></member>
@@ -13838,6 +13932,7 @@
   </compound>
   <compound refid="plot__data__dir_8c" kind="file"><name>plot_data_dir.c</name>
     <member refid="plot__data__dir_8c_1a6a35347f2d636142e9678d29d448d554" kind="define"><name>PDD_ALL</name></member>
+    <member refid="plot__data__dir_8c_1a51cdccf24ae2b4cce33bf77afe1b2ed9" kind="define"><name>PDD_CONTROL_BLOCK</name></member>
     <member refid="plot__data__dir_8c_1a69eb8e9a79b3e1ed2c9f1acfb3a97591" kind="define"><name>PDD_DESCRIBE</name></member>
     <member refid="plot__data__dir_8c_1a710f901385011ccf943562e8aaeff839" kind="define"><name>PDD_DESCRIBe</name></member>
     <member refid="plot__data__dir_8c_1ac9da6d09b027d714d3145b9e32bcd20e" kind="define"><name>PDD_DLYRATE</name></member>
@@ -13866,7 +13961,6 @@
     <member refid="plot__data__dir_8c_1a7f15869f2b4b0faaed30349f65adeb04" kind="define"><name>PDD_SEG_REMSCNT_LSB</name></member>
     <member refid="plot__data__dir_8c_1a3098347af0491e7d09057a2fccf7467b" kind="define"><name>PDD_SEG_REMSCNT_USB</name></member>
     <member refid="plot__data__dir_8c_1a2f229c3212b628143210d52f641c9070" kind="define"><name>PDD_SEG_RESERVED1</name></member>
-    <member refid="plot__data__dir_8c_1a73bbfbec16fccddb6cc4990e4489f1fa" kind="define"><name>PDD_SEG_RESERVED2</name></member>
     <member refid="plot__data__dir_8c_1a078eaaca8f54aac2d1d38c8860789ed7" kind="define"><name>PDD_SEG_RESERVED3</name></member>
     <member refid="plot__data__dir_8c_1ae548ac57d2d71553146d6244c296aab2" kind="define"><name>PDD_SEG_RESERVED4</name></member>
     <member refid="plot__data__dir_8c_1a8cf9cf27d2804133c262ec45937af6f2" kind="define"><name>PDD_SEG_RESERVED5</name></member>
@@ -13876,8 +13970,10 @@
     <member refid="plot__data__dir_8c_1a9b1d6903fbd81cb7f2b98817199a8764" kind="define"><name>PDDCOLS</name></member>
     <member refid="plot__data__dir_8c_1afd08460dd84a7bd0cf629bc59c3f5467" kind="define"><name>PLOT_DATA_DIR_IMPLEMENTATION</name></member>
     <member refid="plot__data__dir_8c_1a2a9d9975b74210006a1125d566d9bf38" kind="define"><name>R2D</name></member>
+    <member refid="plot__data__dir_8c_1aaf0e939db0ecf92980ee711adb0d00ad" kind="define"><name>STRASS</name></member>
     <member refid="plot__data__dir_8c_1aa4047829f56e080306d3873df9de4c7b" kind="variable"><name>control_filename</name></member>
     <member refid="plot__data__dir_8c_1a59b4c0f8f82b53873fed1530d83ba341" kind="function"><name>dump_ampfilter</name></member>
+    <member refid="plot__data__dir_8c_1a74ad615fa1739c6df3abb8b29b747f76" kind="function"><name>dump_control_block</name></member>
     <member refid="plot__data__dir_8c_1a9a059d4e520cc207490d74cc2a4cb906" kind="function"><name>dump_fineprint</name></member>
     <member refid="plot__data__dir_8c_1a8109a7e35712e97120e4c4240767beab" kind="function"><name>dump_header</name></member>
     <member refid="plot__data__dir_8c_1abd251cb3fd56bb193da1883a2c0c0821" kind="function"><name>dump_legend</name></member>
@@ -13890,6 +13986,8 @@
     <member refid="plot__data__dir_8c_1aeb7309fd238c97399563d9d359e06a38" kind="function"><name>dump_segment</name></member>
     <member refid="plot__data__dir_8c_1a17ddc44819ed36ff8053d09633225c58" kind="function"><name>dump_twodim</name></member>
     <member refid="plot__data__dir_8c_1aec1cb1077934c78c49c12eaa6d93a4b4" kind="function"><name>dump_xpspec</name></member>
+    <member refid="plot__data__dir_8c_1aa536a24467f41c3aa9fd5af5bbd4ff54" kind="function"><name>grok_hops_plot_data_mask</name></member>
+    <member refid="plot__data__dir_8c_1a8710c84eff8ca6b27d6d648a42e556d9" kind="function"><name>grok_pdd</name></member>
     <member refid="plot__data__dir_8c_1ab61016fe47da125fb8e65a0912ac3564" kind="function"><name>populate_data_file</name></member>
   </compound>
   <compound refid="plot__data__dir_8h" kind="file"><name>plot_data_dir.h</name>

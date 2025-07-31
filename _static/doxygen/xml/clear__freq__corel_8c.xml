@@ -329,7 +329,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_freq_corel.c" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_freq_corel.c" bodystart="18" bodyend="46"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_freq_corel.c" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_freq_corel.c" bodystart="18" bodyend="48"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -377,12 +377,14 @@
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>corel-&gt;<ref refid="structfreq__corel_1a174b255993c1be28f03cd7ab963b157f" kindref="member">bbc_lcp</ref>[i]<sp/>=<sp/>-1;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>corel-&gt;<ref refid="structfreq__corel_1ac0a46c8b4dee612155ac0342aaad2818" kindref="member">bbc_rcp</ref>[i]<sp/>=<sp/>-1;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>corel-&gt;pcal_freq<sp/>=<sp/>0.0;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>corel-&gt;pcal_location<sp/>=<sp/>-1;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;8;<sp/>i++)<sp/>corel-&gt;<ref refid="structfreq__corel_1a5c470da35f1cfd104f929340d42ec029" kindref="member">index</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(corel-&gt;<ref refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" kindref="member">data_alloc</ref>)<sp/>free<sp/>(corel-&gt;<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref>);</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>corel-&gt;<ref refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" kindref="member">data_alloc</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;8;<sp/>i++)<sp/>corel-&gt;<ref refid="structfreq__corel_1a5c470da35f1cfd104f929340d42ec029" kindref="member">index</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>corel-&gt;<ref refid="structfreq__corel_1aac5bc39453cc4ff205da26e592d4fffa" kindref="member">nsb_channels</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>corel-&gt;<ref refid="structfreq__corel_1a457b9abce953217facee3d927440c9a1" kindref="member">data_peers</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>corel-&gt;<ref refid="structfreq__corel_1a223a2c8abc4d8d5fe5eb27c6acdbb12f" kindref="member">corel_index</ref><sp/>=<sp/>corel-&gt;<ref refid="structfreq__corel_1a3410fa55ff89891c2f06a1a9ac911075" kindref="member">fcode_index</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(corel-&gt;<ref refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" kindref="member">data_alloc</ref><sp/>==<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref><sp/>&amp;&amp;<sp/>corel-&gt;<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref><sp/>!=<sp/>NULL){<sp/>free<sp/>(corel-&gt;<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref>);<sp/>corel-&gt;<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref><sp/>=<sp/>NULL;<sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>corel-&gt;<ref refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" kindref="member">data_alloc</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>corel-&gt;<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref><sp/>=<sp/>NULL;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>stop<sp/>bad<sp/>code<sp/>with<sp/>segfault</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
     </programlisting>
     <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_freq_corel.c"/>
   </compounddef>

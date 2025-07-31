@@ -67,12 +67,15 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">generate_graphs.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="msg_8h_source.html">msg.h</a>&quot;</code><br />
@@ -87,6 +90,19 @@ $(function() {
 Functions</h2></td></tr>
 <tr class="memitem:ab2766d83fd0369c10257c8df62729409"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generate__graphs_8c.html#ab2766d83fd0369c10257c8df62729409">generate_graphs</a> (struct <a class="el" href="ovex_8h.html#structscan__struct">scan_struct</a> *root, struct <a class="el" href="pass__struct_8h.html#structtype__pass">type_pass</a> *pass, char *<a class="el" href="fringename_8c.html#adda794c4c9a8c4ded6f2b8a7eb446dd9">fringename</a>, char *ps_file, double *tickinc)</td></tr>
 <tr class="separator:ab2766d83fd0369c10257c8df62729409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ab19e738fad8df4a4c38b5e0806566ef0"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="mk4__data_8h.html#structmk4__fringe">mk4_fringe</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generate__graphs_8c.html#ab19e738fad8df4a4c38b5e0806566ef0">fringe</a></td></tr>
+<tr class="separator:ab19e738fad8df4a4c38b5e0806566ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c109f7f2e4ad615807454126123586"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="meta__struct_8h.html#structtype__meta">type_meta</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generate__graphs_8c.html#ae0c109f7f2e4ad615807454126123586">meta</a></td></tr>
+<tr class="separator:ae0c109f7f2e4ad615807454126123586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa665147429eaf1e446ee01b47099af4e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="param__struct_8h.html#structtype__param">type_param</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generate__graphs_8c.html#aa665147429eaf1e446ee01b47099af4e">param</a></td></tr>
+<tr class="separator:aa665147429eaf1e446ee01b47099af4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7a7a69c9a1c4ea82e2b4fdf688d741d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="plot__struct_8h.html#structtype__plot">type_plot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generate__graphs_8c.html#ab7a7a69c9a1c4ea82e2b4fdf688d741d">plot</a></td></tr>
+<tr class="separator:ab7a7a69c9a1c4ea82e2b4fdf688d741d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4accbc719f15b3ee9e12175b99ffe53b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="param__struct_8h.html#structtype__status">type_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generate__graphs_8c.html#a4accbc719f15b3ee9e12175b99ffe53b">status</a></td></tr>
+<tr class="separator:a4accbc719f15b3ee9e12175b99ffe53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ab2766d83fd0369c10257c8df62729409"></a>
@@ -135,10 +151,121 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ab19e738fad8df4a4c38b5e0806566ef0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab19e738fad8df4a4c38b5e0806566ef0">&#9670;&nbsp;</a></span>fringe</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="mk4__data_8h.html#structmk4__fringe">mk4_fringe</a> fringe</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0c109f7f2e4ad615807454126123586"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c109f7f2e4ad615807454126123586">&#9670;&nbsp;</a></span>meta</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="meta__struct_8h.html#structtype__meta">type_meta</a> meta</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa665147429eaf1e446ee01b47099af4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa665147429eaf1e446ee01b47099af4e">&#9670;&nbsp;</a></span>param</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="param__struct_8h.html#structtype__param">type_param</a> param</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab7a7a69c9a1c4ea82e2b4fdf688d741d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7a7a69c9a1c4ea82e2b4fdf688d741d">&#9670;&nbsp;</a></span>plot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="plot__struct_8h.html#structtype__plot">type_plot</a> plot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4accbc719f15b3ee9e12175b99ffe53b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4accbc719f15b3ee9e12175b99ffe53b">&#9670;&nbsp;</a></span>status</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="param__struct_8h.html#structtype__status">type_status</a> status</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

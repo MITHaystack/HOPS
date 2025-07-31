@@ -73,7 +73,8 @@ $(function() {
 <div class="title">init_tokens.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="parser_8h_source.html">parser.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="msg_8h_source.html">msg.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="parser_8h_source.html">parser.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="control_8h_source.html">control.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ffcontrol_8h_source.html">ffcontrol.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
@@ -85,8 +86,10 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af773e7385850540b832aff590170ceb0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init__tokens_8c.html#af773e7385850540b832aff590170ceb0">init_tokens</a> ()</td></tr>
-<tr class="separator:af773e7385850540b832aff590170ceb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f7b3883bd8ecaa031acbaee597bcb14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init__tokens_8c.html#a5f7b3883bd8ecaa031acbaee597bcb14">free_tokens</a> (int where)</td></tr>
+<tr class="separator:a5f7b3883bd8ecaa031acbaee597bcb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd6e0dbda1229a5ef4a394e1da29703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="init__tokens_8c.html#a4cd6e0dbda1229a5ef4a394e1da29703">init_tokens</a> (int where)</td></tr>
+<tr class="separator:a4cd6e0dbda1229a5ef4a394e1da29703"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a514d0d7146cbc5eb0e630930c64478ba"></a>
@@ -124,16 +127,35 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af773e7385850540b832aff590170ceb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af773e7385850540b832aff590170ceb0">&#9670;&nbsp;</a></span>init_tokens()</h2>
+<a id="a5f7b3883bd8ecaa031acbaee597bcb14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f7b3883bd8ecaa031acbaee597bcb14">&#9670;&nbsp;</a></span>free_tokens()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int init_tokens </td>
+          <td class="memname">void free_tokens </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>where</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4cd6e0dbda1229a5ef4a394e1da29703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cd6e0dbda1229a5ef4a394e1da29703">&#9670;&nbsp;</a></span>init_tokens()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_tokens </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>where</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -144,7 +166,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

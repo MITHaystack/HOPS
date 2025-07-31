@@ -4341,6 +4341,20 @@
       <anchor>a803cb3d54b0578d91167a3007b828874</anchor>
       <arglist>(char *name, fstruct *f_info)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>prep_fstruct</name>
+      <anchorfile>check__name_8c.html</anchorfile>
+      <anchor>a0c7120cf102e10f3283062b380d4432d</anchor>
+      <arglist>(fstruct *f_info)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>wipe_fstruct</name>
+      <anchorfile>check__name_8c.html</anchorfile>
+      <anchor>a2538742a47870222cb8b58fd4db5bf23</anchor>
+      <arglist>(fstruct *f_info)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>check_realrange.c</name>
@@ -5126,20 +5140,6 @@
       <anchorfile>clear__freq__corel_8c.html</anchorfile>
       <anchor>aa7f3bc22f78b3c75c61d5d2bdae43739</anchor>
       <arglist>(struct freq_corel *corel)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>clear_fstruct.c</name>
-    <path>/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/</path>
-    <filename>clear__fstruct_8c.html</filename>
-    <includes id="fstruct_8h" name="fstruct.h" local="yes" imported="no">fstruct.h</includes>
-    <includes id="mk4__util_8h" name="mk4_util.h" local="yes" imported="no">mk4_util.h</includes>
-    <member kind="function">
-      <type>void</type>
-      <name>clear_fstruct</name>
-      <anchorfile>clear__fstruct_8c.html</anchorfile>
-      <anchor>a037d7ecf1ee7ea6b6d2bfb7112e4a402</anchor>
-      <arglist>(fstruct *f_info)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -6738,6 +6738,90 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>NPOLCHAR</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>aef46dd7638c56d658a1e4e2e22465e75</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POL_ALL</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>aa95e2f85444e56d7c826b0713ba74c12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POL_IXY</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>aa3e95a123f5758bd1cc18ea74ecc4119</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POL_LL</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>a0ae1498d31a9eb8ad1f38aa70188136d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POL_LR</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>ae09f2d599dad8f523d1489c2f982abb2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POL_RL</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>ab9a7453c1deb1ece02aad3953c42d0d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POL_RR</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>a8933d10561b3a974a83569ee74ad4a01</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POLCHAR_OFFSET</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>ae570aec987d5621c1e53525c5769fb73</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POLMASK_LL</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>a39ec457f686b4335eca0c9e3dcede62f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POLMASK_LR</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>af5c1f702453f08e14ef6091b7292a07f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POLMASK_RL</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>a7317001adabe10724c7b927c33a3a458</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>POLMASK_RR</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>a6bf46f28458c301ec9f0c058ebc1e660</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>SYSCLK</name>
       <anchorfile>CorAsc2_8c.html</anchorfile>
       <anchor>a97ee8be60ff9ae1cfface03bc50f1d94</anchor>
@@ -6756,6 +6840,13 @@
       <anchorfile>CorAsc2_8c.html</anchorfile>
       <anchor>a9296cb585de000681fc929e5ec247e74</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>determine_polprod</name>
+      <anchorfile>CorAsc2_8c.html</anchorfile>
+      <anchor>abf6df40adf00a927f305715fbe12e80a</anchor>
+      <arglist>(char *polstr, char *pol_list)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -7111,8 +7202,8 @@
       <type>int</type>
       <name>create_fname</name>
       <anchorfile>create__fname_8c.html</anchorfile>
-      <anchor>acd476560e485b71b981c0f760f2e4cc0</anchor>
-      <arglist>(struct scan_struct *root, struct type_pass *pass, int the_seq_no, char fname[])</arglist>
+      <anchor>ae47d02de26d69eb3a8fe668d179f3815</anchor>
+      <arglist>(char *rootfilename, struct type_pass *pass, int the_seq_no, char fname[])</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -9347,6 +9438,19 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>example1.py</name>
+    <path>/home/barrettj/work/projects/hops-git/source/python_src/plugins/</path>
+    <filename>example1_8py.html</filename>
+    <namespace>example1</namespace>
+    <member kind="function">
+      <type>def</type>
+      <name>dummy</name>
+      <anchorfile>namespaceexample1.html</anchorfile>
+      <anchor>a3db0c416b643a1ad8a1f5b4ffeadf9d0</anchor>
+      <arglist>(fringe_data_interface)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>example2.py</name>
     <path>/home/barrettj/work/projects/hops-git/source/python_src/plugins/</path>
     <filename>example2_8py.html</filename>
@@ -9469,11 +9573,11 @@
       <arglist>(struct c_block *cb_ptr)</arglist>
     </member>
     <member kind="function">
-      <type>int</type>
-      <name>fcode</name>
+      <type>void</type>
+      <name>free_tokens</name>
       <anchorfile>ffcontrol_8h.html</anchorfile>
-      <anchor>ad96669c35f3eeca0d0153394f193357f</anchor>
-      <arglist>(char c, char *codes)</arglist>
+      <anchor>a5f7b3883bd8ecaa031acbaee597bcb14</anchor>
+      <arglist>(int where)</arglist>
     </member>
     <member kind="function">
       <type>char *</type>
@@ -9483,11 +9587,11 @@
       <arglist>(char *barg)</arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>void</type>
       <name>init_tokens</name>
       <anchorfile>ffcontrol_8h.html</anchorfile>
-      <anchor>af773e7385850540b832aff590170ceb0</anchor>
-      <arglist>()</arglist>
+      <anchor>a4cd6e0dbda1229a5ef4a394e1da29703</anchor>
+      <arglist>(int where)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -9542,8 +9646,8 @@
       <type>int</type>
       <name>parse_control_file</name>
       <anchorfile>ffcontrol_8h.html</anchorfile>
-      <anchor>a804eebb12c988144bbacf70dd38d0caf</anchor>
-      <arglist>(char *control_file_name, char **control_file_buff, char **set_string_buff)</arglist>
+      <anchor>ad60782e1673608ef58f9c9536f0a0746</anchor>
+      <arglist>(char *control_file_name, char **control_file_buff, char **set_string_buff, int where)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -10391,6 +10495,13 @@
     <filename>fileset_8c.html</filename>
     <includes id="fileset_8h" name="fileset.h" local="yes" imported="no">fileset.h</includes>
     <includes id="mk4__util_8h" name="mk4_util.h" local="yes" imported="no">mk4_util.h</includes>
+    <member kind="function">
+      <type>void</type>
+      <name>clear_fset</name>
+      <anchorfile>fileset_8c.html</anchorfile>
+      <anchor>acfeb780ba16cc8bb80a77132b101503e</anchor>
+      <arglist>(struct fileset *fset)</arglist>
+    </member>
     <member kind="function">
       <type>int</type>
       <name>get_fileset</name>
@@ -11382,13 +11493,6 @@
       <name>do_estimation</name>
       <anchorfile>fourfit3_8c.html</anchorfile>
       <anchor>ac73280bf10db4900c2891abe5c82aeeb</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>do_only_new</name>
-      <anchorfile>fourfit3_8c.html</anchorfile>
-      <anchor>a34fdcb39ad657adc1668ecdeb1a704d2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -12512,6 +12616,11 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>frqsupport.h</name>
+    <path>/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/</path>
+    <filename>frqsupport_8h.html</filename>
+  </compound>
+  <compound kind="file">
     <name>fstruct.h</name>
     <path>/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/</path>
     <filename>fstruct_8h.html</filename>
@@ -12542,6 +12651,13 @@
       <name>BADFREQ</name>
       <anchorfile>fstruct_8h.html</anchorfile>
       <anchor>abdbeccab2a8a8744f43c31609be2cbe6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>BADMALLOC</name>
+      <anchorfile>fstruct_8h.html</anchorfile>
+      <anchor>a78e1fae1d741800150b620433ee99e3c</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -12615,13 +12731,6 @@
       <arglist>(char *, fstruct *)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>clear_fstruct</name>
-      <anchorfile>fstruct_8h.html</anchorfile>
-      <anchor>ac9806f9f34754bf59f2424ad208426c8</anchor>
-      <arglist>(fstruct *)</arglist>
-    </member>
-    <member kind="function">
       <type>int</type>
       <name>extract_filenames</name>
       <anchorfile>fstruct_8h.html</anchorfile>
@@ -12634,6 +12743,13 @@
       <anchorfile>fstruct_8h.html</anchorfile>
       <anchor>a3c9988d1a76e36c2e17771c027772076</anchor>
       <arglist>(int, char **, int, fstruct **)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>prep_fstruct</name>
+      <anchorfile>fstruct_8h.html</anchorfile>
+      <anchor>a1c72adc3e23abcc2d4d0a7fde9d1fd6d</anchor>
+      <arglist>(fstruct *)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -12742,6 +12858,41 @@
       <anchorfile>generate__graphs_8c.html</anchorfile>
       <anchor>ab2766d83fd0369c10257c8df62729409</anchor>
       <arglist>(struct scan_struct *root, struct type_pass *pass, char *fringename, char *ps_file, double *tickinc)</arglist>
+    </member>
+    <member kind="variable">
+      <type>struct mk4_fringe</type>
+      <name>fringe</name>
+      <anchorfile>generate__graphs_8c.html</anchorfile>
+      <anchor>ab19e738fad8df4a4c38b5e0806566ef0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>struct type_meta</type>
+      <name>meta</name>
+      <anchorfile>generate__graphs_8c.html</anchorfile>
+      <anchor>ae0c109f7f2e4ad615807454126123586</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>struct type_param</type>
+      <name>param</name>
+      <anchorfile>generate__graphs_8c.html</anchorfile>
+      <anchor>aa665147429eaf1e446ee01b47099af4e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>struct type_plot</type>
+      <name>plot</name>
+      <anchorfile>generate__graphs_8c.html</anchorfile>
+      <anchor>ab7a7a69c9a1c4ea82e2b4fdf688d741d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>struct type_status</type>
+      <name>status</name>
+      <anchorfile>generate__graphs_8c.html</anchorfile>
+      <anchor>a4accbc719f15b3ee9e12175b99ffe53b</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -16011,6 +16162,7 @@
     <name>init_tokens.c</name>
     <path>/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/</path>
     <filename>init__tokens_8c.html</filename>
+    <includes id="msg_8h" name="msg.h" local="yes" imported="no">msg.h</includes>
     <includes id="parser_8h" name="parser.h" local="yes" imported="no">parser.h</includes>
     <includes id="control_8h" name="control.h" local="yes" imported="no">control.h</includes>
     <includes id="ffcontrol_8h" name="ffcontrol.h" local="yes" imported="no">ffcontrol.h</includes>
@@ -16022,11 +16174,18 @@
       <arglist>(aa, bb, cc)</arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>void</type>
+      <name>free_tokens</name>
+      <anchorfile>init__tokens_8c.html</anchorfile>
+      <anchor>a5f7b3883bd8ecaa031acbaee597bcb14</anchor>
+      <arglist>(int where)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>init_tokens</name>
       <anchorfile>init__tokens_8c.html</anchorfile>
-      <anchor>af773e7385850540b832aff590170ceb0</anchor>
-      <arglist>()</arglist>
+      <anchor>a4cd6e0dbda1229a5ef4a394e1da29703</anchor>
+      <arglist>(int where)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -17157,6 +17316,7 @@
     <includes id="mk4__dfio_8h" name="mk4_dfio.h" local="yes" imported="no">mk4_dfio.h</includes>
     <includes id="msg_8h" name="msg.h" local="yes" imported="no">msg.h</includes>
     <includes id="pass__struct_8h" name="pass_struct.h" local="yes" imported="no">pass_struct.h</includes>
+    <includes id="meta__struct_8h" name="meta_struct.h" local="yes" imported="no">meta_struct.h</includes>
     <includes id="ovex_8h" name="ovex.h" local="yes" imported="no">ovex.h</includes>
     <member kind="function">
       <type>int</type>
@@ -17269,7 +17429,23 @@
     <name>meta_struct.h</name>
     <path>/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/</path>
     <filename>meta__struct_8h.html</filename>
+    <includes id="ovex_8h" name="ovex.h" local="yes" imported="no">ovex.h</includes>
+    <includes id="pass__struct_8h" name="pass_struct.h" local="yes" imported="no">pass_struct.h</includes>
     <class kind="struct">type_meta</class>
+    <member kind="function">
+      <type>int</type>
+      <name>generate_graphs</name>
+      <anchorfile>meta__struct_8h.html</anchorfile>
+      <anchor>ab2766d83fd0369c10257c8df62729409</anchor>
+      <arglist>(struct scan_struct *root, struct type_pass *pass, char *fringename, char *ps_file, double *tickinc)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>generate_text</name>
+      <anchorfile>meta__struct_8h.html</anchorfile>
+      <anchor>a728a9506544f4a8eab36bb5b248dcb7f</anchor>
+      <arglist>(struct scan_struct *root, struct type_pass *pass, char *fringename, char *ps_file, double tickinc)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>MHO_AbsoluteValue.hh</name>
@@ -19975,6 +20151,7 @@
     <includes id="MHO__DoubleSidebandChannelLabeler_8hh" name="MHO_DoubleSidebandChannelLabeler.hh" local="yes" imported="no">MHO_DoubleSidebandChannelLabeler.hh</includes>
     <includes id="MHO__ElementTypeCaster_8hh" name="MHO_ElementTypeCaster.hh" local="yes" imported="no">MHO_ElementTypeCaster.hh</includes>
     <includes id="MHO__DiFXTimeUtilities_8hh" name="MHO_DiFXTimeUtilities.hh" local="yes" imported="no">MHO_DiFXTimeUtilities.hh</includes>
+    <includes id="MHO__MK4CorelInterfaceReversed_8hh" name="MHO_MK4CorelInterfaceReversed.hh" local="yes" imported="no">MHO_MK4CorelInterfaceReversed.hh</includes>
     <namespace>hops</namespace>
     <member kind="define">
       <type>#define</type>
@@ -20098,6 +20275,7 @@
     <includes id="MHO__VexGenerator_8hh" name="MHO_VexGenerator.hh" local="yes" imported="no">MHO_VexGenerator.hh</includes>
     <includes id="MHO__VexParser_8hh" name="MHO_VexParser.hh" local="yes" imported="no">MHO_VexParser.hh</includes>
     <includes id="MHO__Reducer_8hh" name="MHO_Reducer.hh" local="yes" imported="no">MHO_Reducer.hh</includes>
+    <includes id="MHO__MK4StationInterfaceReversed_8hh" name="MHO_MK4StationInterfaceReversed.hh" local="yes" imported="no">MHO_MK4StationInterfaceReversed.hh</includes>
     <namespace>hops</namespace>
     <member kind="define">
       <type>#define</type>
@@ -27498,13 +27676,6 @@
       <anchor>a34b0a373ed8bc3a7cd512552f08fa7b8</anchor>
       <arglist>(a)</arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>STATUS_AP_ACCOUNTING</name>
-      <anchorfile>norm__fx_8c.html</anchorfile>
-      <anchor>a19b66799c9978354aac24387610e4dad</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type>void</type>
       <name>norm_fx</name>
@@ -27776,6 +27947,27 @@
     <includes id="fileset_8h" name="fileset.h" local="yes" imported="no">fileset.h</includes>
     <includes id="write__lock__mechanism_8h" name="write_lock_mechanism.h" local="yes" imported="no">write_lock_mechanism.h</includes>
     <includes id="plot__data__dir_8h" name="plot_data_dir.h" local="yes" imported="no">plot_data_dir.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>MSGRETURN0</name>
+      <anchorfile>output_8c.html</anchorfile>
+      <anchor>a0a3cc33a425ed3bb2335f95c074a4fcc</anchor>
+      <arglist>(STR, ARG, ERR)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MSGRETURN1</name>
+      <anchorfile>output_8c.html</anchorfile>
+      <anchor>a62674fbd78a43945eb9efc156eac825b</anchor>
+      <arglist>(STR, ARG, ERR, FRE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>MSGRETURN2</name>
+      <anchorfile>output_8c.html</anchorfile>
+      <anchor>ad950f69c4aa4c821f9f10602ad486aef</anchor>
+      <arglist>(STR, ARG, ERR, FR1, FR2)</arglist>
+    </member>
     <member kind="function">
       <type>int</type>
       <name>output</name>
@@ -28456,8 +28648,8 @@
       <type>int</type>
       <name>parse_control_file</name>
       <anchorfile>parse__control__file_8c.html</anchorfile>
-      <anchor>a804eebb12c988144bbacf70dd38d0caf</anchor>
-      <arglist>(char *control_file_name, char **control_file_buff, char **set_string_buff)</arglist>
+      <anchor>ad60782e1673608ef58f9c9536f0a0746</anchor>
+      <arglist>(char *control_file_name, char **control_file_buff, char **set_string_buff, int where)</arglist>
     </member>
     <member kind="variable">
       <type>char *</type>
@@ -29016,6 +29208,14 @@
     <includes id="ffcontrol_8h" name="ffcontrol.h" local="yes" imported="no">ffcontrol.h</includes>
     <includes id="mk4__sizes_8h" name="mk4_sizes.h" local="yes" imported="no">mk4_sizes.h</includes>
     <includes id="msg_8h" name="msg.h" local="yes" imported="no">msg.h</includes>
+    <includes id="frqsupport_8h" name="frqsupport.h" local="yes" imported="no">frqsupport.h</includes>
+    <member kind="define">
+      <type>#define</type>
+      <name>ALLOW_FRQS_CODE</name>
+      <anchorfile>parser_8c.html</anchorfile>
+      <anchor>ae60c9bf0cdbf361d53828c43eda5a64f</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
       <name>FALSE</name>
@@ -29064,6 +29264,48 @@
       <anchorfile>parser_8c.html</anchorfile>
       <anchor>a7190520c0d971601304fd6c9dff56bc2</anchor>
       <arglist>(void)</arglist>
+    </member>
+    <member kind="variable">
+      <type>struct c_block *</type>
+      <name>cb_head</name>
+      <anchorfile>parser_8c.html</anchorfile>
+      <anchor>a330b69253c7f98c907b4b3b767f8e0a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char *</type>
+      <name>char_values</name>
+      <anchorfile>parser_8c.html</anchorfile>
+      <anchor>a60d5aa5945374d3928ea4852513bbc8a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double *</type>
+      <name>float_values</name>
+      <anchorfile>parser_8c.html</anchorfile>
+      <anchor>ad6d23835b07f1486d02781beae1fba5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>struct fsm_table_entry *</type>
+      <name>fsm_base</name>
+      <anchorfile>parser_8c.html</anchorfile>
+      <anchor>a2f20d1bdda76b8e24273c759fd9e1517</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>msglev</name>
+      <anchorfile>parser_8c.html</anchorfile>
+      <anchor>ac4693c7c31653d6304e6b816726f4482</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>struct token_struct *</type>
+      <name>tokens</name>
+      <anchorfile>parser_8c.html</anchorfile>
+      <anchor>a5fa05140bf6690c8fea8250127dd3336</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -29200,6 +29442,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>CHAN_NOTCHES_</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>ac129990fa7b17b2fb5a3775463de6ba6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>CHAN_PARAM</name>
       <anchorfile>parser_8h.html</anchorfile>
       <anchor>af8af12b3ae1fec4053dde0c57e3f50d6</anchor>
@@ -29217,6 +29466,20 @@
       <name>CLEAR_FREQS</name>
       <anchorfile>parser_8h.html</anchorfile>
       <anchor>a528f6dfd44873fe6ddecca80c35ce7ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CLONE_IDS_</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>a6f38d5630ee24ea88f45949f458ea39a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CLONE_SNR_CHK_</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>a621e4f811d95170b405af05af36c5809</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -29273,6 +29536,13 @@
       <name>DISCARD_</name>
       <anchorfile>parser_8h.html</anchorfile>
       <anchor>abec574fe16dbc6529d000b7a8567ce69</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DISPLAY_CHANS_</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>a8484226345ac169fcdce2404f4f80588</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -29378,6 +29648,20 @@
       <name>FREQS_</name>
       <anchorfile>parser_8h.html</anchorfile>
       <anchor>acd7ad9396bed5c9359bc6f0548945481</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FRINGEOUT_DIR_</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>a682e6a5afb62dfb0b10b2841beaea62c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>FRQS_</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>a4fd0116244f70df68aef4d5dcec01e6e</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -29781,6 +30065,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>NEED_STRING_CHANS</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>a00eafef993413baf1f984390bbd54c98</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>NEED_TWO_FLOAT_1</name>
       <anchorfile>parser_8h.html</anchorfile>
       <anchor>a06451f83f5496b021e1d42c690dec61f</anchor>
@@ -29833,6 +30124,13 @@
       <name>NEGATE</name>
       <anchorfile>parser_8h.html</anchorfile>
       <anchor>a10f3b04b9e8311aac01fcf058309a111</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>NEW_CODES</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>a8969fe2352b1191fd6fabaa841f4d7df</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -30075,6 +30373,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>POLFRINGNAMES_</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>af5dbfb6002a5464fea86d2732aec0e61</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>POLYNOMIAL_</name>
       <anchorfile>parser_8h.html</anchorfile>
       <anchor>a5bafffeed5dceb4a0e04eaa0e3cbcd99</anchor>
@@ -30155,6 +30460,13 @@
       <name>SAVE_BASE</name>
       <anchorfile>parser_8h.html</anchorfile>
       <anchor>ae955964b7eaeeeadff890734d18def52</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SAVE_CHAR_PARAM</name>
+      <anchorfile>parser_8h.html</anchorfile>
+      <anchor>a300f1c68e636416274ddbeca9d6b967a</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -30597,6 +30909,13 @@
       <anchor>a29cd98c10290f6484a8d6d59f6c7e1e6</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>modify_pol</name>
+      <anchorfile>pass__struct_8h.html</anchorfile>
+      <anchor>af32316653e135da0967a9f83277ff3b8</anchor>
+      <arglist>(struct type_pass *p, char *polstr)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>pcal_interp.c</name>
@@ -31010,6 +31329,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>PDD_CONTROL_BLOCK</name>
+      <anchorfile>plot__data__dir_8c.html</anchorfile>
+      <anchor>a51cdccf24ae2b4cce33bf77afe1b2ed9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>PDD_DESCRIBE</name>
       <anchorfile>plot__data__dir_8c.html</anchorfile>
       <anchor>a69eb8e9a79b3e1ed2c9f1acfb3a97591</anchor>
@@ -31206,13 +31532,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>PDD_SEG_RESERVED2</name>
-      <anchorfile>plot__data__dir_8c.html</anchorfile>
-      <anchor>a73bbfbec16fccddb6cc4990e4489f1fa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>PDD_SEG_RESERVED3</name>
       <anchorfile>plot__data__dir_8c.html</anchorfile>
       <anchor>a078eaaca8f54aac2d1d38c8860789ed7</anchor>
@@ -31273,6 +31592,13 @@
       <anchorfile>plot__data__dir_8c.html</anchorfile>
       <anchor>a2a9d9975b74210006a1125d566d9bf38</anchor>
       <arglist>(RAD)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>STRASS</name>
+      <anchorfile>plot__data__dir_8c.html</anchorfile>
+      <anchor>aaf0e939db0ecf92980ee711adb0d00ad</anchor>
+      <arglist>(PM, PDD, VAL)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -33383,6 +33709,7 @@
     <name>rotate_pcal.c</name>
     <path>/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/</path>
     <filename>rotate__pcal_8c.html</filename>
+    <includes id="msg_8h" name="msg.h" local="yes" imported="no">msg.h</includes>
     <includes id="hops__complex_8h" name="hops_complex.h" local="yes" imported="no">hops_complex.h</includes>
     <includes id="mk4__data_8h" name="mk4_data.h" local="yes" imported="no">mk4_data.h</includes>
     <includes id="param__struct_8h" name="param_struct.h" local="yes" imported="no">param_struct.h</includes>
@@ -40185,10 +40512,17 @@
     </member>
     <member kind="variable">
       <type>char</type>
+      <name>chan_notches</name>
+      <anchorfile>control_8h.html</anchorfile>
+      <anchor>a2ede4e60530e134757f7170ea943e666</anchor>
+      <arglist>[MAXNOTCH+1]</arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
       <name>chid</name>
       <anchorfile>control_8h.html</anchorfile>
-      <anchor>a0110ef1e2eae572bd64fb774ba385168</anchor>
-      <arglist>[MAXFREQ]</arglist>
+      <anchor>a0929b88d9c4350a530823c72e4ef7306</anchor>
+      <arglist>[MAXFREQ+1]</arglist>
     </member>
     <member kind="variable">
       <type>double</type>
@@ -40196,6 +40530,20 @@
       <anchorfile>control_8h.html</anchorfile>
       <anchor>adf17d126984b5c9401587b135511aa89</anchor>
       <arglist>[MAXFREQ]</arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>clone_snr_chk</name>
+      <anchorfile>control_8h.html</anchorfile>
+      <anchor>a267b20b31d69d71b64da01699343e8d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>clones</name>
+      <anchorfile>control_8h.html</anchorfile>
+      <anchor>a6ae4f2766e4f4c63ad5cb291894a5a36</anchor>
+      <arglist>[2][MAXFREQ/2+1]</arglist>
     </member>
     <member kind="variable">
       <type>short</type>
@@ -40226,6 +40574,13 @@
       <arglist>[MAXFREQ][2]</arglist>
     </member>
     <member kind="variable">
+      <type>char</type>
+      <name>display_chans</name>
+      <anchorfile>control_8h.html</anchorfile>
+      <anchor>a9147ed70197e6ac12cf68238fa08b189</anchor>
+      <arglist>[MAXFREQ+5]</arglist>
+    </member>
+    <member kind="variable">
       <type>double</type>
       <name>dr_window</name>
       <anchorfile>control_8h.html</anchorfile>
@@ -40252,6 +40607,13 @@
       <anchorfile>control_8h.html</anchorfile>
       <anchor>a9166b78a6e0ead14dfb5206f74e06c0e</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>fringeout_dir</name>
+      <anchorfile>control_8h.html</anchorfile>
+      <anchor>a649884d78d1387ae014e6e929942e618</anchor>
+      <arglist>[256]</arglist>
     </member>
     <member kind="variable">
       <type>struct gat_struct</type>
@@ -40483,6 +40845,13 @@
       <anchorfile>control_8h.html</anchorfile>
       <anchor>a2d5d02667c61abde863e80dffeda13a0</anchor>
       <arglist>[2][256]</arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>polfringnames</name>
+      <anchorfile>control_8h.html</anchorfile>
+      <anchor>a0d0ec9de2e314381cb6a3d213c3c778c</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>char *</type>
@@ -44404,6 +44773,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>short</type>
+      <name>mxfiles</name>
+      <anchorfile>fileset_8h.html</anchorfile>
+      <anchor>a16f4429f8e092da838e6a9cb1b4fc5f4</anchor>
+      <arglist>[4]</arglist>
+    </member>
+    <member kind="variable">
       <type>char</type>
       <name>rootname</name>
       <anchorfile>fileset_8h.html</anchorfile>
@@ -44528,6 +44904,13 @@
       <arglist>[2][8]</arglist>
     </member>
     <member kind="variable">
+      <type>int</type>
+      <name>corel_index</name>
+      <anchorfile>pass__struct_8h.html</anchorfile>
+      <anchor>a223a2c8abc4d8d5fe5eb27c6acdbb12f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>struct data_corel *</type>
       <name>data</name>
       <anchorfile>pass__struct_8h.html</anchorfile>
@@ -44539,6 +44922,20 @@
       <name>data_alloc</name>
       <anchorfile>pass__struct_8h.html</anchorfile>
       <anchor>aa6a8ed5f7e7e1a82934efe39a90b051e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>data_peers</name>
+      <anchorfile>pass__struct_8h.html</anchorfile>
+      <anchor>a457b9abce953217facee3d927440c9a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>fcode_index</name>
+      <anchorfile>pass__struct_8h.html</anchorfile>
+      <anchor>a3410fa55ff89891c2f06a1a9ac911075</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -44582,6 +44979,13 @@
       <anchorfile>pass__struct_8h.html</anchorfile>
       <anchor>a0803ab8df440d569e994460c1396b828</anchor>
       <arglist>[2][16]</arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>nsb_channels</name>
+      <anchorfile>pass__struct_8h.html</anchorfile>
+      <anchor>aac5bc39453cc4ff205da26e592d4fffa</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable">
       <type>float</type>
@@ -45776,17 +46180,17 @@
       <arglist>[4]</arglist>
     </member>
     <member kind="variable">
-      <type>int</type>
-      <name>nalloc</name>
-      <anchorfile>fstruct_8h.html</anchorfile>
-      <anchor>a1230848eb75bd9545ee895dad319a45c</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
       <type>char *</type>
       <name>name</name>
       <anchorfile>fstruct_8h.html</anchorfile>
       <anchor>a629e521213a65490fe769b29f2e6b014</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>namealloc</name>
+      <anchorfile>fstruct_8h.html</anchorfile>
+      <anchor>a6af1c9f00b9b6c2e329f4e4ef300a988</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -48119,6 +48523,13 @@
       <anchor>ac9000cc4ccbde299b9255ac5de8b54d4</anchor>
       <arglist>() override</arglist>
     </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Cache</name>
+      <anchorfile>classhops_1_1MHO__BasicFringeFitter.html</anchorfile>
+      <anchor>ae696671b6b79dd8a99933fd63b1d16e3</anchor>
+      <arglist>() override</arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>coarse_fringe_search</name>
@@ -48139,6 +48550,20 @@
       <anchorfile>classhops_1_1MHO__BasicFringeFitter.html</anchorfile>
       <anchor>a9508e0ae3528dc203cf49d30260d8c23</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Refresh</name>
+      <anchorfile>classhops_1_1MHO__BasicFringeFitter.html</anchorfile>
+      <anchor>a9427fe68d42a1fbe8b245221b9e07494</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>fEnableCaching</name>
+      <anchorfile>classhops_1_1MHO__BasicFringeFitter.html</anchorfile>
+      <anchor>a8c202ff27a87c159a12304a17833d6ca</anchor>
+      <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>MHO_MBDelaySearch *</type>
@@ -52752,6 +53177,20 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>SetExportAsMark4False</name>
+      <anchorfile>classhops_1_1MHO__DiFXBaselineProcessor.html</anchorfile>
+      <anchor>a18ccaa849680e100d2f86dc52df8d131</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetExportAsMark4True</name>
+      <anchorfile>classhops_1_1MHO__DiFXBaselineProcessor.html</anchorfile>
+      <anchor>aaafa750a3e16cb146d444d60ee876c62</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>SetFreqGroups</name>
       <anchorfile>classhops_1_1MHO__DiFXBaselineProcessor.html</anchorfile>
       <anchor>acad8456535dad0f91717f797576b744b</anchor>
@@ -52936,6 +53375,20 @@
       <anchorfile>classhops_1_1MHO__DiFXInterface.html</anchorfile>
       <anchor>a6f57577d8d6427bf6a4718a3cc68f7fd</anchor>
       <arglist>(int num)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetExportAsMark4False</name>
+      <anchorfile>classhops_1_1MHO__DiFXInterface.html</anchorfile>
+      <anchor>a53115b745c2211c326b64fc654d7946b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetExportAsMark4True</name>
+      <anchorfile>classhops_1_1MHO__DiFXInterface.html</anchorfile>
+      <anchor>aa9e47f2c4091ad60eccdaad3a993a500</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -53256,6 +53709,20 @@
       <anchorfile>classhops_1_1MHO__DiFXScanProcessor.html</anchorfile>
       <anchor>af5faf6dccb60528137578228701f758d</anchor>
       <arglist>(int num)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetExportAsMark4False</name>
+      <anchorfile>classhops_1_1MHO__DiFXScanProcessor.html</anchorfile>
+      <anchor>a3b58118ef73563985e6187fda852d64e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetExportAsMark4True</name>
+      <anchorfile>classhops_1_1MHO__DiFXScanProcessor.html</anchorfile>
+      <anchor>a0ac59a65e389e885695de1e4156ec0e1</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -56090,6 +56557,20 @@
       <anchorfile>classhops_1_1MHO__FringeFitter.html</anchorfile>
       <anchor>a13a538c0e673ada9797bc7571da73573</anchor>
       <arglist>()=0</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Cache</name>
+      <anchorfile>classhops_1_1MHO__FringeFitter.html</anchorfile>
+      <anchor>ab36e1f2de255c799c2630ee87543af98</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected" virtualness="virtual">
+      <type>virtual void</type>
+      <name>Refresh</name>
+      <anchorfile>classhops_1_1MHO__FringeFitter.html</anchorfile>
+      <anchor>ad727e4c59def3a322c0c788af2fd9102</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>MHO_ContainerStore *</type>
@@ -65100,6 +65581,13 @@
       <anchorfile>classhops_1_1MHO__OperatorBuilderManager.html</anchorfile>
       <anchor>a717fee40b605e74f944ff3014dc1adf3</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::size_t</type>
+      <name>GetNBuildersInCategory</name>
+      <anchorfile>classhops_1_1MHO__OperatorBuilderManager.html</anchorfile>
+      <anchor>aee6fd6a47c21d83afbd3abe8f2668147</anchor>
+      <arglist>(std::string cat)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -83184,6 +83672,13 @@
     </member>
     <member kind="variable">
       <type>int</type>
+      <name>limit_plot</name>
+      <anchorfile>meta__struct_8h.html</anchorfile>
+      <anchor>a2aac4210d4ae83b97009ba11a145b43f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
       <name>nplots</name>
       <anchorfile>meta__struct_8h.html</anchorfile>
       <anchor>a7b70699220a70e49aeeaf8c92af66bd9</anchor>
@@ -83232,10 +83727,24 @@
       <arglist>[80]</arglist>
     </member>
     <member kind="variable">
+      <type>char</type>
+      <name>skip_plots</name>
+      <anchorfile>meta__struct_8h.html</anchorfile>
+      <anchor>ae615d350d94cf2befba7b79dd7581b68</anchor>
+      <arglist>[MAXFREQ+1]</arglist>
+    </member>
+    <member kind="variable">
       <type>int</type>
       <name>start_plot</name>
       <anchorfile>meta__struct_8h.html</anchorfile>
       <anchor>a4c809fd7a902c745c9e57edc460d03e5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>vplots</name>
+      <anchorfile>meta__struct_8h.html</anchorfile>
+      <anchor>a8569693708a1f9be6b065036e0f0ba8d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -83356,6 +83865,27 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
+      <type>char</type>
+      <name>chan_notches</name>
+      <anchorfile>param__struct_8h.html</anchorfile>
+      <anchor>a5d815fe0bd60b48fd3d4f3722ab420f2</anchor>
+      <arglist>[MAXNOTCH+1]</arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>clone_snr_chk</name>
+      <anchorfile>param__struct_8h.html</anchorfile>
+      <anchor>a37ba36255db0e46778e4e6885773a9c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>clones</name>
+      <anchorfile>param__struct_8h.html</anchorfile>
+      <anchor>a2f3989acc1adb474ded201f0bbc5f6bb</anchor>
+      <arglist>[2][MAXFREQ/2+1]</arglist>
+    </member>
+    <member kind="variable">
       <type>char *</type>
       <name>control_file_buff</name>
       <anchorfile>param__struct_8h.html</anchorfile>
@@ -83389,6 +83919,13 @@
       <anchorfile>param__struct_8h.html</anchorfile>
       <anchor>a491438ab65f685ff92ababc783243ffc</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>display_chans</name>
+      <anchorfile>param__struct_8h.html</anchorfile>
+      <anchor>acaaba075d8d5ea81550b336d930774d1</anchor>
+      <arglist>[MAXFREQ+5]</arglist>
     </member>
     <member kind="variable">
       <type>double</type>
@@ -83431,6 +83968,13 @@
       <anchorfile>param__struct_8h.html</anchorfile>
       <anchor>a6bd3264e8b0cd9b565a97cd09ada9ef1</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>char</type>
+      <name>fringeout_dir</name>
+      <anchorfile>param__struct_8h.html</anchorfile>
+      <anchor>ab42f95a2aa287faae4c0fc45e7616f92</anchor>
+      <arglist>[256]</arglist>
     </member>
     <member kind="variable">
       <type>double</type>
@@ -83647,6 +84191,13 @@
       <name>pol</name>
       <anchorfile>param__struct_8h.html</anchorfile>
       <anchor>a425f6a555164c64ef40dca34c7359d0f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>polfringnames</name>
+      <anchorfile>param__struct_8h.html</anchorfile>
+      <anchor>af82c17e97fa88875a5932aebc76ad11f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -85513,6 +86064,17 @@
       <anchorfile>namespaceafio_1_1afio.html</anchorfile>
       <anchor>a6977ac95996187d29c4c21c1209c974f</anchor>
       <arglist>(filename)</arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>example1</name>
+    <filename>namespaceexample1.html</filename>
+    <member kind="function">
+      <type>def</type>
+      <name>dummy</name>
+      <anchorfile>namespaceexample1.html</anchorfile>
+      <anchor>a3db0c416b643a1ad8a1f5b4ffeadf9d0</anchor>
+      <arglist>(fringe_data_interface)</arglist>
     </member>
   </compound>
   <compound kind="namespace">

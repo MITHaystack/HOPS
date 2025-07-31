@@ -28,7 +28,7 @@
         <label>copy_309.c</label>
         <link refid="copy__309_8c"/>
       </node>
-      <node id="374">
+      <node id="375">
         <label>set_defaults.c</label>
         <link refid="set__defaults_8c"/>
       </node>
@@ -64,7 +64,7 @@
         <label>clear_303.c</label>
         <link refid="clear__303_8c"/>
       </node>
-      <node id="366">
+      <node id="367">
         <label>search.c</label>
         <link refid="fourfit__libs_2ffsearch_2src_2search_8c"/>
       </node>
@@ -108,7 +108,7 @@
         <label>CorAsc2.c</label>
         <link refid="CorAsc2_8c"/>
       </node>
-      <node id="352">
+      <node id="353">
         <label>freq_spacing.c</label>
         <link refid="freq__spacing_8c"/>
       </node>
@@ -120,7 +120,7 @@
         <label>esdesp_check.c</label>
         <link refid="esdesp__check_8c"/>
       </node>
-      <node id="344">
+      <node id="345">
         <label>apply_passband.c</label>
         <link refid="apply__passband_8c"/>
       </node>
@@ -140,13 +140,13 @@
         <label>MHO_MK4FringeExport.cc</label>
         <link refid="MHO__MK4FringeExport_8cc"/>
       </node>
-      <node id="369">
+      <node id="370">
         <label>plot_struct.h</label>
         <link refid="plot__struct_8h"/>
-        <childnode refid="370" relation="include">
+        <childnode refid="371" relation="include">
         </childnode>
       </node>
-      <node id="363">
+      <node id="364">
         <label>precorrect.c</label>
         <link refid="precorrect_8c"/>
       </node>
@@ -170,7 +170,7 @@
         <label>do_record_merge.c</label>
         <link refid="do__record__merge_8c"/>
       </node>
-      <node id="334">
+      <node id="335">
         <label>plot_data_dir.c</label>
         <link refid="plot__data__dir_8c"/>
       </node>
@@ -190,7 +190,7 @@
         <label>qfilter.c</label>
         <link refid="qfilter_8c"/>
       </node>
-      <node id="337">
+      <node id="336">
         <label>generate_graphs.c</label>
         <link refid="generate__graphs_8c"/>
       </node>
@@ -198,7 +198,7 @@
         <label>write_tdata.c</label>
         <link refid="write__tdata_8c"/>
       </node>
-      <node id="373">
+      <node id="374">
         <label>make_flist.c</label>
         <link refid="make__flist_8c"/>
       </node>
@@ -210,7 +210,7 @@
         <label>ps_selbase.c</label>
         <link refid="ps__selbase_8c"/>
       </node>
-      <node id="367">
+      <node id="368">
         <label>search_windows.c</label>
         <link refid="search__windows_8c"/>
       </node>
@@ -508,7 +508,7 @@
         <label>MHO_MK4StationInterface.cc</label>
         <link refid="MHO__MK4StationInterface_8cc"/>
       </node>
-      <node id="338">
+      <node id="337">
         <label>generate_text.c</label>
         <link refid="generate__text_8c"/>
       </node>
@@ -562,7 +562,7 @@
         <label>psplot_defaults4.c</label>
         <link refid="psplot__defaults4_8c"/>
       </node>
-      <node id="346">
+      <node id="347">
         <label>calc_normalization.c</label>
         <link refid="calc__normalization_8c"/>
       </node>
@@ -574,7 +574,7 @@
         <label>ffilter.c</label>
         <link refid="ffilter_8c"/>
       </node>
-      <node id="342">
+      <node id="343">
         <label>apply_filter.c</label>
         <link refid="apply__filter_8c"/>
       </node>
@@ -896,7 +896,7 @@
         <label>cleanup.c</label>
         <link refid="cleanup_8c"/>
       </node>
-      <node id="343">
+      <node id="344">
         <label>apply_notches.c</label>
         <link refid="apply__notches_8c"/>
       </node>
@@ -904,7 +904,7 @@
         <label>fringex.c</label>
         <link refid="fringex_8c"/>
       </node>
-      <node id="365">
+      <node id="366">
         <label>sampler_delays.c</label>
         <link refid="sampler__delays_8c"/>
       </node>
@@ -912,7 +912,7 @@
         <label>update_sinfo.c</label>
         <link refid="update__sinfo_8c"/>
       </node>
-      <node id="353">
+      <node id="354">
         <label>fringe_search.c</label>
         <link refid="fringe__search_8c"/>
       </node>
@@ -924,7 +924,7 @@
         <label>copy_208.c</label>
         <link refid="copy__208_8c"/>
       </node>
-      <node id="357">
+      <node id="358">
         <label>ion_search.c</label>
         <link refid="ion__search_8c"/>
       </node>
@@ -948,7 +948,7 @@
         <label>copy_300.c</label>
         <link refid="copy__300_8c"/>
       </node>
-      <node id="335">
+      <node id="338">
         <label>display_fplot.c</label>
         <link refid="display__fplot_8c"/>
       </node>
@@ -1052,7 +1052,23 @@
         <label>output.c</label>
         <link refid="output_8c"/>
       </node>
-      <node id="359">
+      <node id="333">
+        <label>meta_struct.h</label>
+        <link refid="meta__struct_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="334" relation="include">
+        </childnode>
+        <childnode refid="336" relation="include">
+        </childnode>
+        <childnode refid="337" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+      </node>
+      <node id="360">
         <label>norm_xf.c</label>
         <link refid="norm__xf_8c"/>
       </node>
@@ -1112,16 +1128,16 @@
         <label>copy_222.c</label>
         <link refid="copy__222_8c"/>
       </node>
-      <node id="351">
+      <node id="352">
         <label>est_pc_manual.c</label>
         <link refid="est__pc__manual_8c"/>
       </node>
-      <node id="333">
+      <node id="334">
         <label>plot_data_dir.h</label>
         <link refid="plot__data__dir_8h"/>
         <childnode refid="171" relation="include">
         </childnode>
-        <childnode refid="334" relation="include">
+        <childnode refid="335" relation="include">
         </childnode>
       </node>
       <node id="246">
@@ -1148,36 +1164,36 @@
         <label>write_mk4sdata.c</label>
         <link refid="write__mk4sdata_8c"/>
       </node>
-      <node id="370">
+      <node id="371">
         <label>param_struct.h</label>
         <link refid="param__struct_8h"/>
         <childnode refid="30" relation="include">
         </childnode>
         <childnode refid="323" relation="include">
         </childnode>
-        <childnode refid="371" relation="include">
+        <childnode refid="372" relation="include">
         </childnode>
         <childnode refid="324" relation="include">
         </childnode>
         <childnode refid="325" relation="include">
         </childnode>
-        <childnode refid="372" relation="include">
+        <childnode refid="373" relation="include">
         </childnode>
         <childnode refid="326" relation="include">
         </childnode>
-        <childnode refid="373" relation="include">
+        <childnode refid="374" relation="include">
         </childnode>
         <childnode refid="327" relation="include">
         </childnode>
         <childnode refid="328" relation="include">
         </childnode>
-        <childnode refid="374" relation="include">
+        <childnode refid="375" relation="include">
         </childnode>
         <childnode refid="329" relation="include">
         </childnode>
         <childnode refid="330" relation="include">
         </childnode>
-        <childnode refid="375" relation="include">
+        <childnode refid="376" relation="include">
         </childnode>
         <childnode refid="331" relation="include">
         </childnode>
@@ -1209,21 +1225,19 @@
         </childnode>
         <childnode refid="169" relation="include">
         </childnode>
-        <childnode refid="333" relation="include">
+        <childnode refid="334" relation="include">
+        </childnode>
+        <childnode refid="339" relation="include">
         </childnode>
         <childnode refid="336" relation="include">
         </childnode>
         <childnode refid="337" relation="include">
         </childnode>
-        <childnode refid="338" relation="include">
-        </childnode>
-        <childnode refid="339" relation="include">
+        <childnode refid="340" relation="include">
         </childnode>
         <childnode refid="171" relation="include">
         </childnode>
-        <childnode refid="376" relation="include">
-        </childnode>
-        <childnode refid="340" relation="include">
+        <childnode refid="377" relation="include">
         </childnode>
         <childnode refid="341" relation="include">
         </childnode>
@@ -1281,6 +1295,8 @@
         </childnode>
         <childnode refid="368" relation="include">
         </childnode>
+        <childnode refid="369" relation="include">
+        </childnode>
       </node>
       <node id="216">
         <label>get_plot_datum.c</label>
@@ -1330,7 +1346,7 @@
         <label>set_pscodes.c</label>
         <link refid="set__pscodes_8c"/>
       </node>
-      <node id="362">
+      <node id="363">
         <label>pcalibrate.c</label>
         <link refid="pcalibrate_8c"/>
       </node>
@@ -1358,7 +1374,7 @@
         <label>symbol_key.c</label>
         <link refid="symbol__key_8c"/>
       </node>
-      <node id="378">
+      <node id="379">
         <label>ap_mean.c</label>
         <link refid="ap__mean_8c"/>
       </node>
@@ -1438,7 +1454,7 @@
         <label>createType3s.c</label>
         <link refid="createType3s_8c"/>
       </node>
-      <node id="336">
+      <node id="339">
         <label>fit_vbp.c</label>
         <link refid="fit__vbp_8c"/>
       </node>
@@ -1506,7 +1522,7 @@
         <label>fplot.c</label>
         <link refid="fplot_2fplot_8c"/>
       </node>
-      <node id="361">
+      <node id="362">
         <label>parse_cmdline.c</label>
         <link refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c"/>
       </node>
@@ -1594,7 +1610,7 @@
         <label>parse_commands.c</label>
         <link refid="parse__commands_8c"/>
       </node>
-      <node id="339">
+      <node id="340">
         <label>make_plotdata.c</label>
         <link refid="make__plotdata_8c"/>
       </node>
@@ -1614,7 +1630,7 @@
         <label>addr_210.c</label>
         <link refid="addr__210_8c"/>
       </node>
-      <node id="340">
+      <node id="341">
         <label>adjust_snr.c</label>
         <link refid="adjust__snr_8c"/>
       </node>
@@ -1626,7 +1642,7 @@
         <label>copy_221.c</label>
         <link refid="copy__221_8c"/>
       </node>
-      <node id="341">
+      <node id="342">
         <label>apply_cmplxbp.c</label>
         <link refid="apply__cmplxbp_8c"/>
       </node>
@@ -1670,7 +1686,7 @@
         <label>diff_file_phase.c</label>
         <link refid="diff__file__phase_8c"/>
       </node>
-      <node id="364">
+      <node id="365">
         <label>rotate_pcal.c</label>
         <link refid="rotate__pcal_8c"/>
       </node>
@@ -1791,21 +1807,21 @@
         </childnode>
         <childnode refid="333" relation="include">
         </childnode>
-        <childnode refid="335" relation="include">
-        </childnode>
-        <childnode refid="336" relation="include">
-        </childnode>
-        <childnode refid="337" relation="include">
+        <childnode refid="334" relation="include">
         </childnode>
         <childnode refid="338" relation="include">
         </childnode>
         <childnode refid="339" relation="include">
         </childnode>
+        <childnode refid="336" relation="include">
+        </childnode>
+        <childnode refid="337" relation="include">
+        </childnode>
+        <childnode refid="340" relation="include">
+        </childnode>
         <childnode refid="170" relation="include">
         </childnode>
         <childnode refid="171" relation="include">
-        </childnode>
-        <childnode refid="340" relation="include">
         </childnode>
         <childnode refid="341" relation="include">
         </childnode>
@@ -1863,12 +1879,14 @@
         </childnode>
         <childnode refid="368" relation="include">
         </childnode>
+        <childnode refid="369" relation="include">
+        </childnode>
       </node>
       <node id="81">
         <label>clear_101.c</label>
         <link refid="clear__101_8c"/>
       </node>
-      <node id="371">
+      <node id="372">
         <label>compute_model.c</label>
         <link refid="compute__model_8c"/>
       </node>
@@ -1908,11 +1926,11 @@
         <label>pr_rsumm.c</label>
         <link refid="pr__rsumm_8c"/>
       </node>
-      <node id="376">
+      <node id="377">
         <label>adhoc_flag.c</label>
         <link refid="adhoc__flag_8c"/>
       </node>
-      <node id="356">
+      <node id="357">
         <label>ion_covariance.c</label>
         <link refid="ion__covariance_8c"/>
       </node>
@@ -2084,11 +2102,11 @@
         <label>clear_308.c</label>
         <link refid="clear__308_8c"/>
       </node>
-      <node id="375">
+      <node id="376">
         <label>time_range.c</label>
         <link refid="time__range_8c"/>
       </node>
-      <node id="345">
+      <node id="346">
         <label>apply_video_bp.c</label>
         <link refid="apply__video__bp_8c"/>
       </node>
@@ -2136,7 +2154,7 @@
         <label>addr_100.c</label>
         <link refid="addr__100_8c"/>
       </node>
-      <node id="347">
+      <node id="348">
         <label>calc_rms.c</label>
         <link refid="calc__rms_8c"/>
       </node>
@@ -2176,7 +2194,7 @@
         <label>clear_204.c</label>
         <link refid="clear__204_8c"/>
       </node>
-      <node id="372">
+      <node id="373">
         <label>fill_param.c</label>
         <link refid="fill__param_8c"/>
       </node>
@@ -2220,7 +2238,7 @@
         <label>time_axis.c</label>
         <link refid="time__axis_8c"/>
       </node>
-      <node id="358">
+      <node id="359">
         <label>norm_fx.c</label>
         <link refid="norm__fx_8c"/>
       </node>
@@ -2228,7 +2246,7 @@
         <label>addr_200.c</label>
         <link refid="addr__200_8c"/>
       </node>
-      <node id="355">
+      <node id="356">
         <label>interp.c</label>
         <link refid="interp_8c"/>
       </node>
@@ -2240,7 +2258,7 @@
         <label>write_t302.c</label>
         <link refid="write__t302_8c"/>
       </node>
-      <node id="348">
+      <node id="349">
         <label>compute_field_rotations.c</label>
         <link refid="compute__field__rotations_8c"/>
       </node>
@@ -2272,7 +2290,7 @@
         <label>update.c</label>
         <link refid="ffcore_2src_2update_8c"/>
       </node>
-      <node id="350">
+      <node id="351">
         <label>delay_rate.c</label>
         <link refid="delay__rate_8c"/>
       </node>
@@ -2308,7 +2326,7 @@
         <label>MHO_MK4StationInterfaceReversed.cc</label>
         <link refid="MHO__MK4StationInterfaceReversed_8cc"/>
       </node>
-      <node id="368">
+      <node id="369">
         <label>update.c</label>
         <link refid="ffsearch_2src_2update_8c"/>
       </node>
@@ -2320,7 +2338,7 @@
         <label>parse_iflag.c</label>
         <link refid="parse__iflag_8c"/>
       </node>
-      <node id="360">
+      <node id="361">
         <label>organize_data.c</label>
         <link refid="organize__data_8c"/>
       </node>
@@ -2340,7 +2358,7 @@
         <label>set_procrange.c</label>
         <link refid="set__procrange_8c"/>
       </node>
-      <node id="377">
+      <node id="378">
         <label>check_rflist.c</label>
         <link refid="check__rflist_8c"/>
       </node>
@@ -2376,11 +2394,11 @@
         <label>copy_205.c</label>
         <link refid="copy__205_8c"/>
       </node>
-      <node id="354">
+      <node id="355">
         <label>gate_off.c</label>
         <link refid="gate__off_8c"/>
       </node>
-      <node id="349">
+      <node id="350">
         <label>create_fname.c</label>
         <link refid="create__fname_8c"/>
       </node>
@@ -2473,23 +2491,23 @@
         </childnode>
         <childnode refid="321" relation="include">
         </childnode>
-        <childnode refid="369" relation="include">
+        <childnode refid="370" relation="include">
         </childnode>
-        <childnode refid="377" relation="include">
+        <childnode refid="378" relation="include">
         </childnode>
         <childnode refid="322" relation="include">
         </childnode>
         <childnode refid="323" relation="include">
         </childnode>
-        <childnode refid="371" relation="include">
+        <childnode refid="372" relation="include">
         </childnode>
         <childnode refid="324" relation="include">
         </childnode>
-        <childnode refid="372" relation="include">
+        <childnode refid="373" relation="include">
         </childnode>
         <childnode refid="154" relation="include">
         </childnode>
-        <childnode refid="373" relation="include">
+        <childnode refid="374" relation="include">
         </childnode>
         <childnode refid="327" relation="include">
         </childnode>
@@ -2501,7 +2519,7 @@
         </childnode>
         <childnode refid="330" relation="include">
         </childnode>
-        <childnode refid="375" relation="include">
+        <childnode refid="376" relation="include">
         </childnode>
         <childnode refid="331" relation="include">
         </childnode>
@@ -2535,31 +2553,29 @@
         </childnode>
         <childnode refid="169" relation="include">
         </childnode>
-        <childnode refid="378" relation="include">
+        <childnode refid="379" relation="include">
         </childnode>
-        <childnode refid="335" relation="include">
-        </childnode>
-        <childnode refid="336" relation="include">
+        <childnode refid="338" relation="include">
         </childnode>
         <childnode refid="339" relation="include">
+        </childnode>
+        <childnode refid="340" relation="include">
         </childnode>
         <childnode refid="170" relation="include">
         </childnode>
         <childnode refid="171" relation="include">
         </childnode>
-        <childnode refid="340" relation="include">
-        </childnode>
-        <childnode refid="342" relation="include">
+        <childnode refid="341" relation="include">
         </childnode>
         <childnode refid="343" relation="include">
         </childnode>
         <childnode refid="344" relation="include">
         </childnode>
-        <childnode refid="346" relation="include">
+        <childnode refid="345" relation="include">
         </childnode>
         <childnode refid="347" relation="include">
         </childnode>
-        <childnode refid="349" relation="include">
+        <childnode refid="348" relation="include">
         </childnode>
         <childnode refid="350" relation="include">
         </childnode>
@@ -2575,7 +2591,7 @@
         </childnode>
         <childnode refid="356" relation="include">
         </childnode>
-        <childnode refid="358" relation="include">
+        <childnode refid="357" relation="include">
         </childnode>
         <childnode refid="359" relation="include">
         </childnode>
@@ -2596,6 +2612,8 @@
         <childnode refid="367" relation="include">
         </childnode>
         <childnode refid="368" relation="include">
+        </childnode>
+        <childnode refid="369" relation="include">
         </childnode>
         <childnode refid="172" relation="include">
         </childnode>

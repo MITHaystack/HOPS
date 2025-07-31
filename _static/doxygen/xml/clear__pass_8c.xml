@@ -354,7 +354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_pass.c" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_pass.c" bodystart="16" bodyend="32"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_pass.c" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_pass.c" bodystart="16" bodyend="34"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -382,18 +382,20 @@
 <codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="clear__freq__corel_8c_1aa7f3bc22f78b3c75c61d5d2bdae43739" kindref="member">clear_freq_corel</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel" kindref="compound">freq_corel</ref>*);</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>;<sp/>i++)<sp/><ref refid="clear__freq__corel_8c_1aa7f3bc22f78b3c75c61d5d2bdae43739" kindref="member">clear_freq_corel</ref><sp/>(pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref><sp/>+<sp/>i);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a722023239c4c5f88f2cdab52c6675f3c" kindref="member">channels</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a4a9381635ea509e1c5b3436e6d7e340e" kindref="member">npctones</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1ad3a097b14f3e2d59ad45bfd87247e534" kindref="member">autocorr</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a7f0a8500bc9bf4bd078a3a6a789f5b15" kindref="member">start</ref><sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a46bf9319278df9a27f01d0bc49fc086c" kindref="member">stop</ref><sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1ab46b56d56a747061cd3d394568075a9f" kindref="member">reftime</ref><sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" kindref="member">nullify_cblock</ref><sp/>(&amp;(pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>));</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>somewhere,<sp/>somehow,<sp/>freq_corel.pass_data[MAX_CHAN]<sp/>was<sp/>done</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>;<sp/>i++)<sp/><ref refid="clear__freq__corel_8c_1aa7f3bc22f78b3c75c61d5d2bdae43739" kindref="member">clear_freq_corel</ref><sp/>(pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref><sp/>+<sp/>i);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//for<sp/>(i=0;<sp/>i&lt;MAXFREQ;<sp/>i++)<sp/>clear_freq_corel<sp/>(pass-&gt;pass_data<sp/>+<sp/>i);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a722023239c4c5f88f2cdab52c6675f3c" kindref="member">channels</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a4a9381635ea509e1c5b3436e6d7e340e" kindref="member">npctones</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1ad3a097b14f3e2d59ad45bfd87247e534" kindref="member">autocorr</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a7f0a8500bc9bf4bd078a3a6a789f5b15" kindref="member">start</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a46bf9319278df9a27f01d0bc49fc086c" kindref="member">stop</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1ab46b56d56a747061cd3d394568075a9f" kindref="member">reftime</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" kindref="member">nullify_cblock</ref><sp/>(&amp;(pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>));</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
     </programlisting>
     <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/clear_pass.c"/>
   </compounddef>

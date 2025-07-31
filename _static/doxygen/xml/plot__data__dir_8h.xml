@@ -85,6 +85,10 @@
       <node id="54">
         <label>meta_struct.h</label>
         <link refid="meta__struct_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
       <node id="26">
         <label>type_202.h</label>
@@ -422,7 +426,7 @@
     dump.pass = (PASS);                                 \
     <ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">dump.param</ref> = (PP);                                  \
     <ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">dump.status</ref> = (ST);                                 \
-    <ref refid="fourfit3_8c_1ae0c109f7f2e4ad615807454126123586" kindref="member">dump.meta</ref> = (PM);                                   \
+    <ref refid="generate__graphs_8c_1ae0c109f7f2e4ad615807454126123586" kindref="member">dump.meta</ref> = (PM);                                   \
     <ref refid="plot_8c_1aa7eb77a7764bbfc536852c0a352fe2a9" kindref="member">dump.plot</ref> = (PL);                                   \
     <ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">dump.fringe</ref> = (PF);                                 \
     if (once) {                                         \
@@ -470,7 +474,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="32" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/plot_data_dir.c" bodystart="714" bodyend="756" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" declline="32" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="32" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/plot_data_dir.c" bodystart="859" bodyend="901" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" declline="32" declcolumn="13"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

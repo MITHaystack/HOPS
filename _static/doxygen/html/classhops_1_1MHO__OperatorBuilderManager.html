@@ -98,6 +98,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a717fee40b605e74f944ff3014dc1adf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__OperatorBuilderManager.html#a717fee40b605e74f944ff3014dc1adf3">CreateDefaultBuilders</a> ()</td></tr>
 <tr class="memdesc:a717fee40b605e74f944ff3014dc1adf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers default operator builders for various purposes such as channel labeling, phase and delay corrections, pol-product summation, flagging operators, etc.  <a href="classhops_1_1MHO__OperatorBuilderManager.html#a717fee40b605e74f944ff3014dc1adf3">More...</a><br /></td></tr>
 <tr class="separator:a717fee40b605e74f944ff3014dc1adf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee6fd6a47c21d83afbd3abe8f2668147"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__OperatorBuilderManager.html#aee6fd6a47c21d83afbd3abe8f2668147">GetNBuildersInCategory</a> (std::string cat)</td></tr>
+<tr class="memdesc:aee6fd6a47c21d83afbd3abe8f2668147"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the number of operator builders in the specified category  <a href="classhops_1_1MHO__OperatorBuilderManager.html#aee6fd6a47c21d83afbd3abe8f2668147">More...</a><br /></td></tr>
+<tr class="separator:aee6fd6a47c21d83afbd3abe8f2668147"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5fe234a1b7e5b146976a88c848f1756"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhops_1_1MHO__OperatorBuilderManager.html#ae5fe234a1b7e5b146976a88c848f1756">SetControlStatements</a> (<a class="el" href="MHO__JSONHeaderWrapper_8hh.html#ad8862af8dd9e65e2990665b6bbfcb6fe">mho_json</a> *statements)</td></tr>
 <tr class="memdesc:ae5fe234a1b7e5b146976a88c848f1756"><td class="mdescLeft">&#160;</td><td class="mdescRight">pass in parsed control file elements  <a href="classhops_1_1MHO__OperatorBuilderManager.html#ae5fe234a1b7e5b146976a88c848f1756">More...</a><br /></td></tr>
 <tr class="separator:ae5fe234a1b7e5b146976a88c848f1756"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -302,6 +305,32 @@ template&lt;typename XBuilderType &gt; </div>
 
 </div>
 </div>
+<a id="aee6fd6a47c21d83afbd3abe8f2668147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee6fd6a47c21d83afbd3abe8f2668147">&#9670;&nbsp;</a></span>GetNBuildersInCategory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t hops::MHO_OperatorBuilderManager::GetNBuildersInCategory </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>cat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>return the number of operator builders in the specified category </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cat</td><td>operator category </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae5fe234a1b7e5b146976a88c848f1756"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae5fe234a1b7e5b146976a88c848f1756">&#9670;&nbsp;</a></span>SetControlStatements()</h2>
 
@@ -343,7 +372,7 @@ template&lt;typename XBuilderType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

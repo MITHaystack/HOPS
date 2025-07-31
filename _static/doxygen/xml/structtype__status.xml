@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="151" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="151" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="157" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="157" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a627843f2a3d8c487484feea5503e05fc" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="184" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="184" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="190" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="190" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a5d38a552e8abb000d004900929d05e35" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="152" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="152" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="158" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="158" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aecf9f3bb3f8f3c7ed96f15645eaf0def" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="154" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="154" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="160" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="160" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a87013423c03d177e66e3c2ade33c4560" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="135" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="135" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="141" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="141" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aa6a7244dfe9657f157aad10776bf759b" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="117" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="117" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="123" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="123" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a4d73876ebc9102f4b61c2f74c6c852ee" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="116" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="116" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="122" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="122" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a5335263e336573e4c0afa84dc8f2d64e" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="210" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="210" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="216" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="216" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a23596f2d15ad0c03371b28bf3955483c" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="183" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="183" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="189" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="189" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1adbe99a37e08b80be32f19f3f48222eae" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -132,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="185" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="185" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="191" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="191" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a90704d80cb0caeb959f9f4df46cc88ff" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -145,7 +145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="167" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="167" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="173" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="173" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aa0776c89ebf55f3e60197ec8a23eeaca" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -158,7 +158,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="180" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="180" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="186" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="186" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a8d12f9722faff434edc859e7c10855b7" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -171,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="138" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="138" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="144" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1abf4cae0b28f8e3fd1de9463184615f07" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -184,7 +184,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="196" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="196" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="202" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="202" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ae817e84c6c9c9d54eaca9809144ba444" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -197,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="197" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="197" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="203" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1afce31460b126f251c127b6703f252766" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="143" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="143" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="149" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="149" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a7d439b513edaa47f2c78fdb821f4175d" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -223,7 +223,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="133" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="133" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="139" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="139" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aa3a7964ee5409aedf512b663c7b3e650" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -236,7 +236,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="204" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="204" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="210" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="210" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1afa8aa9bc0f49a3a07e3ed2f2a5cf7f40" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -249,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="136" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="136" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="142" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="142" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a7d1d3e4b4d9a800d2011bcd570a52cff" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -262,7 +262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="137" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="137" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="143" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="143" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a23136c78001ae4f87aee23a5a2b2f622" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -275,7 +275,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="129" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="129" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="135" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="135" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a486173f8c069cf7fececf745b552e9a1" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -288,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="198" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="198" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="204" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="204" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1abb9678ba6b2cdb1bbae965e338735b4f" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -301,7 +301,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="118" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="118" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="124" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="124" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a9b95581172f452244a32bdbac7627f13" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -314,7 +314,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="119" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="119" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="125" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="125" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a9ac9125292de28099df1b68a3de5b110" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -327,7 +327,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="130" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="130" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="136" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="136" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a3490edc53b090b6c4bd4073132bfd2e2" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -340,7 +340,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="131" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="131" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="137" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="137" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a7d7e76fec5499a5bf685c85c3337de94" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -353,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="106" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="106" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="112" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1af8b19013c2982645287add203b559a3f" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -366,7 +366,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="108" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="108" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="114" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="114" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ab91f95efbf8fb53551885da43290f697" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -379,7 +379,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="176" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="176" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="182" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="182" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a215b7ee43374133c792e9de283a93906" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -392,7 +392,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="175" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="175" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="181" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="181" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ac959924cbebef89d4c48691dbce7d8fe" prot="public" static="no" mutable="no">
         <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
@@ -405,7 +405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="162" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="162" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="168" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="168" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a9a089113f4887f853fa430ddedc9bcde" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -418,7 +418,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="182" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="182" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="188" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="188" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ac4684986b8a8313a61d61c083b09b54c" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -431,7 +431,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="107" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="107" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="113" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="113" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a4c89da490ffbe2434a8131b14226fbc8" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -444,7 +444,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="179" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="179" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="185" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="185" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aa57cceaaec89dad4fe6d55b5992bd27a" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -457,7 +457,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="181" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="181" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="187" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="187" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ad9d4a47a792726617f86d9df310f04e1" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -470,7 +470,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="178" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="178" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="184" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="184" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a61dbf6e2fbbb428d9a58dbcbdd894319" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -483,7 +483,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="150" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="150" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="156" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="156" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a0bede910490b8fd7a0a4dfa4c1ff4132" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -496,7 +496,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="177" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="177" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="183" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="183" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a226b99d6150589b1d396e5c3f9736b64" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -509,7 +509,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="148" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="148" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="154" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="154" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a76ff8b8835cd54dd38ba6b2117c2191a" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -522,7 +522,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="153" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="153" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="159" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="159" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a408edaf43ba1fea14b32e697425c664c" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -535,7 +535,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="199" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="199" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="205" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="205" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a56794c908ad4f65e339cf70c5c6545b1" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -548,7 +548,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="132" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="132" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="138" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="138" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a0d3ae53dec51b1fb004ef139be00e5c2" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -561,7 +561,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="109" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="109" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="115" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a706fbfaf0305f47295151ad161481aed" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -574,7 +574,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="201" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="201" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="207" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="207" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aa78ceb5fec290f73bbecba6d30b3545b" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -587,7 +587,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="126" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="126" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="132" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="132" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a965e2eea9f6e29ac26c015ec672ccb40" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -600,7 +600,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="142" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="142" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="148" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a5a9b35622e373b025c29734233e529ce" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -613,7 +613,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="120" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="120" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="126" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="126" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a85191b6b3ea60be42da5899a18b7e48d" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -626,7 +626,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="203" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="203" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="209" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="209" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1adc8ac885d8a161f403e578090c720a69" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -639,7 +639,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="134" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="134" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="140" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="140" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a649e63d5040061862682b58d97394b66" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -652,7 +652,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="140" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="140" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="146" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="146" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ada300f2666fe318679e49c52e7f0f801" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -665,7 +665,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="141" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="141" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="147" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="147" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a9088758e2b0c8fc05b56e7e922f3f5a2" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -678,7 +678,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="145" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="145" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="151" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="151" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1afeeb132cbd906d7cb578ed9b1e9af4d9" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -691,7 +691,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="187" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="187" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="193" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="193" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a347ac0c11afff87ce524aff61fbc15d0" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -704,7 +704,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="211" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="211" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="217" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="217" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a0cc518c8126fcd0b16194a21584656c6" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -717,7 +717,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="200" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="200" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="206" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="206" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a1874f3f0a29bd717874b6dcdb05bae59" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -730,7 +730,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="166" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="166" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="172" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="172" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ae4bcead7edb4ec0ce8a1f11d0f434944" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -743,7 +743,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="123" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="123" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="129" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="129" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a1e064bfc7e85c289444e94e566d6a31e" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -756,7 +756,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="127" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="127" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="133" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="133" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a2c0125430f310a30f02537e71a8817a1" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -769,7 +769,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="121" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="121" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="127" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="127" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a0258ce6fbd5384ff57f7051ea558fa0e" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -782,7 +782,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="124" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="124" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="130" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="130" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ab3b98158cf39c2e84d773e1b2f683832" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -795,7 +795,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="122" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="122" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="128" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="128" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a26ac6ced9208b9a9590cb9b2c1a69a13" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -808,7 +808,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="149" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="149" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="155" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="155" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a7dd96676e0bb61db7ca96e1bc7e7d615" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -821,7 +821,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="125" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="125" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="131" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="131" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a67c5617343a0fe7f8f20b984358fcb34" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -834,7 +834,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="190" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="190" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="196" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="196" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a80a4538e1c3e686d8f094a7b2bd05801" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -847,7 +847,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="188" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="188" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="194" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="194" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1acc0992d8fb85b6bbdada09338138617f" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -860,7 +860,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="165" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="165" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="171" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="171" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1adfb19c3afaddb27e4e3566c825ec119e" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -873,7 +873,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="161" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="161" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="167" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="167" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a9e8c124eea47e10357572017498c0bbf" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -886,7 +886,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="193" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="193" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="199" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="199" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a2036d7e0425b0fc0ebc3f49fab2f7487" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -899,7 +899,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="192" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="192" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="198" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="198" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aec40b21b9ac54ac74aae8849fff848fe" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -912,7 +912,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="144" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="144" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="150" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a787a5697d683d6294ee1b9a12a98c305" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -925,7 +925,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="189" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="189" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="195" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="195" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a99e119d3e2e2b0d0ada401b321d7d9a1" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -938,7 +938,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="186" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="186" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="192" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="192" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aea68572a4e806fdb7db1e4777f8c633e" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -951,7 +951,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="208" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="208" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="214" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="214" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1afcb9cb5a699aa15d176e58d8e86721d9" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -964,7 +964,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="206" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="206" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="212" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="212" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a2d78c7b5875ba7b354e37f3cf3cdec11" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -977,7 +977,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="207" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="207" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="213" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="213" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a816fc7b4cf5116d2b9f0ca12310357e7" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -990,7 +990,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="202" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="202" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="208" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="208" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a1334b776bcb77aee15e5006a96182b5b" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1003,7 +1003,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="191" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="191" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="197" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="197" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ae4bfb7b74cd4e65c60e9c1260c8cf93c" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1016,7 +1016,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="195" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="195" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="201" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="201" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a41519ef3183fc1f62f4437b84097ad74" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1029,7 +1029,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="139" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="139" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="145" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="145" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a4f6bbac3bb81dcf9da57656a93610778" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1042,7 +1042,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="194" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="194" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="200" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="200" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1abfc9b629d7f09218381de3e340b76748" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1055,7 +1055,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="146" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="146" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="152" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a37aa045a8ea79a57a0faa69f17ba9212" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1068,7 +1068,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="163" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="163" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="169" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="169" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a0fc70e7c142e364a8ce8526a4af49ef7" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1081,7 +1081,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="147" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="147" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="153" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="153" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a5b035d5d9a4d26a613825a46e28caabd" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1094,7 +1094,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="110" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="110" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="116" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1107,7 +1107,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="164" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="164" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="170" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="170" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1aa4d201f95bd266bc9680158d84c64640" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1120,7 +1120,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="128" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="128" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="134" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="134" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ae943a38885590fc60f81f2e189766c0a" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1133,7 +1133,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="168" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="168" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="174" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="174" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a1346050ec4982a33d6e633b7e54fb883" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1146,7 +1146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="172" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="172" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="178" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="178" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1afb91a8d888da9122a84478185de2fed0" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1159,7 +1159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="171" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="171" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="177" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="177" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a54300c84f218de2859064d7d15d15eb8" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1172,7 +1172,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="170" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="170" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="176" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="176" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ae53703515f696356cf575ea1be62cc0f" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1185,7 +1185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="169" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="169" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="175" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="175" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a430cfd9ac3bdafa8a705403f26ba3f61" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1198,7 +1198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="174" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="174" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="180" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="180" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a2d1f29de4ede030bb24a8e18c6c84164" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1211,7 +1211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="173" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="173" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="179" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="179" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a0493d7ebf613e067e58be01a67fcb958" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1224,7 +1224,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="209" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="209" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="215" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="215" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a898317d062a93bc3b990c2f37dc869dd" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1237,7 +1237,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="112" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="112" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="118" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="118" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a01f74ea2c91b4212e27661ee0594dc12" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -1250,7 +1250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="113" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="113" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="119" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="119" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1afbaf14e58e6756d707f42966531ac78b" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -1263,7 +1263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="115" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="115" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="121" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="121" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a36123095d4b31a5afbe0a18feee1b15f" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -1276,7 +1276,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="114" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="114" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="120" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="120" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1afb074e4e2420707856adcc8564571e45" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1289,7 +1289,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="156" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="156" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="162" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="162" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a824aa6c90f3acf07066a89d45f063281" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1302,7 +1302,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="159" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="159" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="165" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="165" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a8e047fb9396a9905dff444b2d0e8e2ba" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1315,7 +1315,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="157" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="157" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="163" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="163" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a66acb652a09dcc58c791d56c58721c9a" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1328,7 +1328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="160" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="160" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="166" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="166" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1ab49f8125e9a2aceedd047dab7e13ff58" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1341,7 +1341,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="155" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="155" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="161" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="161" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a097df8364ff877b60d3e8ed52f936465" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1354,7 +1354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="158" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="158" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="164" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="164" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a2480c142513f81cb53f96606d0f229e1" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -1367,7 +1367,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="205" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="205" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="211" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="211" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtype__status_1a05827d7684aa73ec00e3d7e69867aa13" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -1380,7 +1380,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="111" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="111" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="117" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="117" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1439,7 +1439,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="104" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="105" bodyend="212"/>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="110" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="111" bodyend="218"/>
     <listofallmembers>
       <member refid="structtype__status_1a177a375145b9df41010b68d3d25561ad" prot="public" virt="non-virtual"><scope>type_status</scope><name>amp_corr_fact</name></member>
       <member refid="structtype__status_1a627843f2a3d8c487484feea5503e05fc" prot="public" virt="non-virtual"><scope>type_status</scope><name>amp_err</name></member>

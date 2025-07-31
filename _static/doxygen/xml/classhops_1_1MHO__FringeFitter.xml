@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="167" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="167" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="173" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="173" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__FringeFitter_1ad1f65ef397a9cff8b4d872a423749bd2" prot="protected" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="163" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="163" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="169" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="166" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__FringeFitter_1af371c83cf40e1af3fa107add1c71d93c" prot="protected" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__OperatorBuilderManager" kindref="compound">MHO_OperatorBuilderManager</ref> *</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="172" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="172" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="178" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="178" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__FringeFitter_1aaef44b932e0307763af9c34434c8c26d" prot="protected" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref></type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="169" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="169" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="175" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="175" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__FringeFitter_1a8951c59f3173889011daa7d1b2c8559d" prot="protected" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
@@ -68,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="165" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="165" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="171" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="171" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhops_1_1MHO__FringeFitter_1af4ab8b86d04c19c9fbf75e40a687827e" prot="protected" static="no" mutable="no">
         <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> *</type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="166" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="166" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="172" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="172" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -399,6 +399,36 @@
         <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="131" column="22"/>
       </memberdef>
       </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeFitter_1ab36e1f2de255c799c2630ee87543af98" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FringeFitter::Cache</definition>
+        <argsstring>()</argsstring>
+        <name>Cache</name>
+        <reimplementedby refid="classhops_1_1MHO__BasicFringeFitter_1ae696671b6b79dd8a99933fd63b1d16e3">Cache</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="165" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="165" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeFitter_1ad727e4c59def3a322c0c788af2fd9102" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FringeFitter::Refresh</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh</name>
+        <reimplementedby refid="classhops_1_1MHO__BasicFringeFitter_1a9427fe68d42a1fbe8b245221b9e07494">Refresh</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="166" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="166" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
     <briefdescription>
 <para>Class <ref refid="classhops_1_1MHO__FringeFitter" kindref="compound">MHO_FringeFitter</ref>. </para>
     </briefdescription>
@@ -686,9 +716,10 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="42" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="43" bodyend="173"/>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="42" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="43" bodyend="179"/>
     <listofallmembers>
       <member refid="classhops_1_1MHO__FringeFitter_1a21e99c6584831c290306318c2c1bd073" prot="public" virt="pure-virtual"><scope>hops::MHO_FringeFitter</scope><name>Accept</name></member>
+      <member refid="classhops_1_1MHO__FringeFitter_1ab36e1f2de255c799c2630ee87543af98" prot="protected" virt="virtual"><scope>hops::MHO_FringeFitter</scope><name>Cache</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1a343453167931cbf82cf32a18bfd191d1" prot="public" virt="pure-virtual"><scope>hops::MHO_FringeFitter</scope><name>Configure</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1aa4580b5aa98be362d47e3c129e54faf7" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeFitter</scope><name>fContainerStore</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1ad1f65ef397a9cff8b4d872a423749bd2" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeFitter</scope><name>fFringeData</name></member>
@@ -709,6 +740,7 @@
       <member refid="classhops_1_1MHO__FringeFitter_1aa4bd1d0f589a6a609e46b1de3aa98113" prot="public" virt="non-virtual"><scope>hops::MHO_FringeFitter</scope><name>MHO_FringeFitter</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1a1f5d68aca05e2d073a4c0a4e4d2669db" prot="public" virt="pure-virtual"><scope>hops::MHO_FringeFitter</scope><name>PostRun</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1ae7ba8747965b781e1b3513ee66196bb4" prot="public" virt="pure-virtual"><scope>hops::MHO_FringeFitter</scope><name>PreRun</name></member>
+      <member refid="classhops_1_1MHO__FringeFitter_1ad727e4c59def3a322c0c788af2fd9102" prot="protected" virt="virtual"><scope>hops::MHO_FringeFitter</scope><name>Refresh</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1a13a538c0e673ada9797bc7571da73573" prot="public" virt="pure-virtual"><scope>hops::MHO_FringeFitter</scope><name>Run</name></member>
       <member refid="classhops_1_1MHO__FringeFitter_1abcd7ed34a3de70814ba93d8c1c336fac" prot="public" virt="virtual"><scope>hops::MHO_FringeFitter</scope><name>~MHO_FringeFitter</name></member>
     </listofallmembers>

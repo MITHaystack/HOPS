@@ -235,7 +235,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="47" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourfit/fourfit3.c" bodystart="73" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" declline="47" declcolumn="29"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="47" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourfit/fourfit3.c" bodystart="72" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" declline="47" declcolumn="29"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">

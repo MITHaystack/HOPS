@@ -68,7 +68,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Macros</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">pass_struct.h File Reference</div>  </div>
 </div><!--header-->
@@ -119,6 +120,11 @@ Macros</h2></td></tr>
 <tr class="separator:a6bf46f28458c301ec9f0c058ebc1e660"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29cd98c10290f6484a8d6d59f6c7e1e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pass__struct_8h.html#a29cd98c10290f6484a8d6d59f6c7e1e6">USB_FLAG</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a29cd98c10290f6484a8d6d59f6c7e1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:af32316653e135da0967a9f83277ff3b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pass__struct_8h.html#af32316653e135da0967a9f83277ff3b8">modify_pol</a> (struct <a class="el" href="pass__struct_8h.html#structtype__pass">type_pass</a> *p, char *polstr)</td></tr>
+<tr class="separator:af32316653e135da0967a9f83277ff3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="structdata__corel" id="structdata__corel"></a>
@@ -266,6 +272,12 @@ ch_usb_rcp[2][8]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="a223a2c8abc4d8d5fe5eb27c6acdbb12f"></a>int</td>
+<td class="fieldname">
+corel_index</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
 <a id="ae186bfc3e79080695500fa54eb08bcf1"></a>struct <a class="el" href="pass__struct_8h.html#structdata__corel">data_corel</a> *</td>
 <td class="fieldname">
 data</td>
@@ -275,6 +287,18 @@ data</td>
 <a id="aa6a8ed5f7e7e1a82934efe39a90b051e"></a>int</td>
 <td class="fieldname">
 data_alloc</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a457b9abce953217facee3d927440c9a1"></a>int</td>
+<td class="fieldname">
+data_peers</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a3410fa55ff89891c2f06a1a9ac911075"></a>int</td>
+<td class="fieldname">
+fcode_index</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -311,6 +335,12 @@ mean_lcp_trk_err[2][16]</td>
 <a id="a0803ab8df440d569e994460c1396b828"></a>float</td>
 <td class="fieldname">
 mean_rcp_trk_err[2][16]</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="aac5bc39453cc4ff205da26e592d4fffa"></a>int</td>
+<td class="fieldname">
+nsb_channels</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -720,10 +750,39 @@ stop</td>
 
 </div>
 </div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="af32316653e135da0967a9f83277ff3b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af32316653e135da0967a9f83277ff3b8">&#9670;&nbsp;</a></span>modify_pol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void modify_pol </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="pass__struct_8h.html#structtype__pass">type_pass</a> *&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>polstr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

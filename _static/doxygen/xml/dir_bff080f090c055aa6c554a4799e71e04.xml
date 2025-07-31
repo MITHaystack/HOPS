@@ -4,6 +4,7 @@
     <compoundname>include</compoundname>
     <innerfile refid="control_8h">control.h</innerfile>
     <innerfile refid="ffcontrol_8h">ffcontrol.h</innerfile>
+    <innerfile refid="frqsupport_8h">frqsupport.h</innerfile>
     <innerfile refid="parser_8h">parser.h</innerfile>
     <briefdescription>
     </briefdescription>

@@ -20,7 +20,6 @@
     <includedby refid="fileset_8h" local="yes">fileset.h</includedby>
     <includedby refid="mk4__util_8h" local="yes">mk4_util.h</includedby>
     <includedby refid="check__name_8c" local="yes">check_name.c</includedby>
-    <includedby refid="clear__fstruct_8c" local="yes">clear_fstruct.c</includedby>
     <includedby refid="extract__filenames_8c" local="yes">extract_filenames.c</includedby>
     <includedby refid="get__abs__path_8c" local="yes">get_abs_path.c</includedby>
     <includedby refid="get__filelist_8c" local="yes">get_filelist.c</includedby>
@@ -34,7 +33,7 @@
         <label>parse_bfields.c</label>
         <link refid="parse__bfields_8c"/>
       </node>
-      <node id="365">
+      <node id="364">
         <label>do_source.c</label>
         <link refid="do__source_8c"/>
       </node>
@@ -54,7 +53,7 @@
         <label>locate_pscurs.c</label>
         <link refid="locate__pscurs_8c"/>
       </node>
-      <node id="380">
+      <node id="379">
         <label>get_mode_deflist.c</label>
         <link refid="get__mode__deflist_8c"/>
       </node>
@@ -74,7 +73,7 @@
         <label>init_summ.c</label>
         <link refid="init__summ_8c"/>
       </node>
-      <node id="398">
+      <node id="397">
         <label>param_formats.c</label>
         <link refid="param__formats_8c"/>
       </node>
@@ -86,7 +85,7 @@
         <label>addr_212.c</label>
         <link refid="addr__212_8c"/>
       </node>
-      <node id="329">
+      <node id="328">
         <label>fileset.c</label>
         <link refid="fileset_8c"/>
       </node>
@@ -98,7 +97,7 @@
         <label>extract_parms.c</label>
         <link refid="extract__parms_8c"/>
       </node>
-      <node id="407">
+      <node id="406">
         <label>read_file.c</label>
         <link refid="read__file_8c"/>
       </node>
@@ -126,7 +125,7 @@
         <label>precorrect.c</label>
         <link refid="precorrect_8c"/>
       </node>
-      <node id="332">
+      <node id="331">
         <label>hptoie.c</label>
         <link refid="hptoie_8c"/>
       </node>
@@ -146,7 +145,7 @@
         <label>refringe_list.c</label>
         <link refid="refringe__list_8c"/>
       </node>
-      <node id="373">
+      <node id="372">
         <label>get_chip_mode.c</label>
         <link refid="get__chip__mode_8c"/>
       </node>
@@ -468,7 +467,7 @@
         <childnode refid="199" relation="include">
         </childnode>
       </node>
-      <node id="367">
+      <node id="366">
         <label>evex_info.c</label>
         <link refid="evex__info_8c"/>
       </node>
@@ -476,7 +475,7 @@
         <label>ps_scanlabel.c</label>
         <link refid="ps__scanlabel_8c"/>
       </node>
-      <node id="392">
+      <node id="391">
         <label>get_vex.c</label>
         <link refid="get__vex_8c"/>
       </node>
@@ -492,7 +491,7 @@
         <label>write_data.c</label>
         <link refid="write__data_8c"/>
       </node>
-      <node id="325">
+      <node id="324">
         <label>datef_to_datec.c</label>
         <link refid="datef__to__datec_8c"/>
       </node>
@@ -554,7 +553,7 @@
         <label>ffilter.c</label>
         <link refid="ffilter_8c"/>
       </node>
-      <node id="396">
+      <node id="395">
         <label>locate_cq.c</label>
         <link refid="locate__cq_8c"/>
       </node>
@@ -562,7 +561,7 @@
         <label>addr_303.c</label>
         <link refid="addr__303_8c"/>
       </node>
-      <node id="403">
+      <node id="402">
         <label>parse_ref.c</label>
         <link refid="parse__ref_8c"/>
       </node>
@@ -748,7 +747,7 @@
         <label>cleanup.c</label>
         <link refid="cleanup_8c"/>
       </node>
-      <node id="404">
+      <node id="403">
         <label>parse_units.c</label>
         <link refid="parse__units_8c"/>
       </node>
@@ -772,7 +771,7 @@
         <label>gen_new_chan_id.c</label>
         <link refid="gen__new__chan__id_8c"/>
       </node>
-      <node id="381">
+      <node id="380">
         <label>get_pbs_init.c</label>
         <link refid="get__pbs__init_8c"/>
       </node>
@@ -1243,8 +1242,6 @@
         </childnode>
         <childnode refid="411" relation="include">
         </childnode>
-        <childnode refid="412" relation="include">
-        </childnode>
       </node>
       <node id="104">
         <label>help.c</label>
@@ -1254,7 +1251,7 @@
         <label>cursor_select.c</label>
         <link refid="cursor__select_8c"/>
       </node>
-      <node id="350">
+      <node id="349">
         <label>cvex_info.c</label>
         <link refid="cvex__info_8c"/>
       </node>
@@ -1266,11 +1263,11 @@
         <label>copy_300.c</label>
         <link refid="copy__300_8c"/>
       </node>
-      <node id="342">
+      <node id="341">
         <label>syntax.c</label>
         <link refid="syntax_8c"/>
       </node>
-      <node id="340">
+      <node id="339">
         <label>sort_names.c</label>
         <link refid="sort__names_8c"/>
       </node>
@@ -1294,7 +1291,7 @@
         <label>addr_221.c</label>
         <link refid="addr__221_8c"/>
       </node>
-      <node id="364">
+      <node id="363">
         <label>do_site.c</label>
         <link refid="do__site_8c"/>
       </node>
@@ -1314,7 +1311,7 @@
         <label>parse_cmdline.c</label>
         <link refid="applications_2aedit_2src_2parse__cmdline_8c"/>
       </node>
-      <node id="326">
+      <node id="325">
         <label>day_of_datef.c</label>
         <link refid="day__of__datef_8c"/>
       </node>
@@ -1326,7 +1323,7 @@
         <label>pr_csumm.c</label>
         <link refid="pr__csumm_8c"/>
       </node>
-      <node id="339">
+      <node id="338">
         <label>sexigesimal2hrdeg.c</label>
         <link refid="sexigesimal2hrdeg_8c"/>
       </node>
@@ -1334,7 +1331,7 @@
         <label>ps_inside.c</label>
         <link refid="ps__inside_8c"/>
       </node>
-      <node id="366">
+      <node id="365">
         <label>do_track.c</label>
         <link refid="do__track_8c"/>
       </node>
@@ -1342,7 +1339,7 @@
         <label>clear_306.c</label>
         <link refid="clear__306_8c"/>
       </node>
-      <node id="399">
+      <node id="398">
         <label>parse_date.c</label>
         <link refid="parse__date_8c"/>
       </node>
@@ -1370,7 +1367,7 @@
         <label>trngl_present.c</label>
         <link refid="trngl__present_8c"/>
       </node>
-      <node id="327">
+      <node id="326">
         <label>environment.c</label>
         <link refid="environment_8c"/>
       </node>
@@ -1378,7 +1375,7 @@
         <label>parse_cmdline.c</label>
         <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
       </node>
-      <node id="388">
+      <node id="387">
         <label>get_su_connect.c</label>
         <link refid="get__su__connect_8c"/>
       </node>
@@ -1414,15 +1411,15 @@
         <label>write_prmline.c</label>
         <link refid="write__prmline_8c"/>
       </node>
-      <node id="406">
+      <node id="405">
         <label>process_qstring.c</label>
         <link refid="process__qstring_8c"/>
       </node>
-      <node id="356">
+      <node id="355">
         <label>do_eop.c</label>
         <link refid="do__eop_8c"/>
       </node>
-      <node id="409">
+      <node id="408">
         <label>strip_text.c</label>
         <link refid="strip__text_8c"/>
       </node>
@@ -1430,7 +1427,7 @@
         <label>open_datafile.c</label>
         <link refid="open__datafile_8c"/>
       </node>
-      <node id="353">
+      <node id="352">
         <label>do_bbc.c</label>
         <link refid="do__bbc_8c"/>
       </node>
@@ -1460,7 +1457,7 @@
         <label>filelist.c</label>
         <link refid="filelist_8c"/>
       </node>
-      <node id="390">
+      <node id="389">
         <label>get_val_list.c</label>
         <link refid="get__val__list_8c"/>
       </node>
@@ -1488,7 +1485,7 @@
         <childnode refid="215" relation="include">
         </childnode>
       </node>
-      <node id="386">
+      <node id="385">
         <label>get_station_deflist.c</label>
         <link refid="get__station__deflist_8c"/>
       </node>
@@ -1512,11 +1509,11 @@
         <label>get_plot_datum.c</label>
         <link refid="get__plot__datum_8c"/>
       </node>
-      <node id="330">
+      <node id="329">
         <label>get_abs_path.c</label>
         <link refid="get__abs__path_8c"/>
       </node>
-      <node id="349">
+      <node id="348">
         <label>check_strrange.c</label>
         <link refid="check__strrange_8c"/>
       </node>
@@ -1524,7 +1521,7 @@
         <label>rootname.c</label>
         <link refid="rootname_8c"/>
       </node>
-      <node id="393">
+      <node id="392">
         <label>init_scan.c</label>
         <link refid="init__scan_8c"/>
       </node>
@@ -1536,15 +1533,11 @@
         <label>aline_id.c</label>
         <link refid="aline__id_8c"/>
       </node>
-      <node id="322">
-        <label>clear_fstruct.c</label>
-        <link refid="clear__fstruct_8c"/>
-      </node>
       <node id="131">
         <label>ps_fplot.c</label>
         <link refid="ps__fplot_8c"/>
       </node>
-      <node id="358">
+      <node id="357">
         <label>do_freq.c</label>
         <link refid="do__freq_8c"/>
       </node>
@@ -1552,7 +1545,7 @@
         <label>addr_306.c</label>
         <link refid="addr__306_8c"/>
       </node>
-      <node id="348">
+      <node id="347">
         <label>check_stloc.c</label>
         <link refid="check__stloc_8c"/>
       </node>
@@ -1612,11 +1605,11 @@
         <label>pr_fsumm.c</label>
         <link refid="pr__fsumm_8c"/>
       </node>
-      <node id="355">
+      <node id="354">
         <label>do_das.c</label>
         <link refid="do__das_8c"/>
       </node>
-      <node id="378">
+      <node id="377">
         <label>get_global_deflist.c</label>
         <link refid="get__global__deflist_8c"/>
       </node>
@@ -1628,15 +1621,15 @@
         <label>symbol_key.c</label>
         <link refid="symbol__key_8c"/>
       </node>
-      <node id="397">
+      <node id="396">
         <label>lvex_info.c</label>
         <link refid="lvex__info_8c"/>
       </node>
-      <node id="359">
+      <node id="358">
         <label>do_head_pos.c</label>
         <link refid="do__head__pos_8c"/>
       </node>
-      <node id="410">
+      <node id="409">
         <label>svex_info.c</label>
         <link refid="svex__info_8c"/>
       </node>
@@ -1648,7 +1641,7 @@
         <label>copy_203.c</label>
         <link refid="copy__203_8c"/>
       </node>
-      <node id="376">
+      <node id="375">
         <label>get_def.c</label>
         <link refid="get__def_8c"/>
       </node>
@@ -1656,11 +1649,11 @@
         <label>clear_fxp.c</label>
         <link refid="clear__fxp_8c"/>
       </node>
-      <node id="405">
+      <node id="404">
         <label>print_location.c</label>
         <link refid="print__location_8c"/>
       </node>
-      <node id="369">
+      <node id="368">
         <label>fill_scanlist.c</label>
         <link refid="fill__scanlist_8c"/>
       </node>
@@ -1684,11 +1677,11 @@
         <label>ps_selscan.c</label>
         <link refid="ps__selscan_8c"/>
       </node>
-      <node id="334">
+      <node id="333">
         <label>hptoie8.c</label>
         <link refid="hptoie8_8c"/>
       </node>
-      <node id="362">
+      <node id="361">
         <label>do_phase_cal_detect.c</label>
         <link refid="do__phase__cal__detect_8c"/>
       </node>
@@ -1720,7 +1713,7 @@
         <label>set_quads.c</label>
         <link refid="set__quads_8c"/>
       </node>
-      <node id="333">
+      <node id="332">
         <label>hptoie4.c</label>
         <link refid="hptoie4_8c"/>
       </node>
@@ -1728,7 +1721,7 @@
         <label>makekey.c</label>
         <link refid="makekey_8c"/>
       </node>
-      <node id="394">
+      <node id="393">
         <label>ivex_info.c</label>
         <link refid="ivex__info_8c"/>
       </node>
@@ -1736,7 +1729,7 @@
         <label>clear_mk4fringe.c</label>
         <link refid="clear__mk4fringe_8c"/>
       </node>
-      <node id="360">
+      <node id="359">
         <label>do_if.c</label>
         <link refid="do__if_8c"/>
       </node>
@@ -1780,7 +1773,7 @@
         <label>display_psdata.c</label>
         <link refid="display__psdata_8c"/>
       </node>
-      <node id="338">
+      <node id="337">
         <label>root_belong.c</label>
         <link refid="root__belong_8c"/>
       </node>
@@ -1812,7 +1805,7 @@
         <label>setup_psplot.c</label>
         <link refid="setup__psplot_8c"/>
       </node>
-      <node id="395">
+      <node id="394">
         <label>locate_blocks.c</label>
         <link refid="locate__blocks_8c"/>
       </node>
@@ -1856,7 +1849,7 @@
         <label>addr_101.c</label>
         <link refid="addr__101_8c"/>
       </node>
-      <node id="379">
+      <node id="378">
         <label>get_logscan.c</label>
         <link refid="get__logscan_8c"/>
       </node>
@@ -1888,7 +1881,7 @@
         <label>parse_fsumm.c</label>
         <link refid="parse__fsumm_8c"/>
       </node>
-      <node id="323">
+      <node id="322">
         <label>confirm.c</label>
         <link refid="confirm_8c"/>
       </node>
@@ -1904,15 +1897,15 @@
         <label>tricheck.c</label>
         <link refid="tricheck_8c"/>
       </node>
-      <node id="401">
+      <node id="400">
         <label>parse_pval.c</label>
         <link refid="parse__pval_8c"/>
       </node>
-      <node id="345">
+      <node id="344">
         <label>check_intrange.c</label>
         <link refid="check__intrange_8c"/>
       </node>
-      <node id="375">
+      <node id="374">
         <label>get_corr_mode.c</label>
         <link refid="get__corr__mode_8c"/>
       </node>
@@ -1964,7 +1957,7 @@
         <label>set_prange.c</label>
         <link refid="set__prange_8c"/>
       </node>
-      <node id="371">
+      <node id="370">
         <label>find_statements.c</label>
         <link refid="find__statements_8c"/>
       </node>
@@ -2012,7 +2005,7 @@
         <label>edit.c</label>
         <link refid="edit_8c"/>
       </node>
-      <node id="324">
+      <node id="323">
         <label>datec_to_datef.c</label>
         <link refid="datec__to__datef_8c"/>
       </node>
@@ -2020,7 +2013,7 @@
         <label>tarray_index.c</label>
         <link refid="tarray__index_8c"/>
       </node>
-      <node id="363">
+      <node id="362">
         <label>do_roll.c</label>
         <link refid="do__roll_8c"/>
       </node>
@@ -2055,7 +2048,7 @@
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="329" relation="include">
+        <childnode refid="328" relation="include">
         </childnode>
       </node>
       <node id="246">
@@ -2094,7 +2087,7 @@
         <label>write_families.c</label>
         <link refid="write__families_8c"/>
       </node>
-      <node id="328">
+      <node id="327">
         <label>extract_filenames.c</label>
         <link refid="extract__filenames_8c"/>
       </node>
@@ -2106,7 +2099,7 @@
         <label>copy_206.c</label>
         <link refid="copy__206_8c"/>
       </node>
-      <node id="341">
+      <node id="340">
         <label>swap.c</label>
         <link refid="swap_8c"/>
       </node>
@@ -2118,11 +2111,11 @@
         <label>summ_fringe.c</label>
         <link refid="summ__fringe_8c"/>
       </node>
-      <node id="344">
+      <node id="343">
         <label>block_params.c</label>
         <link refid="block__params_8c"/>
       </node>
-      <node id="412">
+      <node id="411">
         <label>write_vexfile.c</label>
         <link refid="write__vexfile_8c"/>
       </node>
@@ -2130,23 +2123,23 @@
         <label>write_reproc.c</label>
         <link refid="write__reproc_8c"/>
       </node>
-      <node id="408">
+      <node id="407">
         <label>scan_info.c</label>
         <link refid="scan__info_8c"/>
       </node>
-      <node id="343">
+      <node id="342">
         <label>time_to_double.c</label>
         <link refid="time__to__double_8c"/>
       </node>
-      <node id="377">
+      <node id="376">
         <label>get_drive_init.c</label>
         <link refid="get__drive__init_8c"/>
       </node>
-      <node id="389">
+      <node id="388">
         <label>get_trm_config.c</label>
         <link refid="get__trm__config_8c"/>
       </node>
-      <node id="374">
+      <node id="373">
         <label>get_corr_bd_parms.c</label>
         <link refid="get__corr__bd__parms_8c"/>
       </node>
@@ -2158,7 +2151,7 @@
         <label>copy_302.c</label>
         <link refid="copy__302_8c"/>
       </node>
-      <node id="352">
+      <node id="351">
         <label>do_antenna.c</label>
         <link refid="do__antenna_8c"/>
       </node>
@@ -2170,7 +2163,7 @@
         <label>read_sdata.c</label>
         <link refid="read__sdata_8c"/>
       </node>
-      <node id="391">
+      <node id="390">
         <label>get_version.c</label>
         <link refid="get__version_8c"/>
       </node>
@@ -2214,11 +2207,11 @@
         <label>time_range.c</label>
         <link refid="time__range_8c"/>
       </node>
-      <node id="372">
+      <node id="371">
         <label>get_block_mode.c</label>
         <link refid="get__block__mode_8c"/>
       </node>
-      <node id="337">
+      <node id="336">
         <label>report_times.c</label>
         <link refid="report__times_8c"/>
       </node>
@@ -2226,7 +2219,7 @@
         <label>set_loops.c</label>
         <link refid="set__loops_8c"/>
       </node>
-      <node id="402">
+      <node id="401">
         <label>parse_ra.c</label>
         <link refid="parse__ra_8c"/>
       </node>
@@ -2234,7 +2227,7 @@
         <label>clear_304.c</label>
         <link refid="clear__304_8c"/>
       </node>
-      <node id="384">
+      <node id="383">
         <label>get_section_mode.c</label>
         <link refid="get__section__mode_8c"/>
       </node>
@@ -2262,7 +2255,7 @@
         <label>summarize_mk4fringe.c</label>
         <link refid="summarize__mk4fringe_8c"/>
       </node>
-      <node id="347">
+      <node id="346">
         <label>check_scan.c</label>
         <link refid="check__scan_8c"/>
       </node>
@@ -2278,7 +2271,7 @@
         <label>addr_100.c</label>
         <link refid="addr__100_8c"/>
       </node>
-      <node id="354">
+      <node id="353">
         <label>do_clock.c</label>
         <link refid="do__clock_8c"/>
       </node>
@@ -2286,7 +2279,7 @@
         <label>print_cdata_cmp.c</label>
         <link refid="print__cdata__cmp_8c"/>
       </node>
-      <node id="400">
+      <node id="399">
         <label>parse_dec.c</label>
         <link refid="parse__dec_8c"/>
       </node>
@@ -2298,7 +2291,7 @@
         <label>write_csumm.c</label>
         <link refid="write__csumm_8c"/>
       </node>
-      <node id="361">
+      <node id="360">
         <label>do_pass_order.c</label>
         <link refid="do__pass__order_8c"/>
       </node>
@@ -2318,7 +2311,7 @@
         <label>tfilter.c</label>
         <link refid="tfilter_8c"/>
       </node>
-      <node id="336">
+      <node id="335">
         <label>ismk4.c</label>
         <link refid="ismk4_8c"/>
       </node>
@@ -2390,7 +2383,7 @@
         <label>addr_308.c</label>
         <link refid="addr__308_8c"/>
       </node>
-      <node id="346">
+      <node id="345">
         <label>check_realrange.c</label>
         <link refid="check__realrange_8c"/>
       </node>
@@ -2398,7 +2391,7 @@
         <label>save.c</label>
         <link refid="save_8c"/>
       </node>
-      <node id="357">
+      <node id="356">
         <label>do_exper.c</label>
         <link refid="do__exper_8c"/>
       </node>
@@ -2430,11 +2423,11 @@
         <label>clear_100.c</label>
         <link refid="clear__100_8c"/>
       </node>
-      <node id="368">
+      <node id="367">
         <label>fill_deflists.c</label>
         <link refid="fill__deflists_8c"/>
       </node>
-      <node id="335">
+      <node id="334">
         <label>int_to_time.c</label>
         <link refid="int__to__time_8c"/>
       </node>
@@ -2482,7 +2475,7 @@
         <label>plot_header.c</label>
         <link refid="plot__header_8c"/>
       </node>
-      <node id="385">
+      <node id="384">
         <label>get_statement.c</label>
         <link refid="get__statement_8c"/>
       </node>
@@ -2498,11 +2491,11 @@
         <label>scan_name_edit.c</label>
         <link refid="scan__name__edit_8c"/>
       </node>
-      <node id="411">
+      <node id="410">
         <label>vex_init.c</label>
         <link refid="vex__init_8c"/>
       </node>
-      <node id="383">
+      <node id="382">
         <label>get_pcm_tables.c</label>
         <link refid="get__pcm__tables_8c"/>
       </node>
@@ -2530,7 +2523,7 @@
         <label>aedit.c</label>
         <link refid="aedit_8c"/>
       </node>
-      <node id="382">
+      <node id="381">
         <label>get_pcm_config.c</label>
         <link refid="get__pcm__config_8c"/>
       </node>
@@ -2589,15 +2582,13 @@
         </childnode>
         <childnode refid="321" relation="include">
         </childnode>
-        <childnode refid="322" relation="include">
+        <childnode refid="327" relation="include">
         </childnode>
-        <childnode refid="328" relation="include">
+        <childnode refid="329" relation="include">
         </childnode>
         <childnode refid="330" relation="include">
         </childnode>
-        <childnode refid="331" relation="include">
-        </childnode>
-        <childnode refid="340" relation="include">
+        <childnode refid="339" relation="include">
         </childnode>
       </node>
       <node id="45">
@@ -2608,11 +2599,11 @@
         <label>copy_301.c</label>
         <link refid="copy__301_8c"/>
       </node>
-      <node id="370">
+      <node id="369">
         <label>fill_station_parms.c</label>
         <link refid="fill__station__parms_8c"/>
       </node>
-      <node id="351">
+      <node id="350">
         <label>decode_pval.c</label>
         <link refid="decode__pval_8c"/>
       </node>
@@ -2632,11 +2623,11 @@
         <label>ps_selqual.c</label>
         <link refid="ps__selqual_8c"/>
       </node>
-      <node id="387">
+      <node id="386">
         <label>get_su_chan_out.c</label>
         <link refid="get__su__chan__out_8c"/>
       </node>
-      <node id="331">
+      <node id="330">
         <label>get_filelist.c</label>
         <link refid="get__filelist_8c"/>
       </node>
@@ -2671,18 +2662,7 @@
       <sectiondef kind="define">
       <memberdef kind="define" id="fstruct_8h_1a8cb4e5c4349daa2af7ff42fc29aeb02a" prot="public" static="no">
         <name>BADBASE</name>
-        <initializer>0x04</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="12" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="fstruct_8h_1acd85a97620c7618ba53eeea9097c8caa" prot="public" static="no">
-        <name>BADFNUM</name>
-        <initializer>0x08</initializer>
+        <initializer>0x004</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -2691,20 +2671,9 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="13" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="fstruct_8h_1abce6a0ca241a9d2977f33dfd65d9cc36" prot="public" static="no">
-        <name>BADFORM</name>
-        <initializer>0x02</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="11" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="fstruct_8h_1abdbeccab2a8a8744f43c31609be2cbe6" prot="public" static="no">
-        <name>BADFREQ</name>
-        <initializer>0x10</initializer>
+      <memberdef kind="define" id="fstruct_8h_1acd85a97620c7618ba53eeea9097c8caa" prot="public" static="no">
+        <name>BADFNUM</name>
+        <initializer>0x008</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -2713,20 +2682,20 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="14" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="fstruct_8h_1adf21ee6ffc311dc2a74dfe64a47a11a4" prot="public" static="no">
-        <name>BADROOT</name>
-        <initializer>0x40</initializer>
+      <memberdef kind="define" id="fstruct_8h_1abce6a0ca241a9d2977f33dfd65d9cc36" prot="public" static="no">
+        <name>BADFORM</name>
+        <initializer>0x002</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="16" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="12" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="fstruct_8h_1a12c1f0304ca65e8cf8e709fe2e3aa868" prot="public" static="no">
-        <name>BADSRC</name>
-        <initializer>0x20</initializer>
+      <memberdef kind="define" id="fstruct_8h_1abdbeccab2a8a8744f43c31609be2cbe6" prot="public" static="no">
+        <name>BADFREQ</name>
+        <initializer>0x010</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -2735,9 +2704,20 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="15" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="fstruct_8h_1a52788b756b42d63dcacb015ae616248e" prot="public" static="no">
-        <name>BADSTAT</name>
-        <initializer>0x80</initializer>
+      <memberdef kind="define" id="fstruct_8h_1a78e1fae1d741800150b620433ee99e3c" prot="public" static="no">
+        <name>BADMALLOC</name>
+        <initializer>0x100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fstruct_8h_1adf21ee6ffc311dc2a74dfe64a47a11a4" prot="public" static="no">
+        <name>BADROOT</name>
+        <initializer>0x040</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -2746,16 +2726,38 @@
         </inbodydescription>
         <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="17" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="17" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="fstruct_8h_1a4e6f6ee7ca5cda7bee0b99246df977fb" prot="public" static="no">
-        <name>BADSTRING</name>
-        <initializer>0x01</initializer>
+      <memberdef kind="define" id="fstruct_8h_1a12c1f0304ca65e8cf8e709fe2e3aa868" prot="public" static="no">
+        <name>BADSRC</name>
+        <initializer>0x020</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="10" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fstruct_8h_1a52788b756b42d63dcacb015ae616248e" prot="public" static="no">
+        <name>BADSTAT</name>
+        <initializer>0x080</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fstruct_8h_1a4e6f6ee7ca5cda7bee0b99246df977fb" prot="public" static="no">
+        <name>BADSTRING</name>
+        <initializer>0x001</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="11" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="fstruct_8h_1aa93f0eb578d23995850d61f7d61c55c1" prot="public" static="no">
         <name>FALSE</name>
@@ -2766,7 +2768,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="21" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="23" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="fstruct_8h_1ad81dbc3927857894a942d638f7dda91f" prot="public" static="no">
         <name>LEGALPOLCHARS</name>
@@ -2810,7 +2812,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="20" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="22" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -2833,24 +2835,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="62" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/check_name.c" bodystart="26" bodyend="191" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" declline="62" declcolumn="15"/>
-      </memberdef>
-      <memberdef kind="function" id="fstruct_8h_1ac9806f9f34754bf59f2424ad208426c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void clear_fstruct</definition>
-        <argsstring>(fstruct *)</argsstring>
-        <name>clear_fstruct</name>
-        <param>
-          <type><ref refid="structfstruct" kindref="compound">fstruct</ref> *</type>
-          <declname>f_info</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="61" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/clear_fstruct.c" bodystart="6" bodyend="30" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" declline="61" declcolumn="15"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="70" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/check_name.c" bodystart="76" bodyend="252" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" declline="70" declcolumn="15"/>
       </memberdef>
       <memberdef kind="function" id="fstruct_8h_1acf4969b4c59930e9e05c6954ec631183" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -2887,7 +2872,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="63" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/extract_filenames.c" bodystart="42" bodyend="132" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" declline="63" declcolumn="15"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="71" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/extract_filenames.c" bodystart="42" bodyend="137" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" declline="71" declcolumn="15"/>
       </memberdef>
       <memberdef kind="function" id="fstruct_8h_1a3c9988d1a76e36c2e17771c027772076" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -2916,7 +2901,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="64" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/get_filelist.c" bodystart="34" bodyend="166" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" declline="64" declcolumn="15"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="72" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/get_filelist.c" bodystart="34" bodyend="167" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" declline="72" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="fstruct_8h_1a1c72adc3e23abcc2d4d0a7fde9d1fd6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void prep_fstruct</definition>
+        <argsstring>(fstruct *)</argsstring>
+        <name>prep_fstruct</name>
+        <param>
+          <type><ref refid="structfstruct" kindref="compound">fstruct</ref> *</type>
+          <declname>f_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="69" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/check_name.c" bodystart="27" bodyend="33" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" declline="69" declcolumn="15"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -2933,63 +2935,71 @@
 <codeline lineno="7" refid="fstruct_8h_1aa074ea212aa43a186cdfa0fb1531d53c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXFNDIGITS<sp/>4</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8" refid="fstruct_8h_1ad81dbc3927857894a942d638f7dda91f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEGALPOLCHARS<sp/><sp/><sp/>&quot;HVLRXY&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10" refid="fstruct_8h_1a4e6f6ee7ca5cda7bee0b99246df977fb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSTRING<sp/>0x01</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11" refid="fstruct_8h_1abce6a0ca241a9d2977f33dfd65d9cc36" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADFORM<sp/><sp/><sp/>0x02</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12" refid="fstruct_8h_1a8cb4e5c4349daa2af7ff42fc29aeb02a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADBASE<sp/><sp/><sp/>0x04</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13" refid="fstruct_8h_1acd85a97620c7618ba53eeea9097c8caa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADFNUM<sp/><sp/><sp/>0x08</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14" refid="fstruct_8h_1abdbeccab2a8a8744f43c31609be2cbe6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADFREQ<sp/><sp/><sp/>0x10</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15" refid="fstruct_8h_1a12c1f0304ca65e8cf8e709fe2e3aa868" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSRC<sp/><sp/><sp/><sp/>0x20</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16" refid="fstruct_8h_1adf21ee6ffc311dc2a74dfe64a47a11a4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADROOT<sp/><sp/><sp/>0x40</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17" refid="fstruct_8h_1a52788b756b42d63dcacb015ae616248e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSTAT<sp/><sp/><sp/>0x80</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>FALSE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20" refid="fstruct_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21" refid="fstruct_8h_1aa93f0eb578d23995850d61f7d61c55c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALSE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>defaults<sp/>to<sp/>indicate<sp/>a<sp/>cleared<sp/>structure<sp/>are<sp/>in<sp/>()<sp/>below<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>these<sp/>flags<sp/>are<sp/>defined,<sp/>but<sp/>do<sp/>not<sp/>seem<sp/>to<sp/>ever<sp/>be<sp/>used<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="fstruct_8h_1a4e6f6ee7ca5cda7bee0b99246df977fb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSTRING<sp/>0x001</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="fstruct_8h_1abce6a0ca241a9d2977f33dfd65d9cc36" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADFORM<sp/><sp/><sp/>0x002</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="fstruct_8h_1a8cb4e5c4349daa2af7ff42fc29aeb02a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADBASE<sp/><sp/><sp/>0x004</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="fstruct_8h_1acd85a97620c7618ba53eeea9097c8caa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADFNUM<sp/><sp/><sp/>0x008</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="fstruct_8h_1abdbeccab2a8a8744f43c31609be2cbe6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADFREQ<sp/><sp/><sp/>0x010</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="fstruct_8h_1a12c1f0304ca65e8cf8e709fe2e3aa868" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSRC<sp/><sp/><sp/><sp/>0x020</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="fstruct_8h_1adf21ee6ffc311dc2a74dfe64a47a11a4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADROOT<sp/><sp/><sp/>0x040</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="fstruct_8h_1a52788b756b42d63dcacb015ae616248e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSTAT<sp/><sp/><sp/>0x080</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="fstruct_8h_1a78e1fae1d741800150b620433ee99e3c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADMALLOC<sp/>0x100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>FALSE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="fstruct_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="fstruct_8h_1aa93f0eb578d23995850d61f7d61c55c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALSE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>type<sp/>0<sp/>is<sp/>root<sp/>file<sp/>SOURCE.stamp<sp/><sp/><sp/><sp/>(2<sp/>parts)</highlight></codeline>
-<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>type<sp/>1<sp/>is<sp/>corel,<sp/>AB.nn.abcdef<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(3<sp/>parts)</highlight></codeline>
-<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>type<sp/>2<sp/>is<sp/>fringe,<sp/>AB.X.nn.abcdef<sp/><sp/><sp/><sp/>(4<sp/>parts)</highlight></codeline>
-<codeline lineno="29"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>2<sp/>is<sp/>fringe,<sp/>AB.X.nn-pp.abcdef<sp/>(4<sp/>parts)<sp/>new<sp/>with<sp/>3.26</highlight></codeline>
-<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>type<sp/>3<sp/>is<sp/>sdata,<sp/>A.nn.abcdef<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(3<sp/>parts)</highlight></codeline>
-<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>type<sp/>4<sp/>is<sp/>log.&lt;sourcename&gt;?<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(2<sp/>parts)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33" refid="structfstruct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="35" refid="structfstruct_1a7342dea4c48ad1856c47eb4d4a2d8575" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a7342dea4c48ad1856c47eb4d4a2d8575" kindref="member">order</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>sorting<sp/>operations,<sp/>(-1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="structfstruct_1a629e521213a65490fe769b29f2e6b014" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structfstruct_1a629e521213a65490fe769b29f2e6b014" kindref="member">name</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Full<sp/>name<sp/>of<sp/>file<sp/>(NULL)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="structfstruct_1a032d53f22cc38019cd75fbe6e0cef1e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a032d53f22cc38019cd75fbe6e0cef1e4" kindref="member">type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>File<sp/>type<sp/>according<sp/>to<sp/>name<sp/>0...4<sp/>(see<sp/>above;<sp/>-1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38" refid="structfstruct_1a8050fc381b6c60be77768a066406519f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>source[32];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Source<sp/>name<sp/>(root<sp/>files<sp/>only;<sp/><sp/>0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="structfstruct_1a2ae6b80a4e75cef9a75b9e97b4c693ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>[3];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Baseline<sp/>id<sp/>(fringe<sp/>and<sp/>corel<sp/>files<sp/>only;<sp/>0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="structfstruct_1a10e4b86ba2cbe25ccac56eed8d08d8dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a10e4b86ba2cbe25ccac56eed8d08d8dc" kindref="member">station</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Type<sp/>3<sp/>(pcal)<sp/>files<sp/>only<sp/>(&apos;<sp/>&apos;)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="structfstruct_1a27d07fcae29e21849c15ada683cc92d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a27d07fcae29e21849c15ada683cc92d0" kindref="member">freq_code</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Frequency<sp/>id<sp/>code<sp/>(fringe<sp/>files<sp/>only)<sp/>(&apos;<sp/>&apos;)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="structfstruct_1a6e498795f80d849b30e80dc6aeaf4ef5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a6e498795f80d849b30e80dc6aeaf4ef5" kindref="member">filenum</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>File<sp/>number<sp/>in<sp/>fileset<sp/>(-1)*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43" refid="structfstruct_1a00739bd3f7047d7fdb826ebd2fdd03d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>rootcode[7];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>root<sp/>id<sp/>code<sp/>&apos;abcdef&apos;<sp/>(0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="structfstruct_1ade6688f9ae19fdfefb8dbfc77e1a38bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1ade6688f9ae19fdfefb8dbfc77e1a38bd" kindref="member">done</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Has<sp/>this<sp/>file<sp/>has<sp/>been<sp/>done<sp/>(see<sp/>below;<sp/>FALSE)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45" refid="structfstruct_1a6f47a027420f4bd19233431a81a9d497" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>intparm[4];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Auxiliary<sp/>info<sp/>if<sp/>needed<sp/>(see<sp/>below;<sp/>0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="46" refid="structfstruct_1a87f87ca61b5722c2a68521aa28e5e7ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>floatparm[4];<sp/></highlight><highlight class="comment">/*<sp/>Auxiliary<sp/>info<sp/>if<sp/>needed<sp/>(see<sp/>below;<sp/>0.0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>new<sp/>features<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48" refid="structfstruct_1a1230848eb75bd9545ee895dad319a45c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a1230848eb75bd9545ee895dad319a45c" kindref="member">nalloc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>nonzero<sp/>if<sp/>name<sp/>is<sp/>malloc&apos;d<sp/>(0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49" refid="structfstruct_1a394281bfe5461adbe46c03ca2f47cc72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>poln[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Polarization<sp/>info<sp/>(&apos;<sp/><sp/>&apos;)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref>;</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>&apos;done&apos;<sp/>field<sp/>is<sp/>used<sp/>in<sp/>sort_names<sp/>and<sp/>alist.c<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>defaults<sp/>to<sp/>indicate<sp/>a<sp/>cleared<sp/>structure<sp/>are<sp/>in<sp/>()<sp/>below<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>type<sp/>0<sp/>is<sp/>root<sp/>file<sp/>SOURCE.stamp<sp/><sp/><sp/><sp/>(2<sp/>parts)</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>type<sp/>1<sp/>is<sp/>corel,<sp/>AB.nn.abcdef<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(3<sp/>parts)</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>type<sp/>2<sp/>is<sp/>fringe,<sp/>AB.X.nn.abcdef<sp/><sp/><sp/><sp/>(4<sp/>parts)</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>2<sp/>is<sp/>fringe,<sp/>AB.X.nn-pp.abcdef<sp/>(4<sp/>parts)<sp/>new<sp/>with<sp/>3.26</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>type<sp/>3<sp/>is<sp/>sdata,<sp/>A.nn.abcdef<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(3<sp/>parts)</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>type<sp/>4<sp/>is<sp/>log.&lt;sourcename&gt;?<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(2<sp/>parts)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="structfstruct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37" refid="structfstruct_1a7342dea4c48ad1856c47eb4d4a2d8575" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a7342dea4c48ad1856c47eb4d4a2d8575" kindref="member">order</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>sorting<sp/>operations,<sp/>(-1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structfstruct_1a629e521213a65490fe769b29f2e6b014" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structfstruct_1a629e521213a65490fe769b29f2e6b014" kindref="member">name</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Full<sp/>name<sp/>of<sp/>file<sp/>(NULL)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="structfstruct_1a032d53f22cc38019cd75fbe6e0cef1e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a032d53f22cc38019cd75fbe6e0cef1e4" kindref="member">type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>File<sp/>type<sp/>according<sp/>to<sp/>name<sp/>0...4<sp/>(see<sp/>above;<sp/>-1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="structfstruct_1a8050fc381b6c60be77768a066406519f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>source[32];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Source<sp/>name<sp/>(root<sp/>files<sp/>only;<sp/><sp/>0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structfstruct_1a2ae6b80a4e75cef9a75b9e97b4c693ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>[3];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Baseline<sp/>id<sp/>(fringe<sp/>and<sp/>corel<sp/>files<sp/>only;<sp/>0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="structfstruct_1a10e4b86ba2cbe25ccac56eed8d08d8dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a10e4b86ba2cbe25ccac56eed8d08d8dc" kindref="member">station</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Type<sp/>3<sp/>(pcal)<sp/>files<sp/>only<sp/>(&apos;<sp/>&apos;)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structfstruct_1a27d07fcae29e21849c15ada683cc92d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a27d07fcae29e21849c15ada683cc92d0" kindref="member">freq_code</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Frequency<sp/>id<sp/>code<sp/>(fringe<sp/>files<sp/>only)<sp/>(&apos;<sp/>&apos;)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="structfstruct_1a6e498795f80d849b30e80dc6aeaf4ef5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a6e498795f80d849b30e80dc6aeaf4ef5" kindref="member">filenum</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>File<sp/>number<sp/>in<sp/>fileset<sp/>(-1)*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="structfstruct_1a00739bd3f7047d7fdb826ebd2fdd03d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>rootcode[7];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>root<sp/>id<sp/>code<sp/>&apos;abcdef&apos;<sp/>(0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="structfstruct_1ade6688f9ae19fdfefb8dbfc77e1a38bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1ade6688f9ae19fdfefb8dbfc77e1a38bd" kindref="member">done</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Has<sp/>this<sp/>file<sp/>has<sp/>been<sp/>done<sp/>(see<sp/>below;<sp/>FALSE)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="structfstruct_1a6f47a027420f4bd19233431a81a9d497" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>intparm[4];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Auxiliary<sp/>info<sp/>if<sp/>needed<sp/>(see<sp/>below;<sp/>0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="structfstruct_1a87f87ca61b5722c2a68521aa28e5e7ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>floatparm[4];<sp/></highlight><highlight class="comment">/*<sp/>Auxiliary<sp/>info<sp/>if<sp/>needed<sp/>(see<sp/>below;<sp/>0.0)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>new<sp/>features<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="structfstruct_1a6af1c9f00b9b6c2e329f4e4ef300a988" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfstruct_1a6af1c9f00b9b6c2e329f4e4ef300a988" kindref="member">namealloc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>strlen(name)+1<sp/>when<sp/>name<sp/>malloc&apos;d<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="structfstruct_1a394281bfe5461adbe46c03ca2f47cc72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>poln[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Polarization<sp/>info<sp/>(&apos;<sp/><sp/>&apos;)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref>;</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>fringex<sp/>uses<sp/>intparm<sp/>for<sp/>fdata.srch_cotime<sp/>and<sp/>fdata.noloss_cotime</highlight></codeline>
-<codeline lineno="55"><highlight class="comment"><sp/>*<sp/><sp/><sp/>and<sp/><sp/><sp/>uses<sp/>floatparm<sp/>for<sp/>fdata.delay_rate<sp/>and<sp/>fdata.mbdelay<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>nalloc<sp/>was<sp/>introduced<sp/>to<sp/>allow<sp/>name<sp/>to<sp/>be<sp/>freed<sp/>when<sp/>fset<sp/>is<sp/>used<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>poln<sp/>is<sp/>populated<sp/>if<sp/>the<sp/>fringe<sp/>number<sp/>includes<sp/>the<sp/>polarization<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>sub/utils<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="fstruct_8h_1ac9806f9f34754bf59f2424ad208426c8" kindref="member">clear_fstruct</ref>(<ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>*);</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fstruct_8h_1addf47aa14c39b79a935cc0a4ef595e41" kindref="member">check_name</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>*);</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fstruct_8h_1acf4969b4c59930e9e05c6954ec631183" kindref="member">extract_filenames</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>**,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fstruct_8h_1a3c9988d1a76e36c2e17771c027772076" kindref="member">get_filelist</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>**);</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>&apos;done&apos;<sp/>field<sp/>is<sp/>used<sp/>in<sp/>sort_names<sp/>and<sp/>alist.c</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>fringex<sp/>uses<sp/>intparm<sp/>for<sp/>fdata.srch_cotime<sp/>and<sp/>fdata.noloss_cotime</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/><sp/><sp/>and<sp/><sp/><sp/>uses<sp/>floatparm<sp/>for<sp/>fdata.delay_rate<sp/>and<sp/>fdata.mbdelay</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>poln<sp/>is<sp/>populated<sp/>if<sp/>the<sp/>fringe<sp/>number<sp/>includes<sp/>the<sp/>polarization<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>namealloc<sp/>was<sp/>introduced<sp/>to<sp/>allow<sp/>name<sp/>to<sp/>be<sp/>freed<sp/>when<sp/>fset<sp/>is<sp/>used;</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>however<sp/>it<sp/>is<sp/>difficult<sp/>to<sp/>prevent<sp/>an<sp/>invalid<sp/>free,<sp/>thus<sp/>any<sp/>use<sp/>of</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>these<sp/>functions<sp/>must<sp/>use<sp/>prep_fstruct()<sp/>when<sp/>it<sp/>is<sp/>known<sp/>that<sp/>the</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>fstruct<sp/>may<sp/>contain<sp/>garbage--this<sp/>happens<sp/>if<sp/>the<sp/>variable<sp/>is<sp/>on<sp/>the</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>stack<sp/>or<sp/>malloc&apos;d.<sp/><sp/>It<sp/>is<sp/>not<sp/>necessary<sp/>if<sp/>the<sp/>struct<sp/>was<sp/>previously</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>in<sp/>previous<sp/>calls<sp/>as<sp/>it<sp/>will<sp/>certainly<sp/>not<sp/>contain<sp/>garbage.</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>This<sp/>applies<sp/>to<sp/>filesets<sp/>as<sp/>well,<sp/>see<sp/>fileset.h<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>sub/utils<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="fstruct_8h_1a1c72adc3e23abcc2d4d0a7fde9d1fd6d" kindref="member">prep_fstruct</ref>(<ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fstruct_8h_1addf47aa14c39b79a935cc0a4ef595e41" kindref="member">check_name</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fstruct_8h_1acf4969b4c59930e9e05c6954ec631183" kindref="member">extract_filenames</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>**,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fstruct_8h_1a3c9988d1a76e36c2e17771c027772076" kindref="member">get_filelist</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>**);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h"/>
   </compounddef>

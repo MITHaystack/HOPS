@@ -150,7 +150,6 @@
     <includedby refid="sub-util-root__id_8c" local="yes">sub-util-root_id.c</includedby>
     <includedby refid="account_8c" local="yes">account.c</includedby>
     <includedby refid="check__name_8c" local="yes">check_name.c</includedby>
-    <includedby refid="clear__fstruct_8c" local="yes">clear_fstruct.c</includedby>
     <includedby refid="confirm_8c" local="yes">confirm.c</includedby>
     <includedby refid="datec__to__datef_8c" local="yes">datec_to_datef.c</includedby>
     <includedby refid="datef__to__datec_8c" local="yes">datef_to_datec.c</includedby>
@@ -316,7 +315,7 @@
         <label>parse_bfields.c</label>
         <link refid="parse__bfields_8c"/>
       </node>
-      <node id="356">
+      <node id="355">
         <label>do_source.c</label>
         <link refid="do__source_8c"/>
       </node>
@@ -336,7 +335,7 @@
         <label>locate_pscurs.c</label>
         <link refid="locate__pscurs_8c"/>
       </node>
-      <node id="371">
+      <node id="370">
         <label>get_mode_deflist.c</label>
         <link refid="get__mode__deflist_8c"/>
       </node>
@@ -356,7 +355,7 @@
         <label>init_summ.c</label>
         <link refid="init__summ_8c"/>
       </node>
-      <node id="389">
+      <node id="388">
         <label>param_formats.c</label>
         <link refid="param__formats_8c"/>
       </node>
@@ -368,7 +367,7 @@
         <label>addr_212.c</label>
         <link refid="addr__212_8c"/>
       </node>
-      <node id="320">
+      <node id="319">
         <label>fileset.c</label>
         <link refid="fileset_8c"/>
       </node>
@@ -380,7 +379,7 @@
         <label>extract_parms.c</label>
         <link refid="extract__parms_8c"/>
       </node>
-      <node id="398">
+      <node id="397">
         <label>read_file.c</label>
         <link refid="read__file_8c"/>
       </node>
@@ -408,7 +407,7 @@
         <label>precorrect.c</label>
         <link refid="precorrect_8c"/>
       </node>
-      <node id="323">
+      <node id="322">
         <label>hptoie.c</label>
         <link refid="hptoie_8c"/>
       </node>
@@ -424,7 +423,7 @@
         <label>addr_207.c</label>
         <link refid="addr__207_8c"/>
       </node>
-      <node id="364">
+      <node id="363">
         <label>get_chip_mode.c</label>
         <link refid="get__chip__mode_8c"/>
       </node>
@@ -746,7 +745,7 @@
         <childnode refid="158" relation="include">
         </childnode>
       </node>
-      <node id="358">
+      <node id="357">
         <label>evex_info.c</label>
         <link refid="evex__info_8c"/>
       </node>
@@ -754,7 +753,7 @@
         <label>ps_scanlabel.c</label>
         <link refid="ps__scanlabel_8c"/>
       </node>
-      <node id="383">
+      <node id="382">
         <label>get_vex.c</label>
         <link refid="get__vex_8c"/>
       </node>
@@ -770,7 +769,7 @@
         <label>write_data.c</label>
         <link refid="write__data_8c"/>
       </node>
-      <node id="316">
+      <node id="315">
         <label>datef_to_datec.c</label>
         <link refid="datef__to__datec_8c"/>
       </node>
@@ -832,7 +831,7 @@
         <label>ffilter.c</label>
         <link refid="ffilter_8c"/>
       </node>
-      <node id="387">
+      <node id="386">
         <label>locate_cq.c</label>
         <link refid="locate__cq_8c"/>
       </node>
@@ -840,7 +839,7 @@
         <label>addr_303.c</label>
         <link refid="addr__303_8c"/>
       </node>
-      <node id="394">
+      <node id="393">
         <label>parse_ref.c</label>
         <link refid="parse__ref_8c"/>
       </node>
@@ -1026,7 +1025,7 @@
         <label>cleanup.c</label>
         <link refid="cleanup_8c"/>
       </node>
-      <node id="395">
+      <node id="394">
         <label>parse_units.c</label>
         <link refid="parse__units_8c"/>
       </node>
@@ -1050,7 +1049,7 @@
         <label>gen_new_chan_id.c</label>
         <link refid="gen__new__chan__id_8c"/>
       </node>
-      <node id="372">
+      <node id="371">
         <label>get_pbs_init.c</label>
         <link refid="get__pbs__init_8c"/>
       </node>
@@ -1521,8 +1520,6 @@
         </childnode>
         <childnode refid="402" relation="include">
         </childnode>
-        <childnode refid="403" relation="include">
-        </childnode>
       </node>
       <node id="63">
         <label>help.c</label>
@@ -1532,7 +1529,7 @@
         <label>cursor_select.c</label>
         <link refid="cursor__select_8c"/>
       </node>
-      <node id="341">
+      <node id="340">
         <label>cvex_info.c</label>
         <link refid="cvex__info_8c"/>
       </node>
@@ -1544,11 +1541,11 @@
         <label>copy_300.c</label>
         <link refid="copy__300_8c"/>
       </node>
-      <node id="333">
+      <node id="332">
         <label>syntax.c</label>
         <link refid="syntax_8c"/>
       </node>
-      <node id="331">
+      <node id="330">
         <label>sort_names.c</label>
         <link refid="sort__names_8c"/>
       </node>
@@ -1572,7 +1569,7 @@
         <label>addr_221.c</label>
         <link refid="addr__221_8c"/>
       </node>
-      <node id="355">
+      <node id="354">
         <label>do_site.c</label>
         <link refid="do__site_8c"/>
       </node>
@@ -1592,7 +1589,7 @@
         <label>parse_cmdline.c</label>
         <link refid="applications_2aedit_2src_2parse__cmdline_8c"/>
       </node>
-      <node id="317">
+      <node id="316">
         <label>day_of_datef.c</label>
         <link refid="day__of__datef_8c"/>
       </node>
@@ -1604,7 +1601,7 @@
         <label>pr_csumm.c</label>
         <link refid="pr__csumm_8c"/>
       </node>
-      <node id="330">
+      <node id="329">
         <label>sexigesimal2hrdeg.c</label>
         <link refid="sexigesimal2hrdeg_8c"/>
       </node>
@@ -1612,7 +1609,7 @@
         <label>ps_inside.c</label>
         <link refid="ps__inside_8c"/>
       </node>
-      <node id="357">
+      <node id="356">
         <label>do_track.c</label>
         <link refid="do__track_8c"/>
       </node>
@@ -1620,7 +1617,7 @@
         <label>clear_306.c</label>
         <link refid="clear__306_8c"/>
       </node>
-      <node id="390">
+      <node id="389">
         <label>parse_date.c</label>
         <link refid="parse__date_8c"/>
       </node>
@@ -1648,7 +1645,7 @@
         <label>trngl_present.c</label>
         <link refid="trngl__present_8c"/>
       </node>
-      <node id="318">
+      <node id="317">
         <label>environment.c</label>
         <link refid="environment_8c"/>
       </node>
@@ -1656,7 +1653,7 @@
         <label>parse_cmdline.c</label>
         <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
       </node>
-      <node id="379">
+      <node id="378">
         <label>get_su_connect.c</label>
         <link refid="get__su__connect_8c"/>
       </node>
@@ -1692,15 +1689,15 @@
         <label>write_prmline.c</label>
         <link refid="write__prmline_8c"/>
       </node>
-      <node id="397">
+      <node id="396">
         <label>process_qstring.c</label>
         <link refid="process__qstring_8c"/>
       </node>
-      <node id="347">
+      <node id="346">
         <label>do_eop.c</label>
         <link refid="do__eop_8c"/>
       </node>
-      <node id="400">
+      <node id="399">
         <label>strip_text.c</label>
         <link refid="strip__text_8c"/>
       </node>
@@ -1708,7 +1705,7 @@
         <label>open_datafile.c</label>
         <link refid="open__datafile_8c"/>
       </node>
-      <node id="344">
+      <node id="343">
         <label>do_bbc.c</label>
         <link refid="do__bbc_8c"/>
       </node>
@@ -1738,7 +1735,7 @@
         <label>filelist.c</label>
         <link refid="filelist_8c"/>
       </node>
-      <node id="381">
+      <node id="380">
         <label>get_val_list.c</label>
         <link refid="get__val__list_8c"/>
       </node>
@@ -1766,7 +1763,7 @@
         <childnode refid="179" relation="include">
         </childnode>
       </node>
-      <node id="377">
+      <node id="376">
         <label>get_station_deflist.c</label>
         <link refid="get__station__deflist_8c"/>
       </node>
@@ -1790,11 +1787,11 @@
         <label>get_plot_datum.c</label>
         <link refid="get__plot__datum_8c"/>
       </node>
-      <node id="321">
+      <node id="320">
         <label>get_abs_path.c</label>
         <link refid="get__abs__path_8c"/>
       </node>
-      <node id="340">
+      <node id="339">
         <label>check_strrange.c</label>
         <link refid="check__strrange_8c"/>
       </node>
@@ -1802,7 +1799,7 @@
         <label>rootname.c</label>
         <link refid="rootname_8c"/>
       </node>
-      <node id="384">
+      <node id="383">
         <label>init_scan.c</label>
         <link refid="init__scan_8c"/>
       </node>
@@ -1810,15 +1807,11 @@
         <label>aline_id.c</label>
         <link refid="aline__id_8c"/>
       </node>
-      <node id="313">
-        <label>clear_fstruct.c</label>
-        <link refid="clear__fstruct_8c"/>
-      </node>
       <node id="90">
         <label>ps_fplot.c</label>
         <link refid="ps__fplot_8c"/>
       </node>
-      <node id="349">
+      <node id="348">
         <label>do_freq.c</label>
         <link refid="do__freq_8c"/>
       </node>
@@ -1826,7 +1819,7 @@
         <label>addr_306.c</label>
         <link refid="addr__306_8c"/>
       </node>
-      <node id="339">
+      <node id="338">
         <label>check_stloc.c</label>
         <link refid="check__stloc_8c"/>
       </node>
@@ -1886,11 +1879,11 @@
         <label>pr_fsumm.c</label>
         <link refid="pr__fsumm_8c"/>
       </node>
-      <node id="346">
+      <node id="345">
         <label>do_das.c</label>
         <link refid="do__das_8c"/>
       </node>
-      <node id="369">
+      <node id="368">
         <label>get_global_deflist.c</label>
         <link refid="get__global__deflist_8c"/>
       </node>
@@ -1902,15 +1895,15 @@
         <label>symbol_key.c</label>
         <link refid="symbol__key_8c"/>
       </node>
-      <node id="388">
+      <node id="387">
         <label>lvex_info.c</label>
         <link refid="lvex__info_8c"/>
       </node>
-      <node id="350">
+      <node id="349">
         <label>do_head_pos.c</label>
         <link refid="do__head__pos_8c"/>
       </node>
-      <node id="401">
+      <node id="400">
         <label>svex_info.c</label>
         <link refid="svex__info_8c"/>
       </node>
@@ -1922,7 +1915,7 @@
         <label>copy_203.c</label>
         <link refid="copy__203_8c"/>
       </node>
-      <node id="367">
+      <node id="366">
         <label>get_def.c</label>
         <link refid="get__def_8c"/>
       </node>
@@ -1930,11 +1923,11 @@
         <label>clear_fxp.c</label>
         <link refid="clear__fxp_8c"/>
       </node>
-      <node id="396">
+      <node id="395">
         <label>print_location.c</label>
         <link refid="print__location_8c"/>
       </node>
-      <node id="360">
+      <node id="359">
         <label>fill_scanlist.c</label>
         <link refid="fill__scanlist_8c"/>
       </node>
@@ -1958,11 +1951,11 @@
         <label>ps_selscan.c</label>
         <link refid="ps__selscan_8c"/>
       </node>
-      <node id="325">
+      <node id="324">
         <label>hptoie8.c</label>
         <link refid="hptoie8_8c"/>
       </node>
-      <node id="353">
+      <node id="352">
         <label>do_phase_cal_detect.c</label>
         <link refid="do__phase__cal__detect_8c"/>
       </node>
@@ -1994,7 +1987,7 @@
         <label>set_quads.c</label>
         <link refid="set__quads_8c"/>
       </node>
-      <node id="324">
+      <node id="323">
         <label>hptoie4.c</label>
         <link refid="hptoie4_8c"/>
       </node>
@@ -2002,7 +1995,7 @@
         <label>makekey.c</label>
         <link refid="makekey_8c"/>
       </node>
-      <node id="385">
+      <node id="384">
         <label>ivex_info.c</label>
         <link refid="ivex__info_8c"/>
       </node>
@@ -2010,7 +2003,7 @@
         <label>clear_mk4fringe.c</label>
         <link refid="clear__mk4fringe_8c"/>
       </node>
-      <node id="351">
+      <node id="350">
         <label>do_if.c</label>
         <link refid="do__if_8c"/>
       </node>
@@ -2054,7 +2047,7 @@
         <label>display_psdata.c</label>
         <link refid="display__psdata_8c"/>
       </node>
-      <node id="329">
+      <node id="328">
         <label>root_belong.c</label>
         <link refid="root__belong_8c"/>
       </node>
@@ -2082,7 +2075,7 @@
         <label>setup_psplot.c</label>
         <link refid="setup__psplot_8c"/>
       </node>
-      <node id="386">
+      <node id="385">
         <label>locate_blocks.c</label>
         <link refid="locate__blocks_8c"/>
       </node>
@@ -2122,7 +2115,7 @@
         <label>addr_101.c</label>
         <link refid="addr__101_8c"/>
       </node>
-      <node id="370">
+      <node id="369">
         <label>get_logscan.c</label>
         <link refid="get__logscan_8c"/>
       </node>
@@ -2150,7 +2143,7 @@
         <label>parse_fsumm.c</label>
         <link refid="parse__fsumm_8c"/>
       </node>
-      <node id="314">
+      <node id="313">
         <label>confirm.c</label>
         <link refid="confirm_8c"/>
       </node>
@@ -2166,15 +2159,15 @@
         <label>tricheck.c</label>
         <link refid="tricheck_8c"/>
       </node>
-      <node id="392">
+      <node id="391">
         <label>parse_pval.c</label>
         <link refid="parse__pval_8c"/>
       </node>
-      <node id="336">
+      <node id="335">
         <label>check_intrange.c</label>
         <link refid="check__intrange_8c"/>
       </node>
-      <node id="366">
+      <node id="365">
         <label>get_corr_mode.c</label>
         <link refid="get__corr__mode_8c"/>
       </node>
@@ -2226,7 +2219,7 @@
         <label>set_prange.c</label>
         <link refid="set__prange_8c"/>
       </node>
-      <node id="362">
+      <node id="361">
         <label>find_statements.c</label>
         <link refid="find__statements_8c"/>
       </node>
@@ -2274,7 +2267,7 @@
         <label>edit.c</label>
         <link refid="edit_8c"/>
       </node>
-      <node id="315">
+      <node id="314">
         <label>datec_to_datef.c</label>
         <link refid="datec__to__datef_8c"/>
       </node>
@@ -2282,7 +2275,7 @@
         <label>tarray_index.c</label>
         <link refid="tarray__index_8c"/>
       </node>
-      <node id="354">
+      <node id="353">
         <label>do_roll.c</label>
         <link refid="do__roll_8c"/>
       </node>
@@ -2334,7 +2327,7 @@
         <label>write_families.c</label>
         <link refid="write__families_8c"/>
       </node>
-      <node id="319">
+      <node id="318">
         <label>extract_filenames.c</label>
         <link refid="extract__filenames_8c"/>
       </node>
@@ -2346,7 +2339,7 @@
         <label>copy_206.c</label>
         <link refid="copy__206_8c"/>
       </node>
-      <node id="332">
+      <node id="331">
         <label>swap.c</label>
         <link refid="swap_8c"/>
       </node>
@@ -2358,11 +2351,11 @@
         <label>summ_fringe.c</label>
         <link refid="summ__fringe_8c"/>
       </node>
-      <node id="335">
+      <node id="334">
         <label>block_params.c</label>
         <link refid="block__params_8c"/>
       </node>
-      <node id="403">
+      <node id="402">
         <label>write_vexfile.c</label>
         <link refid="write__vexfile_8c"/>
       </node>
@@ -2370,23 +2363,23 @@
         <label>write_reproc.c</label>
         <link refid="write__reproc_8c"/>
       </node>
-      <node id="399">
+      <node id="398">
         <label>scan_info.c</label>
         <link refid="scan__info_8c"/>
       </node>
-      <node id="334">
+      <node id="333">
         <label>time_to_double.c</label>
         <link refid="time__to__double_8c"/>
       </node>
-      <node id="368">
+      <node id="367">
         <label>get_drive_init.c</label>
         <link refid="get__drive__init_8c"/>
       </node>
-      <node id="380">
+      <node id="379">
         <label>get_trm_config.c</label>
         <link refid="get__trm__config_8c"/>
       </node>
-      <node id="365">
+      <node id="364">
         <label>get_corr_bd_parms.c</label>
         <link refid="get__corr__bd__parms_8c"/>
       </node>
@@ -2398,7 +2391,7 @@
         <label>copy_302.c</label>
         <link refid="copy__302_8c"/>
       </node>
-      <node id="343">
+      <node id="342">
         <label>do_antenna.c</label>
         <link refid="do__antenna_8c"/>
       </node>
@@ -2406,7 +2399,7 @@
         <label>write_mk4fringe.c</label>
         <link refid="write__mk4fringe_8c"/>
       </node>
-      <node id="382">
+      <node id="381">
         <label>get_version.c</label>
         <link refid="get__version_8c"/>
       </node>
@@ -2450,11 +2443,11 @@
         <label>time_range.c</label>
         <link refid="time__range_8c"/>
       </node>
-      <node id="363">
+      <node id="362">
         <label>get_block_mode.c</label>
         <link refid="get__block__mode_8c"/>
       </node>
-      <node id="328">
+      <node id="327">
         <label>report_times.c</label>
         <link refid="report__times_8c"/>
       </node>
@@ -2462,7 +2455,7 @@
         <label>set_loops.c</label>
         <link refid="set__loops_8c"/>
       </node>
-      <node id="393">
+      <node id="392">
         <label>parse_ra.c</label>
         <link refid="parse__ra_8c"/>
       </node>
@@ -2470,7 +2463,7 @@
         <label>clear_304.c</label>
         <link refid="clear__304_8c"/>
       </node>
-      <node id="375">
+      <node id="374">
         <label>get_section_mode.c</label>
         <link refid="get__section__mode_8c"/>
       </node>
@@ -2498,7 +2491,7 @@
         <label>summarize_mk4fringe.c</label>
         <link refid="summarize__mk4fringe_8c"/>
       </node>
-      <node id="338">
+      <node id="337">
         <label>check_scan.c</label>
         <link refid="check__scan_8c"/>
       </node>
@@ -2514,7 +2507,7 @@
         <label>addr_100.c</label>
         <link refid="addr__100_8c"/>
       </node>
-      <node id="345">
+      <node id="344">
         <label>do_clock.c</label>
         <link refid="do__clock_8c"/>
       </node>
@@ -2522,7 +2515,7 @@
         <label>print_cdata_cmp.c</label>
         <link refid="print__cdata__cmp_8c"/>
       </node>
-      <node id="391">
+      <node id="390">
         <label>parse_dec.c</label>
         <link refid="parse__dec_8c"/>
       </node>
@@ -2534,7 +2527,7 @@
         <label>write_csumm.c</label>
         <link refid="write__csumm_8c"/>
       </node>
-      <node id="352">
+      <node id="351">
         <label>do_pass_order.c</label>
         <link refid="do__pass__order_8c"/>
       </node>
@@ -2554,7 +2547,7 @@
         <label>tfilter.c</label>
         <link refid="tfilter_8c"/>
       </node>
-      <node id="327">
+      <node id="326">
         <label>ismk4.c</label>
         <link refid="ismk4_8c"/>
       </node>
@@ -2626,7 +2619,7 @@
         <label>addr_308.c</label>
         <link refid="addr__308_8c"/>
       </node>
-      <node id="337">
+      <node id="336">
         <label>check_realrange.c</label>
         <link refid="check__realrange_8c"/>
       </node>
@@ -2634,7 +2627,7 @@
         <label>save.c</label>
         <link refid="save_8c"/>
       </node>
-      <node id="348">
+      <node id="347">
         <label>do_exper.c</label>
         <link refid="do__exper_8c"/>
       </node>
@@ -2666,11 +2659,11 @@
         <label>clear_100.c</label>
         <link refid="clear__100_8c"/>
       </node>
-      <node id="359">
+      <node id="358">
         <label>fill_deflists.c</label>
         <link refid="fill__deflists_8c"/>
       </node>
-      <node id="326">
+      <node id="325">
         <label>int_to_time.c</label>
         <link refid="int__to__time_8c"/>
       </node>
@@ -2718,7 +2711,7 @@
         <label>plot_header.c</label>
         <link refid="plot__header_8c"/>
       </node>
-      <node id="376">
+      <node id="375">
         <label>get_statement.c</label>
         <link refid="get__statement_8c"/>
       </node>
@@ -2734,11 +2727,11 @@
         <label>scan_name_edit.c</label>
         <link refid="scan__name__edit_8c"/>
       </node>
-      <node id="402">
+      <node id="401">
         <label>vex_init.c</label>
         <link refid="vex__init_8c"/>
       </node>
-      <node id="374">
+      <node id="373">
         <label>get_pcm_tables.c</label>
         <link refid="get__pcm__tables_8c"/>
       </node>
@@ -2766,7 +2759,7 @@
         <label>aedit.c</label>
         <link refid="aedit_8c"/>
       </node>
-      <node id="373">
+      <node id="372">
         <label>get_pcm_config.c</label>
         <link refid="get__pcm__config_8c"/>
       </node>
@@ -2794,11 +2787,11 @@
         <label>copy_301.c</label>
         <link refid="copy__301_8c"/>
       </node>
-      <node id="361">
+      <node id="360">
         <label>fill_station_parms.c</label>
         <link refid="fill__station__parms_8c"/>
       </node>
-      <node id="342">
+      <node id="341">
         <label>decode_pval.c</label>
         <link refid="decode__pval_8c"/>
       </node>
@@ -2818,11 +2811,11 @@
         <label>ps_selqual.c</label>
         <link refid="ps__selqual_8c"/>
       </node>
-      <node id="378">
+      <node id="377">
         <label>get_su_chan_out.c</label>
         <link refid="get__su__chan__out_8c"/>
       </node>
-      <node id="322">
+      <node id="321">
         <label>get_filelist.c</label>
         <link refid="get__filelist_8c"/>
       </node>
@@ -3071,7 +3064,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_util.h" line="34" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/get_abs_path.c" bodystart="22" bodyend="99" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_util.h" declline="34" declcolumn="15"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_util.h" line="34" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/get_abs_path.c" bodystart="22" bodyend="84" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_util.h" declline="34" declcolumn="15"/>
       </memberdef>
       <memberdef kind="function" id="mk4__util_8h_1ad1110e203d97bd111487c527104ab0c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -3612,7 +3605,7 @@
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>these<sp/>were<sp/>moved<sp/>to<sp/>fstruct.h</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//extern<sp/>int<sp/><sp/>check_name<sp/>(char<sp/>*,<sp/>fstruct<sp/>*);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//extern<sp/>void<sp/>clear_fstruct<sp/>(fstruct<sp/>*);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//extern<sp/>void<sp/>clear<sp/>_<sp/>fstruct<sp/>(fstruct<sp/>*);</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//extern<sp/>int<sp/><sp/>get_filelist<sp/>(int,<sp/>char<sp/>**,<sp/>int,<sp/>fstruct<sp/>**);</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>extern<sp/>int<sp/>extract_filenames<sp/>(char<sp/>*,<sp/>int,<sp/>fstruct<sp/>**,<sp/>int<sp/>*,<sp/>int<sp/>*,<sp/>int<sp/>*);</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>

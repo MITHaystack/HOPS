@@ -67,18 +67,28 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">meta_struct.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &quot;<a class="el" href="ovex_8h_source.html">ovex.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="pass__struct_8h_source.html">pass_struct.h</a>&quot;</code><br />
+</div>
 <p><a href="meta__struct_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:structtype__meta"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="meta__struct_8h.html#structtype__meta">type_meta</a></td></tr>
 <tr class="separator:structtype__meta"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab2766d83fd0369c10257c8df62729409"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="meta__struct_8h.html#ab2766d83fd0369c10257c8df62729409">generate_graphs</a> (struct <a class="el" href="ovex_8h.html#structscan__struct">scan_struct</a> *root, struct <a class="el" href="pass__struct_8h.html#structtype__pass">type_pass</a> *pass, char *<a class="el" href="fringename_8c.html#adda794c4c9a8c4ded6f2b8a7eb446dd9">fringename</a>, char *ps_file, double *tickinc)</td></tr>
+<tr class="separator:ab2766d83fd0369c10257c8df62729409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a728a9506544f4a8eab36bb5b248dcb7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="meta__struct_8h.html#a728a9506544f4a8eab36bb5b248dcb7f">generate_text</a> (struct <a class="el" href="ovex_8h.html#structscan__struct">scan_struct</a> *root, struct <a class="el" href="pass__struct_8h.html#structtype__pass">type_pass</a> *pass, char *<a class="el" href="fringename_8c.html#adda794c4c9a8c4ded6f2b8a7eb446dd9">fringename</a>, char *ps_file, double tickinc)</td></tr>
+<tr class="separator:a728a9506544f4a8eab36bb5b248dcb7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
 <a name="structtype__meta" id="structtype__meta"></a>
@@ -143,6 +153,12 @@ fourfitcmd[256]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="a2aac4210d4ae83b97009ba11a145b43f"></a>int</td>
+<td class="fieldname">
+limit_plot</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
 <a id="a7b70699220a70e49aeeaf8c92af66bd9"></a>int</td>
 <td class="fieldname">
 nplots</td>
@@ -185,9 +201,21 @@ rt_sn_bl[80]</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
+<a id="ae615d350d94cf2befba7b79dd7581b68"></a>char</td>
+<td class="fieldname">
+skip_plots[<a class="el" href="mk4__sizes_8h.html#af8269d8159f700256b8bd0fb67b5a882">MAXFREQ</a>+1]</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
 <a id="a4c809fd7a902c745c9e57edc460d03e5"></a>int</td>
 <td class="fieldname">
 start_plot</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a8569693708a1f9be6b065036e0f0ba8d"></a>int</td>
+<td class="fieldname">
+vplots</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
@@ -200,10 +228,103 @@ yr_doy[10]</td>
 
 </div>
 </div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ab2766d83fd0369c10257c8df62729409"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2766d83fd0369c10257c8df62729409">&#9670;&nbsp;</a></span>generate_graphs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int generate_graphs </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="ovex_8h.html#structscan__struct">scan_struct</a> *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="pass__struct_8h.html#structtype__pass">type_pass</a> *&#160;</td>
+          <td class="paramname"><em>pass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fringename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ps_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>tickinc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a728a9506544f4a8eab36bb5b248dcb7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a728a9506544f4a8eab36bb5b248dcb7f">&#9670;&nbsp;</a></span>generate_text()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void generate_text </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="ovex_8h.html#structscan__struct">scan_struct</a> *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="pass__struct_8h.html#structtype__pass">type_pass</a> *&#160;</td>
+          <td class="paramname"><em>pass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fringename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ps_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>tickinc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 29 2025 16:00:26 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Jul 31 2025 19:34:19 for HOPS by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

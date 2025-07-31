@@ -209,8 +209,12 @@
         </childnode>
         <childnode refid="5" relation="usage">
           <edgelabel>ch_idx</edgelabel>
+          <edgelabel>corel_index</edgelabel>
           <edgelabel>data_alloc</edgelabel>
+          <edgelabel>data_peers</edgelabel>
+          <edgelabel>fcode_index</edgelabel>
           <edgelabel>index</edgelabel>
+          <edgelabel>nsb_channels</edgelabel>
         </childnode>
       </node>
       <node id="47">
@@ -743,12 +747,12 @@
           <edgelabel>adhoc_file_chans</edgelabel>
           <edgelabel>adhoc_flag_files</edgelabel>
           <edgelabel>baseline</edgelabel>
+          <edgelabel>chan_notches</edgelabel>
           <edgelabel>chid</edgelabel>
+          <edgelabel>clones</edgelabel>
+          <edgelabel>display_chans</edgelabel>
           <edgelabel>f_group</edgelabel>
-          <edgelabel>plot_data_dir</edgelabel>
-          <edgelabel>psamplers</edgelabel>
-          <edgelabel>sampler_codes</edgelabel>
-          <edgelabel>source</edgelabel>
+          <edgelabel>fringeout_dir</edgelabel>
           <edgelabel>...</edgelabel>
         </childnode>
         <childnode refid="83" relation="usage">
@@ -760,13 +764,13 @@
           <edgelabel>accept_sbs</edgelabel>
           <edgelabel>adhoc_phase</edgelabel>
           <edgelabel>avxplopt</edgelabel>
+          <edgelabel>clone_snr_chk</edgelabel>
           <edgelabel>est_pc_manual</edgelabel>
           <edgelabel>gen_cf_record</edgelabel>
           <edgelabel>interpolator</edgelabel>
           <edgelabel>ion_npts</edgelabel>
           <edgelabel>mbd_anchor</edgelabel>
           <edgelabel>mbdrplopt</edgelabel>
-          <edgelabel>mixed_mode_rot</edgelabel>
           <edgelabel>...</edgelabel>
         </childnode>
         <childnode refid="82" relation="usage">
@@ -1589,22 +1593,25 @@
           <edgelabel>ah_file_chans</edgelabel>
           <edgelabel>ah_flag_files</edgelabel>
           <edgelabel>baseline</edgelabel>
+          <edgelabel>chan_notches</edgelabel>
+          <edgelabel>clones</edgelabel>
           <edgelabel>control_file_buff</edgelabel>
+          <edgelabel>display_chans</edgelabel>
+          <edgelabel>fringeout_dir</edgelabel>
           <edgelabel>plot_data_dir</edgelabel>
-          <edgelabel>rf_fglist</edgelabel>
-          <edgelabel>set_string_buff</edgelabel>
+          <edgelabel>...</edgelabel>
         </childnode>
         <childnode refid="5" relation="usage">
           <edgelabel>ah_phase</edgelabel>
           <edgelabel>avxplopt</edgelabel>
           <edgelabel>bits_sample</edgelabel>
           <edgelabel>bocfs_per_ap</edgelabel>
+          <edgelabel>clone_snr_chk</edgelabel>
           <edgelabel>cormode</edgelabel>
           <edgelabel>est_pc_manual</edgelabel>
           <edgelabel>first_plot</edgelabel>
           <edgelabel>gen_cf_record</edgelabel>
           <edgelabel>interpol</edgelabel>
-          <edgelabel>ion_pts</edgelabel>
           <edgelabel>...</edgelabel>
         </childnode>
       </node>
@@ -1838,8 +1845,10 @@
         </childnode>
         <childnode refid="5" relation="usage">
           <edgelabel>exper_num</edgelabel>
+          <edgelabel>limit_plot</edgelabel>
           <edgelabel>nplots</edgelabel>
           <edgelabel>start_plot</edgelabel>
+          <edgelabel>vplots</edgelabel>
         </childnode>
       </node>
       <node id="16">

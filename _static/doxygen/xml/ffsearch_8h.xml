@@ -332,7 +332,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="12" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/norm_fx.c" bodystart="45" bodyend="631" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="12" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="12" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/norm_fx.c" bodystart="45" bodyend="564" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="12" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="ffsearch_8h_1a5acd18af346b489d066ac067c7be25a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -365,7 +365,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/norm_xf.c" bodystart="76" bodyend="610" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="13" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/norm_xf.c" bodystart="76" bodyend="612" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="13" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="ffsearch_8h_1ac8dba04edbb3b6308e3d0f94c6f7204d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -410,7 +410,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="25" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/organize_data.c" bodystart="25" bodyend="175" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="25" declcolumn="12"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="25" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/organize_data.c" bodystart="25" bodyend="176" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="25" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="ffsearch_8h_1ad831fd0be2a54c9d7893f07b05d0642c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -443,7 +443,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="21" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/parse_cmdline.c" bodystart="44" bodyend="272" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="21" declcolumn="12"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="21" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/parse_cmdline.c" bodystart="44" bodyend="265" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="21" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="ffsearch_8h_1a0e74761bc051f9dcafa447e15a5b2d29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -485,7 +485,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="22" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/precorrect.c" bodystart="27" bodyend="330" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="22" declcolumn="12"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="22" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/precorrect.c" bodystart="27" bodyend="346" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="22" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="ffsearch_8h_1ac9311348ec893c33a1d661a20f5a15f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -502,7 +502,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="10" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/rotate_pcal.c" bodystart="21" bodyend="122" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="10" declcolumn="13"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" line="10" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/rotate_pcal.c" bodystart="22" bodyend="125" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/ffsearch.h" declline="10" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="ffsearch_8h_1ae2757197ab253fbfd6cfd6dd575fcf3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

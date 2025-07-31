@@ -26,6 +26,7 @@
     <includedby refid="fill__212_8c" local="yes">fill_212.c</includedby>
     <includedby refid="fill__230_8c" local="yes">fill_230.c</includedby>
     <includedby refid="fill__fringe__info_8c" local="yes">fill_fringe_info.c</includedby>
+    <includedby refid="meta__struct_8h" local="yes">meta_struct.h</includedby>
     <includedby refid="plot__data__dir_8h" local="yes">plot_data_dir.h</includedby>
     <includedby refid="display__fplot_8c" local="yes">display_fplot.c</includedby>
     <includedby refid="fit__vbp_8c" local="yes">fit_vbp.c</includedby>
@@ -361,7 +362,7 @@
         <label>vrot.c</label>
         <link refid="vrot_8c"/>
       </node>
-      <node id="57">
+      <node id="58">
         <label>search.c</label>
         <link refid="fourfit__libs_2ffsearch_2src_2search_8c"/>
       </node>
@@ -369,11 +370,11 @@
         <label>clear_freq_corel.c</label>
         <link refid="clear__freq__corel_8c"/>
       </node>
-      <node id="43">
+      <node id="44">
         <label>freq_spacing.c</label>
         <link refid="freq__spacing_8c"/>
       </node>
-      <node id="35">
+      <node id="36">
         <label>apply_passband.c</label>
         <link refid="apply__passband_8c"/>
       </node>
@@ -381,31 +382,31 @@
         <label>fill_205.c</label>
         <link refid="fill__205_8c"/>
       </node>
-      <node id="54">
+      <node id="55">
         <label>precorrect.c</label>
         <link refid="precorrect_8c"/>
       </node>
-      <node id="24">
+      <node id="25">
         <label>plot_data_dir.c</label>
         <link refid="plot__data__dir_8c"/>
       </node>
-      <node id="27">
+      <node id="26">
         <label>generate_graphs.c</label>
         <link refid="generate__graphs_8c"/>
       </node>
-      <node id="58">
+      <node id="59">
         <label>search_windows.c</label>
         <link refid="search__windows_8c"/>
       </node>
-      <node id="28">
+      <node id="27">
         <label>generate_text.c</label>
         <link refid="generate__text_8c"/>
       </node>
-      <node id="37">
+      <node id="38">
         <label>calc_normalization.c</label>
         <link refid="calc__normalization_8c"/>
       </node>
-      <node id="33">
+      <node id="34">
         <label>apply_filter.c</label>
         <link refid="apply__filter_8c"/>
       </node>
@@ -413,19 +414,19 @@
         <label>clear_pass.c</label>
         <link refid="clear__pass_8c"/>
       </node>
-      <node id="34">
+      <node id="35">
         <label>apply_notches.c</label>
         <link refid="apply__notches_8c"/>
       </node>
-      <node id="56">
+      <node id="57">
         <label>sampler_delays.c</label>
         <link refid="sampler__delays_8c"/>
       </node>
-      <node id="44">
+      <node id="45">
         <label>fringe_search.c</label>
         <link refid="fringe__search_8c"/>
       </node>
-      <node id="48">
+      <node id="49">
         <label>ion_search.c</label>
         <link refid="ion__search_8c"/>
       </node>
@@ -433,39 +434,55 @@
         <label>generate_cblock.c</label>
         <link refid="generate__cblock_8c"/>
       </node>
-      <node id="25">
+      <node id="29">
         <label>display_fplot.c</label>
         <link refid="display__fplot_8c"/>
       </node>
-      <node id="23">
+      <node id="24">
         <label>output.c</label>
         <link refid="output_8c"/>
       </node>
-      <node id="50">
+      <node id="22">
+        <label>meta_struct.h</label>
+        <link refid="meta__struct_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
         <label>norm_xf.c</label>
         <link refid="norm__xf_8c"/>
       </node>
-      <node id="42">
+      <node id="43">
         <label>est_pc_manual.c</label>
         <link refid="est__pc__manual_8c"/>
       </node>
-      <node id="22">
+      <node id="23">
         <label>plot_data_dir.h</label>
         <link refid="plot__data__dir_8h"/>
-        <childnode refid="23" relation="include">
-        </childnode>
         <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
         </childnode>
       </node>
       <node id="15">
         <label>fill_206.c</label>
         <link refid="fill__206_8c"/>
       </node>
-      <node id="53">
+      <node id="54">
         <label>pcalibrate.c</label>
         <link refid="pcalibrate_8c"/>
       </node>
-      <node id="30">
+      <node id="28">
         <label>make_postplot.c</label>
         <link refid="make__postplot_8c"/>
       </node>
@@ -473,7 +490,7 @@
         <label>stcount_interp.c</label>
         <link refid="stcount__interp_8c"/>
       </node>
-      <node id="26">
+      <node id="30">
         <label>fit_vbp.c</label>
         <link refid="fit__vbp_8c"/>
       </node>
@@ -481,7 +498,7 @@
         <label>pcal_interp.c</label>
         <link refid="pcal__interp_8c"/>
       </node>
-      <node id="52">
+      <node id="53">
         <label>parse_cmdline.c</label>
         <link refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c"/>
       </node>
@@ -493,15 +510,15 @@
         <label>compute_qf.c</label>
         <link refid="compute__qf_8c"/>
       </node>
-      <node id="29">
+      <node id="31">
         <label>make_plotdata.c</label>
         <link refid="make__plotdata_8c"/>
       </node>
-      <node id="31">
+      <node id="32">
         <label>adjust_snr.c</label>
         <link refid="adjust__snr_8c"/>
       </node>
-      <node id="32">
+      <node id="33">
         <label>apply_cmplxbp.c</label>
         <link refid="apply__cmplxbp_8c"/>
       </node>
@@ -509,7 +526,7 @@
         <label>diff_file_phase.c</label>
         <link refid="diff__file__phase_8c"/>
       </node>
-      <node id="55">
+      <node id="56">
         <label>rotate_pcal.c</label>
         <link refid="rotate__pcal_8c"/>
       </node>
@@ -570,21 +587,21 @@
         </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
         </childnode>
@@ -642,12 +659,14 @@
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
       </node>
       <node id="20">
         <label>fill_230.c</label>
         <link refid="fill__230_8c"/>
       </node>
-      <node id="47">
+      <node id="48">
         <label>ion_covariance.c</label>
         <link refid="ion__covariance_8c"/>
       </node>
@@ -655,19 +674,19 @@
         <label>fourfit3.c</label>
         <link refid="fourfit3_8c"/>
       </node>
-      <node id="36">
+      <node id="37">
         <label>apply_video_bp.c</label>
         <link refid="apply__video__bp_8c"/>
       </node>
-      <node id="38">
+      <node id="39">
         <label>calc_rms.c</label>
         <link refid="calc__rms_8c"/>
       </node>
-      <node id="49">
+      <node id="50">
         <label>norm_fx.c</label>
         <link refid="norm__fx_8c"/>
       </node>
-      <node id="46">
+      <node id="47">
         <label>interp.c</label>
         <link refid="interp_8c"/>
       </node>
@@ -675,7 +694,7 @@
         <label>fill_208.c</label>
         <link refid="fill__208_8c"/>
       </node>
-      <node id="39">
+      <node id="40">
         <label>compute_field_rotations.c</label>
         <link refid="compute__field__rotations_8c"/>
       </node>
@@ -683,15 +702,15 @@
         <label>update.c</label>
         <link refid="ffcore_2src_2update_8c"/>
       </node>
-      <node id="41">
+      <node id="42">
         <label>delay_rate.c</label>
         <link refid="delay__rate_8c"/>
       </node>
-      <node id="59">
+      <node id="60">
         <label>update.c</label>
         <link refid="ffsearch_2src_2update_8c"/>
       </node>
-      <node id="51">
+      <node id="52">
         <label>organize_data.c</label>
         <link refid="organize__data_8c"/>
       </node>
@@ -699,11 +718,11 @@
         <label>make_passes.c</label>
         <link refid="make__passes_8c"/>
       </node>
-      <node id="45">
+      <node id="46">
         <label>gate_off.c</label>
         <link refid="gate__off_8c"/>
       </node>
-      <node id="40">
+      <node id="41">
         <label>create_fname.c</label>
         <link refid="create__fname_8c"/>
       </node>
@@ -874,7 +893,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="101" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="101" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="107" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="pass__struct_8h_1a6622f991c7367e88b0aba7d0221b2873" prot="public" static="yes" mutable="no">
         <type>char *</type>
@@ -889,7 +908,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="107" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="107" bodyend="-1"/>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="113" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="pass__struct_8h_1af32316653e135da0967a9f83277ff3b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void modify_pol</definition>
+        <argsstring>(struct type_pass *p, char *polstr)</argsstring>
+        <name>modify_pol</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>polstr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="116" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/generate_text.c" bodystart="1065" bodyend="1087" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" declline="116" declcolumn="13"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -924,7 +966,7 @@
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26" refid="structinterp__sdata" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structinterp__sdata" kindref="compound">interp_sdata</ref></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="28" refid="structinterp__sdata_1a1bf91cef22961c04fd31694b6a737d94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/><ref refid="structinterp__sdata_1a1bf91cef22961c04fd31694b6a737d94" kindref="member">phasecal_lcp</ref>[<ref refid="pass__struct_8h_1ab61b5b2430651e459d3d2618a862dca6" kindref="member">MAX_PCF</ref>];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>USB<sp/>only<sp/>for<sp/>now<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="structinterp__sdata_1a1bf91cef22961c04fd31694b6a737d94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/><ref refid="structinterp__sdata_1a1bf91cef22961c04fd31694b6a737d94" kindref="member">phasecal_lcp</ref>[<ref refid="pass__struct_8h_1ab61b5b2430651e459d3d2618a862dca6" kindref="member">MAX_PCF</ref>];<sp/></highlight><highlight class="comment">/*<sp/>USB<sp/>only<sp/>for<sp/>now<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29" refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" kindref="member">pcweight_lcp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(see<sp/>pcal_interp<sp/>routine)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30" refid="structinterp__sdata_1a621f2d7737fcfe3ba5a672e7c3b4c5e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/><ref refid="structinterp__sdata_1a621f2d7737fcfe3ba5a672e7c3b4c5e1" kindref="member">phasecal_rcp</ref>[<ref refid="pass__struct_8h_1ab61b5b2430651e459d3d2618a862dca6" kindref="member">MAX_PCF</ref>];</highlight></codeline>
 <codeline lineno="31" refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" kindref="member">pcweight_rcp</ref>;</highlight></codeline>
@@ -932,24 +974,24 @@
 <codeline lineno="33" refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>lcp_usb,<sp/>lcp_lsb,<sp/>rcp_usb,<sp/>rcp_lsb<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="34" refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[4];</highlight></codeline>
 <codeline lineno="35" refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[4];</highlight></codeline>
-<codeline lineno="36" refid="structinterp__sdata_1acbb9f906a82a00e487e019344e4687f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/><ref refid="structinterp__sdata_1acbb9f906a82a00e487e019344e4687f2" kindref="member">mt_pcal</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pc<sp/>phasor<sp/>for<sp/>multitone<sp/>mode<sp/>L:R<sp/>or<sp/>H:V</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structinterp__sdata_1acbb9f906a82a00e487e019344e4687f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/><ref refid="structinterp__sdata_1acbb9f906a82a00e487e019344e4687f2" kindref="member">mt_pcal</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pc<sp/>phasor<sp/>for<sp/>multitone<sp/>mode<sp/>L:R<sp/>or<sp/>H:V</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37" refid="structinterp__sdata_1a238bc89bf134e65bf374f594066f4f0d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structinterp__sdata_1a238bc89bf134e65bf374f594066f4f0d" kindref="member">mt_delay</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>multitone<sp/>delay<sp/>(us)<sp/>[L:R<sp/>or<sp/>H:V<sp/>or<sp/>X:Y]</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40" refid="structdata__corel" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata__corel" kindref="compound">data_corel</ref></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="42" refid="structdata__corel_1a0db826588b23fc354f43114c30f7b016" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structdata__corel_1a0db826588b23fc354f43114c30f7b016" kindref="member">flag</ref>;</highlight></codeline>
-<codeline lineno="43" refid="structdata__corel_1a0ea1ecb45ddc690cda4d67b9885dd38c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__120" kindref="compound">type_120</ref><sp/>*<ref refid="structdata__corel_1a0ea1ecb45ddc690cda4d67b9885dd38c" kindref="member">apdata_ll</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>sideband<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structdata__corel_1a0ea1ecb45ddc690cda4d67b9885dd38c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__120" kindref="compound">type_120</ref><sp/>*<ref refid="structdata__corel_1a0ea1ecb45ddc690cda4d67b9885dd38c" kindref="member">apdata_ll</ref>[2];<sp/><sp/></highlight><highlight class="comment">//<sp/>Correlated<sp/>data<sp/>by<sp/>sideband</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44" refid="structdata__corel_1ac425e93fbea763e70bbfe3d9ab345d0d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__120" kindref="compound">type_120</ref><sp/>*<ref refid="structdata__corel_1ac425e93fbea763e70bbfe3d9ab345d0d" kindref="member">apdata_rr</ref>[2];</highlight></codeline>
 <codeline lineno="45" refid="structdata__corel_1a3e5f4ea7c89e2c1b194e48511b1aa527" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__120" kindref="compound">type_120</ref><sp/>*<ref refid="structdata__corel_1a3e5f4ea7c89e2c1b194e48511b1aa527" kindref="member">apdata_lr</ref>[2];</highlight></codeline>
 <codeline lineno="46" refid="structdata__corel_1ad2fe12e4d77ebc9c89d82728829caeb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__120" kindref="compound">type_120</ref><sp/>*<ref refid="structdata__corel_1ad2fe12e4d77ebc9c89d82728829caeb1" kindref="member">apdata_rl</ref>[2];</highlight></codeline>
 <codeline lineno="47" refid="structdata__corel_1aa6c41a7149d8c66fbfcad73e7f0e98c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structdata__corel_1aa6c41a7149d8c66fbfcad73e7f0e98c2" kindref="member">sband</ref>;</highlight></codeline>
-<codeline lineno="48" refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>*<ref refid="structdata__corel_1aded93176213e9173b6f5322966bfa270" kindref="member">sbdelay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Allocated<sp/>in<sp/>fringe_search<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>*<ref refid="structdata__corel_1aded93176213e9173b6f5322966bfa270" kindref="member">sbdelay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Allocated<sp/>and<sp/>freed<sp/>in<sp/>fringe_search</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structinterp__sdata" kindref="compound">interp_sdata</ref><sp/><ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>;</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structinterp__sdata" kindref="compound">interp_sdata</ref><sp/><ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>;</highlight></codeline>
 <codeline lineno="51" refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref>;</highlight></codeline>
 <codeline lineno="52" refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref>;</highlight></codeline>
-<codeline lineno="53" refid="structdata__corel_1a36aef802b929a5f654985d2cff0ae279" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/><ref refid="structdata__corel_1a36aef802b929a5f654985d2cff0ae279" kindref="member">pc_phasor</ref>[4];<sp/><sp/></highlight><highlight class="comment">//<sp/>extracted<sp/>in<sp/>rotate_pcal<sp/>[LL:RR:LR:RL]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="structdata__corel_1a36aef802b929a5f654985d2cff0ae279" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/><ref refid="structdata__corel_1a36aef802b929a5f654985d2cff0ae279" kindref="member">pc_phasor</ref>[4];<sp/><sp/></highlight><highlight class="comment">//<sp/>Extracted<sp/>in<sp/>rotate_pcal<sp/>[LL:RR:LR:RL]</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="56" refid="structfreq__corel" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfreq__corel" kindref="compound">freq_corel</ref></highlight></codeline>
@@ -970,42 +1012,50 @@
 <codeline lineno="71" refid="structfreq__corel_1a174b255993c1be28f03cd7ab963b157f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1a174b255993c1be28f03cd7ab963b157f" kindref="member">bbc_lcp</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Physical<sp/>BBC<sp/>numbers<sp/>by<sp/>station<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="72" refid="structfreq__corel_1ac0a46c8b4dee612155ac0342aaad2818" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1ac0a46c8b4dee612155ac0342aaad2818" kindref="member">bbc_rcp</ref>[2];</highlight></codeline>
 <codeline lineno="73" refid="structfreq__corel_1a5c470da35f1cfd104f929340d42ec029" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1a5c470da35f1cfd104f929340d42ec029" kindref="member">index</ref>[8];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Corel<sp/>index<sp/>number<sp/>by<sp/>sideband/pol&apos;n<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="74" refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" kindref="member">data_alloc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Flag<sp/>indicating<sp/>whether<sp/>space<sp/>alloced<sp/>for<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="75" refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata__corel" kindref="compound">data_corel</ref><sp/>*<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref>;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79" refid="structtype__pass" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__pass" kindref="compound">type_pass</ref></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>];</highlight></codeline>
-<codeline lineno="82" refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;</highlight></codeline>
-<codeline lineno="83" refid="structtype__pass_1a722023239c4c5f88f2cdab52c6675f3c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a722023239c4c5f88f2cdab52c6675f3c" kindref="member">channels</ref>;</highlight></codeline>
-<codeline lineno="84" refid="structtype__pass_1af29bc82bf233f06adef501e97eabf545" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1af29bc82bf233f06adef501e97eabf545" kindref="member">nlags</ref>;</highlight></codeline>
-<codeline lineno="85" refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;</highlight></codeline>
-<codeline lineno="86" refid="structtype__pass_1a4a9381635ea509e1c5b3436e6d7e340e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a4a9381635ea509e1c5b3436e6d7e340e" kindref="member">npctones</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>max<sp/>number<sp/>of<sp/>pcal<sp/>tones<sp/>in<sp/>any<sp/>freq</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="87" refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;</highlight></codeline>
-<codeline lineno="88" refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>0|1|2|3<sp/>=<sp/>LL|RR|LR|RL<sp/>or<sp/>last<sp/>pol<sp/>if<sp/>param.pol!=0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="89" refid="structtype__pass_1a6d7dd24350e717f41983b9bc32043f7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a6d7dd24350e717f41983b9bc32043f7a" kindref="member">linpol</ref>[2];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>0|1<sp/>if<sp/>circular|linear<sp/>pol<sp/>for<sp/>ref<sp/>&amp;<sp/>remote</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="90" refid="structtype__pass_1acf1363a44c484e9848e82ccfed6f1f10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1acf1363a44c484e9848e82ccfed6f1f10" kindref="member">npols</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>polarizations<sp/>in<sp/>coherent<sp/>sum</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="91" refid="structtype__pass_1a5185b3c38938850bcd4f34266a367cb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a5185b3c38938850bcd4f34266a367cb3" kindref="member">pprods_present</ref>[4];<sp/></highlight><highlight class="comment">//<sp/>flags<sp/>for<sp/>pol.product<sp/>present,<sp/>like<sp/>pol</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="92" refid="structtype__pass_1ad3a097b14f3e2d59ad45bfd87247e534" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1ad3a097b14f3e2d59ad45bfd87247e534" kindref="member">autocorr</ref>;</highlight></codeline>
-<codeline lineno="93" refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" kindref="member">pci</ref>[2][<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>];<sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>of<sp/>desired<sp/>pcal<sp/>tone<sp/>by<sp/>stn<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="94" refid="structtype__pass_1a51a968cbc3828680104b0d09c803993f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a51a968cbc3828680104b0d09c803993f" kindref="member">pcinband</ref>[2][<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>][<ref refid="pass__struct_8h_1ab61b5b2430651e459d3d2618a862dca6" kindref="member">MAX_PCF</ref>];</highlight></codeline>
-<codeline lineno="95" refid="structtype__pass_1a7f0a8500bc9bf4bd078a3a6a789f5b15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a7f0a8500bc9bf4bd078a3a6a789f5b15" kindref="member">start</ref>;</highlight></codeline>
-<codeline lineno="96" refid="structtype__pass_1a46bf9319278df9a27f01d0bc49fc086c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a46bf9319278df9a27f01d0bc49fc086c" kindref="member">stop</ref>;</highlight></codeline>
-<codeline lineno="97" refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1ab46b56d56a747061cd3d394568075a9f" kindref="member">reftime</ref>;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structc__block" kindref="compound">c_block</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>;</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>fchars[64]<sp/>=</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;b&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;c&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;d&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;e&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;f&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;g&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;h&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;i&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;j&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;k&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;l&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;m&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;n&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;o&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;p&apos;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="charliteral">&apos;q&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;r&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;s&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;t&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;u&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;v&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;w&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;x&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;y&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;z&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;B&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;C&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;D&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;E&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;F&apos;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="charliteral">&apos;G&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;H&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;I&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;J&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;K&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;L&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;M&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;N&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;O&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;P&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;Q&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;S&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;T&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;U&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;V&apos;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="charliteral">&apos;W&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;X&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;Y&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;Z&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;1&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;2&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;3&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;4&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;5&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;6&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;7&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;8&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;9&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;$&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;%&apos;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="74" refid="structfreq__corel_1aac5bc39453cc4ff205da26e592d4fffa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1aac5bc39453cc4ff205da26e592d4fffa" kindref="member">nsb_channels</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>count<sp/>of<sp/>sidebands<sp/>for<sp/>integration<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="structfreq__corel_1a457b9abce953217facee3d927440c9a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1a457b9abce953217facee3d927440c9a1" kindref="member">data_peers</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>number<sp/>of<sp/>freq_corel<sp/>sharing<sp/>underlying<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="structfreq__corel_1a223a2c8abc4d8d5fe5eb27c6acdbb12f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1a223a2c8abc4d8d5fe5eb27c6acdbb12f" kindref="member">corel_index</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>in<sp/>the<sp/>correlated<sp/>data<sp/>(freq_corel)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="structfreq__corel_1a3410fa55ff89891c2f06a1a9ac911075" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1a3410fa55ff89891c2f06a1a9ac911075" kindref="member">fcode_index</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>in<sp/>list<sp/>of<sp/>frequency<sp/>labels<sp/>(control.chid)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel_1aa6a8ed5f7e7e1a82934efe39a90b051e" kindref="member">data_alloc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Flag<sp/>indicating<sp/>whether<sp/>space<sp/>alloced<sp/>for<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata__corel" kindref="compound">data_corel</ref><sp/>*<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pointer<sp/>to<sp/>first<sp/>of<sp/>parent.num_ap;<sp/>the<sp/>rest<sp/>follow<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">//<sp/>pass_data[MAX_FREQ]<sp/>seems<sp/>to<sp/>have<sp/>been<sp/>the<sp/>case<sp/>at<sp/>one<sp/>time,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//<sp/>but<sp/>MAX_CHAN<sp/>was<sp/>boosted<sp/>to<sp/>twice<sp/>that,<sp/>presumably<sp/>a<sp/>DSB<sp/>thing.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="structtype__pass" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__pass" kindref="compound">type_pass</ref></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>];</highlight></codeline>
+<codeline lineno="88" refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;</highlight></codeline>
+<codeline lineno="89" refid="structtype__pass_1a722023239c4c5f88f2cdab52c6675f3c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a722023239c4c5f88f2cdab52c6675f3c" kindref="member">channels</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sum(fc<sp/>nsb_channels)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="structtype__pass_1af29bc82bf233f06adef501e97eabf545" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1af29bc82bf233f06adef501e97eabf545" kindref="member">nlags</ref>;</highlight></codeline>
+<codeline lineno="91" refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;</highlight></codeline>
+<codeline lineno="92" refid="structtype__pass_1a4a9381635ea509e1c5b3436e6d7e340e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a4a9381635ea509e1c5b3436e6d7e340e" kindref="member">npctones</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>max<sp/>number<sp/>of<sp/>pcal<sp/>tones<sp/>in<sp/>any<sp/>freq</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;</highlight></codeline>
+<codeline lineno="94" refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>0|1|2|3<sp/>=<sp/>LL|RR|LR|RL<sp/>or<sp/>last<sp/>pol<sp/>if<sp/>param.pol!=0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="structtype__pass_1a6d7dd24350e717f41983b9bc32043f7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a6d7dd24350e717f41983b9bc32043f7a" kindref="member">linpol</ref>[2];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>0|1<sp/>if<sp/>circular|linear<sp/>pol<sp/>for<sp/>ref<sp/>&amp;<sp/>remote</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="structtype__pass_1acf1363a44c484e9848e82ccfed6f1f10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1acf1363a44c484e9848e82ccfed6f1f10" kindref="member">npols</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>polarizations<sp/>in<sp/>coherent<sp/>sum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="structtype__pass_1a5185b3c38938850bcd4f34266a367cb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a5185b3c38938850bcd4f34266a367cb3" kindref="member">pprods_present</ref>[4];<sp/></highlight><highlight class="comment">//<sp/>flags<sp/>for<sp/>pol.product<sp/>present,<sp/>like<sp/>pol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="structtype__pass_1ad3a097b14f3e2d59ad45bfd87247e534" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1ad3a097b14f3e2d59ad45bfd87247e534" kindref="member">autocorr</ref>;</highlight></codeline>
+<codeline lineno="99" refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" kindref="member">pci</ref>[2][<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>];<sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>of<sp/>desired<sp/>pcal<sp/>tone<sp/>by<sp/>stn<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="structtype__pass_1a51a968cbc3828680104b0d09c803993f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a51a968cbc3828680104b0d09c803993f" kindref="member">pcinband</ref>[2][<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>][<ref refid="pass__struct_8h_1ab61b5b2430651e459d3d2618a862dca6" kindref="member">MAX_PCF</ref>];</highlight></codeline>
+<codeline lineno="101" refid="structtype__pass_1a7f0a8500bc9bf4bd078a3a6a789f5b15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a7f0a8500bc9bf4bd078a3a6a789f5b15" kindref="member">start</ref>;</highlight></codeline>
+<codeline lineno="102" refid="structtype__pass_1a46bf9319278df9a27f01d0bc49fc086c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1a46bf9319278df9a27f01d0bc49fc086c" kindref="member">stop</ref>;</highlight></codeline>
+<codeline lineno="103" refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1ab46b56d56a747061cd3d394568075a9f" kindref="member">reftime</ref>;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structc__block" kindref="compound">c_block</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*polab[4]<sp/>=</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="stringliteral">&quot;LL&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="stringliteral">&quot;RR&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="stringliteral">&quot;LR&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="stringliteral">&quot;RL&quot;</highlight><highlight class="normal"><sp/>};</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>fchars[64]<sp/>=</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;b&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;c&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;d&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;e&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;f&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;g&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;h&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;i&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;j&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;k&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;l&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;m&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;n&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;o&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;p&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="charliteral">&apos;q&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;r&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;s&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;t&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;u&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;v&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;w&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;x&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;y&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;z&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;B&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;C&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;D&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;E&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;F&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="charliteral">&apos;G&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;H&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;I&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;J&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;K&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;L&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;M&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;N&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;O&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;P&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;Q&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;S&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;T&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;U&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;V&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="charliteral">&apos;W&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;X&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;Y&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;Z&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;1&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;2&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;3&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;4&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;5&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;6&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;7&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;8&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;9&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;$&apos;</highlight><highlight class="normal">,</highlight><highlight class="charliteral">&apos;%&apos;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*polab[4]<sp/>=</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="stringliteral">&quot;LL&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="stringliteral">&quot;RR&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="stringliteral">&quot;LR&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)</highlight><highlight class="stringliteral">&quot;RL&quot;</highlight><highlight class="normal"><sp/>};</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pass__struct_8h_1af32316653e135da0967a9f83277ff3b8" kindref="member">modify_pol</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*p,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*polstr);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h"/>
   </compounddef>
