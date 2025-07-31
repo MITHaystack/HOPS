@@ -51,26 +51,28 @@ MHO_FringeFitterFactory::ConstructFringeFitter()
         msg_debug("fringe", "constructing a basic fringe fitter" << eom);
         fFringeFitter = new MHO_BasicFringeFitter(fFringeData);
     }
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS
+    ////////////////////////////////////////////////////////////////////////////
+
+    #ifdef USE_PYBIND11
+        fFringeFitter->GetOperatorBuildManager()->
+            AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
+        fFringeFitter->GetOperatorBuildManager()->
+            AddBuilderType< MHO_PythonOperatorBuilder >("python_flagging", "python_flagging");
+        fFringeFitter->GetOperatorBuildManager()->
+            AddBuilderType< MHO_PythonOperatorBuilder >("python_calibration", "python_calibration");
+        fFringeFitter->GetOperatorBuildManager()->
+            AddBuilderType< MHO_PythonOperatorBuilder >("python_prefit", "python_prefit");
+        fFringeFitter->GetOperatorBuildManager()->
+            AddBuilderType< MHO_PythonOperatorBuilder >("python_postfit", "python_postfit");
+        fFringeFitter->GetOperatorBuildManager()->
+            AddBuilderType< MHO_PythonOperatorBuilder >("python_finalize", "python_finalize");
+    #endif
+
+    //configures data and builds operators
     fFringeFitter->Configure();
-
-////////////////////////////////////////////////////////////////////////////
-//POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS
-////////////////////////////////////////////////////////////////////////////
-
-#ifdef USE_PYBIND11
-    fFringeFitter->GetOperatorBuildManager()->
-        AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
-    fFringeFitter->GetOperatorBuildManager()->
-        AddBuilderType< MHO_PythonOperatorBuilder >("python_flagging", "python_flagging");
-    fFringeFitter->GetOperatorBuildManager()->
-        AddBuilderType< MHO_PythonOperatorBuilder >("python_calibration", "python_calibration");
-    fFringeFitter->GetOperatorBuildManager()->
-        AddBuilderType< MHO_PythonOperatorBuilder >("python_prefit", "python_prefit");
-    fFringeFitter->GetOperatorBuildManager()->
-        AddBuilderType< MHO_PythonOperatorBuilder >("python_postfit", "python_postfit");
-    fFringeFitter->GetOperatorBuildManager()->
-        AddBuilderType< MHO_PythonOperatorBuilder >("python_finalize", "python_finalize");
-#endif
 
     return fFringeFitter;
 }
