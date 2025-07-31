@@ -28,7 +28,6 @@ std::size_t MHO_OperatorBuilderManager::GetNBuildersInCategory(std::string cat)
     std::size_t count = 0;
     for (auto it = fCategoryToBuilderMap.begin(); it != fCategoryToBuilderMap.end(); ++it) 
     {
-        std::cout<<"category = "<<it->first<<std::endl;
         if(it->first == cat){count++;}
     }
     return count;
@@ -108,8 +107,11 @@ void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
     {
         ok = true;
     }
+    if(cat == "prefit"){ok = true;}
+    if(cat == "postfit"){ok = true;}
+    if(cat == "finalize"){ok = true;}
 
-    if(true)
+    if(ok)
     {
         msg_debug("initialization", "building operator category: " << cat << "." << eom);
         //default category requires no control input
