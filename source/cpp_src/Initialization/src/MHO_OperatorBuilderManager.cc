@@ -23,6 +23,16 @@
 namespace hops
 {
 
+std::size_t MHO_OperatorBuilderManager::GetNBuildersInCategory(std::string cat)
+{
+    std::size_t count = 0;
+    for (auto it = fCategoryToBuilderMap.begin(); it != fCategoryToBuilderMap.end(); ++it) 
+    {
+        if(it->first == cat){count++;}
+    }
+    return count;
+}
+
 void MHO_OperatorBuilderManager::CreateDefaultBuilders()
 {
     //we have a very limited number of operators enabled currently
@@ -97,8 +107,11 @@ void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
     {
         ok = true;
     }
+    if(cat == "prefit"){ok = true;}
+    if(cat == "postfit"){ok = true;}
+    if(cat == "finalize"){ok = true;}
 
-    if(true)
+    if(ok)
     {
         msg_debug("initialization", "building operator category: " << cat << "." << eom);
         //default category requires no control input
@@ -231,17 +244,23 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     circ_field_rotation_corr["priority"] = 3.98;
     AddBuilderTypeWithFormat< MHO_CircularFieldRotationBuilder >("circ_field_rotation_corr", circ_field_rotation_corr);
 
-    mho_json polprod_sum;
-    polprod_sum["name"] = "polproduct_sum";
-    polprod_sum["operator_category"] = "calibration";
-    polprod_sum["priority"] = 3.99;
-    AddBuilderTypeWithFormat< MHO_PolProductSummationBuilder >("polproduct_sum", polprod_sum);
-
     mho_json dpar_corr;
     dpar_corr["name"] = "dpar_corr";
     dpar_corr["operator_category"] = "calibration";
     dpar_corr["priority"] = 3.99;
     AddBuilderTypeWithFormat< MHO_LinearDParCorrectionBuilder >("dpar_corr", dpar_corr);
+
+
+    //this is the last (optional) operation done before NormFX/(SBD, MBD, DR)-search
+    //this is done during the 'prefit' section, so that user 'prefit' scripts have a 
+    //chance to modify the data before it is applied 
+    //(otherwise per-pol data modifications wouldn't be possible)
+    mho_json polprod_sum;
+    polprod_sum["name"] = "polproduct_sum";
+    polprod_sum["operator_category"] = "prefit";
+    polprod_sum["priority"] = 9.99;
+    AddBuilderTypeWithFormat< MHO_PolProductSummationBuilder >("polproduct_sum", polprod_sum);
+
 }
 
 } // namespace hops

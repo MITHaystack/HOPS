@@ -76,8 +76,13 @@ class MHO_OperatorBuilderManager
          */
         void BuildOperatorCategory(const std::string& cat);
 
-        //void AddBuilderType(const std::string& builder_name, const mho_json& format)
-        
+        /**
+         * @brief return the number of operator builders in the specified category
+         * 
+         * @param cat operator category
+         */
+        std::size_t GetNBuildersInCategory(std::string cat);
+
         /**
          * @brief Adds a new builder type with specified format, inserted into (builder) map for later use.
          * 
@@ -93,7 +98,6 @@ class MHO_OperatorBuilderManager
                 auto it = fNameToBuilderMap.find(builder_name);
                 if(it == fNameToBuilderMap.end()) //not found, so make one
                 {
-                    // auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
                     auto builder = new XBuilderType(fOperatorToolbox, fFringeData);
                     builder->SetFormat(fFormat[format_key]);
 
