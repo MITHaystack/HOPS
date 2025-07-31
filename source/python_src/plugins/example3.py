@@ -11,9 +11,9 @@ def generate_pcphases(fringe_data_interface):
     plot_data = fringe_data_interface.get_plot_data()
     param_interface_obj = fringe_data_interface.get_parameter_store()
     
-    #get the reference station mk4id (this function always generates pc_phases)
-    #as if they were for the reference_station
-    ref_station_id = param_interface_obj.get_by_path("/ref_station/mk4id")
+    #get the remote station mk4id (this function always generates pc_phases)
+    #as if they were for the remote_station
+    rem_station_id = param_interface_obj.get_by_path("/rem_station/mk4id")
 
     #get channel label and phase
     ch_labels = plot_data["PLOT_INFO"]["#Ch"]
@@ -53,4 +53,4 @@ def generate_pcphases(fringe_data_interface):
             chan_names += elem
             phase_list_str += str(round(phase_corrections[elem],2) ) + " "
 
-    print("if station", ref_station_id, " pc_phases ", chan_names, phase_list_str)
+    print("if station", rem_station_id, " pc_phases ", chan_names, phase_list_str)
