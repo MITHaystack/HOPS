@@ -109,10 +109,6 @@ class MHO_OperatorBuilderManager
                     }
                     fAllBuilders.push_back(builder);
                     fNameToBuilderMap.emplace(builder_name, builder);
-                    
-                    std::cout<<"Adding builder with name: "<<builder_name<< " and format key: "<<format_key <<std::endl;
-                    std::cout<<"The category is: "<<category<<std::endl;
-                    
                     fCategoryToBuilderMap.emplace(category, builder);
                 }
             }

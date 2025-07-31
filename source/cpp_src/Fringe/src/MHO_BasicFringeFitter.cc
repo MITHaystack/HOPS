@@ -46,6 +46,10 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
     sbd_data = nullptr;
     fNormFXOp = nullptr; //does not need to be deleted
     fMBDSearch = new MBD_SEARCH_TYPE();
+    
+    //must build the operator build manager
+    fOperatorBuildManager =
+        new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
 };
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
@@ -60,10 +64,6 @@ void MHO_BasicFringeFitter::Configure()
     //load root file and keep around (eventually eliminate this in favor of param store only)
     fVexInfo = fScanStore->GetRootFileData();
 
-    //now build the operator build manager
-    fOperatorBuildManager =
-        new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
-        
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped)
     {
@@ -156,14 +156,7 @@ void MHO_BasicFringeFitter::Configure()
         fOperatorBuildManager->CreateDefaultBuilders();
         fOperatorBuildManager->SetControlStatements(&(fFringeData->GetControlStatements()));
         fOperatorBuildManager->BuildOperatorCategory("default");
-        // fOperatorBuildManager->BuildOperatorCategory("labeling");
-        // fOperatorBuildManager->BuildOperatorCategory("selection");
-        // fOperatorBuildManager->BuildOperatorCategory("flagging");
-        // fOperatorBuildManager->BuildOperatorCategory("calibration");
-        // fOperatorBuildManager->BuildOperatorCategory("prefit");
-        // fOperatorBuildManager->BuildOperatorCategory("postfit");
-        // fOperatorBuildManager->BuildOperatorCategory("finalize");
-        // 
+
         //take a snapshot if enabled
         take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
         take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
@@ -171,7 +164,8 @@ void MHO_BasicFringeFitter::Configure()
         ////////////////////////////////////////////////////////////////////////////
         //OPERATOR CONSTRUCTION
         ////////////////////////////////////////////////////////////////////////////
-        
+        fOperatorBuildManager->BuildOperatorCategory("labeling");
+        fOperatorBuildManager->BuildOperatorCategory("selection");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
@@ -197,6 +191,13 @@ void MHO_BasicFringeFitter::Configure()
         //that more than one fitting loop is run, in that case we will
         //cache the configured visibilities and weights
         
+        //build the rest of the operator categories
+        fOperatorBuildManager->BuildOperatorCategory("flagging");
+        fOperatorBuildManager->BuildOperatorCategory("calibration");
+        fOperatorBuildManager->BuildOperatorCategory("prefit");
+        fOperatorBuildManager->BuildOperatorCategory("postfit");
+        fOperatorBuildManager->BuildOperatorCategory("finalize");
+        
         std::cout<<"n prefit = "<<fOperatorBuildManager->GetNBuildersInCategory("prefit")<<std::endl;
         std::cout<<"n postfit = "<<fOperatorBuildManager->GetNBuildersInCategory("postfit")<<std::endl;
         
@@ -208,6 +209,8 @@ void MHO_BasicFringeFitter::Configure()
         }
         fEnableCaching = true;
         Cache();
+        
+
     }
 
     profiler_stop();
