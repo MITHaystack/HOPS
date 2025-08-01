@@ -105,30 +105,28 @@ int MHO_MathUtilities::minvert3(double a[3][3], double ainv[3][3])
     return rc;
 }
 
-
-int 
-MHO_MathUtilities::linterp (double coord1, double value1, double coord2, double value2, double coord, double *value)
+int MHO_MathUtilities::linterp(double coord1, double value1, double coord2, double value2, double coord, double* value)
 {
     double cdiff, lweight, uweight, lower, upper, lval, uval;
-    // Condition inputs 
-    if (coord1 < coord2)
+    // Condition inputs
+    if(coord1 < coord2)
     {
         lower = coord1;
         lval = value1;
         upper = coord2;
         uval = value2;
     }
-    else if (coord2 < coord1)
+    else if(coord2 < coord1)
     {
         lower = coord2;
         lval = value2;
         upper = coord1;
         uval = value1;
     }
-    else if (coord != coord1) // Trap case of upper=lower
+    else if(coord != coord1) // Trap case of upper=lower
     {
         msg_error("math", "degenerate inputs to linterp()" << eom);
-        msg_error("math", "(coord, lower, upper) = ("<< coord <<", " << lower <<", "<< upper << ")" << eom);
+        msg_error("math", "(coord, lower, upper) = (" << coord << ", " << lower << ", " << upper << ")" << eom);
         return -1;
     }
     else
@@ -137,10 +135,10 @@ MHO_MathUtilities::linterp (double coord1, double value1, double coord2, double 
         return 0;
     }
     //Range check
-    if ((coord < lower) || (coord > upper))
+    if((coord < lower) || (coord > upper))
     {
         msg_error("math", "out of range inputs to linterp()" << eom);
-        msg_error("math", "(coord, lower, upper) = ("<< coord <<", " << lower <<", "<< upper << ")" << eom);
+        msg_error("math", "(coord, lower, upper) = (" << coord << ", " << lower << ", " << upper << ")" << eom);
         return -1;
     }
 
@@ -153,47 +151,43 @@ MHO_MathUtilities::linterp (double coord1, double value1, double coord2, double 
     return 0;
 }
 
-
-
-int 
-MHO_MathUtilities::ap_mean(double start, double stop, 
-                           double *coords, double *val1, double *val2, 
-                           int n, int *nstart, double *result1, double *result2)
+int MHO_MathUtilities::ap_mean(double start, double stop, double* coords, double* val1, double* val2, int n, int* nstart,
+                               double* result1, double* result2)
 {
     int i, fst, np, ret;
     static int nxy;
 
     double apcoord[MAXSTATAP], apval1[MAXSTATAP], apval2[MAXSTATAP], val;
-    static double apsize, begin, end, x[MAXSTATPER+2], y1[MAXSTATPER+2], y2[MAXSTATPER+2];
+    static double apsize, begin, end, x[MAXSTATPER + 2], y1[MAXSTATPER + 2], y2[MAXSTATPER + 2];
 
     apsize = stop - start;
-    if (apsize <= 0.0)
+    if(apsize <= 0.0)
     {
         msg_error("math", "input error in ap_mean()" << eom);
         return -1;
     }
 
-    if (*nstart == 0)
+    if(*nstart == 0)
     {
         /* extend data array beyond full interval
-        * of first and last tabular points */
-        for (i=0; i<n; i++)
+         * of first and last tabular points */
+        for(i = 0; i < n; i++)
         {
-            x[i+1] = coords[i];
-            y1[i+1] = val1[i];
-            y2[i+1] = val2[i];
+            x[i + 1] = coords[i];
+            y1[i + 1] = val1[i];
+            y2[i + 1] = val2[i];
         }
 
-        if (n > 1)
+        if(n > 1)
         {
             x[0] = 2 * x[1] - x[2];
             y1[0] = 2 * y1[1] - y1[2];
             y2[0] = 2 * y2[1] - y2[2];
-            x[n+1] = 2 * x[n] - x[n-1];
-            y1[n+1] = 2 * y1[n] - y1[n-1];
-            y2[n+1] = 2 * y2[n] - y2[n-1];
+            x[n + 1] = 2 * x[n] - x[n - 1];
+            y1[n + 1] = 2 * y1[n] - y1[n - 1];
+            y2[n + 1] = 2 * y2[n] - y2[n - 1];
         }
-        else // if only one PC point, extrapolate constant value.  rjc 2002.11.14 
+        else // if only one PC point, extrapolate constant value.  rjc 2002.11.14
         {
             x[0] = x[1] - 10.0;
             y1[0] = y1[1];
@@ -204,32 +198,35 @@ MHO_MathUtilities::ap_mean(double start, double stop,
         }
         nxy = n + 2;
         /* phase cal data really represents
-        * interval from midway between the
-        * two endpoints */
+         * interval from midway between the
+         * two endpoints */
         begin = (x[0] + x[1]) / 2;
-        end = (x[n] + x[n+1]) / 2;
+        end = (x[n] + x[n + 1]) / 2;
     }
 
     /* Hopelessly out of range */
     /* Set to zero to indicate missing data */
-    if (begin > stop || end < start)
+    if(begin > stop || end < start)
     {
-        msg_warn("math", "out of range in ap_mean(), "<<start<<", "<<stop<<", "<<begin<<", "<<end<< eom);
+        msg_warn("math", "out of range in ap_mean(), " << start << ", " << stop << ", " << begin << ", " << end << eom);
         *result1 = 0.0;
         *result2 = 0.0;
         return 1;
     }
 
     /* Find and set up first point */
-    for(fst=*nstart; fst<nxy; fst++)
+    for(fst = *nstart; fst < nxy; fst++)
     {
-        if (x[fst] >= start) {break;}
+        if(x[fst] >= start)
+        {
+            break;
+        }
     }
 
     apcoord[0] = 0.0;
     /* Start is before first coord, so just */
     /* use value of first array element */
-    if (fst == 0) 
+    if(fst == 0)
     {
         apval1[0] = y1[0];
         apval2[0] = y2[0];
@@ -238,32 +235,35 @@ MHO_MathUtilities::ap_mean(double start, double stop,
     {
         /* Linearly interpolate to find value */
         /* at precise start coordinate */
-        ret = linterp (x[fst-1], y1[fst-1], x[fst], y1[fst], start, &val);
-        if (ret == 0){apval1[0] = val;}
+        ret = linterp(x[fst - 1], y1[fst - 1], x[fst], y1[fst], start, &val);
+        if(ret == 0)
+        {
+            apval1[0] = val;
+        }
         else
         {
-            msg_error("math", "interpolation error in ap_mean()" << eom );
+            msg_error("math", "interpolation error in ap_mean()" << eom);
             return (-1);
         }
-        ret = linterp (x[fst-1], y2[fst-1], x[fst], y2[fst], start, &val);
+        ret = linterp(x[fst - 1], y2[fst - 1], x[fst], y2[fst], start, &val);
         apval2[0] = val;
     }
 
     /* Get the points contained within */
     /* the start-stop interval */
     np = 1;
-    for (i=fst+1; i<nxy; i++)
+    for(i = fst + 1; i < nxy; i++)
     {
         /* Coords must increase monotonically */
-        if (x[i] <= x[i-1])
+        if(x[i] <= x[i - 1])
         {
-            msg_error("math", "mis-ordered or redundant coords: "<< x[i-1] <<", "<< x[i] << eom);
+            msg_error("math", "mis-ordered or redundant coords: " << x[i - 1] << ", " << x[i] << eom);
             return -1;
         }
         /* Coords and values copied directly */
-        if (x[i] < stop)
+        if(x[i] < stop)
         {
-            if (np >= MAXSTATAP)
+            if(np >= MAXSTATAP)
             {
                 msg_error("math", "too many points per AP in ap_mean()" << eom);
                 return -1;
@@ -273,30 +273,33 @@ MHO_MathUtilities::ap_mean(double start, double stop,
             apval2[np] = y2[i];
             np++;
         }
-        else 
-        break;
+        else
+            break;
     }
 
-    *nstart = i - 1;                    // save starting point for next call
+    *nstart = i - 1; // save starting point for next call
     /* Get the last point */
     apcoord[np] = 1.0;
     /* Stop is after last coord, so just */
     /* use value of last array element */
-    if (i == nxy) 
+    if(i == nxy)
     {
-        apval1[np] = y1[n-1];
-        apval2[np] = y2[n-1];
+        apval1[np] = y1[n - 1];
+        apval2[np] = y2[n - 1];
     }
     else
     {
         /* Linearly interpolate to find value */
         /* at precise stop coordinate */
-        for (i=fst; i<nxy; i++)
+        for(i = fst; i < nxy; i++)
         {
-            if (x[i] > stop){ break; }
+            if(x[i] > stop)
+            {
+                break;
+            }
         }
 
-        ret = linterp (x[i-1], y1[i-1], x[i], y1[i], stop, &val);
+        ret = linterp(x[i - 1], y1[i - 1], x[i], y1[i], stop, &val);
         if(ret == 0)
         {
             apval1[np] = val;
@@ -306,7 +309,7 @@ MHO_MathUtilities::ap_mean(double start, double stop,
             msg_error("math", "interpolation error in ap_mean()" << eom);
             return -1;
         }
-        ret = linterp (x[i-1], y2[i-1], x[i], y2[i], stop, &val);
+        ret = linterp(x[i - 1], y2[i - 1], x[i], y2[i], stop, &val);
         apval2[np] = val;
     }
     np++;
@@ -314,18 +317,13 @@ MHO_MathUtilities::ap_mean(double start, double stop,
     *result1 = 0.0;
     *result2 = 0.0;
 
-    for (i=0; i<np-1; i++)
+    for(i = 0; i < np - 1; i++)
     {
-        *result1 += 0.5 * (apval1[i] + apval1[i+1]) * (apcoord[i+1] - apcoord[i]);
-        *result2 += 0.5 * (apval2[i] + apval2[i+1]) * (apcoord[i+1] - apcoord[i]);
+        *result1 += 0.5 * (apval1[i] + apval1[i + 1]) * (apcoord[i + 1] - apcoord[i]);
+        *result2 += 0.5 * (apval2[i] + apval2[i + 1]) * (apcoord[i + 1] - apcoord[i]);
     }
     return 0;
-
-
-
 }
-
-
 
 double MHO_MathUtilities::average(std::vector< double >& vec)
 {

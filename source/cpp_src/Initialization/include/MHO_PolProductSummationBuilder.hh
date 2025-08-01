@@ -20,7 +20,6 @@ namespace hops
 class MHO_PolProductSummationBuilder: public MHO_OperatorBuilder
 {
     public:
-
         MHO_PolProductSummationBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
             : MHO_OperatorBuilder(toolbox, fdata){};
 
@@ -32,7 +31,7 @@ class MHO_PolProductSummationBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and initializes the PolProductSummation operator, and adds to toolbox
-         * 
+         *
          * @return True if successful, false otherwise.
          */
         virtual bool Build() override;

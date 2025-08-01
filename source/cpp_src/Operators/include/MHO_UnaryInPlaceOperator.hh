@@ -28,7 +28,7 @@ template< class XArgType > class MHO_UnaryInPlaceOperator: public MHO_Operator
 
         /**
          * @brief Setter for args
-         * 
+         *
          * @param in Input pointer to XArgType array
          * @note This is a virtual function.
          */
@@ -36,7 +36,7 @@ template< class XArgType > class MHO_UnaryInPlaceOperator: public MHO_Operator
 
         /**
          * @brief Initializes the system by calling InitializeInPlace with the first argument from fInPlaceArgs.
-         * 
+         *
          * @return bool indicating success/failure of initialization
          * @note This is a virtual function.
          */
@@ -44,7 +44,7 @@ template< class XArgType > class MHO_UnaryInPlaceOperator: public MHO_Operator
 
         /**
          * @brief Executes operation in place using provided argument.
-         * 
+         *
          * @return bool indicating success of execution.
          * @note This is a virtual function.
          */
@@ -53,7 +53,7 @@ template< class XArgType > class MHO_UnaryInPlaceOperator: public MHO_Operator
     protected:
         /**
          * @brief Initializes in-place operation using input argument.
-         * 
+         *
          * @param in Input argument of type XArgType* for initialization.
          * @return Boolean indicating success of initialization.
          * @note This is a virtual function.
@@ -61,7 +61,7 @@ template< class XArgType > class MHO_UnaryInPlaceOperator: public MHO_Operator
         virtual bool InitializeInPlace(XArgType* in) = 0;
         /**
          * @brief Executes an operation in-place using input argument.
-         * 
+         *
          * @param in Input argument for executing operation.
          * @return True if execution is successful, false otherwise.
          * @note This is a virtual function.

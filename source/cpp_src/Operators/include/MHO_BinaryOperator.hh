@@ -34,7 +34,7 @@ class MHO_BinaryOperator: public MHO_Operator
 
         /**
          * @brief Setter for args, out-of-place operation, in1/in2 unmodified, result stored in out
-         * 
+         *
          * @param in1 Input argument of type XArgType1
          * @param in2 Input argument of type XArgType2
          * @param out Output argument of type XArgType3
@@ -47,7 +47,7 @@ class MHO_BinaryOperator: public MHO_Operator
 
         /**
          * @brief Initializes the object using arguments from fArgs tuple.
-         * 
+         *
          * @return True if initialization succeeds, false otherwise.
          * @note This is a virtual function.
          */
@@ -58,7 +58,7 @@ class MHO_BinaryOperator: public MHO_Operator
 
         /**
          * @brief Executes operation using provided arguments and returns result.
-         * 
+         *
          * @return bool indicating success/failure of execution.
          * @note This is a virtual function.
          */
@@ -74,7 +74,7 @@ class MHO_BinaryOperator: public MHO_Operator
 
         /**
          * @brief Function InitializeImpl
-         * 
+         *
          * @param !in1 input paratmer 1
          * @param !in2 input parameter 2
          * @param !out output parameter
@@ -84,7 +84,7 @@ class MHO_BinaryOperator: public MHO_Operator
         virtual bool InitializeImpl(const XArgType1* /*!in1*/, const XArgType2* /*!in2*/, XArgType3* /*!out*/) = 0;
         /**
          * @brief Function ExecuteImpl
-         * 
+         *
          * @param !in1 input paratmer 1
          * @param !in2 input parameter 2
          * @param !out output parameter

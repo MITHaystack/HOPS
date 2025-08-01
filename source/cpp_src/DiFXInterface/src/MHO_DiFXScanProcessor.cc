@@ -58,7 +58,7 @@ void MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     {
         fileSet.PrintSummary();
     }
-    
+
     bool ok = CreateScanOutputDirectory();
     if(ok)
     {
@@ -157,16 +157,16 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
 
         //patch up the vex info to make it conform to the HOPS3 ovex parser
         PatchOvexStructures(fRootJSON, mode_name);
-        
+
         //grab the difx input file name
-        std::string difx_input_filename = fInput["difx_input_filename"].get<std::string>();
+        std::string difx_input_filename = fInput["difx_input_filename"].get< std::string >();
 
         //generate a traditional 'ovex' file too...for backwards compatibility
         MHO_VexGenerator gen;
         std::string ovex_output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
         gen.SetFilename(ovex_output_file);
         gen.GenerateVex(fRootJSON);
-        
+
         std::ofstream ovex_out(ovex_output_file, std::ios::app);
         if(ovex_out.is_open())
         {
@@ -224,13 +224,25 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         //it->second is a MHO_DiFXBaselineProcessor
         it->second.SetScanIndex(fFileSet->fLocalIndex);
         it->second.SetRescaleTrue(); //default is to always apply VanVleck and x10000 scaling
-        
-        if(fAttachDiFXInput){it->second.SetAttachDiFXInputTrue();}
-        else{it->second.SetAttachDiFXInputFalse();}
-        
-        if(fExportAsMark4){it->second.SetExportAsMark4True();}
-        else{it->second.SetExportAsMark4False();}
-        
+
+        if(fAttachDiFXInput)
+        {
+            it->second.SetAttachDiFXInputTrue();
+        }
+        else
+        {
+            it->second.SetAttachDiFXInputFalse();
+        }
+
+        if(fExportAsMark4)
+        {
+            it->second.SetExportAsMark4True();
+        }
+        else
+        {
+            it->second.SetExportAsMark4False();
+        }
+
         it->second.SetRootCode(fRootCode);
         it->second.SetCorrelationDate(fCorrDate);
         it->second.SetStationCodes(fStationCodeMap);
@@ -491,7 +503,7 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
                 }
                 inter.Close();
             }
-            else 
+            else
             {
                 MHO_MK4StationInterfaceReversed converter;
                 converter.SetVexData(fRootJSON);
@@ -754,7 +766,6 @@ std::string MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_ob
 
     return frt;
 }
-
 
 void MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly,
                                                                station_coord_type* st_coord)

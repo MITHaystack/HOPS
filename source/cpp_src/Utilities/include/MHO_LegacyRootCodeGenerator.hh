@@ -25,21 +25,19 @@ class MHO_LegacyRootCodeGenerator
         MHO_LegacyRootCodeGenerator(){};
         virtual ~MHO_LegacyRootCodeGenerator(){};
 
-
         /**
          * @brief get a single code corresponding to the current time
-         * 
+         *
          * @return std::string containing the generated code.
          */
         std::string GetCode();
 
-
         /**
-         * @brief Getter for multiple root codes 
+         * @brief Getter for multiple root codes
          * get a pre-assigned sequential list of N root codes
          * to avoid collisions/duplicates if sub-Delta-T time intervals
          * are encountered when processing a single experiment;
-         * 
+         *
          * @param N Number of root codes to generate
          * @return Vector of generated root codes as strings
          */
@@ -53,12 +51,11 @@ class MHO_LegacyRootCodeGenerator
         int fMin;
         int fSec;
 
-
         /**
          * @brief Calculates and returns delta value based on current time comparison with the HOPS_ROOT_BREAK time
          * essentially copied directly from the c utils library, to avoid introducing a library dependency
          * and converted to return a string
-         * 
+         *
          * @param now Current time in seconds since epoch
          * @return Delta value (4 if now < HOPS_ROOT_BREAK, otherwise 1)
          */
@@ -66,7 +63,7 @@ class MHO_LegacyRootCodeGenerator
 
         /**
          * @brief Generates a root ID string based on the input time_t value.
-         * 
+         *
          * @param now Input time_t value used to generate the root ID.
          * @return Generated root ID as std::string.
          */
@@ -74,7 +71,7 @@ class MHO_LegacyRootCodeGenerator
 
         /**
          * @brief Calculates and returns a root ID string based on input time parameters.
-         * 
+         *
          * @param value (int)
          * @param value2 (int)
          * @param value3 (int)
@@ -86,7 +83,7 @@ class MHO_LegacyRootCodeGenerator
 
         /**
          * @brief Determines and returns root ID based on time parameters and comparison with HOPS_ROOT_BREAK.
-         * 
+         *
          * @param now Current time in seconds since epoch
          * @param year Year component of time
          * @param day Day of year component of time

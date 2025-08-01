@@ -87,7 +87,7 @@ template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInte
 
         /**
          * @brief Selects an axis for transformation if within array rank.
-         * 
+         *
          * @param axis_index Index of the axis to select.
          * @note This is a virtual function.
          */
@@ -119,7 +119,7 @@ template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInte
         //default...does nothing
         /**
          * @brief Transforms axis of input data if transformation is enabled and axis was transformed.
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param !in Parameter description
          * @param !axis_index Parameter description
@@ -131,7 +131,7 @@ template< typename XArgType > class MHO_MultidimensionalFastFourierTransformInte
         //use SFINAE to generate specialization for MHO_TableContainer types
         /**
          * @brief Transforms axis of input table if specified dimension was transformed.
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param in Input table of type XArgType
          * @param axis_index Index of axis to transform

@@ -45,7 +45,7 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
         //resize functions
         /**
          * @brief Resize an externally managed array using provided dimensions.
-         * 
+         *
          * @param dim Input dimension for resizing the array.
          * @note This is a virtual function.
          */
@@ -53,7 +53,7 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
 
         /**
          * @brief Sets dimensions for externally managed array.
-         * 
+         *
          * @param dim Pointer to dimension size_t array
          * @note This is a virtual function.
          */
@@ -62,7 +62,7 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
         //set pointer to externally managed array with associated dimension
         /**
          * @brief Setter for external data
-         * 
+         *
          * @param ptr Pointer to externally managed XValueType array
          * @param dim Pointer to size_t array representing dimensions of the external data
          */
@@ -70,7 +70,7 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
 
         /**
          * @brief Setter for external data
-         * 
+         *
          * @param ptr Pointer to externally managed XValueType array
          * @param dim Pointer to size_t array representing dimensions of the array
          */
@@ -79,14 +79,14 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
         //access to underlying raw array pointer
         /**
          * @brief Getter for data
-         * 
+         *
          * @return Pointer to XValueType*
          */
         XValueType* GetData() { return fData.data(); };
 
         /**
          * @brief Getter for data
-         * 
+         *
          * @return Pointer to XValueType*
          */
         const XValueType* GetData() const { return fData.data(); };
@@ -94,14 +94,14 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
         //get the total size of the array
         /**
          * @brief Getter for rank
-         * 
+         *
          * @return Total size of the array as std::size_t
          */
         std::size_t GetRank() const { return 1; }
 
         /**
          * @brief Getter for size
-         * 
+         *
          * @return Size along the first dimension as std::size_t.
          */
         std::size_t GetSize() const { return fDims[0]; };
@@ -109,21 +109,21 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
         //get the dimensions/shape of the array
         /**
          * @brief Getter for dimensions
-         * 
+         *
          * @return Pointer to an array of std::size_t representing the dimensions
          */
         const std::size_t* GetDimensions() const { return &(fDims[0]); }
 
         /**
          * @brief Getter for dimensions
-         * 
+         *
          * @return Pointer to std::size_t array
          */
         void GetDimensions(std::size_t* dim) const { dim[0] = fDims[0]; }
 
         /**
          * @brief Getter for dimension array
-         * 
+         *
          * @return index_type&: Reference to the dimension array
          */
         index_type GetDimensionArray() const { return fDims; }

@@ -31,7 +31,7 @@ class MHO_ManualPolDelayCorrectionBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and adds a per-polarization manual delay correction operator to the toolbox.
-         * 
+         *
          * @return bool indicating success
          */
         virtual bool Build() override;
@@ -39,14 +39,14 @@ class MHO_ManualPolDelayCorrectionBuilder: public MHO_OperatorBuilder
     private:
         /**
          * @brief Parses polarisation from name and returns corresponding string.
-         * 
+         *
          * @param name Input polarisation name to parse
          * @return Corresponding string for polarisation ('X', 'Y', 'R', 'L' or '?')
          */
         std::string ParsePolFromName(const std::string& name);
         /**
          * @brief Extracts and returns the station identifier from the conditions vector.
-         * 
+         *
          * @return The extracted station identifier as a string.
          */
         std::string ExtractStationIdentifier();

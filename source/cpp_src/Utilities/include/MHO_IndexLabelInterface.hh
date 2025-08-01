@@ -18,7 +18,6 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  */
 
-
 class MHO_IndexLabelInterface
 {
 
@@ -32,7 +31,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief Setter for index label object
-         * 
+         *
          * @param obj Pointer to mho_json object
          */
         void SetIndexLabelObject(mho_json* obj) { fIndexLabelObjectPtr = obj; }
@@ -42,7 +41,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief Getter for index label size
-         * 
+         *
          * @return Size of the index label object as std::size_t
          */
         std::size_t GetIndexLabelSize() const { return fIndexLabelObjectPtr->size(); }
@@ -58,7 +57,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief Function InsertIndexLabelKeyValue
-         * 
+         *
          * @tparam XValueType Template parameter XValueType
          * @param index (std::size_t)
          * @param key (const std::string&)
@@ -89,7 +88,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief Retrieves value associated with given key and index from IndexLabelObjectPtr if it exists.
-         * 
+         *
          * @tparam XValueType Template parameter XValueType
          * @param index Index to retrieve key-value pair for
          * @param key Key to search for in IndexLabelObjectPtr
@@ -117,7 +116,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief get a reference to the dictionary object associated with this index
-         * 
+         *
          * @param obj (mho_json&)
          * @param index (std::size_t)
          */
@@ -154,7 +153,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief get a reference to the dictionary object associated with this index
-         * 
+         *
          * @param index Index of type std::size_t used to locate the label object.
          * @return Reference to the mho_json object associated with the given index, or a dummy object if the index label interface is missing.
          */
@@ -174,7 +173,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief Getter for label object
-         * 
+         *
          * @param index Index of type std::size_t for retrieving label object
          * @return mho_json reference to label object if found, otherwise dummy object
          */
@@ -194,7 +193,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief get a vector of indexes which contain a key with the same name
-         * 
+         *
          * @param key Input key to search for
          * @return Vector of matching indexes
          */
@@ -221,7 +220,7 @@ class MHO_IndexLabelInterface
 
         /**
          * @brief Get a vector of indexes which contain a key with a value which matches the passed value
-         * 
+         *
          * @tparam XValueType Template parameter XValueType
          * @param key Input key string to match
          * @param value (const XValueType&)
@@ -254,10 +253,9 @@ class MHO_IndexLabelInterface
         }
 
     private:
-
         /**
          * @brief Converts an index to a string key.
-         * 
+         *
          * @param idx Input index as size_t
          * @return String representation of the input index
          * @note This is a static function.

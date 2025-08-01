@@ -5,12 +5,12 @@
 #include <utility>
 
 #include "MHO_ContainerStore.hh"
+#include "MHO_FringeData.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 #include "MHO_Operator.hh"
 #include "MHO_OperatorToolbox.hh"
 #include "MHO_ParameterStore.hh"
-#include "MHO_FringeData.hh"
 
 namespace hops
 {
@@ -27,27 +27,20 @@ class MHO_OperatorBuilder
 {
 
     public:
-
         MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : fOperatorToolbox(toolbox), 
-              fFringeData(fdata),
-              fContainerStore(fdata->GetContainerStore()), 
+            : fOperatorToolbox(toolbox), fFringeData(fdata), fContainerStore(fdata->GetContainerStore()),
               fParameterStore(fdata->GetParameterStore()){};
 
-
-        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, 
-                            MHO_ContainerStore* cstore = nullptr,
+        MHO_OperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                             MHO_ParameterStore* pstore = nullptr)
-            : fOperatorToolbox(toolbox), 
-              fFringeData(nullptr), //ptr to fringe data object not provided
-              fContainerStore(cstore),
-              fParameterStore(pstore){};
+            : fOperatorToolbox(toolbox), fFringeData(nullptr), //ptr to fringe data object not provided
+              fContainerStore(cstore), fParameterStore(pstore){};
 
         virtual ~MHO_OperatorBuilder(){}; //delegate memory management to toolbox
 
         /**
          * @brief Setter for toolbox
-         * 
+         *
          * @param toolbox Pointer to the MHO_OperatorToolbox object to be set.
          * @note This is a virtual function.
          */
@@ -55,7 +48,7 @@ class MHO_OperatorBuilder
 
         /**
          * @brief Setter for fringe data
-         * 
+         *
          * @param fdata Pointer to MHO_FringeData structure
          * @note This is a virtual function.
          */
@@ -63,7 +56,7 @@ class MHO_OperatorBuilder
 
         /**
          * @brief Setter for parameter store
-         * 
+         *
          * @param pstore Pointer to MHO_ParameterStore object
          * @note This is a virtual function.
          */
@@ -71,7 +64,7 @@ class MHO_OperatorBuilder
 
         /**
          * @brief Setter for container store
-         * 
+         *
          * @param cstore Pointer to MHO_ContainerStore object
          * @note This is a virtual function.
          */
@@ -80,7 +73,7 @@ class MHO_OperatorBuilder
         //json config for this operator (parsed from the control file and format directives)
         /**
          * @brief Setter for format
-         * 
+         *
          * @param format The new format for the operator.
          * @note This is a virtual function.
          */
@@ -88,7 +81,7 @@ class MHO_OperatorBuilder
 
         /**
          * @brief Setter for applicability conditions
-         * 
+         *
          * @param cond Input conditions of type const mho_json&
          * @note This is a virtual function.
          */
@@ -96,7 +89,7 @@ class MHO_OperatorBuilder
 
         /**
          * @brief Setter for attributes
-         * 
+         *
          * @param attr Input attribute data of type const mho_json&
          * @note This is a virtual function.
          */
@@ -104,15 +97,13 @@ class MHO_OperatorBuilder
 
         /**
          * @brief Builds the object and passes it to toolbox if successful, otherwise returns false.
-         * 
+         *
          * @return bool indicating success or failure
          * @note This is a virtual function.
          */
         virtual bool Build() = 0;
 
     protected:
-        
-
         /**
          * @brief Function IsConfigurationOk
          * provided for derived class to validate fAttributes against fFormat and/or fConditions

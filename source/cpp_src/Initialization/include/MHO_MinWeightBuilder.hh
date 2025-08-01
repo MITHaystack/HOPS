@@ -20,8 +20,7 @@ namespace hops
 class MHO_MinWeightBuilder: public MHO_OperatorBuilder
 {
     public:
-        MHO_MinWeightBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_MinWeightBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_MinWeightBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                              MHO_ParameterStore* pstore = nullptr)
@@ -31,7 +30,7 @@ class MHO_MinWeightBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and adds a MHO_MinWeight operator object to toolbox
-         * 
+         *
          * @return True if successful build, false otherwise.
          */
         virtual bool Build() override;

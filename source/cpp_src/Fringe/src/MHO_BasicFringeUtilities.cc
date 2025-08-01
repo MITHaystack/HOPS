@@ -226,7 +226,7 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
         int n_ion_pts = 0;
         paramStore->Get("/control/fit/ion_npts", n_ion_pts);
         paramStore->Set("/fringe/dtec_error", 0.0); //init to zero
-        if(n_ion_pts > 1) //only apply ion covariance when n_pts > 1
+        if(n_ion_pts > 1)                           //only apply ion covariance when n_pts > 1
         {
             calculate_ion_covariance(conStore, paramStore);
             std::vector< double > ion_sigmas;
@@ -350,7 +350,10 @@ double MHO_BasicFringeUtilities::calculate_residual_phase(MHO_ContainerStore* co
         //DSB channel
         int dsb_partner = 0;
         bool dsb_key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present){frot.SetSideband(0);}
+        if(dsb_key_present)
+        {
+            frot.SetSideband(0);
+        }
 
         for(std::size_t ap = 0; ap < nap; ap++)
         {
@@ -422,7 +425,7 @@ double MHO_BasicFringeUtilities::calculate_snr_correction_factor(MHO_ContainerSt
     if(vis_data == nullptr || wt_data == nullptr)
     {
         msg_error("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
-        return 0.0; //bail out to caller, return 0.0 
+        return 0.0; //bail out to caller, return 0.0
     }
 
     //grab the channel axes
@@ -539,7 +542,10 @@ void MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conS
         //DSB channel
         int dsb_partner = 0;
         bool dsb_key_present = chan_ax.RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present){frot.SetSideband(0);}
+        if(dsb_key_present)
+        {
+            frot.SetSideband(0);
+        }
 
         std::complex< double > ch_sum = 0.0;
         double sumwt = 0.0;
@@ -581,8 +587,7 @@ void MHO_BasicFringeUtilities::calculate_ion_covariance(MHO_ContainerStore* conS
     paramStore->Set("/fringe/scaled_ion_sigmas", ion_sigmas);
 }
 
-double 
-MHO_BasicFringeUtilities::calculate_sbavg(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
+double MHO_BasicFringeUtilities::calculate_sbavg(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
 {
     //grab visibilities and loop over channel axis
     double sbavg = 1.0;
@@ -600,8 +605,14 @@ MHO_BasicFringeUtilities::calculate_sbavg(MHO_ContainerStore* conStore, MHO_Para
             bool net_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
             if(net_present)
             {
-                if(net_sideband == "U"){sbavg += 1.0;}
-                if(net_sideband == "L"){sbavg += -1.0;}
+                if(net_sideband == "U")
+                {
+                    sbavg += 1.0;
+                }
+                if(net_sideband == "L")
+                {
+                    sbavg += -1.0;
+                }
             }
         }
         sbavg /= (double)nchan;

@@ -63,7 +63,7 @@ class MHO_MK4ScanConverter
 
         /**
          * @brief Determines the type of a given directory (scan, experiment, unknown).
-         * 
+         *
          * @param in_dir Input directory path to analyze
          * @return Directory type as an integer (MK4_SCANDIR, MK4_EXPDIR, MK4_UNKNOWNDIR)
          * @note This is a static function.
@@ -71,7 +71,7 @@ class MHO_MK4ScanConverter
         static int DetermineDirectoryType(const std::string& in_dir);
         /**
          * @brief Processes scan data from input directory (MK4 format) to output directory (HOPS4 format)
-         * 
+         *
          * @param input_dir Input directory containing scan files
          * @param output_dir Output directory for processed files
          * @note This is a static function.
@@ -82,7 +82,7 @@ class MHO_MK4ScanConverter
         //convert a corel file
         /**
          * @brief Converts Corel input file to HOPS4 format and writes output.
-         * 
+         *
          * @param root_file Path to root VEX file
          * @param input_file Input Corel file path
          * @param output_file Output file path
@@ -93,7 +93,7 @@ class MHO_MK4ScanConverter
         //convert a station file
         /**
          * @brief Converts a station input file to an output file HOPS4 format.
-         * 
+         *
          * @param root_file Path to the root VEX file
          * @param input_file Path to the input station file
          * @param output_file Path to the output SWIN file

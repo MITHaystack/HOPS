@@ -43,7 +43,6 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
 
         virtual ~MHO_Reducer(){};
 
-
         /**
          * @brief Sets axis index for reduction operation
          * @details set the indices of the axes over which we run the reduction.
@@ -82,10 +81,9 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         }
 
     protected:
-
         /**
          * @brief Initializes XArrayType in-place by calling InitializeOutOfPlace with given workspace.
-         * 
+         *
          * @param in Pointer to XArrayType object for initialization
          * @return Boolean indicating success of initialization
          * @note This is a virtual function.
@@ -94,7 +92,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
 
         /**
          * @brief Executes operation in-place by calling ExecuteOutOfPlace and copying result back to input
-         * 
+         *
          * @param in Input array of type XArrayType*
          * @return Status of execution as boolean
          * @note This is a virtual function.
@@ -109,7 +107,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
 
         /**
          * @brief Initializes out-of-place operation using input array and workspace.
-         * 
+         *
          * @param in Input array of type XArrayType
          * @param out Output array of type XArrayType
          * @return True if initialization is successful, false otherwise
@@ -163,8 +161,8 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         }
 
         /**
-         * @brief Function ExecuteOutOfPlace - carries out the array reduction 
-         * 
+         * @brief Function ExecuteOutOfPlace - carries out the array reduction
+         *
          * @param in (const XArrayType*)
          * @param out (XArrayType*)
          * @return Return value (bool)
@@ -256,7 +254,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         //default...does nothing
         /**
          * @brief Reduces a specified axis in an input XArrayType and stores the result in output.
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param !in Input XArrayType to reduce
          * @param !out Output XArrayType after reduction
@@ -269,7 +267,7 @@ class MHO_Reducer: public MHO_UnaryOperator< XArrayType >
         //use SFINAE to generate specialization for MHO_TableContainer types
         /**
          * @brief Reduces a specified axis in an input XArrayType and stores result in output.
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param in Input XArrayType to reduce
          * @param out Output XArrayType for reduced data

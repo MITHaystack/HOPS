@@ -46,7 +46,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
     protected:
         /**
          * @brief Initializes in-place operation and allocates workspace.
-         * 
+         *
          * @param in Input argument of type XArgType*
          * @return True if initialization is successful, false otherwise.
          * @note This is a virtual function.
@@ -74,7 +74,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
 
         /**
          * @brief Function InitializeOutOfPlace
-         * 
+         *
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)
@@ -107,7 +107,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
 
         /**
          * @brief Function ExecuteInPlace, does FFT in-place
-         * 
+         *
          * @param in (XArgType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -197,7 +197,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
 
         /**
          * @brief Copies input data to output if they're not the same array and executes FFT in-place on output.
-         * 
+         *
          * @param in Input data of type XArgType
          * @param out Output data of type XArgType
          * @return Boolean indicating success of ExecuteInPlace operation.

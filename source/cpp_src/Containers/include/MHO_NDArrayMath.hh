@@ -23,14 +23,13 @@ class MHO_NDArrayMath
 
         /**
          * @brief Calculates the modulus of two integers.
-         * 
+         *
          * @param arg First integer operand
          * @param n Second integer operand (modulus)
          * @return Result of arg modulo n
          * @note This is a static function.
          */
         static std::size_t Modulus(std::size_t arg, std::size_t n) { return arg % n; }
-
 
         /**
          * @brief Calculates offset into a multidimensional array using row-major indexing.
@@ -55,7 +54,6 @@ class MHO_NDArrayMath
             return val;
         }
 
-
         /**
          * @brief Calculates offset for a given index into a multidimensional array using row-major indexing/strides.
          * @details for a multidimensional array (using row major indexing) which has the
@@ -77,7 +75,6 @@ class MHO_NDArrayMath
             }
             return val;
         }
-
 
         /**
          * @brief Calculates stride for a given dimension in a row-major indexed multidimensional array.
@@ -104,7 +101,6 @@ class MHO_NDArrayMath
             }
             return val;
         }
-
 
         /**
          * @brief Function RowMajorIndexFromOffset
@@ -144,7 +140,7 @@ class MHO_NDArrayMath
         //checks if all the indices in Index are in the valid range
         /**
          * @brief Checks if all indices in Index are within valid range for a multidimensional array.
-         * 
+         *
          * @param DimSize Pointer to an array containing the dimensions of the multidimensional array.
          * @param Index Pointer to an array containing the indices of the element being accessed.
          * @return Boolean indicating whether all indices are valid (true if valid, false otherwise).
@@ -165,7 +161,7 @@ class MHO_NDArrayMath
         //given the dimensions of an array, computes its total size, assuming all dimensions are non-zero
         /**
          * @brief Calculates total size of an array given its dimensions.
-         * 
+         *
          * @param DimSize Pointer to an array of dimension sizes.
          * @return Total size of the array as a std::size_t.
          * @note This is a static function.
@@ -204,7 +200,7 @@ class MHO_NDArrayMath
 
         /**
          * @brief Calculates reversed indices offsets for the given dimensions.
-         * 
+         *
          * @tparam RANK Template parameter RANK
          * @param DimSize Input array of dimension sizes
          * @param ReversedIndex Output array to store reversed index offsets
@@ -228,7 +224,7 @@ class MHO_NDArrayMath
 
         /**
          * @brief Increment multi-dimensional indices by one in row-major order, accounting for roll-over
-         * 
+         *
          * @param DimSize Pointer to an array containing dimension sizes
          * @param Index Pointer to an array containing current indices
          * @return True if increment was successful, false if overflow occurred
@@ -253,7 +249,7 @@ class MHO_NDArrayMath
 
         /**
          * @brief Increment multi-dimensional indices by the amount in diff (accounting for roll-over) and return true if successful, false otherwise.
-         * 
+         *
          * @tparam RANK Template parameter RANK
          * @param DimSize Pointer to an array containing dimension sizes
          * @param Index Pointer to an array of indices to increment
@@ -277,7 +273,7 @@ class MHO_NDArrayMath
 
         /**
          * @brief Decrements indices in a multidimensional by one, array using row major indexing.
-         * 
+         *
          * @param DimSize Pointer to an array containing the dimensions of the multidimensional array.
          * @param Index Pointer to an array containing the current indices.
          * @return True if successful decrement, false if underflowed the 0-th dimension.
@@ -303,7 +299,7 @@ class MHO_NDArrayMath
 
         /**
          * @brief Decrements indices in a multidimensional array by amount specified in diff, or until an underflow is reached.
-         * 
+         *
          * @tparam RANK Template parameter RANK
          * @param DimSize Pointer to an array containing the dimensions of the multidimensional array.
          * @param Index Pointer to an array containing the current indices of the multidimensional array.

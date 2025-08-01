@@ -9,7 +9,6 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
 
-
 //forward declaration of mk4_corel structs
 //we do this to keep the mk4 structures from 'leaking' into the new code via includes,
 //We want to make sure any interface to the old mk4 IO libraries is kept only
@@ -24,8 +23,6 @@ extern "C"
 #ifndef HOPS3_USE_CXX
 }
 #endif
-
-
 
 namespace hops
 {
@@ -45,7 +42,9 @@ class MHO_MK4CorelInterfaceReversed
 
         void SetRootFileName(std::string root_filename);
         void SetOutputDirectory(const std::string& output_dir);
+
         void SetVisibilityData(visibility_store_type* vis_data) { fVisibilityData = vis_data; }
+
         void SetWeightData(weight_store_type* weight_data) { fWeightData = weight_data; }
 
         void GenerateCorelStructure();
@@ -57,7 +56,6 @@ class MHO_MK4CorelInterfaceReversed
         void FreeAllocated();
 
     private:
-
         std::string ConstructMK4ChannelID(std::string fgroup, int index, std::string sideband, char pol);
 
         void GenerateType000();
@@ -91,8 +89,6 @@ class MHO_MK4CorelInterfaceReversed
 
         //keep track of allocated memory (outside of mark4 mechanism)
         std::vector< void* > fAllocated;
-
-
 };
 
 } // namespace hops

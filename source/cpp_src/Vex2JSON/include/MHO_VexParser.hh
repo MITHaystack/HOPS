@@ -37,27 +37,27 @@ class MHO_VexParser
 
         /**
          * @brief Setter for vex file
-         * 
+         *
          * @param filename Vex file path as string
          */
         void SetVexFile(std::string filename);
         /**
          * @brief Setter for vex version
-         * 
+         *
          * @param version New vex version as string
          */
         void SetVexVersion(std::string version);
 
         /**
          * @brief Setter for vex version
-         * 
+         *
          * @param version New vex version as string
          */
         void SetVexVersion(const char* version) { SetVexVersion(std::string(version)); };
 
         /**
          * @brief Parses Vex file, processes blocks and returns JSON object with Vex revision flag.
-         * 
+         *
          * @return mho_json object containing Vex revision flag
          */
         mho_json ParseVex();
@@ -97,28 +97,28 @@ class MHO_VexParser
         void MarkBlocks();
         /**
          * @brief Collects all VexLines for a given block name.
-         * 
+         *
          * @param block_name Name of the block to collect lines from.
          * @return Vector of MHO_VexLine objects representing collected lines.
          */
         std::vector< MHO_VexLine > CollectBlockLines(std::string block_name);
         /**
          * @brief Processes found blocks and adds them to the root json object.
-         * 
+         *
          * @param root Reference to the root mho_json object where blocks will be added.
          */
         void ProcessBlocks(mho_json& root);
 
         /**
          * @brief Checks if a line is potentially the start of a block by looking for '$' and ensuring 'ref' is not present.
-         * 
+         *
          * @param line Input string representing a line from the file.
          * @return Boolean indicating whether the line could be the start of a block.
          */
         bool IsPotentialBlockStart(std::string line);
         /**
          * @brief Checks if a given line starts with a specific block name and returns true if it's an exact match.
-         * 
+         *
          * @param line Input string representing a single line from the file.
          * @param blk_name String containing the expected block name to search for.
          * @return Boolean indicating whether the line starts with the specified block name (true) or not (false).

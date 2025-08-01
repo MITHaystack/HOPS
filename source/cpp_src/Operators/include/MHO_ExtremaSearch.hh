@@ -33,36 +33,36 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
 
         /**
          * @brief Getter for maximum value across the array
-         * 
+         *
          * @return The current maximum value as a double.
          */
         double GetMax() { return fMax; }
 
         /**
          * @brief Getter for minimum value across the
-         * 
+         *
          * @return The minimum value as a double.
          */
         double GetMin() { return fMin; }
 
         /**
          * @brief Getter for max location (offset into the array)
-         * 
+         *
          * @return std::size_t - Maximum location value
          */
         std::size_t GetMaxLocation() { return fMaxLocation; }
 
         /**
          * @brief Getter for min location (offset into the array)
-         * 
+         *
          * @return std::size_t representing the minimum location.
          */
         std::size_t GetMinLocation() { return fMinLocation; }
 
     protected:
         /**
-         * @brief Initializes the operator 
-         * 
+         * @brief Initializes the operator
+         *
          * @param !in Pointer to constant XArgType
          * @return True if initialization is successful, false otherwise.
          * @note This is a virtual function.
@@ -71,7 +71,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
 
         /**
          * @brief Executes search operation using input argument and returns true.
-         * 
+         *
          * @param in Input argument of type const XArgType* for search operation.
          * @return Boolean value indicating successful execution.
          * @note This is a virtual function.
@@ -86,7 +86,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
         // basic floating point types
         /**
          * @brief Function Search - does the actual min/max search, templated on value type
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param in (const XArgType*)
          * @return Return value (typename XCheckType >::value, void >::type)
@@ -123,7 +123,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
         //specialization for complex types
         /**
          * @brief Function Search  - does the actual min/max search for abs() (magnitude) of complex types
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param in (const XArgType*)
          * @return Return value (typename is_complex< XCheckType >::value, void >::type)

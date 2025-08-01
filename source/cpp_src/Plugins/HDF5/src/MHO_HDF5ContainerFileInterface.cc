@@ -1,6 +1,5 @@
 #include "MHO_HDF5ContainerFileInterface.hh"
 
-
 namespace hops
 {
 
@@ -8,16 +7,16 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
 {
     //open the file
     hid_t file_id = H5Fcreate(hdf5_filename.c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
-    if(file_id < 0) 
+    if(file_id < 0)
     {
-        msg_error("hdf5interface", "failed to create HDF5 file: "<< hdf5_filename << eom);
+        msg_error("hdf5interface", "failed to create HDF5 file: " << hdf5_filename << eom);
         return 1;
     }
 
     hid_t group_id = H5Gcreate(file_id, fGroupPrefix.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-    if(group_id < 0) 
+    if(group_id < 0)
     {
-        msg_error("hdf5interface", "failed to create HDF5 group: "<<fGroupPrefix<<eom);
+        msg_error("hdf5interface", "failed to create HDF5 group: " << fGroupPrefix << eom);
         return 1;
     }
 
@@ -38,14 +37,14 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
                 if(obj != nullptr)
                 {
                     std::string category_prefix = fGroupPrefix + "/" + shortname;
-                    msg_debug("hdf5interface", "creating HDF5 group/category: "<< category_prefix << eom);
+                    msg_debug("hdf5interface", "creating HDF5 group/category: " << category_prefix << eom);
 
-                    if( H5Lexists(file_id, category_prefix.c_str(), H5P_DEFAULT) == 0) 
+                    if(H5Lexists(file_id, category_prefix.c_str(), H5P_DEFAULT) == 0)
                     {
                         hid_t cat_id = H5Gcreate(file_id, category_prefix.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-                        if(group_id < 0) 
+                        if(group_id < 0)
                         {
-                            msg_error("hdf5interface", "failed to create HDF5 group: "<<category_prefix<<eom);
+                            msg_error("hdf5interface", "failed to create HDF5 group: " << category_prefix << eom);
                             return 1;
                         }
 
@@ -66,13 +65,12 @@ int MHO_HDF5ContainerFileInterface::ConvertStoreToHDF5(MHO_ContainerStore& store
         }
     }
 
-    //close group and file 
+    //close group and file
     H5Gclose(group_id);
     H5Fclose(file_id);
-    msg_debug("hdf5interface","HDF5 file: " << hdf5_filename<< " created successfully" << eom);
+    msg_debug("hdf5interface", "HDF5 file: " << hdf5_filename << " created successfully" << eom);
 
     return 0;
 };
-
 
 } // namespace hops
