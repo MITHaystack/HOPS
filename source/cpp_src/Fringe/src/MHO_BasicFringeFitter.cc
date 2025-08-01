@@ -184,9 +184,7 @@ void MHO_BasicFringeFitter::Configure()
         //calculate useful quantities to stash in the parameter store
         MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
         
-        //if we have any additional prefit and postfit operators there is a possibility 
-        //that more than one fitting loop is run, in that case we will
-        //cache the configured visibilities and weights
+
         
         //build the rest of the operator categories
         fOperatorBuildManager->BuildOperatorCategory("flagging");
@@ -194,17 +192,20 @@ void MHO_BasicFringeFitter::Configure()
         fOperatorBuildManager->BuildOperatorCategory("prefit");
         fOperatorBuildManager->BuildOperatorCategory("postfit");
         fOperatorBuildManager->BuildOperatorCategory("finalize");
-        
-        // if(fOperatorBuildManager->GetNBuildersInCategory("prefit") >= 1 && 
-        //    fOperatorBuildManager->GetNBuildersInCategory("postfit") > 0)
-        // {
-        //     msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators (" <<
-        //         fOperatorBuildManager->GetNBuildersInCategory("prefit") << ", " <<
-        //         fOperatorBuildManager->GetNBuildersInCategory("postfit") << ")" << eom);
-        //     fEnableCaching = true;
-        // }
 
-        fEnableCaching = true;
+
+        //if we have any additional prefit and postfit operators there is a possibility 
+        //that more than one fitting loop is run, in that case we will
+        //cache the configured visibilities and weights
+        if(fOperatorToolbox.GetNOperatorsInCategory("prefit") > 0 && 
+           fOperatorToolbox.GetNOperatorsInCategory("postfit") > 0)
+        {
+            msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators (" <<
+                fOperatorToolbox.GetNOperatorsInCategory("prefit") << ", " <<
+                fOperatorToolbox.GetNOperatorsInCategory("postfit") << ")" << eom);
+            fEnableCaching = true;
+        }
+
         Cache();
         
 

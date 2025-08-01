@@ -175,6 +175,18 @@ class MHO_OperatorToolbox
             return ops;
         }
 
+
+        std::size_t GetNOperatorsInCategory(std::string cat)
+        {
+            std::size_t count = 0;
+            for (auto it = fCategoryToOperatorMap.begin(); it != fCategoryToOperatorMap.end(); ++it) 
+            {
+                if(it->first == cat){count++;}
+            }
+            return count;
+        }
+
+
     private:
         /**
          * @brief Function RemoveOperator - removes operator from the toolbox
