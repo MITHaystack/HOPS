@@ -68,7 +68,7 @@ void MHO_DelayModel::ComputeModel()
 
         CheckSplineInterval(fRefData->GetDimension(INTERVAL_AXIS), ref_tdiff, ref_int_no, ref_code);
         CheckSplineInterval(fRemData->GetDimension(INTERVAL_AXIS), rem_tdiff, rem_int_no, rem_code);
-        
+
         if(ref_int_no < 0 || rem_int_no < 0)
         {
             msg_error("calibration", "could not determine delay spline interval" << eom);

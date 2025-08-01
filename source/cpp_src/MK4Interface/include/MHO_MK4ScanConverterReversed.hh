@@ -1,14 +1,13 @@
 #ifndef MHO_MK4ScanConverterReversed_HH__
 #define MHO_MK4ScanConverterReversed_HH__
 
-#include <string>
 #include "MHO_ScanDataStore.hh"
+#include <string>
 
 //distinguish directory types
 #define HOPS4_SCANDIR 0
 #define HOPS4_EXPDIR 1
 #define HOPS4_UNKNOWNDIR 2
-
 
 namespace hops
 {
@@ -35,20 +34,17 @@ class MHO_MK4ScanConverterReversed
         void ProcessScan(const std::string& input_dir, const std::string& output_dir);
 
     private:
-
         void ProcessVex();
         void ProcessCorel();
         void ProcessStation();
 
-        //data  
+        //data
         MHO_ScanDataStore fStore;
         MHO_DirectoryInterface fDirInterface;
         mho_json fRootJSON;
         std::string fInputDir;
         std::string fOutputDir;
         std::string fOutputVexFile;
-    
-
 };
 
 } // namespace hops

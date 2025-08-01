@@ -42,9 +42,6 @@ union MHO_FileKeyVersionInfo
         //2nd uint16_t is the size of the file key, (cannot exceed UINT16_MAX)
 };
 
-
-
-
 /**
  * @brief Class MHO_FileKey
  * the version-0 size of the file key is (512 bits / 64 bytes), and all of the version-0 data fields must
@@ -141,13 +138,12 @@ class MHO_FileKey
             return *this;
         }
 
-
         /**
          * @brief Returns the size of MHO_FileKey in bytes.
          * this is the size of a MHO_FileKey on disk
          * DO NOT USE sizeof(MHO_FileKey), as that is the size of the object in memory
          * which may include compiler dependent padding!!
-         * 
+         *
          * @return Size of MHO_FileKey as uint64_t.
          * @note This is a static function.
          */
@@ -243,7 +239,7 @@ class MHO_FileKey
     private:
         /**
          * @brief Serializes object data into an output stream.
-         * 
+         *
          * @param s Output stream of type XStream&.
          * @return void
          */
@@ -262,7 +258,7 @@ class MHO_FileKey
 
         /**
          * @brief Reads and assigns object ID, type ID, name, size from input stream.
-         * 
+         *
          * @param s Input stream of type XStream&
          * @return void
          */

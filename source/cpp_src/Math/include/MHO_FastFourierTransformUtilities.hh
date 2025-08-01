@@ -27,7 +27,7 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
         /**
          * @brief Conjugates each element in a complex array.
-         * 
+         *
          * @param N Size of the input array
          * @param array Input/output array of complex numbers
          * @note This is a static function.
@@ -42,7 +42,7 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
         /**
          * @brief Conjugates each element in a complex (strided) array.
-         * 
+         *
          * @param N Size of the array
          * @param array Input/output complex array to conjugate
          * @param stride (unsigned int)
@@ -68,14 +68,14 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
         /**
          * @brief Computes the conjugate twiddle factors for given size N and stores them in provided array.
-         * 
+         *
          * @param N Size of the transform (N must be a power of 2)
          * @param conj_twiddle Output array to store the computed conjugate twiddle factors
          * @note This is a static function.
          */
         static void ComputeConjugateTwiddleFactors(unsigned int N, std::complex< XFloatType >* conj_twiddle)
         {
-            
+
             //to compute the twiddle factors
             ComputeTwiddleFactors(N, conj_twiddle);
             Conjugate(N, conj_twiddle);
@@ -95,7 +95,7 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
         /**
          * @brief Computes conjugate twiddle factor basis for given log2N and stores result in conj_twiddle.
-         * 
+         *
          * @param log2N Number of bits to divide N by 2 for twiddle factors
          * @param conj_twiddle (std::complex< XFloatType )*
          * @note This is a static function.
@@ -288,8 +288,8 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         }
 
         /**
-         * @brief  Radix-2 DIT FFT wrapper for a std::complex array 
-         * 
+         * @brief  Radix-2 DIT FFT wrapper for a std::complex array
+         *
          * @param N Size of the data array
          * @param data Input/output complex data array with given stride
          * @param twiddle Precomputed twiddle factors array
@@ -303,8 +303,8 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
         }
 
         /**
-         * @brief  Radix-2 DIF FFT wrapper for a std::complex array 
-         * 
+         * @brief  Radix-2 DIF FFT wrapper for a std::complex array
+         *
          * @param N Size of the data array
          * @param data Input/output complex data array
          * @param twiddle Output twiddle factors array
@@ -343,7 +343,7 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
         /**
          * @brief Function ComputeBluesteinScaleFactors
-         * 
+         *
          * @param N (unsigned int)
          * @param scale (std::complex< XFloatType >*) scale factor array must be length N
          * @note This is a static function.
@@ -391,7 +391,7 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
         /**
          * @brief Function Bluestein algorithm for arbitrary length, N is length of the data, (supports strided data access)
-         * 
+         *
          * @param N (unsigned int) length of data
          * @param M (unsigned int) Bluestein array size
          * @param data (std::complex< XFloatType >*) data array
@@ -455,7 +455,7 @@ template< typename XFloatType > class MHO_FastFourierTransformUtilities
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<float>::ComputeTwiddleFactors
- * 
+ *
  * @param N (unsigned int)
  * @param twiddle (std::complex< float >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< float)
@@ -476,7 +476,7 @@ inline void MHO_FastFourierTransformUtilities< float >::ComputeTwiddleFactors(un
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<double>::ComputeTwiddleFactors
- * 
+ *
  * @param N (unsigned int)
  * @param twiddle (std::complex< double >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< double)
@@ -497,7 +497,7 @@ inline void MHO_FastFourierTransformUtilities< double >::ComputeTwiddleFactors(u
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactors
- * 
+ *
  * @param N (unsigned int)
  * @param twiddle (std::complex< long double >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< long double)
@@ -523,7 +523,7 @@ inline void MHO_FastFourierTransformUtilities< long double >::ComputeTwiddleFact
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<float>::ComputeTwiddleFactorBasis
- * 
+ *
  * @param log2N (unsigned int)
  * @param twiddle (std::complex< float >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< float)
@@ -544,7 +544,7 @@ inline void MHO_FastFourierTransformUtilities< float >::ComputeTwiddleFactorBasi
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<double>::ComputeTwiddleFactorBasis
- * 
+ *
  * @param log2N (unsigned int)
  * @param twiddle (std::complex< double >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< double)
@@ -565,7 +565,7 @@ inline void MHO_FastFourierTransformUtilities< double >::ComputeTwiddleFactorBas
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<long double>::ComputeTwiddleFactorBasis
- * 
+ *
  * @param log2N (unsigned int)
  * @param twiddle (std::complex< long double >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< long double)
@@ -588,11 +588,11 @@ inline void MHO_FastFourierTransformUtilities< long double >::ComputeTwiddleFact
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<float>::ComputeBluesteinScaleFactors
- * 
+ *
  * @param N (unsigned int)
  * @param scale (std::complex< float >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< float)
- * @note 
+ * @note
  * IMPORTANT NOTE!
  * This function computes the CONJUGATE of the scale factors as
  * defined by equation 13.22, page 127 of
@@ -619,11 +619,11 @@ inline void MHO_FastFourierTransformUtilities< float >::ComputeBluesteinScaleFac
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<double>::ComputeBluesteinScaleFactors
- * 
+ *
  * @param N (unsigned int)
  * @param scale (std::complex< double >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< double)
- * @note 
+ * @note
  * IMPORTANT NOTE!
  * This function computes the CONJUGATE of the scale factors as
  * defined by equation 13.22, page 127 of
@@ -650,11 +650,11 @@ inline void MHO_FastFourierTransformUtilities< double >::ComputeBluesteinScaleFa
 
 /**
  * @brief Function MHO_FastFourierTransformUtilities<long double>::ComputeBluesteinScaleFactors
- * 
+ *
  * @param N (unsigned int)
  * @param scale (std::complex< long double >*)
  * @return Return value (void MHO_FastFourierTransformUtilities< long double)
- * @note 
+ * @note
  * IMPORTANT NOTE!
  * This function computes the CONJUGATE of the scale factors as
  * defined by equation 13.22, page 127 of

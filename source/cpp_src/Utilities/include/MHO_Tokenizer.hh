@@ -79,7 +79,7 @@ class MHO_Tokenizer
 
         /**
          * @brief Finds and indexes quote instances in a given string.
-         * 
+         *
          * @param aString Input string to search for quotes.
          * @param quotes (std::vector< std::pair< std::size_t, std::size_t ) *
          * @return Number of indexed quote pairs found.
@@ -102,7 +102,7 @@ class MHO_Tokenizer
 //otherwise the string is split on the specified delimiter
 /**
  * @brief Function SplitString
- * 
+ *
  * @param input (const std::string&)
  * @param delim (std::string)
  * @return Return value (std::string >)

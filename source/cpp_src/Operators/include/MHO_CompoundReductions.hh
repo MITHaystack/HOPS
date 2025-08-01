@@ -6,14 +6,14 @@
  *@class MHO_CompoundReductions
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Nov 19 16:49:30 2020 -0500
- *@brief Collection of functors for compound reductions across an array 
+ *@brief Collection of functors for compound reductions across an array
  * (e.g. summation or multiplication of each element along one dimension)
  */
 
 #include <complex>
 #include <cstddef>
 
-namespace hops 
+namespace hops
 {
 
 /**
@@ -23,7 +23,7 @@ template< typename XValueType > struct MHO_SumIdentity
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return XValueType
          * @note This is a static function.
          */
@@ -38,7 +38,7 @@ template<> struct MHO_SumIdentity< bool >
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return returns false
          * @note This is a static function.
          */
@@ -52,7 +52,7 @@ template<> struct MHO_SumIdentity< int >
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return Returns 0
          * @note This is a static function.
          */
@@ -66,7 +66,7 @@ template<> struct MHO_SumIdentity< short >
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return returns 0
          * @note This is a static function.
          */
@@ -80,7 +80,7 @@ template<> struct MHO_SumIdentity< unsigned int >
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return returns 0
          * @note This is a static function.
          */
@@ -94,7 +94,7 @@ template<> struct MHO_SumIdentity< std::size_t >
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return returns 0
          * @note This is a static function.
          */
@@ -108,7 +108,7 @@ template<> struct MHO_SumIdentity< float >
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return returns 0.0
          * @note This is a static function.
          */
@@ -122,7 +122,7 @@ template<> struct MHO_SumIdentity< double >
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return Returns 0.0
          * @note This is a static function.
          */
@@ -136,7 +136,7 @@ template<> struct MHO_SumIdentity< long double >
 {
         /**
          * @brief Returns the identity for the sum operation
-         * 
+         *
          * @return Returns 0.0
          * @note This is a static function.
          */
@@ -150,7 +150,7 @@ template<> struct MHO_SumIdentity< std::complex< float > >
 {
         /**
          * @brief Copies non-active dimension values into index.
-         * 
+         *
          * @return Returns 0.0 as a std::complex<float>
          * @note This is a static function.
          */
@@ -164,7 +164,7 @@ template<> struct MHO_SumIdentity< std::complex< double > >
 {
         /**
          * @brief Copies non-active dimension values into index.
-         * 
+         *
          * @return Returns 0.0 as a std::complex<double>
          * @note This is a static function.
          */
@@ -178,7 +178,7 @@ template<> struct MHO_SumIdentity< std::complex< long double > >
 {
         /**
          * @brief Copies non-active dimension values into index.
-         * 
+         *
          * @return Returns 0.0 as a long double
          * @note This is a static function.
          */
@@ -192,7 +192,7 @@ template< typename XValueType > struct MHO_MultiplyIdentity
 {
         /**
          * @brief Returns the identity for the multiplication operation
-         * 
+         *
          * @return XValueType
          * @note This is a static function.
          */
@@ -207,7 +207,7 @@ template<> struct MHO_MultiplyIdentity< bool >
 {
         /**
          * @brief Returns the identity for the multiplication operation
-         * 
+         *
          * @return Returns true
          * @note This is a static function.
          */
@@ -221,7 +221,7 @@ template<> struct MHO_MultiplyIdentity< int >
 {
         /**
          * @brief Returns the identity for the multiplication operation
-         * 
+         *
          * @return Returns 1
          * @note This is a static function.
          */
@@ -235,7 +235,7 @@ template<> struct MHO_MultiplyIdentity< short >
 {
         /**
          * @brief Returns the identity for the multiplication operation
-         * 
+         *
          * @return Returns 1
          * @note This is a static function.
          */
@@ -249,7 +249,7 @@ template<> struct MHO_MultiplyIdentity< unsigned int >
 {
         /**
          * @brief Returns the identity for the multiplication operation
-         * 
+         *
          * @return Returns 1
          * @note This is a static function.
          */
@@ -263,7 +263,7 @@ template<> struct MHO_MultiplyIdentity< std::size_t >
 {
         /**
          * @brief Returns the identity for the multiplication operation
-         * 
+         *
          * @return Returns 1
          * @note This is a static function.
          */
@@ -277,7 +277,7 @@ template<> struct MHO_MultiplyIdentity< float >
 {
         /**
          * @brief Returns the identity for the multiplication operation
-         * 
+         *
          * @return Returns 1.0
          * @note This is a static function.
          */
@@ -291,7 +291,7 @@ template<> struct MHO_MultiplyIdentity< double >
 {
         /**
          * @brief Returns the identity for the multiplication operation
-         * 
+         *
          * @return Returns 1.0
          * @note This is a static function.
          */
@@ -301,11 +301,11 @@ template<> struct MHO_MultiplyIdentity< double >
 template<> struct MHO_MultiplyIdentity< long double >
 {
         /**
-        * @brief Returns the identity for the multiplication operation
-        * 
-        * @return Returns 1.0
-        * @note This is a static function.
-        */
+         * @brief Returns the identity for the multiplication operation
+         *
+         * @return Returns 1.0
+         * @note This is a static function.
+         */
         static inline long double value() { return 1.0; };
 };
 
@@ -340,8 +340,6 @@ template< typename XValueType > struct MHO_CompoundMultiply
         const XValueType identity = MHO_MultiplyIdentity< XValueType >::value();
 };
 
-
-}//end of namespace 
-
+} // namespace hops
 
 #endif /*! end of include guard: MHO_CompoundReductions */

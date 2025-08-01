@@ -27,7 +27,7 @@ class MHO_FringeRotation
         //virtual function (can be pointed to different implementations)
         /**
          * @brief Calculates fringe rotation for given delay, delay-rate, time and frequency difference.
-         * 
+         *
          * @param time_delta Time difference from fourfit reference time (s)
          * @param freq Channel frequency (MHz)
          * @param ref_freq Reference frequency (MHz)
@@ -40,34 +40,34 @@ class MHO_FringeRotation
 
         /**
          * @brief Setter for SBD bin separation
-         * 
+         *
          * @param sbd_sep value of the (time) delta between two adjacent points in SBD space
          */
-        void SetSBDSeparation(double sbd_sep) { fSBDSep = sbd_sep; }; 
+        void SetSBDSeparation(double sbd_sep) { fSBDSep = sbd_sep; };
 
         /**
          * @brief Setter for sbd max
-         * 
+         *
          * @param sbd_max the single-band delay value at the fringe maximum
          */
         void SetSBDMax(double sbd_max) { fSBDMax = sbd_max; }
 
         /**
          * @brief Setter for sbd max bin
-         * 
+         *
          * @param sbd_max_bin the bin value for the fringe maximum (Single Band Delay axis)
          */
         void SetSBDMaxBin(int sbd_max_bin) { fSBDMaxBin = sbd_max_bin; }
 
         /**
          * @brief Setter for N sbd bins
-         * 
+         *
          * @param n_sbd_bins set the number of Single Band Delay bins
          */
         void SetNSBDBins(int n_sbd_bins) { fNSBDBins = n_sbd_bins; }
 
         /**
-         * @brief Setter for sideband - passes the sideband information if optimize_closure requires single-sideband correction         * 
+         * @brief Setter for sideband - passes the sideband information if optimize_closure requires single-sideband correction         *
          * @param sb Sideband type: 1 for USB, 0 for DSB, -1 for LSB
          */
         void SetSideband(int sb) { fSideband = sb; } //1 is USB, 0 if DSB, -1 if LSB
@@ -87,7 +87,7 @@ class MHO_FringeRotation
 
         /**
          * @brief Calculates and returns a phasor for fringe rotation given time delta, frequencies, delay rate, and Multi-Band Delay.
-         * 
+         *
          * @param time_delta Time interval between current AP and fourfit reference time
          * @param freq channel frequency
          * @param ref_freq Fringe reference frequency
@@ -99,7 +99,7 @@ class MHO_FringeRotation
 
         /**
          * @brief Calculates sideband correction for fringe rotation (if optimize_closure is true)
-         * 
+         *
          * @param mbd Multi-Band Delay, input delay parameter
          * @return Sideband correction value as a double
          */

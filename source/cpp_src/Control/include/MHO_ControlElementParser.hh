@@ -37,7 +37,7 @@ class MHO_ControlElementParser
 
         /**
          * @brief Parses a control statement into a JSON object, handling different formats and providing warnings for unsupported or deprecated elements.
-         * 
+         *
          * @param control_statement Input control statement to parse
          * @return mho_json object representing the parsed control statement
          */
@@ -46,7 +46,7 @@ class MHO_ControlElementParser
     private:
         /**
          * @brief Parses tokens based on element name and format, returning processed data as mho_json.
-         * 
+         *
          * @param element_name Name of the control element being parsed
          * @param format Reference to the format definition for the control element
          * @param tokens Vector of MHO_Tokens containing the input tokens
@@ -55,7 +55,7 @@ class MHO_ControlElementParser
         mho_json ParseTokens(const std::string& element_name, mho_json& format, const std::vector< MHO_Token >& tokens);
         /**
          * @brief Parses compound elements from tokens and formats them into a JSON object.
-         * 
+         *
          * @param element_name Name of the element being processed
          * @param format Format definition for parsing the element
          * @param tokens Vector of MHO_Tokens containing the element data

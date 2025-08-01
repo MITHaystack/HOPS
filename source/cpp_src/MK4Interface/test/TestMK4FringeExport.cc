@@ -1,20 +1,18 @@
-#include <iostream>
-#include <string>
-#include <vector>
 #include <algorithm>
-#include <set>
-#include <utility>
-#include <map>
 #include <getopt.h>
+#include <iostream>
+#include <map>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
-#include "MHO_Tokenizer.hh"
-#include "MHO_MK4VexInterface.hh"
 #include "MHO_MK4CorelInterface.hh"
 #include "MHO_MK4FringeExport.hh"
-
+#include "MHO_MK4VexInterface.hh"
+#include "MHO_Tokenizer.hh"
 
 using namespace hops;
-
 
 int main(int argc, char** argv)
 {
@@ -332,7 +330,6 @@ int main(int argc, char** argv)
     MHO_ParameterStore pStore;
     pStore.FillData(params);
     pStore.Dump();
-
 
     char text2[] = R"(
         {
@@ -1130,7 +1127,7 @@ int main(int argc, char** argv)
 
     mho_json plot_data = mho_json::parse(text2);
 
-    std::cout<<plot_data.dump(4)<<std::endl;
+    std::cout << plot_data.dump(4) << std::endl;
 
     MHO_MK4FringeExport fexporter;
     fexporter.SetParameterStore(&pStore);

@@ -36,14 +36,14 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Setter for reference frequency
-         * 
+         *
          * @param ref_freq New reference frequency value in MHz
          */
         void SetReferenceFrequency(double ref_freq) { fRefFreq = ref_freq; }
 
         /**
          * @brief Setter for station identifier
-         * 
+         *
          * @param station_id mk4 id of type std::string
          * @details station_id is treated as follows:
          * 1-char => mk4 id
@@ -53,7 +53,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Setter for delay offset
-         * 
+         *
          * @param pc_delay_offset Time offset between two signals being correlated
          */
         void SetPCDelayOffset(const double& pc_delay_offset) { fDelayOffset = pc_delay_offset; }
@@ -61,7 +61,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
     protected:
         /**
          * @brief Initializes in-place visibility_type pointer.
-         * 
+         *
          * @param in Input visibility_type pointer to initialize
          * @return True if initialization is successful
          * @note This is a virtual function.
@@ -69,7 +69,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeInPlace(visibility_type* in) override;
         /**
          * @brief Initializes out-of-place visibility data from input data.
-         * 
+         *
          * @param in Const pointer to input visibility_type data.
          * @param out (visibility_type*)
          * @return Boolean indicating successful initialization.
@@ -79,7 +79,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Applies phase correction to visibility data for reference or remote station.
-         * 
+         *
          * @param in Input visibility_type* containing pol-products and channels.
          * @return bool indicating successful execution.
          * @note This is a virtual function.
@@ -87,7 +87,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(visibility_type* in) override;
         /**
          * @brief Copies input visibility data and executes in-place correction.
-         * 
+         *
          * @param in Input visibility_type data to be copied.
          * @param out (visibility_type*)
          * @return Result of ExecuteInPlace operation on out parameter.
@@ -98,7 +98,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
     private:
         /**
          * @brief Checks if a station delay correction is applicable based on input parameters.
-         * 
+         *
          * @param st_idx Index of the station
          * @param in Visibility type pointer containing station data
          * @return Boolean indicating whether to apply the correction or not

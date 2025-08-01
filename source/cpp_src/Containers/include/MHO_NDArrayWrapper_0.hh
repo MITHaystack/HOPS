@@ -9,7 +9,6 @@
 namespace hops
 {
 
-
 /**
  * @brief Class MHO_NDArrayWrapper<XValueType, 0> specialization for a RANK-0 (i.e. a scalar)
  */
@@ -32,28 +31,28 @@ class MHO_NDArrayWrapper< XValueType, 0 >
         //directly set/get the only value
         /**
          * @brief Setter for data
-         * 
+         *
          * @param value New value to set as const XValueType&
          */
         void SetData(const XValueType& value) { fData = value; }
 
         /**
          * @brief Getter for data
-         * 
+         *
          * @return Current value of type XValueType
          */
         XValueType GetData() { return fData; };
 
         /**
          * @brief Getter for rank
-         * 
+         *
          * @return Current rank as std::size_t
          */
         std::size_t GetRank() const { return 0; }
 
         /**
          * @brief Getter for size
-         * 
+         *
          * @return Size as std::size_t
          */
         std::size_t GetSize() const { return 1; };
@@ -69,7 +68,7 @@ class MHO_NDArrayWrapper< XValueType, 0 >
 
         /**
          * @brief Setter for array
-         * 
+         *
          * @param obj Reference to a constant XValueType object used to update internal data
          */
         void SetArray(const XValueType& obj) { fData = obj; }

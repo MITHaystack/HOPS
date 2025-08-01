@@ -32,16 +32,16 @@ class MHO_DiFXChannelNameConstructor
 
         /**
          * @brief Adds a frequency range for a specific band label.
-         * 
+         *
          * @param band_label Band label as string
          * @param freq_low Lower frequency limit in Hz
          * @param freq_high Upper frequency limit in Hz
          */
         void AddBandLabel(std::string band_label, double freq_low, double freq_high);
-        
+
         /**
          * @brief Adds channel names to VEX experiment data based on scan and mode information.
-         * 
+         *
          * @param vex_root Reference to the root JSON object containing VEX experiment data
          */
         void AddChannelNames(mho_json& vex_root);
@@ -49,9 +49,9 @@ class MHO_DiFXChannelNameConstructor
         /**
          * @brief Setter for scan name
          * if the (o)vex file has more than one scan, we may want to specify
-         * a specific one in order to construct the channel names, 
+         * a specific one in order to construct the channel names,
          * otherwise, we will just use the first in the schedule (assumes there is not later change to channel setup)
-         * 
+         *
          * @param scan_id New scan ID to set
          */
         void SetScanName(std::string scan_id) { fScanID = scan_id; }
@@ -59,14 +59,14 @@ class MHO_DiFXChannelNameConstructor
     private:
         /**
          * @brief Assigns a band label to a given sky frequency.
-         * 
+         *
          * @param sky_freq Input sky frequency in Hz
          * @return Band label as string
          */
         std::string BandLabelFromSkyFreq(double sky_freq);
         /**
          * @brief Finds channel index by brute force search within fChanTol (0.001MHz) tolerance.
-         * 
+         *
          * @param sky_freq Input sky frequency in Hz.
          * @return Channel index if found within tolerance, else 0.
          */

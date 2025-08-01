@@ -40,7 +40,6 @@ namespace hops
  * in the future
  */
 
-
 class MHO_MK4CorelInterface
 {
     public:
@@ -49,21 +48,21 @@ class MHO_MK4CorelInterface
 
         /**
          * @brief Setter for vex file, we need both the vex (root) file and corel file to extract the data
-         * 
+         *
          * @param vex Path to the VEX file
          */
         void SetVexFile(const std::string& vex) { fVexFile = vex; }
 
         /**
          * @brief Setter for corel file
-         * 
+         *
          * @param corel Input corel file path as string reference
          */
         void SetCorelFile(const std::string& corel) { fCorelFile = corel; }
 
         /**
          * @brief Getter for raw mk4 corel data struct
-         * 
+         *
          * @return Pointer to struct mk4_corel
          */
         struct mk4_corel* GetCorelData() { return fCorel; };
@@ -83,14 +82,14 @@ class MHO_MK4CorelInterface
         //destructor of this interface class.
         /**
          * @brief Getter for extracted visibilities
-         * 
+         *
          * @return uch_visibility_store_type* fExtractedVisibilities
          */
         uch_visibility_store_type* GetExtractedVisibilities() { return fExtractedVisibilities; };
 
         /**
          * @brief Getter for extracted weights
-         * 
+         *
          * @return uch_weight_store_type* Pointer to the extracted weights.
          */
         uch_weight_store_type* GetExtractedWeights() { return fExtractedWeights; };

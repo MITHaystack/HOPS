@@ -18,7 +18,7 @@ bool MHO_MixedPolYShiftBuilder::Build()
         std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "calibration";
         double priority = fFormat["priority"].get< double >();
-        bool value = fAttributes["value"].get<bool>(); 
+        bool value = fAttributes["value"].get< bool >();
 
         if(value)
         {

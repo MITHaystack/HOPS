@@ -32,7 +32,7 @@ class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder, publi
 
         /**
          * @brief Constructs and initializes a MHO_ManualChannelPhaseCorrection operator instance
-         * 
+         *
          * @return bool indicating success/failure of construction
          */
         virtual bool Build() override;
@@ -40,14 +40,14 @@ class MHO_ManualChannelPhaseCorrectionBuilder: public MHO_OperatorBuilder, publi
     private:
         /**
          * @brief Parses a polarization string from a given name.
-         * 
+         *
          * @param name Input name to parse.
          * @return Polarization string ('X', 'Y', 'R', 'L' or '?').
          */
         std::string ParsePolFromName(const std::string& name);
         /**
          * @brief Extracts and returns the station identifier from the conditions vector.
-         * 
+         *
          * @return The extracted station identifier as a string.
          */
         std::string ExtractStationIdentifier();

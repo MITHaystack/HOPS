@@ -30,11 +30,10 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
         /**
          * @brief Setter for filename
-         * 
+         *
          * @param filename New filename to set as a std::string
          */
         void SetFilename(std::string filename);
-
 
         /**
          * @brief Setter for index file name
@@ -44,7 +43,6 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
          * @param index_filename The new index file name to set
          */
         void SetIndexFileName(std::string index_filename);
-
 
         /**
          * @brief Populates a store from a file, optionally clearing it first.
@@ -58,14 +56,14 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
         /**
          * @brief Writes object in a MHO_ContainerStore to file using MHO_BinaryFileInterface and factory map.
-         * 
+         *
          * @param store Reference to MHO_ContainerStore containing objects to write.
          */
         void WriteStoreToFile(MHO_ContainerStore& store);
 
         /**
          * @brief Converts a container store to JSON representation with specified detail level.
-         * 
+         *
          * @param store Reference to MHO_ContainerStore object containing data to convert.
          * @param json_obj Reference to mho_json object that will hold the converted JSON data.
          * @param level_of_detail Integer specifying the level of detail for the JSON conversion.
@@ -74,7 +72,7 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
 
         /**
          * @brief Converts a specific object in store to JSON representation at given detail level.
-         * 
+         *
          * @param store Reference to MHO_ContainerStore for accessing objects and types.
          * @param obj_uuid UUID of the object to convert to JSON.
          * @param json_obj Reference to mho_json where converted object will be stored.
@@ -82,11 +80,11 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
          */
         void ConvertObjectInStoreToJSON(MHO_ContainerStore& store, const MHO_UUID& obj_uuid, mho_json& json_obj,
                                         int level_of_detail = eJSONBasic);
-                                        
+
         //also provides access to the raw bytes of table container data (for hops2flat)
         /**
          * @brief Converts an object in store to JSON and raw data, providing access to raw bytes for hops2flat.
-         * 
+         *
          * @param store Reference to MHO_ContainerStore for accessing objects
          * @param obj_uuid UUID of the object to convert
          * @param json_obj Output mho_json object containing converted JSON representation
@@ -96,15 +94,9 @@ class MHO_ContainerFileInterface: public MHO_ContainerDictionary
          * @param raw_data_descriptor Output string describing raw data
          * @param level_of_detail Input level of detail for conversion
          */
-        void ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, 
-                                        const MHO_UUID& obj_uuid,
-                                        mho_json& json_obj,
-                                        std::size_t& rank,
-                                        const char*& raw_data,
-                                        std::size_t& raw_data_byte_size,
-                                        std::string& raw_data_descriptor,
-                                        int level_of_detail = eJSONBasic);
-                                        
+        void ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, const MHO_UUID& obj_uuid, mho_json& json_obj,
+                                              std::size_t& rank, const char*& raw_data, std::size_t& raw_data_byte_size,
+                                              std::string& raw_data_descriptor, int level_of_detail = eJSONBasic);
 
     private:
         std::string fFilename;

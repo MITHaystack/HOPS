@@ -4,10 +4,10 @@
 #include "MHO_Operator.hh"
 
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_PyContainerStoreInterface.hh"
-#include "MHO_PyParameterStoreInterface.hh"
-#include "MHO_PyFringeDataInterface.hh"
 #include "MHO_FringeData.hh"
+#include "MHO_PyContainerStoreInterface.hh"
+#include "MHO_PyFringeDataInterface.hh"
+#include "MHO_PyParameterStoreInterface.hh"
 
 #include "MHO_PyTableContainer.hh"
 
@@ -33,24 +33,18 @@ namespace hops
 class MHO_PyGenericOperator: public MHO_Operator
 {
     public:
-        MHO_PyGenericOperator()
-            : fInitialized(false), 
-              fFringeData(nullptr),
-              fFringeDataInterface(nullptr)
+        MHO_PyGenericOperator(): fInitialized(false), fFringeData(nullptr), fFringeDataInterface(nullptr)
         {
             fModuleName = "";
             fFunctionName = "";
         };
 
-        virtual ~MHO_PyGenericOperator()
-        {
-            delete fFringeDataInterface;
-        };
+        virtual ~MHO_PyGenericOperator() { delete fFringeDataInterface; };
 
-        void SetFringeData(MHO_FringeData* fdata){fFringeData = fdata;}
+        void SetFringeData(MHO_FringeData* fdata) { fFringeData = fdata; }
 
         // void SetParameterStore(MHO_ParameterStore* pstore) { fParameterStore = pstore; };
-        // 
+        //
         // void SetContainerStore(MHO_ContainerStore* cstore) { fContainerStore = cstore; };
 
         void SetModuleName(std::string module_name) { fModuleName = module_name; }
@@ -72,7 +66,10 @@ class MHO_PyGenericOperator: public MHO_Operator
             //construct the python interface exposing the parameter and container store
             if(fFringeData != nullptr)
             {
-                if(fFringeDataInterface == nullptr){fFringeDataInterface = new MHO_PyFringeDataInterface(fFringeData); }
+                if(fFringeDataInterface == nullptr)
+                {
+                    fFringeDataInterface = new MHO_PyFringeDataInterface(fFringeData);
+                }
                 fInitialized = true;
             }
 

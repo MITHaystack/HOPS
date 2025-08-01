@@ -23,7 +23,7 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Sat Feb 10 11:17:05 2024 -0500
  *@brief class for running time/performance profiling
- * when the profile is enabled, a section of code can be profiled by 
+ * when the profile is enabled, a section of code can be profiled by
  * wrapping it between a call to profiler_start() and profiler_stop(), for example:
  *
  * profiler_start();
@@ -61,7 +61,6 @@ struct MHO_ProfileEvent
         char fFuncname[PROFILE_INFO_LEN]; //truncated function name
 };
 
-
 /**
  * @brief Class MHO_Profiler - uses the singleton pattern
  */
@@ -77,7 +76,7 @@ class MHO_Profiler
 
         /**
          * @brief provide public access to the only static instance
-         * 
+         *
          * @return Reference to the singleton instance of MHO_Profiler
          * @note This is a static function.
          */
@@ -102,11 +101,10 @@ class MHO_Profiler
 
         /**
          * @brief Checks if the feature is enabled.
-         * 
+         *
          * @return True if enabled, false otherwise.
          */
         bool IsEnabled() const { return !fDisabled; }
-
 
         /**
          * @brief Acquires a lock using fMutex for thread synchronization.
@@ -125,7 +123,7 @@ class MHO_Profiler
 
         /**
          * @brief Adds a profiling event to the internal list if not disabled.
-         * 
+         *
          * @param flag A flag indicating the type of event (e.g., stop timer for this segment).
          * @param thread_id The ID of the thread generating the event.
          * @param filename The truncated filename associated with the event.
@@ -136,7 +134,7 @@ class MHO_Profiler
 
         /**
          * @brief Getter for events - at end of program, retrieve and utilize the profiler events
-         * 
+         *
          * @param events Reference to std::vector<MHO_ProfileEvent to store retrieved events
          */
         void GetEvents(std::vector< MHO_ProfileEvent >& events) { events = fEvents; }

@@ -1,7 +1,6 @@
 #ifndef MHO_DiFXTimeUtilities_HH__
 #define MHO_DiFXTimeUtilities_HH__
 
-
 #include "MHO_Clock.hh"
 
 //this is the nominal DiFX MJD epoch start...however, it will be off by however
@@ -17,7 +16,7 @@ namespace hops
 //given a mjd date and number of seconds, compute the vex string representation
 /**
  * @brief Calculates and returns VEX timestamp for given MJD and seconds.
- * 
+ *
  * @param mjd Modified Julian Date (MJD) in double precision.
  * @param sec Seconds to add to MJD in double precision.
  * @return VEX formatted string representing the calculated timestamp.
@@ -28,7 +27,7 @@ namespace hops
  * start must be corrected by the number of leap seconds inserted since year 2000.
  * There has been a total of 5 as of 2025.
  */
- 
+
 static std::string get_vexdate_from_mjd_sec(double mjd, double sec)
 {
     double total_mjd = (double)mjd + (double)sec / 86400.0;
@@ -47,7 +46,6 @@ static std::string get_vexdate_from_mjd_sec(double mjd, double sec)
     return hops_clock::to_vex_format(mjd_tp);
 }
 
-}
-
+} // namespace hops
 
 #endif /* end of include guard: MHO_DiFXTimeUtilities_HH__ */

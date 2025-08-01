@@ -39,7 +39,7 @@ class MHO_Serializable
 
         /**
          * @brief Getter for version
-         * 
+         *
          * @return MHO_ClassVersion version number.
          * @note This is a virtual function.
          */
@@ -47,7 +47,7 @@ class MHO_Serializable
 
         /**
          * @brief Getter for serialized size
-         * 
+         *
          * @return Return value (uint64_t)
          * @note This is a virtual function.
          */
@@ -55,21 +55,21 @@ class MHO_Serializable
 
         /**
          * @brief Getter for object uuid
-         * 
+         *
          * @return MHO_UUID: The unique identifier (UUID) of the object.
          */
         MHO_UUID GetObjectUUID() const { return fObjectUUID; };
 
         /**
          * @brief Setter for object uuid
-         * 
+         *
          * @param uuid The new UUID value to set for the object.
          */
         void SetObjectUUID(const MHO_UUID& uuid) { fObjectUUID = uuid; };
 
         /**
          * @brief Getter for type uuid
-         * 
+         *
          * @return MHO_UUID representing the type's universally unique identifier.
          * @note This is a virtual function.
          */
@@ -85,7 +85,7 @@ class MHO_Serializable
     private:
         /**
          * @brief Function DetermineTypeUUID
-         * 
+         *
          * @return Return value (MHO_UUID)
          * @note This is a virtual function.
          */

@@ -253,7 +253,8 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
     //app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, deprecated)");
     app.add_option("-X,--xpower-output", xpower_output,
-                 "append cross power data with fringe solution applied, specifying the axis along which data should be summed (-1=no-export, 0=none, 1=channel, 2=time/AP, 3=sub-channel), default: -1");
+                   "append cross power data with fringe solution applied, specifying the axis along which data should be "
+                   "summed (-1=no-export, 0=none, 1=channel, 2=time/AP, 3=sub-channel), default: -1");
     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
     app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
 
@@ -342,7 +343,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     paramStore->Set("/cmdline/accounting", accounting);
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
-    
+
     paramStore->Set("/cmdline/control_file", control_file);
     paramStore->Set("/cmdline/disk_file", disk_file); //default is empty string -> no plot file
     paramStore->Set("/cmdline/directory", directory); //sanitized directory path
@@ -417,13 +418,12 @@ void MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initia
         dirInterface.GetRootFile(all_files, legacy_root_file);
         if(legacy_root_file != "")
         {
-            
-            msg_warn("fringe", "no hops4 data (.cor) files found, but legacy mark4 root file ("<< 
-                dirInterface.GetBasename(legacy_root_file) << 
-                ") detected, you first need to run mark42hops or difx2hops" << eom);
+
+            msg_warn("fringe", "no hops4 data (.cor) files found, but legacy mark4 root file ("
+                                   << dirInterface.GetBasename(legacy_root_file)
+                                   << ") detected, you first need to run mark42hops or difx2hops" << eom);
         }
     }
-
 }
 
 void MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& dir, const std::string& baseline,

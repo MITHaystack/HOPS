@@ -26,7 +26,7 @@ class MHO_MPIInterface
         //singleton interface
         /**
          * @brief Getter for instance
-         * 
+         *
          * @return MHO_MPIInterface* singleton instance
          * @note This is a static function.
          */
@@ -34,7 +34,7 @@ class MHO_MPIInterface
 
         /**
          * @brief Initializes MPI environment and sets up process groups/communicators.
-         * 
+         *
          * @param argc Pointer to integer for command line argument count
          * @param argv Double pointer to character array for command line arguments
          * @param split_mode Boolean flag indicating whether to split processes
@@ -47,35 +47,35 @@ class MHO_MPIInterface
 
         /**
          * @brief Checks if global process ID is non-negative and number of processes is greater than zero.
-         * 
+         *
          * @return True if conditions are met, false otherwise.
          */
         bool Check() const { return (fGlobalProcessID >= 0) && (fNProcesses > 0); }
 
         /**
          * @brief Getter for global process id
-         * 
+         *
          * @return The global process ID as an integer.
          */
         int GetGlobalProcessID() const { return fGlobalProcessID; }
 
         /**
          * @brief Getter for N processes
-         * 
+         *
          * @return The number of processes as an integer.
          */
         int GetNProcesses() const { return fNProcesses; }
 
         /**
          * @brief Getter for local process id
-         * 
+         *
          * @return Local process ID as an integer.
          */
         int GetLocalProcessID() const { return fLocalProcessID; }
 
         /**
          * @brief Getter for host name
-         * 
+         *
          * @return Host name as a string
          */
         std::string GetHostName() const { return fHostName; };
@@ -96,13 +96,12 @@ class MHO_MPIInterface
          */
         void GlobalBarrier() const { MPI_Barrier(MPI_COMM_WORLD); }
 
-
         /**
          * @brief Collects and prints messages from all processes in a MPI parallel environment.
          * when called, this function must be encountered by all processes
          * or the program will lock up, treat it as a global barrier
          * use it to safely print messages from each process without clobbering the ouput
-         * 
+         *
          * @param msg Message to be printed by all processes.
          */
         void PrintMessage(std::string msg);
@@ -110,7 +109,7 @@ class MHO_MPIInterface
         //broadcast a string message to all processes
         /**
          * @brief Broadcasts a string message to all processes from root/master process.
-         * 
+         *
          * @param msg Reference to string message to be broadcasted.
          */
         void BroadcastString(std::string& msg);
@@ -119,49 +118,49 @@ class MHO_MPIInterface
         //groups bases on even/odd local process rank
         /**
          * @brief Checks if processes are split into two groups based on even/odd ranks.
-         * 
+         *
          * @return True if in split mode, false otherwise.
          */
         bool SplitMode() { return fSplitMode; };
 
         /**
          * @brief Checks if even/odd split is valid.
-         * 
+         *
          * @return True if split is valid, false otherwise.
          */
         bool IsSplitValid() { return fValidSplit; };
 
         /**
          * @brief Checks if the current process is a member of the even subgroup.
-         * 
+         *
          * @return True if it's an even group member, false otherwise.
          */
         bool IsEvenGroupMember() { return fIsEvenGroupMember; };
 
         /**
          * @brief Getter for nsub group processes
-         * 
+         *
          * @return Number of subgroup processes.
          */
         int GetNSubGroupProcesses() { return fNSubGroupProcesses; }
 
         /**
          * @brief Getter for sub group rank
-         * 
+         *
          * @return The subgroup rank as an integer.
          */
         int GetSubGroupRank() { return fSubGroupRank; };
 
         /**
          * @brief Getter for partner process id
-         * 
+         *
          * @return ID of the partner process as an integer.
          */
         int GetPartnerProcessID() { return fPartnerProcessID; };
 
         /**
          * @brief Getter for sub group
-         * 
+         *
          * @return MPI_Group* representing the sub-group rank
          */
         MPI_Group* GetSubGroup()

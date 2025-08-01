@@ -20,9 +20,7 @@ namespace hops
 class MHO_LSBOffsetBuilder: public MHO_OperatorBuilder
 {
     public:
-
-        MHO_LSBOffsetBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_LSBOffsetBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_LSBOffsetBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                              MHO_ParameterStore* pstore = nullptr)
@@ -32,7 +30,7 @@ class MHO_LSBOffsetBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and initializes a MHO_LSBOffset operator.
-         * 
+         *
          * @return True if successful, false otherwise.
          */
         virtual bool Build() override;
@@ -40,7 +38,7 @@ class MHO_LSBOffsetBuilder: public MHO_OperatorBuilder
     private:
         /**
          * @brief Extracts and returns the station identifier from the conditions vector.
-         * 
+         *
          * @return The extracted station identifier as a string.
          */
         std::string ExtractStationIdentifier();

@@ -52,7 +52,6 @@ struct lockfile_data
         char lockfile_name[MAX_LOCKNAME_LEN];
 };
 
-
 /**
  * @brief Class MHO_LockFileHandler uses the singleton pattern
  */
@@ -67,7 +66,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief provide public access to the only static instance
-         * 
+         *
          * @return Reference to the singleton instance of MHO_LockFileHandler
          * @note This is a static function.
          */
@@ -79,7 +78,6 @@ class MHO_LockFileHandler
             }
             return *fInstance;
         }
-
 
         /**
          * @brief configure the lock handler to write legacy type_2xx file (e.g. GE.X.1.ABCDEF) naming convention.
@@ -93,10 +91,9 @@ class MHO_LockFileHandler
          */
         void DisableLegacyMode() { fEnableLegacyMode = false; };
 
-
         /**
          * @brief Waits for and acquires a write lock on the specified directory, setting it as the current directory.
-         * 
+         *
          * @param directory The directory to acquire the write lock on.
          * @param next_seq_no (int&)
          * @return An integer representing the result of the operation.
@@ -110,7 +107,7 @@ class MHO_LockFileHandler
     private:
         /**
          * @brief Removes write lock and resets signal handler to default before re-sending the signal to the process.
-         * 
+         *
          * @param signal_value Signal value to be handled
          * @note This is a static function.
          */
@@ -118,7 +115,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Initializes lockfile_data struct to default values.
-         * 
+         *
          * @param data Pointer to lockfile_data struct to initialize
          * @note This is a static function.
          */
@@ -126,7 +123,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Parses a lockfile name into its constituent components and stores them in result.
-         * 
+         *
          * @param lockfile_name_base Input lockfile name to be parsed
          * @param result (lockfile_data*)
          * @return 0 on success, LOCK_PARSE_ERROR on failure
@@ -136,7 +133,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Creates a lockfile in the specified directory with given name and data, using current process ID, hostname, and timestamp.
-         * 
+         *
          * @param directory Input directory path where the lockfile will be created
          * @param lockfile_name Output buffer for the generated lockfile name
          * @param lock_data Pointer to store lockfile metadata (validity, seq_number, pid, time_sec)
@@ -148,7 +145,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Checks if another lockfile is stale and returns appropriate status.
-         * 
+         *
          * @param other Pointer to another lockfile_data structure.
          * @return LOCK_STATUS_OK if stale, LOCK_STALE_ERROR otherwise.
          * @note This is a static function.
@@ -157,7 +154,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Determines priority between two lock processes based on PID and timestamps.
-         * 
+         *
          * @param ours Pointer to our lockfile_data structure
          * @param other Pointer to another process's lockfile_data structure
          * @return LOCK_PROCESS_HAS_PRIORITY, LOCK_PROCESS_NO_PRIORITY or LOCK_STALE_ERROR based on comparison results.
@@ -166,7 +163,7 @@ class MHO_LockFileHandler
         static int lock_has_priority(lockfile_data* ours, lockfile_data* other);
         /**
          * @brief Checks if a process has priority to create a lock file in a given directory.
-         * 
+         *
          * @param directory Input directory path where lock files are stored
          * @param lockfile_name Output lock file name if created
          * @param lock_data Output lock file data if created
@@ -178,7 +175,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Removes a lockfile if it's valid and outputs debug message.
-         * 
+         *
          * @param other (lockfile_data*)
          * @note This is a static function.
          */
@@ -186,7 +183,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Waits for this process to be at the front of the write queue and returns the next sequence number.
-         * 
+         *
          * @param next_seq_no Output parameter: Next sequence number after acquiring the lock
          * @return LOCK_STATUS_OK on success, error codes otherwise
          */
@@ -194,7 +191,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Finds and returns the maximum sequence number among fringe files in the given directory.
-         * 
+         *
          * @param dir Input directory path where fringe files are located
          * @return Maximum sequence number found among fringe files
          */
@@ -202,7 +199,7 @@ class MHO_LockFileHandler
 
         /**
          * @brief Setter for directory
-         * 
+         *
          * @param dir The new directory path to set.
          */
         void SetDirectory(std::string dir);

@@ -1,14 +1,14 @@
-#include <vector>
 #include <map>
+#include <vector>
 
-#include "MHO_ComputePlotData.hh"
 #include "MHO_BasicFringeInfo.hh"
+#include "MHO_BitReversalPermutation.hh"
+#include "MHO_ComputePlotData.hh"
 #include "MHO_CyclicRotator.hh"
 #include "MHO_EndZeroPadder.hh"
-#include "MHO_SelectRepack.hh"
 #include "MHO_Reducer.hh"
+#include "MHO_SelectRepack.hh"
 #include "MHO_UniformGridPointsCalculator.hh"
-#include "MHO_BitReversalPermutation.hh"
 
 #include "MHO_Constants.hh"
 
@@ -53,11 +53,10 @@ void MHO_ComputePlotData::Initialize()
     fWeights = fContainerStore->GetObject< weight_type >(std::string("weight"));
     fSBDArray = fContainerStore->GetObject< visibility_type >(std::string("sbd"));
     fValid = true;
-    
+
     if(fVisibilities == nullptr)
     {
         msg_error("fringe", "could not find visibility, object with name 'vis'." << eom);
-
     }
 
     if(fWeights == nullptr)
@@ -77,8 +76,9 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
 {
     //calculate the frequency grid for MBD search
     MHO_UniformGridPointsCalculator fGridCalc;
-    std::vector< double> in_freq_pts(std::get<CHANNEL_AXIS>(*fSBDArray).GetData(), 
-                                     std::get<CHANNEL_AXIS>(*fSBDArray).GetData() + std::get<CHANNEL_AXIS>(*fSBDArray).GetSize() );
+    std::vector< double > in_freq_pts(std::get< CHANNEL_AXIS >(*fSBDArray).GetData(),
+                                      std::get< CHANNEL_AXIS >(*fSBDArray).GetData() +
+                                          std::get< CHANNEL_AXIS >(*fSBDArray).GetSize());
     std::vector< double > freq_pts;
     std::map< std::size_t, std::size_t > chan_index_map;
     double freq_eps = 1e-4; //tolerance of 0.1kHz
@@ -165,7 +165,10 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
         //DSB channel
         int dsb_partner = 0;
         bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present){fRot.SetSideband(0);}
+        if(dsb_key_present)
+        {
+            fRot.SetSideband(0);
+        }
 
         sum = 0;
         for(std::size_t ap = 0; ap < nap; ap++)
@@ -179,7 +182,7 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
             sum += w * z;
         }
         //slot the summed data in at the appropriate location in the new grid
-        std::size_t mbd_bin = fMBDBinMap[ chan_index_map[ch] ];
+        std::size_t mbd_bin = fMBDBinMap[chan_index_map[ch]];
         fMBDWorkspace(mbd_bin) += sum; // += when adding to bin (to capture contribution from both halves of DSB channels)
     }
 
@@ -257,7 +260,10 @@ xpower_amp_type MHO_ComputePlotData::calc_sbd()
             //DSB channel
             int dsb_partner = 0;
             bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-            if(dsb_key_present){fRot.SetSideband(0);}
+            if(dsb_key_present)
+            {
+                fRot.SetSideband(0);
+            }
 
             sum = 0;
             for(std::size_t ap = 0; ap < nap; ap++)
@@ -346,7 +352,10 @@ phasor_type MHO_ComputePlotData::calc_segs()
             //DSB channel
             int dsb_partner = 0;
             bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-            if(dsb_key_present){fRot.SetSideband(0);}
+            if(dsb_key_present)
+            {
+                fRot.SetSideband(0);
+            }
 
             //make sure this plot gets the channel label:
             (&std::get< 0 >(phasor_segs))->InsertIndexLabelKeyValue(ch, chan_label_key, channel_labels[ch]);
@@ -481,13 +490,16 @@ void MHO_ComputePlotData::correct_vis()
             }
         }
     }
-    
-    //Finally, we need to determine if the user asked to have the visibilities summed/reduced along 
-    //a particular axis (to condense the output), typical use case is either none, or along the time-axis 
+
+    //Finally, we need to determine if the user asked to have the visibilities summed/reduced along
+    //a particular axis (to condense the output), typical use case is either none, or along the time-axis
     int xpower_output = fParamStore->GetAs< int >("/cmdline/xpower_output");
-    //do nothing, either we were not asked to attach this data to the output 
+    //do nothing, either we were not asked to attach this data to the output
     //or it does not need to be reduced in any way
-    if(xpower_output == -1 || xpower_output == 0){return;} 
+    if(xpower_output == -1 || xpower_output == 0)
+    {
+        return;
+    }
     if(0 < xpower_output && xpower_output <= 3)
     {
         MHO_Reducer< visibility_type, MHO_CompoundSum > vis_reducer;
@@ -495,14 +507,13 @@ void MHO_ComputePlotData::correct_vis()
         vis_reducer.ReduceAxis(xpower_output);
         bool init = vis_reducer.Initialize();
         bool exe = vis_reducer.Execute();
-        
+
         MHO_Reducer< weight_type, MHO_CompoundSum > wt_reducer;
         wt_reducer.SetArgs(fWeights);
         wt_reducer.ReduceAxis(xpower_output);
         init = wt_reducer.Initialize();
         exe = wt_reducer.Execute();
     }
-
 }
 
 xpower_amp_type MHO_ComputePlotData::calc_dr()
@@ -515,7 +526,10 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
     std::size_t drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(nap); //see MHO_DelayRate.cc
-    if(drsp_size < 256){drsp_size = 256;} //Empirically determined from FRNGE plots (see line 72 of make_plotdata.c)
+    if(drsp_size < 256)
+    {
+        drsp_size = 256;
+    } //Empirically determined from FRNGE plots (see line 72 of make_plotdata.c)
 
     ////////////////////////////////////////////////////////////////////////
 
@@ -579,7 +593,10 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
         //DSB channel
         int dsb_partner = 0;
         bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present){fRot.SetSideband(0);}
+        if(dsb_key_present)
+        {
+            fRot.SetSideband(0);
+        }
 
         for(std::size_t ap = 0; ap < nap; ap++)
         {
@@ -666,7 +683,10 @@ double MHO_ComputePlotData::calc_phase()
         //DSB channel
         int dsb_partner = 0;
         bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present){fRot.SetSideband(0);}
+        if(dsb_key_present)
+        {
+            fRot.SetSideband(0);
+        }
 
         std::complex< double > fringe_phasor = 0.0;
         double sumwt = 0.0;
@@ -805,7 +825,10 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
             //DSB channel
             int dsb_partner = 0;
             bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-            if(dsb_key_present){fRot.SetSideband(0);}
+            if(dsb_key_present)
+            {
+                fRot.SetSideband(0);
+            }
 
             sum = 0.0;
             for(int ap = 0; ap < nap; ap++)
@@ -817,8 +840,14 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
                 //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
 
-                if(net_sideband == "U"){total_usb_frac += w;}
-                if(net_sideband == "L"){total_lsb_frac += w;}
+                if(net_sideband == "U")
+                {
+                    total_usb_frac += w;
+                }
+                if(net_sideband == "L")
+                {
+                    total_lsb_frac += w;
+                }
 
                 //if(dsb_key_present){ w /= 2.0;} //use average usb/lsb weight for both DSB halves
                 sum += w * Z;
@@ -847,7 +876,7 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
     }
 
     //set up FFT and run
-    fFFTEngine.SetArgs(&Y);// &Y);
+    fFFTEngine.SetArgs(&Y); // &Y);
     fFFTEngine.DeselectAllAxes();
     fFFTEngine.SelectAxis(0);
     fFFTEngine.SetForward();
@@ -883,7 +912,7 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
 
         cp_spectrum[i] = Y[j] * sbfactor;
         Z = std::exp(-1.0 * cmplx_unit_I * (fSBDelay * (i - nl) * M_PI / (sbd_delta * 2.0 * nl)));
-        cp_spectrum[i] = Z  * cp_spectrum[i];
+        cp_spectrum[i] = Z * cp_spectrum[i];
     }
 
     //now have to tweak the section exported to the plot data
@@ -955,7 +984,7 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         msg_error("fringe", "cannot calculate plot data, data invalid" << eom);
         return;
     }
-    
+
     auto sbd_amp = calc_sbd();
     auto mbd_amp = calc_mbd();
     auto dr_amp = calc_dr();

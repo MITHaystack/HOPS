@@ -200,14 +200,10 @@ void MHO_ContainerFileInterface::ConvertObjectInStoreToJSON(MHO_ContainerStore& 
 }
 
 //also provides access to the raw bytes of table container data (for hops2flat)
-void MHO_ContainerFileInterface::ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, 
-                                 const MHO_UUID& obj_uuid,
-                                 mho_json& json_obj,
-                                 std::size_t& rank,
-                                 const char*& raw_data,
-                                 std::size_t& raw_data_byte_size,
-                                 std::string& raw_data_descriptor,
-                                 int level_of_detail)
+void MHO_ContainerFileInterface::ConvertObjectInStoreToJSONAndRaw(MHO_ContainerStore& store, const MHO_UUID& obj_uuid,
+                                                                  mho_json& json_obj, std::size_t& rank, const char*& raw_data,
+                                                                  std::size_t& raw_data_byte_size,
+                                                                  std::string& raw_data_descriptor, int level_of_detail)
 {
     std::vector< MHO_UUID > type_ids;
     store.GetAllTypeUUIDs(type_ids);
@@ -231,7 +227,7 @@ void MHO_ContainerFileInterface::ConvertObjectInStoreToJSONAndRaw(MHO_ContainerS
                         mho_json j = *(converter->second->GetJSON());
                         std::string object_uuid = it2->as_string();
                         json_obj[object_uuid] = j;
-                        
+
                         //raw data access (if not availble ptr will be null)
                         rank = converter->second->GetRank();
                         raw_data = converter->second->GetRawData();
@@ -243,6 +239,5 @@ void MHO_ContainerFileInterface::ConvertObjectInStoreToJSONAndRaw(MHO_ContainerS
         }
     }
 }
-
 
 } // namespace hops
