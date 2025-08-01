@@ -205,13 +205,12 @@ void MHO_BasicFringeFitter::Configure()
                 fOperatorToolbox.GetNOperatorsInCategory("postfit") << ")" << eom);
             fEnableCaching = true;
         }
-
         Cache();
-        
-
     }
-
     profiler_stop();
+
+    // std::cout<<"PARAMETERS = "<<std::endl;
+    // fParameterStore->Dump();
 }
 
 void MHO_BasicFringeFitter::Cache()
@@ -285,9 +284,6 @@ void MHO_BasicFringeFitter::Initialize()
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
     }
-
-    // std::cout<<"PARAMETERS = "<<std::endl;
-    // fParameterStore->Dump();
     profiler_stop();
 }
 
