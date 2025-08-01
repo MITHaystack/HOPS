@@ -40,7 +40,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
 
         /**
          * @brief set the axis to sub sample, and the stride at which samples are selected
-         * 
+         *
          * @param dimension_index Index of the dimension to set (must be less than array rank).
          * @param stride Stride at which samples are selected along the specified dimension.
          */
@@ -59,10 +59,9 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         }
 
     protected:
-
         /**
          * @brief Initializes in-place execution by calling InitializeOutOfPlace with workspace and returning its result.
-         * 
+         *
          * @param in Input array of type XArrayType*
          * @return Boolean indicating success/failure of initialization
          * @note This is a virtual function.
@@ -71,7 +70,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
 
         /**
          * @brief Executes operation in-place and updates input array from workspace.
-         * 
+         *
          * @param in Input array to be modified in-place.
          * @return Status of the execution operation.
          * @note This is a virtual function.
@@ -91,7 +90,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
 
         /**
          * @brief Initializes output array out-of-place using input array in.
-         * 
+         *
          * @param in Input array of type XArrayType
          * @param out Output array of type XArrayType
          * @return True if initialization is successful, false otherwise.
@@ -116,7 +115,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
 
         /**
          * @brief Function ExecuteOutOfPlace
-         * 
+         *
          * @param in (const XArrayType*)
          * @param out (XArrayType*)
          * @return Return value (bool)
@@ -191,10 +190,9 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         }
 
     private:
-
         /**
          * @brief Calculates output dimensions by dividing the specified dimension index by stride and returning the modified dimension array.
-         * 
+         *
          * @param in Input XArrayType object from which to calculate output dimensions.
          * @return Modified dimension array with the specified dimension divided by stride.
          */
@@ -207,7 +205,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
 
         /**
          * @brief Checks and conditionally resizes output array dimensions if they differ from input.
-         * 
+         *
          * @param dims Input dimension array to compare with current output dimensions.
          * @param out (XArrayType*)
          */
@@ -231,7 +229,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         //default...does nothing
         /**
          * @brief Sub-samples a specified axis of an input XArrayType and stores the result in output.
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param !in Input XArrayType to be sub-sampled
          * @param !out Output XArrayType after sub-sampling
@@ -243,7 +241,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
         /**
          * @brief Sub-samples a specified axis of an input XArrayType and stores the result in output
          * uses SFINAE to generate specialization for MHO_TableContainer types
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param in Input XArrayType to be sub-sampled
          * @param out Output XArrayType where results are stored

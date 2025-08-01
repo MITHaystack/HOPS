@@ -1,9 +1,9 @@
 //option parsing and help text library
 #include "CLI11.hpp"
 
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_MK4ScanConverterReversed.hh"
 #include "MHO_Message.hh"
-#include "MHO_DirectoryInterface.hh"
 
 //wraps the MPI interface (in case it is not enabled)
 #include "MHO_MPIInterfaceWrapper.hh"
@@ -145,7 +145,7 @@ int main(int argc, char** argv)
             {
                 msg_status("main", "process_id: " << process_id << " converting scan directory: " << allDirs[i] << ", to "
                                                   << scanOutputDirs[i] << eom);
-                                                  
+
                 MHO_MK4ScanConverterReversed converter;
                 converter.ProcessScan(allDirs[i], scanOutputDirs[i]);
             }

@@ -20,9 +20,7 @@ namespace hops
 class MHO_PassbandBuilder: public MHO_OperatorBuilder
 {
     public:
-
-        MHO_PassbandBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_PassbandBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_PassbandBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                             MHO_ParameterStore* pstore = nullptr)
@@ -32,7 +30,7 @@ class MHO_PassbandBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and initializes the passband operator and adds to the toolbox
-         * 
+         *
          * @return bool indicating success/failure
          */
         virtual bool Build() override;

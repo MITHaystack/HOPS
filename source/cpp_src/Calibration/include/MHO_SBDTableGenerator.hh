@@ -37,7 +37,7 @@ class MHO_SBDTableGenerator: public MHO_TransformingOperator< visibility_type, s
 
         /**
          * @brief Initializes SBD table generator with raw visibilities and resizes output if needed.
-         * 
+         *
          * @param in Input raw visibilities
          * @param out Output single-band-delay table (workspace/output for normfx)
          * @return True if initialization was successful, false otherwise
@@ -46,7 +46,7 @@ class MHO_SBDTableGenerator: public MHO_TransformingOperator< visibility_type, s
         virtual bool InitializeImpl(const XArgType1* in, XArgType2* out);
         /**
          * @brief Checks if initialized and returns true if so, false otherwise.
-         * 
+         *
          * @param in Input raw visibilities
          * @param out Output single-band-delay table workspace
          * @return Boolean indicating whether the object is initialized
@@ -62,7 +62,7 @@ class MHO_SBDTableGenerator: public MHO_TransformingOperator< visibility_type, s
         //function to resize the sbd array if needed -- no double-sideband data
         /**
          * @brief Checks and conditionally resizes output sbd array if needed for NormFX processing.
-         * 
+         *
          * @param in Input raw visibilities
          * @param out Single-band-delay table (workspace/output for NormFX)
          */

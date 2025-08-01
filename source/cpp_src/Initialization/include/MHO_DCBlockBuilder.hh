@@ -20,9 +20,7 @@ namespace hops
 class MHO_DCBlockBuilder: public MHO_OperatorBuilder
 {
     public:
-
-        MHO_DCBlockBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_DCBlockBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_DCBlockBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                            MHO_ParameterStore* pstore = nullptr)
@@ -32,7 +30,7 @@ class MHO_DCBlockBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and adds MHO_DCBlock operator to the toolbox.
-         * 
+         *
          * @return No return value.
          */
         virtual bool Build() override;

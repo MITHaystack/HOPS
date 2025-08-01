@@ -15,12 +15,11 @@ namespace hops
  *@file MHO_ElementTypes.hh
  *@date Tue Apr 12 16:15:02 2022 -0400
  *@brief typedefs and using statements for table container data element types
- * global definition of floating point types for use in data containers. 
+ * global definition of floating point types for use in data containers.
  * for in-memory use we use double precision
  * for storage format (converted from difx) we use single float precision
  *@author J. Barrett - barrettj@mit.edu
  */
-
 
 typedef double VFP_TYPE;
 typedef double WFP_TYPE;

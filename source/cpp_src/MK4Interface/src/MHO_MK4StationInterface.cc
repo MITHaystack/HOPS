@@ -501,12 +501,15 @@ void MHO_MK4StationInterface::FillPCalArray(const std::string& pol, int pol_idx,
         name_key += pol;
         std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, name_key, channel_name);
         std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, index_key, ch_loc);
-        std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "accumulator_start_index", start);
+        std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "accumulator_start_index",
+                                                                      start);
         std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "net_sideband", sb);
         std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "sky_freq", sky_freq);
         std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "bandwidth", bandwidth);
-        std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "pcal_interval_MHz", pcal_spacing);
-        std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "sample_period", sample_period);
+        std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "pcal_interval_MHz",
+                                                                      pcal_spacing);
+        std::get< MTPCAL_FREQ_AXIS >(*pc).InsertIntervalLabelKeyValue(channel_start, channel_stop, "sample_period",
+                                                                      sample_period);
     }
 }
 

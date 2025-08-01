@@ -29,7 +29,7 @@ class MHO_VisibilityChannelizer: public MHO_TransformingOperator< uch_visibility
     protected:
         /**
          * @brief Reorganizes input visibility data into output array by channel and resizes it accordingly.
-         * 
+         *
          * @param in Input visibility store data (rank = 3)
          * @param out Output visibility store data (rank = 4)
          * @return True if initialization is successful, false otherwise
@@ -38,7 +38,7 @@ class MHO_VisibilityChannelizer: public MHO_TransformingOperator< uch_visibility
         virtual bool InitializeImpl(const uch_visibility_store_type* in, visibility_store_type* out);
         /**
          * @brief Reorganizes visibility data into channelized format and updates channel labels.
-         * 
+         *
          * @param in Input visibility store data (rank = 3)
          * @param out Output channelized visibility store data
          * @return True if execution is successful, false otherwise

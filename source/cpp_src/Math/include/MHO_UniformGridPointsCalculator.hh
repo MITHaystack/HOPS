@@ -30,19 +30,17 @@ class MHO_UniformGridPointsCalculator
 
         /**
          * @brief Setter for epsilon
-         * 
+         *
          * @param eps Input epsilon value of type double
          */
         void SetEpsilon(double eps) { fEpsilon = std::fabs(eps); };
 
         /**
          * @brief Setter for default grid points
-         * 
+         *
          * @param n Input number of grid points
          */
         void SetDefaultGridPoints(std::size_t n) { fDefaultGridPoints = n; };
-
-
 
         /**
          * @brief pre-processing step -- makes sure the points are unique given some epsilon
@@ -52,25 +50,23 @@ class MHO_UniformGridPointsCalculator
          * @param out_pts Output vector of unique points
          * @param index_map Map from input index to output index
          */
-        void GetUniquePoints(const std::vector<double>& in_pts, double eps, 
-                        std::vector<double>& out_pts, 
-                        std::map< std::size_t, std::size_t >& index_map) const;
-
+        void GetUniquePoints(const std::vector< double >& in_pts, double eps, std::vector< double >& out_pts,
+                             std::map< std::size_t, std::size_t >& index_map) const;
 
         /**
          * @brief Setter for points - expects points to be given in increasing order
-         * 
+         *
          * @param pts Input points vector
          */
         void SetPoints(const std::vector< double >& pts);
-        
+
         /**
          * @brief Setter for points - expects points to be given in increasing order
-         * 
+         *
          * @param pts Input vector of double values representing grid points
          */
         void SetPoints(const double* pts, std::size_t npts);
-        
+
         /**
          * @brief Calculates uniform grid points and adjusts point count until spacing error is resolved.
          */
@@ -78,59 +74,58 @@ class MHO_UniformGridPointsCalculator
 
         /**
          * @brief Getter for grid points
-         * 
+         *
          * @param grid_pts (std::vector< double >*)
          */
         void GetGridPoints(std::vector< double >* grid_pts); //fill vector with grid points
 
         /**
          * @brief Getter for grid start
-         * 
+         *
          * @return The starting point of the grid as a double.
          */
         double GetGridStart() const { return fStart; };
 
         /**
          * @brief Getter for grid spacing - the distance between points on the uniform grid
-         * 
+         *
          * @return Current grid spacing as a double.
          */
         double GetGridSpacing() const { return fSpacing; };
 
         /**
          * @brief Getter for grid average
-         * 
+         *
          * @return The average point location as a double.
          */
         double GetGridAverage() const { return fAverageLocation; }
 
         /**
          * @brief Getter for spread - the grid spread about the average
-         * 
+         *
          * @return Current spread value as a double
          */
         double GetSpread() const { return fSpread; }
 
         /**
          * @brief Getter for the number of points in the uniform grid
-         * 
+         *
          * @return Number of grid points as std::size_t.
          */
         std::size_t GetNGridPoints() const { return fNGridPoints; };
 
         /**
          * @brief Getter for spacing error status
-         * 
+         *
          * @return Boolean indicating whether there is a spacing error.
          */
         bool GetSpacingErrorStatus() const { return fSpacingError; };
-
 
         /**
          * @brief Getter for grid index map
          * maps the indexes of the original points to their new locations in the
          * uniform grid array
-         * 
+         *
          * @return std::pair<std::size_t, std::size_t representing the index mapping.
          */
         std::map< std::size_t, std::size_t > GetGridIndexMap() { return fIndexMap; }
@@ -141,8 +136,8 @@ class MHO_UniformGridPointsCalculator
          * based on original implementation (freq_spacing.c), default max number of points is 8192
          * @param max_pts Maximum number of frequency points to consider.
          */
-        void Calculate_v1(int max_pts = 8192); 
-        
+        void Calculate_v1(int max_pts = 8192);
+
         /**
          * @brief Calculates uniform grid points without enforcing power-of-2 size - untested, not used
          */

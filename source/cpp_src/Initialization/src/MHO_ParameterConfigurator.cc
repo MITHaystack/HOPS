@@ -245,26 +245,26 @@ void MHO_ParameterConfigurator::SetCompoundParameter(std::string path, const mho
     }
 }
 
-std::vector< std::string > 
-MHO_ParameterConfigurator::LogicalIntersection(std::vector< std::string >& values1, std::vector< std::string>& values2) const
+std::vector< std::string > MHO_ParameterConfigurator::LogicalIntersection(std::vector< std::string >& values1,
+                                                                          std::vector< std::string >& values2) const
 {
     MHO_ChannelIndexLabeler labeler;
 
     //use integer vectors as channel label proxies, since they are more well behaved than strings
-    std::vector<uint64_t> vec1;
-    for(std::size_t i=0; i<values1.size(); i++)
+    std::vector< uint64_t > vec1;
+    for(std::size_t i = 0; i < values1.size(); i++)
     {
         uint64_t code = labeler.DecodeLabelToValue(values1[i]);
         //std::cout<<values1[i]<<", "<<code<<std::endl;
-        vec1.push_back( code );
+        vec1.push_back(code);
     }
 
-    std::vector<uint64_t> vec2;
-    for(std::size_t i=0; i<values2.size(); i++)
+    std::vector< uint64_t > vec2;
+    for(std::size_t i = 0; i < values2.size(); i++)
     {
         uint64_t code = labeler.DecodeLabelToValue(values2[i]);
         //std::cout<<values2[i]<<", "<<code<<std::endl;
-        vec2.push_back( code );
+        vec2.push_back(code);
     }
 
     std::vector< uint64_t > intermediate_result;
@@ -272,21 +272,17 @@ MHO_ParameterConfigurator::LogicalIntersection(std::vector< std::string >& value
     std::sort(vec1.begin(), vec1.end());
     std::sort(vec2.begin(), vec2.end());
     // Compute the intersection
-    std::set_intersection(
-        vec1.begin(), vec1.end(),
-        vec2.begin(), vec2.end(),
-        std::back_inserter(intermediate_result)
-    );
+    std::set_intersection(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(), std::back_inserter(intermediate_result));
     std::sort(intermediate_result.begin(), intermediate_result.end());
 
     std::vector< std::string > result;
-    for(std::size_t i=0; i<intermediate_result.size(); i++)
+    for(std::size_t i = 0; i < intermediate_result.size(); i++)
     {
         std::string label = labeler.EncodeValueToLabel(intermediate_result[i]);
         //std::cout<<"result: "<<label<<", "<<intermediate_result[i]<<std::endl;
-        result.push_back( label );
+        result.push_back(label);
     }
-    
+
     return result;
 }
 

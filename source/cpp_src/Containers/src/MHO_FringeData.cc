@@ -177,7 +177,7 @@ int MHO_FringeData::WriteDataObjects(std::string filename)
         {
             tags.AddObjectUUID(phasor_data->GetObjectUUID());
         }
-        
+
         inter.Write(tags, "tags");
         if(vis_data != nullptr)
         {

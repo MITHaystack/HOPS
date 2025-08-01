@@ -1,23 +1,21 @@
-#include <iostream>
-#include <string>
-#include <vector>
 #include <algorithm>
-#include <set>
-#include <utility>
-#include <map>
 #include <getopt.h>
+#include <iostream>
+#include <map>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
 
-#include "MHO_ContainerStore.hh"
 #include "MHO_ContainerFileInterface.hh"
+#include "MHO_ContainerStore.hh"
 
-#include "MHO_Tokenizer.hh"
-#include "MHO_MK4VexInterface.hh"
 #include "MHO_MK4CorelInterface.hh"
 #include "MHO_MK4CorelInterfaceReversed.hh"
-
+#include "MHO_MK4VexInterface.hh"
+#include "MHO_Tokenizer.hh"
 
 using namespace hops;
-
 
 int main(int argc, char** argv)
 {
@@ -26,26 +24,28 @@ int main(int argc, char** argv)
     std::string cor_filename;
     std::string root_filename;
 
-    static struct option longOptions[] = {{"help", no_argument, 0, 'h'},
-                                          {"hops root file", required_argument, 0, 'r'},
-                                          {"hops .cor file", required_argument, 0, 'f'}};
+    static struct option longOptions[] = {
+        {"help",           no_argument,       0, 'h'},
+        {"hops root file", required_argument, 0, 'r'},
+        {"hops .cor file", required_argument, 0, 'f'}
+    };
 
     static const char* optString = "hr:f:";
 
     while(true)
     {
         char optId = getopt_long(argc, argv, optString, longOptions, NULL);
-        if (optId == -1)
+        if(optId == -1)
             break;
         switch(optId)
         {
-            case ('h'):  // help
+            case('h'): // help
                 std::cout << usage << std::endl;
                 return 0;
-            case ('r'):
+            case('r'):
                 root_filename = std::string(optarg);
                 break;
-            case ('f'):
+            case('f'):
                 cor_filename = std::string(optarg);
                 break;
             default:
@@ -57,11 +57,10 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
 
-
     MHO_ContainerStore conStore;
     MHO_ContainerFileInterface conInter;
     conInter.SetFilename(cor_filename);
-    conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file    
+    conInter.PopulateStoreFromFile(conStore); //reads in all the objects in a file
 
     //evidently there are no double precision objects, so we look for the single-precision 'storage types'
     std::size_t n_vis = conStore.GetNObjects< visibility_store_type >();

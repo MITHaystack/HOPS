@@ -32,7 +32,7 @@ template< class XArgType1, class XArgType2 > class MHO_TransformingOperator: pub
 
         /**
          * @brief Setter for args (operation transforms the original type into another)
-         * 
+         *
          * @param in Pointer to constant XArgType1
          * @param out Pointer to XArgType2
          * @note This is a virtual function.
@@ -41,7 +41,7 @@ template< class XArgType1, class XArgType2 > class MHO_TransformingOperator: pub
 
         /**
          * @brief Initializes the system by calling InitializeImpl with arguments from fArgs.
-         * 
+         *
          * @return bool indicating success/failure of initialization.
          * @note This is a virtual function.
          */
@@ -49,7 +49,7 @@ template< class XArgType1, class XArgType2 > class MHO_TransformingOperator: pub
 
         /**
          * @brief Executes transformation using provided arguments.
-         * 
+         *
          * @return bool indicating success/failure of execution.
          * @note This is a virtual function.
          */
@@ -58,7 +58,7 @@ template< class XArgType1, class XArgType2 > class MHO_TransformingOperator: pub
     protected:
         /**
          * @brief Initializes implementation using input and output arguments.
-         * 
+         *
          * @param in Input argument of type const XArgType1*
          * @param out Output argument of type XArgType2*
          * @return Boolean indicating success/failure of initialization.
@@ -68,7 +68,7 @@ template< class XArgType1, class XArgType2 > class MHO_TransformingOperator: pub
 
         /**
          * @brief Executes an operation transforming input type to output type.
-         * 
+         *
          * @param in Input data of type XArgType1
          * @param out Output data of type XArgType2
          * @return True if execution is successful, false otherwise.

@@ -36,18 +36,18 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Setter for weights
-         * 
+         *
          * @param weights Input weight values of type weight_type
          */
         void SetWeights(weight_type* weights) { fWeights = weights; };
 
         /**
          * @brief Setter for passband
-         * 
+         *
          * @param first Lower frequency limit in Hz
          * @param second Upper frequency limit in Hz
          * @details  if second < first then this operation is an 'exclusion'
-         * which tells us this is a chunk of spectrum to cut out, otherwise 
+         * which tells us this is a chunk of spectrum to cut out, otherwise
          * if first < second, then it is an inclusion, and everything outside will be cut
          * (this is the legacy behavior)
          */
@@ -75,7 +75,7 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
     protected:
         /**
          * @brief Initializes visibility_type pointer in-place and returns true.
-         * 
+         *
          * @param in Pointer to visibility_type that will be initialized in-place.
          * @return Boolean indicating success (always true).
          * @note This is a virtual function.
@@ -83,7 +83,7 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeInPlace(visibility_type* in) override;
         /**
          * @brief Initializes out-of-place visibility data.
-         * 
+         *
          * @param in Input visibility_type pointer
          * @param out Output visibility_type pointer
          * @return True if initialization is successful.
@@ -93,7 +93,7 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Checks and excludes specific passbands within each channel of visibility data.
-         * 
+         *
          * @param in Input visibility_type* containing channel axis.
          * @return bool indicating successful exclusion operation.
          * @note This is a virtual function.
@@ -101,7 +101,7 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(visibility_type* in) override;
         /**
          * @brief Copies input visibility data and executes in-place processing.
-         * 
+         *
          * @param in Input visibility_type data to be copied.
          * @param out (visibility_type*)
          * @return Result of ExecuteInPlace operation on out parameter.

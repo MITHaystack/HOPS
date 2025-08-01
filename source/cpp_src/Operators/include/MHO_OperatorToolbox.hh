@@ -32,7 +32,7 @@ class MHO_OperatorToolbox
         //insertion
         /**
          * @brief Adds an operator to the toolbox with optional replacement if duplicate name exists.
-         * 
+         *
          * @param op Pointer to the MHO_Operator to be added
          * @param name Name of the operator (duplicate names can be replaced)
          * @param category Category under which the operator will be stored
@@ -55,7 +55,7 @@ class MHO_OperatorToolbox
 
         /**
          * @brief Getter for operator - retrieval by name as generic operator, returns nullptr if missing
-         * 
+         *
          * @param name Operator name to search for in the map
          * @return Pointer to MHO_Operator or nullptr if not found
          */
@@ -72,7 +72,7 @@ class MHO_OperatorToolbox
 
         /**
          * @brief Getter for an operator by name
-         * 
+         *
          * @param name Operator name to search for in the map
          * @return Pointer to MHO_Operator or nullptr if not found
          */
@@ -84,7 +84,7 @@ class MHO_OperatorToolbox
 
         /**
          * @brief Getter for operator, retrieval by name, with cast to specified type (XOperatorType), if missing returns nullptr
-         * 
+         *
          * @param name Operator name to retrieve
          * @return Pointer to operator cast as XOperatorType or nullptr if not found/cannot be cast
          */
@@ -101,7 +101,7 @@ class MHO_OperatorToolbox
 
         /**
          * @brief Getter for number of operators
-         * 
+         *
          * @return Size of fOperators vector as std::size_t
          */
         std::size_t GetNOperators() { return fOperators.size(); }
@@ -109,7 +109,7 @@ class MHO_OperatorToolbox
         //get all operators in the toolbox
         /**
          * @brief Getter for all operators (vector of pointers)
-         * 
+         *
          * @return std::vector<MHO_Operator* sorted list of operators
          */
         std::vector< MHO_Operator* > GetAllOperators()
@@ -127,7 +127,7 @@ class MHO_OperatorToolbox
 
         /**
          * @brief Getter for operators by priority range - get all operators within the priority range [low,high)
-         * 
+         *
          * @param lower_limit Lower bound of priority range
          * @param upper_limit Upper bound of priority range
          * @return Vector of MHO_Operator pointers sorted by priority
@@ -152,7 +152,7 @@ class MHO_OperatorToolbox
         //get all operators by category
         /**
          * @brief Getter for operators by category
-         * 
+         *
          * @param category The category of operators to retrieve.
          * @return A vector of MHO_Operator pointers sorted by priority.
          */
@@ -178,7 +178,7 @@ class MHO_OperatorToolbox
     private:
         /**
          * @brief Function RemoveOperator - removes operator from the toolbox
-         * 
+         *
          * @param name (const std::string&)
          */
         void RemoveOperator(const std::string& name)

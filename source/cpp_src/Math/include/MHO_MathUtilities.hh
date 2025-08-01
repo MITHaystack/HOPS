@@ -28,10 +28,10 @@ class MHO_MathUtilities
         virtual ~MHO_MathUtilities(){};
 
         //ported from hops3 c libraries
-        
+
         /**
          * @brief Clamps a value between lower and upper bounds.
-         * 
+         *
          * @param value The input value to be clamped.
          * @param lower The lower bound for clamping.
          * @param upper The upper bound for clamping.
@@ -41,7 +41,7 @@ class MHO_MathUtilities
         static double dwin(double value, double lower, double upper);
         /**
          * @brief Calculates parabola parameters and maximum x, amplitude values within a range.
-         * 
+         *
          * @param y[3] Input coordinates for parabola calculation
          * @param lower Lower bound of the range
          * @param upper Upper bound of the range
@@ -52,20 +52,20 @@ class MHO_MathUtilities
          * @note This is a static function.
          */
         static int parabola(double y[3], double lower, double upper, double* x_max, double* amp_max, double q[3]);
-        
+
         /**
          * @brief Calculates the inverse of a 3x3 matrix and stores it in ainv.
-         * 
+         *
          * @param a[3][3] Input 3x3 matrix to be inverted
          * @param ainv[3][3] Parameter description
          * @return Non-zero if input matrix is singular, zero otherwise
          * @note This is a static function.
          */
         static int minvert3(double a[3][3], double ainv[3][3]);
-        
+
         /**
          * @brief Performs linear interpolation between two points and returns the interpolated value.
-         * 
+         *
          * @param coord1 Coordinate of the first point
          * @param value1 Value at the first coordinate
          * @param coord2 Coordinate of the second point
@@ -75,11 +75,11 @@ class MHO_MathUtilities
          * @return 0 if successful, -1 and error message on failure
          * @note This is a static function.
          */
-        static int linterp (double coord1, double value1, double coord2, double value2, double coord, double *value);
-        
+        static int linterp(double coord1, double value1, double coord2, double value2, double coord, double* value);
+
         /**
          * @brief Calculates average phase from start to stop using given coordinates and values.
-         * 
+         *
          * @param start Starting point for averaging
          * @param stop Ending point for averaging
          * @param coords Array of coordinate points
@@ -92,12 +92,13 @@ class MHO_MathUtilities
          * @return 0 on success, -1 on error
          * @note This is a static function.
          */
-        static int ap_mean(double start, double stop, double *coords, double *val1, double *val2, int n, int *nstart, double *result1, double *result2);
+        static int ap_mean(double start, double stop, double* coords, double* val1, double* val2, int n, int* nstart,
+                           double* result1, double* result2);
 
         //returns the average of the values in a vector
         /**
          * @brief Calculates the average of values in a vector.
-         * 
+         *
          * @param vec Input vector of doubles
          * @return Average value as double
          * @note This is a static function.
@@ -107,7 +108,7 @@ class MHO_MathUtilities
         //returns the average of the values in a vector assuming they are angles (radians)
         /**
          * @brief Calculates the average angle in radians from a vector of angles.
-         * 
+         *
          * @param vec Input vector of angles in radians.
          * @return Average angle in radians.
          * @note This is a static function.
@@ -116,7 +117,7 @@ class MHO_MathUtilities
 
         /**
          * @brief Calculates lower and upper frequency limits for a given channel based on sky frequency, bandwidth, and net sideband.
-         * 
+         *
          * @param sky_freq Input sky frequency in MHz
          * @param bandwidth Bandwidth of the channel in MHz
          * @param net_sideband Network sideband ('U' for upper, 'L' for lower)
@@ -162,7 +163,6 @@ class MHO_MathUtilities
         template< typename XValueType >
         static int FindIntersection(XValueType a, XValueType b, XValueType c, XValueType d, XValueType result[2])
         {
-
 
             XValueType arr[4];
             int index[4];

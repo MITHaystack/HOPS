@@ -54,5 +54,4 @@ and is a work in progress.
 - Lindy Blackburn
 
 
-
 > This list is non-exhaustive and reflects major contributions. 

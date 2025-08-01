@@ -53,7 +53,7 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
     protected:
         /**
          * @brief Initializes in-place transformation and checks input array validity.
-         * 
+         *
          * @param in Input array pointer for initialization.
          * @return Boolean indicating successful initialization.
          * @note This is a virtual function.
@@ -61,7 +61,7 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
         virtual bool InitializeInPlace(XArrayType* in) override;
         /**
          * @brief Function ExecuteInPlace, does the FFT on the array in-place
-         * 
+         *
          * @param in (XArrayType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -69,7 +69,7 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
         virtual bool ExecuteInPlace(XArrayType* in) override;
         /**
          * @brief Initializes out-of-place FFT by checking input/output array sizes and resizing if necessary.
-         * 
+         *
          * @param in Const reference to input XArrayType
          * @param out Reference to output XArrayType
          * @return Boolean indicating successful initialization
@@ -78,7 +78,7 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
         virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override;
         /**
          * @brief Copies input array to output and executes in-place FFT in the output array
-         * 
+         *
          * @param in Const reference to input array.
          * @param out (XArrayType*)
          * @return Boolean indicating success of ExecuteInPlace operation.
@@ -94,7 +94,7 @@ class MHO_FastFourierTransform: public MHO_UnaryOperator< MHO_NDArrayWrapper< st
 
 /**
  * @brief Function MHO_FastFourierTransform<XFloatType>::InitializeInPlace
- * 
+ *
  * @param in (XArrayType*)
  * @return Return value (template< typename XFloatType > bool MHO_FastFourierTransform< XFloatType)
  */
@@ -117,7 +117,7 @@ template< typename XFloatType > bool MHO_FastFourierTransform< XFloatType >::Ini
 
 /**
  * @brief Function MHO_FastFourierTransform<XFloatType>::InitializeOutOfPlace
- * 
+ *
  * @param in (const XArrayType*)
  * @param out (XArrayType*)
  * @return Return value (bool MHO_FastFourierTransform< XFloatType)

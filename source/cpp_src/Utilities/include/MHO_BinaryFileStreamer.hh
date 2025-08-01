@@ -32,7 +32,6 @@ namespace hops
  */
 class MHO_BinaryFileStreamer;
 
-
 /**
  * @brief Class MHO_BinaryFileStreamerSingleType - template class for a single-type streamer, generic for most POD types
  */
@@ -60,7 +59,7 @@ template< typename XValueType > class MHO_BinaryFileStreamerSingleType
 
         /**
          * @brief Getter for stream (std::fstream) object
-         * 
+         *
          * @return Reference to std::fstream object.
          * @note This is a virtual function.
          */
@@ -74,7 +73,7 @@ template< typename XValueType > class MHO_BinaryFileStreamerSingleType
 
         /**
          * @brief Increments the total bytes written by the provided value.
-         * 
+         *
          * @param Value to add to the total bytes written (uint64_t)
          * @note This is a virtual function.
          */
@@ -82,7 +81,7 @@ template< typename XValueType > class MHO_BinaryFileStreamerSingleType
 
         /**
          * @brief Getter for nbytes written
-         * 
+         *
          * @return Number of bytes written as uint64_t.
          * @note This is a virtual function.
          */
@@ -91,13 +90,12 @@ template< typename XValueType > class MHO_BinaryFileStreamerSingleType
     protected:
         /**
          * @brief Returns a reference to the current instance of MHO_BinaryFileStreamer.
-         * 
+         *
          * @return MHO_BinaryFileStreamer&: Reference to the current instance
          * @note This is a virtual function.
          */
         virtual MHO_BinaryFileStreamer& Self() = 0;
 };
-
 
 /**
  * @brief Class MHO_BinaryFileStreamerSingleType<std::string>
@@ -134,7 +132,7 @@ template<> class MHO_BinaryFileStreamerSingleType< std::string >
 
         /**
          * @brief Getter for fstream object
-         * 
+         *
          * @return Reference to std::fstream object
          * @note This is a virtual function.
          */
@@ -147,14 +145,14 @@ template<> class MHO_BinaryFileStreamerSingleType< std::string >
         virtual void ResetByteCount() = 0;
         /**
          * @brief Increments fNBytesWritten.
-         * 
+         *
          * @param param1 Number of bytes to add to fNBytesWritten.
          * @note This is a virtual function.
          */
         virtual void AddBytesWritten(uint64_t) = 0;
         /**
          * @brief Getter for nbytes written
-         * 
+         *
          * @return The total number of bytes written as a uint64_t.
          * @note This is a virtual function.
          */
@@ -163,13 +161,12 @@ template<> class MHO_BinaryFileStreamerSingleType< std::string >
     protected:
         /**
          * @brief Returns a reference to the current instance of MHO_BinaryFileStreamer.
-         * 
+         *
          * @return MHO_BinaryFileStreamer&: Reference to the current instance
          * @note This is a virtual function.
          */
         virtual MHO_BinaryFileStreamer& Self() = 0;
 };
-
 
 /**
  * @brief Class MHO_BinaryFileStreamerSingleType<mho_json>
@@ -220,7 +217,7 @@ template<> class MHO_BinaryFileStreamerSingleType< mho_json >
 
         /**
          * @brief Getter for fstream object
-         * 
+         *
          * @return Reference to std::fstream object.
          * @note This is a virtual function.
          */
@@ -233,14 +230,14 @@ template<> class MHO_BinaryFileStreamerSingleType< mho_json >
         virtual void ResetByteCount() = 0;
         /**
          * @brief Increments fNBytesWritten
-         * 
+         *
          * @param param1 Number of bytes to add to fNBytesWritten.
          * @note This is a virtual function.
          */
         virtual void AddBytesWritten(uint64_t) = 0;
         /**
          * @brief Getter for nbytes written
-         * 
+         *
          * @return The total number of bytes written as a uint64_t.
          * @note This is a virtual function.
          */
@@ -249,7 +246,7 @@ template<> class MHO_BinaryFileStreamerSingleType< mho_json >
     protected:
         /**
          * @brief Returns a reference to the current instance of MHO_BinaryFileStreamer.
-         * 
+         *
          * @return MHO_BinaryFileStreamer&: Reference to the current instance
          * @note This is a virtual function.
          */
@@ -262,11 +259,10 @@ template<> class MHO_BinaryFileStreamerSingleType< mho_json >
  */
 template< typename... XValueTypeS > class MHO_BinaryFileStreamerMultiType;
 
-
 /**
  * @brief Class MHO_BinaryFileStreamerMultiType<XValueType>
  * declare the specialization for the base case of the recursion (in which the parameter XValueType is just a single type)
- * 
+ *
  * @tparam XValueTypeS Template parameter XValueTypeS
  */
 template< typename XValueType >
@@ -288,7 +284,6 @@ typedef MHO_BinaryFileStreamerMultiType< bool, char, unsigned char, short, unsig
                                          std::complex< float >, std::complex< double >, std::complex< long double >,
                                          std::string, mho_json >
     MHO_BinaryFileStreamerBasicTypes;
-
 
 /**
  * @brief Class MHO_BinaryFileStreamer
@@ -327,7 +322,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
 
         /**
          * @brief Getter for fstream object
-         * 
+         *
          * @return Reference to std::fstream& representing the current file stream.
          * @note This is a virtual function.
          */
@@ -335,7 +330,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
 
         /**
          * @brief Getter for fstream object
-         * 
+         *
          * @return Reference to std::fstream object.
          * @note This is a virtual function.
          */
@@ -349,7 +344,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
 
         /**
          * @brief Increments the total bytes written by the given amount.
-         * 
+         *
          * @param b The number of bytes to add to the total.
          * @note This is a virtual function.
          */
@@ -357,7 +352,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
 
         /**
          * @brief Getter for N bytes written
-         * 
+         *
          * @return The total number of bytes written as a uint64_t.
          * @note This is a virtual function.
          */
@@ -368,7 +363,7 @@ class MHO_BinaryFileStreamer: public MHO_FileStreamer, public MHO_BinaryFileStre
 
         /**
          * @brief Returns a reference to the current instance of MHO_BinaryFileStreamer.
-         * 
+         *
          * @return MHO_BinaryFileStreamer&: Reference to the current instance
          */
         MHO_BinaryFileStreamer& Self() override { return *this; }

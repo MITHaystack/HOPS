@@ -1,6 +1,6 @@
 #include "MHO_MultitonePhaseCorrection.hh"
-#include "MHO_MathUtilities.hh"
 #include "MHO_BitReversalPermutation.hh"
+#include "MHO_MathUtilities.hh"
 
 #include "MHO_Clock.hh"
 
@@ -54,18 +54,15 @@ MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection()
     fWeights = nullptr;
 
     fPCData = nullptr;
-
 };
 
 MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection(){};
 
-
-void 
-MHO_MultitonePhaseCorrection::SetMultitonePCData(multitone_pcal_type* pcal)
+void MHO_MultitonePhaseCorrection::SetMultitonePCData(multitone_pcal_type* pcal)
 {
     if(pcal != nullptr)
     {
-        fPCData = pcal; 
+        fPCData = pcal;
         //TODO FIXME --- we need to interpolate the pcal data in the same way as pcal_inter.c
         //InterpolatePCData();
     }
@@ -73,13 +70,13 @@ MHO_MultitonePhaseCorrection::SetMultitonePCData(multitone_pcal_type* pcal)
 
 void MHO_MultitonePhaseCorrection::InterpolatePCData(double pcal_minus_visib_toffset)
 {
-    //This function is implemented to mimic the time-interpolation of pcal tones 
-    //as done in pcal_inter.c by the ap_mean function 
-    //This interpolation is mainly needed when a station has really unstable p-cal 
-    
-    //There are some slight differences between this implementation and the original 
-    //which leads to slightly different behavior. 
-    //TODO FIXME...determine the exact differences between the original impl. and this code and 
+    //This function is implemented to mimic the time-interpolation of pcal tones
+    //as done in pcal_inter.c by the ap_mean function
+    //This interpolation is mainly needed when a station has really unstable p-cal
+
+    //There are some slight differences between this implementation and the original
+    //which leads to slightly different behavior.
+    //TODO FIXME...determine the exact differences between the original impl. and this code and
     //get the output to be as similar as possible, also understand the ap_period offset
 
     //get axis info
@@ -92,16 +89,19 @@ void MHO_MultitonePhaseCorrection::InterpolatePCData(double pcal_minus_visib_tof
 
     if(naps <= 1)
     {
-        msg_warn("calibration", "pcal data will not be interpolated, not enough APs "<< eom);
+        msg_warn("calibration", "pcal data will not be interpolated, not enough APs " << eom);
         return;
     }
 
     double ap_length = pcal_time_ax->at(1) - pcal_time_ax->at(0);
-    std::vector< double > pc_real; pc_real.resize(naps);
-    std::vector< double > pc_imag; pc_imag.resize(naps);
-    std::vector< double > time_arr; time_arr.resize(naps);
+    std::vector< double > pc_real;
+    pc_real.resize(naps);
+    std::vector< double > pc_imag;
+    pc_imag.resize(naps);
+    std::vector< double > time_arr;
+    time_arr.resize(naps);
 
-    for(std::size_t i=0; i<naps; i++)
+    for(std::size_t i = 0; i < naps; i++)
     {
         time_arr[i] = pcal_time_ax->at(i) + pcal_minus_visib_toffset;
     }
@@ -113,13 +113,13 @@ void MHO_MultitonePhaseCorrection::InterpolatePCData(double pcal_minus_visib_tof
         {
             //interpolate over the time axis for this tone...to do this we
             //modify the pc data using interpolation as done in pcal_interp.c using the function ap_mean.c
-            for(std::size_t ap=0; ap<naps; ap++)
+            for(std::size_t ap = 0; ap < naps; ap++)
             {
-                std::complex<double> val = fPCData->at(pc_pol, ap, pc_tone);
+                std::complex< double > val = fPCData->at(pc_pol, ap, pc_tone);
                 pc_real[ap] = std::real(val);
                 pc_imag[ap] = std::imag(val);
             }
-    
+
             int nstart = 0;
             for(std::size_t ap = 0; ap < naps; ap++)
             {
@@ -127,16 +127,16 @@ void MHO_MultitonePhaseCorrection::InterpolatePCData(double pcal_minus_visib_tof
                 double stop = start + ap_length;
                 double realval = 0;
                 double imagval = 0;
-                int ret = MHO_MathUtilities::ap_mean(start, stop, &(time_arr[0]), &(pc_real[0]), &(pc_imag[0]), naps, &nstart, &realval, &imagval);
+                int ret = MHO_MathUtilities::ap_mean(start, stop, &(time_arr[0]), &(pc_real[0]), &(pc_imag[0]), naps, &nstart,
+                                                     &realval, &imagval);
                 if(ret == 0) //interpolation ok, so modify the pc data
                 {
-                    fPCData->at(pc_pol, ap , pc_tone) = std::complex<double>(realval, imagval);
+                    fPCData->at(pc_pol, ap, pc_tone) = std::complex< double >(realval, imagval);
                 }
             }
         }
     }
 }
-
 
 bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
@@ -158,19 +158,22 @@ bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
                 auto vis_start_tp = hops_clock::from_vex_format(visib_start_timestamp);
                 // std::cout<<"pcal start time = "<<pcal_start_timestamp<<std::endl;
                 // std::cout<<"visib_start_time = "<< visib_start_timestamp<<std::endl;
-                // 
+                //
                 //calculate time difference between the pcal start and visibility start
-                auto tdiff_duration =  pcal_start_tp - vis_start_tp;
+                auto tdiff_duration = pcal_start_tp - vis_start_tp;
                 //convert duration to double (seconds)
                 double tdiff = std::chrono::duration< double >(tdiff_duration).count();
                 //interpolate the pcal data to the visibility APs
                 InterpolatePCData(tdiff);
             }
-            else 
+            else
             {
-                msg_warn("calibration", "could not determine time difference between pcal and visibility start times, will not interpolate pcal." << eom);
+                msg_warn(
+                    "calibration",
+                    "could not determine time difference between pcal and visibility start times, will not interpolate pcal."
+                        << eom);
             }
-            
+
             //trim the pcal data to the proper time range if needed
             fPCalTrimmer.SetVisibilities(in);
             fPCalTrimmer.SetArgs(fPCData);
@@ -282,12 +285,14 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
         double chan_center_freq = 0.5 * (lower_freq + upper_freq);
         //determine the pcal tones indices associated with this channel
         DetermineChannelToneIndexes(lower_freq, upper_freq, start_idx, ntones);
-        
+
         //the tone mask is a 32 bit integer, if we have more tones than this
         //then the extra tones will be ignored
         if(ntones > N_MASK_BITS)
         {
-            msg_warn("calibration", "the number of pcal tones ("<<ntones<<") for channel "<< ch_label<<", exceeds the number allowed by the tone mask (32) " << eom);
+            msg_warn("calibration", "the number of pcal tones (" << ntones << ") for channel " << ch_label
+                                                                 << ", exceeds the number allowed by the tone mask (32) "
+                                                                 << eom);
         }
 
         //bump up the workspace size to the next lowest power of two
@@ -295,7 +300,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
         {
             fWorkspaceSize = MHO_BitReversalPermutation::NextLowestPowerOfTwo(ntones);
             msg_info("calibration",
-                      "number of pcal tones: " << ntones << " exceeds workspace size, resizing to " << fWorkspaceSize << eom);
+                     "number of pcal tones: " << ntones << " exceeds workspace size, resizing to " << fWorkspaceSize << eom);
             InitializeFFTEngine();
         }
 
@@ -330,8 +335,8 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                 sampler_delay = 0.0;
                 if(sampler_delays.size() != 0)
                 {
-                    msg_warn("calibration",
-                             "failed to retrieve sampler delay for station: " << fMk4ID << " channel: " << ch << ", using zero." << eom);
+                    msg_warn("calibration", "failed to retrieve sampler delay for station: " << fMk4ID << " channel: " << ch
+                                                                                             << ", using zero." << eom);
                 }
             }
 
@@ -390,7 +395,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                     seg_end_ap = ap;
                 }
 
-                //sum the tone phasors, taking into account tone mask 
+                //sum the tone phasors, taking into account tone mask
                 //(only up to 32 tones allowed)
                 double wght;
                 std::bitset< N_MASK_BITS > mask = bit_mask;
@@ -464,7 +469,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
 
     //here follows the 'sampler_delay.c' code which averages the pcal delays over all
     //channels and AP's which belong to the same sampler. We should investigate if
-    //this is really needed, or if it improves the post-fit residuals. It certainly 
+    //this is really needed, or if it improves the post-fit residuals. It certainly
     //overcomplicates the code.
 
     //loop over sampler delays and average
@@ -587,7 +592,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
         std::string pc_seg_end_key = st_prefix + "_mtpc_seg_end_" + pc_pol_code;
         // std::string pc_mag_key = st_prefix + "_mtpc_mag_" + pc_pol_code;
         std::string pc_delay_key = st_prefix + "_mtpc_delays_" + pc_pol_code;
-        std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code; //raw delay fit
+        std::string pc_phase_key = st_prefix + "_mtpc_phase_" + pc_pol_code;                  //raw delay fit
         std::string pc_delay_applied_key = st_prefix + "_mtpc_delays_applied_" + pc_pol_code; //treated by samplier delays
 
         //using the pc_delay_key commented below retrieves the raw pc_delays (without sampler-delay averaging)

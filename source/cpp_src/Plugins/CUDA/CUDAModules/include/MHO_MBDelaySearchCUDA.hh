@@ -48,7 +48,7 @@ class MHO_MBDelaySearchCUDA: public MHO_MBDelaySearch //public MHO_InspectingOpe
 
         /**
          * @brief Initializes MHO_MBDelaySearchCUDA with input arguments and calculates frequency grid for MBD search.
-         * 
+         *
          * @param in Input argument of type const XArgType* containing channel axis data
          * @return True if initialization is successful, false otherwise
          * @note This is a virtual function.
@@ -56,7 +56,7 @@ class MHO_MBDelaySearchCUDA: public MHO_MBDelaySearch //public MHO_InspectingOpe
         virtual bool InitializeImpl(const XArgType* in) override;
         /**
          * @brief Executes MBDelaySearch algorithm using provided input arguments.
-         * 
+         *
          * @param in Input argument of type const XArgType* containing frequency axis and delay rate workspace.
          * @return Boolean indicating whether the execution was successful or not.
          * @note This is a virtual function.

@@ -37,28 +37,28 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         /**
          * @brief Setter for weights
-         * 
+         *
          * @param weights Input weights of type const weight_type*
          */
         void SetWeights(const weight_type* weights) { fWeights = weights; }
 
         /**
          * @brief Setter for visibility channel phasors
-         * 
+         *
          * @param phasors Input phasors of type phasor_type
          */
         void SetPhasors(phasor_type* phasors) { fPhasors = phasors; };
 
         /**
          * @brief Setter for parameter store
-         * 
+         *
          * @param paramStore Pointer to MHO_ParameterStore object
          */
         void SetParameterStore(MHO_ParameterStore* paramStore) { fParameterStore = paramStore; };
 
         /**
          * @brief Setter for plot data
-         * 
+         *
          * @param plot_data Reference to an mho_json object containing plot data.
          */
         void SetPlotData(mho_json& plot_data) { fPlotData.FillData(plot_data); }
@@ -66,7 +66,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
     protected:
         /**
          * @brief Initializes implementation using input visibility type.
-         * 
+         *
          * @param in Input visibility_type pointer for initialization
          * @return Boolean indicating successful initialization
          * @note This is a virtual function.
@@ -75,7 +75,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         /**
          * @brief Executes manual PC estimation using input visibility data
-         * 
+         *
          * @param in Input visibility_type pointer containing visibility data.
          * @return Always returns true.
          * @note This is a virtual function.
@@ -85,7 +85,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
     private:
         /**
          * @brief Calculates and returns manual phase calibration for a given channel and polarization.
-         * 
+         *
          * @param is_remote Flag indicating whether the current station is the remote station (true) or reference station (false).
          * @param channel_idx Index of the channel for which to calculate the phase calibration.
          * @param pol Polarization string ('L' or 'R', 'X' or 'Y')
@@ -94,7 +94,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
         double get_manual_phasecal(int is_remote, int channel_idx, std::string pol);
         /**
          * @brief Calculates and returns manual delay offset for a given channel and polarization.
-         * 
+         *
          * @param is_remote Flag indicating whether the current station is the remote station (true) or reference station (false).
          * @param channel_idx Index of the channel for which to calculate the phase calibration.
          * @param pol Polarization string ('L' or 'R', 'X' or 'Y')
@@ -110,13 +110,13 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         /**
          * @brief executes estimation of manual phase (and/or delay) corrections
-         * 
+         *
          * @param mode Mode dictating estimation method
          */
         void est_pc_manual(int mode);
         /**
          * @brief Estimates phases for reference or remote station with optional phase bias and displays messages.
-         * 
+         *
          * @param is_ref Flag indicating whether to estimate phases on reference (true) or remote station (false)
          * @param keep Flag indicating whether to keep phase bias
          */
@@ -124,7 +124,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
 
         /**
          * @brief Adjusts delays for Single Band Delay (SBD) and Effective Single Band Delay (ESBD) arrays based on given parameters.
-         * 
+         *
          * @param sbd_max Maximum delay value for SBD
          * @param sbd Array of Single Band Delay values
          * @param esd Array of Effective Single Band Delay values
@@ -144,14 +144,14 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
                         int how);
         /**
          * @brief Calculates and adjusts delays for fringe estimation based on reference station and delay modes.
-         * 
+         *
          * @param is_ref Flag indicating whether to use reference station (true) or remote station (false).
          * @param how Bitmask specifying delay calculation method (see adj_delays() )
          */
         void est_delays(int is_ref, int how);
         /**
          * @brief Calculates export overall phase offset (pc_phase_offset_?)
-         * 
+         *
          * @param is_ref Flag indicating whether to use reference or remote station.
          */
         void est_offset(int is_ref);

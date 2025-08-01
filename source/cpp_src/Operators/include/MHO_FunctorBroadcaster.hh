@@ -31,7 +31,7 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
         //access for configuration
         /**
          * @brief Getter for functor class object
-         * 
+         *
          * @return Pointer to XFunctorType
          */
         XFunctorType* GetFunctor() { return &fFunctor; };
@@ -39,7 +39,7 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
     protected:
         /**
          * @brief Initializes in-place operation flag if input is not nullptr.
-         * 
+         *
          * @param in Input XArrayType pointer for initialization.
          * @return Current state of fInitialized boolean.
          * @note This is a virtual function.
@@ -55,7 +55,7 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
 
         /**
          * @brief Applies functor to input array in-place if initialized.
-         * 
+         *
          * @param in Input array of type XArrayType*
          * @return Boolean indicating whether processing was successful.
          * @note This is a virtual function.
@@ -79,7 +79,7 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
 
         /**
          * @brief Function InitializeOutOfPlace - initialization for out-of-place transformation
-         * 
+         *
          * @param in (const XArrayType*)
          * @param out (XArrayType*)
          * @return Return value (bool)
@@ -119,7 +119,7 @@ template< class XArrayType, class XFunctorType > class MHO_FunctorBroadcaster: p
 
         /**
          * @brief Executes an out-of-place operation using a functor and input/output iterators.
-         * 
+         *
          * @param in Const input array of type XArrayType
          * @param out Output array of type XArrayType
          * @return True if operation is successful, false otherwise.
