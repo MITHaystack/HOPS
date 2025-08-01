@@ -139,12 +139,12 @@ int main(int argc, char** argv)
 
             //build the fringe fitter based on the input (only 2 choices currently -- basic and ionospheric)
             MHO_FringeFitterFactory ff_factory(&fringeData);
-            MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter();
+            MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter(); //configuration is done here
 
             //initialize and perform run loop
-            ffit->Initialize();
             while(!ffit->IsFinished())
             {
+                ffit->Initialize();
                 ffit->PreRun();
                 ffit->Run();
                 ffit->PostRun();
