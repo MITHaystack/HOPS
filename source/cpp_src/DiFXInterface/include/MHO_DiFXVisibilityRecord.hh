@@ -108,7 +108,6 @@ class MHO_DiFXVisibilityRecord
         std::string net_sideband;
 };
 
-
 /**
  * @brief Class (anonymous union) - helper union used for reading in visibility records
  * to catch over-runs with sync word

@@ -20,8 +20,7 @@ namespace hops
 class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
 {
     public:
-        MHO_SamplerLabelerBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_SamplerLabelerBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_SamplerLabelerBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                   MHO_ParameterStore* pstore = nullptr)
@@ -31,7 +30,7 @@ class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Initializes and builds the MHO_SamplerLabeler operator (groups channels by sampler), and adds to toolbox
-         * 
+         *
          * @return bool indicating success of initialization.
          */
         virtual bool Build() override;

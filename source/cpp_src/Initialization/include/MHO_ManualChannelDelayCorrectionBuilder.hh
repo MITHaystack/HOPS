@@ -21,7 +21,6 @@ namespace hops
 class MHO_ManualChannelDelayCorrectionBuilder: public MHO_OperatorBuilder, public MHO_ChannelQuantity
 {
     public:
-
         MHO_ManualChannelDelayCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
             : MHO_OperatorBuilder(toolbox, fdata){};
 
@@ -33,7 +32,7 @@ class MHO_ManualChannelDelayCorrectionBuilder: public MHO_OperatorBuilder, publi
 
         /**
          * @brief Constructs and adds a new MHO_ManualChannelDelayCorrection operator to toolbox
-         * 
+         *
          * @return bool indicating success
          */
         virtual bool Build() override;
@@ -41,14 +40,14 @@ class MHO_ManualChannelDelayCorrectionBuilder: public MHO_OperatorBuilder, publi
     private:
         /**
          * @brief Parses a polarization string from a given name.
-         * 
+         *
          * @param name Input name string to parse.
          * @return Polarization string ('X', 'Y', 'R', 'L' or '?').
          */
         std::string ParsePolFromName(const std::string& name);
         /**
          * @brief Extracts and returns the station identifier from the conditions vector.
-         * 
+         *
          * @return Station identifier as a string.
          */
         std::string ExtractStationIdentifier();

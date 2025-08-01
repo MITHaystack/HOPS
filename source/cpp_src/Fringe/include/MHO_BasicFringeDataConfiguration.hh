@@ -39,39 +39,38 @@ class MHO_BasicFringeDataConfiguration
         virtual ~MHO_BasicFringeDataConfiguration(){};
 
     public:
-
         /**
          * @brief Parses baseline_freqgrp string into separate baseline and freqgrp strings (expects ':' as separator).
-         * 
+         *
          * @param baseline_freqgrp Input string containing baseline and frequency group information.
          * @param baseline (std::string&)
          * @param freqgrp (std::string&)
          * @note This is a static function.
          */
         static void parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline, std::string& freqgrp);
-        
+
         /**
          * @brief Parses a vector of strings to extract and concatenate control file syntax after 'set' command.
-         * 
+         *
          * @param arglist Input vector of strings containing commands and arguments
          * @param set_arg_index Output index of 'set' command position in arglist
          * @return Concatenated string of control file syntax after 'set' command
          * @note This is a static function.
          */
         static std::string parse_set_string(const std::vector< std::string >& arglist, int& set_arg_index);
-        
+
         /**
          * @brief Sanitizes a directory path by ensuring it ends with '/' and exists.
-         * 
+         *
          * @param dir Input directory path to sanitize.
          * @return Sanitized directory path (preserves symlinks).
          * @note This is a static function.
          */
         static std::string sanitize_directory(std::string dir);
-        
+
         /**
          * @brief Finds and returns the associated root (ovex) file in the given directory.
-         * 
+         *
          * @param dir Input directory path as a string.
          * @return The full path of the associated root (ovex) file as a string.
          * @note This is a static function.
@@ -80,17 +79,16 @@ class MHO_BasicFringeDataConfiguration
 
         /**
          * @brief Performs a sanity check on command line parameters after parsing.
-         * 
+         *
          * @param paramStore Pointer to MHO_ParameterStore containing parsed command line arguments.
          * @return 0 if parameters are valid, 1 otherwise.
          * @note This is a static function.
          */
         static int sanity_check(MHO_ParameterStore* paramStore);
 
-
         /**
          * @brief Parses command line arguments and stores them in a parameter store for later use by fourfit
-         * 
+         *
          * @param argc Number of command line arguments
          * @param argv Array of command line argument strings
          * @param paramStore Pointer to MHO_ParameterStore object to store parsed arguments
@@ -101,7 +99,7 @@ class MHO_BasicFringeDataConfiguration
 
         /**
          * @brief Determines scan directories and associated root files for processing.
-         * 
+         *
          * @param initial_dir Initial directory to start search.
          * @param scans Output vector of scan directories found.
          * @param roots Output vector of associated root files.
@@ -112,7 +110,7 @@ class MHO_BasicFringeDataConfiguration
 
         /**
          * @brief Determines baselines present for each scan in a given directory matching a specified baseline pattern.
-         * 
+         *
          * @param dir Input directory path
          * @param baseline Baseline pattern to match (2-char code or wildcard)
          * @param baseline_files Output vector of baseline-file pairs
@@ -123,7 +121,7 @@ class MHO_BasicFringeDataConfiguration
 
         /**
          * @brief Determines frequency groups and polarization products to process for each baseline from a given filename.
-         * 
+         *
          * @param filename Input filename containing (visibility) data
          * @param cmd_fgroup Command line argument for frequency group filter
          * @param cmd_pprod Command line argument for polarization product filter
@@ -138,7 +136,7 @@ class MHO_BasicFringeDataConfiguration
         //loops over all data and constructs (concatenated strings) containing all of the pass information
         /**
          * @brief Determines and concatenates data passes for processing, including scans, baselines, frequency groups, and polarization products.
-         * 
+         *
          * @param cmdline_params Pointer to MHO_ParameterStore containing command line parameters
          * @param cscans Reference to string storing concatenated scan directories
          * @param croots Reference to string storing concatenated associated root files
@@ -154,12 +152,12 @@ class MHO_BasicFringeDataConfiguration
         //describing the data item(s) to be processed on each pass
         /**
          * @brief Breaks concatenated strings into vector of json objects describing data items for each processing pass.
-         * 
+         *
          * @param pass_vector Output vector of mho_json objects representing data passes
          * @param cscans Concatenated string of scan directories
          * @param croots Concatenated string of root (ovex) files
          * @param cbaselines Concatenated string of baselines
-         * @param cfgroups Concatenated string of frequency groups 
+         * @param cfgroups Concatenated string of frequency groups
          * @param cpolprods Concatenated string of polarization product
          * @note This is a static function.
          */
@@ -168,26 +166,26 @@ class MHO_BasicFringeDataConfiguration
 
         /**
          * @brief Initializes scan data store using parameters and sets root file name.
-         * 
+         *
          * @param param1 Pointer to MHO_ParameterStore containing initialization parameters
          * @param scanStore Pointer to MHO_ScanDataStore to be initialized
          * @return True if scan store is valid, false otherwise
          * @note This is a static function.
          */
         static bool initialize_scan_data(MHO_ParameterStore*, MHO_ScanDataStore* scanStore);
-        
+
         /**
          * @brief Initializes parameter store and scan store for fringe processing, sets initial values
-         * 
+         *
          * @param paramStore Pointer to MHO_ParameterStore object for storing parameters
          * @param scanStore Pointer to MHO_ScanDataStore object for handling scan data
          * @note This is a static function.
          */
         static void populate_initial_parameters(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore);
-        
+
         /**
          * @brief Parses a polarization product string to determine required pol-products.
-         * 
+         *
          * @param polprod Input polarization product string.
          * @return Vector of unique required polarization products.
          * @note This is a static function.
@@ -197,15 +195,15 @@ class MHO_BasicFringeDataConfiguration
         //functions that are called within the fringe fitter class
         /**
          * @brief Configures visibility data by checking and processing visibility_type and weight_type objects in the store.
-         * 
+         *
          * @param store Pointer to MHO_ContainerStore containing visibility and weight data.
          * @note This is a static function.
          */
         static void configure_visibility_data(MHO_ContainerStore* store);
-        
+
         /**
          * @brief Configures station data by loading and renaming objects in MHO_ScanDataStore and MHO_ContainerStore.
-         * 
+         *
          * @param scanStore Pointer to MHO_ScanDataStore for loading station data
          * @param containerStore Pointer to MHO_ContainerStore for renaming objects
          * @param ref_station_mk4id Reference station's mk4id for loading and renaming
@@ -217,7 +215,7 @@ class MHO_BasicFringeDataConfiguration
 
         /**
          * @brief Initializes and executes (in priority value order) all operators associated with a given category.
-         * 
+         *
          * @param build_manager Pointer to MHO_OperatorBuilderManager for building operators.
          * @param opToolbox Pointer to MHO_OperatorToolbox for getting operators by category.
          * @param category Category name as string.
@@ -228,7 +226,7 @@ class MHO_BasicFringeDataConfiguration
 
         /**
          * @brief Converts a vector of profile events into a JSON object.
-         * 
+         *
          * @param events Input vector of MHO_ProfileEvent objects
          * @return JSON object containing event details
          * @note This is a static function.

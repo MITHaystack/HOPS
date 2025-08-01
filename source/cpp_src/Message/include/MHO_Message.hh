@@ -1,8 +1,8 @@
 #ifndef MHO_Message_HH__
 #define MHO_Message_HH__
 
-#include <cstdlib>
 #include <cstdint>
+#include <cstdlib>
 #include <iostream>
 #include <mutex>
 #include <ostream>
@@ -123,7 +123,7 @@ class MHO_Message
 
         //! \brief Lock the message handler for thread-safe operations.
         void Lock() { fMutex.lock(); };
-        
+
         //! \brief Unlock the message handler
         void Unlock() { fMutex.unlock(); };
 

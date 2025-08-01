@@ -28,10 +28,10 @@
 namespace py = pybind11;
 namespace nl = nlohmann;
 using namespace pybind11::literals;
-    #include "MHO_PyConfigurePath.hh"
-    #include "MHO_PythonOperatorBuilder.hh"
-    #include "MHO_PyFringeDataInterface.hh"
     #include "MHO_DefaultPythonPlotVisitor.hh"
+    #include "MHO_PyConfigurePath.hh"
+    #include "MHO_PyFringeDataInterface.hh"
+    #include "MHO_PythonOperatorBuilder.hh"
 #endif
 
 //needed to export to mark4 fringe files
@@ -185,12 +185,11 @@ int main(int argc, char** argv)
                 }
             }
 
-            //PLOTTING
-            #ifdef USE_PYBIND11
+//PLOTTING
+#ifdef USE_PYBIND11
             MHO_DefaultPythonPlotVisitor plotter;
             ffit->Accept(&plotter);
-            #endif
-
+#endif
         }
     } //end of pass loop
 

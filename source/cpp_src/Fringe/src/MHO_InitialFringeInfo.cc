@@ -15,13 +15,13 @@ void MHO_InitialFringeInfo::calculate_freq_space(MHO_ContainerStore* conStore, M
     visibility_type* vis = conStore->GetObject< visibility_type >(std::string("vis"));
     //calculate the frequency grid used in the MBD search
     MHO_UniformGridPointsCalculator fGridCalc;
-    std::vector< double> in_freq_pts(std::get<CHANNEL_AXIS>(*vis).GetData(), 
-                                     std::get<CHANNEL_AXIS>(*vis).GetData() + std::get<CHANNEL_AXIS>(*vis).GetSize() );
+    std::vector< double > in_freq_pts(std::get< CHANNEL_AXIS >(*vis).GetData(),
+                                      std::get< CHANNEL_AXIS >(*vis).GetData() + std::get< CHANNEL_AXIS >(*vis).GetSize());
     std::vector< double > freq_pts;
     double freq_eps = 1e-4; //tolerance of 0.1kHz
     //dsb channel pairs share a sky_freq so we need combine them at the same location
     //this eliminates non-unique (within the tolerance) adjacent frequencies
-    std::map<std::size_t, std::size_t> index_map;
+    std::map< std::size_t, std::size_t > index_map;
     fGridCalc.GetUniquePoints(in_freq_pts, freq_eps, freq_pts, index_map);
     fGridCalc.SetPoints(freq_pts);
     fGridCalc.Calculate();
@@ -121,7 +121,7 @@ void MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* con
     {
         msg_error("fringe", "could not find weight object with name: weight." << eom);
     }
-    else 
+    else
     {
         //compute the sum of the data weights
         weight_type temp_weights;
@@ -139,7 +139,6 @@ void MHO_InitialFringeInfo::compute_total_summed_weights(MHO_ContainerStore* con
     }
 
     paramStore->Set("/fringe/total_summed_weights", total_ap_frac);
-
 }
 
 void MHO_InitialFringeInfo::determine_n_active_channels(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore)
@@ -151,7 +150,7 @@ void MHO_InitialFringeInfo::determine_n_active_channels(MHO_ContainerStore* conS
     {
         msg_error("fringe", "could not find weight object with name: weight." << eom);
     }
-    else 
+    else
     {
         auto chan_ax = &(std::get< CHANNEL_AXIS >(*wt_data));
         for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)

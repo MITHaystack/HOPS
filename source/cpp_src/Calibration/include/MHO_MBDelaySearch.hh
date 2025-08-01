@@ -45,14 +45,14 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         /**
          * @brief Setter for weights
-         * 
+         *
          * @param wt_data Pointer to weight_type data
          */
         void SetWeights(weight_type* wt_data) { fWeights = wt_data; }
 
         /**
          * @brief Setter for reference frequency
-         * 
+         *
          * @param ref_freq New reference frequency value in MHz
          */
         void SetReferenceFrequency(double ref_freq) { fRefFreq = ref_freq; }
@@ -61,21 +61,21 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         //default is the full range
         /**
          * @brief Setter for sbd window
-         * 
+         *
          * @param low Lower limit of the SBD window
          * @param high Upper limit of the SBD window
          */
         void SetSBDWindow(double low, double high);
         /**
          * @brief Setter for mbd window
-         * 
+         *
          * @param low Lower bound of MBD window
          * @param high Upper bound of MBD window
          */
         void SetMBDWindow(double low, double high);
         /**
          * @brief Setter for dr window
-         * 
+         *
          * @param low Lower bound of the delay rate window.
          * @param high Upper bound of the delay rate window.
          */
@@ -84,21 +84,21 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         //retrieve the window limits (that were actually used)
         /**
          * @brief Getter for sbd window
-         * 
+         *
          * @param low Reference to store the lower limit of the SBD window
          * @param high Reference to store the upper limit of the SBD window
          */
         void GetSBDWindow(double& low, double& high) const;
         /**
          * @brief Getter for mbd window
-         * 
+         *
          * @param low Reference to store the lower bound of the MBD window.
          * @param high Reference to store the higher bound of the MBD window.
          */
         void GetMBDWindow(double& low, double& high) const;
         /**
          * @brief Getter for dr window
-         * 
+         *
          * @param low Reference to store the lower bound of the delay-rate window.
          * @param high Reference to store the higher bound of the delay-rate window.
          */
@@ -106,70 +106,70 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         /**
          * @brief Getter for mbdmax bin
-         * 
+         *
          * @return Current location of the bin containing the multi-band delay maximum as an integer
          */
         int GetMBDMaxBin() const { return fMBDMaxBin; }
 
         /**
          * @brief Getter for sbdmax bin
-         * 
+         *
          * @return Current location of the bin containing the single band delay maximum as an integer
          */
         int GetSBDMaxBin() const { return fSBDMaxBin; }
 
         /**
          * @brief Getter for drmax bin
-         * 
+         *
          * @return Current location of the bin containing the delay rate maximum as an integer
          */
         int GetDRMaxBin() const { return fDRMaxBin; }
 
         /**
          * @brief Getter for coarse mbd
-         * 
+         *
          * @return The current coarse MBD value as a double.
          */
         double GetCoarseMBD() const { return fCoarseMBD; }
 
         /**
          * @brief Getter for coarse sbd
-         * 
+         *
          * @return The current coarse sbd value as a double.
          */
         double GetCoarseSBD() const { return fCoarseSBD; }
 
         /**
          * @brief Getter for coarse dr
-         * 
+         *
          * @return Current coarse delay rate as a double
          */
         double GetCoarseDR() const { return fCoarseDR; }
 
         /**
          * @brief Getter for sbd bin separation
-         * 
+         *
          * @return Current SBDBin separation as a double.
          */
         double GetSBDBinSeparation() const { return fSBDBinSep; }
 
         /**
          * @brief Getter for N mbd bins
-         * 
+         *
          * @return Number of grid points (MBD)
          */
         int GetNMBDBins() const { return fNGridPoints; };
 
         /**
          * @brief Getter for n sbd bins
-         * 
+         *
          * @return N SBD bins value as int
          */
         int GetNSBDBins() const { return fNSBD; };
 
         /**
          * @brief Getter for ndrbins
-         * 
+         *
          * @return The number of delay rate (DR) bins as an integer.
          */
         int GetNDRBins() const { return fNDR; };

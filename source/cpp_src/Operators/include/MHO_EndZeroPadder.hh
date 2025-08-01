@@ -51,18 +51,18 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
         virtual ~MHO_EndZeroPadder() { delete fTmpWorkspace; };
 
         /**
-         * @brief Setter for padding factor, the factor M by which the new array will be extended 
+         * @brief Setter for padding factor, the factor M by which the new array will be extended
          * (original array, length N, new array length NM)
-         * 
+         *
          * @param factor New length factor for extended array
          * @note This is a virtual function.
          */
         virtual void SetPaddingFactor(std::size_t factor) { fPaddingFactor = factor; };
 
         /**
-         * @brief Setter for padded size, instead of a multiplicative factor, 
+         * @brief Setter for padded size, instead of a multiplicative factor,
          * the original array, length N is padded out ot the new specified length M
-         * 
+         *
          * @param new_size New padded size of type std::size_t
          * @note This is a virtual function.
          */
@@ -123,7 +123,6 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
          */
         virtual void EnableTagCopy() { fCopyTags = true; }
 
-
         /**
          * @brief Selects all axes for transformation.
          * sometimes we may want to select/deselect particular dimensions of the x-form
@@ -150,7 +149,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
 
         /**
          * @brief Selects an axis for transformation if its index is within the array rank.
-         * 
+         *
          * @param axis_index Index of the axis to select.
          */
         void SelectAxis(std::size_t axis_index)
@@ -169,7 +168,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
     protected:
         /**
          * @brief Initializes in-place by creating a temporary workspace and calling InitializeOutOfPlace.
-         * 
+         *
          * @param in Input argument of type XArgType*
          * @return Result of InitializeOutOfPlace function call
          * @note This is a virtual function.
@@ -185,7 +184,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
 
         /**
          * @brief Executes operation in-place by copying temporary workspace back to input object.
-         * 
+         *
          * @param in Input object of type XArgType* that will be modified in-place.
          * @return Boolean status indicating success or failure of the operation.
          * @note This is a virtual function.
@@ -206,7 +205,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
 
         /**
          * @brief Initializes out-of-place processing for input and output arrays.
-         * 
+         *
          * @param in Pointer to constant input array of type XArgType
          * @param out Pointer to output array of type XArgType
          * @return Boolean indicating successful initialization
@@ -232,7 +231,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
 
         /**
          * @brief Function ExecuteOutOfPlace
-         * 
+         *
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)
@@ -320,7 +319,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
         //default...does nothing
         /**
          * @brief Applies transformations to all axes of an input XArgType table and copies tags.
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param !in Parameter description
          * @param !out Parameter description

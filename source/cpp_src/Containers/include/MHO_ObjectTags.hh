@@ -31,10 +31,9 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         virtual ~MHO_ObjectTags(){};
 
-
         /**
          * @brief Checks if a UUID is present in the object collection.
-         * 
+         *
          * @param uuid The UUID to search for.
          * @return True if the UUID is found, false otherwise.
          */
@@ -50,14 +49,14 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Inserts a UUID into the object UUID set for association with this tag collection.
-         * 
+         *
          * @param uuid UUID of the object to be associated with the tag collection
          */
         void AddObjectUUID(const MHO_UUID& uuid) { fObjectUUIDSet.insert(uuid); }
 
         /**
          * @brief Removes an object UUID from the set if it exists.
-         * 
+         *
          * @param uuid The UUID of the object to remove.
          */
         void RemoveObjectUUID(const MHO_UUID& uuid)
@@ -71,14 +70,14 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Getter for the number of object uuids
-         * 
+         *
          * @return Number of object UUIDs as std::size_t
          */
         std::size_t GetNObjectUUIDs() const { return fObjectUUIDSet.size(); }
 
         /**
          * @brief Getter for all object uuids at once
-         * 
+         *
          * @return Vector of MHO_UUID representing all object UUIDs.
          */
         std::vector< MHO_UUID > GetAllObjectUUIDs() const
@@ -93,7 +92,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Checks if a tag with the given name (key) is present in the container.
-         * 
+         *
          * @param tag_name The name of the tag to search for.
          * @return True if the tag is present, false otherwise.
          */
@@ -101,7 +100,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Checks if a tag (key) is present in the container.
-         * 
+         *
          * @param tag_name The name of the tag to search for.
          * @return True if the tag is present, false otherwise.
          */
@@ -113,7 +112,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Setter for tag/value (key:value pair)
-         * 
+         *
          * @param tag_name Name of the tag as C-style string
          * @param tag_value Value to set for the tag
          * @return No return value (void)
@@ -126,7 +125,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Setter for tag/value (key:value pair)
-         * 
+         *
          * @param tag_name Tag name as std::string string
          * @param tag_value Value to set for the given tag
          * @return No return value (void)
@@ -138,7 +137,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Getter for a tag's value
-         * 
+         *
          * @param tag_name Name of the tag to retrieve.
          * @param tag_value (XValueType&)
          * @return True if successful, false otherwise.
@@ -151,7 +150,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief retrieve the value of a given tag
-         * 
+         *
          * @param tag_name The name of the tag to retrieve the value for
          * @param tag_value Reference to store the retrieved value
          * @return True if the tag is found and its value is successfully stored, false otherwise
@@ -163,7 +162,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Getter for a tag's value, with forced conversion to a string
-         * 
+         *
          * @param tag_name (const std::string&)
          * @return Return value (std::string)
          */
@@ -240,7 +239,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief collect all of the present tag names, and fill the passed reference
-         * 
+         *
          * @param tag_names Reference to std::vector<std::string> that will be cleared and populated with current tag names
          */
         void DumpTags(std::vector< std::string >& tag_names) const
@@ -251,7 +250,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Getter for tagged object uuid set
-         * 
+         *
          * @return The current tagged object UUID set.
          */
         std::set< MHO_UUID > GetTaggedObjectUUIDSet() const { return fObjectUUIDSet; }
@@ -263,7 +262,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
     public:
         /**
          * @brief Getter for serialized size
-         * 
+         *
          * @return Total serialized size as uint64_t
          * @note This is a virtual function.
          */
@@ -312,7 +311,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
     private:
         /**
          * @brief Reads and processes object UUIDs from a stream and adds them to the current tag collection.
-         * 
+         *
          * @param s Input stream of object data.
          * @return No return value (void)
          */
@@ -334,7 +333,7 @@ class MHO_ObjectTags: public MHO_Taggable, public MHO_ExtensibleElement
 
         /**
          * @brief Serializes object UUIDs and taggable element to an output stream.
-         * 
+         *
          * @param s Output stream of type XStream&.
          * @return void
          */

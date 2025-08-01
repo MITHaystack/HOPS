@@ -25,7 +25,7 @@ constexpr const char* str_end(const char* str)
 
 /**
  * @brief Checks if a string starts with '/'. Used for stripping path prefix from __FILE__.
- * 
+ *
  * @param str Input string to check
  * @return True if string starts with '/', false otherwise
  */
@@ -36,7 +36,7 @@ constexpr bool str_slash(const char* str)
 
 /**
  * @brief Checks if a string starts with '/', recursively.
- * 
+ *
  * @param str Input string to check.
  * @return True if string starts with '/', false otherwise.
  */
@@ -47,7 +47,7 @@ constexpr const char* r_slash(const char* str)
 
 /**
  * @brief Returns the base name (file name without path) from a given string.
- * 
+ *
  * @param str Input string containing file path and name.
  * @return constexpr char* representing the base name of the input string.
  */

@@ -18,7 +18,6 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  */
 
-
 class MHO_IntervalLabelInterface
 {
     protected:
@@ -39,7 +38,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Setter for interval label object
-         * 
+         *
          * @param obj Input mho_json object to set as interval label object
          */
         void SetIntervalLabelObject(mho_json* obj) { fIntervalLabelObjectPtr = obj; }
@@ -54,7 +53,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Inserts an interval label key-value pair into a map referenced by fIntervalLabelObjectPtr.
-         * 
+         *
          * @tparam XValueType Template parameter XValueType
          * @param lower_index Lower bound index for the interval
          * @param upper_index Upper bound index for the interval
@@ -73,7 +72,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Retrieves a value associated with a key within an interval range.
-         * 
+         *
          * @tparam XValueType Template parameter XValueType
          * @param lower_index Lower bound index for the interval.
          * @param upper_index Upper bound index for the interval.
@@ -103,7 +102,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Get a reference to the dictionary object associated with this index
-         * 
+         *
          * @param lower_index Lower index for interval
          * @param upper_index Upper index for interval
          * @return Reference to mho_json object if exists, else dummy object
@@ -124,7 +123,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Setter for interval label object
-         * 
+         *
          * @param obj Reference to mho_json object containing metadata
          * @param lower_index Lower index of interval
          * @param upper_index Upper index of interval
@@ -140,7 +139,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief get a vector of interval labels which contain a key with the same name
-         * 
+         *
          * @param key Key to search for within interval labels
          * @return Vector of matching mho_json objects
          */
@@ -159,7 +158,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Getter for first interval with key value
-         * 
+         *
          * @tparam XLabelValueType Template parameter XLabelValueType
          * @param key Key to search for in interval labels
          * @param value Value associated with the key to match
@@ -187,7 +186,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Constructs a key string from lower and upper indices, ensuring lower_index <= upper_index.
-         * 
+         *
          * @param lower_index Lower index value (must be less than or equal to upper_index)
          * @param upper_index Upper index value
          * @return String representation of the sorted pair of indices separated by a comma
@@ -208,7 +207,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Extracts lower and upper indexes from a key string separated by comma.
-         * 
+         *
          * @param key Input key string containing two indexes separated by comma.
          * @param lower_index (std::size_t&)
          * @param upper_index (std::size_t&)
@@ -235,7 +234,7 @@ class MHO_IntervalLabelInterface
 
         /**
          * @brief Extracts lower and upper indexes from a key string separated by comma.
-         * 
+         *
          * @param key Input key string containing two indexes separated by comma.
          * @return True if extraction is successful, false otherwise.
          * @note This is a static function.

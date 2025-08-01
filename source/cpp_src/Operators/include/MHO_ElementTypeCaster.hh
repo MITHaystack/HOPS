@@ -31,7 +31,7 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
     protected:
         /**
          * @brief Initializes implementation using input and output arguments.
-         * 
+         *
          * @param !in Pointer to constant input argument of type XArgType1
          * @param !out Pointer to output argument of type XArgType2
          * @return Boolean indicating success or failure of initialization
@@ -41,7 +41,7 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
 
         /**
          * @brief Copies input array to output array and resizes it if necessary.
-         * 
+         *
          * @param in Input array to be copied.
          * @param out (XArgType2*)
          * @return True if copying was successful, false otherwise.
@@ -71,7 +71,7 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
         //default...does nothing
         /**
          * @brief use SFINAE to generate specialization for MHO_TableContainer types
-         * 
+         *
          * @tparam XArrayType1 Template parameter XArrayType1
          * @tparam XArrayType2 Template parameter XArrayType2
          * @param !in Parameter description
@@ -85,7 +85,7 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
 
         /**
          * @brief Copies axes and tags from input XArrayType1 to output XArrayType2 if they inherit from MHO_TableContainer.
-         * 
+         *
          * @tparam XArrayType1 Template parameter XArrayType1
          * @tparam XArrayType2 Template parameter XArrayType2
          * @param in Input array of type XArrayType1

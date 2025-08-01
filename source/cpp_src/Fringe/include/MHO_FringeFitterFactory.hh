@@ -2,9 +2,9 @@
 #define MHO_FringeFitterFactory_HH__
 
 //global messaging util
-#include "MHO_Message.hh"
 #include "MHO_FringeData.hh"
 #include "MHO_FringeFitter.hh"
+#include "MHO_Message.hh"
 
 namespace hops
 {
@@ -30,16 +30,14 @@ class MHO_FringeFitterFactory
         /**
          * @brief Constructs and configures an MHO_FringeFitter instance based on configuration.
          * the underlying object returned can be a MHO_BasicFringeFitter or MHO_IonosphericFringeFitter (other types will be introduced in the future)
-         * 
+         *
          * @return MHO_FringeFitter* - The constructed fringe fitter
          */
         MHO_FringeFitter* ConstructFringeFitter();
 
     protected:
-
         MHO_FringeData* fFringeData;
         MHO_FringeFitter* fFringeFitter;
-
 };
 
 } // namespace hops

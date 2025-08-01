@@ -3,7 +3,7 @@
 
 #include "MHO_FringeFitter.hh"
 
-namespace hops 
+namespace hops
 {
 
 /**
@@ -18,7 +18,7 @@ class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
         //default behavior
         /**
          * @brief Visits a fringe fitter and plots its data.
-         * 
+         *
          * @param fitter The MHO_FringeFitter to visit and plot.
          * @note This is a virtual function.
          */
@@ -27,21 +27,19 @@ class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
             MHO_FringeData* data = fitter->GetFringeData();
             Plot(data);
         }
-        
+
         //add specializations for specific fringe fitters if needed
 
     protected:
-
         /**
          * @brief Function Plot
-         * 
+         *
          * @param data (MHO_FringeData*)
          * @note This is a virtual function.
          */
         virtual void Plot(MHO_FringeData* data) = 0;
 };
 
-
-}//end namespace
+} // namespace hops
 
 #endif /* end of include guard: MHO_FringePlotVisitor_HH__ */

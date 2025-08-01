@@ -21,7 +21,7 @@ namespace hops
  *@class MHO_TableContainer
  *@author J. Barrett - barrettj@mit.edu
  *@date Sun Jan 24 14:03:03 2021 -0500
- *@brief MHO_TableContainer - basis for large majority of data objects in HOPS4, it is an N-dimensional array object associated with 
+ *@brief MHO_TableContainer - basis for large majority of data objects in HOPS4, it is an N-dimensional array object associated with
  * coordinate axes. Additional key:value tags can be attached to this object as well as the coordinate axies.
  */
 
@@ -46,14 +46,14 @@ class MHO_TableContainer: public MHO_TableContainerBase,
 
         /**
          * @brief Clones entire table including contents and axes.
-         * 
+         *
          * @return Pointer to cloned MHO_TableContainer object.
          */
         MHO_TableContainer* Clone() { return new MHO_TableContainer(*this); }
 
         /**
          * @brief Clones table container shape with empty contents and axes.
-         * 
+         *
          * @return New MHO_TableContainer instance with cloned dimensions.
          */
         MHO_TableContainer* CloneEmpty() { return new MHO_TableContainer(this->GetDimensions()); }
@@ -62,7 +62,7 @@ class MHO_TableContainer: public MHO_TableContainerBase,
 
         /**
          * @brief Getter for the class version
-         * 
+         *
          * @return MHO_ClassVersion version number.
          * @note This is a virtual function.
          */
@@ -70,7 +70,7 @@ class MHO_TableContainer: public MHO_TableContainerBase,
 
         /**
          * @brief Getter for serialized size
-         * 
+         *
          * @return Total serialized size as uint64_t
          * @note This is a virtual function.
          */
@@ -85,12 +85,11 @@ class MHO_TableContainer: public MHO_TableContainerBase,
             return total_size;
         }
 
-
         using XAxisPackType::resize_axis_pack;
 
         /**
          * @brief Resize the multidimensional array and axes according to given dimensions.
-         * 
+         *
          * @param dim Pointer to a size_t array representing new dimensions.
          * @note This is a virtual function.
          */
@@ -102,14 +101,14 @@ class MHO_TableContainer: public MHO_TableContainerBase,
 
         /**
          * @brief access to axis pack type alone
-         * 
+         *
          * @return Pointer to XAxisPackType
          */
         XAxisPackType* GetAxisPack() { return this; }
 
         /**
          * @brief Getter for axis pack
-         * 
+         *
          * @return Current instance of XAxisPackType
          */
         const XAxisPackType* GetAxisPack() const { return this; }

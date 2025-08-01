@@ -44,7 +44,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
 
         /**
          * @brief Stores valid indexes for a given axis and marks selection as uninitialized.
-         * 
+         *
          * @param axis_index Index of the axis to store valid indexes for.
          * @param valid_indexes Vector of valid indexes for the specified axis.
          */
@@ -59,7 +59,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
     protected:
         /**
          * @brief Initializes in-place by calling InitializeOutOfPlace with workspace.
-         * 
+         *
          * @param in Input pointer to XArgType object
          * @return Boolean indicating success of initialization
          * @note This is a virtual function.
@@ -68,7 +68,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
 
         /**
          * @brief Executes operation in-place by calling ExecuteOutOfPlace and copying result back to input.
-         * 
+         *
          * @param in Input object of type XArgType* that will be modified in-place
          * @return Status of the execution operation
          * @note This is a virtual function.
@@ -83,7 +83,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
 
         /**
          * @brief Initializes out-of-place processing for given input and output arguments.
-         * 
+         *
          * @param in Const reference to input argument of type XArgType
          * @param out Reference to output argument of type XArgType
          * @return Boolean indicating success or failure of initialization
@@ -107,7 +107,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
 
         /**
          * @brief Function ExecuteOutOfPlace
-         * 
+         *
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)
@@ -186,7 +186,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
     private:
         /**
          * @brief Determines output dimensions based on input dimensions and axis selections.
-         * 
+         *
          * @param in Input argument type pointer.
          * @return Output dimensions as an array of size_t.
          */
@@ -207,7 +207,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
 
         /**
          * @brief Checks and conditionally resizes output dimensions if they differ from input.
-         * 
+         *
          * @param dims Input dimension array to compare with output.
          * @param out (XArgType*)
          */
@@ -231,7 +231,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
         //default...does nothing
         /**
          * @brief Applies table selection on axes for input XArgType and outputs result to another XArgType.
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param !in Parameter description
          * @param !out Parameter description
@@ -243,7 +243,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
         //use SFINAE to generate specialization for MHO_TableContainer types
         /**
          * @brief Applies selection on axes for input XArgType and outputs result to another XArgType.
-         * 
+         *
          * @tparam XCheckType Template parameter XCheckType
          * @param in Input XArgType data for selection
          * @param out Output XArgType after applying selection

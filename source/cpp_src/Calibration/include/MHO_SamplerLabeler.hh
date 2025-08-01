@@ -46,7 +46,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
 
         /**
          * @brief Setter for reference station sampler channel sets
-         * 
+         *
          * @param channel_sets Input vector of string channel set names
          */
         void SetReferenceStationSamplerChannelSets(const std::vector< std::string >& channel_sets)
@@ -56,7 +56,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
 
         /**
          * @brief Setter for remote station sampler channel sets
-         * 
+         *
          * @param channel_sets Input vector of strings representing channel sets
          */
         void SetRemoteStationSamplerChannelSets(const std::vector< std::string >& channel_sets)
@@ -67,7 +67,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
     protected:
         /**
          * @brief Initializes in-place mapping for channel labels to sampler indices.
-         * 
+         *
          * @param in Input XArrayType pointer for initializing in-place.
          * @return True if initialization is successful, false otherwise.
          * @note This is a virtual function.
@@ -76,7 +76,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
 
         /**
          * @brief Initializes output array in-place from input array.
-         * 
+         *
          * @param !in Const reference to input XArrayType
          * @param !out Reference to output XArrayType
          * @return Boolean indicating success of initialization
@@ -87,7 +87,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
         /**
          * @brief Function ExecuteInPlace - actual implementation, map channel label (e.g. 'a', 'b', etc.) to sampler
          * index for both reference and remote stations, and attaches label to visibility data
-         * 
+         *
          * @param in (XArrayType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -128,7 +128,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
 
         /**
          * @brief Copies input array and executes in-place operation on output.
-         * 
+         *
          * @param in Const reference to input XArrayType
          * @param out Reference to output XArrayType
          * @return Result of ExecuteInPlace operation on out
@@ -155,7 +155,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
 
         /**
          * @brief Constructs a map from channel labels to sampler IDs.
-         * 
+         *
          * @param chan_set Input vector of channel label strings.
          * @param chan2id Output map assigning each channel label an integer ID.
          */
@@ -175,7 +175,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
 
         /**
          * @brief Function SplitChannelLabels, splits the channel strings into individual channel labels
-         * 
+         *
          * @param channels (std::string)
          * @return Return value (std::string)
          */

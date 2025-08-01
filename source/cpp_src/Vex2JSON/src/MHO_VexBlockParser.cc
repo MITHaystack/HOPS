@@ -308,7 +308,7 @@ bool MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line, std::stack< std::s
             if(element_name != "exper_num")
             {
                 msg_info("vex", "could not locate element with name: " << element_name << " under " << fBlockName
-                    << " block format." << eom);
+                                                                       << " block format." << eom);
             }
             return false;
         }

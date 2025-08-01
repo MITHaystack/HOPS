@@ -26,14 +26,14 @@ class MHO_StationModel
 
         /**
          * @brief Setter for (model) evaluation time vex string
-         * 
+         *
          * @param time_string Input time string to set
          */
         void SetEvaluationTimeVexString(std::string time_string) { fEvalTimeString = time_string; };
 
         /**
          * @brief Setter for station data
-         * 
+         *
          * @param ref_data Input pointer to station_coord_type structure
          */
         void SetStationData(station_coord_type* ref_data) { fData = ref_data; };
@@ -45,49 +45,49 @@ class MHO_StationModel
 
         /**
          * @brief Getter for delay
-         * 
+         *
          * @return Current delay value as a double.
          */
         double GetDelay() { return fDelay; }
 
         /**
          * @brief Getter for azimuth
-         * 
+         *
          * @return Current azimuth value as a double.
          */
         double GetAzimuth() { return fAzimuth; }
 
         /**
          * @brief Getter for elevation
-         * 
+         *
          * @return Current elevation as a double.
          */
         double GetElevation() { return fElevation; };
 
         /**
          * @brief Getter for parallactic angle
-         * 
+         *
          * @return The current parallactic angle as a double.
          */
         double GetParallacticAngle() { return fParAngle; };
 
         /**
          * @brief Getter for u coordinate
-         * 
+         *
          * @return Current U-coordinate value as a double
          */
         double GetUCoordinate() { return fU; };
 
         /**
          * @brief Getter for v coordinate
-         * 
+         *
          * @return Current V-coordinate as a double.
          */
         double GetVCoordinate() { return fV; };
 
         /**
          * @brief Getter for w coordinate
-         * 
+         *
          * @return Current value of W-coordinate as a double
          */
         double GetWCoordinate() { return fW; };
@@ -98,7 +98,7 @@ class MHO_StationModel
         //XCoeffVectorType is expected to be an MHO_NDArrayView type
         /**
          * @brief Evaluates a spline at a given time using provided coefficients for a single coordinate.
-         * 
+         *
          * @tparam XCoeffVectorType Template parameter XCoeffVectorType
          * @param coeff Input spline coefficients of type XCoeffVectorType
          * @param delta_t Time at which to evaluate the spline
@@ -110,7 +110,7 @@ class MHO_StationModel
         //clamp selected interval between [0, n_intervals-1]
         /**
          * @brief Checks spline interval validity and sets int_no accordingly.
-         * 
+         *
          * @param n_intervals Number of intervals in the spline
          * @param tdiff Time difference for evaluation
          * @param int_no Reference to interval number
@@ -120,7 +120,7 @@ class MHO_StationModel
 
         /**
          * @brief Retrieves a tag value from station data using the given key.
-         * 
+         *
          * @param data Pointer to station coordinate data.
          * @param key Key string used to lookup the tag.
          * @return The retrieved tag value of type XTagType.
@@ -142,7 +142,7 @@ class MHO_StationModel
 
 /**
  * @brief Evaluates a spline at a given time using provided coefficients.
- * 
+ *
  * @tparam XCoeffVectorType Template parameter XCoeffVectorType
  * @param coeff Input spline coefficients of type XCoeffVectorType
  * @param delta_t Time at which to evaluate the spline
@@ -166,7 +166,7 @@ void MHO_StationModel::EvaluateSpline(const XCoeffVectorType& coeff, double delt
 
 /**
  * @brief Retrieves a tag value from station data using the provided key.
- * 
+ *
  * @param data Pointer to station coordinate data.
  * @param key Key string used to lookup the desired tag.
  * @return The retrieved tag value of type XTagType.

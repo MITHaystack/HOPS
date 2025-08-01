@@ -16,8 +16,8 @@ extern "C"
 {
 #endif
 
-//forward declare this struct
-struct mk4_sdata;
+    //forward declare this struct
+    struct mk4_sdata;
 
 #ifndef HOPS3_USE_CXX
 }
@@ -41,13 +41,16 @@ class MHO_MK4StationInterfaceReversed
         MHO_MK4StationInterfaceReversed();
         virtual ~MHO_MK4StationInterfaceReversed();
 
-        //we don't strictly need the vex file data unless we are doing a direct conversion from difx 
+        //we don't strictly need the vex file data unless we are doing a direct conversion from difx
         //since in order to fill out the type_309s, we need to know the station channel/freq set-up
-        void SetVexData(const mho_json& vex_data){fVexData = vex_data;};
+        void SetVexData(const mho_json& vex_data) { fVexData = vex_data; };
 
         void SetOutputDirectory(const std::string& output_dir);
+
         void SetStationCoordData(station_coord_type* coord_data) { fStationCoordData = coord_data; }
+
         void SetPCalData(multitone_pcal_type* pcal_data) { fPCalData = pcal_data; }
+
         void SetOutputFile(const std::string& output_file) { fOutputFile = output_file; }
 
         void GenerateStationStructure();
@@ -59,7 +62,6 @@ class MHO_MK4StationInterfaceReversed
         void FreeAllocated();
 
     private:
-
         void InitializeStationStructure();
         void GenerateType000();
         std::string ConstructType000FileName();
@@ -75,15 +77,15 @@ class MHO_MK4StationInterfaceReversed
 
         /**
          * @brief Convert multitone PCal phasor back to uint32_t counts
-         * 
+         *
          * @param phasor Complex phasor value
          * @param acc_period Accumulation period in seconds
          * @param sample_period Sample period in seconds
          * @param real_count Output real component count
          * @param imag_count Output imaginary component count
          */
-        void ConvertPhasorToCounts(const std::complex<double>& phasor, double acc_period, 
-                                   double sample_period, uint32_t& real_count, uint32_t& imag_count);
+        void ConvertPhasorToCounts(const std::complex< double >& phasor, double acc_period, double sample_period,
+                                   uint32_t& real_count, uint32_t& imag_count);
 
         /**
          * @brief Extract channel information from PCal frequency axis
@@ -120,35 +122,35 @@ class MHO_MK4StationInterfaceReversed
         // PCal channel information
         struct PCalChannelInfo
         {
-            std::string channel_name;
-            std::string polarization;
-            std::string net_sideband;
-            int tone_start;
-            int ntones;
-            int accumulator_start_index;
-            double sky_freq;
-            double bandwidth;
-            double sample_period;
+                std::string channel_name;
+                std::string polarization;
+                std::string net_sideband;
+                int tone_start;
+                int ntones;
+                int accumulator_start_index;
+                double sky_freq;
+                double bandwidth;
+                double sample_period;
         };
 
-    //the ordering operator for channel info, sort by frequency and pol
-    class chan_predicate
-    {
-        public:
-            chan_predicate(){};
-            virtual ~chan_predicate(){};
+        //the ordering operator for channel info, sort by frequency and pol
+        class chan_predicate
+        {
+            public:
+                chan_predicate(){};
+                virtual ~chan_predicate(){};
 
-            virtual bool operator()(const PCalChannelInfo& a, const PCalChannelInfo& b)
-            {
-                if(a.sky_freq == b.sky_freq){return a.polarization < b.polarization;}
-                return a.sky_freq < b.sky_freq;
-            }
-    };
-        
+                virtual bool operator()(const PCalChannelInfo& a, const PCalChannelInfo& b)
+                {
+                    if(a.sky_freq == b.sky_freq)
+                    {
+                        return a.polarization < b.polarization;
+                    }
+                    return a.sky_freq < b.sky_freq;
+                }
+        };
 
-
-
-        std::vector<PCalChannelInfo> fPCalChannelList;
+        std::vector< PCalChannelInfo > fPCalChannelList;
 
         std::vector< void* > fAllocated;
 };

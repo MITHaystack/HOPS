@@ -42,7 +42,7 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
         //allow channel freq association to use a difference tolerance
         /**
          * @brief Setter for tolerance - in (MHz) when checking if channels share a sky freq
-         * 
+         *
          * @param tol New tolerance value to use when checking if channels share a sky frequency.
          */
         void SetTolerance(double tol) { fEps = tol; }
@@ -50,7 +50,7 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
     protected:
         /**
          * @brief Initializes XArrayType in-place and returns success.
-         * 
+         *
          * @param in Pointer to XArrayType object to initialize.
          * @return True if initialization was successful, false otherwise.
          * @note This is a virtual function.
@@ -59,7 +59,7 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
 
         /**
          * @brief Initializes output array in-place from input array.
-         * 
+         *
          * @param !in Const reference to input XArrayType
          * @param !out Reference to output XArrayType
          * @return Boolean indicating success of initialization
@@ -69,7 +69,7 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
 
         /**
          * @brief Function ExecuteInPlace labels LSB/USB channel pairs as "double sideband" channels if they share and edge
-         * 
+         *
          * @param in (XArrayType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -127,7 +127,7 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
 
         /**
          * @brief Copies input array to output and executes in-place operation on output.
-         * 
+         *
          * @param in Const reference to input XArrayType
          * @param out Reference to output XArrayType
          * @return Result of ExecuteInPlace operation on out

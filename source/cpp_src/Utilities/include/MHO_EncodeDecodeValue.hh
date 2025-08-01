@@ -28,7 +28,7 @@ namespace hops
 
 /**
  * @brief Function encode_value
- * 
+ *
  * @param value (const uint64_t&)
  * @param character_set (const std::string&)
  * @return Return value (std::string)
@@ -61,7 +61,7 @@ inline std::string encode_value(const uint64_t& value, const std::string& charac
 
 /**
  * @brief Function decode_value
- * 
+ *
  * @param code (const std::string&)
  * @param character_set (const std::string&)
  * @return Return value (uint64_t)
@@ -108,14 +108,14 @@ class MHO_ChannelIndexLabeler
 
         /**
          * @brief Setter for channel chars - provides the option to use different character sets
-         * 
+         *
          * @param ch_set Input character set to use as defaults
          */
         void SetDefaultChannelChars(const std::string& ch_set) { fDefaultChannelChars = ch_set; }
 
         /**
          * @brief Setter for extended channel chars
-         * 
+         *
          * @param ex_set New set of extended channel characters
          */
         void SetExtendedChannelChars(const std::string& ex_set) { fExtendedChannelChars = ex_set; }
@@ -123,7 +123,7 @@ class MHO_ChannelIndexLabeler
         //default encoding/decoding scheme
         /**
          * @brief Encodes a uint64_t value into a label string using default and extended encoding schemes.
-         * 
+         *
          * @param value Input value to be encoded as a label.
          * @return Encoded label string representation of the input value.
          */
@@ -140,7 +140,7 @@ class MHO_ChannelIndexLabeler
 
         /**
          * @brief Decodes a channel label to its corresponding value.
-         * 
+         *
          * @param label Input channel label string.
          * @return Decoded channel value as uint64_t.
          */
@@ -158,14 +158,10 @@ class MHO_ChannelIndexLabeler
         }
 
     protected:
-
         //legal characters in channel labels
         std::string fDefaultChannelChars;
         std::string fExtendedChannelChars;
 };
-
-
-
 
 } // namespace hops
 

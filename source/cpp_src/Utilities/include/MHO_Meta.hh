@@ -42,7 +42,7 @@ template< typename L > struct MHO_TypelistSizeImpl;
 //specialization for typelist
 /**
  * @brief Class MHO_TypelistSizeImpl<MHO_Typelist<T...>>
- * 
+ *
  * @tparam L Template parameter L
  */
 template< class... T > struct MHO_TypelistSizeImpl< MHO_Typelist< T... > >
@@ -79,7 +79,7 @@ template< typename XCheckType, size_t N, typename... T > struct count_instances_
 //terminating case is N=0
 /**
  * @brief Class count_instances_of_type<XCheckType, 0, T...>
- * 
+ *
  * @tparam XCheckType Template parameter XCheckType
  * @tparam N Template parameter N
  * @tparam T Template parameter T
@@ -106,7 +106,7 @@ template< typename XCheckType, size_t N, typename... T > struct count_instances_
 //functions needed to stream tuples/////////////////////////////////////////////
 /**
  * @brief Terminating case for ostream_tuple, does nothing and returns s.
- * 
+ *
  * @tparam N Template parameter N
  * @tparam XStream Template parameter XStream
  * @tparam T Template parameter T
@@ -123,7 +123,7 @@ typename std::enable_if< (N >= sizeof...(T)), XStream& >::type ostream_tuple(XSt
 
 /**
  * @brief Terminating case for ostream_tuple:  returns s.
- * 
+ *
  * @tparam N Template parameter N
  * @tparam XStream Template parameter XStream
  * @tparam T Template parameter T
@@ -143,7 +143,7 @@ typename std::enable_if< (N < sizeof...(T)), XStream& >::type ostream_tuple(XStr
 //functions needed to stream tuples
 /**
  * @brief Returns an XStream& without modification for terminating case.
- * 
+ *
  * @tparam N Template parameter N
  * @tparam XStream Template parameter XStream
  * @tparam T Template parameter T
@@ -160,7 +160,7 @@ typename std::enable_if< (N >= sizeof...(T)), XStream& >::type istream_tuple(XSt
 
 /**
  * @brief Terminating case for istream_tuple, returns s.
- * 
+ *
  * @tparam N Template parameter N
  * @tparam XStream Template parameter XStream
  * @tparam T Template parameter T
@@ -186,7 +186,7 @@ template< size_t NTypes > struct indexed_tuple_visit
 {
         /**
          * @brief Applies a functor to all elements of an XTupleType tuple and recursively visits the next type.
-         * 
+         *
          * @param param Input tuple of type XTupleType&
          * @param param2 Functor of type XFunctorType&
          */
@@ -206,7 +206,7 @@ template<> struct indexed_tuple_visit< 0 >
 {
         /**
          * @brief Recursively applies functor to tuple elements and then itself.
-         * 
+         *
          * @param param Input tuple of type XTupleType&
          * @param param2 Functor of type XFunctorType&
          */
@@ -215,7 +215,6 @@ template<> struct indexed_tuple_visit< 0 >
 
 ////////////////////////////////////////////////////////////////////////////////
 
-
 /**
  * @brief Class apply_to_tuple - generic apply functor to tuple element (for runtime-indexed access)
  */
@@ -223,7 +222,7 @@ template< size_t NTypes > struct apply_to_tuple
 {
         /**
          * @brief Applies a functor to an element of a tuple at a specified index.
-         * 
+         *
          * @tparam XTupleType Template parameter XTupleType
          * @tparam XFunctorType Template parameter XFunctorType
          * @param tup Tuple of type XTupleType&
@@ -255,7 +254,7 @@ template<> struct apply_to_tuple< 0 >
 {
         /**
          * @brief Applies a functor to an element of a tuple at a given index.
-         * 
+         *
          * @tparam XTupleType Template parameter XTupleType
          * @tparam XFunctorType Template parameter XFunctorType
          * @param tup Tuple to apply functor on
@@ -271,7 +270,7 @@ template<> struct apply_to_tuple< 0 >
 //const access
 /**
  * @brief Applies a functor to an element at a specified index in a tuple.
- * 
+ *
  * @param tup Input tuple of type XTupleType
  * @param index Index of the tuple element to apply the functor to
  * @param functor Functor of type XFunctorType& to apply to the tuple element
@@ -348,7 +347,6 @@ template<> struct is_complex< std::complex< double > >: std::true_type
 
 template<> struct is_complex< std::complex< long double > >: std::true_type
 {};
-
 
 /**
  * @brief zip elements of two iterable (probably STL) containers (which define a value_type)

@@ -78,7 +78,7 @@ class MHO_Axis: public MHO_AxisBase,
         //overload the CopyTags function to get special treatment of the index/interval labels
         /**
          * @brief Copies tags from rhs MHO_Axis object, handling index/interval labels specially.
-         * 
+         *
          * @param rhs Reference to the source MHO_Axis object
          * @note This is a virtual function.
          */
@@ -110,7 +110,7 @@ class MHO_Axis: public MHO_AxisBase,
         //index selection from matching axis values
         /**
          * @brief Selects indexes from axis where the label values match the provided labels, dumb brute force search.
-         * 
+         *
          * @param label_values Set of label values to match against axis elements
          * @return Vector of matching indexes
          */
@@ -134,7 +134,7 @@ class MHO_Axis: public MHO_AxisBase,
 
         /**
          * @brief Selects indexes for matching axis values (given a single value)
-         * 
+         *
          * @param label_value (const XValueType&)
          * @return Vector of selected indexes where axis element matches the label value
          */
@@ -156,7 +156,7 @@ class MHO_Axis: public MHO_AxisBase,
         //index selection for first matching axis values (given a single value)
         /**
          * @brief Selects first matching index for a given label value in axis values.
-         * 
+         *
          * @param label_value Input label value to match.
          * @param result (std::size_t&)
          * @return True if a match is found, false otherwise. Result contains matched index.
@@ -177,7 +177,7 @@ class MHO_Axis: public MHO_AxisBase,
 
         /**
          * @brief Getter for serialized size of axis object
-         * 
+         *
          * @return Total serialized size as uint64_t
          * @note This is a virtual function.
          */
@@ -189,11 +189,9 @@ class MHO_Axis: public MHO_AxisBase,
             return total_size;
         }
 
-        
-
         /**
          * @brief Expensive copy for MHO_Axis that handles special treatment of index/interval labels.
-         * 
+         *
          * @param rhs Const reference to source MHO_Axis object
          * @note This is a virtual function.
          * @details expensive copy (as opposed to the assignment operator),
@@ -257,7 +255,7 @@ class MHO_Axis: public MHO_AxisBase,
     private:
         /**
          * @brief Reads data from stream and sets index/interval label objects.
-         * 
+         *
          * @param s Input stream of type XStream&
          * @return void
          */
@@ -277,7 +275,7 @@ class MHO_Axis: public MHO_AxisBase,
 
         /**
          * @brief Serializes the vector container data to an output stream.
-         * 
+         *
          * @param s Reference to the output stream.
          * @return No return value (void)
          */

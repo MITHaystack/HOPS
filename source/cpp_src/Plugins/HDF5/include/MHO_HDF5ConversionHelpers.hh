@@ -16,12 +16,12 @@
 #include <sstream>
 
 #include "hdf5.h"
-#include "hdf5_hl.h" 
+#include "hdf5_hl.h"
 
-#include "MHO_NumpyTypeCode.hh"
-#include "MHO_HDF5TypeCode.hh"
 #include "MHO_HDF5Attributes.hh"
 #include "MHO_HDF5Datasets.hh"
+#include "MHO_HDF5TypeCode.hh"
+#include "MHO_NumpyTypeCode.hh"
 
 namespace hops
 {
@@ -32,34 +32,33 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri May 16 10:42:52 AM EDT 2025
  *@brief template functions to write various data types to HDF5
- * 
+ *
  */
 
-
-inline void json_to_hdf5_attributes(const mho_json& j, hid_t parent_group) 
+inline void json_to_hdf5_attributes(const mho_json& j, hid_t parent_group)
 {
-    for(auto it = j.begin(); it != j.end(); ++it) 
+    for(auto it = j.begin(); it != j.end(); ++it)
     {
         const std::string& key = it.key();
         const mho_json& value = it.value();
 
-        if( value.is_object() ) 
+        if(value.is_object())
         {
             hid_t subgroup = H5Gcreate(parent_group, key.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
             json_to_hdf5_attributes(value, subgroup);
             H5Gclose(subgroup);
-        } 
-        else if ( value.is_array() && value.size() != 0)  
+        }
+        else if(value.is_array() && value.size() != 0)
         {
-            if( !(value.begin()->is_object()) )
+            if(!(value.begin()->is_object()))
             {
                 make_attribute(key, value, parent_group);
             }
-            else 
+            else
             {
                 hid_t array_group = H5Gcreate(parent_group, key.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
                 int idx = 0;
-                for (const auto& elem : value) 
+                for(const auto& elem : value)
                 {
                     std::string item_name = std::to_string(idx++);
                     hid_t item_group = H5Gcreate(array_group, item_name.c_str(), H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
@@ -68,15 +67,13 @@ inline void json_to_hdf5_attributes(const mho_json& j, hid_t parent_group)
                 }
                 H5Gclose(array_group);
             }
-        } 
-        else 
+        }
+        else
         {
             make_attribute(key, value, parent_group);
         }
     }
 }
-
-
 
 } // namespace hops
 

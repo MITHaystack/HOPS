@@ -37,7 +37,7 @@ class MHO_DCBlock: public MHO_UnaryOperator< visibility_type >
     protected:
         /**
          * @brief Initializes in-place visibility_type pointer.
-         * 
+         *
          * @param in Input visibility_type pointer to initialize
          * @return True if initialization is successful
          * @note This is a virtual function.
@@ -45,7 +45,7 @@ class MHO_DCBlock: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeInPlace(visibility_type* in) override;
         /**
          * @brief Initializes out-of-place data processing for visibility_type objects.
-         * 
+         *
          * @param in Const input visibility_type pointer
          * @param out Output visibility_type pointer
          * @return True if initialization is successful
@@ -55,7 +55,7 @@ class MHO_DCBlock: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Zero out DC spectral points for all channels in-place.
-         * 
+         *
          * @param in Input visibility data to process.
          * @return True if successful.
          * @note This is a virtual function.
@@ -63,7 +63,7 @@ class MHO_DCBlock: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(visibility_type* in) override;
         /**
          * @brief Copies input visibility data and executes in-place processing.
-         * 
+         *
          * @param in Input visibility data to be copied.
          * @param out (visibility_type*)
          * @return Result of ExecuteInPlace operation on copied data.
