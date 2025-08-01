@@ -26,20 +26,20 @@ class MHO_MK4VexInterface
 
         /**
          * @brief Opens a VEX file and parses its contents into an internal JSON representation.
-         * 
+         *
          * @param file_path Path to the VEX file to be opened and parsed
          */
         void OpenVexFile(std::string file_path);
         /**
          * @brief Getter for vex as JSON object
-         * 
+         *
          * @return mho_json containing vex data or an empty json object.
          */
         mho_json GetVex();
 
         /**
          * @brief Exports Vex file data to a JSON object if available.
-         * 
+         *
          * @param json_obj Reference to an mho_json object that will receive the exported data.
          * @return True if successful, false if no Vex file data is available.
          */

@@ -86,8 +86,7 @@ int main(int argc, char** argv)
     app.add_flag("-L,--legacy-bands", use_legacy_bands, legacy_freq_bands_help.c_str())->excludes("-b");
     app.add_flag("-C,--legacy-station-codes", use_legacy_stcodes,
                  "use the legacy station code map with assigning mk4 station IDs.");
-    app.add_flag("-k,--mark4", export_as_mark4,
-              "export data in the legacy mark4 format instead of hops format.");
+    app.add_flag("-k,--mark4", export_as_mark4, "export data in the legacy mark4 format instead of hops format.");
     app.add_option("-g,--freq-groups", freq_groups, "include data only from the specified frequency groups")->delimiter(',');
     app.add_option("-w,--bandwidth", bandwidth, "include data only channels matching this bandwidth (in MHz)");
     app.add_flag("-a,--attach-difx-input", attach_difx_input, "attach the DiFX .input data to the visibility object tags");
@@ -192,13 +191,11 @@ int main(int argc, char** argv)
     }                                                      //use legacy d2m4 station code map
     stcode_map.InitializeStationCodes(station_codes_file); //if no file passed, auto assignement will take place
 
-
-
-    for(std::size_t n=0; n<input_dirs.size(); n++)
+    for(std::size_t n = 0; n < input_dirs.size(); n++)
     {
         std::string input_dir = input_dirs[n];
-        
-        if( MHO_DirectoryInterface::IsDirectory(input_dir) )
+
+        if(MHO_DirectoryInterface::IsDirectory(input_dir))
         {
             MHO_DiFXInterface difxInterface;
             difxInterface.SetInputDirectory(input_dir);
@@ -206,12 +203,12 @@ int main(int argc, char** argv)
             difxInterface.SetStationCodes(&stcode_map);
             difxInterface.SetExperimentNumber(exper_num);
             difxInterface.SetNormalizeFalse();
-            
+
             if(!raw_mode)
             {
                 difxInterface.SetNormalizeTrue();
             }
-            
+
             if(preserve)
             {
                 difxInterface.SetPreserveDiFXScanNamesTrue();
@@ -221,7 +218,7 @@ int main(int argc, char** argv)
             {
                 difxInterface.SetAttachDiFXInputTrue();
             }
-            else 
+            else
             {
                 difxInterface.SetAttachDiFXInputFalse();
             }
@@ -230,17 +227,17 @@ int main(int argc, char** argv)
             {
                 difxInterface.SetOnlyBandwidth(bandwidth);
             }
-            
+
             if(freq_bands.size() != 0)
             {
                 difxInterface.SetFrequencyBands(freq_bands);
             }
-            
+
             if(freq_groups.size() != 0)
             {
                 difxInterface.SetFreqGroups(freq_groups);
             }
-            
+
             if(export_as_mark4)
             {
                 difxInterface.SetExportAsMark4True();

@@ -34,42 +34,42 @@ class MHO_FringeData
 
         /**
          * @brief Getter for parameter store
-         * 
+         *
          * @return Pointer to MHO_ParameterStore
          */
         MHO_ParameterStore* GetParameterStore() { return &fParameterStore; }
 
         /**
          * @brief Getter for container store
-         * 
+         *
          * @return MHO_ContainerStore& - Reference to the container store.
          */
         MHO_ContainerStore* GetContainerStore() { return &fContainerStore; }
 
         /**
          * @brief Getter for scan data store
-         * 
+         *
          * @return Pointer to MHO_ScanDataStore
          */
         MHO_ScanDataStore* GetScanDataStore() { return &fScanStore; }
 
         /**
          * @brief Getter for vex data (as json object)
-         * 
+         *
          * @return The root file data as an mho_json object.
          */
         mho_json GetVex() const { return fScanStore.GetRootFileData(); }
 
         /**
          * @brief access to the control format and parsed control statements (as json object)
-         * 
+         *
          * @return Reference to mho_json object representing control format
          */
         mho_json& GetControlFormat() { return fControlFormat; }
 
         /**
          * @brief Getter for parsed control statements
-         * 
+         *
          * @return Reference to mho_json object containing control statements.
          */
         mho_json& GetControlStatements() { return fControlStatements; }
@@ -77,14 +77,14 @@ class MHO_FringeData
         //TODO remove this hack in favor of 'plotting'/'output' visitors
         /**
          * @brief Getter for plot data
-         * 
+         *
          * @return Reference to mho_json object containing plot data
          */
         mho_json& GetPlotData() { return fPlotData; }
 
         /**
          * @brief Writes output data to disk with a temporary unique name and renames it afterwards.
-         * 
+         *
          * @return Returns an integer value indicating success or failure.
          */
         int WriteOutput();
@@ -92,7 +92,7 @@ class MHO_FringeData
     protected:
         /**
          * @brief Writes data objects to a file with given filename.
-         * 
+         *
          * @param filename Filename to write data objects.
          * @return 0 on success, error code otherwise.
          */
@@ -100,7 +100,7 @@ class MHO_FringeData
 
         /**
          * @brief Constructs a fringe file name string from given parameters.
-         * 
+         *
          * @param directory The directory path where the fringe file will be located.
          * @param baseline Baseline identifier for the fringe file.
          * @param ref_station Reference station identifier.
@@ -118,7 +118,7 @@ class MHO_FringeData
 
         /**
          * @brief Constructs a temporary file name using provided parameters and concatenation.
-         * 
+         *
          * @param directory The directory where the file will be located.
          * @param baseline Baseline identifier for the file.
          * @param ref_station Reference station identifier.

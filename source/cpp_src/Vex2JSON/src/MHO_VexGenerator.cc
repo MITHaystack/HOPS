@@ -41,27 +41,27 @@ void MHO_VexGenerator::GenerateVex(mho_json& root)
         all_lines.push_back("rev = 1.0" + MHO_VexDefinitions::StatementLineEnd());
         all_lines.push_back("$LVEX_REV" + MHO_VexDefinitions::StatementLineEnd());
         all_lines.push_back("rev = 1.0" + MHO_VexDefinitions::StatementLineEnd());
-        
-        //This is a stupid kludge for the legacy vex c-library 
+
+        //This is a stupid kludge for the legacy vex c-library
         //(fourfit ovex parser), which has a problem when encountering blank fields.
         //When the 'source_type' parameter is specified under $SOURCE
-        //both the physical_type and experiment_type must be specified, if only one 
-        //is encountered, there will be an error which causes the rest of the source 
-        //information to be ignored. Therefor if 'source_type' is specified, 
-        //then we must fill in these parameters with dummy values if they are not present 
+        //both the physical_type and experiment_type must be specified, if only one
+        //is encountered, there will be an error which causes the rest of the source
+        //information to be ignored. Therefor if 'source_type' is specified,
+        //then we must fill in these parameters with dummy values if they are not present
         for(auto it = root["$SOURCE"].begin(); it != root["$SOURCE"].end(); it++)
         {
-            if( it->contains("source_type") )
+            if(it->contains("source_type"))
             {
                 std::string phys_type = "dummy";
                 std::string exp_type = "dummy";
                 if((*it)["source_type"].contains("physical_type"))
                 {
-                    std::string phys_type = (*it)["source_type"]["physical_type"].get<std::string>();
+                    std::string phys_type = (*it)["source_type"]["physical_type"].get< std::string >();
                 }
                 if((*it)["source_type"].contains("experiment_type"))
                 {
-                    std::string exp_type = (*it)["source_type"]["experiment_type"].get<std::string>();
+                    std::string exp_type = (*it)["source_type"]["experiment_type"].get< std::string >();
                 }
                 (*it)["source_type"]["physical_type"] = phys_type;
                 (*it)["source_type"]["experiment_type"] = exp_type;
@@ -167,7 +167,7 @@ void MHO_VexGenerator::ConstructElementLines(mho_json& element, std::vector< std
         std::string field_name = raw_field_name;
         if(raw_field_name[0] == bang[0])
         {
-            field_name =  string_pattern_replace(raw_field_name, bang, nothing);
+            field_name = string_pattern_replace(raw_field_name, bang, nothing);
             //std::regex_replace(raw_field_name, std::regex(bang), nothing);
         }
 

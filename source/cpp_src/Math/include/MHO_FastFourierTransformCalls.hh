@@ -22,17 +22,15 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  */
 
-
-
- /**
-  * @brief Performs a Radix-2 Decimation-in-time (DIT) FFT algorithm on complex data using a workspace for arbitrary N.
-  * workspace is expected to be initialized before call
-  * @tparam XFloatType Template parameter XFloatType
-  * @param data Input/output complex data array.
-  * @param work Initialized MHO_FastFourierTransformWorkspace containing necessary buffers and twiddle factors.
-  * @param isForward Boolean flag indicating whether to perform forward or inverse FFT.
-  * @param stride Stride for accessing elements in the data array.
-  */
+/**
+ * @brief Performs a Radix-2 Decimation-in-time (DIT) FFT algorithm on complex data using a workspace for arbitrary N.
+ * workspace is expected to be initialized before call
+ * @tparam XFloatType Template parameter XFloatType
+ * @param data Input/output complex data array.
+ * @param work Initialized MHO_FastFourierTransformWorkspace containing necessary buffers and twiddle factors.
+ * @param isForward Boolean flag indicating whether to perform forward or inverse FFT.
+ * @param stride Stride for accessing elements in the data array.
+ */
 template< typename XFloatType >
 void FFTRadix2(std::complex< XFloatType >* data, MHO_FastFourierTransformWorkspace< XFloatType >& work, bool isForward,
                unsigned int stride = 1)
@@ -53,7 +51,6 @@ void FFTRadix2(std::complex< XFloatType >* data, MHO_FastFourierTransformWorkspa
         MHO_FastFourierTransformUtilities< XFloatType >::Conjugate(work.fN, data, stride);
     }
 }
-
 
 /**
  * @brief Performs Bluestein's FFT algorithm on complex data using a workspace for arbitrary N.

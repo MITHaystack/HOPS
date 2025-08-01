@@ -32,7 +32,7 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Getter for version
-         * 
+         *
          * @return MHO_ClassVersion version number
          * @note This is a virtual function.
          */
@@ -40,7 +40,7 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Getter for serialized size
-         * 
+         *
          * @return Serialized size as a uint64_t.
          * @note This is a virtual function.
          */
@@ -48,7 +48,7 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Calculates and returns the serialized size of an object.
-         * 
+         *
          * @return The serialized size as a uint64_t.
          * @note This is a virtual function.
          */
@@ -63,14 +63,14 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Setter for value
-         * 
+         *
          * @param value Input value of type const XValueType& to be assigned internally
          */
         void SetValue(const XValueType& value) { fData = value; };
 
         /**
          * @brief Getter for value
-         * 
+         *
          * @return Current value of type XValueType.
          */
         XValueType GetValue() { return fData; };
@@ -81,7 +81,7 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Getter for size
-         * 
+         *
          * @return Size as std::size_t
          */
         std::size_t GetSize() const { return 1; };
@@ -122,7 +122,7 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
     private:
         /**
          * @brief Reads data from stream and stores it in object's fData and MHO_Taggable fields.
-         * 
+         *
          * @param s Input stream of type XStream&
          * @return void
          */
@@ -134,7 +134,7 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Serializes data and object metadata to an output stream.
-         * 
+         *
          * @param s Output stream of type XStream&.
          * @return No return value (void).
          */
@@ -146,7 +146,7 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Generates a UUID by hashing the class name and returning it.
-         * 
+         *
          * @return MHO_UUID representing the hashed class name.
          * @note This is a virtual function.
          */
@@ -168,7 +168,7 @@ class MHO_ScalarContainer: public MHO_ScalarContainerBase, public MHO_NDArrayWra
 //(NOTE: we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
 /**
  * @brief Function MHO_ScalarContainer<std::string>::ComputeSerializedSize
- * 
+ *
  * @return Return value (uint64_t MHO_ScalarContainer< std::string)
  */
 template<> inline uint64_t MHO_ScalarContainer< std::string >::ComputeSerializedSize() const

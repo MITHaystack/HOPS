@@ -36,7 +36,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
 
         /**
          * @brief Setter for station identifier
-         * 
+         *
          * @param station_id mk4 id of type std::string
          * @details station_id is treated as follows:
          * 1-char => mk4 id
@@ -46,7 +46,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
 
         /**
          * @brief Setter for polarization
-         * 
+         *
          * @param pol Input polarization string
          */
         void SetPolarization(const std::string& pol)
@@ -58,7 +58,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         //channel label -> pc_phases
         /**
          * @brief Setter for channel to pc_phase map
-         * 
+         *
          * @param map Input map of channel labels to phase values
          */
         void SetChannelToPCPhaseMap(const std::map< std::string, double >& map) { fPCMap = map; };
@@ -66,7 +66,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
     protected:
         /**
          * @brief Initializes in-place visibility_type pointer.
-         * 
+         *
          * @param in Pointer to visibility_type that will be initialized.
          * @return True if initialization is successful.
          * @note This is a virtual function.
@@ -74,7 +74,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         virtual bool InitializeInPlace(visibility_type* in) override;
         /**
          * @brief Initializes out-of-place data from input visibility_type pointer.
-         * 
+         *
          * @param in Const pointer to input visibility_type data.
          * @param out (visibility_type*)
          * @return Boolean indicating successful initialization.
@@ -84,7 +84,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
 
         /**
          * @brief Applies phase correction to visibility data in-place for reference or remote station.
-         * 
+         *
          * @param in Input visibility_type* containing pol-products and channels.
          * @return bool indicating successful execution.
          * @note This is a virtual function.
@@ -92,7 +92,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         virtual bool ExecuteInPlace(visibility_type* in) override;
         /**
          * @brief Copies input visibility data and executes in-place correction.
-         * 
+         *
          * @param in Const reference to input visibility_type data.
          * @param out (visibility_type*)
          * @return Result of ExecuteInPlace operation on copied output data.
@@ -103,7 +103,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
     private:
         /**
          * @brief Checks if a correction is applicable based on station identity and input visibility data.
-         * 
+         *
          * @param st_idx Index of the station (0 for reference, 1 for remote).
          * @param in Pointer to const visibility_type containing input visibility data.
          * @return Boolean indicating whether a correction should be applied or not.
@@ -111,7 +111,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         /**
          * @brief Checks if the correction polarization matches the polarization product at the given station index [0 = ref, 1 = rem].
-         * 
+         *
          * @param station_idx Index of the station in polprod string
          * @param polprod Polarization product string
          * @return True if match, false otherwise
@@ -119,7 +119,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         bool PolMatch(std::size_t station_idx, std::string& polprod);
         /**
          * @brief Checks if given channel label matches expected label (considering +/- for LSB/USB halves).
-         * 
+         *
          * @param expected_chan_label Expected channel label without +/- for LSB/USB halves
          * @param given_chan_label Given channel label which may contain +/- for LSB/USB halves
          * @return True if given label matches expected after stripping +/- if needed, false otherwise

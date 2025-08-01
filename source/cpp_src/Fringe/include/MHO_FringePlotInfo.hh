@@ -32,10 +32,9 @@ class MHO_FringePlotInfo
         virtual ~MHO_FringePlotInfo(){};
 
     public:
-        
         /**
          * @brief Constructs plot data using provided stores and toolbox, populating vexInfo.
-         * 
+         *
          * @param conStore MHO_ContainerStore pointer for accessing visibility, station, and weight data
          * @param paramStore MHO_ParameterStore pointer for retrieving configuration parameters
          * @param toolbox MHO_OperatorToolbox pointer accessing operators for performing computations
@@ -47,7 +46,7 @@ class MHO_FringePlotInfo
                                             MHO_OperatorToolbox* toolbox, mho_json& vexInfo);
         /**
          * @brief Fills a JSON object with plot data retrieved from an MHO_ParameterStore.
-         * 
+         *
          * @param paramStore Pointer to MHO_ParameterStore containing plot data
          * @param plot_dict Reference to mho_json object that will store the retrieved plot data
          * @note This is a static function.

@@ -64,12 +64,18 @@ void MHO_IonosphericFringeFitter::Run()
         if(do_smoothing)
         {
             ret_val = ion_search_smooth();
-            if(ret_val !=0 ){msg_error("fringe", "could not execute smoothed ion search" << eom);}
+            if(ret_val != 0)
+            {
+                msg_error("fringe", "could not execute smoothed ion search" << eom);
+            }
         }
         else
         {
             ret_val = rjc_ion_search();
-            if(ret_val !=0 ){msg_error("fringe", "could not execute standard ion search" << eom);}
+            if(ret_val != 0)
+            {
+                msg_error("fringe", "could not execute standard ion search" << eom);
+            }
         }
 
         fParameterStore->Set("/status/is_finished", true);
@@ -115,7 +121,7 @@ void MHO_IonosphericFringeFitter::Finalize()
         mho_json& plot_data = fFringeData->GetPlotData();
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
-        
+
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
     profiler_stop();
@@ -172,13 +178,14 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     {
         win_ion[0] = std::min(iwin[0], iwin[1]);
         win_ion[1] = std::max(iwin[0], iwin[1]);
-        msg_debug("fringe", "using an ion window of: ("<< win_ion[0]<<", "<< win_ion[1] << ")" << eom );
+        msg_debug("fringe", "using an ion window of: (" << win_ion[0] << ", " << win_ion[1] << ")" << eom);
     }
     else
     {
         win_ion[0] = 0.0;
         win_ion[1] = 0.0;
-        msg_debug("fringe", "no ion window set, defaulting to ion window of: ("<< win_ion[0]<<", "<< win_ion[1] << ")" << eom );
+        msg_debug("fringe",
+                  "no ion window set, defaulting to ion window of: (" << win_ion[0] << ", " << win_ion[1] << ")" << eom);
     }
 
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
@@ -388,7 +395,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
                 //cache the full SBD search window for later
                 fMBDSearch->GetSBDWindow(fInitialSBWin[0], fInitialSBWin[1]);
             }
-            
+
             // restore original window values for interpolation
             for(i = 0; i < 2; i++)
             {
@@ -530,13 +537,14 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     {
         win_ion[0] = std::min(iwin[0], iwin[1]);
         win_ion[1] = std::max(iwin[0], iwin[1]);
-        msg_debug("fringe", "using an ion window of: ("<< win_ion[0]<<", "<< win_ion[1] << ")" << eom );
+        msg_debug("fringe", "using an ion window of: (" << win_ion[0] << ", " << win_ion[1] << ")" << eom);
     }
     else
     {
         win_ion[0] = 0.0;
         win_ion[1] = 0.0;
-        msg_debug("fringe", "no ion window set, defaulting to ion window of: ("<< win_ion[0]<<", "<< win_ion[1] << ")" << eom );
+        msg_debug("fringe",
+                  "no ion window set, defaulting to ion window of: (" << win_ion[0] << ", " << win_ion[1] << ")" << eom);
     }
 
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
@@ -728,7 +736,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
                 //     fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
                 //     first_pass = false;
                 // }
-                
+
                 // msg_debug("fringe",
                 //           "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
                 // fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
@@ -744,7 +752,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             // interpolate via direct counter-rotation for
             // more precise results
             interpolate_peak();
-            
+
             if(first_pass)
             {
                 //limit the SBD window to bin where the max was located
@@ -862,8 +870,7 @@ void MHO_IonosphericFringeFitter::smoother(double* f,        // input data array
     }
 }
 
-double 
-MHO_IonosphericFringeFitter::calculate_approx_snr()
+double MHO_IonosphericFringeFitter::calculate_approx_snr()
 {
     //snr_approx = 1e-4 * status.delres_max * param.inv_sigma * sqrt((double)status.total_ap_frac * 2.0);
     double eff_npols = 1.0;
@@ -872,7 +879,7 @@ MHO_IonosphericFringeFitter::calculate_approx_snr()
     {
         eff_npols = 2.0;
     }
-    
+
     double bw_corr_factor = 1.0;
     double ap_delta = fParameterStore->GetAs< double >("/config/ap_period");
     double samp_period = fParameterStore->GetAs< double >("/vex/scan/sample_period/value");
@@ -881,7 +888,6 @@ MHO_IonosphericFringeFitter::calculate_approx_snr()
     double snr =
         MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);
     return snr;
-
 }
 
 } // namespace hops

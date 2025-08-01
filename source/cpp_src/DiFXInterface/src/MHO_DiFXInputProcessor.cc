@@ -20,7 +20,7 @@ void MHO_DiFXInputProcessor::LoadDiFXInputFile(std::string filename)
     {
         deleteDifxInput(fD);
     }
-        
+
     msg_debug("difx_interface", "loading difx input file: " << filename << eom);
     fD = loadDifxInput(filename.c_str());
     fFilename = filename;
@@ -90,7 +90,7 @@ void MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
     {
         input["baseline"].push_back(ExtractBaselineQuantities(i));
     }
-    
+
     //add the input file name
     input["difx_input_filename"] = fFilename;
 

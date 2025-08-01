@@ -36,14 +36,14 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Setter for reference frequency
-         * 
+         *
          * @param ref_freq New reference frequency value in MHz
          */
         void SetReferenceFrequency(double ref_freq) { fRefFreq = ref_freq; }
 
         /**
          * @brief Setter for station identifier
-         * 
+         *
          * @param station_id mk4 id of type std::string
          * @details station_id is treated as follows:
          * 1-char => mk4 id
@@ -53,7 +53,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Setter for polarization
-         * 
+         *
          * @param pol Input polarization string
          */
         void SetPolarization(const std::string& pol)
@@ -64,7 +64,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Setter for pcdelay offset
-         * 
+         *
          * @param pc_delay_offset Time offset to be applied to associated polarization
          */
         void SetPCDelayOffset(const double& pc_delay_offset) { fDelayOffset = pc_delay_offset; }
@@ -72,7 +72,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
     protected:
         /**
          * @brief Initializes in-place visibility_type pointer.
-         * 
+         *
          * @param in Pointer to visibility_type for initialization
          * @return True if successful
          * @note This is a virtual function.
@@ -80,7 +80,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeInPlace(visibility_type* in) override;
         /**
          * @brief Initializes out-of-place visibility data from input pointer.
-         * 
+         *
          * @param in Const pointer to input visibility_type data.
          * @param out (visibility_type*)
          * @return Boolean indicating successful initialization.
@@ -90,7 +90,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Applies manual delay offset and calculates phase correction factors for each channel
-         * 
+         *
          * @param in Input visibility data of type visibility_type.
          * @return True if successful, false otherwise.
          * @note This is a virtual function.
@@ -98,7 +98,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(visibility_type* in) override;
         /**
          * @brief Copies input visibility data and executes in-place processing.
-         * 
+         *
          * @param in Const pointer to input visibility_type data.
          * @param out (visibility_type*)
          * @return Boolean result of ExecuteInPlace operation on copied output.
@@ -109,7 +109,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
     private:
         /**
          * @brief Checks if manual polarization-specific delay correction is applicable for a given station index and visibility type.
-         * 
+         *
          * @param st_idx Station index of type std::size_t
          * @param in Const reference to visibility_type
          * @return Boolean indicating whether the correction should be applied
@@ -117,7 +117,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         bool IsApplicable(std::size_t st_idx, const visibility_type* in);
         /**
          * @brief Checks if the correction polarization matches the polarization product at the given station index [0 = ref, 1 = rem].
-         * 
+         *
          * @param station_idx Index of the station for which to check the polarization product.
          * @param polprod (std::string&)
          * @return True if polarization product matches fPol at given station index, false otherwise.

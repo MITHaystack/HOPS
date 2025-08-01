@@ -10,16 +10,16 @@
  */
 
 #include "MHO_Message.hh"
+#include <regex>
 #include <string>
 #include <vector>
-#include <regex>
 
 namespace hops
 {
 
 /**
  * @brief Replaces occurrences of pattern in value with replacement.
- * 
+ *
  * @param value Input string where patterns will be replaced.
  * @param pattern Pattern to search for within input string.
  * @param replacement String to replace found patterns.
@@ -29,7 +29,10 @@ inline std::string string_pattern_replace(const std::string& value, const std::s
 {
     //original implementation is via std::regex, however, std::regex is not implemented for <GCC 4.9
     //return std::regex_replace(value, std::regex(pattern), replacement);
-    if(pattern == replacement){return value;}
+    if(pattern == replacement)
+    {
+        return value;
+    }
     std::string tmp = value;
     std::size_t loc = std::string::npos;
     do
@@ -73,28 +76,28 @@ class MHO_VexDefinitions
 
         /**
          * @brief Setter for vex version
-         * 
+         *
          * @param version New vex version as string
          */
         void SetVexVersion(std::string version);
 
         /**
          * @brief Getter for format directory
-         * 
+         *
          * @return std::string - The format directory path.
          */
         std::string GetFormatDirectory() const;
 
         /**
          * @brief Getter for block names
-         * 
+         *
          * @return std::vector<std::string containing block names.
          */
         std::vector< std::string > GetBlockNames() const { return fBlockNames; }
 
         /**
          * @brief Determines and returns the version of a VEX file given its filename.
-         * 
+         *
          * @param filename The path to the VEX file.
          * @return A string representing the file's version (e.g., '1.5', '2.0', or 'ovex'), or 'unknown' if not determined.
          * @note This is a static function.
@@ -103,7 +106,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a static string representing the start block flag.
-         * 
+         *
          * @return A std::string containing the character '$'.
          * @note This is a static function.
          */
@@ -111,7 +114,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a static string 'ref'.
-         * 
+         *
          * @return std::string containing 'ref'
          * @note This is a static function.
          */
@@ -119,7 +122,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a string containing whitespace characters.
-         * 
+         *
          * @return A std::string containing space (' '), tab (\t), carriage return (\r), and newline (\n) characters.
          * @note This is a static function.
          */
@@ -127,7 +130,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a string literal '='.
-         * 
+         *
          * @return A std::string containing the assignment operator ('=').
          * @note This is a static function.
          */
@@ -135,7 +138,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a string '=;' as the assignment delimiter.
-         * 
+         *
          * @return A std::string containing '=;'.
          * @note This is a static function.
          */
@@ -143,7 +146,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a string containing whitespace characters.
-         * 
+         *
          * @return A std::string containing whitespace
          * @note This is a static function.
          */
@@ -151,7 +154,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a static string ':' as an element delimiter.
-         * 
+         *
          * @return A std::string containing ':'
          * @note This is a static function.
          */
@@ -159,7 +162,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a static string 'VEX_rev' for revision flag.
-         * 
+         *
          * @return std::string containing 'VEX_rev'
          * @note This is a static function.
          */
@@ -167,7 +170,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a string containing the OVEX revision flag.
-         * 
+         *
          * @return A std::string containing '$OVEX_REV'.
          * @note This is a static function.
          */
@@ -175,7 +178,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a static string 'start_literal'.
-         * 
+         *
          * @return A std::string containing 'start_literal'
          * @note This is a static function.
          */
@@ -183,7 +186,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a static string 'end_literal'.
-         * 
+         *
          * @return std::string containing 'end_literal'
          * @note This is a static function.
          */
@@ -191,7 +194,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a string containing an asterisk (*). This is a static function.
-         * 
+         *
          * @return A string containing an asterisk (*)
          * @note This is a static function.
          */
@@ -199,7 +202,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a string representing the statement end flag.
-         * 
+         *
          * @return A std::string containing ';'.
          * @note This is a static function.
          */
@@ -207,7 +210,7 @@ class MHO_VexDefinitions
 
         /**
          * @brief Returns a string representing the end of a statement line.
-         * 
+         *
          * @return A std::string containing ';
 '.
          * @note This is a static function.

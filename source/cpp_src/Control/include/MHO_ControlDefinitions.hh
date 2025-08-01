@@ -73,14 +73,14 @@ class MHO_ControlDefinitions
 
         /**
          * @brief Getter for the control (json) format directory
-         * 
+         *
          * @return std::string representing the format directory.
          * @note This is a static function.
          */
         static std::string GetFormatDirectory();
         /**
          * @brief Getter for control keyword names
-         * 
+         *
          * @return Vector of string keyword names
          * @note This is a static function.
          */
@@ -88,7 +88,7 @@ class MHO_ControlDefinitions
 
         /**
          * @brief Returns a string containing whitespace characters.
-         * 
+         *
          * @return A std::string containing whitespace characters (space, tab, carriage return, and newline).
          * @note This is a static function.
          */
@@ -96,7 +96,7 @@ class MHO_ControlDefinitions
 
         /**
          * @brief Returns a string containing an asterisk (*).
-         * 
+         *
          * @return A string containing an asterisk (*)
          * @note This is a static function.
          */
@@ -104,7 +104,7 @@ class MHO_ControlDefinitions
 
         /**
          * @brief Determines control type based on input string type.
-         * 
+         *
          * @param etype Input string representing control element type.
          * @return control_element_type corresponding to input string.
          * @note This is a static function.
@@ -113,7 +113,7 @@ class MHO_ControlDefinitions
 
         /**
          * @brief Getter for composite/complete control format as a json object
-         * 
+         *
          * @return mho_json object containing all element formats keyed by keyword names
          * @note This is a static function.
          */

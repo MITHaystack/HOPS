@@ -11,9 +11,8 @@ namespace hops
  *@class MHO_InspectingOperator
  *@author J. Barrett - barrettj@mit.edu
  *@date Tue Jan 10 16:42:53 2023 -0500
- *@brief abstract base (template) class which inspects an N-D array object, operates on a single const array (just to inspect it) 
+ *@brief abstract base (template) class which inspects an N-D array object, operates on a single const array (just to inspect it)
  */
-
 
 /**
  * @brief Class MHO_InspectingOperator
@@ -26,7 +25,7 @@ template< class XArgType > class MHO_InspectingOperator: public MHO_Operator
 
         /**
          * @brief Setter for args
-         * 
+         *
          * @param in Input const array of XArgType to inspect
          * @note This is a virtual function.
          */
@@ -34,7 +33,7 @@ template< class XArgType > class MHO_InspectingOperator: public MHO_Operator
 
         /**
          * @brief initializes inspection for a single const array of type XArgType.
-         * 
+         *
          * @return True if initialization is successful, false otherwise.
          * @note This is a virtual function.
          */
@@ -42,7 +41,7 @@ template< class XArgType > class MHO_InspectingOperator: public MHO_Operator
 
         /**
          * @brief Executes the inspection on the input array
-         * 
+         *
          * @return bool indicating success/failure of execution.
          * @note This is a virtual function.
          */
@@ -51,7 +50,7 @@ template< class XArgType > class MHO_InspectingOperator: public MHO_Operator
     protected:
         /**
          * @brief initializes inspection for a single const array of type XArgType.
-         * 
+         *
          * @param in Input const array of type XArgType to inspect
          * @return True if inspection is successful, false otherwise
          * @note This is a virtual function.
@@ -59,7 +58,7 @@ template< class XArgType > class MHO_InspectingOperator: public MHO_Operator
         virtual bool InitializeImpl(const XArgType* in) = 0;
         /**
          * @brief Inspects a single const array.
-         * 
+         *
          * @param in Input const array of type XArgType to inspect.
          * @return Boolean indicating successful execution.
          * @note This is a virtual function.

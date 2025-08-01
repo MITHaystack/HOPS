@@ -18,10 +18,9 @@ namespace hops
  *@author J. Barrett - barrettj@mit.edu
  *
  *@date Fri Oct 16 11:17:19 2020 -0400
- *@brief  MHO_VectorContainer - basis for for axis data objects in HOPS4, 
+ *@brief  MHO_VectorContainer - basis for for axis data objects in HOPS4,
  * it is an 1-dimensional array object, key:value data can be attached via the MHO_Taggable interface.
  */
-
 
 template< typename XValueType >
 class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWrapper< XValueType, 1 >, public MHO_Taggable
@@ -39,7 +38,7 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
         //clone functionality
         /**
          * @brief Clones the current MHO_VectorContainer object.
-         * 
+         *
          * @return A new MHO_VectorContainer object that is a deep copy of the original.
          */
         MHO_VectorContainer* Clone() { return new MHO_VectorContainer(*this); }
@@ -48,7 +47,7 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Getter for version
-         * 
+         *
          * @return MHO_ClassVersion version number.
          * @note This is a virtual function.
          */
@@ -56,7 +55,7 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Getter for serialized size
-         * 
+         *
          * @return Serialized size as a uint64_t.
          * @note This is a virtual function.
          */
@@ -72,10 +71,9 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
         using MHO_NDArrayWrapper< XValueType, 1 >::operator();
         using MHO_NDArrayWrapper< XValueType, 1 >::operator[];
 
-
         /**
          * @brief Expensive copy for MHO_VectorContainer, pointers to exernally managed memory are not transferred, but data is
-         * 
+         *
          * @param rhs Const reference to source container for copying
          * @note This is a virtual function.
          */
@@ -93,7 +91,7 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
     public:
         /**
          * @brief Calculates and returns the serialized size as a uint64_t.
-         * 
+         *
          * @return Serialized size in bytes.
          */
         uint64_t ComputeSerializedSize() const
@@ -141,7 +139,7 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
     private:
         /**
          * @brief Serializes object data into an output stream.
-         * 
+         *
          * @param s Output stream of type XStream&.
          * @return No return value (void).
          */
@@ -159,7 +157,7 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
 
         /**
          * @brief Reads data from stream and resizes object accordingly.
-         * 
+         *
          * @param s Input stream of type XStream&
          * @return void
          */
@@ -187,11 +185,10 @@ class MHO_VectorContainer: public MHO_VectorContainerBase, public MHO_NDArrayWra
         }
 };
 
-
 /**
- * @brief Function MHO_VectorContainer<std::string>::ComputeSerializedSize - specialization for string elements 
+ * @brief Function MHO_VectorContainer<std::string>::ComputeSerializedSize - specialization for string elements
  * @note we need to use 'inline' to satisfy one-definiton rule, otherwise we have to stash this in a .cc file)
- * 
+ *
  * @return Return value (uint64_t MHO_VectorContainer< std::string)
  */
 template<> inline uint64_t MHO_VectorContainer< std::string >::ComputeSerializedSize() const

@@ -1,25 +1,24 @@
 #include "MHO_ContainerDictionary.hh"
 #include "MHO_ContainerFileInterface.hh"
 #include "MHO_ContainerStore.hh"
-#include "MHO_Message.hh"
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
 
-#include <stdio.h>
-#include <utility>
 #include <fstream>
 #include <sstream>
+#include <stdio.h>
 #include <string>
+#include <utility>
 #include <vector>
 
-#include "hdf5.h"
-#include "MHO_HDF5TypeCode.hh"
 #include "MHO_HDF5ContainerFileInterface.hh"
+#include "MHO_HDF5TypeCode.hh"
+#include "hdf5.h"
 
 using namespace hops;
 
 //option parsing and help text library
 #include "CLI11.hpp"
-
 
 int main(int argc, char** argv)
 {
@@ -42,7 +41,6 @@ int main(int argc, char** argv)
                    "name of the output file, if not given the result will be stored in <input-file>.hdf5");
 
     CLI11_PARSE(app, argc, argv);
-    
 
     // app.add_option("-d,--detail", detail,
     //                 "level of detail to be used when generating the output, range: 0 (low) to 3 (high), default (3)");
@@ -79,7 +77,7 @@ int main(int argc, char** argv)
     MHO_HDF5ContainerFileInterface conInter;
     conInter.SetFilename(input_file);
     conInter.PopulateStoreFromFile(conStore);
-    
+
     std::string gprefix = "/";
     gprefix += MHO_DirectoryInterface::GetBasename(input_file);
     conInter.SetGroupPrefix(gprefix);

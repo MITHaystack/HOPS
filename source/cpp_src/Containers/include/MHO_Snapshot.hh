@@ -56,7 +56,7 @@ class MHO_Snapshot
 
         /**
          * @brief provides public access to the only static instance
-         * 
+         *
          * @return Reference to the singleton instance of MHO_Snapshot.
          * @note This is a static function.
          */
@@ -71,14 +71,14 @@ class MHO_Snapshot
 
         /**
          * @brief Setter for executable name
-         * 
+         *
          * @param exe_name New executable name to set
          */
         void SetExecutableName(std::string exe_name) { fExeName = exe_name; };
 
         /**
          * @brief Setter for executable name
-         * 
+         *
          * @param exe_name New executable name to set
          */
         void SetExecutableName(const char* exe_name) { SetExecutableName(std::string(exe_name)); }
@@ -95,25 +95,25 @@ class MHO_Snapshot
 
         /**
          * @brief Inserts a key into the set of keys for MHO_Snapshot.
-         * 
+         *
          * @param key The key to be inserted.
          */
         void AddKey(const std::string& key);
         /**
          * @brief Inserts a key into the set of keys for MHO_Snapshot.
-         * 
+         *
          * @param key The key to be inserted.
          */
         void AddKey(const char* key);
         /**
          * @brief Removes a key-value pair from the MHO_Snapshot object's keys.
-         * 
+         *
          * @param key Key to be removed; must exist in fKeys
          */
         void RemoveKey(const std::string& key);
         /**
          * @brief Removes a key-value pair from the MHO_Snapshot object if it exists.
-         * 
+         *
          * @param key Key to be removed from the snapshot
          */
         void RemoveKey(const char* key);
@@ -124,7 +124,7 @@ class MHO_Snapshot
 
         /**
          * @brief Dumps an object of type XObjType to a file specified by key and name.
-         * 
+         *
          * @param obj Pointer to object of type XObjType
          * @param key Key as a null-terminated string
          * @param name Name as a null-terminated string
@@ -137,7 +137,7 @@ class MHO_Snapshot
 
         /**
          * @brief Dumps an object of type XObjType to a file specified by key and name.
-         * 
+         *
          * @param obj Pointer to the object of type XObjType to be dumped
          * @param key Key used to construct the filename for dumping snapshots
          * @param name Name used to construct the filename for dumping snapshots
@@ -169,7 +169,7 @@ class MHO_Snapshot
 
         /**
          * @brief Dumps an object to a file with given key, name, file and line number.
-         * 
+         *
          * @tparam XObjType Template parameter XObjType
          * @param obj Pointer to the object of type XObjType to be dumped
          * @param key Unique identifier for the object as a string
@@ -211,7 +211,7 @@ class MHO_Snapshot
     private:
         /**
          * @brief Getter for the process id (pid)
-         * 
+         *
          * @return The process ID as an integer.
          */
         int GetPID()

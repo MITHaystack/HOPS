@@ -34,38 +34,38 @@ class MHO_BasicFringeInfo
 
     public:
         //helper functions
-        
+
         /**
          * @brief Pads an integer with leading zeros up to a specified number of places.
-         * 
+         *
          * @param n_places Number of places to pad the integer with leading zeros.
          * @param value The integer value to be padded.
          * @return A string representation of the padded integer.
          * @note This is a static function.
          */
         static std::string leftpadzeros_integer(unsigned int n_places, int value);
-        
+
         /**
          * @brief Formats legacy date/time as HHMMSS.xx for output.
-         * 
+         *
          * @param ldate Input legacy_hops_date to format
          * @return Formatted datetime string
          * @note This is a static function.
          */
         static std::string make_legacy_datetime_format(legacy_hops_date ldate);
-        
+
         /**
          * @brief Converts legacy_hops_date to format: YYYY:DDD:HHMMSS.
-         * 
+         *
          * @param ldate Input date in legacy_hops_date format
-         * @return formatted date string 
+         * @return formatted date string
          * @note This is a static function.
          */
         static std::string make_legacy_datetime_format_v2(legacy_hops_date ldate);
-        
+
         /**
          * @brief Calculates Signal to Noise Ratio (SNR) using given parameters.
-         * 
+         *
          * @param effective_npol Effective number of polarizations
          * @param ap_period accumulation period
          * @param samp_period Sampling period (assumes Nyquist sampling)
@@ -79,17 +79,17 @@ class MHO_BasicFringeInfo
                                     double amp, double bw_corr_factor);
         /**
          * @brief Calculates Multi-Band Delay error assuming no ionospheric effects.
-         * 
+         *
          * @param freq_spread Frequency spread in MHz
          * @param snr Signal-to-Noise Ratio (SNR)
          * @return Multi-Band Delay error without ionospheric effects
          * @note This is a static function.
          */
         static double calculate_mbd_no_ion_error(double freq_spread, double snr);
-        
+
         /**
          * @brief Calculates Single Band Delay (SBD) error using separation, SNR and average SBD.
-         * 
+         *
          * @param sbd_sep Single Band Delay separation
          * @param snr Signal to Noise Ratio
          * @param sbavg Average sideband
@@ -97,10 +97,10 @@ class MHO_BasicFringeInfo
          * @note This is a static function.
          */
         static double calculate_sbd_error(double sbd_sep, double snr, double sbavg);
-        
+
         /**
          * @brief Calculates and returns the delay rate error using SNR, reference frequency, total nap, and ap delta.
-         * 
+         *
          * @param snr Signal to Noise Ratio
          * @param ref_freq Reference frequency in GHz
          * @param total_nap Total number of accumulation periods
@@ -109,10 +109,10 @@ class MHO_BasicFringeInfo
          * @note This is a static function.
          */
         static double calculate_drate_error_v1(double snr, double ref_freq, double total_nap, double ap_delta);
-        
+
         /**
          * @brief Calculates and returns the delay rate error using SNR, reference frequency, and integration time.
-         * 
+         *
          * @param snr Signal to Noise Ratio (SNR)
          * @param ref_freq Reference frequency in GHz
          * @param integration_time Integration time
@@ -120,30 +120,30 @@ class MHO_BasicFringeInfo
          * @note This is a static function.
          */
         static double calculate_drate_error_v2(double snr, double ref_freq, double integration_time);
-        
+
         /**
          * @brief Calculates Probability of False Detection (PFD) given Signal-to-Noise Ratio (SNR) and number of points searched.
-         * 
+         *
          * @param snr Signal-to-Noise Ratio
          * @param pts_searched Number of points searched
          * @return Probability of False Detection
          * @note This is a static function.
          */
         static double calculate_pfd(double snr, double pts_searched);
-        
+
         /**
          * @brief Calculates phase error given sideband average and signal-to-noise ratio.
-         * 
+         *
          * @param sbavg Average sideband
          * @param snr Signal to Noise Ratio
          * @return Phase error in degrees
          * @note This is a static function.
          */
         static double calculate_phase_error(double sbavg, double snr);
-        
+
         /**
          * @brief Calculates phase delay error given sbavg, snr and reference frequency.
-         * 
+         *
          * @param sbavg Average sideband
          * @param snr Signal to Noise Ratio
          * @param ref_freq Reference frequency
@@ -154,37 +154,37 @@ class MHO_BasicFringeInfo
 
         /**
          * @brief Calculates theoretical RMS phase error for given number of (averaging) segments and SNR.
-         * 
+         *
          * @param nseg Effective number of segments actually included in fit
          * @param snr Signal to Noise Ratio.
          * @return Theoretical RMS phase error in degrees.
          * @note This is a static function.
          */
         static double calculate_theory_timerms_phase(double nseg, double snr);
-        
+
         /**
          * @brief Calculates theoretical time-averaged amplitude error using nseg and SNR.
-         * 
+         *
          * @param nseg Number of segments
          * @param snr Signal-to-Noise Ratio
          * @return Theoretical time-averaged amplitude error as a double
          * @note This is a static function.
          */
         static double calculate_theory_timerms_amp(double nseg, double snr);
-        
+
         /**
          * @brief Calculates theoretical frequency RMS phase error using number of channels and signal-to-noise ratio.
-         * 
+         *
          * @param nchan Number of channels
          * @param snr Signal-to-Noise Ratio
          * @return Theoretical frequency RMS phase error as a double value
          * @note This is a static function.
          */
         static double calculate_theory_freqrms_phase(double nchan, double snr);
-        
+
         /**
          * @brief Calculates theoretical frequency RMS amplitude error using given number of channels and signal-to-noise ratio.
-         * 
+         *
          * @param nchan Number of channels
          * @param snr Signal to Noise Ratio
          * @return Theoretical frequency RMS amplitude error as a double value
@@ -194,7 +194,7 @@ class MHO_BasicFringeInfo
 
         /**
          * @brief Corrects phase for MBD (anchoring to SBD) using reference frequency and frequency spacing.
-         * 
+         *
          * @param ref_freq Reference frequency in MHz
          * @param freq0 Initial frequency in MHz
          * @param frequency_spacing Frequency spacing in MHz
@@ -209,7 +209,7 @@ class MHO_BasicFringeInfo
         //
         /**
          * @brief Only used by MHO_IonosphericFringeFitter, for computing the ionosphere dTEC/MBD covariance
-         * 
+         *
          * @param nfreq Number of frequency channels.
          * @param famp Amplitude of fringe
          * @param snr Signal-to-noise ratio for ionospheric delay calculation.

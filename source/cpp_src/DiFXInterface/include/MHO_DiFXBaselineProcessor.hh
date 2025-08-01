@@ -34,35 +34,35 @@ class MHO_DiFXBaselineProcessor
 
         /**
          * @brief Setter for difx .input data (needed for processing visibilities)
-         * 
+         *
          * @param input Input mho_json object containing DiFX data
          */
         void SetDiFXInputData(const mho_json* input) { fInput = input; }
-        
+
         /**
          * @brief Setter for scan index
-         * 
+         *
          * @param idx Index value of type std::size_t
          */
-        void SetScanIndex(std::size_t idx){fIndex = idx;}
+        void SetScanIndex(std::size_t idx) { fIndex = idx; }
 
         /**
          * @brief Getter for (difx) baseline id
-         * 
+         *
          * @return The current baseline ID as an integer.
          */
         int GetBaselineID() const { return fBaselineID; };
 
         /**
          * @brief Setter for (hops) root code
-         * 
+         *
          * @param rcode New root code as string
          */
         void SetRootCode(std::string rcode) { fRootCode = rcode; }
 
         /**
          * @brief Setter for correlation date
-         * 
+         *
          * @param corrdate New correlation date as string
          */
         void SetCorrelationDate(std::string corrdate) { fCorrDate = corrdate; }
@@ -76,44 +76,45 @@ class MHO_DiFXBaselineProcessor
          * @brief Setter for rescale true - apply mk4 style visibility normalization
          */
         void SetRescaleTrue() { fRescale = true; }
-        
+
         /**
          * @brief Setter for attach difx .input true (attaches json object containing difx .input info to visibilities)
          */
-        void SetAttachDiFXInputTrue() {fAttachDiFXInput = true; }
-        
+        void SetAttachDiFXInputTrue() { fAttachDiFXInput = true; }
+
         /**
          * @brief Setter for attach difx input false (do not attach difx .input info to visibilities)
          */
-        void SetAttachDiFXInputFalse() {fAttachDiFXInput = false; }
-        
-        void SetExportAsMark4True(){fExportAsMark4 = true;}
-        void SetExportAsMark4False(){fExportAsMark4 = false;}
+        void SetAttachDiFXInputFalse() { fAttachDiFXInput = false; }
+
+        void SetExportAsMark4True() { fExportAsMark4 = true; }
+
+        void SetExportAsMark4False() { fExportAsMark4 = false; }
 
         /**
          * @brief Adds a visibility record (chunk of difx data) to the processor if it matches baseline and selection criteria.
-         * 
+         *
          * @param record Input MHO_DiFXVisibilityRecord to be added
          */
         void AddRecord(MHO_DiFXVisibilityRecord* record);
 
         /**
          * @brief Setter for station codes (2 characater -> 1 character)
-         * 
+         *
          * @param code_map Pointer to an MHO_StationCodeMap object containing station codes.
          */
         void SetStationCodes(MHO_StationCodeMap* code_map);
 
         /**
          * @brief Setter for difx station codes to vex codes (2 char -> 2 char), but difx uses all caps
-         * 
+         *
          * @param d2v_map Input map of DiFX to Vex station codes
          */
         void SetDiFXCodes2VexCodes(const std::map< std::string, std::string >& d2v_map) { fDiFX2VexStationCodes = d2v_map; };
 
         /**
          * @brief Setter for difx codes to vex names (difx 2 char code to canonical station names (8 char))
-         * 
+         *
          * @param d2v_map Input map of DiFX codes to Vex names
          */
         void SetDiFXCodes2VexNames(const std::map< std::string, std::string >& d2v_map) { fDiFX2VexStationNames = d2v_map; };
@@ -124,14 +125,14 @@ class MHO_DiFXBaselineProcessor
         void ConstructVisibilityFileObjects();
         /**
          * @brief Writes visibility objects in HOPS4 format to an output directory.
-         * 
+         *
          * @param output_dir Output directory path for writing files.
          */
         void WriteVisibilityObjects(std::string output_dir);
 
         /**
          * @brief Checks if reference station is equal to remote station.
-         * 
+         *
          * @return True if stations are equal, false otherwise.
          */
         bool IsAutoCorr() const
@@ -145,14 +146,14 @@ class MHO_DiFXBaselineProcessor
 
         /**
          * @brief Getter for reference station mk4id
-         * 
+         *
          * @return Reference station Mk4 ID as a std::string.
          */
         std::string GetRefStationMk4Id() const { return fRefStationMk4Id; }
 
         /**
          * @brief Getter for remote station mk4id
-         * 
+         *
          * @return The Mk4 ID of the remote station as a string.
          */
         std::string GetRemStationMk4Id() const { return fRemStationMk4Id; }
@@ -232,7 +233,7 @@ class MHO_DiFXBaselineProcessor
         bool fRescale;
         std::map< int, double > fNBitsToFactor;
         double fScaleFactor;
-    
+
         bool fAttachDiFXInput;
         bool fExportAsMark4;
 

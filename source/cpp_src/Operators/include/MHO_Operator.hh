@@ -25,14 +25,14 @@ class MHO_Operator
 
         /**
          * @brief Function Initialize
-         * 
+         *
          * @return Return value (bool)
          * @note This is a virtual function.
          */
         virtual bool Initialize() = 0;
         /**
          * @brief Function Execute
-         * 
+         *
          * @return Return value (bool)
          * @note This is a virtual function.
          */
@@ -40,14 +40,14 @@ class MHO_Operator
 
         /**
          * @brief Setter for operator name
-         * 
+         *
          * @param name New name to set
          */
         void SetName(std::string name) { fName = name; }
 
         /**
          * @brief Getter for operator name
-         * 
+         *
          * @return The stored name as a std::string
          */
         std::string GetName() const { return fName; }
@@ -55,7 +55,7 @@ class MHO_Operator
         //allow priority to vary
         /**
          * @brief Setter for operator priority (determines order of execution within a operator category)
-         * 
+         *
          * @param priority New priority value to be assigned to fPriority field (double)
          * @note This is a virtual function.
          * @details a higher value for the fPriority field implies this operator should happend after other operators with lower priority values
@@ -63,10 +63,9 @@ class MHO_Operator
          */
         virtual void SetPriority(const double& priority) { fPriority = priority; }
 
-
         /**
          * @brief Get the the priority field value
-         * 
+         *
          * @return Return value (double)
          * @note This is a virtual function.
          */

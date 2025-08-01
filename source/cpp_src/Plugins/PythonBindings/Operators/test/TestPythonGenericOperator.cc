@@ -127,11 +127,10 @@ int main(int argc, char** argv)
         }
     }
 
-
     MHO_FringeData fdata;
     //provide necessary objects for operation
     MHO_ParameterStore* paramStore = fdata.GetParameterStore(); //stores various parameters using string keys
-    MHO_ScanDataStore* scanStore = fdata.GetScanDataStore();   //provides access to data associated with this scan
+    MHO_ScanDataStore* scanStore = fdata.GetScanDataStore();    //provides access to data associated with this scan
     MHO_ContainerStore* conStore = fdata.GetContainerStore();   //stores data containers for in-use data
 
     ////////////////////////////////////////////////////////////////////////////
@@ -202,7 +201,6 @@ int main(int argc, char** argv)
     paramStore->Set("/uuid/weights", wt_uuid);
     paramStore->Set("/uuid/ref_station", ref_uuid);
     paramStore->Set("/uuid/rem_station", rem_uuid);
-
 
     MHO_PyGenericOperator pyOper;
     pyOper.SetModuleName("mho_test");

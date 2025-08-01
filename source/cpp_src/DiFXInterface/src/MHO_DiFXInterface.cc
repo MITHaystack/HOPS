@@ -76,8 +76,8 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
         fVexFile = tmpFiles[0];
     }
     tmpFiles.clear();
-    
-    //if we didn't find a 'vex' file, look for 'vex.obs', since this convention is sometimes used 
+
+    //if we didn't find a 'vex' file, look for 'vex.obs', since this convention is sometimes used
     //by the correlator
     if(fVexFile == "")
     {
@@ -92,7 +92,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
         }
         tmpFiles.clear();
     }
-    
+
     if(fVexFile == "")
     {
         msg_error("difx_interface", "unable to determine/locate the .vex or .vex.obs file in " << input_dir << eom);
@@ -261,17 +261,16 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
             else
             {
                 msg_debug("difx_interface",
-                         "no visibility files found associated with scan: " << *it << ", will not process." << eom);
+                          "no visibility files found associated with scan: " << *it << ", will not process." << eom);
             }
-            
+
             //debug
             //fileSet.PrintSummary();
-            
         }
         else
         {
             msg_debug("difx_interface",
-                     "nould not find all difx files associated with scan: " << *it << " will not process." << eom);
+                      "nould not find all difx files associated with scan: " << *it << " will not process." << eom);
         }
         scan_count++;
     }
@@ -289,7 +288,7 @@ void MHO_DiFXInterface::InitializeFromScanDir(const std::string& input_dir)
     MHO_DirectoryInterface dirInterface;
     dirInterface.SetCurrentDirectory(input_dir);
     std::string parent_directory = dirInterface.GetCurrentParentDirectory();
-    
+
     //initialize from the parent directory
     InitializeFromExperimentDir(parent_directory);
     std::vector< MHO_DiFXScanFileSet > tmpScanList;
@@ -307,19 +306,18 @@ void MHO_DiFXInterface::InitializeFromScanDir(const std::string& input_dir)
     fScanFileSetList = tmpScanList;
 }
 
-
 void MHO_DiFXInterface::Initialize()
 {
-    //check if the input directory ends with ".difx", if that is the case, assume 
+    //check if the input directory ends with ".difx", if that is the case, assume
     //we are converting a single scan
-    if( IsSingleScan(fInputDirectory) )
+    if(IsSingleScan(fInputDirectory))
     {
-        msg_info("difx_interface", "processing the single scan found in: "<< fInputDirectory << eom);
+        msg_info("difx_interface", "processing the single scan found in: " << fInputDirectory << eom);
         InitializeFromScanDir(fInputDirectory);
     }
-    else 
+    else
     {
-        msg_info("difx_interface", "processing the whole experiment found in: "<< fInputDirectory << eom);
+        msg_info("difx_interface", "processing the whole experiment found in: " << fInputDirectory << eom);
         InitializeFromExperimentDir(fInputDirectory);
     }
 }
@@ -350,7 +348,7 @@ void MHO_DiFXInterface::ProcessScans()
         {
             fScanProcessor.SetPreserveDiFXScanNamesFalse();
         }
-        
+
         if(fAttachDiFXInput)
         {
             fScanProcessor.SetAttachDiFXInputTrue();
@@ -359,7 +357,6 @@ void MHO_DiFXInterface::ProcessScans()
         {
             fScanProcessor.SetAttachDiFXInputFalse();
         }
-        
 
         if(fFreqBands.size() != 0)
         {
@@ -373,7 +370,7 @@ void MHO_DiFXInterface::ProcessScans()
         {
             fScanProcessor.SetOnlyBandwidth(fOnlyBandwidth);
         }
-        
+
         if(fExportAsMark4)
         {
             fScanProcessor.SetExportAsMark4True();
@@ -387,9 +384,7 @@ void MHO_DiFXInterface::ProcessScans()
     }
 }
 
-
-bool 
-MHO_DiFXInterface::IsSingleScan(const std::string& input_dir) const
+bool MHO_DiFXInterface::IsSingleScan(const std::string& input_dir) const
 {
     std::string scanExt = ".difx";
     std::size_t index = input_dir.find(scanExt);
@@ -397,13 +392,12 @@ MHO_DiFXInterface::IsSingleScan(const std::string& input_dir) const
     {
         //make sure the extension is the very end of the string
         std::string sub = input_dir.substr(index);
-        if(sub == scanExt || sub == scanExt + "/" )
+        if(sub == scanExt || sub == scanExt + "/")
         {
             return true;
         }
     }
     return false;
 }
-
 
 } // namespace hops

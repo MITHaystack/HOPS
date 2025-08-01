@@ -99,7 +99,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     std::string freqgrp = "?";                     // the frequency group
     int message_level = -1;                        //'-m' specifies the message verbosity level
     std::vector< std::string > message_categories; // -'M' limits the allowed message categories to those the user specifies
-    bool no_plot = false;                        //'-n' disable display of fringe plot (default is to show it)
+    bool no_plot = false;                          //'-n' disable display of fringe plot (default is to show it)
     std::string polprod = "??";                    //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::vector< std::string > input;              //either directory, individual file, or list of files
     std::vector< std::string > fringe_file_list;
@@ -370,7 +370,7 @@ int main(int argc, char** argv)
                 ////////////////////////////////////////////////////////////////////////
                 //load our interface module -- this is extremely slow!
                 //TODO..allow for custom plot method to be called
-                try 
+                try
                 {
                     //required modules pyMHO_Containers and pyMHO_Operators are imported by configure_pypath()
                     auto vis_module = py::module::import("hops_visualization");
@@ -378,17 +378,21 @@ int main(int argc, char** argv)
                     //call a python function on the interface class instance
                     plot_lib.attr("make_fourfit_plot")(plot_obj, show_plot, diskfile);
                 }
-                catch(py::error_already_set &excep)
+                catch(py::error_already_set& excep)
                 {
-                    if( std::string(excep.what()).find("SystemExit") != std::string::npos) 
+                    if(std::string(excep.what()).find("SystemExit") != std::string::npos)
                     {
                         msg_debug("python_bindings", "sys.exit() called from within python, exiting" << eom);
                         std::exit(0); //ok to exit program entirely
                     }
-                    else 
+                    else
                     {
-                        msg_error("python_bindings", "python exception when calling subroutine (" << "fourfit_plot"<< "," << "make_fourfit_plot" << ")" << eom );
-                        msg_error("python_bindings", "python error message: "<< excep.what() << eom);
+                        msg_error("python_bindings", "python exception when calling subroutine ("
+                                                         << "fourfit_plot"
+                                                         << ","
+                                                         << "make_fourfit_plot"
+                                                         << ")" << eom);
+                        msg_error("python_bindings", "python error message: " << excep.what() << eom);
                         PyErr_Clear(); //clear the error and attempt to continue
                     }
                 }

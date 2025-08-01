@@ -1,6 +1,5 @@
 #include "MHO_ControlElementParser.hh"
 
-
 namespace hops
 {
 

@@ -24,21 +24,21 @@ class MHO_GaussianWhiteNoiseSignal: public MHO_SimulatedSignalGenerator
 
         /**
          * @brief Setter for random seed
-         * 
+         *
          * @param seed New seed value to initialize the random number generator.
          */
         void SetRandomSeed(unsigned int seed) { fSeed = std::mt19937::result_type(seed); }
 
         /**
          * @brief Setter for mean
-         * 
+         *
          * @param mean New mean value to set
          */
         void SetMean(double mean) { fMean = mean; }
 
         /**
          * @brief Setter for standard deviation
-         * 
+         *
          * @param std_dev Input standard deviation value.
          */
         void SetStandardDeviation(double std_dev) { fStandardDeviation = std::fabs(std_dev); };
@@ -53,7 +53,7 @@ class MHO_GaussianWhiteNoiseSignal: public MHO_SimulatedSignalGenerator
     protected:
         /**
          * @brief Generates a sample from Gaussian white noise distribution.
-         * 
+         *
          * @param !sample_time Parameter description
          * @param sample Output sampled value (reference).
          * @return True if sample generation is successful.

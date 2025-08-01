@@ -35,7 +35,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
 
         /**
          * @brief Setter for args
-         * 
+         *
          * @param in Pointer to input array of type XArgType.
          * @note This is a virtual function.
          */
@@ -48,7 +48,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
         //out-of-place operation, result stored in out, input unmodified
         /**
          * @brief Setter for args
-         * 
+         *
          * @param in Input array of type XArgType* (const)
          * @param out (XArgType*)
          * @note This is a virtual function.
@@ -61,7 +61,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
 
         /**
          * @brief Initializes the system using in-place or out-of-place arguments.
-         * 
+         *
          * @return True if initialization succeeds, false otherwise.
          * @note This is a virtual function.
          */
@@ -79,7 +79,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
 
         /**
          * @brief Executes operation using provided arguments and return type.
-         * 
+         *
          * @return bool indicating success of execution.
          * @note This is a virtual function.
          */
@@ -98,7 +98,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
     protected:
         /**
          * @brief Function InitializeInPlace
-         * 
+         *
          * @param in (XArgType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -106,7 +106,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
         virtual bool InitializeInPlace(XArgType* in) = 0;
         /**
          * @brief Function InitializeOutOfPlace
-         * 
+         *
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)
@@ -116,7 +116,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
 
         /**
          * @brief Function ExecuteInPlace
-         * 
+         *
          * @param in (XArgType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -124,7 +124,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
         virtual bool ExecuteInPlace(XArgType* in) = 0;
         /**
          * @brief Function ExecuteOutOfPlace
-         * 
+         *
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)

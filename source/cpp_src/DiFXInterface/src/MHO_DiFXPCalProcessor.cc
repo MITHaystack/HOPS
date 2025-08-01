@@ -195,7 +195,7 @@ void MHO_DiFXPCalProcessor::Organize()
                                                << fAPLength << ") does not appear to match correlation accumulation period ("
                                                << current_ap_length_sec << ")." << eom);
             }
-            else 
+            else
             {
                 //they agree within tolerance so use the correlation specified AP
                 current_ap_length_sec = fAPLength;
@@ -276,7 +276,6 @@ void MHO_DiFXPCalProcessor::Organize()
         //         }
         //     }
         // }
-
 
         //determine the data dimensions
         std::size_t npol = fPolSet.size();
@@ -363,7 +362,7 @@ void MHO_DiFXPCalProcessor::Organize()
                 }
             }
         }
-        
+
         //add axis labels and units
         std::get< MTPCAL_POL_AXIS >(fPCal).Insert(std::string("name"), std::string("polarization"));
         std::get< MTPCAL_TIME_AXIS >(fPCal).Insert(std::string("name"), std::string("time"));

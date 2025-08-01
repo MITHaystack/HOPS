@@ -29,9 +29,7 @@ namespace hops
 /**
  * @brief Class MHO_ChannelLabeler
  */
-template< typename XArrayType > class MHO_ChannelLabeler:
-    public MHO_UnaryOperator< XArrayType >,
-    public MHO_ChannelIndexLabeler
+template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperator< XArrayType >, public MHO_ChannelIndexLabeler
 {
     public:
         MHO_ChannelLabeler()
@@ -45,14 +43,14 @@ template< typename XArrayType > class MHO_ChannelLabeler:
 
         /**
          * @brief Setter for tolerance - allows channel freq association to use a (freq) difference tolerance
-         * 
+         *
          * @param tol New tolerance value for frequency mapping
          */
         void SetTolerance(double tol) { fEps = tol; }
 
         /**
          * @brief Setter for channel label to frequency map so if there is a user provided labeling scheme, use that (i.e. chan_ids)
-         * 
+         *
          * @param map Input map of channel labels to frequencies
          */
         void SetChannelLabelToFrequencyMap(const std::map< std::string, double >& map) { fChannelLabelToFrequency = map; }
@@ -60,7 +58,7 @@ template< typename XArrayType > class MHO_ChannelLabeler:
     protected:
         /**
          * @brief Initializes XArrayType in-place and returns success.
-         * 
+         *
          * @param in Pointer to XArrayType object to initialize.
          * @return True if initialization was successful, false otherwise.
          * @note This is a virtual function.
@@ -69,7 +67,7 @@ template< typename XArrayType > class MHO_ChannelLabeler:
 
         /**
          * @brief Initializes output array out-of-place from input array
-         * 
+         *
          * @param !in Const input XArrayType
          * @param !out Output XArrayType initialized out-of-place
          * @return True if initialization was successful, false otherwise
@@ -79,7 +77,7 @@ template< typename XArrayType > class MHO_ChannelLabeler:
 
         /**
          * @brief Function ExecuteInPlace - attaches channel labels based on sky frequency or user specified map
-         * 
+         *
          * @param in (XArrayType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -177,7 +175,7 @@ template< typename XArrayType > class MHO_ChannelLabeler:
 
         /**
          * @brief Copies input array to output and executes in-place operation on output.
-         * 
+         *
          * @param in Const reference to input XArrayType
          * @param out Reference to output XArrayType
          * @return Result of ExecuteInPlace operation on out
@@ -192,7 +190,7 @@ template< typename XArrayType > class MHO_ChannelLabeler:
     private:
         /**
          * @brief Clears and populates a map with channel labels encoded from indices up to nchans.
-         * 
+         *
          * @param nchans Number of channels to generate labels for
          */
         void FillDefaultMap(std::size_t nchans)

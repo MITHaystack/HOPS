@@ -12,7 +12,7 @@
 #include <cmath>
 #include <complex>
 
-namespace hops 
+namespace hops
 {
 
 /**
@@ -23,7 +23,6 @@ template< typename XNumericalType > class MHO_CheckForNaN
     public:
         MHO_CheckForNaN();
         virtual ~MHO_CheckForNaN();
-
 
         /**
          * @brief Checks if a numerical value is NaN by comparing it to itself.
@@ -41,7 +40,7 @@ template< typename XNumericalType > class MHO_CheckForNaN
 
 /**
  * @brief Checks if a float value is NaN using std::isnan.
- * 
+ *
  * @param value Input float value to check for NaN.
  * @return Boolean indicating whether the input value is NaN.
  */
@@ -52,7 +51,7 @@ template<> inline bool MHO_CheckForNaN< float >::isnan(const float& value)
 
 /**
  * @brief Checks if a given double value is NaN.
- * 
+ *
  * @param value Input double value to check for NaN.
  * @return True if value is NaN, false otherwise.
  */
@@ -63,7 +62,7 @@ template<> inline bool MHO_CheckForNaN< double >::isnan(const double& value)
 
 /**
  * @brief Checks if a given value is Not-a-Number (NaN) using standard library's isnan().
- * 
+ *
  * @param value Input long double value to check for NaN
  * @return Boolean indicating whether the input value is NaN or not
  */
@@ -74,7 +73,7 @@ template<> inline bool MHO_CheckForNaN< long double >::isnan(const long double& 
 
 /**
  * @brief Checks if a complex float value is NaN by examining its real and imaginary parts.
- * 
+ *
  * @param value Input complex float value to check for NaN.
  * @return True if either real or imaginary part is NaN, false otherwise.
  */
@@ -85,7 +84,7 @@ template<> inline bool MHO_CheckForNaN< std::complex< float > >::isnan(const std
 
 /**
  * @brief Checks if a complex double value is NaN by examining its real and imaginary parts.
- * 
+ *
  * @param value Input complex double value to check for NaN.
  * @return True if either real or imaginary part is NaN, false otherwise.
  */
@@ -96,7 +95,7 @@ template<> inline bool MHO_CheckForNaN< std::complex< double > >::isnan(const st
 
 /**
  * @brief Checks if a complex long double value is NaN by examining its real and imaginary parts.
- * 
+ *
  * @param value Input complex number to check for NaN
  * @return True if either real or imaginary part is NaN, false otherwise
  */
@@ -105,7 +104,6 @@ template<> inline bool MHO_CheckForNaN< std::complex< long double > >::isnan(con
     return std::isnan(value.real()) || std::isnan(value.imag());
 }
 
-
-}//end of namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_CheckForNaN */

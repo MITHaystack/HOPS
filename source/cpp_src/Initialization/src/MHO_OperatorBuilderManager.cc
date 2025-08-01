@@ -107,9 +107,18 @@ void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
     {
         ok = true;
     }
-    if(cat == "prefit"){ok = true;}
-    if(cat == "postfit"){ok = true;}
-    if(cat == "finalize"){ok = true;}
+    if(cat == "prefit")
+    {
+        ok = true;
+    }
+    if(cat == "postfit")
+    {
+        ok = true;
+    }
+    if(cat == "finalize")
+    {
+        ok = true;
+    }
 
     if(ok)
     {
@@ -151,7 +160,7 @@ void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                         if(build_op)
                         {
                             auto builder_it = fNameToBuilderMap.find(name);
-                            
+
                             if(builder_it != fNameToBuilderMap.end())
                             {
                                 msg_debug("initialization",
@@ -250,17 +259,15 @@ void MHO_OperatorBuilderManager::CreateNullFormatBuilders()
     dpar_corr["priority"] = 3.99;
     AddBuilderTypeWithFormat< MHO_LinearDParCorrectionBuilder >("dpar_corr", dpar_corr);
 
-
     //this is the last (optional) operation done before NormFX/(SBD, MBD, DR)-search
-    //this is done during the 'prefit' section, so that user 'prefit' scripts have a 
-    //chance to modify the data before it is applied 
+    //this is done during the 'prefit' section, so that user 'prefit' scripts have a
+    //chance to modify the data before it is applied
     //(otherwise per-pol data modifications wouldn't be possible)
     mho_json polprod_sum;
     polprod_sum["name"] = "polproduct_sum";
     polprod_sum["operator_category"] = "prefit";
     polprod_sum["priority"] = 9.99;
     AddBuilderTypeWithFormat< MHO_PolProductSummationBuilder >("polproduct_sum", polprod_sum);
-
 }
 
 } // namespace hops

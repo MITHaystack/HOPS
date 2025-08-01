@@ -52,8 +52,6 @@ and is a work in progress.
 - Lynn Matthews
 - Pedro Elosegui
 - Lindy Blackburn
-- Violet Pfeiffer
-
 
 
 > This list is non-exhaustive and reflects major contributions. 
