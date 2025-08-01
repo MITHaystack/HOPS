@@ -50,7 +50,7 @@ class hops_clock
 
         /**
          * @brief Returns current time as a time_point using hops_clock's epoch.
-         * 
+         *
          * @return time_point representing current time in hops_clock's epoch.
          * @note This is a static function.
          */
@@ -58,7 +58,7 @@ class hops_clock
 
         /**
          * @brief Converts a time point to UTC using hops_clock and Duration.
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
@@ -68,7 +68,7 @@ class hops_clock
 
         /**
          * @brief Converts UTC time point to hops_clock time point
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< date::utc_clock, Duration
          */
@@ -78,7 +78,7 @@ class hops_clock
 
         /**
          * @brief Converts a time point from hops_clock to TAI (International Atomic Time).
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
@@ -88,7 +88,7 @@ class hops_clock
 
         /**
          * @brief Converts a TAI time point to UTC and returns the corresponding Hops clock time.
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< date::tai_clock, Duration
          */
@@ -98,7 +98,7 @@ class hops_clock
 
         /**
          * @brief Converts a time point to GPS clock time.
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
@@ -108,7 +108,7 @@ class hops_clock
 
         /**
          * @brief Converts GPS time to Hops clock time.
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< date::gps_clock, Duration
          */
@@ -118,7 +118,7 @@ class hops_clock
 
         /**
          * @brief Converts a time point from hops_clock to system clock.
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
@@ -129,7 +129,7 @@ class hops_clock
 
         /**
          * @brief Converts a system time point to UTC and returns the corresponding hops clock time.
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< std::chrono::system_clock, Duration
          */
@@ -139,7 +139,7 @@ class hops_clock
 
         /**
          * @brief Converts a global time point to local time.
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
@@ -149,7 +149,7 @@ class hops_clock
 
         /**
          * @brief Calculates time difference between input local time and Hops epoch in UTC.
-         * 
+         *
          * @tparam Duration Template parameter Duration
          * @param & Parameter & of type const std::chrono::time_point< date::local_t, Duration
          */
@@ -159,7 +159,7 @@ class hops_clock
 
         /**
          * @brief Converts an ISO8601 formatted timestamp string to a hops_clock time_point object.
-         * 
+         *
          * @param timestamp Input timestamp string in ISO8601 format
          * @return Time point object representing the parsed timestamp
          * @note This is a static function.
@@ -168,17 +168,16 @@ class hops_clock
 
         /**
          * @brief Converts a time_point to ISO8601 formatted string.
-         * 
+         *
          * @param tp Input time_point to be converted
          * @return ISO8601 formatted string representation of tp
          * @note This is a static function.
          */
         static std::string to_iso8601_format(const time_point& tp);
 
-
         /**
          * @brief Converts a timestamp string in HOPS format to a time_point object.
-         * 
+         *
          * @param timestamp Input timestamp string in HOPS format.
          * @return time_point representing the parsed timestamp or epoch start if parsing fails.
          * @note This is a static function.
@@ -187,26 +186,25 @@ class hops_clock
 
         /**
          * @brief Converts a time_point to HOPS format string.
-         * 
+         *
          * @param tp Input time_point to convert
          * @return String representation of tp in HOPS format
          * @note This is a static function.
          */
         static std::string to_hops_format(const time_point& tp);
 
-
         /**
          * @brief Converts a legacy hops data struct to a hops_clock time_point
-         * 
+         *
          * @param ldate (legacy_hops_date)
-         * @return time_point 
+         * @return time_point
          * @note This is a static function.
          */
         static time_point from_legacy_hops_date(legacy_hops_date& ldate);
 
         /**
          * @brief Converts a hops_clock time_point to a legacy hops data struct
-         * 
+         *
          * @param tp (time_point)
          * @return legacy_hops_date struct
          * @note This is a static function.
@@ -215,59 +213,59 @@ class hops_clock
 
         /**
          * @brief Converts a VDIF (epoch, second) timestamp to a hops_clock time_point
-         * 
+         *
          * @param vdif_epoch (int)
          * @param vdif_seconds (int)
-         * @return time_point 
+         * @return time_point
          * @note This is a static function.
          */
         static time_point from_vdif_format(int& vdif_epoch, int& vdif_seconds);
 
         /**
          * @brief Converts a hops_clock time_point to a VDIF (epoch, second) timestamp
-         * 
+         *
          * @param tp (time_point)
          * @param reference to vdif_epoch (int&)
          * @param reference to vdif_seconds (int&)
-         * @return time_point 
+         * @return time_point
          * @note This is a static function.
          */
         static void to_vdif_format(const time_point& tp, int& vdif_epoch, int& vdif_second);
 
         /**
          * @brief Converts a Modified Julian date (floating point epoch and day) timestamp to a hops_clock time_point
-         * 
+         *
          * @param mjd_epoch (time_point)
          * @param epoch_offset (double&)
          * @param mjd (double&)
-         * @return time_point 
+         * @return time_point
          * @note This is a static function.
          */
         static time_point from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd);
 
         /**
          * @brief Converts a hops_clock time_point to a  Modified Julian date (floating point day) timestamp, givent the specified epoch
-         * 
+         *
          * @param mjd_epoch (time_point)
          * @param epoch_offset (double&)
          * @param tp (time_point&)
-         * @return MJD (double) 
+         * @return MJD (double)
          * @note This is a static function.
          */
         static double to_mjd(const time_point& mjd_epoch, const double& epoch_offset, const time_point& tp);
 
         /**
          * @brief Converts a VEX-style formatted string (e.g. 2019y106d18h30m15s) to a hops_clock time_point
-         * 
+         *
          * @param timestamp VEX formatted string representation of time
-         * @return time_point 
+         * @return time_point
          * @note This is a static function.
          */
         static time_point from_vex_format(const std::string& timestamp);
 
         /**
          * @brief Converts a hops_clock time_point to VEX-style formatted string (e.g. 2019y106d18h30m15s)
-         * 
+         *
          * @param tp Input time_point to be converted
          * @param truncate_to_nearest_second (bool) optionally truncate the time-point to the nearest second
          * @return VEX formatted string representation of tp
@@ -289,7 +287,7 @@ class hops_clock
         /**
          * @brief Converts a hops_clock time_point to a floating point day since start of the year
          * needed for ad_hoc flag files (time-stamps are given in floating-point days)
-         * 
+         *
          * @param tp Input time_point to be converted
          * @param year (int&)
          * @param floating_point_days (double&) - days since start of the year
@@ -330,7 +328,6 @@ class hops_clock
         }
 
     private:
-
         static date::days day_of_year(date::sys_days sd)
         {
             using namespace date;
@@ -387,7 +384,7 @@ template< class Duration > using hops_time = std::chrono::time_point< hops_clock
 
 /**
  * @brief Converts a time duration to UTC using Hops clock epoch.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input time duration in specified Duration.
  */
@@ -403,7 +400,7 @@ hops_clock::to_utc(const hops_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Converts UTC time to hops clock time.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input UTC time.
  */
@@ -418,7 +415,7 @@ hops_clock::from_utc(const date::utc_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Converts a Hops time to TAI (International Atomic Time).
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input Hops time in UTC
  */
@@ -431,7 +428,7 @@ hops_clock::to_tai(const hops_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Converts TAI time to UTC and updates hops clock.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input TAI time
  */
@@ -444,7 +441,7 @@ hops_clock::from_tai(const date::tai_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Converts hops_time to GPS time using UTC conversion.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input hops_time with Duration template parameter
  */
@@ -457,7 +454,7 @@ hops_clock::to_gps(const hops_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Converts GPS time to UTC and updates hops clock without exception.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input GPS time in floating-point days.
  */
@@ -470,7 +467,7 @@ hops_clock::from_gps(const date::gps_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Converts a hops_time to system time using UTC clock.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input hops_time with Duration template parameter
  */
@@ -483,7 +480,7 @@ hops_clock::to_sys(const hops_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Converts system time to UTC clock time and returns it.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input system time in floating-point days.
  */
@@ -496,7 +493,7 @@ hops_clock::from_sys(const date::sys_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Returns the current time point in HOPS clock format.
- * 
+ *
  * @return Current time point as hops_clock::time_point.
  */
 inline hops_clock::time_point hops_clock::now()
@@ -506,7 +503,7 @@ inline hops_clock::time_point hops_clock::now()
 
 /**
  * @brief Converts a UTC time to local time using hops_clock.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input UTC time in hops_time format
  */
@@ -523,7 +520,7 @@ hops_clock::to_local(const hops_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Calculates time difference between two UTC time points considering leap seconds.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @param t Input local time to convert to UTC.
  */
@@ -540,7 +537,7 @@ hops_clock::from_local(const date::local_time< Duration >& t) NOEXCEPT
 
 /**
  * @brief Converts hops_time to stream format using given fmt and outputs to os.
- * 
+ *
  * @tparam CharT Template parameter CharT
  * @tparam Traits Template parameter Traits
  * @tparam Duration Template parameter Duration
@@ -560,7 +557,7 @@ std::basic_ostream< CharT, Traits >& to_stream(std::basic_ostream< CharT, Traits
 
 /**
  * @brief Reads time and abbreviation from stream using given format, updates hops_time if successful.
- * 
+ *
  * @tparam Duration Template parameter Duration
  * @tparam CharT Template parameter CharT
  * @tparam Traits Template parameter Traits
@@ -592,7 +589,7 @@ std::basic_ostream< CharT, Traits >& operator<<(std::basic_ostream< CharT, Trait
 
 /**
  * @brief Converts an ISO8601 formatted timestamp string to hops_clock::time_point.
- * 
+ *
  * @param timestamp Input timestamp string in ISO8601 format
  * @return hops_clock::time_point representing the parsed timestamp
  */
@@ -610,7 +607,7 @@ inline hops_clock::time_point hops_clock::from_iso8601_format(const std::string&
 
 /**
  * @brief Converts a time_point to ISO8601 formatted string.
- * 
+ *
  * @param tp Input time_point to be converted
  * @return ISO8601 formatted string representation of tp
  */
@@ -623,7 +620,7 @@ inline std::string hops_clock::to_iso8601_format(const time_point& tp)
 
 /**
  * @brief Function hops_clock::from_hops_format
- * 
+ *
  * @param timestamp (const std::string&)
  * @return Return value (hops_clock::time_point)
  */
@@ -657,7 +654,7 @@ inline hops_clock::time_point hops_clock::from_hops_format(const std::string& ti
 
 /**
  * @brief Converts a time_point to HOPS format string.
- * 
+ *
  * @param tp Input time_point to convert
  * @return String representation of tp in HOPS format
  */
@@ -713,23 +710,22 @@ inline legacy_hops_date hops_clock::to_legacy_hops_date(const time_point& tp)
     return ldate;
 }
 
-
 //needed for ad_hoc flag files (time-stamps are given in floating-point days)
 inline hops_clock::time_point hops_clock::from_year_fpday(int year, double floating_point_days)
 {
-    int integer_days = (int) floating_point_days;
+    int integer_days = (int)floating_point_days;
     double fractional_day = floating_point_days - integer_days;
-    int integer_hours = (int) 24*fractional_day;
-    double fractional_hour = 24*fractional_day - integer_hours;
-    int integer_minutes = (int) 60*fractional_hour;
-    double fractional_seconds = (60*fractional_hour - integer_minutes)*60;
+    int integer_hours = (int)24 * fractional_day;
+    double fractional_hour = 24 * fractional_day - integer_hours;
+    int integer_minutes = (int)60 * fractional_hour;
+    double fractional_seconds = (60 * fractional_hour - integer_minutes) * 60;
 
     //we co-opt the legacy date format to handle this format
     legacy_hops_date ldate;
-    ldate.year = (short) year;
-    ldate.day = (short) integer_days + 1; //note: ordinal day count starts at 1
-    ldate.hour = (short) integer_hours;
-    ldate.minute = (short) integer_minutes;
+    ldate.year = (short)year;
+    ldate.day = (short)integer_days + 1; //note: ordinal day count starts at 1
+    ldate.hour = (short)integer_hours;
+    ldate.minute = (short)integer_minutes;
     ldate.second = fractional_seconds;
 
     return from_legacy_hops_date(ldate);
@@ -756,11 +752,10 @@ inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& yea
     int imins = time.minutes().count();
     int isecs = time.seconds().count();
     int inanos = time.subseconds().count();
-    
-    double frac_day = (inanos*NANOSEC_TO_SEC + isecs + MINUTE_TO_SEC*imins + HOUR_TO_SEC*ihours)/(JD_TO_SEC);
-    floating_point_days = integer_days +  frac_day;
-}
 
+    double frac_day = (inanos * NANOSEC_TO_SEC + isecs + MINUTE_TO_SEC * imins + HOUR_TO_SEC * ihours) / (JD_TO_SEC);
+    floating_point_days = integer_days + frac_day;
+}
 
 inline hops_clock::time_point hops_clock::from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd)
 {

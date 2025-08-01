@@ -8,9 +8,9 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_VectorContainer.hh"
 
-#include "MHO_UUID.hh"
-#include "MHO_MD5HashGenerator.hh"
 #include "MHO_ContainerHDF5Converter.hh"
+#include "MHO_MD5HashGenerator.hh"
+#include "MHO_UUID.hh"
 
 // #include "MHO_ClassIdentityMap.hh"
 // #include "MHO_ContainerDictionary.hh"
@@ -29,8 +29,8 @@ namespace hops
 class MHO_HDF5ConverterDictionary
 {
     public:
-
         MHO_HDF5ConverterDictionary();
+
         virtual ~MHO_HDF5ConverterDictionary()
         {
             for(auto it = fHDF5ConverterMap.begin(); it != fHDF5ConverterMap.end(); it++)
@@ -55,7 +55,6 @@ class MHO_HDF5ConverterDictionary
         };
 
     protected:
-
         MHO_MD5HashGenerator fMD5Generator;
         std::map< MHO_UUID, MHO_HDF5Converter* > fHDF5ConverterMap;
 };

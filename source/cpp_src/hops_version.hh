@@ -1,10 +1,10 @@
 #ifndef MHO_VERSION_HH__
-#define MHO_VERSION_HH__
+    #define MHO_VERSION_HH__
 
-#define HOPS_VERSION_MAJOR 4
-#define HOPS_VERSION_MINOR 0
-#define HOPS_VERSION_PATCH 0
-#define HOPS_VERSION "4.0.0"
+    #define HOPS_VERSION_MAJOR 4
+    #define HOPS_VERSION_MINOR 0
+    #define HOPS_VERSION_PATCH 0
+    #define HOPS_VERSION "4.0.0"
 
 #endif /* end of include guard: MHO_VERSION */
 

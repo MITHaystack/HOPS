@@ -68,7 +68,7 @@ class MHO_NDArrayWrapper
 
         /**
          * @brief clone functionality - creates a deep copy of this MHO_NDArrayWrapper object.
-         * 
+         *
          * @return A new MHO_NDArrayWrapper instance containing a clone of this object's data.
          */
         MHO_NDArrayWrapper* Clone() { return new MHO_NDArrayWrapper(*this); }
@@ -76,7 +76,7 @@ class MHO_NDArrayWrapper
         //resize function -- destroys contents
         /**
          * @brief Destroys contents and resizes using passed dimensions.
-         * 
+         *
          * @param dim Pointer to external dimension array.
          * @note This is a virtual function.
          */
@@ -84,7 +84,7 @@ class MHO_NDArrayWrapper
 
         /**
          * @brief Resize function that destroys contents and resizes according to dimension arguments
-         * 
+         *
          * @tparam XDimSizeTypeS Template parameter XDimSizeTypeS
          * @param dim Input dimensions as variadic template XDimSizeTypeS...
          * @return void
@@ -98,7 +98,7 @@ class MHO_NDArrayWrapper
 
         /**
          * @brief set data pointer to externally managed array with associated dimensions
-         * 
+         *
          * @param ptr Pointer to externally managed XValueType array
          * @param dim Array of dimension sizes
          */
@@ -106,28 +106,28 @@ class MHO_NDArrayWrapper
 
         /**
          * @brief Getter for the rank (dimensionality) of the array
-         * 
+         *
          * @return std::size_t representing the rank of the array
          */
         std::size_t GetRank() const { return RANK; }
 
         /**
          * @brief get the total size of the array
-         * 
+         *
          * @return The number of elements in the data.
          */
         std::size_t GetSize() const { return fData.size(); };
 
         /**
          * @brief get the dimensions/shape of the array
-         * 
+         *
          * @return Pointer to std::size_t array representing dimensions
          */
         const std::size_t* GetDimensions() const { return &(fDims[0]); }
 
         /**
          * @brief Getter for dimensions, fills passed array
-         * 
+         *
          * @return Pointer to std::size_t array
          */
         void GetDimensions(std::size_t* dim) const
@@ -140,14 +140,14 @@ class MHO_NDArrayWrapper
 
         /**
          * @brief Getter for dimension array
-         * 
+         *
          * @return index_type&: Reference to the dimension array.
          */
         index_type GetDimensionArray() const { return fDims; }
 
         /**
          * @brief Getter for dimension
-         * 
+         *
          * @param param (std::size_t)
          * @return Pointer to the first element of the dimension array.
          */
@@ -165,14 +165,14 @@ class MHO_NDArrayWrapper
 
         /**
          * @brief Getter for element strides (along each dimension)
-         * 
+         *
          * @return Pointer to the first element of fStrides array
          */
         const std::size_t* GetStrides() const { return &(fStrides[0]); }
 
         /**
          * @brief Getter for strides (along each dimension), fills passed array
-         * 
+         *
          * @return Pointer to std::size_t array
          */
         void GetStrides(std::size_t* strd) const
@@ -333,7 +333,6 @@ class MHO_NDArrayWrapper
             return index;
         }
 
-
         /**
          * @brief creates a sub-view of the array (given n < RANK leading indexes), return the remaining
          * chunk of the array with freely spanning indexes
@@ -362,8 +361,6 @@ class MHO_NDArrayWrapper
         }
 
         ////////////////////////////////////////////////////////////////////////////////
-
-
 
         /**
          * @brief creates a slice-view of the array (given n < RANK indexes), return the remaining
@@ -529,7 +526,6 @@ class MHO_NDArrayWrapper
                 fData[i] += anArray.fData[i];
             }
             return *this;
-
         }
 
         /**
@@ -686,7 +682,7 @@ namespace hops
 //utilities ////////////////////////////////////////////////////////////////////
 /**
  * @brief Checks if two arrays have the same rank.
- * 
+ *
  * @tparam XArrayType1 Template parameter XArrayType1
  * @tparam XArrayType2 Template parameter XArrayType2
  * @param !arr1 Parameter description
@@ -702,7 +698,7 @@ static bool HaveSameRank(const XArrayType1* /*!arr1*/, const XArrayType2* /*!arr
 
 /**
  * @brief Checks if two arrays have the same number of elements.
- * 
+ *
  * @tparam XArrayType1 Template parameter XArrayType1
  * @tparam XArrayType2 Template parameter XArrayType2
  * @param arr1 First array to compare
@@ -718,7 +714,7 @@ static bool HaveSameNumberOfElements(const XArrayType1* arr1, const XArrayType2*
 
 /**
  * @brief Function HaveSameDimensions
- * 
+ *
  * @tparam XArrayType1 Template parameter XArrayType1
  * @tparam XArrayType2 Template parameter XArrayType2
  * @param arr1 (const XArrayType1*)

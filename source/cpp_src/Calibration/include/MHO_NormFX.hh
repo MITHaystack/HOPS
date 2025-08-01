@@ -16,8 +16,8 @@ namespace hops
  *@class MHO_NormFX
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Jul 9 11:47:00 2021 -0400
- *@brief wrapper class for the interface which provides the functionality of the original norm_fx.c operation 
-* this is a unary operator on visibilities that accepts weights
+ *@brief wrapper class for the interface which provides the functionality of the original norm_fx.c operation
+ * this is a unary operator on visibilities that accepts weights
  */
 
 /**
@@ -31,7 +31,7 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Setter for weights
-         * 
+         *
          * @param w Input pointer to weight_type array
          */
         void SetWeights(weight_type* w) { fWeights = w; }
@@ -41,7 +41,7 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Function InitializeInPlace
-         * 
+         *
          * @param in (XArgType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -49,7 +49,7 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeInPlace(XArgType* in) = 0;
         /**
          * @brief Function InitializeOutOfPlace
-         * 
+         *
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)
@@ -59,7 +59,7 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
 
         /**
          * @brief Function ExecuteInPlace
-         * 
+         *
          * @param in (XArgType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -67,7 +67,7 @@ class MHO_NormFX: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(XArgType* in) = 0;
         /**
          * @brief Function ExecuteOutOfPlace
-         * 
+         *
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)

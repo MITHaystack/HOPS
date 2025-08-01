@@ -35,7 +35,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Setter for filename
-         * 
+         *
          * @param filename New filename to set
          */
         void SetFilename(const std::string filename)
@@ -46,7 +46,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Getter for filename
-         * 
+         *
          * @return Current filename as a string
          */
         std::string GetFilename() { return fFilename; };
@@ -77,7 +77,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Checks if file is open for writing.
-         * 
+         *
          * @return True if file is open for write, false otherwise.
          * @note This is a virtual function.
          */
@@ -92,7 +92,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Checks if a file is open for reading.
-         * 
+         *
          * @return True if file is readable, false otherwise.
          * @note This is a virtual function.
          */
@@ -107,7 +107,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Checks if the file is closed.
-         * 
+         *
          * @return True if the file is closed, false otherwise.
          * @note This is a virtual function.
          */
@@ -120,9 +120,8 @@ class MHO_FileStreamer
             return false;
         }
 
-
         /**
-         * @brief Setter for object state - 
+         * @brief Setter for object state -
          * if an unrecognized object is encountered in streaming, flag this object
          * by changing the 'object' state to 'unknown'
          * @note This is a virtual function.
@@ -137,7 +136,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Checks if object state is unknown.
-         * 
+         *
          * @return True if object state is unknown, false otherwise.
          * @note This is a virtual function.
          */
@@ -145,7 +144,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Seeks ahead in file by specified number of bytes and updates object state.
-         * 
+         *
          * @param n_bytes Number of bytes to skip ahead.
          * @note This is a virtual function.
          */
@@ -162,7 +161,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Getter for stream
-         * 
+         *
          * @return Reference to the std::fstream object
          * @note This is a virtual function.
          */
@@ -170,7 +169,7 @@ class MHO_FileStreamer
 
         /**
          * @brief Getter for stream
-         * 
+         *
          * @return Reference to std::fstream object
          * @note This is a virtual function.
          */
@@ -208,14 +207,14 @@ template< typename XStreamType > struct MHO_ObjectStreamState
         //default behavior on an unknown XStreamType is to doing nothing
         /**
          * @brief Setter for unknown
-         * 
+         *
          * @param !s Parameter description
          * @note This is a static function.
          */
         static void SetUnknown(XStreamType& /*!s*/){};
         /**
          * @brief Resets the state of the XStreamType object to unset.
-         * 
+         *
          * @param !s Reference to the XStreamType object whose state is reset.
          * @note This is a static function.
          */
@@ -227,7 +226,7 @@ template< typename XStreamType > struct MHO_ObjectStreamState
 
 /**
  * @brief Function MHO_ObjectStreamState<MHO_FileStreamer>::SetUnknown
- * 
+ *
  * @param s (MHO_FileStreamer&)
  * @return Return value (void MHO_ObjectStreamState< MHO_FileStreamer)
  */
@@ -238,7 +237,7 @@ template<> inline void MHO_ObjectStreamState< MHO_FileStreamer >::SetUnknown(MHO
 
 /**
  * @brief Function MHO_ObjectStreamState<MHO_FileStreamer>::Reset
- * 
+ *
  * @param s (MHO_FileStreamer&)
  * @return Return value (void MHO_ObjectStreamState< MHO_FileStreamer)
  */

@@ -24,14 +24,12 @@
 //TODO FIXME -- remove this
 #include "MHO_EstimatePCManual.hh"
 
-
 #ifdef HOPS_USE_CUDA
     #include "MHO_MBDelaySearchCUDA.hh"
     #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
 #else
     #define MBD_SEARCH_TYPE MHO_MBDelaySearch
 #endif
-
 
 //#define DUMP_PARAMS_ON_ERROR
 
@@ -46,10 +44,9 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
     sbd_data = nullptr;
     fNormFXOp = nullptr; //does not need to be deleted
     fMBDSearch = new MBD_SEARCH_TYPE();
-    
+
     //must build the operator build manager
-    fOperatorBuildManager =
-        new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
+    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
 };
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
@@ -160,7 +157,7 @@ void MHO_BasicFringeFitter::Configure()
         //take a snapshot if enabled
         take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
         take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
-        
+
         ////////////////////////////////////////////////////////////////////////////
         //OPERATOR CONSTRUCTION
         ////////////////////////////////////////////////////////////////////////////
@@ -183,22 +180,22 @@ void MHO_BasicFringeFitter::Configure()
             fParameterStore->Set("/status/skipped", true);
             fParameterStore->Set("/status/is_finished", true);
         }
-        
+
         //calculate useful quantities to stash in the parameter store
         MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
-        
-        //if we have any additional prefit and postfit operators there is a possibility 
+
+        //if we have any additional prefit and postfit operators there is a possibility
         //that more than one fitting loop is run, in that case we will
         //cache the configured visibilities and weights
-        
+
         //build the rest of the operator categories
         fOperatorBuildManager->BuildOperatorCategory("flagging");
         fOperatorBuildManager->BuildOperatorCategory("calibration");
         fOperatorBuildManager->BuildOperatorCategory("prefit");
         fOperatorBuildManager->BuildOperatorCategory("postfit");
         fOperatorBuildManager->BuildOperatorCategory("finalize");
-        
-        // if(fOperatorBuildManager->GetNBuildersInCategory("prefit") >= 1 && 
+
+        // if(fOperatorBuildManager->GetNBuildersInCategory("prefit") >= 1 &&
         //    fOperatorBuildManager->GetNBuildersInCategory("postfit") > 0)
         // {
         //     msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators (" <<
@@ -209,8 +206,6 @@ void MHO_BasicFringeFitter::Configure()
 
         fEnableCaching = true;
         Cache();
-        
-
     }
 
     profiler_stop();
@@ -225,22 +220,22 @@ void MHO_BasicFringeFitter::Cache()
         if(vis_data != nullptr)
         {
             auto cached_vis_data = vis_data->Clone();
-            msg_debug("fringe", "caching visibility data to object: " << cached_vis_data->GetObjectUUID().as_string() << eom );
+            msg_debug("fringe", "caching visibility data to object: " << cached_vis_data->GetObjectUUID().as_string() << eom);
             fContainerStore->AddObject(cached_vis_data);
             std::string shortname = "cached_v";
             fContainerStore->SetShortName(cached_vis_data->GetObjectUUID(), shortname);
         }
-        
+
         if(wt_data != nullptr)
         {
             auto cached_wt_data = wt_data->Clone();
-            msg_debug("fringe", "caching weight data to object: " << cached_wt_data->GetObjectUUID().as_string() << eom );
+            msg_debug("fringe", "caching weight data to object: " << cached_wt_data->GetObjectUUID().as_string() << eom);
             fContainerStore->AddObject(cached_wt_data);
             std::string shortname = "cached_w";
             fContainerStore->SetShortName(cached_wt_data->GetObjectUUID(), shortname);
         }
     }
-}; 
+};
 
 void MHO_BasicFringeFitter::Refresh()
 {
@@ -253,19 +248,18 @@ void MHO_BasicFringeFitter::Refresh()
         if(vis_data != nullptr && cached_vis_data != nullptr)
         {
             //deep copy
-            msg_debug("fringe", "refreshing visibility data from cache" << eom );
+            msg_debug("fringe", "refreshing visibility data from cache" << eom);
             vis_data->Copy(*cached_vis_data);
         }
-        
+
         if(wt_data != nullptr && cached_wt_data != nullptr)
         {
             //deep copy
-            msg_debug("fringe", "refreshing weight data from cache" << eom );
+            msg_debug("fringe", "refreshing weight data from cache" << eom);
             wt_data->Copy(*cached_wt_data);
         }
     }
 };
-
 
 void MHO_BasicFringeFitter::Initialize()
 {
@@ -273,13 +267,13 @@ void MHO_BasicFringeFitter::Initialize()
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped)
     {
-        //refresh the visibility/weight data from the cache 
-        //this mechanism is necessary if we want to be able to provide that ability for a user-specified 
+        //refresh the visibility/weight data from the cache
+        //this mechanism is necessary if we want to be able to provide that ability for a user-specified
         //outer layer of iteration, where they are able to modify operator parameters
         //until some convergence criteria is met
         Refresh();
-        
-        //compute the sum of all weights and stash in the parameter store 
+
+        //compute the sum of all weights and stash in the parameter store
         //(before any other operations (e.g. passband, notches) modify them)
         MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
         //figure out the number of channels which have data with weights >0 in at least 1 AP
@@ -445,7 +439,6 @@ void MHO_BasicFringeFitter::Finalize()
         est_pc_man.Execute();
 
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
-
     }
 
     profiler_stop();

@@ -31,7 +31,7 @@ class MHO_CircularFieldRotationBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and adds a new CircularFieldRotationBuilder to the toolbox's multimap.
-         * 
+         *
          * @return No return value (void)
          */
         virtual bool Build() override;

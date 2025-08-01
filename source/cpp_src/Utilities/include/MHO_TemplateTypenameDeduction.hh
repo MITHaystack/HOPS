@@ -1,11 +1,10 @@
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <tuple>
-#include <algorithm>
-
 
 #ifndef MHO_TemplateTypenameDeduction_HH__
-#define MHO_TemplateTypenameDeduction_HH__
+    #define MHO_TemplateTypenameDeduction_HH__
 
 /*!
 *@file MHO_TemplateTypenameDeduction.hh
@@ -40,7 +39,7 @@
 //these constants are needed to locate the class name within a template decl.
 /**
  * @brief Returns a compiler-specific prefix string for template type T.
- * 
+ *
  * @return std::string containing compiler-specific prefix for template type T.
  */
 template< typename T > std::string compiler_func_prefix()
@@ -58,7 +57,7 @@ template< typename T > std::string compiler_func_prefix()
 //these constants are needed to locate the end of the class name within a template decl.
 /**
  * @brief Returns a string suffix for function names based on compiler type.
- * 
+ *
  * @return std::string containing either "]" (for Clang) or ";" (for GCC).
  */
 template< typename T > std::string compiler_func_suffix()
@@ -76,7 +75,7 @@ template< typename T > std::string compiler_func_suffix()
 //the constants refer to the compiler macros which print out a function's full name
 /**
  * @brief Returns a string containing the full name of the current function using compiler-specific macros.
- * 
+ *
  * @return std::string containing the full name of the current function.
  */
 template< typename T > std::string compiler_func_function()
@@ -94,7 +93,7 @@ template< typename T > std::string compiler_func_function()
 //does the bare minimum processing on the compiler macro output to strip out a name for XClassType
 /**
  * @brief Returns a string representation of the compiler name for given template type XClassType.
- * 
+ *
  * @return std::string containing the compiler name prefixed by type information
  */
 template< typename XClassType > std::string MHO_RawCompilerName()
@@ -111,7 +110,7 @@ template< typename XClassType > std::string MHO_RawCompilerName()
 //same as MHO_RawCompilerName, except space characters are stripped out by regex
 /**
  * @brief Extracts and strips spaces from class name in compiler function for given XClassType.
- * 
+ *
  * @return String containing class name without spaces
  */
 template< typename XClassType > std::string MHO_RawCompilerNameWithoutSpaces()
@@ -123,14 +122,14 @@ template< typename XClassType > std::string MHO_RawCompilerNameWithoutSpaces()
     std::size_t end = function.rfind(suffix);
     std::string class_name = function.substr(start, (end - start));
     //remove spaces
-    class_name.erase(std::remove(class_name.begin(), class_name.end(), ' '), class_name.end());  
+    class_name.erase(std::remove(class_name.begin(), class_name.end(), ' '), class_name.end());
     return class_name;
 };
 
 //extracts the name of a class when used within a std::tuple<>
 /**
  * @brief Extracts and returns the name of a class when used within a std::tuple<.
- * 
+ *
  * @return std::string containing the class name without spaces
  */
 template< typename XClassType > std::string MHO_TupleElementNameWithoutSpaces()
@@ -166,7 +165,7 @@ template< typename XClassType > std::string MHO_TupleElementNameWithoutSpaces()
 //comes out with a sensible name whenever it appears
 /**
  * @brief Determines and returns the name of class XClassType as a string for postprocessing in MHO.
- * 
+ *
  * @return std::string containing the name of class XClassType
  */
 template< typename XClassType > std::string MHO_ClassName()
@@ -204,7 +203,7 @@ template< typename XClassType > std::string MHO_ClassName()
     //finally, lets also get rid of the hops:: namespace prefix on all the class names
     std::string hops_nmspc = "hops::";
     size_t pos;
-    while ((pos = tmp.find(hops_nmspc)) != std::string::npos) 
+    while((pos = tmp.find(hops_nmspc)) != std::string::npos)
     {
         tmp.erase(pos, hops_nmspc.length());
     }
@@ -218,7 +217,7 @@ template< typename XClassType > std::string MHO_ClassName()
 // std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >
 /**
  * @brief Specialization for std::string to return class name prefix.
- * 
+ *
  * @return std::string containing compiler-specific prefix for class name.
  */
 template<> inline std::string MHO_ClassName< std::string >()

@@ -31,7 +31,7 @@ class MHO_LinearDParCorrectionBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and initializes the linear-pol DPar (delta parallactic angle) correction operator.
-         * 
+         *
          * @return True if construction is successful, false otherwise.
          */
         virtual bool Build() override;

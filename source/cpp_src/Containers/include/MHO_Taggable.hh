@@ -42,7 +42,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
 
         /**
          * @brief Copies tags from rhs to this instance if rhs is not empty and has valid object.
-         * 
+         *
          * @param rhs Reference to const MHO_Taggable object whose tags will be copied
          * @note This is a virtual function.
          */
@@ -61,7 +61,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
 
         /**
          * @brief Copies the contents of another MHO_Taggable object into this object.
-         * 
+         *
          * @param copy_from_obj Reference to the MHO_Taggable object whose contents will be copied
          */
         void CopyFrom(const MHO_Taggable& copy_from_obj)
@@ -75,7 +75,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
 
         /**
          * @brief Copies the contents of this object to another MHO_Taggable object if they are not the same.
-         * 
+         *
          * @param copy_to_obj Reference to an MHO_Taggable object where data will be copied
          */
         void CopyTo(MHO_Taggable& copy_to_obj) const
@@ -89,7 +89,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
 
         /**
          * @brief Getter for all meta data stored in this object as a json object
-         * 
+         *
          * @return JSON object containing metadata
          */
         mho_json GetMetaDataAsJSON() const { return fObject; }
@@ -97,7 +97,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
         //completely replaces the key:value (tags) data in this object with the infomration in the passed json object (use with caution)
         /**
          * @brief Setter for meta data as json
-         * 
+         *
          * @param obj Input JSON object to replace fObject data
          */
         void SetMetaDataAsJSON(mho_json obj) { fObject = obj; }
@@ -105,7 +105,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
     public: //MHO_Serializable interface
         /**
          * @brief Getter for version
-         * 
+         *
          * @return MHO_ClassVersion version number
          * @note This is a virtual function.
          */
@@ -113,7 +113,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
 
         /**
          * @brief Getter for serialized size
-         * 
+         *
          * @return Total serialized size as uint64_t.
          * @note This is a virtual function.
          */
@@ -170,7 +170,7 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
     private:
         /**
          * @brief Replaces fObject data using input stream s of type XStream&.
-         * 
+         *
          * @param s Input stream of type XStream&
          * @return No return value (void)
          */
@@ -178,14 +178,14 @@ class MHO_Taggable: public MHO_JSONWrapper, virtual public MHO_Serializable
 
         /**
          * @brief Generates a UUID by hashing the class name and returning it as an MHO_UUID.
-         * 
+         *
          * @tparam XStream Template parameter XStream
          * @return MHO_UUID representing the hashed class name
          * @note This is a virtual function.
          */
         /**
          * @brief Serializes fObject data into XStream using operator<<.
-         * 
+         *
          * @tparam XStream Template parameter XStream
          * @param s Output stream of type XStream&
          * @return void

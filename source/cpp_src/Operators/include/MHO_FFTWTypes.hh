@@ -1,18 +1,17 @@
 #ifndef MHO_FFTWTypes_HH__
 #define MHO_FFTWTypes_HH__
 
-#include <complex>
-#include <vector>
-#include <string>
-#include <sstream>
 #include <algorithm>
+#include <complex>
+#include <sstream>
+#include <string>
+#include <vector>
 
 #include <fftw3.h>
 
-
 /**
  * @brief Returns alignment requirement for FFTW float input.
- * 
+ *
  * @param param1 Input float pointer
  * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
  * @note these functions are only available for FFTW version > 3.3.4
@@ -22,7 +21,7 @@ int fftwf_alignment_of(float*) __attribute__((weak));
 
 /**
  * @brief Returns alignment requirement for FFTW double precision data type.
- * 
+ *
  * @param param1 Pointer to double precision floating point number.
  * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
  * @note these functions are only available for FFTW version > 3.3.4
@@ -32,7 +31,7 @@ int fftw_alignment_of(double*) __attribute__((weak));
 
 /**
  * @brief Returns alignment requirement for FFTW long double data type.
- * 
+ *
  * @param double* Parameter description
  * @details specifying the weak attribute avoids the "no-args depending on template parameter error"
  * @note these functions are only available for FFTW version > 3.3.4
@@ -60,7 +59,7 @@ template< typename XFloatType = void > struct MHO_FFTWTypes;
 
 /**
  * @brief Class MHO_FFTWTypes<float>
- * 
+ *
  * @tparam XFloatType Template parameter XFloatType
  */
 template<> struct MHO_FFTWTypes< float >
@@ -147,7 +146,6 @@ template<> struct MHO_FFTWTypes< long double >
         // static constexpr auto plan_guru_func = fftwl_plan_guru_dft;
 };
 
-
 //version info
 /**
  * @brief Class MHO_FFTWTypeInfo
@@ -157,124 +155,130 @@ class MHO_FFTWTypeInfo
     public:
         MHO_FFTWTypeInfo();
         virtual ~MHO_FFTWTypeInfo();
-        
-        
-    /**
-     * @brief Retrieves the raw FFTW version string.
-     * 
-     * @return std::string containing the raw FFTW version.
-     * @note This is a static function.
-     */
-    static std::string get_fftw_version_raw()
-    {
-        //examples:
-        //fftw-3.3.3-sse2
-        //fftw-3.3.8-sse2-avx
-        std::string vstr = fftw_version;
-        return vstr;
-    }
-    
-    /**
-     * @brief Splits a FFTW3 version string into components using a delimiter.
-     * 
-     * @param vstr Input version string to split
-     * @param delim Delimiter character used for splitting
-     * @return Vector of strings representing the split version components
-     * @note This is a static function.
-     */
-    static std::vector< std::string > split_version_string(std::string vstr, char delim)
-    {
-        std::vector<std::string> parts;
-        std::size_t start = 0;
-        std::size_t end = 0; 
-        while((end = vstr.find(delim, start)) != std::string::npos)
-        { 
-            parts.push_back(vstr.substr(start, end - start));
-            start = end + 1; 
-        }
-        parts.push_back(vstr.substr(start));
-        return parts;
-    }
-    
-    /**
-     * @brief Retrieves the numeric version string from FFTW3.
-     * 
-     * @return Numeric version string of FFTW3, returns 0.0.0 if retrieval fails
-     * @note This is a static function.
-     */
-    static std::string get_fftw_version_numeric()
-    {
-        std::string vstr = fftw_version;
-        std::vector<std::string> parts = split_version_string(vstr, '-');
-        for(std::size_t i=0; i<parts.size(); i++)
+
+        /**
+         * @brief Retrieves the raw FFTW version string.
+         *
+         * @return std::string containing the raw FFTW version.
+         * @note This is a static function.
+         */
+        static std::string get_fftw_version_raw()
         {
-            std::size_t ndots = std::count(parts[i].begin(), parts[i].end(), '.');
-            if(ndots == 2)
-            {
-                return parts[i];
-            }
+            //examples:
+            //fftw-3.3.3-sse2
+            //fftw-3.3.8-sse2-avx
+            std::string vstr = fftw_version;
+            return vstr;
         }
-        //otherwise return a garbage value 
-        vstr = "0.0.0";
-        return vstr;
-    }
 
-    /**
-     * @brief Retrieves the major version number of FFTW3.
-     * 
-     * @return Major version number as an integer.
-     * @note This is a static function.
-     */
-    static int get_fftw_version_major()
-    {
-        std::string vstr = get_fftw_version_numeric();
-        std::vector<std::string> parts = split_version_string(vstr, '.');
-        std::stringstream ss;
-        if(parts.size() < 1){return 0;}
-        ss << parts[0];
-        int value;
-        ss >> value;
-        return value;
-    }
-    
-    /**
-     * @brief Retrieves the minor version number of FFTW3.
-     * 
-     * @return Minor version number as an integer.
-     * @note This is a static function.
-     */
-    static int get_fftw_version_minor()
-    {
-        std::string vstr = get_fftw_version_numeric();
-        std::vector<std::string> parts = split_version_string(vstr, '.');
-        if(parts.size() < 2){return 0;}
-        std::stringstream ss;
-        ss << parts[1];
-        int value;
-        ss >> value;
-        return value;
-    }
-    
-    /**
-     * @brief Retrieves the patch version number from FFTW library.
-     * 
-     * @return Patch version number as an integer.
-     * @note This is a static function.
-     */
-    static int get_fftw_version_patch()
-    {
-        std::string vstr = get_fftw_version_numeric();
-        std::vector<std::string> parts = split_version_string(vstr, '.');
-        if(parts.size() < 3){return 0;}
-        std::stringstream ss;
-        ss << parts[2];
-        int value;
-        ss >> value;
-        return value;
-    }
-    
+        /**
+         * @brief Splits a FFTW3 version string into components using a delimiter.
+         *
+         * @param vstr Input version string to split
+         * @param delim Delimiter character used for splitting
+         * @return Vector of strings representing the split version components
+         * @note This is a static function.
+         */
+        static std::vector< std::string > split_version_string(std::string vstr, char delim)
+        {
+            std::vector< std::string > parts;
+            std::size_t start = 0;
+            std::size_t end = 0;
+            while((end = vstr.find(delim, start)) != std::string::npos)
+            {
+                parts.push_back(vstr.substr(start, end - start));
+                start = end + 1;
+            }
+            parts.push_back(vstr.substr(start));
+            return parts;
+        }
+
+        /**
+         * @brief Retrieves the numeric version string from FFTW3.
+         *
+         * @return Numeric version string of FFTW3, returns 0.0.0 if retrieval fails
+         * @note This is a static function.
+         */
+        static std::string get_fftw_version_numeric()
+        {
+            std::string vstr = fftw_version;
+            std::vector< std::string > parts = split_version_string(vstr, '-');
+            for(std::size_t i = 0; i < parts.size(); i++)
+            {
+                std::size_t ndots = std::count(parts[i].begin(), parts[i].end(), '.');
+                if(ndots == 2)
+                {
+                    return parts[i];
+                }
+            }
+            //otherwise return a garbage value
+            vstr = "0.0.0";
+            return vstr;
+        }
+
+        /**
+         * @brief Retrieves the major version number of FFTW3.
+         *
+         * @return Major version number as an integer.
+         * @note This is a static function.
+         */
+        static int get_fftw_version_major()
+        {
+            std::string vstr = get_fftw_version_numeric();
+            std::vector< std::string > parts = split_version_string(vstr, '.');
+            std::stringstream ss;
+            if(parts.size() < 1)
+            {
+                return 0;
+            }
+            ss << parts[0];
+            int value;
+            ss >> value;
+            return value;
+        }
+
+        /**
+         * @brief Retrieves the minor version number of FFTW3.
+         *
+         * @return Minor version number as an integer.
+         * @note This is a static function.
+         */
+        static int get_fftw_version_minor()
+        {
+            std::string vstr = get_fftw_version_numeric();
+            std::vector< std::string > parts = split_version_string(vstr, '.');
+            if(parts.size() < 2)
+            {
+                return 0;
+            }
+            std::stringstream ss;
+            ss << parts[1];
+            int value;
+            ss >> value;
+            return value;
+        }
+
+        /**
+         * @brief Retrieves the patch version number from FFTW library.
+         *
+         * @return Patch version number as an integer.
+         * @note This is a static function.
+         */
+        static int get_fftw_version_patch()
+        {
+            std::string vstr = get_fftw_version_numeric();
+            std::vector< std::string > parts = split_version_string(vstr, '.');
+            if(parts.size() < 3)
+            {
+                return 0;
+            }
+            std::stringstream ss;
+            ss << parts[2];
+            int value;
+            ss >> value;
+            return value;
+        }
 };
-
 
 } // namespace hops
 

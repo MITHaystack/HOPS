@@ -1,9 +1,9 @@
 #include "MHO_DiFXBaselineProcessor.hh"
 #include "MHO_BinaryFileInterface.hh"
 
+#include "MHO_DiFXTimeUtilities.hh"
 #include "MHO_DoubleSidebandChannelLabeler.hh"
 #include "MHO_ElementTypeCaster.hh"
-#include "MHO_DiFXTimeUtilities.hh"
 
 #include "MHO_MK4CorelInterfaceReversed.hh"
 
@@ -271,18 +271,17 @@ void MHO_DiFXBaselineProcessor::Organize()
                                         << " truncating to lowest common number of APs: " << fNAPs << "." << eom);
     }
 
-
-    fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get<double>();
+    fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get< double >();
     fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
     auto start_tp = hops_clock::from_vex_format(fStartTime);
-    int64_t duration_ns = fAPLength*fNAPs*SEC_TO_NANOSEC;
-    auto stop_tp = start_tp + hops_clock::duration( duration_ns );
+    int64_t duration_ns = fAPLength * fNAPs * SEC_TO_NANOSEC;
+    auto stop_tp = start_tp + hops_clock::duration(duration_ns);
     fStopTime = hops_clock::to_vex_format(stop_tp);
 
     msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);
-    
+
     //grab the source name (so we can add it to the data tags)
-    fSourceName = (*fInput)["source"][fIndex]["name"].get<std::string>();
+    fSourceName = (*fInput)["source"][fIndex]["name"].get< std::string >();
 
     //construct the table of frequencies for this baseline and sort in asscending order
     fNChannels = fFreqIndexSet.size();
@@ -364,7 +363,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             //insert the difx input data as a json object attached to the tags object
             fTags.SetTagValue("difx_input_json", *fInput);
         }
-        
+
         fTags.SetTagValue("root_code", fRootCode);
         //add a bunch of tags from the visib/weight objects for ease of retrieval
         fTags.SetTagValue("difx_baseline_index", fBaselineID);
@@ -409,7 +408,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
         //tags for the weights
         //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
-        fW->Resize(fNPolPairs, fNChannels, fNAPs,1); 
+        fW->Resize(fNPolPairs, fNChannels, fNAPs, 1);
         fW->ZeroArray();
         fW->Insert(std::string("name"), std::string("weights"));
         fW->Insert(std::string("difx_baseline_index"), fBaselineID);
@@ -470,7 +469,7 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             //and populating the visibility container
             //loop though in freq (low -> high) order
             int chidx = 0;
-            for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++) 
+            for(auto fqit = fBaselineFreqs.begin(); fqit != fBaselineFreqs.end(); fqit++)
             {
                 int freqidx = fqit->first;
                 mho_json dfreq = fqit->second;
@@ -632,7 +631,7 @@ void MHO_DiFXBaselineProcessor::WriteVisibilityObjects(std::string output_dir)
             }
             inter.Close();
         }
-        else 
+        else
         {
             //write out the data in Mark4 legacy type_1xx format
             MHO_MK4CorelInterfaceReversed converter;

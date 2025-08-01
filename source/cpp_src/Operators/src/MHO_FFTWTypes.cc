@@ -2,7 +2,7 @@
 
 namespace hops
 {
-    
+
 MHO_FFTWTypeInfo::MHO_FFTWTypeInfo(){};
 MHO_FFTWTypeInfo::~MHO_FFTWTypeInfo(){};
 
@@ -29,6 +29,5 @@ const decltype(&fftwl_destroy_plan) MHO_FFTWTypes< long double >::destroy_plan_f
 const decltype(&fftwl_alloc_complex) MHO_FFTWTypes< long double >::alloc_func = fftwl_alloc_complex;
 const decltype(&fftwl_free) MHO_FFTWTypes< long double >::free_func = fftwl_free;
 const decltype(&fftwl_plan_guru_dft) MHO_FFTWTypes< long double >::plan_guru_func = fftwl_plan_guru_dft;
-
 
 } // namespace hops

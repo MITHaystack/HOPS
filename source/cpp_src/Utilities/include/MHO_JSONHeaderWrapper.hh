@@ -34,7 +34,7 @@ class MHO_JSONWrapper
 
         /**
          * @brief Setter for object
-         * 
+         *
          * @param obj Input mho_json object to set
          */
         void SetObject(mho_json obj) { fObject = obj; }
@@ -47,7 +47,7 @@ class MHO_JSONWrapper
 
         /**
          * @brief Checks if a key exists in the internal map.
-         * 
+         *
          * @param key The key to search for in the map.
          * @return True if the key is found, false otherwise.
          */
@@ -63,7 +63,7 @@ class MHO_JSONWrapper
 
         /**
          * @brief Checks if a key exists in the internal map.
-         * 
+         *
          * @param char_key (const char*)
          * @return True if the key is found, false otherwise.
          */
@@ -89,7 +89,7 @@ class MHO_JSONWrapper
 
         /**
          * @brief Inserts or replaces an object in a map using a key and value.
-         * 
+         *
          * @param key The unique identifier for the object to be inserted/replaced.
          * @param value (const XValueType&)
          * @return No return value (void)
@@ -102,7 +102,7 @@ class MHO_JSONWrapper
 
         /**
          * @brief Retrieves a value from an object by key and casts it to the specified type.
-         * 
+         *
          * @param key Key used to lookup the value in the object
          * @param value (XValueType&)
          * @return True if retrieval was successful, false otherwise
@@ -129,7 +129,7 @@ class MHO_JSONWrapper
 
         /**
          * @brief Dumps all keys from the internal object.
-         * 
+         *
          * @return Vector of strings containing all keys
          */
         std::vector< std::string > DumpKeys() const
@@ -156,7 +156,7 @@ class MHO_JSONWrapper
 
         /**
          * @brief Checks if a map contains a specific key.
-         * 
+         *
          * @param key The key to search for in the map.
          * @return True if the key is found, false otherwise.
          */
@@ -177,7 +177,7 @@ class MHO_JSONWrapper
 //specialize for mho_json
 /**
  * @brief Retrieves a value from the JSON object by key and stores it in the provided reference.
- * 
+ *
  * @param key Key to search for in the JSON object
  * @param value Reference to store the retrieved value
  * @return True if retrieval was successful, false otherwise

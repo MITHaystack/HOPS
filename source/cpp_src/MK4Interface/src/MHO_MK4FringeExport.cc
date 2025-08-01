@@ -331,12 +331,12 @@ int MHO_MK4FringeExport::fill_205(struct type_203* t203, struct type_205* t205)
             t205->ffit_chan[i].channels[0] = (short)i;
         }
     }
-    
+
     // nfreqs = 0;
     // for (ch=0; ch<MAXFREQ; ch++)
     //     {
     //     fc = pass->pass_data + ch;
-    //     if (fc->frequency == 0.0 || nfreqs >= pass->nfreq) 
+    //     if (fc->frequency == 0.0 || nfreqs >= pass->nfreq)
     //         continue;
     //     nfreqs++;
     //     t205->ffit_chan[ch].ffit_chan_id = fc->freq_code;
@@ -344,20 +344,20 @@ int MHO_MK4FringeExport::fill_205(struct type_203* t203, struct type_205* t205)
     //     for (sb=0; sb<2; sb++)
     //         {
     //         ind = sb + 2 * pass->pol;
-    //         if (fc->index[ind] <= 0) 
+    //         if (fc->index[ind] <= 0)
     //             continue;
     //         for (j=0; j<nchan; j++)
-    //             if (fc->index[ind] == t203->channels[j].index) 
+    //             if (fc->index[ind] == t203->channels[j].index)
     //                 break;
     //         if (j == nchan)
     //             {
-    //             msg ("Could not find index number %d in type 203 record", 
+    //             msg ("Could not find index number %d in type 203 record",
     //                                             2, fc->index[ind]);
     //             return (-1);
     //             }
     //         if (nch >= 4)
     //             {
-    //             msg ("Error - more than 4 correlator indices in ffit chan '%c'", 
+    //             msg ("Error - more than 4 correlator indices in ffit chan '%c'",
     //                                             2, fc->freq_code);
     //             return (-1);
     //             }
@@ -365,9 +365,7 @@ int MHO_MK4FringeExport::fill_205(struct type_203* t203, struct type_205* t205)
     //         nch++;
     //         }
     //     }
-    // 
-    
-    
+    //
 
     return 0;
 }
@@ -1300,7 +1298,8 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
 
             if(counter >= max_chan_records)
             {
-                msg_warn("mk4interface", "too many channel records, (" << counter << "), to export to type_203, truncating to " << max_chan_records << eom);
+                msg_warn("mk4interface", "too many channel records, (" << counter << "), to export to type_203, truncating to "
+                                                                       << max_chan_records << eom);
                 break;
             }
         }

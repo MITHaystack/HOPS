@@ -31,7 +31,7 @@ class MHO_VexTokenProcessor
 
         /**
          * @brief Converts first token to integer and returns as mho_json.
-         * 
+         *
          * @param element_name Name of the element being processed
          * @param format Reference to the format object (not used in this function)
          * @param tokens Vector of strings containing tokens for processing
@@ -41,7 +41,7 @@ class MHO_VexTokenProcessor
 
         /**
          * @brief Converts a list of string tokens into integers and stores them in an mho_json object.
-         * 
+         *
          * @param element_name Name of the element being processed
          * @param format Reference to an mho_json object for formatting purposes (not used)
          * @param tokens Vector of strings containing integer values to be converted
@@ -51,7 +51,7 @@ class MHO_VexTokenProcessor
 
         /**
          * @brief Processes a list string into a JSON object and stores tokens.
-         * 
+         *
          * @param element_name The name of the element to process.
          * @param format Reference to an mho_json object for formatting.
          * @param tokens Reference to a vector of strings containing tokens.
@@ -61,7 +61,7 @@ class MHO_VexTokenProcessor
 
         /**
          * @brief Processes a real number value from tokens and returns it as an mho_json object.
-         * 
+         *
          * @param element_name Name of the element being processed
          * @param format Reference to the format object for processing
          * @param tokens Vector of strings containing token values
@@ -71,7 +71,7 @@ class MHO_VexTokenProcessor
 
         /**
          * @brief Processes a list of real numbers as strings and converts them into a JSON object with values and optional units.
-         * 
+         *
          * @param element_name The name of the element being processed.
          * @param format An mho_json reference used internally for formatting.
          * @param tokens A vector of string tokens representing numerical values or value-unit pairs.
@@ -81,7 +81,7 @@ class MHO_VexTokenProcessor
 
         /**
          * @brief Checks if a given string contains whitespace characters.
-         * 
+         *
          * @param value Input string to be checked for whitespace.
          * @return True if string contains whitespace, false otherwise.
          */

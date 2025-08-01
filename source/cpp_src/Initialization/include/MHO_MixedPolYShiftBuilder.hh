@@ -20,9 +20,7 @@ namespace hops
 class MHO_MixedPolYShiftBuilder: public MHO_OperatorBuilder
 {
     public:
-
-        MHO_MixedPolYShiftBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_MixedPolYShiftBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_MixedPolYShiftBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                   MHO_ParameterStore* pstore = nullptr)
@@ -32,7 +30,7 @@ class MHO_MixedPolYShiftBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Constructs and adds a new MHO_MixedPolYShift operator to the toolbox
-         * 
+         *
          * @return True if construction and addition are successful, false otherwise
          */
         virtual bool Build() override;

@@ -49,7 +49,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
 
         /**
          * @brief Initializes in-place by initializing out-of-place and copying back.
-         * 
+         *
          * @param in Input argument of type XArgType* to be initialized
          * @return Status of initialization operation as bool
          * @note This is a virtual function.
@@ -57,7 +57,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
         virtual bool InitializeInPlace(XArgType* in) override;
         /**
          * @brief Initializes out-of-place processing for Single Sideband (all channels USB or LSB) NormFX using input and output arguments.
-         * 
+         *
          * @param in Const reference to input XArgType object
          * @param out Reference to output XArgType object
          * @return Boolean indicating successful initialization
@@ -67,7 +67,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
 
         /**
          * @brief Executes in-place operation by temporarily using out-of-place execution and copying results back.
-         * 
+         *
          * @param in Input argument of type XArgType*
          * @return Status of the operation as a boolean value
          * @note This is a virtual function.
@@ -75,7 +75,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
         virtual bool ExecuteInPlace(XArgType* in) override;
         /**
          * @brief Applies a series of operations including zero-padding, NaN filtering, FFT and cyclic rotation to input visibility data.
-         * 
+         *
          * @param in Input visibility data
          * @param out Output visibility data after processing
          * @return True if all operations succeed, false otherwise
@@ -106,7 +106,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
 
         /**
          * @brief Applies weights to visibility data and optionally inverts them.
-         * 
+         *
          * @param out Output visibility_type array
          * @param w Input weight_type array for scaling
          * @param invert Boolean flag indicating whether to invert the weights

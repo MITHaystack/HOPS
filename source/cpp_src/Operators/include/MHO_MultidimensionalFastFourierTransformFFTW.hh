@@ -55,8 +55,8 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
             fPlanBackwardInPlace = NULL;
             AllocateWorkspace(16); //pre-allocate a bit of space, so we can test for memory alignment
             fHaveAlignmentFuncs = false;
-            
-            //determine what version of FFTW3 we have 
+
+            //determine what version of FFTW3 we have
             //(fftw versions < 3.3.4 do not have functions to determine memory alignment)
             int fftw3_major = MHO_FFTWTypeInfo::get_fftw_version_major();
             int fftw3_minor = MHO_FFTWTypeInfo::get_fftw_version_minor();
@@ -83,7 +83,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
     protected:
         /**
          * @brief Function InitializeInPlace
-         * 
+         *
          * @param in (XArgType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -142,7 +142,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
 
         /**
          * @brief Function InitializeOutOfPlace
-         * 
+         *
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)
@@ -204,7 +204,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
 
         /**
          * @brief Function ExecuteInPlace
-         * 
+         *
          * @param in (XArgType*)
          * @return Return value (bool)
          * @note This is a virtual function.
@@ -277,7 +277,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
 
         /**
          * @brief Copies input data to output and executes in-place if input/output are different.
-         * 
+         *
          * @param in Input data of type XArgType*
          * @param out Output data of type XArgType*
          * @return Result of ExecuteInPlace function call
@@ -296,7 +296,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
     private:
         /**
          * @brief Allocate workspace memory for FFTW operations.
-         * 
+         *
          * @param total_array_size Size of arrays to allocate.
          * @note This is a virtual function.
          */
@@ -338,7 +338,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
 
         /**
          * @brief Function ConstructPlan
-         * 
+         *
          * @return Return value (bool)
          */
         bool ConstructPlan()
@@ -420,14 +420,17 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
 
         /**
          * @brief Checks if two pointers have the same memory alignment.
-         * 
+         *
          * @param ptr1 Pointer to first data block
          * @param ptr2 Pointer to second data block
          * @return Boolean indicating whether pointers have the same alignment
          */
         template< typename XPtrType1, typename XPtrType2 > bool HaveSameAlignment(XPtrType1 ptr1, XPtrType2 ptr2)
         {
-            if(!fHaveAlignmentFuncs){return false;}
+            if(!fHaveAlignmentFuncs)
+            {
+                return false;
+            }
             return (MHO_FFTWTypes< floating_point_value_type >::alignment_of_func(
                         reinterpret_cast< floating_point_value_type* >(ptr1)) ==
                     MHO_FFTWTypes< floating_point_value_type >::alignment_of_func(
@@ -446,7 +449,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
         typename MHO_FFTWTypes< floating_point_value_type >::fftw_complex_type_ptr fInPtr;
         typename MHO_FFTWTypes< floating_point_value_type >::fftw_complex_type_ptr fOutPtr;
         typename MHO_FFTWTypes< floating_point_value_type >::fftw_complex_type_ptr fInPlacePtr;
-        
+
         //detect if we have mem alignment functions
         bool fHaveAlignmentFuncs;
 };

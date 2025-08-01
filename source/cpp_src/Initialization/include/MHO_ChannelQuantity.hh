@@ -23,11 +23,10 @@ class MHO_ChannelQuantity
         ~MHO_ChannelQuantity(){};
 
     protected:
-
         /**
          * @brief Maps channel names to corresponding values and returns a map.
          * if the number of channel names isn't the same as the number of values, this returns an empty map
-         * 
+         *
          * @param chan_names Input string containing comma-separated (or concatenated 1-character, with no space) channel names.
          * @param values Reference to input vector of double values.
          * @return Map with channel names as keys and corresponding values.

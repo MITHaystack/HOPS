@@ -36,36 +36,36 @@ class MHO_ControlFileParser
 
         /**
          * @brief Sets the global set_string (control statement) variable.
-         * 
+         *
          * @param set_string The new value to be assigned to the global set_string.
          */
         void PassSetString(std::string set_string) { fSetString = set_string; };
 
         /**
          * @brief Setter for control file
-         * 
+         *
          * @param filename New control file name
          */
         void SetControlFile(std::string filename);
 
         /**
          * @brief Parses control file and constructs JSON object representing control objects.
-         * 
+         *
          * @return mho_json object containing constructed control objects.
          */
         mho_json ParseControl();
 
         /**
          * @brief Getter for processed control file text (i.e. all of the tokens that make it into the control flow)
-         * 
+         *
          * @return Processed control file text as std::string
          */
         std::string GetProcessedControlFileText() const { return fProcessedControlFileText; }
 
         /**
-         * @brief Getter for legacy processed control file text 
+         * @brief Getter for legacy processed control file text
          * (just the control file tokens without set-string additions, needed for backwards compatible type_222 records)
-         * 
+         *
          * @return std::string containing legacy processed control file text
          */
         std::string GetLegacyProcessedControlFileText() const { return fLegacyProcessedControlFileText; }
@@ -73,7 +73,7 @@ class MHO_ControlFileParser
     private:
         /**
          * @brief Reads a control file and appends/set string portions to it.
-         * 
+         *
          * @return True if file read successfully, false otherwise.
          */
         bool ReadFile();
@@ -107,14 +107,14 @@ class MHO_ControlFileParser
         void FormStatements();
         /**
          * @brief Constructs control objects from statements and adds them to a JSON root.
-         * 
+         *
          * @return mho_json representing the constructed control objects.
          */
         mho_json ConstructControlObjects();
 
         /**
          * @brief Splits a set string into prepend and append parts based on 'if' statement presence.
-         * 
+         *
          * @param set_string Input set string to be split
          * @param prepend Output: part of set_string before first 'if' statement
          * @param append Output: part of set_string after first 'if' statement
@@ -123,7 +123,7 @@ class MHO_ControlFileParser
 
         /**
          * @brief Replaces occurrences of find_str in text with replace_str using regex_str as pattern.
-         * 
+         *
          * @param find_str String to search for and replace
          * @param regex_str Regular expression pattern for matching
          * @param replace_str String to replace matches with

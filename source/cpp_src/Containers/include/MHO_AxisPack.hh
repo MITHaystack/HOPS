@@ -36,7 +36,7 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
 
         /**
          * @brief Getter for serialized size
-         * 
+         *
          * @return Total serialized size as uint64_t.
          * @note This is a virtual function.
          */
@@ -59,10 +59,9 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
         }
 
     protected:
-
         /**
          * @brief inductive access to all elements of the tuple, so we can re-size them from an array
-         * 
+         *
          * @tparam N Template parameter (size of the axis pack)
          * @param !dim Parameter description
          */
@@ -72,7 +71,7 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
 
         /**
          * @brief Resize each element of the axis pack using the dimensions specified in dim.
-         * 
+         *
          * @tparam N Template parameter (size of the axis pack)
          * @param dim Input dimension sizes for resizing.
          */
@@ -88,7 +87,7 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
         // //inductive access to all elements of the tuple, so we compute total size for streaming
         /**
          * @brief Inductively computes and adds total serialized size of tuple elements to uint64_t& (needed for streaming).
-         * 
+         *
          * @tparam N Template parameter (size of the axis pack)
          * @param !total_size Parameter description
          */
@@ -98,7 +97,7 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
 
         /**
          * @brief Recursively computes and adds serialized size of Nth XAxisTypeS element to total_size.
-         * 
+         *
          * @tparam N Template parameter N
          * @param total_size Reference to uint64_t accumulating total serialized size
          * @return void
@@ -111,10 +110,9 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
             compute_total_size< N + 1 >(total_size);
         }
 
-
         /**
          * @brief used for copying the full tuple from one axis pack to another
-         * 
+         *
          * @tparam N Template parameter N
          * @param MHO_AxisPack& Parameter description
          */
@@ -124,7 +122,7 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
 
         /**
          * @brief Copies an axis pack recursively using template meta-programming.
-         * 
+         *
          * @tparam N Template parameter N
          * @param rhs The source axis pack to copy from.
          * @return void (not explicitly returned)
@@ -172,16 +170,15 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
     private:
         /**
          * @brief Reads data from input stream and stores it in the object.
-         * 
+         *
          * @param s Input stream of type XStream&.
          * @return No return value (void).
          */
         template< typename XStream > void StreamInData_V0(XStream& s) { istream_tuple(s, *this); }
 
-
         /**
          * @brief Writes data to an output stream using tuple serialization.
-         * 
+         *
          * @tparam XStream Template parameter XStream
          * @param s Output stream of type XStream&
          * @return No return value (void)
@@ -190,7 +187,7 @@ template< typename... XAxisTypeS > class MHO_AxisPack: public std::tuple< XAxisT
 
         /**
          * @brief Calculates and returns a UUID representing the type of the object using its class name.
-         * 
+         *
          * @tparam XStream Template parameter XStream
          * @return MHO_UUID representing the object's type.
          * @note This is a virtual function.

@@ -27,9 +27,8 @@ MHO_UniformGridPointsCalculator::MHO_UniformGridPointsCalculator()
 
 MHO_UniformGridPointsCalculator::~MHO_UniformGridPointsCalculator(){};
 
-
-void MHO_UniformGridPointsCalculator::GetUniquePoints(const std::vector<double>& in_pts, double eps, 
-                                                      std::vector<double>& out_pts,
+void MHO_UniformGridPointsCalculator::GetUniquePoints(const std::vector< double >& in_pts, double eps,
+                                                      std::vector< double >& out_pts,
                                                       std::map< std::size_t, std::size_t >& index_map) const
 {
     out_pts.clear();
@@ -48,7 +47,6 @@ void MHO_UniformGridPointsCalculator::GetUniquePoints(const std::vector<double>&
         index_map[idx] = point_index;
     }
 }
-
 
 void MHO_UniformGridPointsCalculator::SetPoints(const std::vector< double >& pts)
 {

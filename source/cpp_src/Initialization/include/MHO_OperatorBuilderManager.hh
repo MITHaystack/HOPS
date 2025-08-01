@@ -2,11 +2,11 @@
 #define MHO_OperatorBuilderManager_HH__
 
 #include "MHO_ContainerStore.hh"
+#include "MHO_FringeData.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 #include "MHO_OperatorBuilder.hh"
 #include "MHO_OperatorToolbox.hh"
-#include "MHO_FringeData.hh"
 #include "MHO_ParameterStore.hh"
 
 namespace hops
@@ -23,13 +23,9 @@ namespace hops
 class MHO_OperatorBuilderManager
 {
     public:
-        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, 
-                                   MHO_FringeData* fdata, 
-                                   mho_json control_format):
-            fOperatorToolbox(toolbox),
-            fFringeData(fdata),
-            fContainerStore(fdata->GetContainerStore() ),
-            fParameterStore(fdata->GetParameterStore() )
+        MHO_OperatorBuilderManager(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata, mho_json control_format)
+            : fOperatorToolbox(toolbox), fFringeData(fdata), fContainerStore(fdata->GetContainerStore()),
+              fParameterStore(fdata->GetParameterStore())
         {
             fFormat = control_format;
         };
@@ -47,20 +43,20 @@ class MHO_OperatorBuilderManager
 
         /**
          * @brief pass in parsed control file elements
-         * 
+         *
          * @param statements Input mho_json object containing control file statements
          */
         void SetControlStatements(mho_json* statements) { fControl = statements; };
 
         /**
-         * @brief Registers default operator builders for various purposes such as channel labeling, 
+         * @brief Registers default operator builders for various purposes such as channel labeling,
          * phase and delay corrections, pol-product summation, flagging operators, etc.
          */
         void CreateDefaultBuilders();
 
         /**
          * @brief Builds operator category from input string and calls BuildOperatorCategory with it.
-         * 
+         *
          * @param cat Input operator category as a C-style string.
          */
         void BuildOperatorCategory(const char* cat)
@@ -71,21 +67,21 @@ class MHO_OperatorBuilderManager
 
         /**
          * @brief Builds operator category from input string and calls BuildOperatorCategory with it.
-         * 
+         *
          * @param cat Input operator category as a C-style string.
          */
         void BuildOperatorCategory(const std::string& cat);
 
         /**
          * @brief return the number of operator builders in the specified category
-         * 
+         *
          * @param cat operator category
          */
         std::size_t GetNBuildersInCategory(std::string cat);
 
         /**
          * @brief Adds a new builder type with specified format, inserted into (builder) map for later use.
-         * 
+         *
          * @param builder_name Name of the builder type as string
          * @param format_key (const std::string&)
          * @return void
@@ -126,7 +122,7 @@ class MHO_OperatorBuilderManager
 
         /**
          * @brief Adds a new builder type with specified format and maps it by name and category.
-         * 
+         *
          * @param builder_name Name of the builder to be added
          * @param format Format specification for the builder
          * @return void

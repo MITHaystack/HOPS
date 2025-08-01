@@ -36,7 +36,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
 
         /**
          * @brief Setter for bounds
-         * 
+         *
          * @param lower_bound Lower bound value of type XIntegerType
          * @param upper_bound Upper bound value of type XIntegerType
          */
@@ -44,7 +44,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
 
         /**
          * @brief Setter for bounds
-         * 
+         *
          * @param lower_bound Lower bound of type XIntegerType
          * @param upper_bound Upper bound of type XIntegerType
          */
@@ -55,7 +55,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
 
         /**
          * @brief Getter for interval bounds
-         * 
+         *
          * @return A pair of XIntegerType representing the current interval's lower and upper bounds.
          */
         std::pair< XIntegerType, XIntegerType > GetInterval() const
@@ -65,35 +65,35 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
 
         /**
          * @brief Setter for lower bound
-         * 
+         *
          * @param low New lower bound value of type XIntegerType.
          */
         void SetLowerBound(XIntegerType low) { SetIntervalImpl(low, fUpperBound); }
 
         /**
          * @brief Setter for upper bound
-         * 
+         *
          * @param up New upper bound value of type XIntegerType
          */
         void SetUpperBound(XIntegerType up) { SetIntervalImpl(fLowerBound, up); }
 
         /**
          * @brief Getter for lower bound
-         * 
+         *
          * @return Lower bound value as XIntegerType
          */
         XIntegerType GetLowerBound() const { return fLowerBound; }
 
         /**
          * @brief Getter for upper bound
-         * 
+         *
          * @return Upper bound value as XIntegerType
          */
         XIntegerType GetUpperBound() const { return fUpperBound; }
 
         /**
          * @brief Getter for length
-         * 
+         *
          * @return Length calculated as fUpperBound - fLowerBound
          */
         XIntegerType GetLength() const { return fUpperBound - fLowerBound; }
@@ -101,7 +101,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
         //test if this object itersects with an other interval
         /**
          * @brief Checks if this interval intersects with another.
-         * 
+         *
          * @param other The other interval to check for intersection
          * @return True if there is an intersection, false otherwise
          */
@@ -121,7 +121,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
         //test if the closed interval itersects with a point
         /**
          * @brief Checks if closed interval intersects with another interval.
-         * 
+         *
          * @param idx (const XIntegerType&)
          * @return True if intervals intersect, false otherwise
          */
@@ -137,7 +137,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
         //returns the union of the two intervals
         /**
          * @brief Calculates and returns the union interval of this interval and another.
-         * 
+         *
          * @param other The other interval to calculate the union with.
          * @return The union interval as an MHO_Interval object.
          */
@@ -162,7 +162,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
 
         /**
          * @brief Checks if this interval intersects with another and returns true if it does.
-         * 
+         *
          * @param other The other interval to check for intersection.
          * @return True if there is an intersection, false otherwise.
          */
@@ -194,7 +194,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
     protected:
         /**
          * @brief Setter for interval impl
-         * 
+         *
          * @param low Lower bound of new interval (copied)
          * @param up Upper bound of new interval (copied)
          */

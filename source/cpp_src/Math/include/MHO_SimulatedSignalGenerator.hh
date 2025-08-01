@@ -23,7 +23,7 @@ class MHO_SimulatedSignalGenerator
         //tells the sample generation implementation what the expected the sampling frequency is
         /**
          * @brief Setter for sampling frequency
-         * 
+         *
          * @param sample_freq Input sampling frequency in Hertz
          * @note This is a virtual function.
          */
@@ -31,7 +31,7 @@ class MHO_SimulatedSignalGenerator
 
         /**
          * @brief Getter for sampling frequency
-         * 
+         *
          * @return The current sampling frequency as a double.
          * @note This is a virtual function.
          */
@@ -46,7 +46,7 @@ class MHO_SimulatedSignalGenerator
 
         /**
          * @brief Getter for sample
-         * 
+         *
          * @param sample_time Input time for which to retrieve the sample
          * @param sample (double&)
          * @return True if successful, false otherwise
@@ -56,7 +56,7 @@ class MHO_SimulatedSignalGenerator
     protected:
         /**
          * @brief Generates a sample based on given time and updates it.
-         * 
+         *
          * @param sample_time Input sampling time in seconds.
          * @param sample (double&)
          * @return True if sample generation is successful, false otherwise.

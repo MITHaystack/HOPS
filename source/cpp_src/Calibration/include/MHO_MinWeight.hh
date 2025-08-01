@@ -36,7 +36,7 @@ class MHO_MinWeight: public MHO_UnaryOperator< weight_type >
 
         /**
          * @brief Setter for min weight
-         * 
+         *
          * @param min_weight the minimum allowed weight value
          */
         void SetMinWeight(double min_weight) { fMinWeight = min_weight; }
@@ -44,7 +44,7 @@ class MHO_MinWeight: public MHO_UnaryOperator< weight_type >
     protected:
         /**
          * @brief Initializes MHO_MinWeight in-place using input pointer.
-         * 
+         *
          * @param in Pointer to weight_type for initialization.
          * @return True if successful.
          * @note This is a virtual function.
@@ -52,7 +52,7 @@ class MHO_MinWeight: public MHO_UnaryOperator< weight_type >
         virtual bool InitializeInPlace(weight_type* in) override;
         /**
          * @brief Initializes out-of-place weights using input weights.
-         * 
+         *
          * @param in Pointer to constant input weight array.
          * @param out (weight_type*)
          * @return True if initialization is successful.
@@ -62,7 +62,7 @@ class MHO_MinWeight: public MHO_UnaryOperator< weight_type >
 
         /**
          * @brief Zeroes out weights in-place for all values less than a specified minimum.
-         * 
+         *
          * @param in Input weight array to be modified in-place.
          * @return True if execution was successful.
          * @note This is a virtual function.
@@ -70,7 +70,7 @@ class MHO_MinWeight: public MHO_UnaryOperator< weight_type >
         virtual bool ExecuteInPlace(weight_type* in) override;
         /**
          * @brief Copies input weight and executes in-place operation on output.
-         * 
+         *
          * @param in Input weight data to be copied
          * @param out (weight_type*)
          * @return Result of ExecuteInPlace operation on output

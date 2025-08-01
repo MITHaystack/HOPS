@@ -21,7 +21,6 @@ namespace hops
 class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
 {
     public:
-
         MHO_MultitonePhaseCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
             : MHO_OperatorBuilder(toolbox, fdata)
         {
@@ -41,7 +40,7 @@ class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
 
         /**
          * @brief Builds and initializes a multitone phase-cal correction operator and adds to the toolbox
-         * 
+         *
          * @return Return value (bool)
          */
         virtual bool Build() override;
@@ -49,28 +48,28 @@ class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
     private:
         /**
          * @brief Extracts station Mk4 ID from parameter store based on input operation name.
-         * 
+         *
          * @param op_name Input operation name to determine which station's Mk4 ID to extract.
          * @return Station Mk4 ID as a string.
          */
         std::string ExtractStationMk4ID(std::string op_name); //op_name indicates reference or remote station
         /**
          * @brief Extracts and returns PC period from either a generic path or station-specific path using mk4id.
-         * 
+         *
          * @param mk4id Station identifier used to construct the station-specific path
          * @return PC period value retrieved from the parameter store
          */
-        int ExtractPCPeriod(std::string mk4id);               //pulls the appropriate pc_period out of parameter store
+        int ExtractPCPeriod(std::string mk4id); //pulls the appropriate pc_period out of parameter store
         /**
          * @brief Attaches sampler delays to multitone PCAL data using mk4id and parameter store.
-         * 
+         *
          * @param pcal_data Input multitone PCAL data structure
          * @param mk4id Station ID for retrieving station-specific parameters
          */
         void AttachSamplerDelays(multitone_pcal_type* pcal_data, std::string mk4id); //attaches sampler delays to pcal data
         /**
          * @brief Attaches PC tone mask data to multitone pcal data using mk4id and parameter store.
-         * 
+         *
          * @param pcal_data Pointer to multitone_pcal_type structure for storing PC tone mask data
          * @param mk4id String containing the mk4id of the station
          */
@@ -78,7 +77,7 @@ class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
                               std::string mk4id); //attaches pc_tonemask infor to pcal data (if present)
         /**
          * @brief Getter for sampler delay key (i.e. control statement)
-         * 
+         *
          * @param pol Input polarization string ('X', 'Y', 'R', 'L', 'H', 'V')
          * @return Sampler delay key string
          */
