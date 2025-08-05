@@ -924,6 +924,14 @@ void MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string 
     {
         it->clear();
     }
+    //clear station links to the $DAS section as well
+    for(auto it = vex_root["$STATION"].begin(); it != vex_root["$STATION"].end(); ++it)
+    {
+        if(it->contains("$DAS"))
+        {
+            it->erase("$DAS");
+        }
+    }
 
     //make sure the mk4_site_id single-character codes are specified for each site
     //also create a map of DiFX input file station codes (all upper-case) to vex station codes (any-case)
