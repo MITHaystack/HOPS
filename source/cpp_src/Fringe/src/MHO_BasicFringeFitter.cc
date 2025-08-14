@@ -51,6 +51,7 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
 {
+    delete fOperatorBuildManager;
     delete fMBDSearch;
 };
 
@@ -157,7 +158,7 @@ void MHO_BasicFringeFitter::Configure()
         //take a snapshot if enabled
         take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
         take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
-        
+
         ////////////////////////////////////////////////////////////////////////////
         //OPERATOR CONSTRUCTION
         ////////////////////////////////////////////////////////////////////////////
@@ -180,12 +181,10 @@ void MHO_BasicFringeFitter::Configure()
             fParameterStore->Set("/status/skipped", true);
             fParameterStore->Set("/status/is_finished", true);
         }
-        
+
         //calculate useful quantities to stash in the parameter store
         MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
-        
 
-        
         //build the rest of the operator categories
         fOperatorBuildManager->BuildOperatorCategory("flagging");
         fOperatorBuildManager->BuildOperatorCategory("calibration");
@@ -193,16 +192,14 @@ void MHO_BasicFringeFitter::Configure()
         fOperatorBuildManager->BuildOperatorCategory("postfit");
         fOperatorBuildManager->BuildOperatorCategory("finalize");
 
-
-        //if we have any additional prefit and postfit operators there is a possibility 
+        //if we have any additional prefit and postfit operators there is a possibility
         //that more than one fitting loop is run, in that case we will
         //cache the configured visibilities and weights
-        if(fOperatorToolbox.GetNOperatorsInCategory("prefit") > 0 && 
-           fOperatorToolbox.GetNOperatorsInCategory("postfit") > 0)
+        if(fOperatorToolbox.GetNOperatorsInCategory("prefit") > 0 && fOperatorToolbox.GetNOperatorsInCategory("postfit") > 0)
         {
-            msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators (" <<
-                fOperatorToolbox.GetNOperatorsInCategory("prefit") << ", " <<
-                fOperatorToolbox.GetNOperatorsInCategory("postfit") << ")" << eom);
+            msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators ("
+                                    << fOperatorToolbox.GetNOperatorsInCategory("prefit") << ", "
+                                    << fOperatorToolbox.GetNOperatorsInCategory("postfit") << ")" << eom);
             fEnableCaching = true;
         }
         Cache();

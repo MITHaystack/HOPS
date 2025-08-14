@@ -4,7 +4,6 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pybind11)
 endif(HOPS_USE_PYBIND11)
 
-
 set_option(USE_SYSTEM_TZ_DB ON)
 set_option(MANUAL_TZ_DB OFF)
 set_option(USE_TZ_DB_IN_DOT OFF)
@@ -20,6 +19,26 @@ else()
     set_option(COMPILE_WITH_C_LOCALE OFF)
 endif()
 
-
-
 add_subdirectory(date)
+
+if(HOPS_USE_MATPLOTPP)
+
+#TODO...we should check if the user has matplotplusplus installed locally first! 
+
+add_subdirectory(matplotplusplus)
+#install the matplot.so library
+install(
+    TARGETS matplot
+    EXPORT matplotTargets
+    LIBRARY DESTINATION ${LIB_INSTALL_DIR}    # for .so
+)
+
+#might as well install the headers too
+set(MATPLOT_INCLUDE_INSTALL_DIR "${INCLUDE_INSTALL_DIR}/matplot")
+install(
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/matplotplusplus/source/matplot
+    DESTINATION ${MATPLOT_INCLUDE_INSTALL_DIR}
+    FILES_MATCHING PATTERN "*.h"
+)
+
+endif(HOPS_USE_MATPLOTPP)

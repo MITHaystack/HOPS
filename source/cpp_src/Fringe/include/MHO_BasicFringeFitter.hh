@@ -4,6 +4,11 @@
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_FringeFitter.hh"
 
+//initialization
+#include "MHO_OperatorBuilderManager.hh"
+#include "MHO_ParameterConfigurator.hh"
+#include "MHO_ParameterManager.hh"
+
 #include "MHO_MixedSidebandNormFX.hh"
 #include "MHO_NormFX.hh"
 #include "MHO_SingleSidebandNormFX.hh"
@@ -108,8 +113,8 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
          * @return True if mixed sidebands are present, false otherwise
          */
         bool ContainsMixedSideband(visibility_type* vis);
-        
-        //visibility/weight caching mechanism 
+
+        //visibility/weight caching mechanism
         //to allow for user-determined outside-loop iteration (prerun, run, postrun)
         bool fEnableCaching;
         virtual void Cache() override;

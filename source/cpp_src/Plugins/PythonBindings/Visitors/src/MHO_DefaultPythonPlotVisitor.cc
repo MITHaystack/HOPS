@@ -4,22 +4,21 @@
 #define PYBIND11_DETAILED_ERROR_MESSAGES
 
 //pybind11 stuff to interface with python
-#ifdef USE_PYBIND11
-    #include "pybind11_json/pybind11_json.hpp"
-    #include <pybind11/embed.h>
-    #include <pybind11/numpy.h> //this is important to have for std::complex<T> support!
-    #include <pybind11/pybind11.h>
+#include "pybind11_json/pybind11_json.hpp"
+#include <pybind11/embed.h>
+#include <pybind11/numpy.h> //this is important to have for std::complex<T> support!
+#include <pybind11/pybind11.h>
 namespace py = pybind11;
 namespace nl = nlohmann;
 using namespace pybind11::literals;
-    #include "MHO_PyConfigurePath.hh"
-    #include "MHO_PyContainerStoreInterface.hh"
-    #include "MHO_PyFringeDataInterface.hh"
-    #include "MHO_PyParameterStoreInterface.hh"
-    #include "MHO_PyScanStoreInterface.hh"
-    #include "MHO_PyTableContainer.hh"
-    #include "MHO_PythonOperatorBuilder.hh"
-#endif
+#include "MHO_PyConfigurePath.hh"
+#include "MHO_PyContainerStoreInterface.hh"
+#include "MHO_PyFringeDataInterface.hh"
+#include "MHO_PyParameterStoreInterface.hh"
+#include "MHO_PyScanStoreInterface.hh"
+#include "MHO_PyTableContainer.hh"
+#include "MHO_PythonOperatorBuilder.hh"
+
 
 namespace hops
 {
@@ -34,7 +33,6 @@ void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
     bool show_plot = data->GetParameterStore()->GetAs< bool >("/cmdline/show_plot");
     bool is_skipped = data->GetParameterStore()->GetAs< bool >("/status/skipped");
 
-#ifdef USE_PYBIND11
     if(show_plot && !is_skipped)
     {
         msg_debug("main", "python plot generation enabled." << eom);
@@ -84,13 +82,6 @@ void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
             }
         }
     }
-#else //USE_PYBIND11
-    if(show_plot && !is_skipped)
-    {
-        msg_warn("main",
-                 "plot output requested, but not enabled since HOPS was built without pybind11 support, ignoring." << eom);
-    }
-#endif
 }
 
 } // namespace hops

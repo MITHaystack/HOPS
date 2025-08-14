@@ -63,6 +63,10 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
 endif(HOPS_USE_PYBIND11)
 
+if(HOPS_USE_MATPLOTPP)
+    add_subdirectory(${CPPSOURCE}/Plugins/MatplotPlugin) #Matplot++ (gnuplot) wrapper support
+endif(HOPS_USE_MATPLOTPP)
+
 if(HOPS_USE_OPENCL)
 add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
 endif(HOPS_USE_OPENCL)

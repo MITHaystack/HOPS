@@ -34,6 +34,8 @@ using namespace pybind11::literals;
     #include "MHO_PythonOperatorBuilder.hh"
 #endif
 
+#include "MHO_BasicPlotVisitor.hh"
+
 //needed to export to mark4 fringe files
 #include "MHO_MK4FringeExport.hh"
 
@@ -184,6 +186,9 @@ int main(int argc, char** argv)
                     fexporter.ExportFringeFile();
                 }
             }
+
+            MHO_BasicPlotVisitor test_plotter;
+            ffit->Accept(&test_plotter);
 
 //PLOTTING
 #ifdef USE_PYBIND11
