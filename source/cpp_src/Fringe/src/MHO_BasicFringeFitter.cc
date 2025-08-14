@@ -51,7 +51,7 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
 {
-    delete fOperatorBuildManager;
+    if(fOperatorBuildManager){delete fOperatorBuildManager; fOperatorBuildManager = nullptr;}
     delete fMBDSearch;
 };
 
