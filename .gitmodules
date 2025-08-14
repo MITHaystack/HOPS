@@ -10,3 +10,6 @@
 [submodule "extern/submodules/pybind11_json"]
 	path = extern/submodules/pybind11_json
 	url = https://github.com/pybind/pybind11_json.git
+[submodule "extern/submodules/matplotplusplus"]
+	path = extern/submodules/matplotplusplus
+	url = https://github.com/alandefreitas/matplotplusplus.git

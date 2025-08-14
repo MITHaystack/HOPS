@@ -19,7 +19,6 @@ namespace hops
  *@file MHO_AFileDefinitions.hh
  *@class MHO_AFileDefinitions
  *@author
- *Email:
  *@date Wed Sep 20 16:12:23 2023 -0400
  *@brief extract useful information from .cor, .frng. and root files for afile (ascii) generation
  */

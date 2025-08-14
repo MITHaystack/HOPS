@@ -26,9 +26,12 @@ namespace hops
 std::size_t MHO_OperatorBuilderManager::GetNBuildersInCategory(std::string cat)
 {
     std::size_t count = 0;
-    for (auto it = fCategoryToBuilderMap.begin(); it != fCategoryToBuilderMap.end(); ++it) 
+    for(auto it = fCategoryToBuilderMap.begin(); it != fCategoryToBuilderMap.end(); ++it)
     {
-        if(it->first == cat){count++;}
+        if(it->first == cat)
+        {
+            count++;
+        }
     }
     return count;
 }

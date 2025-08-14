@@ -139,6 +139,7 @@ option(HOPS_ENABLE_TEST "Build developer tests." ON)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but highly recommended)" ON)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
+option(HOPS_USE_MATPLOTPP "Build copy of matplot++ (requires gnuplot) for fast plotting" ON) 
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 option(HOPS_IS_HOPS4 "Install the HOPS4 version of relevant executables (symlinked to expected names, e.g. fourfit, fplot)" OFF)
@@ -196,33 +197,6 @@ set(TEST_DATA_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
 set(HOPS_CACHED_TEST_DATADIR "${DATA_INSTALL_DIR}/test_data" CACHE PATH "Location used to download/cache HOPS test data.")
 #actual location to unpack the test data and do the tests
 set(HOPS_TEST_DATA_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_data)
-
-# #look for an environmental variable pointing to a cache of test data
-# set(HOPS_USE_CACHED_TEST_DATA OFF)
-# # set(HOPS_NEED_REMOTE_DATA ON)
-# if (NOT "${HOPS_CACHED_TEST_DATADIR}" STREQUAL "")
-#
-#     #mark_as_advanced(HOPS_CACHED_TEST_DATADIR)
-#     set(HOPS_USE_CACHED_TEST_DATA ON)
-#     # set(HOPS_NEED_REMOTE_DATA OFF)
-# endif()
-
-# #check that we can download test data if testing is enabled and there is no cache
-# cmake_dependent_option( HOPS_ENABLE_REMOTE_TEST_DATA "Download remote data for developer tests." ${HOPS_NEED_REMOTE_DATA} "HOPS_ENABLE_TEST" OFF)
-
-# if(HOPS_ENABLE_TEST)
-#     if(NOT HOPS_ENABLE_REMOTE_TEST_DATA AND NOT HOPS_USE_CACHED_TEST_DATA)
-#             #we are not downloading test data (and no local cache available), so force it off
-#             set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
-#     endif()
-# endif(HOPS_ENABLE_TEST)
-
-# if(HOPS_ENABLE_TEST)
-#     if(NOT HOPS_USE_CACHED_TEST_DATA)
-#             #no local cached data available, so force it off
-#             set(HOPS_ENABLE_TEST OFF CACHE BOOL "Build developer tests." FORCE)
-#     endif()
-# endif(HOPS_ENABLE_TEST)
 
 if(HOPS_ENABLE_TEST)
     enable_testing()

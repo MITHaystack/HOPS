@@ -48,7 +48,7 @@
 *.blg
 
 # Build and install directories
-*build*
+*build/
 *x86_64*
 
 #CMake cache files

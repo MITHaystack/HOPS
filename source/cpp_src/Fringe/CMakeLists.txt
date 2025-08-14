@@ -12,13 +12,15 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InitialFringeInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeUtilities.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileInfoExtractor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileDefinitions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitterFactory.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotVisitor.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotVisitor.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PlotDataExtractor.hh
+    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicPlotVisitor.hh
 )
 
 #list source files #############################################################
@@ -36,6 +38,8 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileInfoExtractor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileDefinitions.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeFitterFactory.cc
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PlotDataExtractor.cc
+    # ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicPlotVisitor.cc
 )
 
 #declare header paths ##########################################################
@@ -48,17 +52,19 @@ set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers 
 if(HOPS_USE_PYBIND11)
     hops_internal_include_directories(../Plugins/PythonBindings/Containers/include)
     hops_internal_include_directories(../Plugins/PythonBindings/Operators/include)
-    list(APPEND PYBIND_APP_LIBS pyMHO_Containers pyMHO_Operators pybind11::embed)
+    hops_internal_include_directories(../Plugins/PythonBindings/Visitors/include)
+    list(APPEND PYBIND_APP_LIBS pyMHO_Containers pyMHO_Operators MHO_pyVisitors pybind11::embed)
     add_cflag(USE_PYBIND11)
     list(APPEND FRINGE_LIBS ${PYBIND_APP_LIBS})
-    #add the python plotting visitor
-    list(APPEND FRINGE_HEADERFILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DefaultPythonPlotVisitor.hh
-    )
-    list(APPEND FRINGE_SOURCEFILES
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DefaultPythonPlotVisitor.cc
-    )
 endif(HOPS_USE_PYBIND11)
+
+if(HOPS_USE_MATPLOTPP)
+    hops_internal_include_directories(../../../extern/matplotplusplus/source/)
+    hops_internal_include_directories(../Plugins/MatplotPlugin/include)
+    list(APPEND MPP_LIBS MHO_MatplotPlugin matplot)
+    add_cflag(USE_MATPLOTPP)
+    list(APPEND FRINGE_LIBS ${MPP_LIBS})
+endif(HOPS_USE_MATPLOTPP)
 
 #add cuda deps if available
 if(HOPS_USE_CUDA)

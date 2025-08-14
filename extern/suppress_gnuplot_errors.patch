@@ -1,0 +1,12 @@
+--- a/matplotplusplus/source/matplot/backend/gnuplot.cpp
++++ b/matplotplusplus/source/matplot/backend/gnuplot.cpp
+@@ -73,9 +73,9 @@
+         // Open the gnuplot pipe_
+         int perr;
+         if constexpr (windows_should_persist_by_default) {
+-            perr = pipe_.open("gnuplot --persist");
++            perr = pipe_.open("gnuplot --persist 2>/dev/null");
+         } else {
+-            perr = pipe_.open("gnuplot");
++            perr = pipe_.open("gnuplot 2>/dev/null");
+         }

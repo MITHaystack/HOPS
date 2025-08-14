@@ -286,6 +286,19 @@ std::string MHO_DirectoryInterface::StripExtensionFromBasename(const std::string
     return prefix;
 }
 
+std::string MHO_DirectoryInterface::GetFileExtension(const std::string& aFilename)
+{
+    std::string ext = "";
+    std::size_t dot_pos = aFilename.find_last_of('.');
+    if(dot_pos == std::string::npos){return ext;}
+    else 
+    {
+        ext = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace( aFilename.substr(dot_pos+1) );
+    }
+    return ext;
+}
+
+
 void MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const
 {
     //from the current list of files, locate the ones which match the given extension
@@ -300,6 +313,7 @@ void MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string 
             std::string sub = basename.substr(index);
             if(sub == anExt)
             {
+                std::string ext =GetFileExtension(basename);
                 aFileList.push_back(*it);
             }
         }

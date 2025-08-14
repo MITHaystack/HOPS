@@ -81,6 +81,14 @@ class MHO_DirectoryInterface
         static std::string GetFileModifcationTime(const std::string& name);
 
         /**
+         * @brief Extracts the file extension from a file name
+         *
+         * @param aFilename 
+         * @return string containing the file extension, empty if no extension
+         */
+        static std::string GetFileExtension(const std::string& aFilename);
+
+        /**
          * @brief Creates a directory with given name and owner permissions.
          *
          * @param dirname The name of the directory to create.
@@ -129,7 +137,7 @@ class MHO_DirectoryInterface
          * @param aSubDirList Output parameter: vector to store subdirectory list
          */
         void GetSubDirectoryList(std::vector< std::string >& aSubDirList) const;
-
+        
         /**
          * @brief Getter for files matching extention
          *

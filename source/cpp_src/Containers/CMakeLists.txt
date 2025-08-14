@@ -36,8 +36,10 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ScanDataStore.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeData.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Snapshot.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeData.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotVisitor.hh
 )
 
 set( CONTAINER_SOURCEFILES
