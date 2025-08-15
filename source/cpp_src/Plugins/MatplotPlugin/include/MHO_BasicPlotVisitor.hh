@@ -46,6 +46,7 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
 
         std::map<std::string, subplot_parameters> fSubplotConfig;
 
+        void ConfigureSubplots();
 
 
         void ConstructPlot(const mho_json& plot_data);

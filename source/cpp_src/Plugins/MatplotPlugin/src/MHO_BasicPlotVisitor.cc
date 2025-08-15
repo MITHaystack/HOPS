@@ -40,6 +40,8 @@ MHO_BasicPlotVisitor::~MHO_BasicPlotVisitor(){}
 
 void MHO_BasicPlotVisitor::ConstructPlot(const mho_json& fPlotData)
 {
+
+    ConfigureSubplots();
     //add plots
     make_dr_mbd_plot(fPlotData);
     make_sbd_dtec_plot(fPlotData);
@@ -57,6 +59,263 @@ void MHO_BasicPlotVisitor::ConstructPlot(const mho_json& fPlotData)
     make_window_table(fPlotData);
     make_data_stats_text(fPlotData);
     make_channel_info_table(fPlotData);
+}
+
+void MHO_BasicPlotVisitor::ConfigureSubplots()
+{
+    {
+        subplot_parameters mbd_param;
+        mbd_param.total_rows = 70;
+        mbd_param.total_cols = 64;
+        mbd_param.start_row = 3;
+        mbd_param.start_col = 3;
+        mbd_param.rowspan = 12;
+        mbd_param.colspan = 46;
+        fSubplotConfig["mbd_plot"] = mbd_param;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 2;
+        tparam.start_col = 2;
+        tparam.rowspan = 1;
+        tparam.colspan = 48;
+        fSubplotConfig["mbd_title"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 128;
+        tparam.start_row = 5;
+        tparam.start_col = 4;
+        tparam.rowspan = 8;
+        tparam.colspan = 1;
+        fSubplotConfig["mbd_amp_ytitle"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 2;
+        tparam.start_col = 2;
+        tparam.rowspan = 15;
+        tparam.colspan = 48;
+        fSubplotConfig["delay_rate_xtitle"] = tparam;
+    }
+
+    {
+        subplot_parameters param;
+        param.total_rows = 70;
+        param.total_cols = 64;
+        param.start_row = 19;
+        param.start_col = 3;
+        param.rowspan = 8;
+        param.colspan = 21;
+        fSubplotConfig["sbd_plot"] = param;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 128;
+        tparam.start_row = 19;
+        tparam.start_col = 4;
+        tparam.rowspan = 8;
+        tparam.colspan = 1;
+        fSubplotConfig["sbd_amp_ytitle"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 18;
+        tparam.start_col = 4;
+        tparam.rowspan = 1;
+        tparam.colspan = 14;
+        fSubplotConfig["ion_tec_title"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 28;
+        tparam.start_col = 2;
+        tparam.rowspan = 1;
+        tparam.colspan = 14;
+        fSubplotConfig["sbd_title"] = tparam;
+    }
+
+    {
+        subplot_parameters param;
+        param.total_rows = 70;
+        param.total_cols = 128;
+        param.start_row = 19;
+        param.start_col = 56;
+        param.rowspan = 8;
+        param.colspan = 42;
+        fSubplotConfig["xpower_plot"] = param;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 28;
+        tparam.start_col = 32;
+        tparam.rowspan = 1;
+        tparam.colspan = 2;
+        fSubplotConfig["xpower_xtitle"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 19;
+        tparam.start_col = 49;
+        tparam.rowspan = 8;
+        tparam.colspan = 2;
+        fSubplotConfig["xpower_phase_ytitle"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 32;
+        tparam.start_col = 60;
+        tparam.rowspan = 8;
+        tparam.colspan = 1;
+        fSubplotConfig["channel_phase_ytitle"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 128;
+        tparam.start_row = 32;
+        tparam.start_col = 4;
+        tparam.rowspan = 8;
+        tparam.colspan = 1;
+        fSubplotConfig["channel_amp_ytitle"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 128;
+        tparam.start_row = 40;
+        tparam.start_col = 119;
+        tparam.rowspan = 8;
+        tparam.colspan = 1;
+        fSubplotConfig["pcal_theta_ytitle"] = tparam; 
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 140;
+        tparam.total_cols = 128;
+        tparam.start_row = 87;
+        tparam.start_col = 119;
+        tparam.rowspan = 2;
+        tparam.colspan = 1;
+        fSubplotConfig["station_codes"] = tparam; 
+    }
+
+    {    
+        subplot_parameters tparam;
+        tparam.total_rows = 35;
+        tparam.total_cols = 64;
+        tparam.start_row = 0;
+        tparam.start_col = 0;
+        tparam.rowspan = 2;
+        tparam.colspan = 62;
+        fSubplotConfig["top_info_textbox"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 35;
+        tparam.total_cols = 64;
+        tparam.start_row = 2;
+        tparam.start_col = 52;
+        tparam.rowspan = 18;
+        tparam.colspan = 12;
+        fSubplotConfig["basic_info_textbox"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 57;
+        tparam.start_col = 0;
+        tparam.rowspan = 10;
+        tparam.colspan = 64;
+        fSubplotConfig["model_resid_info_textbox"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 35;
+        tparam.total_cols = 64;
+        tparam.start_row = 31;
+        tparam.start_col = 0;
+        tparam.rowspan = 4;
+        tparam.colspan = 16;
+        fSubplotConfig["rms_textbox"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 35;
+        tparam.total_cols = 64;
+        tparam.start_row = 33;
+        tparam.start_col = 0;
+        tparam.rowspan = 2;
+        tparam.colspan = 64;
+        fSubplotConfig["coord_textbox"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 35;
+        tparam.total_cols = 64;
+        tparam.start_row = 31;
+        tparam.start_col = 12;
+        tparam.rowspan = 4;
+        tparam.colspan = 13;
+        fSubplotConfig["amp_table_textbox"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 35;
+        tparam.total_cols = 64;
+        tparam.start_row = 31;
+        tparam.start_col = 49;
+        tparam.rowspan = 4;
+        tparam.colspan = 12;
+        fSubplotConfig["window_textbox"] = tparam;
+    }
+
+    {
+        subplot_parameters tparam;
+        tparam.total_rows = 35;
+        tparam.total_cols = 64;
+        tparam.start_row = 31;
+        tparam.start_col = 29;
+        tparam.rowspan = 4;
+        tparam.colspan = 17;
+        fSubplotConfig["stats_textbox"] = tparam;
+    }
+
 }
 
 void MHO_BasicPlotVisitor::DirectSavePlot(std::string filename)
@@ -271,15 +530,6 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         return;
     }
 
-
-    subplot_parameters mbd_param;
-    mbd_param.total_rows = 70;
-    mbd_param.total_cols = 64;
-    mbd_param.start_row = 3;
-    mbd_param.start_col = 3;
-    mbd_param.rowspan = 12;
-    mbd_param.colspan = 46;
-    fSubplotConfig["mbd_plot"] = mbd_param;
     auto ax_dr = subplot2grid_wrapper(fSubplotConfig["mbd_plot"]);
 
     ax_dr->font_size(8);
@@ -468,14 +718,6 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         try
         {
             // Create a small text-only subplot above the main plot for the axis label
-            subplot_parameters tparam;
-            tparam.total_rows = 70;
-            tparam.total_cols = 64;
-            tparam.start_row = 2;
-            tparam.start_col = 2;
-            tparam.rowspan = 1;
-            tparam.colspan = 48;
-            fSubplotConfig["mbd_title"] = tparam;
             auto text_ax = subplot2grid_wrapper(fSubplotConfig["mbd_title"]);
 
             // Turn off axis display for text subplot
@@ -504,14 +746,6 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the y-axis label
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 128;
-        tparam.start_row = 5;
-        tparam.start_col = 4;
-        tparam.rowspan = 8;
-        tparam.colspan = 1;
-        fSubplotConfig["mbd_amp_ytitle"] = tparam;
         auto text_ax = subplot2grid_wrapper(fSubplotConfig["mbd_amp_ytitle"]);
 
         // Turn off axis display for text subplot
@@ -538,14 +772,6 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot above the main plot for the axis label
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 2;
-        tparam.start_col = 2;
-        tparam.rowspan = 15;
-        tparam.colspan = 48;
-        fSubplotConfig["delay_rate_xtitle"] = tparam;
         auto text_ax = subplot2grid_wrapper(fSubplotConfig["delay_rate_xtitle"]);
 
         // Turn off axis display for text subplot
@@ -589,14 +815,6 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     }
 
 
-    subplot_parameters param;
-    param.total_rows = 70;
-    param.total_cols = 64;
-    param.start_row = 19;
-    param.start_col = 3;
-    param.rowspan = 8;
-    param.colspan = 21;
-    fSubplotConfig["sbd_plot"] = param;
 
     auto ax = subplot2grid_wrapper(fSubplotConfig["sbd_plot"]);
 
@@ -796,14 +1014,6 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the y-axis label
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 128;
-        tparam.start_row = 19;
-        tparam.start_col = 4;
-        tparam.rowspan = 8;
-        tparam.colspan = 1;
-        fSubplotConfig["sbd_amp_ytitle"] = tparam;
         auto text_ax = subplot2grid_wrapper(fSubplotConfig["sbd_amp_ytitle"]);
 
         // Turn off axis display for text subplot
@@ -836,14 +1046,6 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         try
         {
             // Create a small text-only subplot above the SBD plot for the dTEC axis label
-            subplot_parameters tparam;
-            tparam.total_rows = 70;
-            tparam.total_cols = 64;
-            tparam.start_row = 18;
-            tparam.start_col = 4;
-            tparam.rowspan = 1;
-            tparam.colspan = 14;
-            fSubplotConfig["ion_tec_title"] = tparam;
             auto text_ax = subplot2grid_wrapper(fSubplotConfig["ion_tec_title"]);
 
             // Turn off axis display for text subplot
@@ -875,14 +1077,6 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot above the main plot for the axis label
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 28;
-        tparam.start_col = 2;
-        tparam.rowspan = 1;
-        tparam.colspan = 14;
-        fSubplotConfig["sbd_title"] = tparam;
         auto text_ax = subplot2grid_wrapper(fSubplotConfig["sbd_title"]);
 
         // Turn off axis display for text subplot
@@ -926,14 +1120,6 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     }
 
     // Use subplot2grid for XPower plot
-    subplot_parameters param;
-    param.total_rows = 70;
-    param.total_cols = 128;
-    param.start_row = 19;
-    param.start_col = 56;
-    param.rowspan = 8;
-    param.colspan = 42;
-    fSubplotConfig["xpower_plot"] = param;
     auto ax = subplot2grid_wrapper(fSubplotConfig["xpower_plot"]);
 
     // Truncate data to match x-axis length
@@ -981,15 +1167,6 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the axis label
-
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 28;
-        tparam.start_col = 32;
-        tparam.rowspan = 1;
-        tparam.colspan = 2;
-        fSubplotConfig["xpower_xtitle"] = tparam;
         auto text_ax = subplot2grid_wrapper(fSubplotConfig["xpower_xtitle"]);
 
         // Turn off axis display for text subplot
@@ -1013,14 +1190,6 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the y-axis label
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 19;
-        tparam.start_col = 49;
-        tparam.rowspan = 8;
-        tparam.colspan = 2;
-        fSubplotConfig["xpower_phase_ytitle"] = tparam;
         auto text_ax = subplot2grid_wrapper(fSubplotConfig["xpower_phase_ytitle"]);
 
         // Turn off axis display for text subplot
@@ -1219,14 +1388,6 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
             try
             {
                 // Create a small text-only subplot for the y-axis label
-                subplot_parameters tparam;
-                tparam.total_rows = 70;
-                tparam.total_cols = 64;
-                tparam.start_row = 32;
-                tparam.start_col = 60;
-                tparam.rowspan = 8;
-                tparam.colspan = 1;
-                fSubplotConfig["channel_phase_ytitle"] = tparam;
                 auto text_ax = subplot2grid_wrapper(fSubplotConfig["channel_phase_ytitle"]);
 
                 // Turn off axis display for text subplot
@@ -1251,14 +1412,6 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
             try
             {
                 // Create a small text-only subplot for the y-axis label
-                subplot_parameters tparam;
-                tparam.total_rows = 70;
-                tparam.total_cols = 128;
-                tparam.start_row = 32;
-                tparam.start_col = 4;
-                tparam.rowspan = 8;
-                tparam.colspan = 1;
-                fSubplotConfig["channel_amp_ytitle"] = tparam;
                 auto text_ax = subplot2grid_wrapper(fSubplotConfig["channel_amp_ytitle"]);
 
                 // Turn off axis display for text subplot
@@ -1498,14 +1651,6 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the y-axis label
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 128;
-        tparam.start_row = 40;
-        tparam.start_col = 119;
-        tparam.rowspan = 8;
-        tparam.colspan = 1;
-        fSubplotConfig["pcal_theta_ytitle"] = tparam; 
         auto text_ax = subplot2grid_wrapper(fSubplotConfig["pcal_theta_ytitle"]);
 
         // Turn off axis display for text subplot
@@ -1532,14 +1677,6 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
         try
         {
             // Create a small text-only subplot above the main plot for the axis label
-            subplot_parameters tparam;
-            tparam.total_rows = 140;
-            tparam.total_cols = 128;
-            tparam.start_row = 87;
-            tparam.start_col = 119;
-            tparam.rowspan = 2;
-            tparam.colspan = 1;
-            fSubplotConfig["station_codes"] = tparam; 
             auto text_ax = subplot2grid_wrapper(fSubplotConfig["station_codes"]);
 
             // Turn off axis display for text subplot
@@ -1590,15 +1727,6 @@ void MHO_BasicPlotVisitor::make_top_info_text(const mho_json& plot_dict)
 
     // Create a figure-level text area for positioning (similar to Python's figure coordinates)
     // Use rows 0-1 at the top for text positioning with reduced margin (~5-6mm at 850px height)
-
-    subplot_parameters tparam;
-    tparam.total_rows = 35;
-    tparam.total_cols = 64;
-    tparam.start_row = 0;
-    tparam.start_col = 0;
-    tparam.rowspan = 2;
-    tparam.colspan = 62;
-    fSubplotConfig["top_info_textbox"] = tparam;
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["top_info_textbox"]);
 
     // Turn off axis display for text subplot
@@ -1643,14 +1771,7 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     // Create text area for info box (positioned like Python at right side)
     // Info text box with borders - right side with border (reduced height to avoid collision)
 
-    subplot_parameters tparam;
-    tparam.total_rows = 35;
-    tparam.total_cols = 64;
-    tparam.start_row = 2;
-    tparam.start_col = 52;
-    tparam.rowspan = 18;
-    tparam.colspan = 12;
-    fSubplotConfig["basic_info_textbox"] = tparam;
+
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["basic_info_textbox"]);
 
     // Turn off axis display for text subplot
@@ -1906,14 +2027,6 @@ void MHO_BasicPlotVisitor::make_model_resid_info_text(const mho_json& plot_dict)
         MHO_PlotDataExtractor::extract_double(plot_dict, "ResidPhaseError(deg)", 0.0), 1, 1);
 
     // Create text area at bottom of plot - use full width without margins
-    subplot_parameters tparam;
-    tparam.total_rows = 70;
-    tparam.total_cols = 64;
-    tparam.start_row = 57;
-    tparam.start_col = 0;
-    tparam.rowspan = 10;
-    tparam.colspan = 64;
-    fSubplotConfig["model_resid_info_textbox"] = tparam;
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["model_resid_info_textbox"]);
 
     // Turn off axis display
@@ -2017,14 +2130,6 @@ void MHO_BasicPlotVisitor::make_rms_table(const mho_json& plot_dict)
     double freqrms_amp = MHO_PlotDataExtractor::extract_double(extra, "freqrms_amp", 0.0);
 
     // Create text area for RMS table - positioned at bottom left, increased height
-    subplot_parameters tparam;
-    tparam.total_rows = 35;
-    tparam.total_cols = 64;
-    tparam.start_row = 31;
-    tparam.start_col = 0;
-    tparam.rowspan = 4;
-    tparam.colspan = 16;
-    fSubplotConfig["rms_textbox"] = tparam;
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["rms_textbox"]);
 
     text_ax->x_axis().visible(false);
@@ -2139,14 +2244,6 @@ void MHO_BasicPlotVisitor::make_coord_text(const mho_json& plot_dict)
     while(baseline_input.find("*") != std::string::npos){ baseline_input.replace(baseline_input.find( "*"), 1, "\\\\_"); }
 
     // Create coordinate text at bottom - give it more height and better positioning
-    subplot_parameters tparam;
-    tparam.total_rows = 35;
-    tparam.total_cols = 64;
-    tparam.start_row = 33;
-    tparam.start_col = 0;
-    tparam.rowspan = 2;
-    tparam.colspan = 64;
-    fSubplotConfig["coord_textbox"] = tparam;
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["coord_textbox"]);
 
     text_ax->x_axis().visible(false);
@@ -2203,14 +2300,6 @@ void MHO_BasicPlotVisitor::make_amplitude_table(const mho_json& plot_dict)
     }
 
     // Create text area for amplitude table - positioned at bottom center, increased height, reduced width
-    subplot_parameters tparam;
-    tparam.total_rows = 35;
-    tparam.total_cols = 64;
-    tparam.start_row = 31;
-    tparam.start_col = 12;
-    tparam.rowspan = 4;
-    tparam.colspan = 13;
-    fSubplotConfig["amp_table_textbox"] = tparam;
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["amp_table_textbox"]);
 
     text_ax->x_axis().visible(false);
@@ -2285,14 +2374,6 @@ void MHO_BasicPlotVisitor::make_window_table(const mho_json& plot_dict)
     }
 
     // Create text area for window table - positioned at bottom right, increased height
-    subplot_parameters tparam;
-    tparam.total_rows = 35;
-    tparam.total_cols = 64;
-    tparam.start_row = 31;
-    tparam.start_col = 49;
-    tparam.rowspan = 4;
-    tparam.colspan = 12;
-    fSubplotConfig["window_textbox"] = tparam;
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["window_textbox"]);
 
     text_ax->x_axis().visible(false);
@@ -2378,14 +2459,6 @@ void MHO_BasicPlotVisitor::make_data_stats_text(const mho_json& plot_dict)
     int ref_pc_period = MHO_PlotDataExtractor::extract_int(extra, "ref_pc_period", 0);
     int rem_pc_period = MHO_PlotDataExtractor::extract_int(extra, "rem_pc_period", 0);
 
-    subplot_parameters tparam;
-    tparam.total_rows = 35;
-    tparam.total_cols = 64;
-    tparam.start_row = 31;
-    tparam.start_col = 29;
-    tparam.rowspan = 4;
-    tparam.colspan = 17;
-    fSubplotConfig["stats_textbox"] = tparam;
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["stats_textbox"]);
 
     text_ax->x_axis().visible(false);
