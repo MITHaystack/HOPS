@@ -92,7 +92,7 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     fSubplotConfig["stats_textbox"] = subplot_parameters(nrows, ncols, 31, 29, 4, 17);
 }
 
-void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size)
+void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, double x_coord, double y_coord)
 {
     try
     {
@@ -109,7 +109,7 @@ void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std
         matplot::ylim({0, 1});
         
         // Add centered axis label
-        auto label = text_ax->text(0.5, 0.5, title);
+        auto label = text_ax->text(x_coord, y_coord, title);
         label->color(font_color);
         label->font_size(font_size);
         label->alignment(matplot::labels::alignment::center);
@@ -526,33 +526,7 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     // Add twin x-axis label in separate text area above the plot (safe approach)
     if(!mbd_x.empty())
     {
-        ConstructXTitle(fSubplotConfig["mbd_title"], "multiband delay ({/Symbol m})", "blue", 9);
-        // try
-        // {
-        //     // Create a small text-only subplot above the main plot for the axis label
-        //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["mbd_title"]);
-        // 
-        //     // Turn off axis display for text subplot
-        //     text_ax->x_axis().visible(false);
-        //     text_ax->y_axis().visible(false);
-        //     text_ax->box(false);
-        // 
-        //     // Set up coordinate system for text placement (0-1 range)
-        //     matplot::xlim({0, 1});
-        //     matplot::ylim({0, 1});
-        // 
-        //     // Add centered axis label
-        //     auto mbd_label = text_ax->text(0.5, 0.5, "multiband delay ({/Symbol m})");
-        //     mbd_label->color("blue");
-        //     mbd_label->font_size(9);
-        //     mbd_label->alignment(matplot::labels::alignment::center);
-        // 
-        //     msg_debug("plot", "Added twin x-axis label above plot" << eom);
-        // }
-        // catch(const std::exception& e)
-        // {
-        //     msg_warn("plot", "Failed to add twin x-axis label above plot: " << e.what() << eom);
-        // }
+        ConstructXTitle(fSubplotConfig["mbd_title"], "multiband delay ({/Symbol m})", "blue", 9, 0.5, 0.5);
     }
 
     try
@@ -579,32 +553,7 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
     }
 
-
-    //Now add an label/title below the x-axis in a separate subplot 
-    try
-    {
-        // Create a small text-only subplot above the main plot for the axis label
-        auto text_ax = subplot2grid_wrapper(fSubplotConfig["delay_rate_xtitle"]);
-
-        // Turn off axis display for text subplot
-        text_ax->x_axis().visible(false);
-        text_ax->y_axis().visible(false);
-        text_ax->box(false);
-        
-        // Set up coordinate system for text placement (0-1 range)
-        matplot::xlim({0, 1});
-        matplot::ylim({0, 1});
-        
-        // Add centered axis label
-        auto dr_label = fLastAxis->text(0.5, 0.0, "delay rate (ns/s)");
-        dr_label->alignment(matplot::labels::alignment::center);
-        dr_label->color("red");
-        dr_label->font_size(9);
-    }
-    catch(const std::exception& e)
-    {
-        msg_warn("plot", "Failed to add delay rate x-axis label below plot: " << e.what() << eom);
-    }
+    ConstructXTitle(fSubplotConfig["delay_rate_xtitle"], "delay rate (ns/s)", "red", 9, 0.5, 0.0);
 
 }
 
