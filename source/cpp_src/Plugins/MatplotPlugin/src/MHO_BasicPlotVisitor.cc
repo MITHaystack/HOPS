@@ -63,127 +63,29 @@ void MHO_BasicPlotVisitor::ConstructPlot(const mho_json& fPlotData)
 
 void MHO_BasicPlotVisitor::ConfigureSubplots()
 {
-    {
-        subplot_parameters mbd_param(70,64,3,3,12,46);
-        // mbd_param.total_rows = 70;
-        // mbd_param.total_cols = 64;
-        // mbd_param.start_row = 3;
-        // mbd_param.start_col = 3;
-        // mbd_param.rowspan = 12;
-        // mbd_param.colspan = 46;
-        fSubplotConfig["mbd_plot"] = mbd_param;
-    }
-
-    {
-        subplot_parameters tparam(70,64,2,2,1,48);
-        fSubplotConfig["mbd_title"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,128,5,4,8,1);
-        fSubplotConfig["mbd_amp_ytitle"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,64,2,2,15,48);
-        fSubplotConfig["delay_rate_xtitle"] = tparam;
-    }
-
-    {
-        subplot_parameters param(70,64,19,3,8,21);
-        fSubplotConfig["sbd_plot"] = param;
-    }
-
-    {
-        subplot_parameters tparam(70,128,19,4,8,1);
-        fSubplotConfig["sbd_amp_ytitle"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,64,18,4,1,14);
-        fSubplotConfig["ion_tec_title"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,64,28,2,1,14);
-        fSubplotConfig["sbd_title"] = tparam;
-    }
-
-    {
-        subplot_parameters param(70,128,19,56,8,42);
-        fSubplotConfig["xpower_plot"] = param;
-    }
-
-    {
-        subplot_parameters tparam(70,64,28,32,1,2);
-        fSubplotConfig["xpower_xtitle"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,64,19,49,8,2);
-        fSubplotConfig["xpower_phase_ytitle"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,64,32,60,8,1);
-        fSubplotConfig["channel_phase_ytitle"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,128,32,4,8,1);
-        fSubplotConfig["channel_amp_ytitle"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,128,40,119,8,1);
-        fSubplotConfig["pcal_theta_ytitle"] = tparam; 
-    }
-
-    {
-        subplot_parameters tparam(140,128,87,119,2,1);
-        fSubplotConfig["station_codes"] = tparam; 
-    }
-
-    {    
-        subplot_parameters tparam(35,64,0,0,2,62);
-        fSubplotConfig["top_info_textbox"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(35,64,2,52,18,12);
-        fSubplotConfig["basic_info_textbox"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(70,64,57,0,10,64);
-        fSubplotConfig["model_resid_info_textbox"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(35,64,31,0,4,16);
-        fSubplotConfig["rms_textbox"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(35,64,33,0,2,64);
-        fSubplotConfig["coord_textbox"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(35,64,31,12,4,13);
-        fSubplotConfig["amp_table_textbox"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(35,64,31,49,4,12);
-        fSubplotConfig["window_textbox"] = tparam;
-    }
-
-    {
-        subplot_parameters tparam(35,64,31,29,4,17);
-        fSubplotConfig["stats_textbox"] = tparam;
-    }
-
+    fSubplotConfig["mbd_plot"] = subplot_parameters(70,64,3,3,12,46);
+    fSubplotConfig["mbd_title"] = subplot_parameters(70,64,2,2,1,48);
+    fSubplotConfig["mbd_amp_ytitle"] = subplot_parameters(70,128,5,4,8,1);
+    fSubplotConfig["delay_rate_xtitle"] = subplot_parameters(70,64,2,2,15,48);
+    fSubplotConfig["sbd_plot"] = subplot_parameters(70,64,19,3,8,21);
+    fSubplotConfig["sbd_amp_ytitle"] = subplot_parameters(70,128,19,4,8,1);
+    fSubplotConfig["ion_tec_title"] = subplot_parameters(70,64,18,4,1,14);
+    fSubplotConfig["sbd_title"] = subplot_parameters(70,64,28,2,1,14);
+    fSubplotConfig["xpower_plot"] = subplot_parameters(70,128,19,56,8,42);
+    fSubplotConfig["xpower_xtitle"] = subplot_parameters(70,64,28,32,1,2);
+    fSubplotConfig["xpower_phase_ytitle"] = subplot_parameters(70,64,19,49,8,2);
+    fSubplotConfig["channel_phase_ytitle"] = subplot_parameters(70,64,32,60,8,1);
+    fSubplotConfig["channel_amp_ytitle"] = subplot_parameters(70,128,32,4,8,1);
+    fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(70,128,40,119,8,1);
+    fSubplotConfig["station_codes"] = subplot_parameters(140,128,87,119,2,1);
+    fSubplotConfig["top_info_textbox"] = subplot_parameters(35,64,0,0,2,62);
+    fSubplotConfig["basic_info_textbox"] = subplot_parameters(35,64,2,52,18,12);
+    fSubplotConfig["model_resid_info_textbox"] = subplot_parameters(70,64,57,0,10,64);
+    fSubplotConfig["rms_textbox"] = subplot_parameters(35,64,31,0,4,16);
+    fSubplotConfig["coord_textbox"] = subplot_parameters(35,64,33,0,2,64);
+    fSubplotConfig["amp_table_textbox"] = subplot_parameters(35,64,31,12,4,13);
+    fSubplotConfig["window_textbox"] = subplot_parameters(35,64,31,49,4,12);
+    fSubplotConfig["stats_textbox"] = subplot_parameters(35,64,31,29,4,17);
 }
 
 void MHO_BasicPlotVisitor::DirectSavePlot(std::string filename)
