@@ -34,14 +34,38 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
     private:
 
 
-        struct subplot_parameters
+        class subplot_parameters
         {
-            int total_rows;
-            int total_cols;
-            int start_row;
-            int start_col;
-            int rowspan;
-            int colspan;
+            public:
+                subplot_parameters():
+                    total_rows(0),
+                    total_cols(0),
+                    start_row(0),
+                    start_col(0),
+                    rowspan(0),
+                    colspan(0)
+                {};
+
+
+                subplot_parameters(int a, int b, int c, int d, int e, int f):
+                    total_rows(a),
+                    total_cols(b),
+                    start_row(c),
+                    start_col(d),
+                    rowspan(e),
+                    colspan(f)
+                {};
+
+
+                virtual ~subplot_parameters(){};
+
+            //data
+                int total_rows;
+                int total_cols;
+                int start_row;
+                int start_col;
+                int rowspan;
+                int colspan;
         };
 
         std::map<std::string, subplot_parameters> fSubplotConfig;
