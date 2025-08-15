@@ -105,8 +105,6 @@ void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std
         text_ax->box(false);
         
         // Set up coordinate system for text placement (0-1 range)
-        // matplot::xlim({0, 1});
-        // matplot::ylim({0, 1});
         text_ax->xlim({0, 1});
         text_ax->ylim({0, 1});
         
@@ -324,24 +322,21 @@ matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, in
     return fLastAxis;
 }
 
-matplot::axes_handle MHO_BasicPlotVisitor::channel_subplot(int total_rows, int start_row, int row_height, int channel_index,
-                                                           int total_channels)
+matplot::axes_handle MHO_BasicPlotVisitor::channel_subplot(int total_rows, int total_cols, int start_row, int row_span, int start_col, int colspan)
 {
     double left_margin = 0.045;
     double right_margin = 0.08;
     
     // Use simple grid: 1 column per channel
-    int total_cols = total_channels;
-    int start_col = channel_index;
-    int colspan = 1; //each channel gets exactly 1 column
+    //int colspan = 1; //each channel gets exactly 1 column
 
     // Calculate normalized position and size
     float width = (static_cast< float >(colspan) - (right_margin+left_margin) ) / total_cols;
     float left = start_col*width + left_margin;
 
     // Flip row calculation since matplotlib uses bottom-origin, we use top-origin
-    float bottom = static_cast< float >(total_rows - start_row - row_height) / total_rows;
-    float height = static_cast< float >(row_height) / total_rows;
+    float bottom = static_cast< float >(total_rows - start_row - row_span) / total_rows;
+    float height = static_cast< float >(row_span) / total_rows;
 
     // if we want space between plots, change value of 'padding' below
     const double padding = 0.0;
@@ -938,7 +933,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
     {
         for(int ch = 0; ch < n_channel_plots; ++ch)
         {
-            auto ch_ax = channel_subplot(35, 16, 4, ch, n_channel_plots);
+            auto ch_ax = channel_subplot(35, n_channel_plots, 16, 4, ch);
             ch_ax->font_size(8);
 
             // Extract data for this channel
@@ -1018,7 +1013,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
             try
             {
                 //add the channel column labels
-                auto text_ax = channel_subplot(72, 31, 1, ch, n_channel_plots);
+                auto text_ax = channel_subplot(72,  n_channel_plots, 31, 1, ch);
                 // Turn off axis display for text subplot
                 text_ax->x_axis().visible(false);
                 text_ax->y_axis().visible(false);
@@ -1069,7 +1064,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
         try 
         {
             // Create subplot for this channel's validity plot (aligned with channel plots)
-            auto validity_ax = channel_subplot(35, 20, 1, ch, total_channel_slots);
+            auto validity_ax = channel_subplot(35, total_channel_slots, 20, 1, ch);
 
             // Set up plotting area and hold for multiple plots
             fLastAxis->hold(matplot::on);
@@ -1177,7 +1172,7 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
             // Use specialized channel subplot for perfect equal spacing (same as channel segments)
             // Moved up by 2 rows from previous position (was row 23, now row 21)
             // Reduced height by 20%: 3 rows -> 2.4 rows (round to 2)
-            auto pcal_ax = channel_subplot(35, 21, 2, ch, total_channel_slots);
+            auto pcal_ax = channel_subplot(35, total_channel_slots, 21, 2, ch);
             pcal_ax->font_size(8);
 
             std::vector< double > seg_indices = MHO_PlotDataExtractor::create_index_vector(n_seg);
@@ -2158,7 +2153,7 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
     }
 
     // Create text area aligned just below the channel plots 
-    auto text_ax = channel_subplot(35, 23, 8, 0, 1);
+    auto text_ax = channel_subplot(35, 1, 23, 8, 0);
     text_ax->x_axis().visible(false);
     text_ax->y_axis().visible(false);
     text_ax->box(false);

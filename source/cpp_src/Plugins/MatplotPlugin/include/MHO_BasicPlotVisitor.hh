@@ -213,8 +213,7 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
          * @param total_channels Total number of channels
          * @return axes_handle for the created subplot
          */
-        matplot::axes_handle channel_subplot(int total_rows, int start_row, int row_height, int channel_index,
-                                             int total_channels);
+        matplot::axes_handle channel_subplot(int total_rows, int total_cols, int start_row, int row_span, int start_col, int colspan = 1);
 
         // Member variables for plot state
         matplot::figure_handle fCurrentFigure;
