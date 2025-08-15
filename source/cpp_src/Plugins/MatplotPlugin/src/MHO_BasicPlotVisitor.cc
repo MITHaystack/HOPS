@@ -297,14 +297,23 @@ matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, in
                                                         const std::pair< int, int >& loc,
                                                         int rowspan, int colspan)
 {
+    double left_margin = 0.0;
+    double right_margin = 0.0;
+
     int total_rows = shape.first;
     int total_cols = shape.second;
     int start_row = loc.first;
     int start_col = loc.second;
 
-    // calculate normalized position and size
     float left = static_cast< float >(start_col) / total_cols;
     float width = static_cast< float  >(colspan) / total_cols;
+
+    //calculate normalized position and size
+    if(left_margin != 0.0 || right_margin != 0.0)
+    {
+        width = (static_cast< float >(colspan) - (right_margin+left_margin) ) / total_cols;
+        left = start_col*width + left_margin;
+    }
 
     // Flip row calculation since matplotlib uses bottom-origin, we use top-origin
     float bottom = static_cast< float  >(total_rows - start_row - rowspan) / total_rows;
@@ -327,9 +336,6 @@ matplot::axes_handle MHO_BasicPlotVisitor::channel_subplot(int total_rows, int t
     double left_margin = 0.045;
     double right_margin = 0.08;
     
-    // Use simple grid: 1 column per channel
-    //int colspan = 1; //each channel gets exactly 1 column
-
     // Calculate normalized position and size
     float width = (static_cast< float >(colspan) - (right_margin+left_margin) ) / total_cols;
     float left = start_col*width + left_margin;
