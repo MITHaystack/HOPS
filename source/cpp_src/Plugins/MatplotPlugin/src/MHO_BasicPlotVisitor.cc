@@ -66,6 +66,8 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     //basis for layout
     int nrows = 35;
     int ncols = 64;
+    fNRows = nrows;
+    fNCols = ncols;
 
     fSubplotConfig["mbd_plot"] = subplot_parameters(2*nrows, ncols, 3, 3, 12, 46);
     fSubplotConfig["mbd_title"] = subplot_parameters(2*nrows, ncols, 2, 2, 1, 48);
@@ -1229,6 +1231,12 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
             //hide all x axis ticks
             matplot::xticklabels({});
         }
+    }
+
+    if(total_channel_slots == 1)
+    {
+        fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(2*fNRows, 2*fNCols, 40, 125, 8, 1);
+        fSubplotConfig["station_codes"] = subplot_parameters(4*fNRows, 2*fNCols, 87, 125, 2, 1);
     }
 
     ConstructYTitle(fSubplotConfig["pcal_theta_ytitle"], "pcal {/Symbol q}", "black", 8);
