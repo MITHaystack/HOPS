@@ -75,244 +75,112 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 2;
-        tparam.start_col = 2;
-        tparam.rowspan = 1;
-        tparam.colspan = 48;
+        subplot_parameters tparam(70,64,2,2,1,48);
         fSubplotConfig["mbd_title"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 128;
-        tparam.start_row = 5;
-        tparam.start_col = 4;
-        tparam.rowspan = 8;
-        tparam.colspan = 1;
+        subplot_parameters tparam(70,128,5,4,8,1);
         fSubplotConfig["mbd_amp_ytitle"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 2;
-        tparam.start_col = 2;
-        tparam.rowspan = 15;
-        tparam.colspan = 48;
+        subplot_parameters tparam(70,64,2,2,15,48);
         fSubplotConfig["delay_rate_xtitle"] = tparam;
     }
 
     {
-        subplot_parameters param;
-        param.total_rows = 70;
-        param.total_cols = 64;
-        param.start_row = 19;
-        param.start_col = 3;
-        param.rowspan = 8;
-        param.colspan = 21;
+        subplot_parameters param(70,64,19,3,8,21);
         fSubplotConfig["sbd_plot"] = param;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 128;
-        tparam.start_row = 19;
-        tparam.start_col = 4;
-        tparam.rowspan = 8;
-        tparam.colspan = 1;
+        subplot_parameters tparam(70,128,19,4,8,1);
         fSubplotConfig["sbd_amp_ytitle"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 18;
-        tparam.start_col = 4;
-        tparam.rowspan = 1;
-        tparam.colspan = 14;
+        subplot_parameters tparam(70,64,18,4,1,14);
         fSubplotConfig["ion_tec_title"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 28;
-        tparam.start_col = 2;
-        tparam.rowspan = 1;
-        tparam.colspan = 14;
+        subplot_parameters tparam(70,64,28,2,1,14);
         fSubplotConfig["sbd_title"] = tparam;
     }
 
     {
-        subplot_parameters param;
-        param.total_rows = 70;
-        param.total_cols = 128;
-        param.start_row = 19;
-        param.start_col = 56;
-        param.rowspan = 8;
-        param.colspan = 42;
+        subplot_parameters param(70,128,19,56,8,42);
         fSubplotConfig["xpower_plot"] = param;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 28;
-        tparam.start_col = 32;
-        tparam.rowspan = 1;
-        tparam.colspan = 2;
+        subplot_parameters tparam(70,64,28,32,1,2);
         fSubplotConfig["xpower_xtitle"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 19;
-        tparam.start_col = 49;
-        tparam.rowspan = 8;
-        tparam.colspan = 2;
+        subplot_parameters tparam(70,64,19,49,8,2);
         fSubplotConfig["xpower_phase_ytitle"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 32;
-        tparam.start_col = 60;
-        tparam.rowspan = 8;
-        tparam.colspan = 1;
+        subplot_parameters tparam(70,64,32,60,8,1);
         fSubplotConfig["channel_phase_ytitle"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 128;
-        tparam.start_row = 32;
-        tparam.start_col = 4;
-        tparam.rowspan = 8;
-        tparam.colspan = 1;
+        subplot_parameters tparam(70,128,32,4,8,1);
         fSubplotConfig["channel_amp_ytitle"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 128;
-        tparam.start_row = 40;
-        tparam.start_col = 119;
-        tparam.rowspan = 8;
-        tparam.colspan = 1;
+        subplot_parameters tparam(70,128,40,119,8,1);
         fSubplotConfig["pcal_theta_ytitle"] = tparam; 
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 140;
-        tparam.total_cols = 128;
-        tparam.start_row = 87;
-        tparam.start_col = 119;
-        tparam.rowspan = 2;
-        tparam.colspan = 1;
+        subplot_parameters tparam(140,128,87,119,2,1);
         fSubplotConfig["station_codes"] = tparam; 
     }
 
     {    
-        subplot_parameters tparam;
-        tparam.total_rows = 35;
-        tparam.total_cols = 64;
-        tparam.start_row = 0;
-        tparam.start_col = 0;
-        tparam.rowspan = 2;
-        tparam.colspan = 62;
+        subplot_parameters tparam(35,64,0,0,2,62);
         fSubplotConfig["top_info_textbox"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 35;
-        tparam.total_cols = 64;
-        tparam.start_row = 2;
-        tparam.start_col = 52;
-        tparam.rowspan = 18;
-        tparam.colspan = 12;
+        subplot_parameters tparam(35,64,2,52,18,12);
         fSubplotConfig["basic_info_textbox"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 70;
-        tparam.total_cols = 64;
-        tparam.start_row = 57;
-        tparam.start_col = 0;
-        tparam.rowspan = 10;
-        tparam.colspan = 64;
+        subplot_parameters tparam(70,64,57,0,10,64);
         fSubplotConfig["model_resid_info_textbox"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 35;
-        tparam.total_cols = 64;
-        tparam.start_row = 31;
-        tparam.start_col = 0;
-        tparam.rowspan = 4;
-        tparam.colspan = 16;
+        subplot_parameters tparam(35,64,31,0,4,16);
         fSubplotConfig["rms_textbox"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 35;
-        tparam.total_cols = 64;
-        tparam.start_row = 33;
-        tparam.start_col = 0;
-        tparam.rowspan = 2;
-        tparam.colspan = 64;
+        subplot_parameters tparam(35,64,33,0,2,64);
         fSubplotConfig["coord_textbox"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 35;
-        tparam.total_cols = 64;
-        tparam.start_row = 31;
-        tparam.start_col = 12;
-        tparam.rowspan = 4;
-        tparam.colspan = 13;
+        subplot_parameters tparam(35,64,31,12,4,13);
         fSubplotConfig["amp_table_textbox"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 35;
-        tparam.total_cols = 64;
-        tparam.start_row = 31;
-        tparam.start_col = 49;
-        tparam.rowspan = 4;
-        tparam.colspan = 12;
+        subplot_parameters tparam(35,64,31,49,4,12);
         fSubplotConfig["window_textbox"] = tparam;
     }
 
     {
-        subplot_parameters tparam;
-        tparam.total_rows = 35;
-        tparam.total_cols = 64;
-        tparam.start_row = 31;
-        tparam.start_col = 29;
-        tparam.rowspan = 4;
-        tparam.colspan = 17;
+        subplot_parameters tparam(35,64,31,29,4,17);
         fSubplotConfig["stats_textbox"] = tparam;
     }
 
