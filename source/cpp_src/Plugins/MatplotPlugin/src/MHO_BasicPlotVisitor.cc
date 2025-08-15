@@ -130,7 +130,7 @@ void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std
 }
 
 
-void MHO_BasicPlotVisitor::ConstructYTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, bool is_y2)// double x_coord, double y_coord, bool center)
+void MHO_BasicPlotVisitor::ConstructYTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, bool is_y2)
 {
     try
     {
@@ -782,7 +782,7 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
 
 void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
 {
-    msg_debug("plot", "Creating cross-power spectrum plot" << eom);
+    msg_debug("plot", "creating cross-power spectrum plot" << eom);
 
     // Extract cross-power spectrum data
     auto xpspec_abs = MHO_PlotDataExtractor::extract_vector(plot_dict, "XPSPEC-ABS");
@@ -1341,8 +1341,6 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
 
     // Create text area for info box (positioned like Python at right side)
     // Info text box with borders - right side with border (reduced height to avoid collision)
-
-
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["basic_info_textbox"]);
 
     // Turn off axis display for text subplot
