@@ -19,6 +19,7 @@ std::string extension_to_terminal_cmd(const std::string& ext)
     return "";
 }
 
+
 namespace hops
 {
 
@@ -177,7 +178,15 @@ void MHO_BasicPlotVisitor::setup_figure_layout()
     fCurrentFigure->color("white");
 }
 
-matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, int >& shape, const std::pair< int, int >& loc,
+
+matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid_wrapper(const subplot_parameters sp)
+{
+    return subplot2grid({sp.total_rows, sp.total_cols}, {sp.start_row, sp.start_col}, sp.rowspan, sp.colspan);
+}
+
+
+matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, int >& shape, 
+                                                        const std::pair< int, int >& loc,
                                                         int rowspan, int colspan)
 {
     int total_rows = shape.first;
@@ -262,8 +271,18 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         return;
     }
 
+
+    subplot_parameters mbd_param;
+    mbd_param.total_rows = 70;
+    mbd_param.total_cols = 64;
+    mbd_param.start_row = 3;
+    mbd_param.start_col = 3;
+    mbd_param.rowspan = 12;
+    mbd_param.colspan = 46;
+    auto ax_dr = subplot2grid_wrapper(mbd_param);
+
     // Set up the plotting area
-    auto ax_dr = subplot2grid({70, 64}, {3, 3}, 12, 46);
+    // auto ax_dr = subplot2grid({70, 64}, {3, 3}, 12, 46);
     ax_dr->font_size(8);
     fLastAxis->hold(matplot::on);
 
@@ -450,7 +469,15 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         try
         {
             // Create a small text-only subplot above the main plot for the axis label
-            auto text_ax = subplot2grid({70, 64}, {2, 2}, 1, 48); // Row 1 (above plot), same width as plot
+            subplot_parameters tparam;
+            tparam.total_rows = 70;
+            tparam.total_cols = 64;
+            tparam.start_row = 2;
+            tparam.start_col = 2;
+            tparam.rowspan = 1;
+            tparam.colspan = 48;
+            auto text_ax = subplot2grid_wrapper(tparam);
+            //auto text_ax = subplot2grid({70, 64}, {2, 2}, 1, 48); // Row 1 (above plot), same width as plot
             
             // Turn off axis display for text subplot
             text_ax->x_axis().visible(false);
@@ -478,7 +505,15 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the y-axis label
-        auto text_ax = subplot2grid({70, 128}, {5, 4}, 8, 1);
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 128;
+        tparam.start_row = 5;
+        tparam.start_col = 4;
+        tparam.rowspan = 8;
+        tparam.colspan = 1;
+        auto text_ax = subplot2grid_wrapper(tparam);
+        //auto text_ax = subplot2grid({70, 128}, {5, 4}, 8, 1);
 
         // Turn off axis display for text subplot
         text_ax->x_axis().visible(false);
@@ -504,7 +539,15 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot above the main plot for the axis label
-        auto text_ax = subplot2grid({70, 64}, {2, 2}, 15, 48); //below plot), same width as plot
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 2;
+        tparam.start_col = 2;
+        tparam.rowspan = 15;
+        tparam.colspan = 48;
+        auto text_ax = subplot2grid_wrapper(tparam);
+        //auto text_ax = subplot2grid({70, 64}, {2, 2}, 15, 48); //below plot), same width as plot
 
         // Turn off axis display for text subplot
         text_ax->x_axis().visible(false);
@@ -546,7 +589,16 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         return;
     }
 
-    auto ax = subplot2grid({70, 64}, {19, 3}, 8, 21); 
+
+    subplot_parameters param;
+    param.total_rows = 70;
+    param.total_cols = 64;
+    param.start_row = 19;
+    param.start_col = 3;
+    param.rowspan = 8;
+    param.colspan = 21;
+    auto ax = subplot2grid_wrapper(param);
+    //auto ax = subplot2grid({70, 64}, {19, 3}, 8, 21); 
     ax->font_size(8);
 
     // Set up the plotting area
@@ -743,7 +795,15 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the y-axis label
-        auto text_ax = subplot2grid({70, 128}, {19, 4}, 8, 1);
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 128;
+        tparam.start_row = 19;
+        tparam.start_col = 4;
+        tparam.rowspan = 8;
+        tparam.colspan = 1;
+        auto text_ax = subplot2grid_wrapper(tparam);
+        // auto text_ax = subplot2grid({70, 128}, {19, 4}, 8, 1);
 
         // Turn off axis display for text subplot
         text_ax->x_axis().visible(false);
@@ -776,7 +836,17 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         {
             // Create a small text-only subplot above the SBD plot for the dTEC axis label
             //auto text_ax = subplot2grid({35, 64}, {9, 2}, 1, 14); // Row 9 (above SBD plot), same width as plot
-            auto text_ax = subplot2grid({70, 64}, {18, 4}, 1, 14);
+
+            subplot_parameters tparam;
+            tparam.total_rows = 70;
+            tparam.total_cols = 64;
+            tparam.start_row = 18;
+            tparam.start_col = 4;
+            tparam.rowspan = 1;
+            tparam.colspan = 14;
+            auto text_ax = subplot2grid_wrapper(tparam);
+
+            //auto text_ax = subplot2grid({70, 64}, {18, 4}, 1, 14);
 
             // Turn off axis display for text subplot
             text_ax->x_axis().visible(false);
@@ -808,7 +878,17 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     {
         // Create a small text-only subplot above the main plot for the axis label
         // auto text_ax = subplot2grid({35, 64}, {14, 2}, 1, 14);
-        auto text_ax = subplot2grid({70, 64}, {28, 2}, 1, 14);
+
+
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 28;
+        tparam.start_col = 2;
+        tparam.rowspan = 1;
+        tparam.colspan = 14;
+        auto text_ax = subplot2grid_wrapper(tparam);
+        //auto text_ax = subplot2grid({70, 64}, {28, 2}, 1, 14);
 
         // Turn off axis display for text subplot
         text_ax->x_axis().visible(false);
@@ -851,7 +931,15 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     }
 
     // Use subplot2grid for XPower plot
-    auto ax = subplot2grid({70, 128}, {19, 56}, 8, 42); 
+    subplot_parameters param;
+    param.total_rows = 70;
+    param.total_cols = 128;
+    param.start_row = 19;
+    param.start_col = 56;
+    param.rowspan = 8;
+    param.colspan = 42;
+    auto ax = subplot2grid_wrapper(param);
+    //auto ax = subplot2grid({70, 128}, {19, 56}, 8, 42); 
 
     // Truncate data to match x-axis length
     size_t data_len = std::min(xpspec_abs.size(), xpow_x.size());
@@ -898,8 +986,16 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the axis label
-        // auto text_ax = subplot2grid({35, 64}, {14, 32}, 1, 2);
-        auto text_ax = subplot2grid({70, 64}, {28, 32}, 1, 2);
+
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 28;
+        tparam.start_col = 32;
+        tparam.rowspan = 1;
+        tparam.colspan = 2;
+        auto text_ax = subplot2grid_wrapper(tparam);
+        //auto text_ax = subplot2grid({70, 64}, {28, 32}, 1, 2);
 
         // Turn off axis display for text subplot
         text_ax->x_axis().visible(false);
@@ -923,7 +1019,17 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     {
         // Create a small text-only subplot for the y-axis label
         //auto text_ax = subplot2grid({70, 128}, {19, 5}, 8, 1);
-        auto text_ax = subplot2grid({70, 64}, {19, 49}, 8, 2);
+
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 64;
+        tparam.start_row = 19;
+        tparam.start_col = 49;
+        tparam.rowspan = 8;
+        tparam.colspan = 2;
+        auto text_ax = subplot2grid_wrapper(tparam);
+
+        //auto text_ax = subplot2grid({70, 64}, {19, 49}, 8, 2);
 
         // Turn off axis display for text subplot
         text_ax->x_axis().visible(false);
@@ -1121,7 +1227,16 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
             try
             {
                 // Create a small text-only subplot for the y-axis label
-                auto text_ax = subplot2grid({70, 64}, {32, 60}, 8, 1);
+                subplot_parameters tparam;
+                tparam.total_rows = 70;
+                tparam.total_cols = 64;
+                tparam.start_row = 32;
+                tparam.start_col = 60;
+                tparam.rowspan = 8;
+                tparam.colspan = 1;
+                auto text_ax = subplot2grid_wrapper(tparam);
+
+                //auto text_ax = subplot2grid({70, 64}, {32, 60}, 8, 1);
 
                 // Turn off axis display for text subplot
                 text_ax->x_axis().visible(false);
@@ -1145,7 +1260,16 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
             try
             {
                 // Create a small text-only subplot for the y-axis label
-                auto text_ax = subplot2grid({70, 128}, {32, 4}, 8, 1);
+                subplot_parameters tparam;
+                tparam.total_rows = 70;
+                tparam.total_cols = 128;
+                tparam.start_row = 32;
+                tparam.start_col = 4;
+                tparam.rowspan = 8;
+                tparam.colspan = 1;
+                auto text_ax = subplot2grid_wrapper(tparam);
+
+                //auto text_ax = subplot2grid({70, 128}, {32, 4}, 8, 1);
 
                 // Turn off axis display for text subplot
                 text_ax->x_axis().visible(false);
@@ -1384,7 +1508,16 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
     try
     {
         // Create a small text-only subplot for the y-axis label
-        auto text_ax = subplot2grid({70, 128}, {40, 119}, 8, 1);
+        subplot_parameters tparam;
+        tparam.total_rows = 70;
+        tparam.total_cols = 128;
+        tparam.start_row = 40;
+        tparam.start_col = 119;
+        tparam.rowspan = 8;
+        tparam.colspan = 1;
+        auto text_ax = subplot2grid_wrapper(tparam);
+
+        //auto text_ax = subplot2grid({70, 128}, {40, 119}, 8, 1);
 
         // Turn off axis display for text subplot
         text_ax->x_axis().visible(false);
@@ -1410,7 +1543,16 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
         try
         {
             // Create a small text-only subplot above the main plot for the axis label
-            auto text_ax = subplot2grid({140, 128}, {87, 119}, 2, 1);
+            subplot_parameters tparam;
+            tparam.total_rows = 140;
+            tparam.total_cols = 128;
+            tparam.start_row = 87;
+            tparam.start_col = 119;
+            tparam.rowspan = 2;
+            tparam.colspan = 1;
+            auto text_ax = subplot2grid_wrapper(tparam);
+            // auto text_ax = subplot2grid({140, 128}, {87, 119}, 2, 1);
+
             // Turn off axis display for text subplot
             text_ax->x_axis().visible(false);
             text_ax->y_axis().visible(false);
@@ -1459,7 +1601,17 @@ void MHO_BasicPlotVisitor::make_top_info_text(const mho_json& plot_dict)
 
     // Create a figure-level text area for positioning (similar to Python's figure coordinates)
     // Use rows 0-1 at the top for text positioning with reduced margin (~5-6mm at 850px height)
-    auto text_ax = subplot2grid({35, 64}, {0, 0}, 2, 62); // Top 2 rows with borders for margin
+
+    subplot_parameters tparam;
+    tparam.total_rows = 35;
+    tparam.total_cols = 64;
+    tparam.start_row = 0;
+    tparam.start_col = 0;
+    tparam.rowspan = 2;
+    tparam.colspan = 62;
+    auto text_ax = subplot2grid_wrapper(tparam);
+
+    //auto text_ax = subplot2grid({35, 64}, {0, 0}, 2, 62); // Top 2 rows with borders for margin
 
     // Turn off axis display for text subplot
     text_ax->x_axis().visible(false);
@@ -1502,8 +1654,19 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
 
     // Create text area for info box (positioned like Python at right side)
     // Info text box with borders - right side with border (reduced height to avoid collision)
-    auto text_ax =
-        subplot2grid({35, 64}, {2, 52}, 18, 12); // Right side with border (columns 50-61), reduced from 22 to 15 rows
+
+    subplot_parameters tparam;
+    tparam.total_rows = 35;
+    tparam.total_cols = 64;
+    tparam.start_row = 2;
+    tparam.start_col = 52;
+    tparam.rowspan = 18;
+    tparam.colspan = 12;
+    auto text_ax = subplot2grid_wrapper(tparam);
+
+
+    // auto text_ax =
+    //     subplot2grid({35, 64}, {2, 52}, 18, 12); // Right side with border (columns 50-61), reduced from 22 to 15 rows
 
     // Turn off axis display for text subplot
     text_ax->x_axis().visible(false);
@@ -1758,7 +1921,16 @@ void MHO_BasicPlotVisitor::make_model_resid_info_text(const mho_json& plot_dict)
         MHO_PlotDataExtractor::extract_double(plot_dict, "ResidPhaseError(deg)", 0.0), 1, 1);
 
     // Create text area at bottom of plot - use full width without margins
-    auto text_ax = subplot2grid({70, 64}, {57, 0}, 10, 64); // Bottom area using full width (no left/right margins)
+    subplot_parameters tparam;
+    tparam.total_rows = 70;
+    tparam.total_cols = 64;
+    tparam.start_row = 57;
+    tparam.start_col = 0;
+    tparam.rowspan = 10;
+    tparam.colspan = 64;
+    auto text_ax = subplot2grid_wrapper(tparam);
+
+    //auto text_ax = subplot2grid({70, 64}, {57, 0}, 10, 64); // Bottom area using full width (no left/right margins)
 
     // Turn off axis display
     text_ax->x_axis().visible(false);
@@ -1861,7 +2033,15 @@ void MHO_BasicPlotVisitor::make_rms_table(const mho_json& plot_dict)
     double freqrms_amp = MHO_PlotDataExtractor::extract_double(extra, "freqrms_amp", 0.0);
 
     // Create text area for RMS table - positioned at bottom left, increased height
-    auto text_ax = subplot2grid({35, 64}, {31, 0}, 4, 16); // Bottom left, no margins, 2x height
+    subplot_parameters tparam;
+    tparam.total_rows = 35;
+    tparam.total_cols = 64;
+    tparam.start_row = 31;
+    tparam.start_col = 0;
+    tparam.rowspan = 4;
+    tparam.colspan = 16;
+    auto text_ax = subplot2grid_wrapper(tparam);
+    //auto text_ax = subplot2grid({35, 64}, {31, 0}, 4, 16); // Bottom left, no margins, 2x height
 
     text_ax->x_axis().visible(false);
     text_ax->y_axis().visible(false);
@@ -1975,7 +2155,16 @@ void MHO_BasicPlotVisitor::make_coord_text(const mho_json& plot_dict)
     while(baseline_input.find("*") != std::string::npos){ baseline_input.replace(baseline_input.find( "*"), 1, "\\\\_"); }
 
     // Create coordinate text at bottom - give it more height and better positioning
-    auto text_ax = subplot2grid({35, 64}, {33, 0}, 2, 64); // Start at row 33, span 2 rows, full width
+    subplot_parameters tparam;
+    tparam.total_rows = 35;
+    tparam.total_cols = 64;
+    tparam.start_row = 33;
+    tparam.start_col = 0;
+    tparam.rowspan = 2;
+    tparam.colspan = 64;
+    auto text_ax = subplot2grid_wrapper(tparam);
+
+    //auto text_ax = subplot2grid({35, 64}, {33, 0}, 2, 64); // Start at row 33, span 2 rows, full width
 
     text_ax->x_axis().visible(false);
     text_ax->y_axis().visible(false);
@@ -2031,7 +2220,16 @@ void MHO_BasicPlotVisitor::make_amplitude_table(const mho_json& plot_dict)
     }
 
     // Create text area for amplitude table - positioned at bottom center, increased height, reduced width
-    auto text_ax = subplot2grid({35, 64}, {31, 12}, 4, 13); // Bottom center, no margins, 2x height, half width
+    subplot_parameters tparam;
+    tparam.total_rows = 35;
+    tparam.total_cols = 64;
+    tparam.start_row = 31;
+    tparam.start_col = 12;
+    tparam.rowspan = 4;
+    tparam.colspan = 13;
+    auto text_ax = subplot2grid_wrapper(tparam);
+
+    //auto text_ax = subplot2grid({35, 64}, {31, 12}, 4, 13); // Bottom center, no margins, 2x height, half width
 
     text_ax->x_axis().visible(false);
     text_ax->y_axis().visible(false);
@@ -2105,7 +2303,16 @@ void MHO_BasicPlotVisitor::make_window_table(const mho_json& plot_dict)
     }
 
     // Create text area for window table - positioned at bottom right, increased height
-    auto text_ax = subplot2grid({35, 64}, {31, 49}, 4, 12); // Bottom right, no margins, 2x height
+    subplot_parameters tparam;
+    tparam.total_rows = 35;
+    tparam.total_cols = 64;
+    tparam.start_row = 31;
+    tparam.start_col = 49;
+    tparam.rowspan = 4;
+    tparam.colspan = 12;
+    auto text_ax = subplot2grid_wrapper(tparam);
+
+    //auto text_ax = subplot2grid({35, 64}, {31, 49}, 4, 12); // Bottom right, no margins, 2x height
 
     text_ax->x_axis().visible(false);
     text_ax->y_axis().visible(false);
@@ -2190,8 +2397,15 @@ void MHO_BasicPlotVisitor::make_data_stats_text(const mho_json& plot_dict)
     int ref_pc_period = MHO_PlotDataExtractor::extract_int(extra, "ref_pc_period", 0);
     int rem_pc_period = MHO_PlotDataExtractor::extract_int(extra, "rem_pc_period", 0);
 
-    // Create text area (Python uses x=0.41, y=0.095) - shifted down by one row
-    auto text_ax = subplot2grid({35, 64}, {31, 29}, 4, 17); // Middle-bottom area, shifted down
+    subplot_parameters tparam;
+    tparam.total_rows = 35;
+    tparam.total_cols = 64;
+    tparam.start_row = 31;
+    tparam.start_col = 29;
+    tparam.rowspan = 4;
+    tparam.colspan = 17;
+    auto text_ax = subplot2grid_wrapper(tparam);
+    //auto text_ax = subplot2grid({35, 64}, {31, 29}, 4, 17); // Middle-bottom area, shifted down
 
     text_ax->x_axis().visible(false);
     text_ax->y_axis().visible(false);

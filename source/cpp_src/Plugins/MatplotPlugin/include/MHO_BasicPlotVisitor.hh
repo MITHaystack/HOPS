@@ -13,6 +13,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <utility>
 
 namespace hops
 {
@@ -31,6 +32,21 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
         virtual void Plot(MHO_FringeData* data) override;
 
     private:
+
+
+        struct subplot_parameters
+        {
+            int total_rows;
+            int total_cols;
+            int start_row;
+            int start_col;
+            int rowspan;
+            int colspan;
+        };
+
+        std::map<std::string, subplot_parameters> fSubplotConfig;
+
+
 
         void ConstructPlot(const mho_json& plot_data);
 
@@ -160,6 +176,8 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
          */
         matplot::axes_handle subplot2grid(const std::pair< int, int >& shape, const std::pair< int, int >& loc, int rowspan = 1,
                                           int colspan = 1);
+
+        matplot::axes_handle subplot2grid_wrapper(const subplot_parameters sp);
 
         /**
          * @brief Specialized subplot function for channel plots with equal spacing
