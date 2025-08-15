@@ -92,7 +92,7 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     fSubplotConfig["stats_textbox"] = subplot_parameters(nrows, ncols, 31, 29, 4, 17);
 }
 
-void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, double x_coord, double y_coord)
+void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, double x_coord, double y_coord, bool center)
 {
     try
     {
@@ -105,14 +105,16 @@ void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std
         text_ax->box(false);
         
         // Set up coordinate system for text placement (0-1 range)
-        matplot::xlim({0, 1});
-        matplot::ylim({0, 1});
+        // matplot::xlim({0, 1});
+        // matplot::ylim({0, 1});
+        text_ax->xlim({0, 1});
+        text_ax->ylim({0, 1});
         
         // Add centered axis label
         auto label = text_ax->text(x_coord, y_coord, title);
         label->color(font_color);
         label->font_size(font_size);
-        label->alignment(matplot::labels::alignment::center);
+        if(center){label->alignment(matplot::labels::alignment::center);}
         
         msg_debug("plot", "added title: "<<title<<" to plot" << eom);
     }
@@ -526,7 +528,7 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     // Add twin x-axis label in separate text area above the plot (safe approach)
     if(!mbd_x.empty())
     {
-        ConstructXTitle(fSubplotConfig["mbd_title"], "multiband delay ({/Symbol m})", "blue", 9, 0.5, 0.5);
+        ConstructXTitle(fSubplotConfig["mbd_title"], "multiband delay ({/Symbol m})", "blue", 9, 0.5, 0.5, true);
     }
 
     try
@@ -553,7 +555,7 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
     }
 
-    ConstructXTitle(fSubplotConfig["delay_rate_xtitle"], "delay rate (ns/s)", "red", 9, 0.5, 0.0);
+    ConstructXTitle(fSubplotConfig["delay_rate_xtitle"], "delay rate (ns/s)", "red", 9, 0.5, 0.0, true);
 
 }
 
@@ -574,11 +576,7 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         msg_warn("plot", "No SBD data available" << eom);
         return;
     }
-
-
-
     auto ax = subplot2grid_wrapper(fSubplotConfig["sbd_plot"]);
-
     ax->font_size(8);
 
     // Set up the plotting area
@@ -804,60 +802,64 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     // Add twin x-axis label in separate text area above the plot (safe approach)
     if(!dtec_x.empty())
     {
-        try
-        {
-            // Create a small text-only subplot above the SBD plot for the dTEC axis label
-            auto text_ax = subplot2grid_wrapper(fSubplotConfig["ion_tec_title"]);
+        ConstructXTitle(fSubplotConfig["ion_tec_title"], "ion. TEC", "red", 8, 0.25, 0.5);
 
-            // Turn off axis display for text subplot
-            text_ax->x_axis().visible(false);
-            text_ax->y_axis().visible(false);
-            text_ax->box(false);
-            
-            // Set up coordinate system for text placement (0-1 range)
-            matplot::xlim({0, 1});
-            matplot::ylim({0, 1});
-            
-            // Add centered axis label
-            auto dtec_label = fLastAxis->text(0.25, 0.5, "ion. TEC");
-            dtec_label->color("red");
-            dtec_label->font_size(8);
-            
-            msg_debug("plot", "Added dTEC twin x-axis label above plot" << eom);
-        }
-        catch(const std::exception& e)
-        {
-            msg_warn("plot", "Failed to add dTEC twin x-axis label above plot: " << e.what() << eom);
-        }
+        // try
+        // {
+        //     // Create a small text-only subplot above the SBD plot for the dTEC axis label
+        //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["ion_tec_title"]);
+        // 
+        //     // Turn off axis display for text subplot
+        //     text_ax->x_axis().visible(false);
+        //     text_ax->y_axis().visible(false);
+        //     text_ax->box(false);
+        // 
+        //     // Set up coordinate system for text placement (0-1 range)
+        //     matplot::xlim({0, 1});
+        //     matplot::ylim({0, 1});
+        // 
+        //     // Add centered axis label
+        //     auto dtec_label = fLastAxis->text(0.25, 0.5, "ion. TEC");
+        //     dtec_label->color("red");
+        //     dtec_label->font_size(8);
+        // 
+        //     msg_debug("plot", "Added dTEC twin x-axis label above plot" << eom);
+        // }
+        // catch(const std::exception& e)
+        // {
+        //     msg_warn("plot", "Failed to add dTEC twin x-axis label above plot: " << e.what() << eom);
+        // }
     }
 
     // Set the final x-axis limits
-    matplot::xlim({x_min, x_max});
+    //matplot::xlim({x_min, x_max});
 
-    //Now add an label/title below the x-axis in a separate subplot 
-    try
-    {
-        // Create a small text-only subplot above the main plot for the axis label
-        auto text_ax = subplot2grid_wrapper(fSubplotConfig["sbd_title"]);
+    ConstructXTitle(fSubplotConfig["sbd_title"], "singleband delay ({/Symbol m})", "#228B22", 9, 0.5, 0.0);
 
-        // Turn off axis display for text subplot
-        text_ax->x_axis().visible(false);
-        text_ax->y_axis().visible(false);
-        text_ax->box(false);
-        
-        // Set up coordinate system for text placement (0-1 range)
-        matplot::xlim({0, 1});
-        matplot::ylim({0, 1});
-        
-        // Add centered axis label
-        auto sbd_label = fLastAxis->text(0.5, 0.0, "singleband delay ({/Symbol m})");
-        sbd_label->color("#228B22");
-        sbd_label->font_size(9);
-    }
-    catch(const std::exception& e)
-    {
-        msg_warn("plot", "Failed to add SBD x-axis label below plot: " << e.what() << eom);
-    }
+    // //Now add an label/title below the x-axis in a separate subplot 
+    // try
+    // {
+    //     // Create a small text-only subplot above the main plot for the axis label
+    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["sbd_title"]);
+    // 
+    //     // Turn off axis display for text subplot
+    //     text_ax->x_axis().visible(false);
+    //     text_ax->y_axis().visible(false);
+    //     text_ax->box(false);
+    // 
+    //     // Set up coordinate system for text placement (0-1 range)
+    //     matplot::xlim({0, 1});
+    //     matplot::ylim({0, 1});
+    // 
+    //     // Add centered axis label
+    //     auto sbd_label = fLastAxis->text(0.5, 0.0, "singleband delay ({/Symbol m})");
+    //     sbd_label->color("#228B22");
+    //     sbd_label->font_size(9);
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     msg_warn("plot", "Failed to add SBD x-axis label below plot: " << e.what() << eom);
+    // }
 }
 
 void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
@@ -924,29 +926,31 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
         ax_handle->y2_axis().tick_values({-180, -90, 0, 90, 180});
     }
 
-    //Now add an label/title below the x-axis in a separate subplot 
-    try
-    {
-        // Create a small text-only subplot for the axis label
-        auto text_ax = subplot2grid_wrapper(fSubplotConfig["xpower_xtitle"]);
+    ConstructXTitle(fSubplotConfig["xpower_xtitle"], "Avgd XPow Spectrum (MHz)", "black", 9, 0.5, 0.0);
 
-        // Turn off axis display for text subplot
-        text_ax->x_axis().visible(false);
-        text_ax->y_axis().visible(false);
-        text_ax->box(false);
-        
-        // Set up coordinate system for text placement (0-1 range)
-        matplot::xlim({0, 1});
-        matplot::ylim({0, 1});
-        
-        // Add centered axis label
-        auto xp_label = fLastAxis->text(0.5, 0.0, "Avgd XPow Spectrum (MHz)");
-        xp_label->font_size(9);
-    }
-    catch(const std::exception& e)
-    {
-        msg_warn("plot", "Failed to add XPow x-axis label below plot: " << e.what() << eom);
-    }
+    // //Now add an label/title below the x-axis in a separate subplot 
+    // try
+    // {
+    //     // Create a small text-only subplot for the axis label
+    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["xpower_xtitle"]);
+    // 
+    //     // Turn off axis display for text subplot
+    //     text_ax->x_axis().visible(false);
+    //     text_ax->y_axis().visible(false);
+    //     text_ax->box(false);
+    // 
+    //     // Set up coordinate system for text placement (0-1 range)
+    //     matplot::xlim({0, 1});
+    //     matplot::ylim({0, 1});
+    // 
+    //     // Add centered axis label
+    //     auto xp_label = fLastAxis->text(0.5, 0.0, "Avgd XPow Spectrum (MHz)");
+    //     xp_label->font_size(9);
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     msg_warn("plot", "Failed to add XPow x-axis label below plot: " << e.what() << eom);
+    // }
 
     try
     {
