@@ -14,7 +14,9 @@
 
 //fringe finding
 #include "MHO_FringeFitter.hh"
+#include "MHO_FringePlotVisitor.hh"
 #include "MHO_FringeFitterFactory.hh"
+#include "MHO_FringePlotVisitorFactory.hh"
 
 //for control intialization
 #include "MHO_BasicFringeDataConfiguration.hh"
@@ -33,8 +35,6 @@ using namespace pybind11::literals;
     #include "MHO_PyFringeDataInterface.hh"
     #include "MHO_PythonOperatorBuilder.hh"
 #endif
-
-#include "MHO_BasicPlotVisitor.hh"
 
 //needed to export to mark4 fringe files
 #include "MHO_MK4FringeExport.hh"
@@ -187,14 +187,17 @@ int main(int argc, char** argv)
                 }
             }
 
-            MHO_BasicPlotVisitor test_plotter;
-            ffit->Accept(&test_plotter);
+            //use the plotter factory to construct one of the available plotting backends
+            if(!is_skipped)
+            {
+                MHO_FringePlotVisitorFactory plotter_factory;
+                MHO_FringePlotVisitor* plotter = plotter_factory.ConstructPlotter();
+                if(plotter != nullptr)
+                {
+                    ffit->Accept(plotter);
+                }
+            }
 
-//PLOTTING
-#ifdef USE_PYBIND11
-            MHO_DefaultPythonPlotVisitor plotter;
-            ffit->Accept(&plotter);
-#endif
         }
     } //end of pass loop
 
