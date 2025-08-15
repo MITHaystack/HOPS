@@ -50,7 +50,7 @@ if(HOPS_USE_MATPLOTPP)
     list(APPEND MPP_LIBS MHO_MatplotPlugin matplot)
     add_cflag(USE_MATPLOTPP)
     list(APPEND HOPS_APP_LIBS ${MPP_LIBS})
-endif(HOPS_USE_MATPLOTPP)
+endif()
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
