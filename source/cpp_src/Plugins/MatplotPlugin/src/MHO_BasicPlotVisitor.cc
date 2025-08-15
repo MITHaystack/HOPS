@@ -64,13 +64,13 @@ void MHO_BasicPlotVisitor::ConstructPlot(const mho_json& fPlotData)
 void MHO_BasicPlotVisitor::ConfigureSubplots()
 {
     {
-        subplot_parameters mbd_param;
-        mbd_param.total_rows = 70;
-        mbd_param.total_cols = 64;
-        mbd_param.start_row = 3;
-        mbd_param.start_col = 3;
-        mbd_param.rowspan = 12;
-        mbd_param.colspan = 46;
+        subplot_parameters mbd_param(70,64,3,3,12,46);
+        // mbd_param.total_rows = 70;
+        // mbd_param.total_cols = 64;
+        // mbd_param.start_row = 3;
+        // mbd_param.start_col = 3;
+        // mbd_param.rowspan = 12;
+        // mbd_param.colspan = 46;
         fSubplotConfig["mbd_plot"] = mbd_param;
     }
 
