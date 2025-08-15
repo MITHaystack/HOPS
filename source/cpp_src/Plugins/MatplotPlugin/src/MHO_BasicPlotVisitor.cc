@@ -63,29 +63,33 @@ void MHO_BasicPlotVisitor::ConstructPlot(const mho_json& fPlotData)
 
 void MHO_BasicPlotVisitor::ConfigureSubplots()
 {
-    fSubplotConfig["mbd_plot"] = subplot_parameters(70,64,3,3,12,46);
-    fSubplotConfig["mbd_title"] = subplot_parameters(70,64,2,2,1,48);
-    fSubplotConfig["mbd_amp_ytitle"] = subplot_parameters(70,128,5,4,8,1);
-    fSubplotConfig["delay_rate_xtitle"] = subplot_parameters(70,64,2,2,15,48);
-    fSubplotConfig["sbd_plot"] = subplot_parameters(70,64,19,3,8,21);
-    fSubplotConfig["sbd_amp_ytitle"] = subplot_parameters(70,128,19,4,8,1);
-    fSubplotConfig["ion_tec_title"] = subplot_parameters(70,64,18,4,1,14);
-    fSubplotConfig["sbd_title"] = subplot_parameters(70,64,28,2,1,14);
-    fSubplotConfig["xpower_plot"] = subplot_parameters(70,128,19,56,8,42);
-    fSubplotConfig["xpower_xtitle"] = subplot_parameters(70,64,28,32,1,2);
-    fSubplotConfig["xpower_phase_ytitle"] = subplot_parameters(70,64,19,49,8,2);
-    fSubplotConfig["channel_phase_ytitle"] = subplot_parameters(70,64,32,60,8,1);
-    fSubplotConfig["channel_amp_ytitle"] = subplot_parameters(70,128,32,4,8,1);
-    fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(70,128,40,119,8,1);
-    fSubplotConfig["station_codes"] = subplot_parameters(140,128,87,119,2,1);
-    fSubplotConfig["top_info_textbox"] = subplot_parameters(35,64,0,0,2,62);
-    fSubplotConfig["basic_info_textbox"] = subplot_parameters(35,64,2,52,18,12);
-    fSubplotConfig["model_resid_info_textbox"] = subplot_parameters(70,64,57,0,10,64);
-    fSubplotConfig["rms_textbox"] = subplot_parameters(35,64,31,0,4,16);
-    fSubplotConfig["coord_textbox"] = subplot_parameters(35,64,33,0,2,64);
-    fSubplotConfig["amp_table_textbox"] = subplot_parameters(35,64,31,12,4,13);
-    fSubplotConfig["window_textbox"] = subplot_parameters(35,64,31,49,4,12);
-    fSubplotConfig["stats_textbox"] = subplot_parameters(35,64,31,29,4,17);
+    //basis for layout
+    int nrows = 35;
+    int ncols = 64;
+
+    fSubplotConfig["mbd_plot"] = subplot_parameters(2*nrows, ncols, 3, 3, 12, 46);
+    fSubplotConfig["mbd_title"] = subplot_parameters(2*nrows, ncols, 2, 2, 1, 48);
+    fSubplotConfig["mbd_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 5, 4, 8, 1);
+    fSubplotConfig["delay_rate_xtitle"] = subplot_parameters(2*nrows, ncols, 2, 2, 15, 48);
+    fSubplotConfig["sbd_plot"] = subplot_parameters(2*nrows, ncols, 19, 3, 8, 21);
+    fSubplotConfig["sbd_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 19, 4, 8, 1);
+    fSubplotConfig["ion_tec_title"] = subplot_parameters(2*nrows, ncols, 18, 4, 1, 14);
+    fSubplotConfig["sbd_title"] = subplot_parameters(2*nrows, ncols, 28, 2, 1, 14);
+    fSubplotConfig["xpower_plot"] = subplot_parameters(2*nrows, 2*ncols, 19, 56, 8, 42);
+    fSubplotConfig["xpower_xtitle"] = subplot_parameters(2*nrows, ncols, 28, 32, 1, 2);
+    fSubplotConfig["xpower_phase_ytitle"] = subplot_parameters(2*nrows, ncols, 19, 49, 8, 2);
+    fSubplotConfig["channel_phase_ytitle"] = subplot_parameters(2*nrows, ncols, 32, 60, 8, 1);
+    fSubplotConfig["channel_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 32, 4, 8, 1);
+    fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 40, 119, 8, 1);
+    fSubplotConfig["station_codes"] = subplot_parameters(140, 2*ncols, 87, 119, 2, 1);
+    fSubplotConfig["top_info_textbox"] = subplot_parameters(35, ncols, 0, 0, 2, 62);
+    fSubplotConfig["basic_info_textbox"] = subplot_parameters(35, ncols, 2, 52, 18, 12);
+    fSubplotConfig["model_resid_info_textbox"] = subplot_parameters(2*nrows, ncols, 57, 0, 10, 64);
+    fSubplotConfig["rms_textbox"] = subplot_parameters(35, ncols, 31, 0, 4, 16);
+    fSubplotConfig["coord_textbox"] = subplot_parameters(35, ncols, 33, 0, 2, 64);
+    fSubplotConfig["amp_table_textbox"] = subplot_parameters(35, ncols, 31, 12, 4, 13);
+    fSubplotConfig["window_textbox"] = subplot_parameters(35, ncols, 31, 49, 4, 12);
+    fSubplotConfig["stats_textbox"] = subplot_parameters(35, ncols, 31, 29, 4, 17);
 }
 
 void MHO_BasicPlotVisitor::DirectSavePlot(std::string filename)
