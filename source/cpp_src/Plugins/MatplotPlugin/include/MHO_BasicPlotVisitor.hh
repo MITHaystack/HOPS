@@ -46,7 +46,6 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
                     colspan(0)
                 {};
 
-
                 subplot_parameters(int a, int b, int c, int d, int e, int f):
                     total_rows(a),
                     total_cols(b),
@@ -55,7 +54,6 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
                     rowspan(e),
                     colspan(f)
                 {};
-
 
                 virtual ~subplot_parameters(){};
 
@@ -72,6 +70,8 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
 
         void ConfigureSubplots();
 
+        void ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size);
+        void ConstructYTitle();
 
         void ConstructPlot(const mho_json& plot_data);
 
