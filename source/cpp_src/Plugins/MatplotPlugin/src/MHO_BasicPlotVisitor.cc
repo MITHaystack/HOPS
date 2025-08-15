@@ -570,31 +570,6 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     }
 
     ConstructYTitle(fSubplotConfig["mbd_amp_ytitle"], "amplitude", "red", 8);
-
-    // try
-    // {
-    //     // Create a small text-only subplot for the y-axis label
-    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["mbd_amp_ytitle"]);
-    // 
-    //     // Turn off axis display for text subplot
-    //     text_ax->x_axis().visible(false);
-    //     text_ax->y_axis().visible(false);
-    //     text_ax->box(false);
-    // 
-    //     // Set phase axis limits (-180 to 180 degrees)
-    //     text_ax->font_size(8);
-    //     text_ax->y_axis().label_font_size(8);
-    //     text_ax->y_axis().label("amplitude");
-    //     text_ax->y_axis().label_color("red");
-    //     text_ax->y_axis().tick_values({});
-    // 
-    //     msg_debug("plot", "adding amplitude y-axis title" << eom);
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
-    // }
-
     ConstructXTitle(fSubplotConfig["delay_rate_xtitle"], "delay rate (ns/s)", "red", 9, 0.5, 0.0, true);
 
 }
@@ -812,30 +787,6 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
 
     ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], "amplitude", "#228B22", 8);
 
-    // try
-    // {
-    //     // Create a small text-only subplot for the y-axis label
-    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["sbd_amp_ytitle"]);
-    // 
-    //     // Turn off axis display for text subplot
-    //     text_ax->x_axis().visible(false);
-    //     text_ax->y_axis().visible(false);
-    //     text_ax->box(false);
-    // 
-    //     // Set phase axis limits (-180 to 180 degrees)
-    //     text_ax->font_size(8);
-    //     text_ax->y_axis().label_font_size(8);
-    //     text_ax->y_axis().label("amplitude");
-    //     text_ax->y_axis().label_color("#228B22"); //forest green
-    //     text_ax->y_axis().tick_values({});
-    // 
-    //     msg_debug("plot", "adding amplitude y-axis title" << eom);
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
-    // }
-
     // Configure axis properties  
     auto ax_handle = fLastAxis;//matplot::gca();
     ax_handle->y2_axis().visible(false); // Hide the right-side y-axis (y2) if it exists
@@ -845,63 +796,9 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     if(!dtec_x.empty())
     {
         ConstructXTitle(fSubplotConfig["ion_tec_title"], "ion. TEC", "red", 8, 0.5, 0.5);
-
-        // try
-        // {
-        //     // Create a small text-only subplot above the SBD plot for the dTEC axis label
-        //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["ion_tec_title"]);
-        // 
-        //     // Turn off axis display for text subplot
-        //     text_ax->x_axis().visible(false);
-        //     text_ax->y_axis().visible(false);
-        //     text_ax->box(false);
-        // 
-        //     // Set up coordinate system for text placement (0-1 range)
-        //     matplot::xlim({0, 1});
-        //     matplot::ylim({0, 1});
-        // 
-        //     // Add centered axis label
-        //     auto dtec_label = fLastAxis->text(0.25, 0.5, "ion. TEC");
-        //     dtec_label->color("red");
-        //     dtec_label->font_size(8);
-        // 
-        //     msg_debug("plot", "Added dTEC twin x-axis label above plot" << eom);
-        // }
-        // catch(const std::exception& e)
-        // {
-        //     msg_warn("plot", "Failed to add dTEC twin x-axis label above plot: " << e.what() << eom);
-        // }
     }
 
-    // Set the final x-axis limits
-    //matplot::xlim({x_min, x_max});
-
     ConstructXTitle(fSubplotConfig["sbd_title"], "singleband delay ({/Symbol m})", "#228B22", 9, 0.5, 0.0);
-
-    // //Now add an label/title below the x-axis in a separate subplot 
-    // try
-    // {
-    //     // Create a small text-only subplot above the main plot for the axis label
-    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["sbd_title"]);
-    // 
-    //     // Turn off axis display for text subplot
-    //     text_ax->x_axis().visible(false);
-    //     text_ax->y_axis().visible(false);
-    //     text_ax->box(false);
-    // 
-    //     // Set up coordinate system for text placement (0-1 range)
-    //     matplot::xlim({0, 1});
-    //     matplot::ylim({0, 1});
-    // 
-    //     // Add centered axis label
-    //     auto sbd_label = fLastAxis->text(0.5, 0.0, "singleband delay ({/Symbol m})");
-    //     sbd_label->color("#228B22");
-    //     sbd_label->font_size(9);
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     msg_warn("plot", "Failed to add SBD x-axis label below plot: " << e.what() << eom);
-    // }
 }
 
 void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
@@ -969,60 +866,7 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     }
 
     ConstructXTitle(fSubplotConfig["xpower_xtitle"], "Avgd XPow Spectrum (MHz)", "black", 9, 0.5, 0.0);
-
-    // //Now add an label/title below the x-axis in a separate subplot 
-    // try
-    // {
-    //     // Create a small text-only subplot for the axis label
-    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["xpower_xtitle"]);
-    // 
-    //     // Turn off axis display for text subplot
-    //     text_ax->x_axis().visible(false);
-    //     text_ax->y_axis().visible(false);
-    //     text_ax->box(false);
-    // 
-    //     // Set up coordinate system for text placement (0-1 range)
-    //     matplot::xlim({0, 1});
-    //     matplot::ylim({0, 1});
-    // 
-    //     // Add centered axis label
-    //     auto xp_label = fLastAxis->text(0.5, 0.0, "Avgd XPow Spectrum (MHz)");
-    //     xp_label->font_size(9);
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     msg_warn("plot", "Failed to add XPow x-axis label below plot: " << e.what() << eom);
-    // }
-
-    
     ConstructYTitle(fSubplotConfig["xpower_phase_ytitle"], "phase [deg]", "red", 8, true);
-
-    // try
-    // {
-    //     // Create a small text-only subplot for the y-axis label
-    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["xpower_phase_ytitle"]);
-    // 
-    //     // Turn off axis display for text subplot
-    //     text_ax->x_axis().visible(false);
-    //     text_ax->y_axis().visible(false);
-    //     text_ax->y2_axis().visible(false);
-    //     text_ax->box(false);
-    // 
-    //     // Set phase axis limits (-180 to 180 degrees)
-    //     text_ax->font_size(8);
-    //     text_ax->y2_axis().label_font_size(8);
-    //     text_ax->y2_axis().label("phase [deg]");
-    //     text_ax->y2_axis().label_color("red"); //forest green
-    //     text_ax->y2_axis().tick_values({});
-    // 
-    //     msg_debug("plot", "adding amplitude y-axis title" << eom);
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
-    // }
-
-
 }
 
 void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
@@ -1196,59 +1040,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
 
 
             ConstructYTitle(fSubplotConfig["channel_phase_ytitle"], "phase [deg]", "red", 8, true);
-            // 
-            // try
-            // {
-            //     // Create a small text-only subplot for the y-axis label
-            //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["channel_phase_ytitle"]);
-            // 
-            //     // Turn off axis display for text subplot
-            //     text_ax->x_axis().visible(false);
-            //     text_ax->y_axis().visible(false);
-            //     text_ax->y2_axis().visible(false);
-            //     text_ax->box(false);
-            // 
-            //     // Set phase axis limits (-180 to 180 degrees)
-            //     text_ax->y2_axis().label_font_size(8);
-            //     text_ax->y2_axis().label("phase [deg]");
-            //     text_ax->y2_axis().label_color("red");
-            //     text_ax->y2_axis().tick_values({});
-            // 
-            //     msg_debug("plot", "adding phase y-axis title" << eom);
-            // }
-            // catch(const std::exception& e)
-            // {
-            //     msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
-            // }
-
-
             ConstructYTitle(fSubplotConfig["channel_amp_ytitle"], "amplitude", "blue", 8);
-
-            // try
-            // {
-            //     // Create a small text-only subplot for the y-axis label
-            //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["channel_amp_ytitle"]);
-            // 
-            //     // Turn off axis display for text subplot
-            //     text_ax->x_axis().visible(false);
-            //     text_ax->y_axis().visible(false);
-            //     text_ax->y_axis().visible(false);
-            //     text_ax->box(false);
-            // 
-            //     // Set phase axis limits (-180 to 180 degrees)
-            //     text_ax->y_axis().label_font_size(8);
-            //     text_ax->y_axis().label("amplitude");
-            //     text_ax->y_axis().label_color("blue");
-            //     text_ax->y_axis().tick_values({});
-            // 
-            //     msg_debug("plot", "adding amp y-axis title" << eom);
-            // }
-            // catch(const std::exception& e)
-            // {
-            //     msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
-            // }
-
-
         }
     }
 }
@@ -1464,28 +1256,6 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
     }
 
     ConstructYTitle(fSubplotConfig["pcal_theta_ytitle"], "pcal {/Symbol q}", "black", 8);
-
-    // try
-    // {
-    //     // Create a small text-only subplot for the y-axis label
-    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["pcal_theta_ytitle"]);
-    // 
-    //     // Turn off axis display for text subplot
-    //     text_ax->x_axis().visible(false);
-    //     text_ax->y_axis().visible(false);
-    //     text_ax->y_axis().visible(false);
-    //     text_ax->box(false);
-    // 
-    //     text_ax->y_axis().label_font_size(8);
-    //     text_ax->y_axis().label("pcal {/Symbol q}");
-    //     text_ax->y_axis().tick_values({});
-    // 
-    //     msg_debug("plot", "adding pcal y-axis title" << eom);
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
-    // }
 
     // Add station identifiers if available
     if(plot_dict.contains("extra"))
