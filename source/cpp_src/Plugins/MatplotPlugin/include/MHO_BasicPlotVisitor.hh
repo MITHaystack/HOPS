@@ -71,7 +71,7 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
         void ConfigureSubplots();
 
         void ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, double x_coord, double y_coord, bool center = false);
-        void ConstructYTitle();
+        void ConstructYTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, bool is_y2 = false);// double x_coord, double y_coord, bool center)
 
         void ConstructPlot(const mho_json& plot_data);
 
