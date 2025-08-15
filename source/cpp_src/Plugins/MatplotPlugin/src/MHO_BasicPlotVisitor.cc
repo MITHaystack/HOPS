@@ -90,7 +90,11 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     fSubplotConfig["amp_table_textbox"] = subplot_parameters(nrows, ncols, 31, 12, 4, 13);
     fSubplotConfig["window_textbox"] = subplot_parameters(nrows, ncols, 31, 49, 4, 12);
     fSubplotConfig["stats_textbox"] = subplot_parameters(nrows, ncols, 31, 29, 4, 17);
+
+    fLeftMargin = 0.045;
+    fRightMargin = 0.08;
 }
+
 
 void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, double x_coord, double y_coord, bool center)
 {
@@ -287,9 +291,9 @@ void MHO_BasicPlotVisitor::setup_figure_layout()
 }
 
 
-matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid_wrapper(const subplot_parameters sp)
+matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid_wrapper(const subplot_parameters sp, double left_margin, double right_margin)
 {
-    return subplot2grid({sp.total_rows, sp.total_cols}, {sp.start_row, sp.start_col}, sp.rowspan, sp.colspan, sp.left_margin, sp.right_margin);
+    return subplot2grid({sp.total_rows, sp.total_cols}, {sp.start_row, sp.start_col}, sp.rowspan, sp.colspan, left_margin, right_margin);
 }
 
 
@@ -297,9 +301,6 @@ matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, in
                                                         const std::pair< int, int >& loc,
                                                         int rowspan, int colspan, float left_margin, float right_margin)
 {
-    // double left_margin = 0.0;
-    // double right_margin = 0.0;
-
     int total_rows = shape.first;
     int total_cols = shape.second;
     int start_row = loc.first;
@@ -320,31 +321,6 @@ matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, in
     float height = static_cast< float  >(rowspan) / total_rows;
 
     // if we want space between plots, change value of 'padding' below to something non-zero
-    const double padding = 0.0;
-    left += padding / 2;
-    bottom += padding / 2;
-    width -= padding;
-    height -= padding;
-
-    fAxes.push_back( fCurrentFigure->add_axes( {left, bottom, width, height}) );
-    fLastAxis = fAxes.back();
-    return fLastAxis;
-}
-
-matplot::axes_handle MHO_BasicPlotVisitor::channel_subplot(int total_rows, int total_cols, int start_row, int row_span, int start_col, int colspan)
-{
-    double left_margin = 0.045;
-    double right_margin = 0.08;
-    
-    // Calculate normalized position and size
-    float width = (static_cast< float >(colspan) - (right_margin+left_margin) ) / total_cols;
-    float left = start_col*width + left_margin;
-
-    // Flip row calculation since matplotlib uses bottom-origin, we use top-origin
-    float bottom = static_cast< float >(total_rows - start_row - row_span) / total_rows;
-    float height = static_cast< float >(row_span) / total_rows;
-
-    // if we want space between plots, change value of 'padding' below
     const double padding = 0.0;
     left += padding / 2;
     bottom += padding / 2;
@@ -939,10 +915,8 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
     {
         for(int ch = 0; ch < n_channel_plots; ++ch)
         {
-            // auto ch_ax = channel_subplot(35, n_channel_plots, 16, 4, ch);
-            double left_margin = 0.045;
-            double right_margin = 0.08;
-            auto ch_ax = subplot2grid({35, n_channel_plots}, {16, ch} , 4, 1, left_margin, right_margin);
+
+            auto ch_ax = subplot2grid({35, n_channel_plots}, {16, ch} , 4, 1, fLeftMargin, fRightMargin);
             ch_ax->font_size(8);
 
             // Extract data for this channel
@@ -1022,10 +996,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
             try
             {
                 //add the channel column labels
-                double left_margin = 0.045;
-                double right_margin = 0.08;
-                auto text_ax = subplot2grid({72, n_channel_plots}, {31, ch} , 1, 1, left_margin, right_margin);
-                //auto text_ax = channel_subplot(72,  n_channel_plots, 31, 1, ch);
+                auto text_ax = subplot2grid({72, n_channel_plots}, {31, ch} , 1, 1, fLeftMargin, fRightMargin);
 
                 // Turn off axis display for text subplot
                 text_ax->x_axis().visible(false);
@@ -1077,11 +1048,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
         try 
         {
             // Create subplot for this channel's validity plot (aligned with channel plots)
-            double left_margin = 0.045;
-            double right_margin = 0.08;
-            auto validity_ax = subplot2grid({35, total_channel_slots}, {20, ch} , 1, 1, left_margin, right_margin);
-
-            //auto validity_ax = channel_subplot(35, total_channel_slots, 20, 1, ch);
+            auto validity_ax = subplot2grid({35, total_channel_slots}, {20, ch} , 1, 1, fLeftMargin, fRightMargin);
 
             // Set up plotting area and hold for multiple plots
             fLastAxis->hold(matplot::on);
@@ -1186,11 +1153,7 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
     {
         for(int ch = 0; ch < n_channel_plots; ++ch)
         {
-            double left_margin = 0.045;
-            double right_margin = 0.08;
-            auto pcal_ax = subplot2grid({35, total_channel_slots}, {21, ch} , 2, 1, left_margin, right_margin);
-
-            //auto pcal_ax = channel_subplot(35, total_channel_slots, 21, 2, ch);
+            auto pcal_ax = subplot2grid({35, total_channel_slots}, {21, ch} , 2, 1, fLeftMargin, fRightMargin);
             pcal_ax->font_size(8);
 
             std::vector< double > seg_indices = MHO_PlotDataExtractor::create_index_vector(n_seg);
@@ -2171,7 +2134,7 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
     }
 
     // Create text area aligned just below the channel plots 
-    auto text_ax = channel_subplot(35, 1, 23, 8, 0);
+    auto text_ax = subplot2grid({35, 1}, {23, 0}, 8, 1, fLeftMargin, fRightMargin);
     text_ax->x_axis().visible(false);
     text_ax->y_axis().visible(false);
     text_ax->box(false);
