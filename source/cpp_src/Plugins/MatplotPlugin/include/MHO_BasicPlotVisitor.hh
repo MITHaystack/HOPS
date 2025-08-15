@@ -43,7 +43,9 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
                     start_row(0),
                     start_col(0),
                     rowspan(0),
-                    colspan(0)
+                    colspan(0),
+                    left_margin(0.0),
+                    right_margin(0.0)
                 {};
 
                 subplot_parameters(int a, int b, int c, int d, int e, int f):
@@ -52,7 +54,20 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
                     start_row(c),
                     start_col(d),
                     rowspan(e),
-                    colspan(f)
+                    colspan(f),
+                    left_margin(0.0),
+                    right_margin(0.0)
+                {};
+
+                subplot_parameters(int a, int b, int c, int d, int e, int f, float left, float right):
+                    total_rows(a),
+                    total_cols(b),
+                    start_row(c),
+                    start_col(d),
+                    rowspan(e),
+                    colspan(f),
+                    left_margin(left),
+                    right_margin(right)
                 {};
 
                 virtual ~subplot_parameters(){};
@@ -64,6 +79,8 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
                 int start_col;
                 int rowspan;
                 int colspan;
+                float left_margin;
+                float right_margin;
         };
 
         std::map<std::string, subplot_parameters> fSubplotConfig;
@@ -200,7 +217,7 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
          * @return axes_handle for the created subplot
          */
         matplot::axes_handle subplot2grid(const std::pair< int, int >& shape, const std::pair< int, int >& loc, int rowspan = 1,
-                                          int colspan = 1);
+                                          int colspan = 1, float left_margin = 0.0, float right_margin = 0.0);
 
         matplot::axes_handle subplot2grid_wrapper(const subplot_parameters sp);
 
