@@ -217,6 +217,8 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
         int fPageHeight;
         float fLeftMargin;
         float fRightMargin;
+        int fNRows;
+        int fNCols;
         
 };
 
