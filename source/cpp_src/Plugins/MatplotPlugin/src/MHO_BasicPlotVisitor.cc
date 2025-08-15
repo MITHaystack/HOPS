@@ -1060,7 +1060,8 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
             std::vector<int> lsb_validity(n_seg, 1); // Dummy: all valid (green)
             
             // Draw vertical lines for each time segment
-            for(int seg = 0; seg < n_seg; ++seg) {
+            for(int seg = 0; seg < n_seg; ++seg) 
+            {
                 double x = static_cast<double>(seg) + 0.5; // Center the line in the segment
                 
                 // USB validity line (upper half: y from 0.5 to 1.0) - should be RED
