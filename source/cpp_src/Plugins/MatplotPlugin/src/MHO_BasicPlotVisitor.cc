@@ -1463,27 +1463,29 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
         }
     }
 
-    try
-    {
-        // Create a small text-only subplot for the y-axis label
-        auto text_ax = subplot2grid_wrapper(fSubplotConfig["pcal_theta_ytitle"]);
+    ConstructYTitle(fSubplotConfig["pcal_theta_ytitle"], "pcal {/Symbol q}", "black", 8);
 
-        // Turn off axis display for text subplot
-        text_ax->x_axis().visible(false);
-        text_ax->y_axis().visible(false);
-        text_ax->y_axis().visible(false);
-        text_ax->box(false);
-
-        text_ax->y_axis().label_font_size(8);
-        text_ax->y_axis().label("pcal {/Symbol q}");
-        text_ax->y_axis().tick_values({});
-    
-        msg_debug("plot", "adding pcal y-axis title" << eom);
-    }
-    catch(const std::exception& e)
-    {
-        msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
-    }
+    // try
+    // {
+    //     // Create a small text-only subplot for the y-axis label
+    //     auto text_ax = subplot2grid_wrapper(fSubplotConfig["pcal_theta_ytitle"]);
+    // 
+    //     // Turn off axis display for text subplot
+    //     text_ax->x_axis().visible(false);
+    //     text_ax->y_axis().visible(false);
+    //     text_ax->y_axis().visible(false);
+    //     text_ax->box(false);
+    // 
+    //     text_ax->y_axis().label_font_size(8);
+    //     text_ax->y_axis().label("pcal {/Symbol q}");
+    //     text_ax->y_axis().tick_values({});
+    // 
+    //     msg_debug("plot", "adding pcal y-axis title" << eom);
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     msg_warn("plot", "Failed to add y-axis label " << e.what() << eom);
+    // }
 
     // Add station identifiers if available
     if(plot_dict.contains("extra"))
