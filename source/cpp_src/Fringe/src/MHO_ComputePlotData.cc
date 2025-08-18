@@ -1389,9 +1389,6 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
     totwt = 0.0;
     totap = 0.0;
 
-    std::cout<<"NSEG = "<<nseg<<std::endl;
-    std::cout<<"APSEG = "<<apseg<<std::endl;
-
     seg_frac_usb.resize(nseg);
     seg_frac_lsb.resize(nseg);
     std::complex< double > vsum, vsumf, wght_phsr;

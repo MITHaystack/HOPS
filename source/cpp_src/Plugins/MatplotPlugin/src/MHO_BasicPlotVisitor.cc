@@ -1034,8 +1034,6 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
     int n_seg = MHO_PlotDataExtractor::extract_int(plot_dict, "NSeg", 1);
     int n_plots = MHO_PlotDataExtractor::extract_int(plot_dict, "NPlots", 1);
 
-    std::cout<<"n_seg = "<<n_seg<<std::endl;
-
     // Extract segment amplitude and phase data
     auto usb_frac = MHO_PlotDataExtractor::extract_vector(plot_dict, "SEG_FRAC_USB");
     auto lsb_frac = MHO_PlotDataExtractor::extract_vector(plot_dict, "SEG_FRAC_LSB");
