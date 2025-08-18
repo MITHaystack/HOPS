@@ -29,7 +29,7 @@ class MHO_FringePlotVisitorFactory
          * @brief Constructs and configures an MHO_FringePlotVisitor instance based on the current configuration.
          * @return MHO_FringePlotVisitor* - The constructed fringe fitter
          */
-        MHO_FringePlotVisitor* ConstructPlotter();
+        MHO_FringePlotVisitor* ConstructPlotter(std::string plot_backend = "");
 
     protected:
         MHO_FringePlotVisitor* fFringePlotter;
