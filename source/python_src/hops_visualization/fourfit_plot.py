@@ -261,44 +261,78 @@ def make_channel_segment_plots_alt(fig, plot_dict):
 
 def make_channel_segment_validity_plots(fig,plot_dict):
 
-    #TODO FIXME -- THIS IS A DUMMY IMPLEMENTATION, PLOTS ZEROS
     # This function constructs USB/LSB validity flag plots for the time-averaged segments of each channel
     n_seg = int(plot_dict["NSeg"])
     n_seg_plots = int(plot_dict["NPlots"])
     colw = 6
     
+    # Extract USB and LSB validity data
+    usb_frac = plot_dict.get('SEG_FRAC_USB', [])
+    lsb_frac = plot_dict.get('SEG_FRAC_LSB', [])
+    
     gs = fig.add_gridspec(256, colw*n_seg_plots)
-    #USB/LSB PLOTS
-    for ch in range(0,n_seg_plots-1):
-        ax7 = fig.add_subplot(gs[152:156, colw*ch:colw*(ch+1)])
-        ax7.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
-        ax7.set_xlim(0,n_seg)
-        ax7.set_ylim(0,1)
-        ax7.set_xticklabels(labels=[],visible=False)
+    #USB/LSB PLOTS - excludes the last "All" channel
+    n_channel_plots = n_seg_plots - 1
+    
+    for ch in range(0, n_channel_plots):
+        #make single subplot for both USB and LSB indicators
+        ax7 = fig.add_subplot(gs[152:160, colw*ch:colw*(ch+1)])
+        
+        # Extract validity data for this channel
+        usb_validity = []
+        lsb_validity = []
+        
+        for seg in range(n_seg):
+            idx = seg * n_channel_plots + ch
+            
+            #extract USB validity for this segment/channel
+            if idx < len(usb_frac):
+                usb_validity.append(usb_frac[idx])
+            else:
+                usb_validity.append(0.0)
+                
+            #extract LSB validity for this segment/channel  
+            if idx < len(lsb_frac):
+                lsb_validity.append(lsb_frac[idx])
+            else:
+                lsb_validity.append(0.0)
+        
+        # draw vertical lines for each time segment
+        for seg in range(n_seg):
+            x = seg + 0.5  # Center the line in the segment
+            
+            # USB validity line (upper half: y from 0.5 to 1.0)
+            if usb_validity[seg] >= 0.95:
+                ax7.plot([x, x], [0.5, 1.0], 'g-', linewidth=1.0)
+            elif usb_validity[seg] > 0.0:
+                ax7.plot([x, x], [0.5, 1.0], 'r-', linewidth=1.0)
+            
+            # LSB validity line (lower half: y from 0.0 to 0.5)
+            if lsb_validity[seg] >= 0.95:
+                ax7.plot([x, x], [0.0, 0.5], 'g-', linewidth=1.0)
+            elif lsb_validity[seg] > 0.0:
+                ax7.plot([x, x], [0.0, 0.5], 'r-', linewidth=1.0)
+        
+        #draw horizontal divider line at y=0.5 to separate USB/LSB
+        ax7.plot([0, n_seg], [0.5, 0.5], 'k-', linewidth=1.0)
+        
+        # Set axis properties
+        ax7.set_xlim(0, n_seg)
+        ax7.set_ylim(0, 1)
+        ax7.set_xticklabels(labels=[], visible=False)
         ax7.tick_params(axis='both', direction='in', which='both')
         ax7.xaxis.set_major_locator(plt.NullLocator())
         ax7.yaxis.set_major_locator(plt.NullLocator())
-        ax7.set_yticklabels(labels=[],visible=False)
+        ax7.set_yticklabels(labels=[], visible=False)
         plt.yticks(visible=False)
-        plt.tick_params(left = False, bottom = False)
+        plt.tick_params(left=False, bottom=False)
+        
+        # add U/L labels for the first channel only
         if ch == 0:
-            ax7.set_ylabel('U',fontsize=7, rotation=0, labelpad=5)
-            ax7.yaxis.set_label_coords(-0.23,0.0)
-
-        ax7b = fig.add_subplot(gs[156:160, colw*ch:colw*(ch+1)])
-        ax7b.plot(range(n_seg), np.zeros(n_seg),'co-',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
-        ax7b.set_xlim(0,n_seg)
-        ax7b.set_ylim(0,1)
-        ax7b.set_xticklabels(labels=[],visible=False)
-        ax7b.tick_params(axis='both', direction='in', which='both')
-        ax7b.xaxis.set_major_locator(plt.NullLocator())
-        ax7b.yaxis.set_major_locator(plt.NullLocator())
-        ax7b.set_yticklabels(labels=[],visible=False)
-        plt.yticks(visible=False)
-        plt.tick_params(left = False, bottom = False)
-        if ch == 0:
-            ax7b.set_ylabel('L',fontsize=7, rotation=0, labelpad=5)
-            ax7b.yaxis.set_label_coords(-0.23,0.0)
+            ax7.text(-0.36, 0.65, 'U', fontsize=7, rotation=0, 
+                    transform=ax7.transAxes, verticalalignment='center')
+            ax7.text(-0.33, 0.15, 'L', fontsize=7, rotation=0, 
+                    transform=ax7.transAxes, verticalalignment='center')
             
     plt.subplots_adjust(wspace=0, hspace=0)
 
