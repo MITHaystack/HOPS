@@ -190,8 +190,11 @@ int main(int argc, char** argv)
             //use the plotter factory to construct one of the available plotting backends
             if(!is_skipped)
             {
+                //currently we only have two fringe plotting options (gnuplot or matplotlib)
+                std::string plot_backend;
+                fringeData.GetParameterStore()->Get("/control/config/plot_backend", plot_backend);
                 MHO_FringePlotVisitorFactory plotter_factory;
-                MHO_FringePlotVisitor* plotter = plotter_factory.ConstructPlotter();
+                MHO_FringePlotVisitor* plotter = plotter_factory.ConstructPlotter(plot_backend);
                 if(plotter != nullptr)
                 {
                     ffit->Accept(plotter);

@@ -1,0 +1,6 @@
+{
+    "name": "plot_backend",
+    "statement_type": "parameter",
+    "parameter_type": "config",
+    "type": "string"
+}
