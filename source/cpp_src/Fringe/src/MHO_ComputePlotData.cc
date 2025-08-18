@@ -1457,7 +1457,6 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
             double lsb_result =  (lsbfrac >= 0.0) ? lsbfrac / (double)apseg : 0.0;
             seg_frac_usb[seg][fr] = usb_result; 
             seg_frac_lsb[seg][fr] = lsb_result;
-            std::cout << "lsb( seg: " << seg <<", ch:" <<fr<<" ) = "<<lsb_result<<std::endl;
         }
 
         c = std::arg(vsum) - coh_avg_phase;

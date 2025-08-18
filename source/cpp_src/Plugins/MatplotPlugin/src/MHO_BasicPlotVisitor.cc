@@ -1083,7 +1083,6 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
                 if(idx < static_cast< int >(lsb_frac.size()))
                 {
                     lsb_validity[seg] = lsb_frac[idx];
-                    std::cout << "MPP lsb( seg: " << seg <<", ch:" <<ch<<" ) = "<<lsb_validity[seg]<<std::endl;
                 }
             }
 
