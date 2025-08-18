@@ -253,6 +253,11 @@ class MHO_ComputePlotData
 
         //constants
         std::complex< double > fImagUnit;
+
+        //lsb/usb validity segments
+        std::vector< std::vector< double > > seg_frac_usb;
+        std::vector< std::vector< double > > seg_frac_lsb;
+
 };
 
 } // namespace hops
