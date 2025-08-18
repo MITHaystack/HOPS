@@ -51,6 +51,10 @@
 *build/
 *x86_64*
 
+#extern stuff we don't want to come back 
+extern/matplotplusplus/docs
+extern/matplotplusplus/examples
+
 #CMake cache files
 *CMakeCache.txt*
 *CMakeFiles*
