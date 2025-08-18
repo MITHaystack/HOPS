@@ -1059,12 +1059,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
 
             // Set up plotting area and hold for multiple plots
             fLastAxis->hold(matplot::on);
-            
-            // Create dummy validity data for USB and LSB (0 = invalid/red, 1 = valid/green)
-            // std::vector<int> usb_validity(n_seg, 0); // Dummy: all invalid (red)
-            // std::vector<int> lsb_validity(n_seg, 1); // Dummy: all valid (green)
-            // std::vector<double> usb_validity = usb_frac[ch];
-            // std::vector<double> lsb_validity = lsb_frac[ch];
+
             // Extract data for this channel
             std::vector< double > usb_validity(n_seg);
             std::vector< double > lsb_validity(n_seg);
