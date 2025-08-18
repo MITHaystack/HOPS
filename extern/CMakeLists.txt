@@ -21,14 +21,21 @@ endif()
 
 add_subdirectory(date)
 
-if(HOPS_USE_MATPLOTPP)
+
+
+if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
+
+    set_option(FETCHCONTENT_QUIET OFF)
+    set_option(FETCHCONTENT_FULLY_DISCONNECTED OFF)
+    set_option(FETCHCONTENT_UPDATES_DISCONNECTED OFF)
+
     #TODO...we should check if the user has matplotplusplus installed locally first! 
     add_subdirectory(matplotplusplus)
     #install the matplot.so library
     install(
         TARGETS matplot
         EXPORT matplotTargets
-        LIBRARY DESTINATION ${LIB_INSTALL_DIR}    # for .so
+        LIBRARY DESTINATION ${LIB_INSTALL_DIR}
     )
 
     #might as well install the headers too
