@@ -182,6 +182,16 @@ if(HOPS_USE_CUDA)
     hops_add_cxxflag(HOPS_USE_CUDA)
 endif(HOPS_USE_CUDA)
 
+if(HOPS_USE_MATPLOTPP)
+    find_package(Gnuplot)
+    if(Gnuplot_FOUND)
+        hops_add_cxxflag(USE_MATPLOTPP)
+    else()
+        message(STATUS "Use of matplot++ was requested but gnuplot was not found, disabling HOPS_USE_MATPLOTPP")
+        set(HOPS_USE_MATPLOTPP OFF CACHE BOOL "Build copy of matplot++ (requires gnuplot) for fast plotting" FORCE)
+    endif(Gnuplot_FOUND)
+endif(HOPS_USE_MATPLOTPP)
+
 
 #explicity set the command to for vpal library fringe fitter via env var
 if(HOPS_IS_HOPS4)

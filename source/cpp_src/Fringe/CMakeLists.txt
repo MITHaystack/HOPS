@@ -54,13 +54,12 @@ if(HOPS_USE_PYBIND11)
     list(APPEND FRINGE_LIBS ${PYBIND_APP_LIBS})
 endif(HOPS_USE_PYBIND11)
 
-if(HOPS_USE_MATPLOTPP)
+if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
     hops_internal_include_directories(../../../extern/matplotplusplus/source/)
     hops_internal_include_directories(../Plugins/MatplotPlugin/include)
     list(APPEND MPP_LIBS MHO_MatplotPlugin matplot)
-    add_cflag(USE_MATPLOTPP)
     list(APPEND FRINGE_LIBS ${MPP_LIBS})
-endif(HOPS_USE_MATPLOTPP)
+endif()
 
 #add cuda deps if available
 if(HOPS_USE_CUDA)
