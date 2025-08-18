@@ -84,6 +84,7 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     fSubplotConfig["channel_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 32, 4, 8, 1);
     fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 40, 119, 8, 1);
     fSubplotConfig["station_codes"] = subplot_parameters(4*nrows, 2*ncols, 87, 119, 2, 1);
+    fSubplotConfig["usblsb_frac"] = subplot_parameters(4*nrows, 4*ncols, 81, 9, 2, 1);
     fSubplotConfig["top_info_textbox"] = subplot_parameters(nrows, ncols, 0, 0, 2, 62);
     fSubplotConfig["basic_info_textbox"] = subplot_parameters(nrows, ncols, 2, 52, 18, 12);
     fSubplotConfig["model_resid_info_textbox"] = subplot_parameters(2*nrows, ncols, 57, 0, 10, 64);
@@ -830,7 +831,7 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     if(!xpspec_arg_trunc.empty())
     {
         fLastAxis->hold(matplot::on);
-        auto phase_line = matplot::plot(xpow_x, xpspec_arg_trunc, "ro-");
+        auto phase_line = matplot::plot(xpow_x, xpspec_arg_trunc, "ro");
         phase_line->marker_size(2.0f);
         phase_line->line_width(0.5f);
         phase_line->use_y2(true);
@@ -1033,6 +1034,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
     int n_seg = MHO_PlotDataExtractor::extract_int(plot_dict, "NSeg", 1);
     int n_plots = MHO_PlotDataExtractor::extract_int(plot_dict, "NPlots", 1);
 
+    std::cout<<"n_seg = "<<n_seg<<std::endl;
 
     // Extract segment amplitude and phase data
     auto usb_frac = MHO_PlotDataExtractor::extract_vector(plot_dict, "SEG_FRAC_USB");
@@ -1072,7 +1074,8 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
 
             for(int seg = 0; seg < n_seg; ++seg)
             {
-                int idx = seg * n_plots + ch;
+                int idx = seg * n_channel_plots + ch;
+                
                 if(idx < static_cast< int >(usb_frac.size()))
                 {
                     usb_validity[seg] = usb_frac[idx];
@@ -1080,6 +1083,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
                 if(idx < static_cast< int >(lsb_frac.size()))
                 {
                     lsb_validity[seg] = lsb_frac[idx];
+                    std::cout << "MPP lsb( seg: " << seg <<", ch:" <<ch<<" ) = "<<lsb_validity[seg]<<std::endl;
                 }
             }
 
@@ -1130,6 +1134,36 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
             
             // Turn off hold for next plot
             matplot::hold(matplot::off);
+
+
+            // USB/LSB indicators
+            try
+            {
+                // Create a small text-only subplot above the main plot for the axis label
+                auto text_ax = subplot2grid_wrapper(fSubplotConfig["usblsb_frac"]);
+
+                // Turn off axis display for text subplot
+                text_ax->x_axis().visible(false);
+                text_ax->y_axis().visible(false);
+                text_ax->box(false);
+                // Set up coordinate system for text placement (0-1 range)
+                matplot::xlim({0, 1});
+                matplot::ylim({0, 1});
+                auto usb_txt = fLastAxis->text(0.5, 0.9, "U");
+                usb_txt->alignment(matplot::labels::alignment::center);
+                usb_txt->font_size(7);
+                auto lsb_txt = fLastAxis->text(0.5, 0.1, "L");
+                lsb_txt->alignment(matplot::labels::alignment::center);
+                lsb_txt->font_size(7);
+
+            }
+            catch(const std::exception& e)
+            {
+                msg_warn("plot", "Failed to add twin x-axis label above plot: " << e.what() << eom);
+            }
+
+
+
         }
         catch(const std::exception& e) 
         {

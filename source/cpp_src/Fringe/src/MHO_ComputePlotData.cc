@@ -1389,6 +1389,9 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
     totwt = 0.0;
     totap = 0.0;
 
+    std::cout<<"NSEG = "<<nseg<<std::endl;
+    std::cout<<"APSEG = "<<apseg<<std::endl;
+
     seg_frac_usb.resize(nseg);
     seg_frac_lsb.resize(nseg);
     std::complex< double > vsum, vsumf, wght_phsr;
@@ -1454,6 +1457,7 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
             double lsb_result =  (lsbfrac >= 0.0) ? lsbfrac / (double)apseg : 0.0;
             seg_frac_usb[seg][fr] = usb_result; 
             seg_frac_lsb[seg][fr] = lsb_result;
+            std::cout << "lsb( seg: " << seg <<", ch:" <<fr<<" ) = "<<lsb_result<<std::endl;
         }
 
         c = std::arg(vsum) - coh_avg_phase;
@@ -1631,23 +1635,6 @@ std::string MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
     {
         errcode = "G";
     }
-
-    // for( std::size_t i=0; i<nchan; i++)
-    // {
-    //     //TODO FIXME -- get rid of dependence on plot_dict, and just use raw pcal data  directly
-    //     //this rough implementation is lazy
-    //     if(ref_pc_mode == "multitone")
-    //     {
-    //         double pc_amp = plot_dict["PLOT_INFO"]["PCAmpRf"][i].get<double>() / 1000.0;
-    //         if( pc_amp < pc_amp_hcode || pc_amp > 0.500){ref_low_pcal = true;}
-    //     }
-    //
-    //     if(rem_pc_mode == "multitone")
-    //     {
-    //         double pc_amp = plot_dict["PLOT_INFO"]["PCAmpRm"][i].get<double>() / 1000.0 ;
-    //         if( pc_amp < pc_amp_hcode || pc_amp > 0.500){rem_low_pcal = true;}
-    //     }
-    // }
 
     //get the collection of pol-products used in this fringe
     std::vector< std::string > polprod_set;
