@@ -71,6 +71,8 @@ For example, the options table provided by ``ccmake`` may look like the followin
   HOPS_USE_CUDA                   *OFF
   HOPS_USE_DIFXIO                 *OFF
   HOPS_USE_FFTW3                  *ON
+  HOPS_USE_HDF5                   *OFF
+  HOPS_USE_MATPLOTPP              *ON
   HOPS_USE_MPI                    *OFF
   HOPS_USE_OPENCL                 *OFF
   HOPS_USE_PYBIND11               *ON
@@ -112,17 +114,18 @@ In some circumstances certain RHEL-based distributions may require the following
    sudo dnf config-manager --set-enabled crb
    dnf install epel-release
 
-The package FFTW while not required, is highly recommended as it will accelerate fringe-fitting over the native FFT implementation. In can be installed with:
+While not strictly required by HOPS4, the Fast Fourier Transform library FFTW3 and gnuplot are highly recommended. The FFTW3 library will accelerate 
+fringe fitting by utilizing optimized FFT routines, and gnuplot will enable faster plotting (without requring python). These can be installed with:
 
 .. code-block:: bash
 
-   sudo apt-get install libfftw3-dev
+   sudo apt-get install libfftw3-dev gnuplot
 
 or
 
 .. code-block:: bash
 
-   sudo dnf install fftw-devel
+   sudo dnf install fftw-devel gnuplot
 
 The Python packages required by HOPS4 can be installed via pip.
 If the build flag ``HOPS_PYPI_MANAGE_DEPS`` is set to ``ON``, then pip will automatically locate and locally install the necessary python dependencies
