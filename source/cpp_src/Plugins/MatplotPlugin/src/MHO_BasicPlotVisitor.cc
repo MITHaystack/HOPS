@@ -1032,7 +1032,12 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
     
     int n_seg = MHO_PlotDataExtractor::extract_int(plot_dict, "NSeg", 1);
     int n_plots = MHO_PlotDataExtractor::extract_int(plot_dict, "NPlots", 1);
-    
+
+
+    // Extract segment amplitude and phase data
+    auto usb_frac = MHO_PlotDataExtractor::extract_vector(plot_dict, "SEG_FRAC_USB");
+    auto lsb_frac = MHO_PlotDataExtractor::extract_vector(plot_dict, "SEG_FRAC_LSB");
+
     // Calculate the number of channel plots (exclude last channel as per Python implementation)
     int n_channel_plots = n_plots - 1; //remove the 'All' channel
     int total_channel_slots = n_plots;
@@ -1056,35 +1061,54 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
             fLastAxis->hold(matplot::on);
             
             // Create dummy validity data for USB and LSB (0 = invalid/red, 1 = valid/green)
-            std::vector<int> usb_validity(n_seg, 0); // Dummy: all invalid (red)
-            std::vector<int> lsb_validity(n_seg, 1); // Dummy: all valid (green)
-            
+            // std::vector<int> usb_validity(n_seg, 0); // Dummy: all invalid (red)
+            // std::vector<int> lsb_validity(n_seg, 1); // Dummy: all valid (green)
+            // std::vector<double> usb_validity = usb_frac[ch];
+            // std::vector<double> lsb_validity = lsb_frac[ch];
+            // Extract data for this channel
+            std::vector< double > usb_validity(n_seg);
+            std::vector< double > lsb_validity(n_seg);
+            std::vector< double > seg_indices = MHO_PlotDataExtractor::create_index_vector(n_seg);
+
+            for(int seg = 0; seg < n_seg; ++seg)
+            {
+                int idx = seg * n_plots + ch;
+                if(idx < static_cast< int >(usb_frac.size()))
+                {
+                    usb_validity[seg] = usb_frac[idx];
+                }
+                if(idx < static_cast< int >(lsb_frac.size()))
+                {
+                    lsb_validity[seg] = lsb_frac[idx];
+                }
+            }
+
             // Draw vertical lines for each time segment
             for(int seg = 0; seg < n_seg; ++seg) 
             {
                 double x = static_cast<double>(seg) + 0.5; // Center the line in the segment
                 
-                // USB validity line (upper half: y from 0.5 to 1.0) - should be RED
-                if (usb_validity[seg] == 1) 
+                //threshold is hard-coded to 0.95 (see generate_graphs.c)
+                if (usb_validity[seg] >= 0.95) 
                 {
                     auto usb_line = matplot::plot({x, x}, {0.5, 1.0}, "g-"); // Green for valid
                     usb_line->line_width(1.0f);
                     usb_line->color({34/255.0, 139/255.0, 34/255.0});
                 } 
-                else 
+                else if (usb_validity[seg] < 0.95 && usb_validity[seg] > 0. ) 
                 {
                     auto usb_line = matplot::plot({x, x}, {0.5, 1.0}, "r-"); // Red for invalid
                     usb_line->line_width(1.0f);
                 }
                 
                 // LSB validity line (lower half: y from 0.0 to 0.5) - should be GREEN
-                if (lsb_validity[seg] == 1) 
+                if (lsb_validity[seg] >= 0.95) 
                 {
                     auto lsb_line = matplot::plot({x, x}, {0.0, 0.5}, "g-"); // Green for valid
                     lsb_line->line_width(1.0f);
                     lsb_line->color({34/255.0, 139/255.0, 34/255.0});
                 } 
-                else 
+                else if (lsb_validity[seg] < 0.95 && lsb_validity[seg] > 0. ) 
                 {
                     auto lsb_line = matplot::plot({x, x}, {0.0, 0.5}, "r-"); // Red for invalid
                     lsb_line->line_width(1.0f);

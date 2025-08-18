@@ -1231,6 +1231,25 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     calc_freqrms(phasors, resid_phase, fringe_amp, tsum_weights, snr, freqrms_phase, freqrms_amp, inc_avg_amp_freq);
     calc_timerms(phasors, nseg, apseg, resid_phase, fringe_amp, tsum_weights, snr, timerms_phase, timerms_amp, inc_avg_amp);
 
+    //now export for the 'validity segment lines' info
+    //need to flatten this data to match the plot_data_dir format
+    std::vector< double > transposed_flatted_seg_usbfrac;
+    std::vector< double > transposed_flatted_seg_lsbfrac;
+    std::size_t asize = seg_frac_usb.size();
+    std::size_t bsize = seg_frac_usb[0].size();
+    for(std::size_t j = 0; j < asize; j++)
+    {
+        for(std::size_t i = 0; i < bsize; i++)
+        {
+            double usb = seg_frac_usb[j][i];
+            double lsb = seg_frac_lsb[j][i];
+            transposed_flatted_seg_usbfrac.push_back(usb);
+            transposed_flatted_seg_lsbfrac.push_back(lsb);
+        }
+    }
+    plot_dict["SEG_FRAC_USB"] = transposed_flatted_seg_usbfrac;
+    plot_dict["SEG_FRAC_LSB"] = transposed_flatted_seg_lsbfrac;
+
     plot_dict["extra"]["freqrms_phase"] = freqrms_phase;
     plot_dict["extra"]["freqrms_amp"] = freqrms_amp;
     plot_dict["extra"]["timerms_phase"] = timerms_phase;
@@ -1370,12 +1389,17 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
     totwt = 0.0;
     totap = 0.0;
 
+    seg_frac_usb.resize(nseg);
+    seg_frac_lsb.resize(nseg);
     std::complex< double > vsum, vsumf, wght_phsr;
 
     std::string net_sideband = "?";
     std::string sidebandlabelkey = "net_sideband";
     for(std::size_t seg = 0; seg < nseg; seg++)
     {
+        seg_frac_usb[seg].resize(nchan,0);
+        seg_frac_lsb[seg].resize(nchan,0);
+
         vsum = 0.0;
         wt = 0.0;     /* Loop over freqs, and ap's in segment */
         wt_dsb = 0.0; /* Loop over freqs, and ap's in segment */
@@ -1425,6 +1449,11 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
                 vsum = vsum + wght_phsr;
                 vsumf = vsumf + wght_phsr;
             }
+
+            double usb_result =  (usbfrac >= 0.0) ? usbfrac / (double)apseg : 0.0;
+            double lsb_result =  (lsbfrac >= 0.0) ? lsbfrac / (double)apseg : 0.0;
+            seg_frac_usb[seg][fr] = usb_result; 
+            seg_frac_lsb[seg][fr] = lsb_result;
         }
 
         c = std::arg(vsum) - coh_avg_phase;
