@@ -7,7 +7,7 @@ if(PY_EXE)
          set(REQUIREMENTS_TXT_IN "${CMAKE_CURRENT_SOURCE_DIR}/requirements.txt")
          set(REQUIREMENTS_TXT "${CMAKE_CURRENT_BINARY_DIR}/requirements.txt")
          configure_file(${REQUIREMENTS_TXT_IN} ${REQUIREMENTS_TXT})
-         install(CODE "execute_process(COMMAND ${PY_EXE} -m pip install --target=${PYTHON_MODULE_INSTALL_DIR} -r ${REQUIREMENTS_TXT}")
+         install(CODE "execute_process(COMMAND ${PY_EXE} -m pip install --target=${PYTHON_MODULE_INSTALL_DIR} -r ${REQUIREMENTS_TXT} )")
 
     else(HOPS_PYPI_MANAGE_DEPS)
 
