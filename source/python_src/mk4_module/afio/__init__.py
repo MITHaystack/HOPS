@@ -1,3 +1,5 @@
+from .__version__ import __version__
+
 from .afio import  AFIOStructureBase
 from .afio import rootsum
 from .afio import corelsum

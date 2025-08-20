@@ -1,3 +1,5 @@
+from .__version__ import __version__
+
 from .vexpy import QUASAR
 from .vexpy import STAR
 from .vexpy import SATELLITE
