@@ -2,7 +2,7 @@ if(PY_EXE)
 
     if(HOPS_PYPI_MANAGE_DEPS)
         
-         #if the user chooses, we can use pip to pull/install the python dependencies
+         #if the user chooses to enable HOPS_PYPI_MANAGE_DEPS, then we can use pip to pull/install the python dependencies
          #for us at time of installation, but we don't do this automatically 
          set(REQUIREMENTS_TXT_IN "${CMAKE_CURRENT_SOURCE_DIR}/requirements.txt")
          set(REQUIREMENTS_TXT "${CMAKE_CURRENT_BINARY_DIR}/requirements.txt")
@@ -27,8 +27,10 @@ if(PY_EXE)
             endif()
         endforeach()
 
+        #tell user how to install the missing dependencies
         if(MISSING_PYTHON_PACKAGES)
-            message(STATUS "Some Python dependencies are missing. You can install these automatically by enabling HOPS_PYPI_MANAGE_DEPS or manually with:")
+            message(STATUS "Not all python dependencies were found, some python extension functionality may be missing.")
+            message(STATUS "You can install the missing packages automatically by enabling HOPS_PYPI_MANAGE_DEPS or manually with:")
             message(STATUS "  pip install -r ${CMAKE_CURRENT_SOURCE_DIR}/requirements.txt")
         endif()
 
