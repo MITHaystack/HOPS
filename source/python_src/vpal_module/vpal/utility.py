@@ -1,11 +1,5 @@
 """utility function module"""
 #core imports
-from __future__ import print_function
-from __future__ import division
-from builtins import zip
-from builtins import str
-from builtins import object
-from builtins import range
 import sys
 
 #non-core imports

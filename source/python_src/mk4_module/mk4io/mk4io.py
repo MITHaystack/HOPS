@@ -1,8 +1,6 @@
 """provides python access to mk4 data-types via c-library"""
 
 #core imports
-from __future__ import print_function
-from builtins import range
 import ctypes
 import os
 

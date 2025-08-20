@@ -1,11 +1,6 @@
 """library generate some plots from proxy phase-cal data """
 
 #core imports
-from __future__ import absolute_import
-from builtins import next
-from builtins import str
-from builtins import object
-from builtins import range
 import datetime
 import sys
 import os
