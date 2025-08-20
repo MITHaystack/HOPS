@@ -1,8 +1,5 @@
 """integration test for proxy-cable-cal lib"""
 #core imports
-from __future__ import print_function
-from builtins import input
-from builtins import str
 import datetime
 import argparse
 import sys

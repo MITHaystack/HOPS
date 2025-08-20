@@ -1,8 +1,5 @@
 """simple json serialization module for dumping report data"""
 
-#core imports
-from builtins import object
-
 class JsonSerializableObject(object):
     """JsonSerializableObject, functions must be overloaded for complex types"""
 

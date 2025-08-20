@@ -1,3 +1,5 @@
+from .__version__ import __version__
+
 from .ffcontrol import FFControlStructureBase
 from .ffcontrol import gat_struct
 from .ffcontrol import istats

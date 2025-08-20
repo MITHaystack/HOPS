@@ -1,7 +1,5 @@
 """integration test for mk4io python/c-library interface"""
 #core imports
-from __future__ import print_function
-from builtins import str
 import datetime
 import argparse
 import sys

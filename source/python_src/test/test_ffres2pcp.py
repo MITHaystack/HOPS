@@ -1,7 +1,5 @@
 """integration test for ffres2pcp_lib"""
 #core imports
-from __future__ import print_function
-from builtins import str
 import datetime
 import argparse
 import sys

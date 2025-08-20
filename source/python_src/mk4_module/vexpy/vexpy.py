@@ -1,7 +1,6 @@
 """provides python access to vex parsing library"""
 
 #core imports
-from __future__ import print_function
 import ctypes
 import os
 

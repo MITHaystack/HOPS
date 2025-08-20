@@ -5,9 +5,6 @@
 # 11/21/2017 first version jpb
 
 #core imports
-from __future__ import print_function
-from builtins import input
-from builtins import str
 import datetime
 import argparse
 import sys

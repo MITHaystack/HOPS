@@ -1,10 +1,6 @@
 """utility classes/functions primarily related to regression testing of HOPS/fourfit"""
 
 #core imports
-from __future__ import print_function
-from __future__ import division
-from builtins import str
-from builtins import range
 from io import open
 import os
 import sys

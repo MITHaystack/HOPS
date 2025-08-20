@@ -1,10 +1,6 @@
 """ some useful utility functions for data processing with fourfit """
 
 #core imports
-from __future__ import absolute_import
-from builtins import filter
-from builtins import next
-from builtins import str
 import os, sys
 import json
 #set up module level logger
