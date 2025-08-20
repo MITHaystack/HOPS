@@ -12,7 +12,7 @@ if(PY_EXE)
     else(HOPS_PYPI_MANAGE_DEPS)
 
         #look for our minimal set of python dependencies and warn user if they are not found
-        set(PYTHON_PACKAGES "numpy" "scipy" "matplotlib" "future")
+        set(PYTHON_PACKAGES "numpy" "scipy" "matplotlib")
 
         foreach(pkg IN LISTS PYTHON_PACKAGES)
             execute_process(
