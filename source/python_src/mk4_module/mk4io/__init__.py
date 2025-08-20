@@ -1,4 +1,5 @@
 """python-ctypes library for interface with mk4io data-types"""
+from .__version__ import __version__
 
 from .mk4io import  mk4redefine_array_length
 from .mk4io import  mk4redefine_char_array_length

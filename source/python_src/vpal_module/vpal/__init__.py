@@ -1,3 +1,5 @@
+from .__version__ import __version__
+
 from . import utility
 from . import report_lib
 from . import fringe_file_manipulation
