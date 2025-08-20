@@ -1,9 +1,6 @@
 """module accessing fourfit control file data via c-library """
 
 #core imports
-from __future__ import print_function
-from builtins import chr
-from builtins import range
 import ctypes
 import os
 import shutil

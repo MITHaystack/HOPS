@@ -1,8 +1,6 @@
 """provides access to a-file data via c-library"""
 
 #core imports
-from __future__ import print_function
-from builtins import range
 import ctypes
 import os
 

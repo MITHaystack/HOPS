@@ -1,3 +1,5 @@
+from .__version__ import __version__
+
 from .hops_test import check_thread_is_alive
 from .hops_test import FourFitThread
 from .hops_test import find_fringe_files

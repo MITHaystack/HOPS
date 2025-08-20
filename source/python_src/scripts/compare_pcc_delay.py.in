@@ -1,10 +1,6 @@
 #!@PY_EXE@
 
 """plot proxy cable cal time series"""
-
-from __future__ import print_function
-from builtins import range
-
 import sys
 import os
 import argparse
