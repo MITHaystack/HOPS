@@ -2,12 +2,23 @@ if(PY_EXE)
 
     if(HOPS_PYPI_MANAGE_DEPS)
         
-         #if the user chooses to enable HOPS_PYPI_MANAGE_DEPS, then we can use pip to pull/install the python dependencies
-         #for us at time of installation, but we don't do this automatically 
-         set(REQUIREMENTS_TXT_IN "${CMAKE_CURRENT_SOURCE_DIR}/requirements.txt")
-         set(REQUIREMENTS_TXT "${CMAKE_CURRENT_BINARY_DIR}/requirements.txt")
-         configure_file(${REQUIREMENTS_TXT_IN} ${REQUIREMENTS_TXT})
-         install(CODE "execute_process(COMMAND ${PY_EXE} -m pip install --upgrade --target=${PYTHON_MODULE_INSTALL_DIR} -r ${REQUIREMENTS_TXT} )")
+        #look for our minimal set of python dependencies and install them if they are not found
+        set(PYTHON_PACKAGES "numpy" "scipy" "matplotlib")
+
+        foreach(pkg IN LISTS PYTHON_PACKAGES)
+            execute_process(
+                COMMAND ${PY_EXE} -c "import ${pkg}"
+                RESULT_VARIABLE _status
+                OUTPUT_QUIET
+                ERROR_QUIET
+            )
+            if(NOT _status EQUAL 0)
+                message(WARNING "Python package '${pkg}' not found, installing it via pip. ")
+                install(CODE "execute_process(COMMAND ${PY_EXE} -m pip install --upgrade --target=${PYTHON_MODULE_INSTALL_DIR} ${pkg} )")
+            else()
+                message(STATUS "Python package '${pkg}' found.")
+            endif()
+        endforeach()
 
     else(HOPS_PYPI_MANAGE_DEPS)
 
@@ -24,6 +35,8 @@ if(PY_EXE)
             if(NOT _status EQUAL 0)
                 message(WARNING "Python package '${pkg}' not found. You may need to install it, or toggle HOPS_PYPI_MANAGE_DEPS to ON ")
                 set(MISSING_PYTHON_PACKAGES TRUE)
+            else()
+                message(STATUS "Python package '${pkg}' found.")
             endif()
         endforeach()
 
