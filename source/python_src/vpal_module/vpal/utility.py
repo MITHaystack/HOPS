@@ -1,6 +1,7 @@
 """utility function module"""
 #core imports
 import sys
+import math
 
 #non-core imports
 import numpy
@@ -75,6 +76,76 @@ def int_to_time(t):
     
     return year, int(day), int(hour), int(minute), sec
 
+
+def native_circmean(samples, high=2*math.pi, low=0.0):
+    """
+    Compute the circular mean of angles.
+
+    Parameters
+    ----------
+    samples : iterable of floats
+        Input angles (can be in degrees or radians, but must be consistent).
+    high : float, optional
+        Upper boundary of the range. Default is 2*pi (radians).
+    low : float, optional
+        Lower boundary of the range. Default is 0 (radians).
+
+    Returns
+    -------
+    mean_angle : float
+        Circular mean in the same units as input.
+    """
+    #normalize
+    angles = [( (x - low) / (high - low) ) * 2*math.pi for x in samples]
+
+    #mean cos/sin
+    sin_sum = sum(math.sin(a) for a in angles)
+    cos_sum = sum(math.cos(a) for a in angles)
+
+    # atan2 gives mean angle
+    mean_angle = math.atan2(sin_sum, cos_sum)
+
+    #clamp to [0,2pi]
+    if mean_angle < 0:
+        mean_angle += 2*math.pi
+
+    #rescale
+    return low + (mean_angle / (2*math.pi)) * (high - low)
+
+def native_circstd(samples, high=2*math.pi, low=0.0):
+    """
+    Compute the circular standard deviation of angles.
+
+    Parameters
+    ----------
+    samples : iterable of floats
+        Input angles (must be consistent units: all radians or all degrees).
+    high : float, optional
+        Upper boundary of the range. Default is 2*pi(radians).
+    low : float, optional
+        Lower boundary of the range. Default is 0 (radians).
+
+    Returns
+    -------
+    circ_std : float
+        Circular standard deviation in the same units as input.
+    """
+    #normalize
+    angles = [((x - low) / (high - low)) * 2*math.pi for x in samples]
+    n = len(angles)
+
+    #compute mean cos/sin
+    c = sum(math.cos(a) for a in angles) / n
+    s = sum(math.sin(a) for a in angles) / n
+
+    #magnitude
+    R = math.sqrt(c*c + s*s)
+
+    #compute circular std
+    circ_std = math.sqrt(-2 * math.log(R))
+
+    #rescale
+    return circ_std * (high - low) / (2*math.pi)
 
 
 class DiscreteQuantityFilter(object):

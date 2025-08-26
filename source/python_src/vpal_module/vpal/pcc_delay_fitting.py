@@ -11,13 +11,15 @@ import copy
 import logging
 pcc_fit_logger = logging.getLogger(__name__)
 
+from .utility import native_circmean
+from .utility import native_circstd
 from .utility import limit_periodic_quantity_to_range
 from .utility import minimum_angular_difference
 
 #non-core imports
 import numpy as np
 import scipy.optimize
-import scipy.stats
+#import scipy.stats
 
 PICOSECOND = 1e-12
 EPS = 1e-15
@@ -35,14 +37,16 @@ class PhasorFitData(object):
         for fq_ph in self.tone_phasors:
             angle = cmath.phase(fq_ph[1])
             phase_list.append(angle)
-        return scipy.stats.circmean( np.array(phase_list), low=-1.0*math.pi, high=math.pi)
+        return native_circmean( np.array(phase_list), low=-1.0*math.pi, high=math.pi)
+        # return scipy.stats.circmean( np.array(phase_list), low=-1.0*math.pi, high=math.pi)
 
     def get_phase_std(self):
         phase_list = []
         for fq_ph in self.tone_phasors:
             angle = cmath.phase(fq_ph[1])
             phase_list.append(angle)
-        return scipy.stats.circstd( np.array(phase_list), high=math.pi, low=-1.0*math.pi)
+        return native_circstd( np.array(phase_list), high=math.pi, low=-1.0*math.pi)
+        #return scipy.stats.circstd( np.array(phase_list), high=math.pi, low=-1.0*math.pi)
 
 ################################################################################
 
