@@ -21,12 +21,10 @@ import numpy as np
 
 #make scipy.optimize optional, fallback to native impl if missing
 try:
-    from scipy.optimize import basinhopping
-    from scipy.optimize import minimize
-except ImportError:
-    print("scipy failed to import, using native impl")
-    from .utility import basinhopping
-    from .utility import minimize
+    from scipy.optimize import basinhopping, minimize
+except Exception:
+    from .utility import basinhopping, minimize
+
 
 PICOSECOND = 1e-12
 EPS = 1e-15
