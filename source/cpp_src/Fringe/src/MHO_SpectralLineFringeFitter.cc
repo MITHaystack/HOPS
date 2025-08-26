@@ -32,7 +32,6 @@ MHO_SpectralLineFringeFitter::MHO_SpectralLineFringeFitter(MHO_FringeData* data)
     vis_data = nullptr;
     wt_data = nullptr;
     sbd_data = nullptr;
-    fNormFXOp = nullptr; //does not need to be deleted
 
     //must build the operator build manager
     fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
