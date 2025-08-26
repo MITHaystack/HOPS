@@ -4,7 +4,7 @@ import sys
 import math
 
 #non-core imports
-import numpy
+import numpy as np
 
 def limit_periodic_quantity_to_range(value_to_limit, low_value=-180.0, high_value=180.0):
     """clamp periodic variable to range [low_value,high_value)"""
@@ -258,11 +258,11 @@ def compute_weighted_mean(value_list, weight_list):
 def mad(value_list):
     """computes the median absolute deviation of a list of numbers
     see: Anomaly Detection by Robust Statistics, P. Rousseeuw & M. Hubert"""
-    med = numpy.median(value_list)
+    med = np.median(value_list)
     diff = []
     for val in value_list:
         diff.append( abs(val - med) )
-    med_diff = numpy.median(diff)
+    med_diff = np.median(diff)
     scale_factor = 1.4826
     return scale_factor*med_diff
 
@@ -482,3 +482,115 @@ class Bar(object):
         sys.stdout.write('\n')
         sys.stdout.flush()
         self.tick_count = 0
+
+
+################################################################################
+#replacement functions for when scipy.optimize is not available
+
+class OptimizeResult(dict):
+    """Mimics scipy.optimize.OptimizeResult as a dict with attribute access."""
+    __getattr__ = dict.get
+    __setattr__ = dict.__setitem__
+
+def nelder_mead(func, x0, args=(), maxiter=200, tol=1e-6, disp=False):
+    """
+    Minimal Nelder-Mead optimizer, drop-in for scipy.optimize.minimize with method='Nelder-Mead'.
+    """
+    x0 = np.asarray(x0, dtype=float)
+    n = len(x0)
+
+    # initial simplex
+    simplex = np.zeros((n+1, n))
+    simplex[0] = x0
+    for i in range(n):
+        y = np.array(x0, copy=True)
+        y[i] = y[i] + 0.05 if y[i] == 0 else y[i] * 1.05
+        simplex[i+1] = y
+
+    fvals = np.array([func(x, *args) for x in simplex])
+
+    for iteration in range(maxiter):
+        idx = np.argsort(fvals)
+        simplex, fvals = simplex[idx], fvals[idx]
+        best, worst = simplex[0], simplex[-1]
+
+        centroid = np.mean(simplex[:-1], axis=0)
+
+        # reflection
+        xr = centroid + (centroid - worst)
+        fr = func(xr, *args)
+
+        if fvals[0] <= fr < fvals[-2]:
+            simplex[-1], fvals[-1] = xr, fr
+        elif fr < fvals[0]:
+            # expansion
+            xe = centroid + 2 * (xr - centroid)
+            fe = func(xe, *args)
+            if fe < fr:
+                simplex[-1], fvals[-1] = xe, fe
+            else:
+                simplex[-1], fvals[-1] = xr, fr
+        else:
+            # contraction
+            xc = centroid + 0.5 * (worst - centroid)
+            fc = func(xc, *args)
+            if fc < fvals[-1]:
+                simplex[-1], fvals[-1] = xc, fc
+            else:
+                # shrink
+                for i in range(1, n+1):
+                    simplex[i] = simplex[0] + 0.5 * (simplex[i] - simplex[0])
+                    fvals[i] = func(simplex[i], *args)
+
+        if np.std(fvals) < tol:
+            break
+
+    if disp:
+        print(f"Nelder-Mead terminated at iter={iteration}, f={fvals[0]}")
+
+    return OptimizeResult(
+        x=simplex[0],
+        fun=fvals[0],
+        success=True,
+        nfev=len(fvals) + iteration * (n+1),
+        nit=iteration,
+        message="Optimization terminated successfully."
+    )
+
+def minimize(func, x0, args=(), method="Nelder-Mead", options=None):
+    """
+    Drop-in replacement for scipy.optimize.minimize with method='Nelder-Mead'.
+    """
+    if method != "Nelder-Mead":
+        raise NotImplementedError("Only Nelder-Mead is implemented in native minimize")
+    options = options or {}
+    return nelder_mead(
+        func, x0, args=args,
+        maxiter=options.get("maxiter", 200),
+        tol=options.get("xatol", 1e-6),
+        disp=options.get("disp", False)
+    )
+
+def basinhopping(func, x0, niter=100, minimizer_kwargs=None, take_step=None):
+    """
+    Minimal replacement for scipy.optimize.basinhopping.
+    """
+    minimizer_kwargs = minimizer_kwargs or {}
+    args = minimizer_kwargs.get("args", ())
+    method = minimizer_kwargs.get("method", "Nelder-Mead")
+
+    # initial local minimize
+    best = minimize(func, x0, args=args, method=method, options=minimizer_kwargs.get("options", {}))
+    xbest, fbest = best.x, best.fun
+
+    for _ in range(niter):
+        # random perturbation
+        xnew = np.array(xbest, copy=True)
+        if take_step is not None:
+            xnew = take_step(xnew)
+
+        trial = minimize(func, xnew, args=args, method=method, options=minimizer_kwargs.get("options", {}))
+        if trial.fun < fbest:
+            xbest, fbest = trial.x, trial.fun
+
+    return OptimizeResult(x=xbest, fun=fbest, success=True, message="Basinhopping terminated successfully.")
