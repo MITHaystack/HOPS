@@ -19,7 +19,6 @@ from .utility import minimum_angular_difference
 #non-core imports
 import numpy as np
 import scipy.optimize
-#import scipy.stats
 
 PICOSECOND = 1e-12
 EPS = 1e-15
