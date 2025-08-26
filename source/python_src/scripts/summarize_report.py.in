@@ -8,7 +8,6 @@ import math
 
 #non-core imports
 import numpy as np
-import scipy.stats
 #set the plotting back-end to 'agg' to avoid display
 import matplotlib as mpl
 mpl.use('Agg')
@@ -21,11 +20,15 @@ import matplotlib.ticker as ticker
 import matplotlib.patches as mpatches
 import matplotlib.mlab as mlab
 
-
 #HOPS module imports
 import vpal.fourphase_lib
 import vpal.ffres2pcp_lib
 from vpal.utility import tabulate as tabulate
+from vpal.utility import native_circmean
+
+#gaussian dist
+def norm_pdf(x, mean=0.0, sigma=1.0):
+    return (1.0 / (sigma * np.sqrt(2.0 * np.pi))) * np.exp(-0.5 * ((x - mean) / sigma) ** 2)
 
 def read_fourphase_report(report_file):
     exp_report = vpal.fourphase_lib.ExperimentReportData()
@@ -109,7 +112,7 @@ def process_fourphase_plot(exp_report):
             dval = np.linspace(dlowlim, duplim,100)
             dx = ((duplim - dlowlim)/float(ndbins))
             scale = len(delays)*dx
-            plt.plot(dval, scale*scipy.stats.norm.pdf(dval, val.get_delay_offset_mean()*micro_to_nano, val.get_delay_offset_error()*micro_to_nano))
+            plt.plot(dval, scale*norm_pdf(dval, val.get_delay_offset_mean()*micro_to_nano, val.get_delay_offset_error()*micro_to_nano))
 
             ax2 = auto_fig.add_subplot(212)
             ax2.set_ylabel('Number of scans')
@@ -122,13 +125,14 @@ def process_fourphase_plot(exp_report):
             nphbins = 50
             n2, bins2, patches2 = plt.hist(phases, nphbins, range=[phlowlim, phuplim], facecolor='g', alpha=0.75)
             plt.axvline(val.get_phase_offset_mean(), color='k', linestyle='solid', linewidth=1) #mean of cut data
-            plt.axvline(scipy.stats.circmean( np.asarray(phases), low=-180.0, high=180.0), color='r', linestyle='dashed', linewidth=1)  #mean of no-cut data
+            plt.axvline(native_circmean( np.asarray(phases), low=-180.0, high=180.0), color='r', linestyle='dashed', linewidth=1)  #mean of no-cut data
 
             #plot a gaussian about the central estimator
             phval = np.linspace(phlowlim, phuplim,100)
             dph = ((phuplim - phlowlim)/float(nphbins))
             scale = len(phases)*dph
-            plt.plot(phval, scale*scipy.stats.norm.pdf(phval, val.get_phase_offset_mean(), val.get_phase_offset_error()))
+            plt.plot(phval, scale*norm_pdf(phval, val.get_phase_offset_mean(), val.get_phase_offset_error()))
+
 
             plt.tight_layout()
             auto_fig_name = "./yx_delay_phase_offsets_" + st + ".png"
