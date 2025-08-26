@@ -12,7 +12,6 @@ fourphase_logger = logging.getLogger(__name__)
 
 #non-core imports
 import numpy as np
-#import scipy.stats
 
 #hops package python libs
 import ffcontrol
@@ -264,8 +263,6 @@ class VGOSFourphaseSingleScanProcessor(object):
             if len(tmp_val) != 0:
                 st_phase_offsets[st] = utility.native_circmean( np.asarray(tmp_val), low=-180.0, high=180.0)
                 st_phase_err[st] = utility.native_circstd( np.asarray(tmp_val), low=-180.0, high=180.0)
-                # st_phase_offsets[st] = scipy.stats.circmean( np.asarray(tmp_val), low=-180.0, high=180.0)
-                # st_phase_err[st] = scipy.stats.circstd( np.asarray(tmp_val), low=-180.0, high=180.0)
         return st_phase_offsets, st_phase_err
 
 ################################################################################
@@ -403,8 +400,6 @@ class MixedModeFourphaseSingleScanProcessor(object):
             if len(tmp_val) != 0:
                 st_phase_offsets[st] = utility.native_circmean( np.asarray(tmp_val), low=-180.0, high=180.0)
                 st_phase_err[st] = utility.native_circstd( np.asarray(tmp_val), low=-180.0, high=180.0)
-                # st_phase_offsets[st] = scipy.stats.circmean( np.asarray(tmp_val), low=-180.0, high=180.0)
-                # st_phase_err[st] = scipy.stats.circstd( np.asarray(tmp_val), low=-180.0, high=180.0)
         return st_phase_offsets, st_phase_err
 
 
@@ -545,7 +540,6 @@ class SingleStationPhaseDelayOffsets( report_lib.JsonSerializableObject ):
             all_values.extend(tmp_val)
         if len(all_values) != 0:
             return utility.native_circmean( np.asarray(all_values), low=-180.0, high=180.0)
-            # return scipy.stats.circmean( np.asarray(all_values), low=-180.0, high=180.0)
         else:
             fourphase_logger.error( 'Error: station ' + self.station_id + ' has no useable phase offset data to compute mean Y-X phase offset.' )
             return 0.0
@@ -557,7 +551,6 @@ class SingleStationPhaseDelayOffsets( report_lib.JsonSerializableObject ):
             all_values.extend(tmp_val)
         if len(all_values) != 0:
             return utility.native_circstd( np.asarray(all_values), low=-180.0, high=180.0)
-            # return scipy.stats.circstd( np.asarray(all_values), low=-180.0, high=180.0)
         else:
             fourphase_logger.error( 'Error: station ' + self.station_id + ' has no useable phase offset data to compute std. dev of Y-X phase offset.' )
             return np.nan

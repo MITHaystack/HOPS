@@ -11,7 +11,6 @@ ffres2pcp_logger = logging.getLogger(__name__)
 
 #non-core imports
 import numpy as np
-#import scipy.stats
 
 #hops package python libs
 import ffcontrol
@@ -160,8 +159,6 @@ class SingleStationPCPhases( report_lib.JsonSerializableObject ):
             if len(val_list) != 0:
                 self.mean_pc_phases[ch_key] = utility.native_circmean( np.asarray(val_list), high=180.0, low=-180.0)
                 self.stddev_pc_phases[ch_key] = utility.native_circstd( np.asarray(val_list), high=180.0, low=-180.0)
-                # self.mean_pc_phases[ch_key] = scipy.stats.circmean( np.asarray(val_list), high=180.0, low=-180.0)
-                # self.stddev_pc_phases[ch_key] = scipy.stats.circstd( np.asarray(val_list), high=180.0, low=-180.0)
 
     def merge(self, obj):
         """ merge in the data from another object of the same time (assuming it matches the station and pol) """
