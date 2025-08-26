@@ -7,7 +7,6 @@ import math
 
 #non-core imports
 import numpy as np
-import scipy.stats
 
 #hops package python libs
 import mk4io
@@ -17,6 +16,7 @@ import hops_test as ht
 from . import utility
 from . import report_lib
 
+import math
 
 class FringeFileHandle(object):
     """container class for data associated with a fringe file """
@@ -421,7 +421,8 @@ class PhaseResidualData(object):
             phase_list_proxy = [(-1.0*((math.pi/180.0)))*x for x in phase_list_proxy] #negate and convert to radians
             phase_list_proxy = np.unwrap(phase_list_proxy) #arguments must be in radians
             phase_list_proxy = [((180.0/math.pi))*x for x in phase_list_proxy] #convert back to degrees
-            mean_phase = scipy.stats.circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
+            mean_phase = utility.native_circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
+            #mean_phase = scipy.stats.circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
             phase_list_proxy = [ utility.limit_periodic_quantity_to_range( (x - mean_phase), -180.0, 180.0 ) for x in phase_list_proxy] #subtract off the mean and limit to [-180,180)
 
             #assign the corrections

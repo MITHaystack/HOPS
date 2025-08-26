@@ -13,7 +13,6 @@ pcc_logger = logging.getLogger(__name__)
 
 #non-core imports
 import numpy as np
-import scipy.stats
 
 try:
     from progress.bar import Bar
