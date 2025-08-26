@@ -416,11 +416,8 @@ class PhaseResidualData(object):
                 channel_list.append(ch)
                 phase_list_proxy.append( ch_phase )
 
-            #invert, unwrap and remove mean phase
-            #TODO FIXME -- the next 3 lines effectively do nothing, we have no need to unwrap
-            phase_list_proxy = [(-1.0*((math.pi/180.0)))*x for x in phase_list_proxy] #negate and convert to radians
-            phase_list_proxy = np.unwrap(phase_list_proxy) #arguments must be in radians
-            phase_list_proxy = [((180.0/math.pi))*x for x in phase_list_proxy] #convert back to degrees
+            #invert and remove mean phase
+            phase_list_proxy = [-1.0*x for x in phase_list_proxy] #negate
             mean_phase = utility.native_circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
             phase_list_proxy = [ utility.limit_periodic_quantity_to_range( (x - mean_phase), -180.0, 180.0 ) for x in phase_list_proxy] #subtract off the mean and limit to [-180,180)
 
