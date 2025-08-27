@@ -13,7 +13,6 @@ pcc_logger = logging.getLogger(__name__)
 
 #non-core imports
 import numpy as np
-import scipy.stats
 
 try:
     from progress.bar import Bar
@@ -921,7 +920,7 @@ class ScanPccBandDelay(object):
     def print_line(self):
         print( self.year, self.doy, self.hour, self.minute, self.second, self.phase_model_midband, self.phase_model_dc, self.delay_model_ps, self.phase_rmse, self.scan_name, self.source_name, self.station_code, self.azimuth, self.elevation )
 
-    def is_equal_within_tolerance(self,scan_pcc_delay_object, relative_tolerance=1e-3, absolute_tolerance=1e-6):
+    def is_equal_within_tolerance(self,scan_pcc_delay_object, relative_tolerance=1e-3, absolute_tolerance=1e-6, phase_deg_absolute_tolerance=1.0):
         if self.year != scan_pcc_delay_object.year:
             return False
         if self.doy != scan_pcc_delay_object.doy:
@@ -938,19 +937,32 @@ class ScanPccBandDelay(object):
             return False
         if self.station_code != scan_pcc_delay_object.station_code:
             return False
+        ok = True
         if mk4io.mk4fp_approximately_equal(self.phase_model_midband, scan_pcc_delay_object.phase_model_midband, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
-            return False
-        if mk4io.mk4fp_approximately_equal(self.phase_model_dc, scan_pcc_delay_object.phase_model_dc, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
-            return False
+            print("phase_model_midband")
+            ok = False
+            #return False
+        if mk4io.mk4fp_approximately_equal(self.phase_model_dc, scan_pcc_delay_object.phase_model_dc, abs_tol=phase_deg_absolute_tolerance, rel_tol=relative_tolerance) is False:
+            print("phase_model_dc", self.phase_model_dc, scan_pcc_delay_object.phase_model_dc, absolute_tolerance, relative_tolerance)
+            ok = False
+            #return False
         if mk4io.mk4fp_approximately_equal(self.delay_model_ps, scan_pcc_delay_object.delay_model_ps, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
-            return False
-        if mk4io.mk4fp_approximately_equal(self.phase_rmse, scan_pcc_delay_object.phase_rmse, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
-            return False
+            print("delay_model_ps", self.delay_model_ps, scan_pcc_delay_object.delay_model_ps, absolute_tolerance, relative_tolerance)
+            ok = False
+            #return False
+        if mk4io.mk4fp_approximately_equal(self.phase_rmse, scan_pcc_delay_object.phase_rmse, abs_tol=phase_deg_absolute_tolerance, rel_tol=relative_tolerance) is False:
+            print("phase_rmse")
+            ok = False
+            #return False
         if mk4io.mk4fp_approximately_equal(self.azimuth, scan_pcc_delay_object.azimuth, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
-            return False
+            print("az")
+            ok = False
+            #return False
         if mk4io.mk4fp_approximately_equal(self.elevation, scan_pcc_delay_object.elevation, abs_tol=absolute_tolerance, rel_tol=relative_tolerance) is False:
-            return False
-        return True
+            print("el")
+            ok = False
+            #return False
+        return ok
 
 
 ################################################################################

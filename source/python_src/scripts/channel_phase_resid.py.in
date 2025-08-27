@@ -10,7 +10,6 @@ from datetime import datetime
 
 #non-core imports
 import numpy as np
-import scipy.stats
 
 #HOPS module imports
 import vpal.processing
@@ -181,7 +180,7 @@ def main():
                     phase_list_proxy = [-1.0*((math.pi/180.0))*x for x in phase_list_proxy] #negate and convert to radians
                     phase_list_proxy = np.unwrap(phase_list_proxy) #arguments must be in radians
                     phase_list_proxy = [((180.0/math.pi))*x for x in phase_list_proxy] #convert back to degrees
-                    mean_phase = scipy.stats.circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
+                    mean_phase = vpal.utility.circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
                     phase_list_proxy = [ (x - mean_phase) for x in phase_list_proxy] #subtract off the mean
                     for i in list(range(0,len(phase_index))):
                         ch = phase_index[i]
@@ -223,8 +222,8 @@ def main():
     channel_mean_phase = dict()
     channel_stddev = dict()
     for ch in args.channels:
-        channel_mean_phase[ch] = scipy.stats.circmean( np.asarray(channel_phase[ch]), high=180.0, low=-180.0) #compute circular mean phase
-        channel_stddev[ch] = scipy.stats.circstd( np.asarray(channel_phase[ch]), high=180, low=-180) #compute circular std dev.
+        channel_mean_phase[ch] = vpal.utility.circmean( np.asarray(channel_phase[ch]), high=180.0, low=-180.0) #compute circular mean phase
+        channel_stddev[ch] = vpal.utility.circstd( np.asarray(channel_phase[ch]), high=180, low=-180) #compute circular std dev.
         print( "(mean, std. dev) phase for channel: ", ch, " = ", channel_mean_phase[ch], channel_stddev[ch])
 
 

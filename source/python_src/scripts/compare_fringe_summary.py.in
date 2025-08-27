@@ -13,7 +13,6 @@ import copy
 import matplotlib as mpl
 # mpl.use('TkAgg')
 import numpy as np
-import scipy.stats
 import pandas as pd
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt

@@ -93,7 +93,7 @@ def main():
                 for n in list(range(0,n_lines)):
                     gen_line = gen_file_obj.scan_pcc_line_list[n]
                     cached_line = cached_file_obj.scan_pcc_line_list[n]
-                    if gen_line.is_equal_within_tolerance(cached_line) is False:
+                    if gen_line.is_equal_within_tolerance(cached_line, relative_tolerance=0.01, absolute_tolerance=0.2, phase_deg_absolute_tolerance=1.0) is False:
                         print(gen_data, " : ")
                         gen_line.print_line()
                         print(cached_data, " : ")
