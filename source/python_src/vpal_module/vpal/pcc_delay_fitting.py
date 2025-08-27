@@ -11,13 +11,20 @@ import copy
 import logging
 pcc_fit_logger = logging.getLogger(__name__)
 
+from .utility import native_circmean
+from .utility import native_circstd
 from .utility import limit_periodic_quantity_to_range
 from .utility import minimum_angular_difference
 
 #non-core imports
 import numpy as np
-import scipy.optimize
-import scipy.stats
+
+#make scipy.optimize optional, fallback to native impl if missing
+try:
+    from scipy.optimize import basinhopping, minimize
+except Exception:
+    from .utility import basinhopping, minimize
+
 
 PICOSECOND = 1e-12
 EPS = 1e-15
@@ -35,14 +42,14 @@ class PhasorFitData(object):
         for fq_ph in self.tone_phasors:
             angle = cmath.phase(fq_ph[1])
             phase_list.append(angle)
-        return scipy.stats.circmean( np.array(phase_list), low=-1.0*math.pi, high=math.pi)
+        return native_circmean( np.array(phase_list), low=-1.0*math.pi, high=math.pi)
 
     def get_phase_std(self):
         phase_list = []
         for fq_ph in self.tone_phasors:
             angle = cmath.phase(fq_ph[1])
             phase_list.append(angle)
-        return scipy.stats.circstd( np.array(phase_list), high=math.pi, low=-1.0*math.pi)
+        return native_circstd( np.array(phase_list), high=math.pi, low=-1.0*math.pi)
 
 ################################################################################
 
@@ -111,7 +118,7 @@ class BandDelayFitter(object):
             np.random.seed(1)
 
             #initial fit is done using basin-hopping (stochastic fitter)
-            ret = scipy.optimize.basinhopping(self.fit_function1, param, niter=self.basinhopping_niter, minimizer_kwargs={"method" : "Nelder-Mead", "args" : (fit_data,)}, take_step=stepper)
+            ret = basinhopping(self.fit_function1, param, niter=self.basinhopping_niter, minimizer_kwargs={"method" : "Nelder-Mead", "args" : (fit_data,)}, take_step=stepper)
             #now try to strip outliers, which have residuals which are larger than some factor*sigma, score
             ph_resid = self.get_phase_residuals(fit_data, param[0], param[1])
             ph_resid_angles = [x[1] for x in ph_resid]
@@ -124,20 +131,14 @@ class BandDelayFitter(object):
                         fit_data.tone_phasors[n][3] = False #flip use-flag to false
                         n_cut += 1
 
-            ret = scipy.optimize.basinhopping(self.fit_function1, param, niter=self.basinhopping_niter, minimizer_kwargs={"method" : "Nelder-Mead", "args" : (fit_data,)}, take_step=stepper)
+            ret = basinhopping(self.fit_function1, param, niter=self.basinhopping_niter, minimizer_kwargs={"method" : "Nelder-Mead", "args" : (fit_data,)}, take_step=stepper)
             #then, a refined estimate is done locally
             param = ret.x
             display_fit_info = False
             if verbosity >= 3:
                 display_fit_info = True
             #use Nelder-Mead instead of CG as it is more stable
-            # init_simplex = []
-            # init_simplex.append([param[0], param[1]])
-            # init_simplex.append([param[0] + stepper.delay_step*0.1, param[1] ])
-            # init_simplex.append([param[0], param[1] + stepper.phase_step*0.1 ])
-            # ret = scipy.optimize.minimize(self.fit_function1, param, args=(fit_data,), method="Nelder-Mead", options = {'initial_simplex':init_simplex, 'disp':display_fit_info} )
-            ret = scipy.optimize.minimize(self.fit_function1, param, args=(fit_data,), method="Nelder-Mead", options = {'disp':display_fit_info} )
-            #ret = scipy.optimize.minimize(self.fit_function3, param, args=(fit_data,), method="CG", options = {'disp':display_fit_info} )
+            ret = minimize(self.fit_function1, param, args=(fit_data,), method="Nelder-Mead", options = {'disp':display_fit_info} )
             result.valid = ret.success
             result.delay = ret.x[0]
             result.phase_offset = ret.x[1]
