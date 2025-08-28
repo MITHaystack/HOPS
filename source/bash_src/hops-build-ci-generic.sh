@@ -7,6 +7,7 @@
 # HOPS_CACHED_TESTDATA_DIR
 # HOPS_CI_MAILER
 # HOPS_CI_MAIL_ADDRESS
+# HOPS_CI_LOG_DIR
 
 source $HOME/.bashrc
 if [ x"${HOPS_CI_DIR}" == "x" ];
@@ -36,10 +37,12 @@ else
 
     #build
     cd "$HOPS_CI_DIR/build"
-    CONFIG_LOG=$HOPS_CI_DIR/../config-${CURRENT_REV}.log
-    BUILD_LOG=$HOPS_CI_DIR/../build-${CURRENT_REV}.log
+    #clean up any old test-data directory:
+    rm -rf "$HOPS_CI_DIR/build/test_data"
+    CONFIG_LOG=${HOPS_CI_LOG_DIR}/config-${CURRENT_REV}.log
+    BUILD_LOG=${HOPS_CI_LOG_DIR}/build-${CURRENT_REV}.log
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_DEBUG_MSG=ON -DHOPS3_USE_CXX=OFF -DHOPS_ENABLE_TEST=ON -DHOPS_USE_DIFXIO=ON -DHOPS_USE_FFTW3=ON -DHOPS_USE_OPENCL=OFF -DHOPS_USE_PYBIND11=ON $HOPS_CI_DIR | tee $CONFIG_LOG
-    
+
     make clean
     make -j12 install | tee $BUILD_LOG
     source $HOPS_CI_DIR/x86_64-4.0.0/bin/hops.bash
@@ -52,11 +55,11 @@ else
         cp -r ${HOPS_CACHED_TESTDATA_DIR}/* $HOPS_CI_DIR/x86_64-4.0.0/data/test_data/
     fi
 
-    TEST_RUN_FILE=$HOPS_CI_DIR/../test-runner-${CURRENT_REV}.log
+    TEST_RUN_FILE=${HOPS_CI_LOG_DIR}/../test-runner-${CURRENT_REV}.log
     make test | tee $TEST_RUN_FILE
 
     #copy the test log
-    TEST_LOG=$HOPS_CI_DIR/../test-output-${CURRENT_REV}.log
+    TEST_LOG=${HOPS_CI_LOG_DIR}/test-output-${CURRENT_REV}.log
     cp $HOPS_CI_DIR/build/Testing/Temporary/LastTest.log $TEST_LOG
 
     END_TIME=$( date )
