@@ -40,9 +40,9 @@ else
     #test
     if [ x"${HOPS_CACHED_TESTDATA_DIR}" == "x" ];
     then
-        cp -r ${HOPS_CACHED_TESTDATA_DIR}/* $HOPS_CI_DIR/x86_64-4.0.0/data/test_data/
-    else
         $HOPS_CI_DIR/x86_64-4.0.0/bin/testdata_download_all.sh
+    else
+        cp -r ${HOPS_CACHED_TESTDATA_DIR}/* $HOPS_CI_DIR/x86_64-4.0.0/data/test_data/
     fi
 
     TEST_RUN_FILE=$HOPS_CI_DIR/../test-runner-${CURRENT_REV}.log
