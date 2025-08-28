@@ -8,7 +8,7 @@ else
     
     #cd to the CI directory and make a fresh clone of the repository master
     cd $HOPS_CI_DIR/../
-    rm -rf $HOPS_CI_DIR
+    # rm -rf $HOPS_CI_DIR
     mkdir -p $HOPS_CI_DIR
     git clone https://github.com/MITHaystack/HOPS.git
     cd $HOPS_CI_DIR
@@ -33,7 +33,7 @@ else
     BUILD_LOG=$HOPS_CI_DIR/../build-${CURRENT_REV}.log
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_DEBUG_MSG=ON -DHOPS3_USE_CXX=OFF -DHOPS_ENABLE_TEST=ON -DHOPS_USE_DIFXIO=ON -DHOPS_USE_FFTW3=ON -DHOPS_USE_OPENCL=OFF -DHOPS_USE_PYBIND11=ON $HOPS_CI_DIR | tee $CONFIG_LOG
     
-    
+    make clean
     make -j12 install | tee $BUILD_LOG
     source $HOPS_CI_DIR/x86_64-4.00/bin/hops.bash
 
