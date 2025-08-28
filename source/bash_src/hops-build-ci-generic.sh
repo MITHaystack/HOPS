@@ -31,7 +31,9 @@ else
     cd "$HOPS_CI_DIR/build"
     CONFIG_LOG=$HOPS_CI_DIR/../config-${CURRENT_REV}.log
     BUILD_LOG=$HOPS_CI_DIR/../build-${CURRENT_REV}.log
-    cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_DEBUG_MSG=ON -DHOPS3_USE_CXX=OFF -DHOPS_ENABLE_TEST=ON -DHOPS_USE_DIFXIO=ON -DHOPS_USE_FFTW3=ON -DHOPS_USE_OPENCL=OFF -DHOPS_USE_PYBIND11=ON $HOPS_CI_DIR | tee $CONFIG_LOG
+    cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_DEBUG_MSG=ON -DHOPS3_USE_CXX=OFF -DHOPS_ENABLE_TEST=ON -DHOPS_USE_DIFXIO=ON -DHOPS_USE_FFTW3=ON -DHOPS_USE_OPENCL=OFF -DHOPS_USE_PYBIND11=ON $HOPS_CI_DIR | tee $CONFIG_LOG
+    
+    
     make -j12 install | tee $BUILD_LOG
     source $HOPS_CI_DIR/x86_64-4.00/bin/hops.bash
 
@@ -48,7 +50,5 @@ else
     #e-mail out the log
     #echo "HOPS4 cmake build test start: $START_TIME, end $END_TIME" $'\n \n' "$( cat $TEST_RUN_FILE)" | mailx  -A $CONFIG_LOG -A $BUILD_LOG -A $TEST_LOG -s "HOPS4 build test results - $CURRENT_REV" barrettj@mit.edu
     echo "HOPS4 cmake build (HOPS3 as C) test start: $START_TIME, end $END_TIME" $'\n \n' "Log files in $CONFIG_LOG, $BUILD_LOG, and $TEST_LOG" $'\n \n' "$( cat $TEST_RUN_FILE)" | mailx   -s "HOPS4 build test results - $CURRENT_REV" barrettj@mit.edu
-
-
 
 fi
