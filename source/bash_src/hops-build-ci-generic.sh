@@ -37,7 +37,7 @@ else
     make -j12 install | tee $BUILD_LOG
     source $HOPS_CI_DIR/x86_64-4.0.0/bin/hops.bash
 
-    #test
+    #get test data
     if [ x"${HOPS_CACHED_TESTDATA_DIR}" == "x" ];
     then
         $HOPS_CI_DIR/x86_64-4.0.0/bin/testdata_download_all.sh
@@ -54,8 +54,12 @@ else
 
     END_TIME=$( date )
 
-    #e-mail out the log
-    #echo "HOPS4 cmake build test start: $START_TIME, end $END_TIME" $'\n \n' "$( cat $TEST_RUN_FILE)" | mailx  -A $CONFIG_LOG -A $BUILD_LOG -A $TEST_LOG -s "HOPS4 build test results - $CURRENT_REV" barrettj@mit.edu
-    echo "HOPS4 cmake build (HOPS3 as C) test start: $START_TIME, end $END_TIME" $'\n \n' "Log files in $CONFIG_LOG, $BUILD_LOG, and $TEST_LOG" $'\n \n' "$( cat $TEST_RUN_FILE)" | mailx   -s "HOPS4 build test results - $CURRENT_REV" barrettj@mit.edu
+    #e-mail out the test log
+    if [ x"${HOPS_CI_MAILER}" == "x" ];
+    then
+        echo "No mailer available."
+    else
+        echo "HOPS4 cmake build start: $START_TIME, end $END_TIME" $'\n \n' "Log files in $CONFIG_LOG, $BUILD_LOG, and $TEST_LOG" $'\n \n' "$( cat $TEST_RUN_FILE)" | ${HOPS_CI_MAILER} -s "HOPS4 build test results - $CURRENT_REV" ${HOPS_CI_MAIL_ADDRESS}
+    fi
 
 fi
