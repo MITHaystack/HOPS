@@ -1,4 +1,13 @@
 #!/bin/bash
+
+#needed to define the following variables in .bashrc 
+# HOPS_CICD_KEY
+# DIFX_BUILD_DIR
+# HOPS_CI_DIR
+# HOPS_CACHED_TESTDATA_DIR
+# HOPS_CI_MAILER
+# HOPS_CI_MAIL_ADDRESS
+
 source $HOME/.bashrc
 if [ x"${HOPS_CI_DIR}" == "x" ];
 then
@@ -6,10 +15,8 @@ then
 else
     START_TIME=$( date )
     
-    #cd to the CI directory and make a fresh clone of the repository master
+    #cd to the CI working directory and make a fresh clone of the repository master
     cd $HOPS_CI_DIR/../
-    # rm -rf $HOPS_CI_DIR
-    mkdir -p $HOPS_CI_DIR
     git clone https://github.com/MITHaystack/HOPS.git
     cd $HOPS_CI_DIR
     CURRENT_REV=$( git rev-parse --short HEAD )
