@@ -1,5 +1,5 @@
 #!/bin/bash
-source $HOME/.bash_profile
+source $HOME/.bashrc
 if [ x"${HOPS_CI_DIR}" == "x" ];
 then
     echo "HOPS CI directory not set."
@@ -38,7 +38,13 @@ else
     source $HOPS_CI_DIR/x86_64-4.0.0/bin/hops.bash
 
     #test
-    $HOPS_CI_DIR/x86_64-4.0.0/bin/testdata_download_all.sh
+    if [ x"${HOPS_CACHED_TESTDATA_DIR}" == "x" ];
+    then
+        cp -r ${HOPS_CACHED_TESTDATA_DIR}/* $HOPS_CI_DIR/x86_64-4.0.0/data/test_data/
+    else
+        $HOPS_CI_DIR/x86_64-4.0.0/bin/testdata_download_all.sh
+    fi
+
     TEST_RUN_FILE=$HOPS_CI_DIR/../test-runner-${CURRENT_REV}.log
     make test | tee $TEST_RUN_FILE
 
