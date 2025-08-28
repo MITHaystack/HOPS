@@ -62,11 +62,7 @@ else
     END_TIME=$( date )
 
     #e-mail out the test log
-    if [ x"${HOPS_CI_MAILER}" == "x" ];
-    then
-        echo "No mailer available."
-    else
-        echo "HOPS4 cmake build start: $START_TIME, end $END_TIME" $'\n \n' "Log files in $CONFIG_LOG, $BUILD_LOG, and $TEST_LOG" $'\n \n' "$( cat $TEST_RUN_FILE)" | ${HOPS_CI_MAILER} -s "HOPS4 build test results - $CURRENT_REV" ${HOPS_CI_MAIL_ADDRESS}
-    fi
+    echo "HOPS4 cmake build start: $START_TIME, end $END_TIME" $'\n \n' "Log files in $CONFIG_LOG, $BUILD_LOG, and $TEST_LOG" $'\n \n' "$( cat $TEST_RUN_FILE)" | ${HOPS_CI_MAILER} -s "HOPS4 build test results - $CURRENT_REV" ${HOPS_CI_MAIL_ADDRESS}
+
 
 fi
