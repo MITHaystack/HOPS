@@ -35,10 +35,10 @@ else
     
     make clean
     make -j12 install | tee $BUILD_LOG
-    source $HOPS_CI_DIR/x86_64-4.00/bin/hops.bash
+    source $HOPS_CI_DIR/x86_64-4.0.0/bin/hops.bash
 
     #test
-    $HOPS_CI_DIR/x86_64-4.00/bin/testdata_download_all.sh
+    $HOPS_CI_DIR/x86_64-4.0.0/bin/testdata_download_all.sh
     TEST_RUN_FILE=$HOPS_CI_DIR/../test-runner-${CURRENT_REV}.log
     make test | tee $TEST_RUN_FILE
 
