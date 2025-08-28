@@ -38,6 +38,7 @@ else
     source $HOPS_CI_DIR/x86_64-4.00/bin/hops.bash
 
     #test
+    testdata_download_all.sh
     TEST_RUN_FILE=$HOPS_CI_DIR/../test-runner-${CURRENT_REV}.log
     make test | tee $TEST_RUN_FILE
 
