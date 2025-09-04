@@ -24,12 +24,14 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
         MHO_BasicPlotVisitor();
         virtual ~MHO_BasicPlotVisitor();
 
-    protected:
         /**
          * @brief Main plotting function - creates the complete fourfit plot
          * @param data Input MHO_FringeData for plotting
          */
         virtual void Plot(MHO_FringeData* data) override;
+
+    protected:
+
 
     private:
 
