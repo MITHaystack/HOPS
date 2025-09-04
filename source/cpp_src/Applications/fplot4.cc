@@ -109,7 +109,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     std::string backend = "gnuplot";
 
     std::vector< std::string > msg_cats = {"main",           "calibration",  "containers", "control", "fringe",         "file",
-                                           "initialization", "mk4interface", "utilities",  "vex",     "python_bindings"};
+                                           "initialization", "mk4interface", "utilities",  "vex", "plot",  "python_bindings"};
 
     std::stringstream ss;
     ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
@@ -357,7 +357,6 @@ int main(int argc, char** argv)
         bool ok = extract_plot_data(fdata.GetPlotData(), param_data, filename);
         fdata.GetParameterStore()->FillData(param_data);
 
-
         //check if this file matches any of the selection criteria (if passed)
         std::string baseline = paramStore.GetAs< std::string >("/cmdline/baseline");
         std::string fgroup = paramStore.GetAs< std::string >("/cmdline/frequency_group");
@@ -365,9 +364,6 @@ int main(int argc, char** argv)
         //call the plotting mechanism
         if(ok)
         {
-            //msg_debug("main", "python plot generation enabled." << eom);
-            //py::dict plot_obj = plot_data; //convert to dictionary object
-
             //grab the selection info
             std::string obj_baseline = fdata.GetParameterStore()->GetAs<std::string>("/pass/baseline"); 
             std::string obj_fgroup = fdata.GetParameterStore()->GetAs<std::string>("pass/frequency_group");
@@ -376,7 +372,6 @@ int main(int argc, char** argv)
             if(match_baseline(baseline, obj_baseline) && match_fgroup(fgroup, obj_fgroup) &&
                match_polprod(polprod, obj_polprod))
             {
-                
                 //specify what plotting operation is needed in the parameter store
                 fdata.GetParameterStore()->Set("/cmdline/disk_file", disk_file);
                 fdata.GetParameterStore()->Set("/cmdline/show_plot", show_plot);
@@ -393,48 +388,7 @@ int main(int argc, char** argv)
                 {
                     plotter->Plot(&fdata);
                 }
-
-                //plotter is deleted by the factory
-                
-                // 
-                // 
-                // #ifdef USE_PYBIND11
-                // //load our interface module -- this is extremely slow!
-                // auto vis_module = py::module::import("hops_visualization");
-                // auto plot_lib = vis_module.attr("fourfit_plot");
-                // ////////////////////////////////////////////////////////////////////////
-                // //load our interface module -- this is extremely slow!
-                // //TODO..allow for custom plot method to be called
-                // try
-                // {
-                //     //required modules pyMHO_Containers and pyMHO_Operators are imported by configure_pypath()
-                //     auto vis_module = py::module::import("hops_visualization");
-                //     auto plot_lib = vis_module.attr("fourfit_plot");
-                //     //call a python function on the interface class instance
-                //     plot_lib.attr("make_fourfit_plot")(plot_obj, show_plot, disk_file);
-                // }
-                // catch(py::error_already_set& excep)
-                // {
-                //     if(std::string(excep.what()).find("SystemExit") != std::string::npos)
-                //     {
-                //         msg_debug("python_bindings", "sys.exit() called from within python, exiting" << eom);
-                //         std::exit(0); //ok to exit program entirely
-                //     }
-                //     else
-                //     {
-                //         msg_error("python_bindings", "python exception when calling subroutine ("
-                //                                          << "fourfit_plot"
-                //                                          << ","
-                //                                          << "make_fourfit_plot"
-                //                                          << ")" << eom);
-                //         msg_error("python_bindings", "python error message: " << excep.what() << eom);
-                //         PyErr_Clear(); //clear the error and attempt to continue
-                //     }
-                // }
-                // #else //USE_PYBIND11
-                //     msg_warn("main", "fplot is not enabled since HOPS was built without pybind11 support." << eom);
-                // #endif
-
+                //plotter is deleted by the factory when it goes out of scope
             }
         }
     }
