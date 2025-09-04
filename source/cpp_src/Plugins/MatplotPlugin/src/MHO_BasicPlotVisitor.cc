@@ -195,8 +195,6 @@ void MHO_BasicPlotVisitor::DirectSavePlot(std::string filename)
 
 void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
 {
-    //check if we should plot
-    fShowPlot = data->GetParameterStore()->GetAs< bool >("/cmdline/show_plot");
     bool is_skipped = data->GetParameterStore()->GetAs< bool >("/status/skipped");
     if(is_skipped)
     {
@@ -204,6 +202,8 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
         return;
     }
 
+    //check if we should plot
+    fShowPlot = data->GetParameterStore()->GetAs< bool >("/cmdline/show_plot");
     // Get output filename if specified
     fFilename = "";
     if(data->GetParameterStore()->IsPresent("/cmdline/disk_file"))

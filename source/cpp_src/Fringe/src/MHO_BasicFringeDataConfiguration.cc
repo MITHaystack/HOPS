@@ -216,7 +216,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     std::string input;
 
     std::vector< std::string > msg_cats = {"main",           "calibration",  "containers", "control", "fringe",         "file",
-                                           "initialization", "mk4interface", "utilities",  "vex",     "python_bindings"};
+                                           "initialization", "mk4interface", "utilities",  "vex",  "plot", "python_bindings"};
 
     std::stringstream ss;
     ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
