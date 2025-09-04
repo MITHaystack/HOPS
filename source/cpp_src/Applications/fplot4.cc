@@ -15,6 +15,7 @@
 #include "MHO_Message.hh"
 #include "MHO_ParameterStore.hh"
 #include "MHO_Tokenizer.hh"
+#include "MHO_FringePlotVisitorFactory.hh"
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
@@ -24,7 +25,9 @@
 namespace py = pybind11;
 namespace nl = nlohmann;
 using namespace pybind11::literals;
+    #include "MHO_DefaultPythonPlotVisitor.hh"
     #include "MHO_PyConfigurePath.hh"
+    #include "MHO_PyFringeDataInterface.hh"
     #include "MHO_PythonOperatorBuilder.hh"
 #endif
 
@@ -93,7 +96,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     paramStore->Set("/cmdline/args", arglist);
 
     //command line parameters
-    std::string diskfile = "";
+    std::string disk_file = "";
     std::string baseline_opt = "??:?";             //'-b' baseline:frequency_group selection
     std::string baseline = "??";                   // the baseline
     std::string freqgrp = "?";                     // the frequency group
@@ -103,9 +106,10 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     std::string polprod = "??";                    //'-P' polarization product argument (e.g XX or I or RR+LL)
     std::vector< std::string > input;              //either directory, individual file, or list of files
     std::vector< std::string > fringe_file_list;
+    std::string backend = "gnuplot";
 
     std::vector< std::string > msg_cats = {"main",           "calibration",  "containers", "control", "fringe",         "file",
-                                           "initialization", "mk4interface", "utilities",  "vex",     "python_bindings"};
+                                           "initialization", "mk4interface", "utilities",  "vex", "plot",  "python_bindings"};
 
     std::stringstream ss;
     ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
@@ -123,10 +127,11 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
 
     // Add custom flag that activates help
     auto* help = app.add_flag("-h,--help", "print this help message and exit");
-    app.add_option("-d,--diskfile", diskfile, "name of the file in which to save the fringe plot");
+    app.add_option("-d,--disk_file", disk_file, "name of the file in which to save the fringe plot");
     app.add_option("-b,--baseline", baseline_opt, "baseline or baseline:frequency_group selection (e.g GE or GE:X)");
     app.add_option("-M,--message-categories", message_categories, msg_cat_help.c_str())->delimiter(',');
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
+    app.add_option("-B,--backend", backend, "plotting backend to be used (gnuplot (default) or matplotlib)");
     app.add_flag("-n,--no-plot", no_plot, "do not display the fringe plot");
     app.add_option("-P,--polprod", polprod, "plot only files matching this polarization product (e.g XX or I or RR+LL)");
     app.add_option("input,-i,--input", input, "name of the input directory, fringe file, or list of fringe files")->required();
@@ -231,10 +236,11 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     paramStore->Set("/cmdline/baseline", baseline);
     paramStore->Set("/cmdline/frequency_group", freqgrp);
     paramStore->Set("/cmdline/polprod", polprod);
-    paramStore->Set("/cmdline/diskfile", diskfile);
+    paramStore->Set("/cmdline/disk_file", disk_file);
     paramStore->Set("/cmdline/message_level", message_level);
     paramStore->Set("/cmdline/show_plot", show_plot);
     paramStore->Set("/cmdline/fringe_files", fringe_file_list);
+    paramStore->Set("/cmdline/backend", backend);
 
     return 0;
 }
@@ -329,9 +335,14 @@ int main(int argc, char** argv)
     //each process has its own interpreter
     py::scoped_interpreter guard{};
     configure_pypath();
+#endif 
 
     MHO_ParameterStore paramStore;
     parse_fplot_command_line(argc, argv, &paramStore);
+
+    //determine if we are saving/showing the plot
+    std::string disk_file = paramStore.GetAs< std::string >("/cmdline/disk_file");
+    bool show_plot = paramStore.GetAs< bool >("/cmdline/show_plot");
 
     std::vector< std::string > ffiles = paramStore.GetAs< std::vector< std::string > >("/cmdline/fringe_files");
     std::size_t n_files = ffiles.size();
@@ -339,70 +350,50 @@ int main(int argc, char** argv)
     for(std::size_t i = 0; i < n_files; i++)
     {
         std::string filename = ffiles[i];
-        mho_json plot_data;
+
+        //read the plot data from the fringe file
+        MHO_FringeData fdata;
         mho_json param_data;
-        bool ok = extract_plot_data(plot_data, param_data, filename);
+        bool ok = extract_plot_data(fdata.GetPlotData(), param_data, filename);
+        fdata.GetParameterStore()->FillData(param_data);
 
         //check if this file matches any of the selection criteria (if passed)
         std::string baseline = paramStore.GetAs< std::string >("/cmdline/baseline");
         std::string fgroup = paramStore.GetAs< std::string >("/cmdline/frequency_group");
         std::string polprod = paramStore.GetAs< std::string >("/cmdline/polprod");
-        std::string diskfile = paramStore.GetAs< std::string >("/cmdline/diskfile");
-        bool show_plot = paramStore.GetAs< bool >("/cmdline/show_plot");
-
         //call the plotting mechanism
         if(ok)
         {
-            msg_debug("main", "python plot generation enabled." << eom);
-            py::dict plot_obj = plot_data; //convert to dictionary object
-
             //grab the selection info
-            std::string obj_baseline = param_data["pass"]["baseline"].get< std::string >();
-            std::string obj_fgroup = param_data["pass"]["frequency_group"].get< std::string >();
-            std::string obj_polprod = param_data["pass"]["polprod"].get< std::string >();
+            std::string obj_baseline = fdata.GetParameterStore()->GetAs<std::string>("/pass/baseline"); 
+            std::string obj_fgroup = fdata.GetParameterStore()->GetAs<std::string>("pass/frequency_group");
+            std::string obj_polprod = fdata.GetParameterStore()->GetAs<std::string>("pass/polprod");
 
             if(match_baseline(baseline, obj_baseline) && match_fgroup(fgroup, obj_fgroup) &&
                match_polprod(polprod, obj_polprod))
             {
-                //load our interface module -- this is extremely slow!
-                auto vis_module = py::module::import("hops_visualization");
-                auto plot_lib = vis_module.attr("fourfit_plot");
-                ////////////////////////////////////////////////////////////////////////
-                //load our interface module -- this is extremely slow!
-                //TODO..allow for custom plot method to be called
-                try
+                //specify what plotting operation is needed in the parameter store
+                fdata.GetParameterStore()->Set("/cmdline/disk_file", disk_file);
+                fdata.GetParameterStore()->Set("/cmdline/show_plot", show_plot);
+                
+                //use the plotter factory to construct one of the available plotting backends
+                //currently we only have two fringe plotting options (gnuplot or matplotlib)
+                //default is gnuplot
+                std::string plot_backend = paramStore.GetAs<std::string>("/cmdline/backend");
+                msg_debug("main", "plotting backend is: "<< plot_backend << eom);
+                //fringeData.GetParameterStore()->Get("/control/config/plot_backend", plot_backend);
+                MHO_FringePlotVisitorFactory plotter_factory;
+                MHO_FringePlotVisitor* plotter = plotter_factory.ConstructPlotter(plot_backend);
+                if(plotter != nullptr)
                 {
-                    //required modules pyMHO_Containers and pyMHO_Operators are imported by configure_pypath()
-                    auto vis_module = py::module::import("hops_visualization");
-                    auto plot_lib = vis_module.attr("fourfit_plot");
-                    //call a python function on the interface class instance
-                    plot_lib.attr("make_fourfit_plot")(plot_obj, show_plot, diskfile);
+                    plotter->Plot(&fdata);
                 }
-                catch(py::error_already_set& excep)
-                {
-                    if(std::string(excep.what()).find("SystemExit") != std::string::npos)
-                    {
-                        msg_debug("python_bindings", "sys.exit() called from within python, exiting" << eom);
-                        std::exit(0); //ok to exit program entirely
-                    }
-                    else
-                    {
-                        msg_error("python_bindings", "python exception when calling subroutine ("
-                                                         << "fourfit_plot"
-                                                         << ","
-                                                         << "make_fourfit_plot"
-                                                         << ")" << eom);
-                        msg_error("python_bindings", "python error message: " << excep.what() << eom);
-                        PyErr_Clear(); //clear the error and attempt to continue
-                    }
-                }
+                //plotter is deleted by the factory when it goes out of scope
             }
         }
     }
 
-#else //USE_PYBIND11
-    msg_warn("main", "fplot is not enabled since HOPS was built without pybind11 support." << eom);
-#endif
+
 
     return 0;
 }
