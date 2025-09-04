@@ -1006,6 +1006,10 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
 
 def make_fourfit_plot_wrapper(fringe_data_interface):
     plot_file = "";
+    show_plot = False
     if fringe_data_interface.get_parameter_store().is_present("/cmdline/disk_file") is True:
         plot_file = fringe_data_interface.get_parameter_store().get_by_path("/cmdline/disk_file");
-    make_fourfit_plot(fringe_data_interface.get_plot_data(), True, plot_file)
+    if fringe_data_interface.get_parameter_store().is_present("/cmdline/show_plot") is True:
+        show_plot = fringe_data_interface.get_parameter_store().get_by_path("/cmdline/show_plot");
+
+    make_fourfit_plot(fringe_data_interface.get_plot_data(), show_plot, plot_file)
