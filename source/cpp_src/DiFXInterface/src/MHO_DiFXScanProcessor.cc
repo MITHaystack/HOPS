@@ -1044,13 +1044,23 @@ void MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string 
     }
 
     //clear all existing tracks in the $MODE section, and re-link to only our 'trax'
-    vex_root["$MODE"][mode_name]["$TRACKS"].clear();
+    if( vex_root["$MODE"][mode_name].contains("$TRACKS") )
+    {
+        vex_root["$MODE"][mode_name]["$TRACKS"].clear();
+    }
+
     for(auto it = trax2codes.begin(); it != trax2codes.end(); it++)
     {
         mho_json trax_obj;
         trax_obj["keyword"] = it->first;
         trax_obj["qualifiers"] = it->second;
         vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
+    }
+
+    //clear all existing PHASE_CAL_DETECT objects from "$MODE" section
+    if( vex_root["$MODE"][mode_name].contains("$PHASE_CAL_DETECT") )
+    {
+        vex_root["$MODE"][mode_name]["$PHASE_CAL_DETECT"].clear();
     }
 
     //make sure we link to an $EOP object...use the 1st if it exists,
