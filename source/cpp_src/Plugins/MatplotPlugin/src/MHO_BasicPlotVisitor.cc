@@ -808,22 +808,46 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     size_t data_len = std::min(xpspec_abs.size(), xpow_x.size());
     std::vector< double > xpspec_abs_trunc(xpspec_abs.begin(), xpspec_abs.begin() + data_len);
     std::vector< double > xpspec_arg_trunc(xpspec_arg.begin(), xpspec_arg.begin() + data_len);
+    
+    //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
+    int N = 0;
+    double ymax = std::numeric_limits<double>::min();
+    double ymin = std::numeric_limits<double>::max();
+    for(std::size_t i=0; i<xpspec_abs_trunc.size(); i++)
+    {
+        if(xpspec_abs_trunc[i] > ymax){ymax = xpspec_abs_trunc[i];}
+        if(xpspec_abs_trunc[i] < ymin){ymin = xpspec_abs_trunc[i];}
+    }
+    double yabsmax = std::max(std::fabs(ymax), std::fabs(ymin));
+    if (xpspec_abs_trunc.empty()){N = 0;}
+    else 
+    {
+        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+    }
+    //scale the amplitude
+    double scale = std::pow(10.0, N);
+    for(std::size_t i=0; i<xpspec_abs_trunc.size(); i++){xpspec_abs_trunc[i] /= scale;}
 
     // Plot amplitude (blue circles)
     auto amp_line = matplot::plot(xpow_x, xpspec_abs_trunc, "co-");
     amp_line->marker_size(2.0f);
     amp_line->line_width(0.5f);
     amp_line->marker_color("blue");
-
     matplot::xlim({xpow_x.front(), xpow_x.back()});
-    matplot::ylabel("amplitude");
     
+    //format the y-axis and the labels/title
+    ax->ytickformat("%.2g");  // 2 digits mantissa
+    std::stringstream ss;
+    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
+    else{ ss << "amplitude"; } 
+    ax->ylabel(ss.str());
+
     //change the label font sizes
     ax->font_size(8);
     ax->y_axis().label_font_size(8);
     ax->x_axis().label_font_size(8);
 
-    // Configure axis properties - enable minor grid and rotate y-tick labels
+    // Configure axis properties - enable minor grid 
     auto ax_handle = matplot::gca();
     ax_handle->minor_grid(true); // Enable minor grid lines as substitute for minor ticks
 
