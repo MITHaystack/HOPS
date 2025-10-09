@@ -1522,11 +1522,15 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     green_label(fLastAxis, y_pos, "RA, Dec (J2000)");
 
     // Lambda function to create right-justified text
-    auto right_justify_text = [](matplot::axes_handle ax, double right_x, double y, const std::string& text) 
+    auto right_justify_text = [](matplot::axes_handle ax, double right_x, double y, const std::string& text, std::string color="") 
     {
         auto txt = ax->text(right_x, y, text);
         txt->font_size(9); // Smaller font size
         txt->font("monospace");
+        if(color != "")
+        {
+            txt->color(color);
+        }
         txt->alignment(matplot::labels::alignment::right);
     };
 
@@ -1538,7 +1542,7 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     // Add error code if present (red text, right-justified)
     if(!error_code.empty() && error_code != " ")
     {
-        right_justify_text(fLastAxis, value_x, y_pos, "Error code " + error_code);
+        right_justify_text(fLastAxis, value_x, y_pos, "Error code " + error_code, "red");
     }
     y_pos -= y_step;
     right_justify_text(fLastAxis, value_x, y_pos, snr);
