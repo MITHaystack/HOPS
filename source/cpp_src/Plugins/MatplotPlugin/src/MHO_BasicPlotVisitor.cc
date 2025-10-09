@@ -1534,7 +1534,13 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     y_pos = y_start;
 
     right_justify_text(fLastAxis, value_x, y_pos, quality);
-    y_pos -= y_step * 2;
+    y_pos -= y_step;
+    // Add error code if present (red text, right-justified)
+    if(!error_code.empty() && error_code != " ")
+    {
+        right_justify_text(fLastAxis, value_x, y_pos, "Error code " + error_code);
+    }
+    y_pos -= y_step;
     right_justify_text(fLastAxis, value_x, y_pos, snr);
     y_pos -= y_step;
     right_justify_text(fLastAxis, value_x, y_pos, intg_time);
@@ -1581,11 +1587,7 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     y_pos -= y_step;
     right_justify_text(fLastAxis, value_x, y_pos, dec);
 
-    // Add error code if present (red text, right-justified)
-    if(!error_code.empty() && error_code != " ")
-    {
-        right_justify_text(fLastAxis, value_x, 0.02, "Error code " + error_code);
-    }
+
 }
 
 // ============================================================================
