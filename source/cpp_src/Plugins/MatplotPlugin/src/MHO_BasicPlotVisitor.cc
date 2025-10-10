@@ -970,14 +970,20 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
     std::vector< double > seg_phs_deg(seg_phs.size());
     std::transform(seg_phs.begin(), seg_phs.end(), seg_phs_deg.begin(), [](double rad) { return rad * 180.0 / M_PI; });
 
-    // Get amplitude scaling factor
-    double amp_scale = 3.0; // Default scaling factor
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
+    int N = 0;
+    double scale = 1.0; //re-scale amplitude
+    double amp_scale = 3.0;
     if(plot_dict.contains("Amp"))
     {
         try
         {
             double amp_val = MHO_PlotDataExtractor::extract_double(plot_dict, "Amp", 1.0);
-            amp_scale = amp_val * 3.0;
+            N = static_cast<int>(std::floor(std::log10(amp_val)));
+            scale = std::pow(10.0, N);
+            amp_scale = amp_val * 3.0/scale;
         }
         catch(const std::exception& e)
         {
@@ -1032,7 +1038,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
                 int idx = seg * n_plots + ch;
                 if(idx < static_cast< int >(seg_amp.size()))
                 {
-                    ch_amp[seg] = seg_amp[idx];
+                    ch_amp[seg] = seg_amp[idx]/scale;
                 }
                 if(idx < static_cast< int >(seg_phs_deg.size()))
                 {
@@ -1122,7 +1128,12 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
 
 
             ConstructYTitle(fSubplotConfig["channel_phase_ytitle"], "phase [deg]", "red", 8, true);
-            ConstructYTitle(fSubplotConfig["channel_amp_ytitle"], "amplitude", "blue", 8);
+
+            std::stringstream ss;
+            if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
+            else{ ss << "amplitude"; } 
+
+            ConstructYTitle(fSubplotConfig["channel_amp_ytitle"], ss.str(), "blue", 8);
         }
     }
 }
