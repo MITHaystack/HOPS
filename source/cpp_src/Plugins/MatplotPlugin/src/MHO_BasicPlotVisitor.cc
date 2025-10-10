@@ -72,6 +72,7 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     fSubplotConfig["mbd_plot"] = subplot_parameters(2*nrows, ncols, 3, 3, 12, 46);
     fSubplotConfig["mbd_title"] = subplot_parameters(2*nrows, ncols, 2, 2, 1, 48);
     fSubplotConfig["mbd_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 5, 4, 8, 1);
+    fSubplotConfig["dlyrate_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 5, 106, 8, 2);
     fSubplotConfig["delay_rate_xtitle"] = subplot_parameters(2*nrows, ncols, 2, 2, 15, 48);
     fSubplotConfig["sbd_plot"] = subplot_parameters(2*nrows, ncols, 19, 3, 8, 21);
     fSubplotConfig["sbd_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 19, 4, 8, 1);
@@ -379,12 +380,45 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         x_max = mbd_x.back();
     }
 
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
+    int N = 0;
+    double ymax = std::numeric_limits<double>::min();
+    double ymin = std::numeric_limits<double>::max();
+    for(std::size_t i=0; i<dlyrate.size(); i++)
+    {
+        if(dlyrate[i] > ymax){ymax = dlyrate[i];}
+        if(dlyrate[i] < ymin){ymin = dlyrate[i];}
+    }
+    for(std::size_t i=0; i<mbd_amp.size(); i++)
+    {
+        if(mbd_amp[i] > ymax){ymax = mbd_amp[i];}
+        if(mbd_amp[i] < ymin){ymin = mbd_amp[i];}
+    }
+    double yabsmax = std::max(std::fabs(ymax), std::fabs(ymin));
+    if(dlyrate.empty()){N = 0;}
+    else 
+    {
+        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+    }
+    double scale = std::pow(10.0, N);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // Capture the proper y-limits before any auto-expansion occurs
     std::array< double, 2 > proper_y_limits;
 
     // Plot delay rate data (red) - use original x-axis
     if(!dlyrate.empty() && !dly_x.empty())
     {
+        //rescale the y-axis if needed 
+        for(std::size_t i=0; i<dlyrate.size(); i++)
+        {
+            dlyrate[i] /= scale;
+        }
+
         auto line1 = matplot::plot(dly_x, dlyrate, "r-");
         line1->line_width(0.5f);
 
@@ -395,6 +429,7 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         proper_y_limits = matplot::ylim();
         msg_debug("plot", "Captured original Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
     }
+
 
     // Plot MBD data (blue) - rescale x-axis to match delay rate range
     if(!mbd_amp.empty() && !mbd_x.empty())
@@ -419,6 +454,9 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
             // Single point case - unlikely
             mbd_x_rescaled[0] = (x_min + x_max) / 2.0;
         }
+
+        //scale the amplitude
+        for(std::size_t i=0; i<mbd_amp.size(); i++){mbd_amp[i] /= scale;}
 
         auto line2 = matplot::plot(mbd_x_rescaled, mbd_amp, "b-");
         line2->line_width(0.5f);
@@ -549,7 +587,13 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         ConstructXTitle(fSubplotConfig["mbd_title"], "multiband delay ({/Symbol m})", "blue", 9, 0.5, 0.5, true);
     }
 
-    ConstructYTitle(fSubplotConfig["mbd_amp_ytitle"], "amplitude", "red", 8);
+    std::stringstream ss;
+    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
+    else{ ss << "amplitude"; } 
+    ConstructYTitle(fSubplotConfig["mbd_amp_ytitle"], ss.str(), "blue", 8);
+    ConstructYTitle(fSubplotConfig["dlyrate_amp_ytitle"], ss.str(), "red", 8);
+
+
     ConstructXTitle(fSubplotConfig["delay_rate_xtitle"], "delay rate (ns/s)", "red", 9, 0.5, 0.0, true);
 
 }
@@ -639,13 +683,39 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         }
     }
 
-    // Use the combined y-limits we calculated earlier (before any auto-expansion)
-    std::array< double, 2 > proper_y_limits = {y_min, y_max};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
+    int N = 0;
+    double yabsmax = std::max(std::fabs(y_max), std::fabs(y_min));
+    if (sbd_amp.empty()){N = 0;}
+    else 
+    {
+        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+    }
+    //scale the amplitudes
+    double scale = std::pow(10.0, N);
+    for(std::size_t i=0; i<sbd_amp.size(); i++)
+    {
+        sbd_amp[i] /= scale;
+    }
+
+    for(std::size_t i=0; i<dtec_y.size(); i++)
+    {
+        dtec_y[i] /= scale;
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Use the combined y-limits we calculated earlier (before any auto-expansion) but rescaled
+    std::array< double, 2 > proper_y_limits = {y_min/scale, y_max/scale};
 
     // Plot SBD data (green) - use original x-axis
     auto sbd_line = matplot::plot(sbd_x, sbd_amp, "g-");
     sbd_line->line_width(0.5f);
     sbd_line->color({34/255.0, 139/255.0, 34/255.0}); //forest green
+    //if(N !=0){ fLastAxis->ytickformat("%.3g"); } 
 
     msg_debug("plot", "Using combined SBD+dTEC Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
 
@@ -666,7 +736,6 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
                     // Set y-axis to original data limits
                     matplot::ylim({proper_y_limits[0], proper_y_limits[1]});
                     current_ax->y_axis().limits_mode_auto(false);
-
                     msg_debug("plot", "Set SBD/dTEC Y axis to combined data limits: " << proper_y_limits[0] << " to "
                                                                                       << proper_y_limits[1] << eom);
                 }
@@ -765,7 +834,14 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         }
     }
 
-    ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], "amplitude", "#228B22", 8);
+    //format the y-axis and the labels/title
+    std::stringstream ss;
+    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
+    else{ ss << "amplitude"; } 
+    //ax->ylabel(ss.str());
+
+    ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], ss.str(), "#228B22", 8);
+    // ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], "amplitude", "#228B22", 8);
 
     // Configure axis properties  
     auto ax_handle = fLastAxis;//matplot::gca();
@@ -808,22 +884,46 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     size_t data_len = std::min(xpspec_abs.size(), xpow_x.size());
     std::vector< double > xpspec_abs_trunc(xpspec_abs.begin(), xpspec_abs.begin() + data_len);
     std::vector< double > xpspec_arg_trunc(xpspec_arg.begin(), xpspec_arg.begin() + data_len);
+    
+    //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
+    int N = 0;
+    double ymax = std::numeric_limits<double>::min();
+    double ymin = std::numeric_limits<double>::max();
+    for(std::size_t i=0; i<xpspec_abs_trunc.size(); i++)
+    {
+        if(xpspec_abs_trunc[i] > ymax){ymax = xpspec_abs_trunc[i];}
+        if(xpspec_abs_trunc[i] < ymin){ymin = xpspec_abs_trunc[i];}
+    }
+    double yabsmax = std::max(std::fabs(ymax), std::fabs(ymin));
+    if (xpspec_abs_trunc.empty()){N = 0;}
+    else 
+    {
+        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+    }
+    //scale the amplitude
+    double scale = std::pow(10.0, N);
+    for(std::size_t i=0; i<xpspec_abs_trunc.size(); i++){xpspec_abs_trunc[i] /= scale;}
 
     // Plot amplitude (blue circles)
     auto amp_line = matplot::plot(xpow_x, xpspec_abs_trunc, "co-");
     amp_line->marker_size(2.0f);
     amp_line->line_width(0.5f);
     amp_line->marker_color("blue");
-
     matplot::xlim({xpow_x.front(), xpow_x.back()});
-    matplot::ylabel("amplitude");
     
+    //format the y-axis and the labels/title
+    ax->ytickformat("%.2g");  // 2 digits mantissa
+    std::stringstream ss;
+    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
+    else{ ss << "amplitude"; } 
+    ax->ylabel(ss.str());
+
     //change the label font sizes
     ax->font_size(8);
     ax->y_axis().label_font_size(8);
     ax->x_axis().label_font_size(8);
 
-    // Configure axis properties - enable minor grid and rotate y-tick labels
+    // Configure axis properties - enable minor grid 
     auto ax_handle = matplot::gca();
     ax_handle->minor_grid(true); // Enable minor grid lines as substitute for minor ticks
 
@@ -870,14 +970,20 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
     std::vector< double > seg_phs_deg(seg_phs.size());
     std::transform(seg_phs.begin(), seg_phs.end(), seg_phs_deg.begin(), [](double rad) { return rad * 180.0 / M_PI; });
 
-    // Get amplitude scaling factor
-    double amp_scale = 3.0; // Default scaling factor
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
+    int N = 0;
+    double scale = 1.0; //re-scale amplitude
+    double amp_scale = 3.0;
     if(plot_dict.contains("Amp"))
     {
         try
         {
             double amp_val = MHO_PlotDataExtractor::extract_double(plot_dict, "Amp", 1.0);
-            amp_scale = amp_val * 3.0;
+            N = static_cast<int>(std::floor(std::log10(amp_val)));
+            scale = std::pow(10.0, N);
+            amp_scale = amp_val * 3.0/scale;
         }
         catch(const std::exception& e)
         {
@@ -932,7 +1038,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
                 int idx = seg * n_plots + ch;
                 if(idx < static_cast< int >(seg_amp.size()))
                 {
-                    ch_amp[seg] = seg_amp[idx];
+                    ch_amp[seg] = seg_amp[idx]/scale;
                 }
                 if(idx < static_cast< int >(seg_phs_deg.size()))
                 {
@@ -1022,7 +1128,12 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
 
 
             ConstructYTitle(fSubplotConfig["channel_phase_ytitle"], "phase [deg]", "red", 8, true);
-            ConstructYTitle(fSubplotConfig["channel_amp_ytitle"], "amplitude", "blue", 8);
+
+            std::stringstream ss;
+            if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
+            else{ ss << "amplitude"; } 
+
+            ConstructYTitle(fSubplotConfig["channel_amp_ytitle"], ss.str(), "blue", 8);
         }
     }
 }
@@ -1522,11 +1633,15 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     green_label(fLastAxis, y_pos, "RA, Dec (J2000)");
 
     // Lambda function to create right-justified text
-    auto right_justify_text = [](matplot::axes_handle ax, double right_x, double y, const std::string& text) 
+    auto right_justify_text = [](matplot::axes_handle ax, double right_x, double y, const std::string& text, std::string color="") 
     {
         auto txt = ax->text(right_x, y, text);
         txt->font_size(9); // Smaller font size
         txt->font("monospace");
+        if(color != "")
+        {
+            txt->color(color);
+        }
         txt->alignment(matplot::labels::alignment::right);
     };
 
@@ -1534,7 +1649,13 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     y_pos = y_start;
 
     right_justify_text(fLastAxis, value_x, y_pos, quality);
-    y_pos -= y_step * 2;
+    y_pos -= y_step;
+    // Add error code if present (red text, right-justified)
+    if(!error_code.empty() && error_code != " ")
+    {
+        right_justify_text(fLastAxis, value_x, y_pos, "Error code " + error_code, "red");
+    }
+    y_pos -= y_step;
     right_justify_text(fLastAxis, value_x, y_pos, snr);
     y_pos -= y_step;
     right_justify_text(fLastAxis, value_x, y_pos, intg_time);
@@ -1581,11 +1702,7 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     y_pos -= y_step;
     right_justify_text(fLastAxis, value_x, y_pos, dec);
 
-    // Add error code if present (red text, right-justified)
-    if(!error_code.empty() && error_code != " ")
-    {
-        right_justify_text(fLastAxis, value_x, 0.02, "Error code " + error_code);
-    }
+
 }
 
 // ============================================================================

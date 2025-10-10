@@ -478,12 +478,7 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
         station_coord_data_ptr->Insert(std::string("root_code"), fRootCode);
         station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
 
-        //figure out the output file name
-        std::string root_code = fRootCode;
-        std::string output_file = ConstructStaFileName(fOutputDirectory, root_code, vex_station_code, station_mk4id);
 
-        MHO_BinaryFileInterface inter;
-        bool status = inter.OpenToWrite(output_file);
         MHO_ObjectTags tags;
         tags.AddObjectUUID(station_coord_data_ptr->GetObjectUUID());
         if(pcal_data_ptr)
@@ -491,9 +486,14 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
             tags.AddObjectUUID(pcal_data_ptr->GetObjectUUID());
         }
 
-        if(status)
+        if(!fExportAsMark4)
         {
-            if(!fExportAsMark4)
+            MHO_BinaryFileInterface inter;
+            //figure out the output file name
+            std::string root_code = fRootCode;
+            std::string output_file = ConstructStaFileName(fOutputDirectory, root_code, vex_station_code, station_mk4id);
+            bool status = inter.OpenToWrite(output_file);
+            if(status)
             {
                 inter.Write(tags, "tags");
                 inter.Write(*station_coord_data_ptr, "sta");
@@ -505,21 +505,21 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
             }
             else
             {
-                MHO_MK4StationInterfaceReversed converter;
-                converter.SetVexData(fRootJSON);
-                converter.SetOutputDirectory(fOutputDirectory);
-                converter.SetStationCoordData(station_coord_data_ptr);
-                converter.SetPCalData(pcal_data_ptr);
-                converter.GenerateStationStructure();
-                converter.WriteStationFile();
-                converter.FreeAllocated();
+                msg_error("file", "error opening station data output file: " << output_file << eom);
             }
         }
         else
         {
-            msg_error("file", "error opening station data output file: " << output_file << eom);
+            MHO_MK4StationInterfaceReversed converter;
+            converter.SetVexData(fRootJSON);
+            converter.SetOutputDirectory(fOutputDirectory);
+            converter.SetStationCoordData(station_coord_data_ptr);
+            converter.SetPCalData(pcal_data_ptr);
+            converter.GenerateStationStructure();
+            converter.WriteStationFile();
+            converter.FreeAllocated();
         }
-        inter.Close();
+
     }
 }
 
@@ -1044,13 +1044,23 @@ void MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string 
     }
 
     //clear all existing tracks in the $MODE section, and re-link to only our 'trax'
-    vex_root["$MODE"][mode_name]["$TRACKS"].clear();
+    if( vex_root["$MODE"][mode_name].contains("$TRACKS") )
+    {
+        vex_root["$MODE"][mode_name]["$TRACKS"].clear();
+    }
+
     for(auto it = trax2codes.begin(); it != trax2codes.end(); it++)
     {
         mho_json trax_obj;
         trax_obj["keyword"] = it->first;
         trax_obj["qualifiers"] = it->second;
         vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
+    }
+
+    //clear all existing PHASE_CAL_DETECT objects from "$MODE" section
+    if( vex_root["$MODE"][mode_name].contains("$PHASE_CAL_DETECT") )
+    {
+        vex_root["$MODE"][mode_name]["$PHASE_CAL_DETECT"].clear();
     }
 
     //make sure we link to an $EOP object...use the 1st if it exists,
