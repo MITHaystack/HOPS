@@ -72,6 +72,7 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     fSubplotConfig["mbd_plot"] = subplot_parameters(2*nrows, ncols, 3, 3, 12, 46);
     fSubplotConfig["mbd_title"] = subplot_parameters(2*nrows, ncols, 2, 2, 1, 48);
     fSubplotConfig["mbd_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 5, 4, 8, 1);
+    fSubplotConfig["dlyrate_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 5, 106, 8, 2);
     fSubplotConfig["delay_rate_xtitle"] = subplot_parameters(2*nrows, ncols, 2, 2, 15, 48);
     fSubplotConfig["sbd_plot"] = subplot_parameters(2*nrows, ncols, 19, 3, 8, 21);
     fSubplotConfig["sbd_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 19, 4, 8, 1);
@@ -379,12 +380,45 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         x_max = mbd_x.back();
     }
 
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
+    int N = 0;
+    double ymax = std::numeric_limits<double>::min();
+    double ymin = std::numeric_limits<double>::max();
+    for(std::size_t i=0; i<dlyrate.size(); i++)
+    {
+        if(dlyrate[i] > ymax){ymax = dlyrate[i];}
+        if(dlyrate[i] < ymin){ymin = dlyrate[i];}
+    }
+    for(std::size_t i=0; i<mbd_amp.size(); i++)
+    {
+        if(mbd_amp[i] > ymax){ymax = mbd_amp[i];}
+        if(mbd_amp[i] < ymin){ymin = mbd_amp[i];}
+    }
+    double yabsmax = std::max(std::fabs(ymax), std::fabs(ymin));
+    if(dlyrate.empty()){N = 0;}
+    else 
+    {
+        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+    }
+    double scale = std::pow(10.0, N);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // Capture the proper y-limits before any auto-expansion occurs
     std::array< double, 2 > proper_y_limits;
 
     // Plot delay rate data (red) - use original x-axis
     if(!dlyrate.empty() && !dly_x.empty())
     {
+        //rescale the y-axis if needed 
+        for(std::size_t i=0; i<dlyrate.size(); i++)
+        {
+            dlyrate[i] /= scale;
+        }
+
         auto line1 = matplot::plot(dly_x, dlyrate, "r-");
         line1->line_width(0.5f);
 
@@ -395,6 +429,7 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         proper_y_limits = matplot::ylim();
         msg_debug("plot", "Captured original Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
     }
+
 
     // Plot MBD data (blue) - rescale x-axis to match delay rate range
     if(!mbd_amp.empty() && !mbd_x.empty())
@@ -419,6 +454,9 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
             // Single point case - unlikely
             mbd_x_rescaled[0] = (x_min + x_max) / 2.0;
         }
+
+        //scale the amplitude
+        for(std::size_t i=0; i<mbd_amp.size(); i++){mbd_amp[i] /= scale;}
 
         auto line2 = matplot::plot(mbd_x_rescaled, mbd_amp, "b-");
         line2->line_width(0.5f);
@@ -549,7 +587,13 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         ConstructXTitle(fSubplotConfig["mbd_title"], "multiband delay ({/Symbol m})", "blue", 9, 0.5, 0.5, true);
     }
 
-    ConstructYTitle(fSubplotConfig["mbd_amp_ytitle"], "amplitude", "red", 8);
+    std::stringstream ss;
+    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
+    else{ ss << "amplitude"; } 
+    ConstructYTitle(fSubplotConfig["mbd_amp_ytitle"], ss.str(), "blue", 8);
+    ConstructYTitle(fSubplotConfig["dlyrate_amp_ytitle"], ss.str(), "red", 8);
+
+
     ConstructXTitle(fSubplotConfig["delay_rate_xtitle"], "delay rate (ns/s)", "red", 9, 0.5, 0.0, true);
 
 }
