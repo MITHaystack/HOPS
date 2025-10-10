@@ -671,6 +671,7 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     auto sbd_line = matplot::plot(sbd_x, sbd_amp, "g-");
     sbd_line->line_width(0.5f);
     sbd_line->color({34/255.0, 139/255.0, 34/255.0}); //forest green
+    //if(N !=0){ fLastAxis->ytickformat("%.3g"); } 
 
     msg_debug("plot", "Using combined SBD+dTEC Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
 
@@ -691,7 +692,6 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
                     // Set y-axis to original data limits
                     matplot::ylim({proper_y_limits[0], proper_y_limits[1]});
                     current_ax->y_axis().limits_mode_auto(false);
-
                     msg_debug("plot", "Set SBD/dTEC Y axis to combined data limits: " << proper_y_limits[0] << " to "
                                                                                       << proper_y_limits[1] << eom);
                 }
@@ -791,7 +791,6 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
     }
 
     //format the y-axis and the labels/title
-    fLastAxis->ytickformat("%.2g");  // 2 digits mantissa
     std::stringstream ss;
     if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
     else{ ss << "amplitude"; } 
