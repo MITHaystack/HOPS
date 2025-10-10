@@ -639,8 +639,33 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         }
     }
 
-    // Use the combined y-limits we calculated earlier (before any auto-expansion)
-    std::array< double, 2 > proper_y_limits = {y_min, y_max};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
+    int N = 0;
+    double yabsmax = std::max(std::fabs(y_max), std::fabs(y_min));
+    if (sbd_amp.empty()){N = 0;}
+    else 
+    {
+        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+    }
+    //scale the amplitudes
+    double scale = std::pow(10.0, N);
+    for(std::size_t i=0; i<sbd_amp.size(); i++)
+    {
+        sbd_amp[i] /= scale;
+    }
+
+    for(std::size_t i=0; i<dtec_y.size(); i++)
+    {
+        dtec_y[i] /= scale;
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Use the combined y-limits we calculated earlier (before any auto-expansion) but rescaled
+    std::array< double, 2 > proper_y_limits = {y_min/scale, y_max/scale};
 
     // Plot SBD data (green) - use original x-axis
     auto sbd_line = matplot::plot(sbd_x, sbd_amp, "g-");
@@ -765,7 +790,15 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         }
     }
 
-    ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], "amplitude", "#228B22", 8);
+    //format the y-axis and the labels/title
+    fLastAxis->ytickformat("%.2g");  // 2 digits mantissa
+    std::stringstream ss;
+    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
+    else{ ss << "amplitude"; } 
+    //ax->ylabel(ss.str());
+
+    ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], ss.str(), "#228B22", 8);
+    // ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], "amplitude", "#228B22", 8);
 
     // Configure axis properties  
     auto ax_handle = fLastAxis;//matplot::gca();
