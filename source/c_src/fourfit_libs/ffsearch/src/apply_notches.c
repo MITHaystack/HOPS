@@ -115,7 +115,7 @@ void apply_notches(int sb, int ap,
     {
     int ii, nuked = 0, dv;
     double lo, hi, factor, oldfrac, newfrac, edge;
-    int *xp_flags;
+    int* xp_flags = NULL;
 
     // mark temporary space and return immediately if no work
     // using 1 for notches and 0 for passband, -1 as 'no action'
@@ -164,17 +164,23 @@ void apply_notches(int sb, int ap,
         // edge is non-dc edge of the band (freq is dc edge)
         if (sb) // LSB: assert ( edge < lo < hi < fdata->frequency )
             {
-            if (fdata->frequency > lo && lo > edge)
-                status->xpnotchpband[2*ii+0] = lo - fdata->frequency;
-            if (fdata->frequency > hi && hi > edge)
-                status->xpnotchpband[2*ii+1] = hi - fdata->frequency;
+                if(2*ii+1 < 2*MAXNOTCH )
+                {
+                if (fdata->frequency > lo && lo > edge)
+                    status->xpnotchpband[2*ii+0] = lo - fdata->frequency;
+                if (fdata->frequency > hi && hi > edge)
+                    status->xpnotchpband[2*ii+1] = hi - fdata->frequency;
+                }
             }
         else    // USB: assert( fdata->frequency < lo < hi < edge )
             {
-            if (edge > lo && lo > fdata->frequency)
-                status->xpnotchpband[2*ii+0] = lo - fdata->frequency;
-            if (edge > hi && hi > fdata->frequency)
-                status->xpnotchpband[2*ii+1] = hi - fdata->frequency;
+                if(2*ii+1 < 2*MAXNOTCH )
+                {
+                if (edge > lo && lo > fdata->frequency)
+                    status->xpnotchpband[2*ii+0] = lo - fdata->frequency;
+                if (edge > hi && hi > fdata->frequency)
+                    status->xpnotchpband[2*ii+1] = hi - fdata->frequency;
+                }
             }
         }
 
@@ -204,6 +210,9 @@ void apply_notches(int sb, int ap,
 
     if (ap == 0) msg ("%s: notch nuke/npts %3d/%3d %.3lf->%.3lf (%.3lf)", 1,
         sb ? "lsb" : "usb", nuked, npts, oldfrac, newfrac, factor);
+        
+        
+    free(xp_flags);
     }
 
 /* eof */
