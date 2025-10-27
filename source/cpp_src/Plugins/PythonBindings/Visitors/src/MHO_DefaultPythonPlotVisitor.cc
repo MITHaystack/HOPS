@@ -25,20 +25,12 @@ namespace hops
 
 void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
 {
-    msg_debug("fringe", "attempting to plot data with the default python plotting utility" << eom);
-    ////////////////////////////////////////////////////////////////////////////
-    //OUTPUT/PLOTTING -- this should be reorganized with visitor pattern
-    ////////////////////////////////////////////////////////////////////////////
-    bool test_mode = data->GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
-    bool show_plot = data->GetParameterStore()->GetAs< bool >("/cmdline/show_plot");
+    msg_debug("fringe", "attempting to plot data with the python (matplotlib) plotting utility" << eom);
+    
     bool is_skipped = data->GetParameterStore()->GetAs< bool >("/status/skipped");
-
-    if(show_plot && !is_skipped)
+    if(!is_skipped)
     {
         msg_debug("main", "python plot generation enabled." << eom);
-        mho_json plot_data = data->GetPlotData();
-        py::dict plot_obj = plot_data;
-
         MHO_PyFringeDataInterface data_wrapper(data);
 
         // // //QUICK HACK FOR PCPHASES UNTIL WE GET est_pc_maual working/////////////

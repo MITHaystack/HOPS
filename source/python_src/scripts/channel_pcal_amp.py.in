@@ -10,7 +10,6 @@ from datetime import datetime
 
 #non-core imports
 import numpy as np
-#import scipy.stats
 
 import matplotlib
 matplotlib.use("Agg")

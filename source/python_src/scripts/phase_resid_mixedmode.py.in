@@ -12,7 +12,6 @@ import re
 import matplotlib as mpl
 mpl.use('Agg')
 import numpy as np
-import scipy.stats
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import matplotlib.colorbar as mcbar
@@ -184,7 +183,7 @@ def main():
                         phase_list_proxy = [-1.0*(math.pi/180.0)*x for x in phase_list_proxy] #negate and convert to radians
                         phase_list_proxy = np.unwrap(phase_list_proxy) #arguments must be in radians
                         phase_list_proxy = [(180.0/math.pi)*x for x in phase_list_proxy] #convert back to degrees
-                        mean_phase = scipy.stats.circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
+                        mean_phase = vpal.utility.circmean( np.asarray(phase_list_proxy), high=180.0, low=-180.0) #compute circular mean phase
                         phase_list_proxy = [ (x - mean_phase) for x in phase_list_proxy] #subtract off the mean
                         for i in list(range(0,len(phase_index))):
                             ch = phase_index[i]
@@ -222,8 +221,8 @@ def main():
                             if abs(phr.phase_residuals[ch]) > 180:
                                 print("Scan: ", phr.scan_name, "has channel phase of: ", phr.phase_residuals[ch] )
                     if len(channel_phase_list[ch]) != 0:
-                        channel_mean_phase[ch] = scipy.stats.circmean( np.asarray(channel_phase_list[ch]), high=180.0, low=-180.0) #compute circular mean phase
-                        channel_stddev[ch] = scipy.stats.circstd( np.asarray(channel_phase_list[ch]), high=180, low=-180) #computer circular std dev.
+                        channel_mean_phase[ch] = vpal.utility.circmean( np.asarray(channel_phase_list[ch]), high=180.0, low=-180.0) #compute circular mean phase
+                        channel_stddev[ch] = vpal.utility.circstd( np.asarray(channel_phase_list[ch]), high=180, low=-180) #computer circular std dev.
                         print( "(mean, std. dev) phase for channel: ", ch, " = ", channel_mean_phase[ch], channel_stddev[ch])
                     for phr in phase_residuals:
                         if ch in phr.phase_residuals and ch in channel_mean_phase:

@@ -20,7 +20,7 @@ class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
          * @brief Visits a fringe fitter and plots its data.
          *
          * @param fitter The MHO_FringeFitter to visit and plot.
-         * @note This is a virtual function.
+         * @note This is a virtual function, add specializations for specific fringe fitters in derived class if needed
          */
         virtual void Visit(MHO_FringeFitter* fitter) override
         {
@@ -28,9 +28,6 @@ class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
             Plot(data);
         }
 
-        //add specializations for specific fringe fitters if needed
-
-    protected:
         /**
          * @brief Function Plot
          *
@@ -38,6 +35,9 @@ class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
          * @note This is a virtual function.
          */
         virtual void Plot(MHO_FringeData* data) = 0;
+        
+    protected:
+
 };
 
 } // namespace hops

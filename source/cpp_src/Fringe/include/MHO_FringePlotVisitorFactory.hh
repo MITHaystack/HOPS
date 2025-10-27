@@ -1,7 +1,6 @@
 #ifndef MHO_FringePlotVisitorFactory_HH__
 #define MHO_FringePlotVisitorFactory_HH__
 
-//global messaging util
 #include "MHO_FringePlotVisitor.hh"
 #include "MHO_Message.hh"
 

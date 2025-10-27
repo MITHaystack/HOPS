@@ -9,6 +9,7 @@ import logging
 #HOPS imports
 import hops_test as ht
 import vpal.ffres2pcp_lib
+import vpal.utility
 
 ################################################################################
 

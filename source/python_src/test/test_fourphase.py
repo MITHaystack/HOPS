@@ -9,6 +9,7 @@ import logging
 #HOPS imports
 import hops_test as ht
 import vpal.fourphase_lib
+import vpal.utility
 
 ################################################################################
 

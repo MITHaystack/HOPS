@@ -18,7 +18,6 @@ class MHO_DefaultPythonPlotVisitor: public MHO_FringePlotVisitor
         //default visit behavior is fine
         //add specializations for specific fringe fitters if needed
 
-    protected:
         /**
          * @brief Plots fringe data using default Python plotting utility.
          *
@@ -26,6 +25,9 @@ class MHO_DefaultPythonPlotVisitor: public MHO_FringePlotVisitor
          * @note This is a virtual function.
          */
         virtual void Plot(MHO_FringeData* data) override;
+
+    protected:
+
 };
 
 } // namespace hops
