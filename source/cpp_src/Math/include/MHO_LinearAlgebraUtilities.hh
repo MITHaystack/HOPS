@@ -719,28 +719,32 @@ void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_ma
     if(U.n_rows() != n || U.n_cols() != m)
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_svd: error, matrices A and U have different sizes." << "\n";
+        ss << "MHO_linalg_matrix_svd: error, matrices A and U have different sizes, will resize U." << "\n";
         ss << "matrix A is " << n << " by " << m << "." << "\n";
-        ss << "matrix U is " << U.n_rows() << " by " << U.n_cols() << "." << "\n";
+        ss << "matrix U was " << U.n_rows() << " by " << U.n_cols() << "." << "\n";
         report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        U.resize(n,m);
     }
+    
     if(V.n_rows() != m || V.n_cols() != m)
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_svd: error, matrix V has wrong size." << "\n";
+        ss << "MHO_linalg_matrix_svd: error, matrix V has wrong size, will resize." << "\n";
         ss << "matrix V is " << V.n_rows() << " by " << V.n_cols() << "." << "\n";
         ss << "matrix V should be " << m << " by " << m << "." << "\n";
         report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        V.resize(m,m);
     }
+    
     if(S.size() != m)
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_svd: error, vector S has wrong size." << "\n";
+        ss << "MHO_linalg_matrix_svd: error, vector S has wrong size, will resize" << "\n";
         ss << "vector S is length " << S.size() << "\n";
         ss << "vector S should be length " << m << "." << "\n";
         report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        S.resize(m);
     }
-
 
     // copy A into U
     U = A;

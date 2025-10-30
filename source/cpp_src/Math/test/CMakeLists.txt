@@ -14,6 +14,7 @@ set(SOURCE_BASENAMES
     TestBasicVectorOperations
     TestBasicMatrixOperations
     TestBasicMatrixSVD
+    TestBasicMatrixSVDSolve
 )
 
 if(HOPS_USE_FFTW3)
