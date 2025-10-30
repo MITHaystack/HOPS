@@ -434,6 +434,17 @@ class MHO_linalg_matrix
                 this->fData[i] *= scale_factor;
             }
         }
+        
+        //Frobenius norm of matrix
+        XValueType frobenius_norm()
+        {
+            XValueType sum = 0;
+            for(unsigned int i = 0; i < fTotalSize; ++i)
+            {
+                sum += fData[i]*fData[i]; // TODO FIXME FOR COMPLEX DATA
+            }
+            return std::sqrt(sum);
+        }
 
 
     private:
@@ -531,7 +542,7 @@ void MHO_linalg_vector_outer_product(const MHO_linalg_vector<XValueType>& a, con
 //matrix-matrix operations
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//C = A x B
 template< typename XValueType = double >
 void MHO_linalg_matrix_multiply(const MHO_linalg_matrix<XValueType>& A, const MHO_linalg_matrix<XValueType>& B, MHO_linalg_matrix<XValueType>& C)
 {
@@ -909,7 +920,6 @@ MHO_linalg_matrix_svd_solve(const MHO_linalg_matrix<XValueType>& U, const MHO_li
     x = work;
 }
 
-
 template< typename XValueType = double >
 void MHO_linalg_matrix_print(const MHO_linalg_matrix<XValueType>& m)
 {
@@ -933,6 +943,35 @@ void MHO_linalg_vector_print(const MHO_linalg_vector<XValueType>& m)
     }
     std::cout << m( m.size() - 1 );
     std::cout << std::endl;
+}
+
+//build diagonal matrix from a vector
+template<typename XValueType>
+MHO_linalg_matrix<XValueType> MHO_linalg_diag_matrix(const MHO_linalg_vector<XValueType>& s)
+{
+    unsigned int n = s.size();
+    MHO_linalg_matrix<XValueType> D(n, n);
+    D.zero();
+    for(unsigned int i = 0; i < n; ++i)
+    {
+        D(i, i) = s(i);
+    }
+    return D;
+}
+
+//construct the transpose of a matrix
+template<typename XValueType>
+MHO_linalg_matrix<XValueType> MHO_linalg_transpose_matrix(const MHO_linalg_matrix<XValueType>& A)
+{
+    MHO_linalg_matrix<XValueType> AT(A.n_cols(), A.n_rows());
+    for(unsigned int i = 0; i < A.n_rows(); ++i)
+    {
+        for(unsigned int j = 0; j < A.n_cols(); ++j)
+        {
+            AT(j, i) = A(i, j);
+        }
+    }
+    return AT;
 }
 
 
