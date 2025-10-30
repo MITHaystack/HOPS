@@ -45,10 +45,12 @@ int main()
     //check orthogonality of U/V 
     auto UUT = U; 
     UUT.zero();
-    MHO_linalg_matrix_multiply(U, MHO_linalg_transpose_matrix(U), UUT);
+    MHO_linalg_matrix_multiply_with_transpose(false, true, U, U, UUT);
+    //MHO_linalg_matrix_multiply(U, MHO_linalg_transpose_matrix(U), UUT);
     auto VVT = V;
     VVT.zero();
-    MHO_linalg_matrix_multiply(V, MHO_linalg_transpose_matrix(V), VVT);
+    MHO_linalg_matrix_multiply_with_transpose(false, true, V, V, VVT);
+    //MHO_linalg_matrix_multiply(V, MHO_linalg_transpose_matrix(V), VVT);
 
     MHO_linalg_matrix<double> Iu(UUT.n_rows(), UUT.n_cols());
     Iu.set_as_identity();
