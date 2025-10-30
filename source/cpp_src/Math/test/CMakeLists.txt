@@ -13,6 +13,7 @@ set(SOURCE_BASENAMES
     TestTwiddleFactors
     TestBasicVectorOperations
     TestBasicMatrixOperations
+    TestBasicMatrixSVD
 )
 
 if(HOPS_USE_FFTW3)
