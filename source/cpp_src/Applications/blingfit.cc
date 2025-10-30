@@ -315,35 +315,36 @@ int main(int argc, char** argv)
             int ref_idx = station2int[ref_station];
             int rem_idx = station2int[rem_station];
 
-
-
-            double mbd;
-            double drate;
-            double snr;
-            double dtec;
-            it->second.Get("/fringe/mbdelay", mbd);
-            it->second.Get("/fringe/drate", drate);
-            it->second.Get("/fringe/snr", snr);
-            it->second.Get("/fringe/ion_diff", dtec);
-            std::cout<<ref_station<<":"<<rem_station<<", "<<"pkey: "<<pkey<<", mbd: "<<mbd<<", drate: "<<drate<<" snr: "<<snr<<"dtec: "<<dtec<<std::endl;
-
-            mbd_delta_mx(ref_idx,rem_idx) = mbd;
-            drate_delta_mx(ref_idx,rem_idx) = drate;
-            
-            //make sure we include the opposite entries for skew-symmetric matrix 
-            mbd_delta_mx(ref_idx, rem_idx) = -1.0*mbd;
-            drate_delta_mx(rem_idx, ref_idx) = -1.0*drate;
-
-            if(snr > 15.0)
+            if(ref_idx != rem_idx)
             {
-                //set the output vector elements
-                b(count) = mbd;
+                double mbd;
+                double drate;
+                double snr;
+                double dtec;
+                it->second.Get("/fringe/mbdelay", mbd);
+                it->second.Get("/fringe/drate", drate);
+                it->second.Get("/fringe/snr", snr);
+                it->second.Get("/fringe/ion_diff", dtec);
+                std::cout<<ref_station<<":"<<rem_station<<", "<<"pkey: "<<pkey<<", mbd: "<<mbd<<", drate: "<<drate<<" snr: "<<snr<<"dtec: "<<dtec<<std::endl;
+
+                mbd_delta_mx(ref_idx,rem_idx) = mbd;
+                drate_delta_mx(ref_idx,rem_idx) = drate;
                 
-                //set the xform matrix elements
-                A(count,ref_idx) = -1.0;
-                A(count, rem_idx) = 1.0;
+                //make sure we include the opposite entries for skew-symmetric matrix 
+                mbd_delta_mx(ref_idx, rem_idx) = -1.0*mbd;
+                drate_delta_mx(rem_idx, ref_idx) = -1.0*drate;
+
+                if(snr > 15.0)
+                {
+                    //set the output vector elements
+                    b(count) = mbd;
+                    
+                    //set the xform matrix elements
+                    A(count,ref_idx) = -1.0;
+                    A(count, rem_idx) = 1.0;
+                }
+                count++;
             }
-            count++;
         }
         
         std::cout<<"MBD deltas: "<<std::endl;
