@@ -584,6 +584,17 @@ void MHO_linalg_matrix_multiply(const MHO_linalg_matrix<XValueType>& A, const MH
     }
 }
 
+//matrix multiply which constructs return matrix
+template< typename XValueType = double >
+MHO_linalg_matrix<XValueType> 
+MHO_linalg_matrix_multiply(const MHO_linalg_matrix<XValueType>& A, const MHO_linalg_matrix<XValueType>& B)
+{
+    MHO_linalg_matrix<XValueType> C;
+    C.resize(A.n_rows(), B.n_cols());
+    MHO_linalg_matrix_multiply(A,B,C);
+    return C;
+}
+
 template< typename XValueType = double >
 void MHO_linalg_matrix_multiply_with_transpose(bool transposeA, bool transposeB, const MHO_linalg_matrix<XValueType>& A, const MHO_linalg_matrix<XValueType>& B,
                                          MHO_linalg_matrix<XValueType>& C)
@@ -664,6 +675,22 @@ void MHO_linalg_matrix_multiply_with_transpose(bool transposeA, bool transposeB,
         report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
     }
 }
+
+//matrix multiply with transpose which constructs return matrix
+template< typename XValueType = double >
+MHO_linalg_matrix<XValueType> 
+MHO_linalg_matrix_multiply_with_transpose(bool transposeA, bool transposeB, const MHO_linalg_matrix<XValueType>& A, const MHO_linalg_matrix<XValueType>& B)
+{
+    MHO_linalg_matrix<XValueType> C;
+    unsigned int c_row = A.n_rows();
+    unsigned int c_col = B.n_cols();
+    if(transposeA){c_row = A.n_cols();}
+    if(transposeB){c_col = B.n_rows();}
+    C.resize(c_row, c_col);
+    MHO_linalg_matrix_multiply_with_transpose(transposeA,transposeB,A,B,C);
+    return C;
+}
+
 
 template< typename XValueType = double >
 void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_matrix<XValueType>& U, MHO_linalg_vector<XValueType>& S, MHO_linalg_matrix<XValueType>& V)
