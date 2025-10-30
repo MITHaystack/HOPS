@@ -85,7 +85,9 @@ int test_overconstrained_system()
     for (unsigned int i = 0; i < 4; ++i)
     {
         double x_i = static_cast<double>(i+1);
-        b(i) = x_true(0) + x_true(1) * x_i + ((i==2)? 0.01 : 0.0); //add some fake noise
+        double rnoise = 0;
+        if(i==2){rnoise = ((double) rand() / (RAND_MAX));}
+        b(i) = x_true(0) + x_true(1) * x_i + 0.01*rnoise; //add some fake noise
     }
 
     //compute SVD
@@ -129,6 +131,7 @@ int test_overconstrained_system()
 // ------------------------------------------------------
 int main()
 {
+    srand(time(NULL)); 
     int res1 = test_square_system();
     int res2 = test_overconstrained_system();
     return res1+res2;
