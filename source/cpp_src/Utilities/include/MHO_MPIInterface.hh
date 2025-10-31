@@ -214,8 +214,6 @@ class MHO_MPIInterface
         std::map<std::string, T>
         MergeMap(const std::map<std::string, T>& local_map)
         {
-            std::cout<<"rank: "<<fGlobalProcessID<<", size: "<<fNProcesses<<std::endl;
-
             //serialize the local map into primitive types
             std::vector<int> key_lengths;
             std::string concatenated_keys;
@@ -230,22 +228,17 @@ class MHO_MPIInterface
 
             int local_entry_count = static_cast<int>(local_map.size());
             int local_char_count = static_cast<int>(concatenated_keys.size());
-
-            std::cout<<"flag1"<<std::endl;
-
-            // --- Gather entry counts ---
+            // gather map entry counts
             std::vector<int> entry_counts(fNProcesses);
             MPI_Gather(&local_entry_count, 1, MPI_INT, entry_counts.data(), 1, MPI_INT, 0, MPI_COMM_WORLD);
 
-            std::cout<<"flag0"<<std::endl;
-
-            // --- Gather character counts ---
+            //gather key character counts
             std::vector<int> char_counts(fNProcesses);
             MPI_Gather(&local_char_count, 1, MPI_INT, char_counts.data(), 1, MPI_INT, 0, MPI_COMM_WORLD);
 
             std::map<std::string, T> merged;
 
-            // --- Only rank 0 reconstructs ---
+            //only rank 0 reconstructs ---
             if (fGlobalProcessID == 0) 
             {
                 // Compute displacements
@@ -261,27 +254,22 @@ class MHO_MPIInterface
                 int total_entries = entry_displs[fNProcesses-1] + entry_counts[fNProcesses-1];
                 int total_chars   = char_displs[fNProcesses-1] + char_counts[fNProcesses-1];
 
-                // Allocate receive buffers
+                // allocate receive buffers
                 std::vector<int> all_key_lengths(total_entries);
                 std::vector<char> all_chars(total_chars);
                 std::vector<T> all_values(total_entries);
 
-                std::cout<<"flag01"<<std::endl;
-
-                // Gather key lengths
+                // gather key lengths
                 MPI_Gatherv(key_lengths.data(), local_entry_count, MPI_INT,
                             all_key_lengths.data(), entry_counts.data(), entry_displs.data(), MPI_INT,
                             0, MPI_COMM_WORLD);
 
-std::cout<<"flag02"<<std::endl;
-                // Gather keys
+                // gather keys
                 MPI_Gatherv(concatenated_keys.data(), local_char_count, MPI_CHAR,
                             all_chars.data(), char_counts.data(), char_displs.data(), MPI_CHAR,
                             0, MPI_COMM_WORLD);
 
-std::cout<<"flag03"<<std::endl;
-
-                // Gather values
+                // gather values
                 MPI_Gatherv(values.data(), local_entry_count, mpi_type_for<T>(),
                             all_values.data(), entry_counts.data(), entry_displs.data(), mpi_type_for<T>(),
                             0, MPI_COMM_WORLD);
@@ -298,19 +286,15 @@ std::cout<<"flag03"<<std::endl;
             } 
             else 
             {
-std::cout<<"flag10"<<std::endl;
-
-                // Non-root ranks just need to participate in gathers
+                //non-root ranks just need to participate in gathers
                 MPI_Gatherv(key_lengths.data(), local_entry_count, MPI_INT,
                             nullptr, nullptr, nullptr, MPI_INT,
                             0, MPI_COMM_WORLD);
 
-std::cout<<"flag11"<<std::endl;
                 MPI_Gatherv(concatenated_keys.data(), local_char_count, MPI_CHAR,
                             nullptr, nullptr, nullptr, MPI_CHAR,
                             0, MPI_COMM_WORLD);
 
-std::cout<<"flag12"<<std::endl;
                 MPI_Gatherv(values.data(), local_entry_count, mpi_type_for<T>(),
                             nullptr, nullptr, nullptr, mpi_type_for<T>(),
                             0, MPI_COMM_WORLD);
