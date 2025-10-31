@@ -12,6 +12,20 @@
 namespace hops
 {
 
+//helper template for mapping basic types to MPI type codes
+template <typename T>
+MPI_Datatype mpi_type_for();
+
+template <>
+inline MPI_Datatype mpi_type_for<int>() { return MPI_INT; }
+
+template <>
+inline MPI_Datatype mpi_type_for<double>() { return MPI_DOUBLE; }
+
+template <>
+inline MPI_Datatype mpi_type_for<float>() { return MPI_FLOAT; }
+
+
 /*!
  *@file MHO_MPIInterface.hh
  *@class MHO_MPIInterface
@@ -194,6 +208,107 @@ class MHO_MPIInterface
         MPI_Comm* GetEvenCommunicator() { return &fEvenCommunicator; };
 
         MPI_Comm* GetOddCommunicator() { return &fOddCommunicator; };
+
+        //merge a collection of maps across all processes, so that it is available for the root (0) process
+        template <typename T>
+        std::map<std::string, T>
+        MergeMap(const std::map<std::string, T>& local_map, MPI_Comm comm)
+        {
+            static_assert(std::is_trivially_copyable_v<T>, "MHO_MPIInterface::MergeMap only supports trivially copyable types.");
+
+            int rank, size;
+            MPI_Comm_rank(comm, &rank);
+            MPI_Comm_size(comm, &size);
+
+            //serialize the local map into primitive types
+            std::vector<int> key_lengths;
+            std::string concatenated_keys;
+            std::vector<T> values;
+
+            for (const auto& kv : local_map) 
+            {
+                key_lengths.push_back(static_cast<int>(kv.first.size()));
+                concatenated_keys += kv.first;
+                values.push_back(kv.second);
+            }
+
+            int local_entry_count = static_cast<int>(local_map.size());
+            int local_char_count = static_cast<int>(concatenated_keys.size());
+
+            // --- Gather entry counts ---
+            std::vector<int> entry_counts(size);
+            MPI_Gather(&local_entry_count, 1, MPI_INT, entry_counts.data(), 1, MPI_INT, 0, comm);
+
+            // --- Gather character counts ---
+            std::vector<int> char_counts(size);
+            MPI_Gather(&local_char_count, 1, MPI_INT, char_counts.data(), 1, MPI_INT, 0, comm);
+
+            std::map<std::string, T> merged;
+
+            // --- Only rank 0 reconstructs ---
+            if (rank == 0) 
+            {
+                // Compute displacements
+                std::vector<int> entry_displs(size, 0);
+                std::vector<int> char_displs(size, 0);
+
+                for (int i = 1; i < size; ++i) 
+                {
+                    entry_displs[i] = entry_displs[i-1] + entry_counts[i-1];
+                    char_displs[i]  = char_displs[i-1] + char_counts[i-1];
+                }
+
+                int total_entries = entry_displs[size-1] + entry_counts[size-1];
+                int total_chars   = char_displs[size-1] + char_counts[size-1];
+
+                // Allocate receive buffers
+                std::vector<int> all_key_lengths(total_entries);
+                std::vector<char> all_chars(total_chars);
+                std::vector<T> all_values(total_entries);
+
+                // Gather key lengths
+                MPI_Gatherv(key_lengths.data(), local_entry_count, MPI_INT,
+                            all_key_lengths.data(), entry_counts.data(), entry_displs.data(), MPI_INT,
+                            0, comm);
+
+                // Gather keys
+                MPI_Gatherv(concatenated_keys.data(), local_char_count, MPI_CHAR,
+                            all_chars.data(), char_counts.data(), char_displs.data(), MPI_CHAR,
+                            0, comm);
+
+                // Gather values
+                MPI_Gatherv(values.data(), local_entry_count, mpi_type_for<T>(),
+                            all_values.data(), entry_counts.data(), entry_displs.data(), mpi_type_for<T>(),
+                            0, comm);
+
+                // Reconstruct merged map
+                size_t pos = 0;
+                for (int i = 0; i < total_entries; ++i) 
+                {
+                    int len = all_key_lengths[i];
+                    std::string key(all_chars.begin() + pos, all_chars.begin() + pos + len);
+                    pos += len;
+                    merged[key] = all_values[i];
+                }
+            } 
+            else 
+            {
+                // Non-root ranks just need to participate in gathers
+                MPI_Gatherv(key_lengths.data(), local_entry_count, MPI_INT,
+                            nullptr, nullptr, nullptr, MPI_INT,
+                            0, comm);
+
+                MPI_Gatherv(concatenated_keys.data(), local_char_count, MPI_CHAR,
+                            nullptr, nullptr, nullptr, MPI_CHAR,
+                            0, comm);
+
+                MPI_Gatherv(values.data(), local_entry_count, mpi_type_for<T>(),
+                            nullptr, nullptr, nullptr, mpi_type_for<T>(),
+                            0, comm);
+            }
+
+            return merged;
+        }
 
     protected:
         MHO_MPIInterface();
