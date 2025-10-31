@@ -155,18 +155,24 @@ int main(int argc, char** argv)
 
         msg_info("main", "scan " << scan_dir << " contains "<< scan_pass_vector.size()<< " passes of data" << eom);
 
-        //map to store all the fringe data for this scan (this only works with n_processes == 1)!!!
-        std::map< std::string, MHO_ParameterStore > scanFringeParameters;
+        //map to store all the fringe fit data for this scan
+        // std::map< std::string, MHO_ParameterStore > scanFringeParameters;
         std::set< std::string > scanStations;
+
+        //baseline quantities (map into 'b' vector)
+        std::map< std::string, double > baseline_delay;
+        std::map< std::string, double > baseline_snr;
+        std::map< std::string, double > baseline_delay_rate;
+        std::map< std::string, double > baseline_ion_diff;
 
         //this loop could be trivially parallelized (with the exception of plotting)
         for(std::size_t pass_index = 0; pass_index < scan_pass_vector.size(); pass_index++)
         {
-            if(pass_index % n_processes == process_id)
+            if(pass_index % n_processes == process_id) //only do work for this pass if it is assigned to this process
             {
-                // profiler_start();
-                //populate a few necessary parameters and  initialize the fringe/scan data
+                profiler_start();
 
+                //populate a few necessary parameters and  initialize the fringe/scan data
                 //set the current pass info (directory, root_file, source, baseline, pol-product, frequency-group)
                 mho_json pass = scan_pass_vector[pass_index];
                 pass["build_time"] = HOPS_BUILD_TIMESTAMP; //set the build time stamp in the pass info
@@ -176,8 +182,13 @@ int main(int argc, char** argv)
                 std::string fg = pass["frequency_group"].get<std::string>();
                 std::string pkey = bline + "|" + pprod + "|" + fg; 
                 
-                std::cout<<"pkey = "<<pkey<<std::endl;
-                
+                //std::cout<<"pkey = "<<pkey<<std::endl;
+                #ifdef HOPS_USE_MPI
+                    std::stringstream ss;
+                    ss << "process #"<<process_id<<" is working on pass: "<<pkey;
+                    MHO_MPIInterface::GetInstance()->PrintMessage(ss.str());
+                #endif
+                                
                 //fringeData = MHO_FringeData();
                 MHO_FringeData fringeData;
                 fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
@@ -209,53 +220,48 @@ int main(int argc, char** argv)
                 }
                 ffit->Finalize();
                 
-                //keep track of the station codes
-                std::string ref_station;
-                std::string rem_station;
-                fringeData.GetParameterStore()->Get("/config/reference_station", ref_station);
-                fringeData.GetParameterStore()->Get("/config/remote_station", rem_station);
-                std::cout<<"ref_station = "<<ref_station<<std::endl;
-                std::cout<<"rem_station = "<<rem_station<<std::endl;
-                scanStations.insert(ref_station);
-                scanStations.insert(rem_station);
+                // //keep track of the station codes
+                // std::string ref_station;
+                // std::string rem_station;
+                // fringeData.GetParameterStore()->Get("/config/reference_station", ref_station);
+                // fringeData.GetParameterStore()->Get("/config/remote_station", rem_station);
+                // std::cout<<"ref_station = "<<ref_station<<std::endl;
+                // std::cout<<"rem_station = "<<rem_station<<std::endl;
+                // scanStations.insert(ref_station);
+                // scanStations.insert(rem_station);
 
-        
-                // //flush profile events
-                // profiler_stop();
-                // std::vector< MHO_ProfileEvent > events;
-                // MHO_Profiler::GetInstance().GetEvents(events);
-                // 
-                // //convert and dump the events into the parameter store for now (will be empty unless enabled)
-                // mho_json event_list = MHO_BasicFringeDataConfiguration::ConvertProfileEvents(events);
-                // fringeData.GetParameterStore()->Set("/profile/events", event_list);
+                //flush profile events
+                profiler_stop();
+                std::vector< MHO_ProfileEvent > events;
+                MHO_Profiler::GetInstance().GetEvents(events);
+                
+                //convert and dump the events into the parameter store for now (will be empty unless enabled)
+                mho_json event_list = MHO_BasicFringeDataConfiguration::ConvertProfileEvents(events);
+                fringeData.GetParameterStore()->Set("/profile/events", event_list);
         
                 //determine if this pass was skipped or is in test-mode
                 bool is_skipped = fringeData.GetParameterStore()->GetAs< bool >("/status/skipped");
                 bool test_mode = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
                 
-                //copy the fringe parameters 
-                scanFringeParameters[pkey].CopyFrom( *(fringeData.GetParameterStore() ) );
-        
-                //OUTPUT
-                // //open and dump to file -- should we profile this as well?
-                // if(!test_mode && !is_skipped)
-                // {
-                //     bool use_mk4_output = false;
-                //     fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
-                // 
-                //     if(!use_mk4_output)
-                //     {
-                //         fringeData.WriteOutput();
-                //     }
-                //     else
-                //     {
-                //         MHO_MK4FringeExport fexporter;
-                //         fexporter.SetParameterStore(fringeData.GetParameterStore());
-                //         fexporter.SetPlotData(fringeData.GetPlotData());
-                //         fexporter.SetContainerStore(fringeData.GetContainerStore());
-                //         fexporter.ExportFringeFile();
-                //     }
-                // }
+                //open and dump to file -- should we profile this as well?
+                if(!test_mode && !is_skipped)
+                {
+                    bool use_mk4_output = false;
+                    fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
+                
+                    if(!use_mk4_output)
+                    {
+                        fringeData.WriteOutput();
+                    }
+                    else
+                    {
+                        MHO_MK4FringeExport fexporter;
+                        fexporter.SetParameterStore(fringeData.GetParameterStore());
+                        fexporter.SetPlotData(fringeData.GetPlotData());
+                        fexporter.SetContainerStore(fringeData.GetContainerStore());
+                        fexporter.ExportFringeFile();
+                    }
+                }
         
                 //use the plotter factory to construct one of the available plotting backends
                 if(!is_skipped)
@@ -270,9 +276,47 @@ int main(int argc, char** argv)
                         ffit->Accept(plotter);
                     }
                 }
+
+                //extract our quanties of interest from the parameter store 
+                // std::string ref_station;
+                // std::string rem_station;
+                // it->second.Get("/config/reference_station", ref_station);
+                // it->second.Get("/config/remote_station", rem_station);
+                // int ref_idx = station2int[ref_station];
+                // int rem_idx = station2int[rem_station];
+                double mbd;
+                double drate;
+                double snr;
+                double dtec;
+                fringeData.GetParameterStore().Get("/fringe/mbdelay", mbd);
+                fringeData.GetParameterStore().Get("/fringe/drate", drate);
+                fringeData.GetParameterStore().Get("/fringe/snr", snr);
+                fringeData.GetParameterStore().Get("/fringe/ion_diff", dtec);
+                std::cout<<ref_station<<":"<<rem_station<<", "<<"pkey: "<<pkey<<", mbd: "<<mbd<<", drate: "<<drate<<" snr: "<<snr<<"dtec: "<<dtec<<std::endl;
+
+                baseline_delay[pkey] = mbd;
+                baseline_snr[pkey] = snr;
+                baseline_delay_rate[pkey] = drate;
+                baseline_ion_diff[pkey] = dtec;
             }
         } //end of pass loop
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //map stations to integers 
         std::map<std::string, int> station2int;
         std::map<int, std::string> int2station;
