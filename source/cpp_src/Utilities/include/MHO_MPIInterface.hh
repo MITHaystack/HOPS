@@ -209,7 +209,11 @@ class MHO_MPIInterface
 
         MPI_Comm* GetOddCommunicator() { return &fOddCommunicator; };
 
-        //merge a collection of maps across all processes, so that it is available for the root (0) process
+        /**
+         * @brief merge a collection of maps across all processes, so that it is available for the root (0) process
+         *
+         * @return std::map<std::string, T> -- map with entries from all processes
+         */
         template <typename T>
         std::map<std::string, T>
         MergeMap(const std::map<std::string, T>& local_map)
@@ -302,6 +306,16 @@ class MHO_MPIInterface
 
             return merged;
         }
+
+
+        /**
+         * @brief merge a set of strings across all processes (collected on the root process 0)
+         *
+         * @return std::set<std::string> set with all the strings
+         */
+        std::set<std::string>
+        MergeStringSet(const std::set<std::string>& local_set);
+        
 
     protected:
         MHO_MPIInterface();
