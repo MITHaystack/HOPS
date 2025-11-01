@@ -14,6 +14,8 @@
 
 #define MHO_LINALG_PRINT_ERROR
 
+#define MHO_CHECK_ARRAY_OVERRUN
+
 namespace hops
 {
 
@@ -31,6 +33,7 @@ enum class MHO_linalg_error
     MismatchedDimension, //4
     DivideByZero, //5
     FailedToConverge, //6
+    ArrayOverrun, //7
     Unknown
 };
 
@@ -119,29 +122,40 @@ class MHO_linalg_vector
         // access (no safety checks)
         XValueType& operator()(unsigned int i) 
         {
-            if(i < fSize)
-            {
-                return fData[i]; 
-            }
-            else 
-            {
-                std::cout<<"vec out of range ("<<fSize<<"): "<< i << std::endl;
-                return fDummy;
-            }
+            #ifndef MHO_CHECK_ARRAY_OVERRUN
+                return fData[i];
+            #else
+                if(i < fSize)
+                {
+                    return fData[i]; 
+                }
+                else
+                {
+                    std::stringstream ss;
+                    ss << "MHO_linalg_vector::operator() error, out of range: " << i << " !< " << fSize;
+                    report_error(MHO_linalg_error::ArrayOverrun, ss.str());
+                    return fDummy;
+                }
+            #endif
         }
 
         const XValueType& operator()(unsigned int i) const 
         { 
-            // return fData[i]; 
-            if(i < fSize)
-            {
-                return fData[i]; 
-            }
-            else 
-            {
-                std::cout<<"vec out of range ("<<fSize<<"): "<< i << std::endl;
-                return fDummy;
-            }
+            #ifndef MHO_CHECK_ARRAY_OVERRUN
+                return fData[i];
+            #else
+                if(i < fSize)
+                {
+                    return fData[i]; 
+                }
+                else
+                {
+                    std::stringstream ss;
+                    ss << "MHO_linalg_vector::operator() error, out of range: " << i << " !< " << fSize;
+                    report_error(MHO_linalg_error::ArrayOverrun, ss.str());
+                    return fDummy;
+                }
+            #endif
         }
 
         // assignment
@@ -372,29 +386,40 @@ class MHO_linalg_matrix
         // access (no safety checks)
         XValueType& operator()(unsigned int i, unsigned int j) 
         {
-            if(i < fNRows && j < fNCols)
-            {
+            #ifndef MHO_CHECK_ARRAY_OVERRUN
                 return fData[i * fNCols + j];
-            }
-            else 
-            {
-                std::cout<<"mx out of range ("<<fNRows<<", "<<fNCols<<"): "<<i<<","<<j<<std::endl;
-                return fDummy;
-            }
+            #else 
+                if(i < fNRows && j < fNCols)
+                {
+                    return fData[i * fNCols + j];
+                }
+                else 
+                {
+                    std::stringstream ss;
+                    ss << "MHO_linalg_matrix::operator() error, out of range, row: " << i << " !< " << fNRows << " or col: " << j << " !< " << fNCols;
+                    report_error(MHO_linalg_error::ArrayOverrun, ss.str());
+                    return fDummy;
+                }
+            #endif
         }
 
         const XValueType& operator()(unsigned int i, unsigned int j) const 
         {
-            if(i < fNRows && j < fNCols)
-            {
+            #ifndef MHO_CHECK_ARRAY_OVERRUN
                 return fData[i * fNCols + j];
-            }
-            else 
-            {
-                std::cout<<"mx out of range ("<<fNRows<<", "<<fNCols<<"): "<<i<<","<<j<<std::endl;
-                return fDummy;
-            }
-            // return fData[i * fNCols + j]; 
+            #else 
+                if(i < fNRows && j < fNCols)
+                {
+                    return fData[i * fNCols + j];
+                }
+                else 
+                {
+                    std::stringstream ss;
+                    ss << "MHO_linalg_matrix::operator() error, out of range, row: " << i << " !< " << fNRows << " or col: " << j << " !< " << fNCols;
+                    report_error(MHO_linalg_error::ArrayOverrun, ss.str());
+                    return fDummy;
+                }
+            #endif
         }
 
         // assignment
