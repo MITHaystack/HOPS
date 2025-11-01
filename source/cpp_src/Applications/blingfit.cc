@@ -251,19 +251,19 @@ int main(int argc, char** argv)
                     }
                 }
                 
-                //use the plotter factory to construct one of the available plotting backends
-                if(!is_skipped)
-                {
-                    //currently we only have two fringe plotting options (gnuplot or matplotlib)
-                    std::string plot_backend;
-                    fringeData.GetParameterStore()->Get("/control/config/plot_backend", plot_backend);
-                    MHO_FringePlotVisitorFactory plotter_factory;
-                    MHO_FringePlotVisitor* plotter = plotter_factory.ConstructPlotter(plot_backend);
-                    if(plotter != nullptr)
-                    {
-                        ffit->Accept(plotter);
-                    }
-                }
+                // //use the plotter factory to construct one of the available plotting backends
+                // if(!is_skipped)
+                // {
+                //     //currently we only have two fringe plotting options (gnuplot or matplotlib)
+                //     std::string plot_backend;
+                //     fringeData.GetParameterStore()->Get("/control/config/plot_backend", plot_backend);
+                //     MHO_FringePlotVisitorFactory plotter_factory;
+                //     MHO_FringePlotVisitor* plotter = plotter_factory.ConstructPlotter(plot_backend);
+                //     if(plotter != nullptr)
+                //     {
+                //         ffit->Accept(plotter);
+                //     }
+                // }
 
                 //extract our quanties of interest from the parameter store 
                 double mbd;
@@ -368,6 +368,7 @@ int main(int argc, char** argv)
             MHO_Tokenizer tokenizer;
             tokenizer.SetDelimiter("|");
 
+            //count = 0;
             for(auto it = bl_delays.begin(); it != bl_delays.end(); it++)
             {
                 //get the pass key, and map stations to indexes
@@ -388,7 +389,7 @@ int main(int argc, char** argv)
                     double snr = bl_snr[pkey];
                     std::cout<<ref_station<<":"<<rem_station<<", "<<"pkey: "<<pkey<<", mbd: "<<mbd<<", drate: "<<drate<<" snr: "<<snr<<"dtec: "<<dtec<<std::endl;
             
-                    if(snr > 15.0)
+                    //if(snr > 15.0)
                     {
                         //set the output vector elements
                         b(count) = mbd;
