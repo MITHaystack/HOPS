@@ -117,8 +117,32 @@ class MHO_linalg_vector
         }
 
         // access (no safety checks)
-        XValueType& operator()(unsigned int i) { return fData[i]; }
-        const XValueType& operator()(unsigned int i) const { return fData[i]; }
+        XValueType& operator()(unsigned int i) 
+        {
+            if(i < fSize)
+            {
+                return fData[i]; 
+            }
+            else 
+            {
+                std::cout<<"vec out of range ("<<fSize<<"): "<< i << std::endl;
+                return fDummy;
+            }
+        }
+
+        const XValueType& operator()(unsigned int i) const 
+        { 
+            // return fData[i]; 
+            if(i < fSize)
+            {
+                return fData[i]; 
+            }
+            else 
+            {
+                std::cout<<"vec out of range ("<<fSize<<"): "<< i << std::endl;
+                return fDummy;
+            }
+        }
 
         // assignment
         inline MHO_linalg_vector& operator=(const MHO_linalg_vector& other) noexcept
@@ -259,6 +283,7 @@ class MHO_linalg_vector
 
         unsigned int fSize;
         std::vector<XValueType> fData;
+        XValueType fDummy;
 };
 
 
@@ -345,8 +370,32 @@ class MHO_linalg_matrix
         }
 
         // access (no safety checks)
-        XValueType& operator()(unsigned int i, unsigned int j) { return fData[i * fNCols + j]; }
-        const XValueType& operator()(unsigned int i, unsigned int j) const { return fData[i * fNCols + j]; }
+        XValueType& operator()(unsigned int i, unsigned int j) 
+        {
+            if(i < fNRows && j < fNCols)
+            {
+                return fData[i * fNCols + j];
+            }
+            else 
+            {
+                std::cout<<"mx out of range ("<<fNRows<<", "<<fNCols<<"): "<<i<<","<<j<<std::endl;
+                return fDummy;
+            }
+        }
+
+        const XValueType& operator()(unsigned int i, unsigned int j) const 
+        {
+            if(i < fNRows && j < fNCols)
+            {
+                return fData[i * fNCols + j];
+            }
+            else 
+            {
+                std::cout<<"mx out of range ("<<fNRows<<", "<<fNCols<<"): "<<i<<","<<j<<std::endl;
+                return fDummy;
+            }
+            // return fData[i * fNCols + j]; 
+        }
 
         // assignment
         inline MHO_linalg_matrix& operator=(const MHO_linalg_matrix& other)
@@ -452,6 +501,7 @@ class MHO_linalg_matrix
         unsigned int fNCols;
         unsigned int fTotalSize;
         std::vector<XValueType> fData;
+        XValueType fDummy;
 };
 
 
