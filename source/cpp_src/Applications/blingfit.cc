@@ -368,7 +368,7 @@ int main(int argc, char** argv)
             MHO_Tokenizer tokenizer;
             tokenizer.SetDelimiter("|");
 
-            //count = 0;
+            count = 0;
             for(auto it = bl_delays.begin(); it != bl_delays.end(); it++)
             {
                 //get the pass key, and map stations to indexes
@@ -389,7 +389,7 @@ int main(int argc, char** argv)
                     double snr = bl_snr[pkey];
                     std::cout<<ref_station<<":"<<rem_station<<", "<<"pkey: "<<pkey<<", mbd: "<<mbd<<", drate: "<<drate<<" snr: "<<snr<<"dtec: "<<dtec<<std::endl;
             
-                    //if(snr > 15.0)
+                    if(snr > 15.0)
                     {
                         //set the output vector elements
                         b(count) = mbd;
@@ -413,18 +413,7 @@ int main(int argc, char** argv)
             
             std::cout<<"xform mx = "<<std::endl;
             MHO_linalg_matrix_print(A);
-            
-            // this function uses the slower but more accurate one-sided jacobi svd
-            // as defined in the paper:
-            // Jacobi's method is more accurate than QR by J. Demmel and K. Veselic
-            // SIAM. J. Matrix Anal. & Appl., 13(4), 1204-1245.
-            // www.netlib.org/lapack/lawnspdf/lawn15.pdf
-            
-            // assume that A is n x m
-            // then U is an n x m
-            // V is m x m
-            // S is length m
-            
+                
             //now solve for the station delays with SVD decomp;
             MHO_linalg_matrix U(n_baseline_parameters, n_station_parameters);
             MHO_linalg_matrix V(n_station_parameters, n_station_parameters);
@@ -453,6 +442,15 @@ int main(int argc, char** argv)
             MHO_linalg_vector_print(delta);
             
             std::cout<<"L2 norm = "<<delta.norm()<<std::endl;
+
+            std::stringstream ss;
+            for(auto sit = station_set.begin(); sit != station_set.end(); sit++)
+            {
+                std::string st = *sit;
+                int idx = station2int[st];
+                ss << "if station "<< st<< " station_delay "<< -1000.0*x(idx)<<" ";
+            }
+            std::cout<<ss.str()<<std::endl;
 
         } //end of MPI_SINGLE_PROCESS
 
