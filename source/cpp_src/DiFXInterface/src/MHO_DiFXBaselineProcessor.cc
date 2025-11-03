@@ -325,7 +325,17 @@ void MHO_DiFXBaselineProcessor::Organize()
 
     if(ant1 != ant2) // cross-correlation
     {
-        fScaleFactor = SCALE * fNBitsToFactor[fRefStationBits] * fNBitsToFactor[fRemStationBits];
+        fScaleFactor = SCALE;
+        if(fNBitsToFactor.find(fRefStationBits) != fNBitsToFactor.end() ){fScaleFactor *= fNBitsToFactor[fRefStationBits];}
+        else 
+        {
+            msg_warn("difx_interface", "reference station quantization bits: "<<fRefStationBits<<", not in Van Vleck correction table" << eom);
+        }
+        if(fNBitsToFactor.find(fRemStationBits) != fNBitsToFactor.end()){fScaleFactor *= fNBitsToFactor[fRemStationBits];}
+        else 
+        {
+            msg_warn("difx_interface", "remote station quantization bits: "<<fRemStationBits<<", not in Van Vleck correction table" << eom);
+        }
     }
     else // auto-correlation
     {
