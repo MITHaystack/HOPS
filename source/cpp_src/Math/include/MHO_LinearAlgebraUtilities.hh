@@ -866,12 +866,6 @@ void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_ma
                     b += g2 * g2;
                     c += g1 * g2;
                 }
-                // safety check to avoid division by zero or NaN
-                if (a == 0.0 || b == 0.0)
-                {
-                    count--;
-                    continue;
-                }
                 if((c * c) / (a * b) > tol)
                 {
                     // compute the sine/cosine of the Given's rotation
