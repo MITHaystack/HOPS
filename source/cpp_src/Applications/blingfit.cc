@@ -454,7 +454,9 @@ int main(int argc, char** argv)
 
         } //end of MPI_SINGLE_PROCESS
 
+        #ifdef HOPS_USE_MPI
         MHO_MPIInterface::GetInstance()->GlobalBarrier();
+        #endif
 
     }//end of scan loop
 
