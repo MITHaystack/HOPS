@@ -21,6 +21,8 @@ bool MHO_ManualPolDelayCorrectionBuilder::Build()
 
         std::string pol = ParsePolFromName(op_name);
         std::string station_id = ExtractStationIdentifier();
+        op_name += ".";
+        op_name += station_id;
 
         //grab the reference frequency from the parameter store
         double ref_freq = fParameterStore->GetAs< double >(std::string("/control/config/ref_freq"));

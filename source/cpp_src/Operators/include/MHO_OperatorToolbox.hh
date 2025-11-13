@@ -188,6 +188,30 @@ class MHO_OperatorToolbox
             return count;
         }
 
+        //debugging
+        void PrintOperatorNames()
+        {
+            for(auto it = fNameToOperatorMap.begin(); it != fNameToOperatorMap.end(); it++)
+            {
+                std::string op_name = it->first;
+                MHO_Operator* op_ptr = it->second;
+                
+                //brute force search for category 
+                std::string op_category = "none";
+                for(auto it2 = fCategoryToOperatorMap.begin(); it2 != fCategoryToOperatorMap.end(); it2++)
+                {
+                    if(it->second == op_ptr)
+                    {
+                        op_category = it->first;
+                        break;
+                    }
+                }
+
+                std::cout<<"operator: "<<op_name<<", category: "<<op_category<<std::endl;
+            }
+        }
+
+
     private:
         /**
          * @brief Function RemoveOperator - removes operator from the toolbox
