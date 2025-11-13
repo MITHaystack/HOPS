@@ -29,11 +29,6 @@ void MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseli
         //no ':' present, so we must only have a baseline specification
         baseline = baseline_freqgrp;
         freqgrp = "?";           //not passed, set to wildcard
-        if(baseline.size() != 2) //error out if something odd was passed
-        {
-            msg_fatal("fringe", "baseline must be passed as 2-char code." << eom);
-            std::exit(1);
-        }
     }
     else
     {
@@ -52,6 +47,16 @@ void MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseli
         }
         baseline = tokens[0];
         freqgrp = tokens[1];
+    }
+    
+    if(baseline.size() != 2) //error out if something odd was passed
+    {
+        std::cout<<"baseline = "<<baseline<<std::endl;
+        if(baseline.find('-') == std::string::npos)
+        {
+            msg_fatal("fringe", "baseline must be passed as pair of 1-char MK4 ids or station codes delimited by '-' (e.g. GE or Gs-Wf)." << eom);
+            std::exit(1);
+        }
     }
 }
 
@@ -452,13 +457,12 @@ void MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& di
         tokenizer.SetString(&bname);
         std::vector< std::string > tok;
         tokenizer.GetTokens(&tok);
-
+        bool keep = false;
+        std::string bl;
         //we have a traditional mk4 style 2-character baseline code
         if(baseline.size() == 2 && tok[0].size() == 2)
         {
-
-            std::string bl = tok[0];
-            bool keep = false;
+            bl = tok[0];
             if(baseline == "??")
             {
                 keep = true;
@@ -475,10 +479,22 @@ void MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& di
             {
                 keep = true;
             }
-            if(keep)
+        }
+        else if( (baseline.size() == 5 && tok[1].size() == 5) && 
+                 (baseline.find('-') != std::string::npos ) && 
+                 (tok[1].find('-') != std::string::npos) ) 
+        {
+            bl = tok[1]; //check the extended baseline-identifier (using 2 char station codes)
+            if(baseline == bl)
             {
-                baseline_files.push_back(std::make_pair(bl, corFiles[i]));
+                bl = tok[0]; //set the baseline parameter to the mk4-style 2-char form
+                keep = true;
             }
+        }
+        
+        if(keep)
+        {
+            baseline_files.push_back(std::make_pair(bl, corFiles[i]));
         }
     }
 }
