@@ -776,6 +776,9 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
 
+    std::cout<<"DUMPING PARAMS"<<std::endl;
+    paramStore->Dump();
+
     std::string bl = paramStore->GetAs< std::string >("/pass/baseline");
     std::string pp = paramStore->GetAs< std::string >("/pass/polprod");
     std::string fg = paramStore->GetAs< std::string >("/pass/frequency_group");
