@@ -17,14 +17,20 @@ namespace hops
  *@class  MHO_StationIdentifier
  *@author  J. Barrett - barrettj@mit.edu
  *@date Thu Apr 28 12:25:09 2022 -0400
- *@brief Class MHO_StationIdentifier Handles the mapping of two character and one character mk4ids to station names
+ *@brief Class MHO_StationIdentifier 
+ * Handles the mapping of two character and one character mk4ids to station names -- this is a singleton class
  */
 
 class MHO_StationIdentifier
 {
     public:
-        MHO_StationIdentifier();
-        virtual ~MHO_StationIdentifier();
+        /**
+         * @brief Getter for singleton instance
+         *
+         * @return MHO_StationIdentifier* singleton instance
+         * @note This is a static function.
+         */
+        static MHO_StationIdentifier* GetInstance();
 
         int Insert(MHO_StationIdentity station_identity)
         {
@@ -47,6 +53,7 @@ class MHO_StationIdentifier
                 fCode2Name[name] = name;
                 fCode2Name[code] = name;
                 fCode2Name[mk4id] = name;
+                fStationIds.push_back(station_identity);
             }
             //success 
             return 0;
@@ -56,7 +63,7 @@ class MHO_StationIdentifier
         {
             MHO_StationIdentity tmp;
             tmp.SetAll(name, code, mk4id);
-            return Insert(temp)
+            return Insert(tmp);
         }
 
         std::string CanonicalStationName(std::string code) const 
@@ -64,7 +71,7 @@ class MHO_StationIdentifier
             auto it = fCode2Name.find(code);
             if( it != fCode2Name.end() )
             {
-                return *it;
+                return it->second;
             }
             else 
             {
@@ -74,10 +81,22 @@ class MHO_StationIdentifier
         }
 
     private:
+        
+        //private for singleton 
+        MHO_StationIdentifier();
+        virtual ~MHO_StationIdentifier();
+        static MHO_StationIdentifier* fStationIdentifier;
     
+        std::vector< MHO_StationIdentity > fStationIds;
         std::set< std::string > fCodeSet;
         std::map< std::string, std::string > fCode2Name; // 1 char, 2 char, name -> proper name
+
 };
+
+
+
+
+
 
 } // namespace hops
 

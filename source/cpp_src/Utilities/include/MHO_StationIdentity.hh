@@ -11,6 +11,7 @@
 #include "MHO_Message.hh"
 #include "MHO_Types.hh"
 #include "MHO_Tokenizer.hh"
+#include "MHO_JSONHeaderWrapper.hh"
 
 namespace hops
 {
@@ -39,7 +40,20 @@ class MHO_StationIdentity
         {
             SetAll(name,code,mk4id);
         }
-
+        
+        MHO_StationIdentity( const mho_json& site_vex ):
+            fStationName(""),
+            fStationCode(""),
+            fStationMk4ID("")
+        {
+            if(site_vex.contains("mk4_site_ID") && site_vex.contains("site_ID") && site_vex.contains("site_name"))
+            {
+                std::string mk4id = site_vex["mk4_site_ID"].get<std::string>();
+                std::string code = site_vex["site_ID"].get<std::string>();
+                std::string name = site_vex["site_name"].get<std::string>();
+                SetAll(name,code,mk4id);
+            }
+        }
 
         virtual ~MHO_StationIdentity(){};
 
