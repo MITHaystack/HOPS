@@ -40,6 +40,7 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyDateConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NumpyTypeCode.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationIdentity.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationIdentifier.hh
 )
 
 #set_source_files_properties(picohash.h PROPERTIES COMPILE_FLAGS -fpermissive)
@@ -56,6 +57,7 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationCodeMap.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LockFileHandler.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyDateConverter.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationIdentifier.cc
 )
 
 if (HOPS_USE_MPI)
