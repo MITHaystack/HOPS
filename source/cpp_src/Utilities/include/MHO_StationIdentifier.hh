@@ -50,6 +50,7 @@ class MHO_StationIdentifier
 
             if(!name_present && !code_present && !mk4id_present)
             {
+                msg_debug("utilities", "inserting station identity: "<< station_identity.as_string() << eom );
                 fCode2Name[name] = name;
                 fCode2Name[code] = name;
                 fCode2Name[mk4id] = name;

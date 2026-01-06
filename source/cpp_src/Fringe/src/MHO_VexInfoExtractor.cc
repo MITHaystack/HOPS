@@ -1,6 +1,8 @@
 #include "MHO_VexInfoExtractor.hh"
 #include "MHO_Tokenizer.hh"
 
+#include "MHO_StationIdentifier.hh"
+
 namespace hops
 {
 
@@ -128,6 +130,22 @@ void MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Para
         if(start_validity_epoch != "")
         {
             paramStore->Set("/rem_station/clock_validity", start_validity_epoch);
+        }
+    }
+}
+
+void MHO_VexInfoExtractor::extract_station_identities(const mho_json& vexInfo)
+{
+    if( vexInfo.contains("$SITE") )
+    {
+        for(auto elem = vexInfo["$SITE"].begin(); elem != vexInfo["$SITE"].end(); elem++)
+        {
+            mho_json val = elem.value();
+            MHO_StationIdentity id(val);
+            if(id.GetStationCode() != "")
+            {
+                MHO_StationIdentifier::GetInstance()->Insert(id);
+            }
         }
     }
 }

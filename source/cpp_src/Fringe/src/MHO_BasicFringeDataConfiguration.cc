@@ -775,6 +775,7 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
+    MHO_VexInfoExtractor::extract_station_identities(vexInfo);
 
     std::cout<<"DUMPING PARAMS"<<std::endl;
     paramStore->Dump();
