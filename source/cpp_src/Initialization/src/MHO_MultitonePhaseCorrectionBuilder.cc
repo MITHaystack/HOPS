@@ -17,7 +17,7 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
         std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "calibration";
         double priority = fFormat["priority"].get< double >();
-        std::string mk4id = ExtractStationMk4ID(op_name);
+        std::string station_id = ExtractStationCode(op_name);
 
         //check pc_mode values to see if this operator should be built at all (defaults to true)
         //first we check if there is a 'pc_mode' defined under '/control/station/pc_mode'
@@ -27,9 +27,9 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
             pc_mode = this->fParameterStore->GetAs< std::string >("/control/station/pc_mode");
         }
 
-        //however, any station specific value under '/control/station/<mk4id>/pc_mode' will
+        //however, any station specific value under '/control/station/<station_id>/pc_mode' will
         //override the generic /control/station/pc_mode
-        std::string station_pcmode_path = std::string("/control/station/") + mk4id + "/pc_mode";
+        std::string station_pcmode_path = std::string("/control/station/") + station_id + "/pc_mode";
         if(this->fParameterStore->IsPresent(station_pcmode_path))
         {
             pc_mode = this->fParameterStore->GetAs< std::string >(station_pcmode_path);
@@ -53,7 +53,7 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
             if(pcal_data == nullptr)
             {
                 msg_debug("initialization", "cannot construct MHO_MultitonePhaseCorrection without pcal data for station: "
-                                                << mk4id << "." << eom);
+                                                << station_id << "." << eom);
                 return false;
             }
 
@@ -74,22 +74,23 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
             }
 
             //grab the appropriate pc_period station parameter
-            int pc_period = ExtractPCPeriod(mk4id);
+            int pc_period = ExtractPCPeriod(station_id);
             //grab the sampler delays (if present) and label each pol with them
-            AttachSamplerDelays(pcal_data, mk4id);
-            AttachPCToneMask(pcal_data, mk4id);
+            AttachSamplerDelays(pcal_data, station_id);
+            AttachPCToneMask(pcal_data, station_id);
 
             //build the operator
             MHO_MultitonePhaseCorrection* op = new MHO_MultitonePhaseCorrection();
             op->SetName(op_name);
             op->SetArgs(vis_data);
-            op->SetStationMk4ID(mk4id);
+            op->SetStation(station_id);
+            //op->SetStationMk4ID(mk4id);
             op->SetMultitonePCData(pcal_data);
             op->SetPCPeriod(pc_period);
             op->SetWeights(weights);
             op->SetPriority(priority);
 
-            msg_debug("initialization", "creating operator: " << op_name << " for station: " << mk4id << "." << eom);
+            msg_debug("initialization", "creating operator: " << op_name << " for station: " << station_id << "." << eom);
 
             bool replace_duplicates = true;
             this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
@@ -97,33 +98,33 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
         }
 
         //multitone pcal not triggered for this station
-        msg_debug("initialization", "MHO_MultitonePhaseCorrection will not be applied to station: " << mk4id << "." << eom);
+        msg_debug("initialization", "MHO_MultitonePhaseCorrection will not be applied to station: " << station_id << "." << eom);
         return false;
     }
     return false;
 }
 
-std::string MHO_MultitonePhaseCorrectionBuilder::ExtractStationMk4ID(std::string op_name)
+std::string MHO_MultitonePhaseCorrectionBuilder::ExtractStationCode(std::string op_name)
 {
     std::string station_id = "?";
     if(op_name == fRefOpName)
     {
-        station_id = this->fParameterStore->GetAs< std::string >("/ref_station/mk4id");
+        station_id = this->fParameterStore->GetAs< std::string >("/ref_station/site_id");
     }
     if(op_name == fRemOpName)
     {
-        station_id = this->fParameterStore->GetAs< std::string >("/rem_station/mk4id");
+        station_id = this->fParameterStore->GetAs< std::string >("/rem_station/site_id");
     }
     return station_id;
 }
 
-int MHO_MultitonePhaseCorrectionBuilder::ExtractPCPeriod(std::string mk4id)
+int MHO_MultitonePhaseCorrectionBuilder::ExtractPCPeriod(std::string station_id)
 {
     int pc_period = 1; //default value
     //generic path
     std::string pc_period_path = "/control/station/pc_period";
     //station specific path
-    std::string station_pc_period_path = std::string("/control/station/") + mk4id + "/pc_period";
+    std::string station_pc_period_path = std::string("/control/station/") + station_id + "/pc_period";
     if(fParameterStore->IsPresent(pc_period_path))
     {
         fParameterStore->Get(pc_period_path, pc_period);
@@ -135,7 +136,7 @@ int MHO_MultitonePhaseCorrectionBuilder::ExtractPCPeriod(std::string mk4id)
     return pc_period;
 }
 
-void MHO_MultitonePhaseCorrectionBuilder::AttachSamplerDelays(multitone_pcal_type* pcal_data, std::string mk4id)
+void MHO_MultitonePhaseCorrectionBuilder::AttachSamplerDelays(multitone_pcal_type* pcal_data, std::string station_id)
 {
     //pulls the appropriate sampler delays from the parameter store, and labels the pcal data with them
     auto pol_ax = &(std::get< MTPCAL_POL_AXIS >(*pcal_data));
@@ -150,7 +151,7 @@ void MHO_MultitonePhaseCorrectionBuilder::AttachSamplerDelays(multitone_pcal_typ
             //generic path
             std::vector< double > delays;
             std::string sd_path = std::string("/control/station/") + sampler_delay_key;
-            std::string station_sd_path = std::string("/control/station/") + mk4id + "/" + sampler_delay_key;
+            std::string station_sd_path = std::string("/control/station/") + station_id + "/" + sampler_delay_key;
             if(fParameterStore->IsPresent(sd_path))
             {
                 fParameterStore->Get(sd_path, delays);
@@ -162,7 +163,7 @@ void MHO_MultitonePhaseCorrectionBuilder::AttachSamplerDelays(multitone_pcal_typ
 
             std::vector< std::string > sampler_groups;
             std::string sg_path = std::string("/control/station/") + sampler_groups_key;
-            std::string station_sg_path = std::string("/control/station/") + mk4id + "/" + sampler_groups_key;
+            std::string station_sg_path = std::string("/control/station/") + station_id + "/" + sampler_groups_key;
             if(fParameterStore->IsPresent(sg_path))
             {
                 fParameterStore->Get(sg_path, sampler_groups);
@@ -179,7 +180,7 @@ void MHO_MultitonePhaseCorrectionBuilder::AttachSamplerDelays(multitone_pcal_typ
             else if(sampler_groups.size() != 0)
             {
                 msg_warn("initialization", "number of sampler delays specified for station: "
-                                               << mk4id << "(" << delays.size()
+                                               << station_id << "(" << delays.size()
                                                << ") does not match the number of samplers defined (" << sampler_groups.size()
                                                << "), assuming delays are all zero." << eom);
                 delays.resize(sampler_groups.size(), 0.0);
@@ -219,7 +220,7 @@ std::string MHO_MultitonePhaseCorrectionBuilder::GetSamplerDelayKey(std::string 
     return key;
 }
 
-void MHO_MultitonePhaseCorrectionBuilder::AttachPCToneMask(multitone_pcal_type* pcal_data, std::string mk4id)
+void MHO_MultitonePhaseCorrectionBuilder::AttachPCToneMask(multitone_pcal_type* pcal_data, std::string station_id)
 {
     //pulls the appropriate pc_tonemask data from the parameter store and labels the pcal data
     std::string pc_tonemask_key = "pc_tonemask";
@@ -243,7 +244,7 @@ void MHO_MultitonePhaseCorrectionBuilder::AttachPCToneMask(multitone_pcal_type* 
     }
 
     //station specific paths
-    prefix = std::string("/control/station/") + mk4id + "/" + pc_tonemask_key;
+    prefix = std::string("/control/station/") + station_id + "/" + pc_tonemask_key;
     chan_path = prefix + "/" + channel_names_key;
     mask_path = prefix + "/" + tone_masks_key;
     if(fParameterStore->IsPresent(chan_path) && fParameterStore->IsPresent(mask_path))
@@ -259,7 +260,7 @@ void MHO_MultitonePhaseCorrectionBuilder::AttachPCToneMask(multitone_pcal_type* 
     }
     // else
     // {
-    //     msg_warn("initialization", "could not configure pc_tonemask for station: "<< mk4id<< ", assuming no pc tone masks." << eom);
+    //     msg_warn("initialization", "could not configure pc_tonemask for station: "<< station_id<< ", assuming no pc tone masks." << eom);
     // }
 }
 

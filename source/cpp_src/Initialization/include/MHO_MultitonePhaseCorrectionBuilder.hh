@@ -47,12 +47,12 @@ class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
 
     private:
         /**
-         * @brief Extracts station Mk4 ID from parameter store based on input operation name.
+         * @brief Extracts station 2-char code from parameter store based on input operation name.
          *
-         * @param op_name Input operation name to determine which station's Mk4 ID to extract.
-         * @return Station Mk4 ID as a string.
+         * @param op_name Input operation name to determine which station's code to extract.
+         * @return Station code as a string.
          */
-        std::string ExtractStationMk4ID(std::string op_name); //op_name indicates reference or remote station
+        std::string ExtractStationCode(std::string op_name); //op_name indicates reference or remote station
         /**
          * @brief Extracts and returns PC period from either a generic path or station-specific path using mk4id.
          *
