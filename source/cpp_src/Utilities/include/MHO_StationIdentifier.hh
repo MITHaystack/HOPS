@@ -54,6 +54,8 @@ class MHO_StationIdentifier
                 fCode2Name[name] = name;
                 fCode2Name[code] = name;
                 fCode2Name[mk4id] = name;
+                fName2Code[name] = code;
+                fName2Mk4ID[name] = mk4id;
                 fStationIds.push_back(station_identity);
             }
             //success 
@@ -77,7 +79,35 @@ class MHO_StationIdentifier
             else 
             {
                 msg_warn("utilities", "cannot locate cannonical station name for: <"<< code<<">" << eom );
-                return std::string("");
+                return code; //return the same value that was submitted
+            }
+        }
+        
+        std::string StationMk4IDFromName(std::string name) const 
+        {
+            auto it = fName2Mk4ID.find(name);
+            if( it != fName2Mk4ID.end() )
+            {
+                return it->second;
+            }
+            else 
+            {
+                msg_warn("utilities", "cannot locate mk4 id from cannonical station name: <"<<name<<">" << eom );
+                return name; //return the same value that was submitted
+            }
+        }
+        
+        std::string StationCodeFromName(std::string name) const 
+        {
+            auto it = fName2Code.find(name);
+            if( it != fName2Code.end() )
+            {
+                return it->second;
+            }
+            else 
+            {
+                msg_warn("utilities", "cannot locate station code from cannonical station name: <"<<name<<">" << eom );
+                return name; //return the same value that was submitted
             }
         }
 
@@ -91,6 +121,8 @@ class MHO_StationIdentifier
         std::vector< MHO_StationIdentity > fStationIds;
         std::set< std::string > fCodeSet;
         std::map< std::string, std::string > fCode2Name; // 1 char, 2 char, name -> proper name
+        std::map< std::string, std::string > fName2Code; //name -> 2 char code
+        std::map< std::string, std::string > fName2Mk4ID; //name -> 1 char mk4 id
 
 };
 
