@@ -83,8 +83,7 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
             MHO_MultitonePhaseCorrection* op = new MHO_MultitonePhaseCorrection();
             op->SetName(op_name);
             op->SetArgs(vis_data);
-            op->SetStation(station_id);
-            //op->SetStationMk4ID(mk4id);
+            op->SetStation(station_id); //use 2-char station code for identification
             op->SetMultitonePCData(pcal_data);
             op->SetPCPeriod(pc_period);
             op->SetWeights(weights);
