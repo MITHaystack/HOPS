@@ -31,9 +31,9 @@ bool MHO_SamplerLabelerBuilder::Build()
             return false;
         }
 
-        //get the reference and remote station mk4ids
-        std::string ref_id = this->fParameterStore->GetAs< std::string >("/ref_station/mk4id");
-        std::string rem_id = this->fParameterStore->GetAs< std::string >("/rem_station/mk4id");
+        //get the reference and remote station (2-char) codes
+        std::string ref_id = this->fParameterStore->GetAs< std::string >("/ref_station/site_id");
+        std::string rem_id = this->fParameterStore->GetAs< std::string >("/rem_station/site_id");
 
         //now determine the path to the channel->sampler info, if it exists at all
         std::string generic_path = "/control/station/samplers";
