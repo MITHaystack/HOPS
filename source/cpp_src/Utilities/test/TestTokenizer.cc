@@ -129,12 +129,12 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_StationIdentity west;
     west.SetAll("WESTFORD", "Wf", "E");
     
-    std::cout<<"station: "<<west<<std::endl;
+    std::cout<<"station: "<<west.as_string()<<std::endl;
     
     MHO_StationIdentity ggao;
     ggao.SetAll("GGAO12M", "Gs", "G");
     
-    std::cout<<"station: "<<ggao<<std::endl;
+    std::cout<<"station: "<<ggao.as_string()<<std::endl;
     
     bool ok = (ggao == west);
     std::cout<<"equivalent? "<< ok <<std::endl;
