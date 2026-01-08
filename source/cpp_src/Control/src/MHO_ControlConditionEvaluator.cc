@@ -16,10 +16,13 @@ namespace hops
 
 MHO_ControlConditionEvaluator::MHO_ControlConditionEvaluator()
 {
+    fDelim = "-";
     fWildcard = "?";
-    fBaseline = "??";
-    fRefStation = "?";
-    fRemStation = "?";
+    fBaselineMk4 = "??";
+    fRefStationMk4ID = "?";
+    fRemStationMk4ID = "?";
+    fCanonicalRefStation = "";
+    fCanonicalRemStation = "";
     fSource = "?";
     fFGroup = "?";
     fScanTime = "?";
@@ -31,9 +34,27 @@ MHO_ControlConditionEvaluator::~MHO_ControlConditionEvaluator()
 void MHO_ControlConditionEvaluator::SetPassInformation(std::string baseline, std::string source, std::string fgroup,
                                                        std::string scan_time)
 {
-    fBaseline = baseline;
-    fRefStation = std::string(1, fBaseline[0]);
-    fRemStation = std::string(1, fBaseline[1]);
+    if(baseline.size() == 2) //mk4 style baseline 'GE'
+    {
+        fBaselineMk4 = baseline;
+        fRefStationMk4ID = std::string(1, fBaselineMk4[0]);
+        fRemStationMk4ID = std::string(1, fBaselineMk4[1]);
+        fCanonicalRefStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(fRefStationMk4ID);
+        fCanonicalRemStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(fRemStationMk4ID);
+    }
+    else if( baseline.find(fDelim) != std::string::npos ) //baseline is of the form: 'Gs-Wf'
+    {
+        std::string ref_station = baseline.substr(0,baseline.find(fDelim));
+        std::string rem_station = baseline.substr(baseline.find(fDelim)+1);
+        fCanonicalRefStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(ref_station);
+        fCanonicalRemStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(rem_station);
+        fRefStationMk4ID = MHO_StationIdentifier::GetInstance()->StationMk4IDFromName(fCanonicalRefStation);
+        fRemStationMk4ID = MHO_StationIdentifier::GetInstance()->StationMk4IDFromName(fCanonicalRemStation);
+        fBaselineMk4 = fRefStationMk4ID + fRemStationMk4ID;
+    }
+
+    msg_debug("control", "condition evaluator, canonical station names: "<< fCanonicalRefStation <<", "<< fCanonicalRemStation << eom);
+    
     fSource = source;
     fFGroup = fgroup;
     fScanTime = scan_time;
@@ -371,32 +392,69 @@ int MHO_ControlConditionEvaluator::EvaluateStation(token_iter& it)
 {
     //if( it == tokens.end() ){msg_error("control", "missing argument to station statement." << eom); return FALSE_STATE;}
     auto station = *it;
-    if(station == fRefStation || station == fRemStation)
+    if(station.size() == 1 ) //1-char mk4 id station
     {
-        return TRUE_STATE;
+        if(station == fRefStationMk4ID || station == fRemStationMk4ID)
+        {
+            return TRUE_STATE;
+        }
+        if(station == fWildcard)
+        {
+            return TRUE_STATE;
+        }
     }
-    if(station == fWildcard)
+    else //multi-character station name/code
     {
-        return TRUE_STATE;
+        std::string station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(station);
+        if(station_name == fCanonicalRefStation || station_name == fCanonicalRemStation)
+        {
+            return TRUE_STATE;
+        }
+        if(station_name == fWildcard)
+        {
+            return TRUE_STATE;
+        }
     }
+    
     return FALSE_STATE;
 }
 
 int MHO_ControlConditionEvaluator::EvaluateBaseline(token_iter& it)
 {
+    auto baseline = *it;
+    if(baseline.size() < 2){return FALSE_STATE;}
+    else if(baseline.size() == 2)
+    {
+        // mk4 style baseline, e.g. two conjoined mk4ids: GE
+        return EvaluateTwoCharacterBaseline(it);
+    }
+    else
+    {
+        //e.g. Gs-Wf
+        return EvaluateMultiCharacterBaseline(it);
+    }
+}
+
+
+int MHO_ControlConditionEvaluator::EvaluateTwoCharacterBaseline(token_iter& it)
+{
     //if( it == tokens.end() ){msg_error("control", "missing argument to baseline statement." << eom); return FALSE_STATE;}
     auto baseline = *it;
     std::string ref_station(1, baseline[0]);
     std::string rem_station(1, baseline[1]);
-    if(baseline == fBaseline)
+    if(baseline == fBaselineMk4)
     {
         return TRUE_STATE;
     }
-    if(ref_station == fWildcard && rem_station == fRemStation)
+    if(ref_station == fRefStationMk4ID && rem_station == fRemStationMk4ID)
     {
         return TRUE_STATE;
     }
-    if(rem_station == fWildcard && ref_station == fRefStation)
+    if(ref_station == fWildcard && rem_station == fRemStationMk4ID)
+    {
+        return TRUE_STATE;
+    }
+    if(rem_station == fWildcard && ref_station == fRefStationMk4ID)
     {
         return TRUE_STATE;
     }
@@ -406,6 +464,38 @@ int MHO_ControlConditionEvaluator::EvaluateBaseline(token_iter& it)
     }
     return FALSE_STATE;
 }
+
+
+int MHO_ControlConditionEvaluator::EvaluateMultiCharacterBaseline(token_iter& it)
+{
+    auto baseline = *it;
+    if(baseline.find(fDelim) != std::string::npos) //"-" must be present to split stations
+    {
+        std::string ref_station = baseline.substr(0,baseline.find(fDelim));
+        std::string rem_station = baseline.substr(baseline.find(fDelim)+1);
+        std::string ref_station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(ref_station);
+        std::string rem_station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(rem_station);
+        if(ref_station_name == fCanonicalRefStation && rem_station_name == fCanonicalRemStation)
+        {
+            return TRUE_STATE;
+        }
+        if(ref_station == fWildcard && rem_station_name == fCanonicalRemStation)
+        {
+            return TRUE_STATE;
+        }
+        if(rem_station == fWildcard && ref_station_name == fCanonicalRefStation)
+        {
+            return TRUE_STATE;
+        }
+        if(rem_station == fWildcard && ref_station == fWildcard)
+        {
+            return TRUE_STATE;
+        }
+        return FALSE_STATE;
+    }
+    return FALSE_STATE;
+}
+
 
 int MHO_ControlConditionEvaluator::EvaluateSource(token_iter& it)
 {
