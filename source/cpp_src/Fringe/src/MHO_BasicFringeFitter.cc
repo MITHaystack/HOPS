@@ -205,7 +205,8 @@ void MHO_BasicFringeFitter::Configure()
         Cache();
     }
     profiler_stop();
-
+    
+    //fOperatorToolbox.PrintOperatorNames();
     // std::cout<<"PARAMETERS = "<<std::endl;
     // fParameterStore->Dump();
 }

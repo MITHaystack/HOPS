@@ -191,8 +191,8 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
     if(ion_npts == 1)
     {
-        std::string ref_mk4id = fParameterStore->GetAs< std::string >("/ref_station/mk4id");
-        std::string ref_ion_path = "/control/station/" + ref_mk4id + "/ionosphere";
+        std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/site_id");
+        std::string ref_ion_path = "/control/station/" + ref_id + "/ionosphere";
         double ref_ion = 0;
         ok = fParameterStore->Get(ref_ion_path, ref_ion);
         if(!ok)
@@ -200,8 +200,8 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             ref_ion = 0.0;
         }
 
-        std::string rem_mk4id = fParameterStore->GetAs< std::string >("/rem_station/mk4id");
-        std::string rem_ion_path = "/control/station/" + rem_mk4id + "/ionosphere";
+        std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/site_id");
+        std::string rem_ion_path = "/control/station/" + rem_id + "/ionosphere";
         double rem_ion = 0;
         ok = fParameterStore->Get(rem_ion_path, rem_ion);
         if(!ok)
@@ -550,8 +550,8 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     //fixed ion fit...so we need to check if each station has an assigned a priori ion value
     if(ion_npts == 1)
     {
-        std::string ref_mk4id = fParameterStore->GetAs< std::string >("/ref_station/mk4id");
-        std::string ref_ion_path = "/control/station/" + ref_mk4id + "/ionosphere";
+        std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/site_id");
+        std::string ref_ion_path = "/control/station/" + ref_id + "/ionosphere";
         double ref_ion = 0.0;
         ok = fParameterStore->Get(ref_ion_path, ref_ion);
         if(!ok)
@@ -559,8 +559,8 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             ref_ion = 0.0;
         }
 
-        std::string rem_mk4id = fParameterStore->GetAs< std::string >("/rem_station/mk4id");
-        std::string rem_ion_path = "/control/station/" + rem_mk4id + "/ionosphere";
+        std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/site_id");
+        std::string rem_ion_path = "/control/station/" + rem_id + "/ionosphere";
         double rem_ion = 0.0;
         ok = fParameterStore->Get(rem_ion_path, rem_ion);
         if(!ok)

@@ -1,5 +1,6 @@
 #include "MHO_ParameterConfigurator.hh"
 #include "MHO_EncodeDecodeValue.hh"
+#include "MHO_StationIdentifier.hh"
 
 #include <algorithm>
 
@@ -46,14 +47,18 @@ bool MHO_ParameterConfigurator::Configure()
 
             //note that explict paths override the values at the base level
             //for example "/control/station/pc_mode/multitone" will be overriden
-            //by "/control/station/G/pc_mode/manual" if the latter is present
+            //by "/control/station/Gs/pc_mode/manual" if the latter is present
 
             for(auto tokit = fConditions.begin(); tokit != fConditions.end(); tokit++)
             {
                 if(*tokit == "station") //next token must be station MK4 ID
                 {
-                    std::string mk4id = *(++tokit);
-                    std::string station_path = "/control/" + parameter_type + "/" + mk4id + "/" + name;
+                    std::string station_id = *(++tokit);
+                    //map from control file token to station name
+                    std::string station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(station_id);
+                    //then map from station name to 2-char station code 
+                    std::string station_code = MHO_StationIdentifier::GetInstance()->StationCodeFromName(station_name);
+                    std::string station_path = "/control/" + parameter_type + "/" + station_code + "/" + name;
                     explicit_paths.push_back(station_path);
                 }
             }
