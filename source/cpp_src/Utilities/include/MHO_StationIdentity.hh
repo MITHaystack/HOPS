@@ -193,20 +193,6 @@ class MHO_StationIdentity
 
 };
 
-template< typename XStream > XStream& operator>>(XStream& s, MHO_StationIdentity& stid)
-{
-    std::string tmp;
-    s >> tmp;
-    stid.from_string(tmp);
-    return s;
-};
-
-template< typename XStream > XStream& operator<<(XStream& s, const MHO_StationIdentity& stid)
-{
-    s << stid.as_string();
-    return s;
-};
-
 } // namespace hops
 
 #endif /*! end of include guard: MHO_StationIdentity */
