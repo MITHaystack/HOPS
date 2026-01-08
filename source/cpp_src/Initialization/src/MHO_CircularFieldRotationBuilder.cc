@@ -41,9 +41,9 @@ bool MHO_CircularFieldRotationBuilder::Build()
         }
         fourfit_reftime = this->fParameterStore->GetAs< std::string >("/vex/scan/fourfit_reftime");
 
-        //get the reference and remote station mk4ids
-        std::string ref_id = this->fParameterStore->GetAs< std::string >("/ref_station/mk4id");
-        std::string rem_id = this->fParameterStore->GetAs< std::string >("/rem_station/mk4id");
+        //get the reference and remote station codes (2-char)
+        std::string ref_id = this->fParameterStore->GetAs< std::string >("/ref_station/site_id");
+        std::string rem_id = this->fParameterStore->GetAs< std::string >("/rem_station/site_id");
         std::string ref_mount_type = "";
         std::string rem_mount_type = "";
 
