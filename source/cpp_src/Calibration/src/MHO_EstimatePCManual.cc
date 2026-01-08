@@ -81,8 +81,12 @@ void MHO_EstimatePCManual::est_pc_manual(int mode)
 
     std::string rootfile = fParameterStore->GetAs< std::string >("/files/root_file");
 
-    std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/mk4id");
-    std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/mk4id");
+    // std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/mk4id");
+    // std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/mk4id");
+    //use 2-char station codes
+    std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/site_id");
+    std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/site_id");
+    
     fRefStationMk4ID = ref_id;
     fRemStationMk4ID = rem_id;
 
@@ -117,6 +121,7 @@ void MHO_EstimatePCManual::est_pc_manual(int mode)
     //this is only enabled for pc_mode manual...why? TODO FIXME
     if(ref_pcmode != "manual" || rem_pcmode != "manual")
     {
+        msg_debug("calibration", "estimate pc manual task only enabled if both stations are in pc_mode manual" << eom);
         return;
     }
 

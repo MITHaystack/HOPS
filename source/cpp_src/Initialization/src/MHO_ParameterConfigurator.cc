@@ -47,7 +47,7 @@ bool MHO_ParameterConfigurator::Configure()
 
             //note that explict paths override the values at the base level
             //for example "/control/station/pc_mode/multitone" will be overriden
-            //by "/control/station/G/pc_mode/manual" if the latter is present
+            //by "/control/station/Gs/pc_mode/manual" if the latter is present
 
             for(auto tokit = fConditions.begin(); tokit != fConditions.end(); tokit++)
             {
