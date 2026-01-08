@@ -54,7 +54,7 @@ void MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseli
         if(baseline.find('-') == std::string::npos)
         {
             //error out if something odd was passed
-            msg_fatal("fringe", "baseline must be passed as pair of 1-char MK4 ids or station codes delimited by '-' (e.g. GE or Gs-Wf)." << eom);
+            msg_fatal("fringe", "baseline must be passed as pair of 1-char MK4 ids or station codes delimited by '-' (e.g. GE or Gs-Wf), not: " << baseline << eom);
             std::exit(1);
         }
     }
