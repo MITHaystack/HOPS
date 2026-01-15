@@ -240,11 +240,22 @@ class ChannelToBandMap(object):
         self.pol_list = []
         self.channel_to_band_pol = dict()
         self.band_pol_to_channel = dict()
+        self.band_limits = dict()
+        self.band_pol_to_limits = dict()
 
         if self.map_type == 'VGOS':
             #setup and use vgos standard channel <-> band mapping, this set up is typical for 4x RDBE's
             self.band_list = ['A','B','C','D']
             self.pol_list = ['X','Y']
+            self.band_limits['A'] = (3000.4e6, 3512.4e6)
+            self.band_limits['B'] = (5240.4e6, 5752.4e6)
+            self.band_limits['C'] = (6360.4e6, 6872.4e6)
+            self.band_limits['D'] = (10200.4e6, 10712.4e6)
+            for b in self.band_list:
+                for p in self.pol_list:
+                    bp = b + ":" + p
+                    self.band_pol_to_limits[bp] = self.band_limits[b]
+
             self.band_pol_to_channel['A:X'] = ['X00LX', 'X01LX','X02LX','X03LX','X04LX', 'X05LX', 'X06LX', 'X07LX']
             self.band_pol_to_channel['B:X'] = ['X08LX', 'X09LX','X10LX','X11LX','X12LX', 'X13LX', 'X14LX', 'X15LX']
             self.band_pol_to_channel['C:X'] = ['X16LX', 'X17LX','X18LX','X19LX','X20LX', 'X21LX', 'X22LX', 'X23LX']
@@ -667,17 +678,38 @@ class StationScanPhaseCalibrationData(object):
             if ref_channel_name in self.single_channel_phasor_collections:
                 self.single_channel_phasor_collections[ref_channel_name].apply_phase_reference_collection(reference_scpc)
 
+    # def get_tone_phasors_grouped_by_band(self, channel_to_band_map):
+    #     """ use the channel to band map to select tones/phasor which should be fit together
+    #     to determine a delay, returns a dictionary contains lists of frequency-phasor pairs
+    #     dictionary keys are the band:pol """
+    #     grouped_phasors = dict()
+    #     for bp in channel_to_band_map.band_pol_to_channel.keys():
+    #         grouped_phasors[bp] = []
+    #         freq_phasor_pair_list = []
+    #         for chan in channel_to_band_map.band_pol_to_channel[bp]:
+    #             if chan in self.single_channel_phasor_collections:
+    #                 scpc = self.single_channel_phasor_collections[chan]
+    #                 for freq_phasor in scpc.freq_phasor_pairs:
+    #                     freq_phasor_pair_list.append(freq_phasor)
+    #         #now we have all the channel-frequency phasors, sort them by frequency, low to high
+    #         freq_phasor_pair_list.sort(key=lambda fq_ph: fq_ph[0])
+    #         grouped_phasors[bp] = freq_phasor_pair_list
+    #     return grouped_phasors
+
     def get_tone_phasors_grouped_by_band(self, channel_to_band_map):
         """ use the channel to band map to select tones/phasor which should be fit together
         to determine a delay, returns a dictionary contains lists of frequency-phasor pairs
         dictionary keys are the band:pol """
         grouped_phasors = dict()
-        for bp in channel_to_band_map.band_pol_to_channel.keys():
+        for bp in channel_to_band_map.band_pol_to_limits.keys():
+            pol = bp.split(":")[1]
             grouped_phasors[bp] = []
             freq_phasor_pair_list = []
-            for chan in channel_to_band_map.band_pol_to_channel[bp]:
-                if chan in self.single_channel_phasor_collections:
-                    scpc = self.single_channel_phasor_collections[chan]
+            (band_low, band_high) = channel_to_band_map.band_pol_to_limits[bp]
+            for chan in self.single_channel_phasor_collections:
+                scpc = self.single_channel_phasor_collections[chan]
+                if scpc.sky_frequency <= band_high and scpc.sky_frequency >= band_low and scpc.polarization == pol:
+                    print(chan, scpc.sky_frequency, bp)
                     for freq_phasor in scpc.freq_phasor_pairs:
                         freq_phasor_pair_list.append(freq_phasor)
             #now we have all the channel-frequency phasors, sort them by frequency, low to high
