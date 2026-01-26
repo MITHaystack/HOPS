@@ -132,7 +132,7 @@ class MHO_DiFXInterface
          */
         void ProcessScans(); //convert the scans
 
-        //
+        //enable difxio option to look for input files in the local directory
         void SetTryLocalDirectoryTrue();
 
     private:
