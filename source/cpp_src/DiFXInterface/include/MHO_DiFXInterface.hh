@@ -132,6 +132,9 @@ class MHO_DiFXInterface
          */
         void ProcessScans(); //convert the scans
 
+        //
+        void SetTryLocalDirectoryTrue();
+
     private:
         /**
          * @brief Initializes MHO_DiFXInterface from experiment directory files (batch mode)

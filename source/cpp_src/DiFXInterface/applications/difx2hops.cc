@@ -198,6 +198,7 @@ int main(int argc, char** argv)
         if(MHO_DirectoryInterface::IsDirectory(input_dir))
         {
             MHO_DiFXInterface difxInterface;
+            difxInterface.SetTryLocalDirectoryTrue();
             difxInterface.SetInputDirectory(input_dir);
             difxInterface.SetOutputDirectory(output_directory);
             difxInterface.SetStationCodes(&stcode_map);
