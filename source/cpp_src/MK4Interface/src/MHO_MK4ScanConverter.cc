@@ -4,12 +4,28 @@
 
 #include <set>
 
+//mk4 msg library
+#ifndef HOPS3_USE_CXX
+extern "C"
+{
+#endif
+#include "msg.h"
+#ifndef HOPS3_USE_CXX
+}
+#endif
+
 namespace hops
 {
 
 MHO_MK4ScanConverter::MHO_MK4ScanConverter(){};
 
 MHO_MK4ScanConverter::~MHO_MK4ScanConverter(){};
+
+void MHO_MK4ScanConverter::SetMark4MessageLevel(int msg_level)
+{
+    //since we rely on dfio library to read mark4 data, make sure the message level is also passed to the c-library
+    set_msglev(msg_level);
+}
 
 int MHO_MK4ScanConverter::DetermineDirectoryType(const std::string& in_dir)
 {
