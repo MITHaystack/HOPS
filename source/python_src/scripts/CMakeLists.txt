@@ -47,6 +47,7 @@ if (PY_EXE)
             hops4_visplot_example
             hops4_fringe_summary
             hops3_fringe_summary
+            fringe_vinspect
             compare_fringe_summary
         )
 
