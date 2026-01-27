@@ -228,7 +228,6 @@ class ComplexReImCovarianceMatrix(object):
 ################################################################################
 
 
-
 class ChannelToBandMap(object):
 
     def __init__(self, map_type, filename=None):
@@ -247,14 +246,10 @@ class ChannelToBandMap(object):
             #setup and use vgos standard channel <-> band mapping, this set up is typical for 4x RDBE's
             self.band_list = ['A','B','C','D']
             self.pol_list = ['X','Y']
-            self.band_limits['A'] = (3000.4e6, 3512.4e6)
-            self.band_limits['B'] = (5240.4e6, 5752.4e6)
-            self.band_limits['C'] = (6360.4e6, 6872.4e6)
-            self.band_limits['D'] = (10200.4e6, 10712.4e6)
-            for b in self.band_list:
-                for p in self.pol_list:
-                    bp = b + ":" + p
-                    self.band_pol_to_limits[bp] = self.band_limits[b]
+            self.band_limits['A'] = (3000.4e6, 3480.4e6 )
+            self.band_limits['B'] = (5240.4e6, 5720.4e6)
+            self.band_limits['C'] = (6360.4e6, 6840.4e6)
+            self.band_limits['D'] = (10200.4e6, 10680.4e6)
 
             self.band_pol_to_channel['A:X'] = ['X00LX', 'X01LX','X02LX','X03LX','X04LX', 'X05LX', 'X06LX', 'X07LX']
             self.band_pol_to_channel['B:X'] = ['X08LX', 'X09LX','X10LX','X11LX','X12LX', 'X13LX', 'X14LX', 'X15LX']
@@ -269,6 +264,11 @@ class ChannelToBandMap(object):
             #vgos-as-sx channel to band mapping for stations with RDBE's (in this case band-X is split between two different samplers B and C that have different LO's)
             self.band_list = ['A','B','C']
             self.pol_list = ['X','Y']
+
+            self.band_limits['A'] = (2254.4, 2702.4)
+            self.band_limits['B'] = (8238.4, 8654.4)
+            self.band_limits['C'] = (8750.4, 9198.4)
+
             self.band_pol_to_channel['A:X'] = ['S00UX', 'S01UX', 'S02UX', 'S03UX', 'S04UX']
             self.band_pol_to_channel['A:Y'] = ['S00UY', 'S01UY', 'S02UY', 'S03UY', 'S04UY']
             self.band_pol_to_channel['B:X'] = ['X05UX', 'X06UX', 'X07UX', 'X08UX']
@@ -280,6 +280,12 @@ class ChannelToBandMap(object):
             #use vgos-as-sx standard channel to band mapping
             self.band_list = ['A','B', 'C', 'D']
             self.pol_list = ['X','Y']
+
+            self.band_limits['A'] = (2254.4, 2702.4)
+            self.band_limits['B'] = (5070.4, 5486.4)
+            self.band_limits['C'] = (8238.4, 8654.4)
+            self.band_limits['D'] = (8750.4, 9198.4)
+
             self.band_pol_to_channel['A:X'] = ['S00UX', 'S01UX', 'S02UX', 'S03UX', 'S04UX', 'S05UX', 'S06UX', 'S07UX']
             self.band_pol_to_channel['A:Y'] = ['S00UY', 'S01UY', 'S02UY', 'S03UY', 'S04UY', 'S05UY', 'S06UY', 'S07UY']
             self.band_pol_to_channel['B:X'] = ['C08UX', 'C09UX', 'C10UX', 'C11UX', 'C12UX', 'C13UX', 'C14UX', 'C15UX']
@@ -290,11 +296,21 @@ class ChannelToBandMap(object):
             self.band_pol_to_channel['D:Y'] = ['X24UY', 'X25UY', 'X26UY', 'X27UY', 'X28UY', 'X29UY', 'X30UY', 'X31UY']
 
         if self.map_type == 'SX':
-            #use SX standard channel to band mapping
+            #setup and use legacy S/X frequency <-> band mapping,
             self.band_list = ['S','X']
             self.pol_list = ['R']
+            self.band_limits['S'] = (2225.99, 2365.99)
+            self.band_limits['X'] = (8212.99, 8932.99)
+
+            #use SX standard channel to band mapping
             self.band_pol_to_channel['S:R'] = ['S00UR','S01UR','S02UR','S03UR','S04UR']
             self.band_pol_to_channel['X:R'] = ['X05UR','X06UR','X07UR','X08UR','X09UR','X10UR','X11UR','X12UR','X13UR']
+
+        #construct freq -> band mapping for each pol
+        for b in self.band_list:
+            for p in self.pol_list:
+                bp = b + ":" + p
+                self.band_pol_to_limits[bp] = self.band_limits[b]
 
         if self.map_type == 'FILE' and filename != None:
             #use a custom band <-> channel mapping defined in a file
@@ -318,13 +334,12 @@ class ChannelToBandMap(object):
             band, pol = (self.channel_to_band_pol[channel_name]).split(':')
         return band, pol
 
-
-    def get_channels_from_band_pol(self, band, pol):
-        bp  = band + ':' + pol
-        if bp in self.band_pol_to_channel:
-            return self.band_pol_to_channel
-        else:
-            return []
+    # def get_channels_from_band_pol(self, band, pol):
+    #     bp  = band + ':' + pol
+    #     if bp in self.band_pol_to_channel:
+    #         return self.band_pol_to_channel
+    #     else:
+    #         return []
 
     def does_ovex_contain_current_channel_setup(self, ovex_filename, mk4_site_id):
         """check ovex file for the current channel setup for a specified station"""
@@ -678,24 +693,6 @@ class StationScanPhaseCalibrationData(object):
             if ref_channel_name in self.single_channel_phasor_collections:
                 self.single_channel_phasor_collections[ref_channel_name].apply_phase_reference_collection(reference_scpc)
 
-    # def get_tone_phasors_grouped_by_band(self, channel_to_band_map):
-    #     """ use the channel to band map to select tones/phasor which should be fit together
-    #     to determine a delay, returns a dictionary contains lists of frequency-phasor pairs
-    #     dictionary keys are the band:pol """
-    #     grouped_phasors = dict()
-    #     for bp in channel_to_band_map.band_pol_to_channel.keys():
-    #         grouped_phasors[bp] = []
-    #         freq_phasor_pair_list = []
-    #         for chan in channel_to_band_map.band_pol_to_channel[bp]:
-    #             if chan in self.single_channel_phasor_collections:
-    #                 scpc = self.single_channel_phasor_collections[chan]
-    #                 for freq_phasor in scpc.freq_phasor_pairs:
-    #                     freq_phasor_pair_list.append(freq_phasor)
-    #         #now we have all the channel-frequency phasors, sort them by frequency, low to high
-    #         freq_phasor_pair_list.sort(key=lambda fq_ph: fq_ph[0])
-    #         grouped_phasors[bp] = freq_phasor_pair_list
-    #     return grouped_phasors
-
     def get_tone_phasors_grouped_by_band(self, channel_to_band_map):
         """ use the channel to band map to select tones/phasor which should be fit together
         to determine a delay, returns a dictionary contains lists of frequency-phasor pairs
@@ -717,26 +714,35 @@ class StationScanPhaseCalibrationData(object):
             grouped_phasors[bp] = freq_phasor_pair_list
         return grouped_phasors
 
+    # def get_band_reference_frequencies(self, channel_to_band_map):
+    #     """use the frequencies of the channels which span a band to
+    #     determine an appropriate reference frequency"""
+    #     band_reference_frequencies = dict()
+    #     for bp in channel_to_band_map.band_pol_to_channel.keys():
+    #         max_frequencies = []
+    #         min_frequencies = []
+    #         for chan in channel_to_band_map.band_pol_to_channel[bp]:
+    #             if chan in self.single_channel_phasor_collections:
+    #                 scpc = self.single_channel_phasor_collections[chan]
+    #                 channel_edge1 = scpc.sky_frequency
+    #                 channel_edge2 = scpc.sky_frequency + scpc.sideband_sign*scpc.bandwidth
+    #                 min_frequencies.append( min(channel_edge1, channel_edge2) )
+    #                 max_frequencies.append( max(channel_edge1, channel_edge2) )
+    #         if len(max_frequencies) !=0 and len(min_frequencies) != 0 :
+    #             max_freq = max(max_frequencies)
+    #             min_freq = min(min_frequencies)
+    #             #use the middle of the band as the reference frequency, maybe we should use the DC edge instead?
+    #             ref_freq = (min_freq + max_freq)/2.0
+    #             band_reference_frequencies[bp] = ref_freq
+    #     print("REF FREQUENCIES = ", band_reference_frequencies)
+    #     return band_reference_frequencies
+
     def get_band_reference_frequencies(self, channel_to_band_map):
-        """use the frequencies of the channels which span a band to
-        determine an appropriate reference frequency"""
+        """use the band frequencies to determine a reference frequency for each band"""
         band_reference_frequencies = dict()
-        for bp in channel_to_band_map.band_pol_to_channel.keys():
-            max_frequencies = []
-            min_frequencies = []
-            for chan in channel_to_band_map.band_pol_to_channel[bp]:
-                if chan in self.single_channel_phasor_collections:
-                    scpc = self.single_channel_phasor_collections[chan]
-                    channel_edge1 = scpc.sky_frequency
-                    channel_edge2 = scpc.sky_frequency + scpc.sideband_sign*scpc.bandwidth
-                    min_frequencies.append( min(channel_edge1, channel_edge2) )
-                    max_frequencies.append( max(channel_edge1, channel_edge2) )
-            if len(max_frequencies) !=0 and len(min_frequencies) != 0 :
-                max_freq = max(max_frequencies)
-                min_freq = min(min_frequencies)
-                #use the middle of the band as the reference frequency, maybe we should use the DC edge instead?
-                ref_freq = (min_freq + max_freq)/2.0
-                band_reference_frequencies[bp] = ref_freq
+        for bp in channel_to_band_map.band_pol_to_limits.keys():
+            (high, low) = channel_to_band_map.band_pol_to_limits[bp]
+            band_reference_frequencies[bp] = (high + low)/2.0
         return band_reference_frequencies
 
     def fit_band_delay(self, channel_to_band_map, band_pol, delay_fitter, cut_threshold, verbosity=0):
@@ -1179,7 +1185,7 @@ class PccConfiguration(object):
 def process_experiment(pcc_config):
 
     chan_map = ChannelToBandMap(pcc_config.mode)
-    all_band_pol_list = chan_map.band_pol_to_channel.keys()
+    all_band_pol_list = chan_map.band_pol_to_limits.keys()
     active_band_pol_list = chan_map.construct_band_pol_keys(pcc_config.band_list, pcc_config.pol_list)
 
     #if unset, default to doing all band-pols
