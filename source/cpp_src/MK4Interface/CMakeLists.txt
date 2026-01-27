@@ -25,9 +25,11 @@ set( MK4INTERFACE_SOURCEFILES
 )
 
 #declare header paths ##########################################################
+set(MSG_RELPATH "../../c_src/msg/include")
 set(MK4UTIL_RELPATH "../../c_src/mk4util/include")
 set(DFIO_RELPATH "../../c_src/dfio/include")
 set(VEX_RELPATH "../../c_src/vex/include")
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MSG_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MK4UTIL_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${DFIO_RELPATH})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${VEX_RELPATH})
@@ -42,7 +44,7 @@ set_property( SOURCE ${MK4INTERFACE_SOURCEFILES}
 
 #compile and install library ###################################################
 
-set(MK4INTERFACE_LIBS mk4util dfio vex MHO_Vex2JSON MHO_Message MHO_Utilities MHO_Containers MHO_Operators MHO_Calibration date-tz)
+set(MK4INTERFACE_LIBS msg mk4util dfio vex MHO_Vex2JSON MHO_Message MHO_Utilities MHO_Containers MHO_Operators MHO_Calibration date-tz)
 
 add_library (MHO_MK4Interface SHARED ${MK4INTERFACE_SOURCEFILES})
 target_link_libraries (MHO_MK4Interface ${MK4INTERFACE_LIBS})

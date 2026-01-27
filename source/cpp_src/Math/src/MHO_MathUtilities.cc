@@ -208,7 +208,7 @@ int MHO_MathUtilities::ap_mean(double start, double stop, double* coords, double
     /* Set to zero to indicate missing data */
     if(begin > stop || end < start)
     {
-        msg_warn("math", "out of range in ap_mean(), " << start << ", " << stop << ", " << begin << ", " << end << eom);
+        msg_debug("math", "out of range in ap_mean(), segment (" << start << ", " << stop << ") not fully in: (" << begin << ", " << end <<")" << eom);
         *result1 = 0.0;
         *result2 = 0.0;
         return 1;

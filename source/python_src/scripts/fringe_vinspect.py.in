@@ -1,0 +1,202 @@
+#!@PY_EXE@
+#
+# test executable
+#
+import pyMHO_Containers
+import os
+import sys
+import argparse
+
+import numpy as np
+import matplotlib.pyplot as plt
+#from matplotlib import cm
+from matplotlib.ticker import LinearLocator
+
+#from mpl_toolkits.mplot3d import Axes3D
+
+# def test_plot_visibilities(visib_obj, polprod_idx, chan_idx):
+# 
+#     vis_arr = visib_obj.get_numpy_array();
+#     axis0 = visib_obj.get_axis(0);
+#     axis1 = visib_obj.get_axis(1);
+#     axis2 = visib_obj.get_axis(2);
+#     axis3 = visib_obj.get_axis(3);
+# 
+#     pp = polprod_idx;
+#     ch = chan_idx;
+# 
+#     print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
+#     fig, (ax1, ax2) = plt.subplots(2, subplot_kw={"projection": "3d"})
+# 
+#     time, freq = np.meshgrid(axis3, axis2)
+#     #time, freq = np.meshgrid(range(0,len(axis3)), range(0,len(axis2)) )
+#     vis = np.array(vis_arr[pp,ch,:,:])
+#     print("time shape = ", time.shape)
+#     print("freq shape = ", freq.shape)
+#     print("vis_00 shape = ", vis.shape)
+#     vis_mag = np.abs(vis)
+#     vis_arg = np.angle(vis, deg=True)
+# 
+#     for x in range(0, len(time) ):
+#         for y in range(0, len(freq) ):
+#             if vis_mag[y,x] < 7:
+#                 vis_mag[y,x] = 0
+#                 vis_arg[y,x] = 0
+# 
+#     # Plot the surface.
+#     surf1 = ax1.plot_surface(time, freq, vis_mag, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+#     fig.colorbar(surf1, shrink=0.5, aspect=5)
+#     surf2 = ax2.plot_surface(time, freq, vis_arg, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+#     #fig.colorbar(surf2, shrink=0.5, aspect=5)
+# 
+#     plt.show()
+# 
+# 
+# def test_plot_visibilities2(visib_obj, polprod_idx, chan_idx):
+# 
+#     vis_arr = visib_obj.get_numpy_array();
+#     axis0 = visib_obj.get_axis(0);
+#     axis1 = visib_obj.get_axis(1);
+#     axis2 = visib_obj.get_axis(2);
+#     axis3 = visib_obj.get_axis(3);
+# 
+#     vis_sum = np.sum(vis_arr, axis=2) #sum along AP/Time axis
+# 
+#     pp = polprod_idx;
+#     ch = chan_idx;
+# 
+#     print("plotting the visibilities of: pp = ", axis0[pp], " chan = ", axis1[ch]);
+#     fig, (ax1, ax2) = plt.subplots(2)
+# 
+#     freq = axis3
+#     vis = np.array(vis_sum[pp,ch,:])
+#     vis_mag = np.abs(vis)
+#     vis_arg = np.angle(vis, deg=True)
+# 
+# 
+#     vis1 = ax1.plot(freq, vis_mag, linewidth=1)
+#     vis2 = ax2.plot(freq, vis_arg, linewidth=1)
+# 
+#     plt.show()
+# 
+# 
+def test_plot_visibilities3(visib_obj, polprod_idx, chan_idx):
+
+    vis_arr = visib_obj.get_numpy_array();
+    axis0 = visib_obj.get_axis(0);
+    axis1 = visib_obj.get_axis(1);
+    axis2 = visib_obj.get_axis(2);
+    axis3 = visib_obj.get_axis(3);
+    
+    pp = polprod_idx;
+    ch = chan_idx;
+
+    print("plotting the visibilities of: pp = ", axis0[pp], " chan freq = ", axis1[ch]);
+
+    #fig, (ax1, ax2) = plt.subplots(2)
+    fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+
+    freq = axis3
+    vis = np.array(vis_arr[pp,ch,:,:])
+    vis_mag = np.abs(vis)
+
+    vis_arg = np.angle(np.sum(vis, axis=0), deg=True) #coherent sum along time axis
+    mag_sum = np.abs( np.sum(vis, axis=0) ) #coherent sum along time axis
+
+    #mag_sum = np.sum(vis_mag, axis=0) #incoherent sum along time axis
+
+    vis1 = ax1.plot(freq, mag_sum, linewidth=1)
+    vis2 = ax2.plot(freq, vis_arg, linewidth=1)
+    
+    #y axis labels
+    ax1.set_ylabel("magnitude")
+    ax2.set_ylabel("phase (deg)")
+    #shared X-axis label
+    ax2.set_xlabel("frequency (MHz)")
+    
+    #title
+    title = f"Channel X-power spectrum \n Pol-product = {axis0[pp]}, channel sky freq = {axis1[ch]} (MHz)"
+    fig.suptitle(title)
+
+    plt.show()
+
+
+def main():
+
+    parser = argparse.ArgumentParser(
+        prog='test_hops_fringe.py', \
+        description='''test utility to read a hops4 fringe file''' \
+        )
+
+    parser.add_argument('-f', '--fringe-file', dest='file', help='the fringe file')
+    parser.add_argument('-c', '--channel-index', dest='chan', help='the channel index (numerical)', default='0')
+    args = parser.parse_args()
+    ffile = os.path.abspath(args.file)
+    chan = int(args.chan)
+
+    #figure out the corresponding scan directory 
+    scan_dir, basename = os.path.split(ffile);
+    print("the scan directory = ", scan_dir)
+
+    scan_store = pyMHO_Containers.MHO_PyScanStoreInterface()
+    scan_store.set_directory(scan_dir)
+    scan_store.initialize()
+
+    if scan_store.is_valid():
+        stations = scan_store.get_station_list()
+        baselines = scan_store.get_baseline_list()
+        fringes = scan_store.get_fringe_list()
+        print("The number of stations = ", len(stations))
+        print("The number of baselines = ", len(baselines))
+        print("The number of fringes = ", len(fringes))
+    else:
+        print("The scan directory is not valid")
+        return 1
+
+    #loop over fringe data here
+    fr_data = dict()
+    for fr in fringes:
+        print(fr)
+        if fr == basename:
+            print("match found", fr)
+            scan_store.load_fringe(fr)
+            frd = scan_store.get_fringe_data(fr)
+            fr_data[fr] = frd
+            if frd != None:
+                n_obj = frd.get_nobjects()
+                obj_info = frd.get_object_id_list()
+                print(obj_info)
+                uuid = ""
+                for oid in obj_info:
+                    if oid["shortname"] == "vis":
+                        uuid = oid["object_uuid"]
+                        if uuid != "":
+                            cvis = frd.get_object(uuid)
+                            if cvis != None:
+                                print("retrieved object: ", uuid, " as visibilities")
+                                class_name = cvis.get_classname()
+                                rank = cvis.get_rank()
+                                print("visibility object has rank: ", rank, " and is a ", class_name)
+                                table_meta = cvis.get_metadata()
+                                #print("meta data is: ", table_meta)
+                                cvis_arr = cvis.get_numpy_array()
+                                print("cvis array shape = ", cvis_arr.shape)
+                                print("cvis array strides = ", cvis_arr.strides)
+                                for i in range(0,rank):
+                                    dim = cvis.get_dimension(i)
+                                    print("dimension: ", i, " has size: ", dim)
+                                    axis = cvis.get_axis(i)
+                                    print("axis: ", i, " = ", axis)
+                                    axis_meta = cvis.get_axis_metadata(i)
+                                    #print("axis meta data = ", axis_meta)
+                                    
+                                #lets plot the mag/phase of a channel 
+                                test_plot_visibilities3(cvis, 0, chan)
+
+if __name__ == '__main__':
+    main()
+    sys.exit(0)
+
+#
+# eof
+#
