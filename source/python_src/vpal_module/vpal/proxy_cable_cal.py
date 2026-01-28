@@ -251,15 +251,6 @@ class ChannelToBandMap(object):
             self.band_limits['C'] = (6360.4e6, 6840.4e6)
             self.band_limits['D'] = (10200.4e6, 10680.4e6)
 
-            # self.band_pol_to_channel['A:X'] = ['X00LX', 'X01LX','X02LX','X03LX','X04LX', 'X05LX', 'X06LX', 'X07LX']
-            # self.band_pol_to_channel['B:X'] = ['X08LX', 'X09LX','X10LX','X11LX','X12LX', 'X13LX', 'X14LX', 'X15LX']
-            # self.band_pol_to_channel['C:X'] = ['X16LX', 'X17LX','X18LX','X19LX','X20LX', 'X21LX', 'X22LX', 'X23LX']
-            # self.band_pol_to_channel['D:X'] = ['X24LX', 'X25LX','X26LX','X27LX','X28LX', 'X29LX', 'X30LX', 'X31LX']
-            # self.band_pol_to_channel['A:Y'] = ['X00LY', 'X01LY','X02LY','X03LY','X04LY', 'X05LY', 'X06LY', 'X07LY']
-            # self.band_pol_to_channel['B:Y'] = ['X08LY', 'X09LY','X10LY','X11LY','X12LY', 'X13LY', 'X14LY', 'X15LY']
-            # self.band_pol_to_channel['C:Y'] = ['X16LY', 'X17LY','X18LY','X19LY','X20LY', 'X21LY', 'X22LY', 'X23LY']
-            # self.band_pol_to_channel['D:Y'] = ['X24LY', 'X25LY','X26LY','X27LY','X28LY', 'X29LY', 'X30LY', 'X31LY']
-
         if self.map_type == 'MIXED':
             #vgos-as-sx channel to band mapping for stations with RDBE's (in this case band-X is split between two different samplers B and C that have different LO's)
             self.band_list = ['A','B','C']
@@ -268,13 +259,6 @@ class ChannelToBandMap(object):
             self.band_limits['A'] = (2254.4, 2702.4)
             self.band_limits['B'] = (8238.4, 8654.4)
             self.band_limits['C'] = (8750.4, 9198.4)
-            # 
-            # self.band_pol_to_channel['A:X'] = ['S00UX', 'S01UX', 'S02UX', 'S03UX', 'S04UX']
-            # self.band_pol_to_channel['A:Y'] = ['S00UY', 'S01UY', 'S02UY', 'S03UY', 'S04UY']
-            # self.band_pol_to_channel['B:X'] = ['X05UX', 'X06UX', 'X07UX', 'X08UX']
-            # self.band_pol_to_channel['B:Y'] = ['X05UY', 'X06UY', 'X07UY', 'X08UY']
-            # self.band_pol_to_channel['C:X'] = ['X09UX', 'X10UX', 'X11UX', 'X12UX', 'X13UX']
-            # self.band_pol_to_channel['C:Y'] = ['X09UY', 'X10UY', 'X11UY', 'X12UY', 'X13UY']
 
         if self.map_type == 'BBMIXED':
             #use vgos-as-sx standard channel to band mapping
@@ -286,25 +270,12 @@ class ChannelToBandMap(object):
             self.band_limits['C'] = (8238.4, 8654.4)
             self.band_limits['D'] = (8750.4, 9198.4)
 
-            # self.band_pol_to_channel['A:X'] = ['S00UX', 'S01UX', 'S02UX', 'S03UX', 'S04UX', 'S05UX', 'S06UX', 'S07UX']
-            # self.band_pol_to_channel['A:Y'] = ['S00UY', 'S01UY', 'S02UY', 'S03UY', 'S04UY', 'S05UY', 'S06UY', 'S07UY']
-            # self.band_pol_to_channel['B:X'] = ['C08UX', 'C09UX', 'C10UX', 'C11UX', 'C12UX', 'C13UX', 'C14UX', 'C15UX']
-            # self.band_pol_to_channel['B:Y'] = ['C08UY', 'C09UY', 'C10UY', 'C11UY', 'C12UY', 'C13UY', 'C14UY', 'C15UY']
-            # self.band_pol_to_channel['C:X'] = ['X16UX', 'X17UX', 'X18UX', 'X19UX', 'X20UX', 'X21UX', 'X22UX', 'X23UX']
-            # self.band_pol_to_channel['C:Y'] = ['X16UY', 'X17UY', 'X18UY', 'X19UY', 'X20UY', 'X21UY', 'X22UY', 'X23UY']
-            # self.band_pol_to_channel['D:X'] = ['X24UX', 'X25UX', 'X26UX', 'X27UX', 'X28UX', 'X29UX', 'X30UX', 'X31UX']
-            # self.band_pol_to_channel['D:Y'] = ['X24UY', 'X25UY', 'X26UY', 'X27UY', 'X28UY', 'X29UY', 'X30UY', 'X31UY']
-
         if self.map_type == 'SX':
             #setup and use legacy S/X frequency <-> band mapping,
             self.band_list = ['S','X']
             self.pol_list = ['R']
             self.band_limits['S'] = (2225.99, 2365.99)
             self.band_limits['X'] = (8212.99, 8932.99)
-
-            # #use SX standard channel to band mapping
-            # self.band_pol_to_channel['S:R'] = ['S00UR','S01UR','S02UR','S03UR','S04UR']
-            # self.band_pol_to_channel['X:R'] = ['X05UR','X06UR','X07UR','X08UR','X09UR','X10UR','X11UR','X12UR','X13UR']
 
         #construct freq -> band mapping for each pol
         for b in self.band_list:
@@ -317,33 +288,12 @@ class ChannelToBandMap(object):
             pcc_logger.error("Error: file band-channel map not yet implemented!")
             sys.exit('Error: file band-channel map not yet implemented!')
 
-        # #set up inverse map
-        # for b in self.band_list:
-        #     for p in self.pol_list:
-        #         bp = b + ':' + p
-        #         for ch in self.band_pol_to_channel[bp]:
-        #             self.channel_to_band_pol[ch] = bp
 
     def list_types(self):
         return ["VGOS", "MIXED", "BBMIXED", "SX"]
 
-    # def get_band_pol_from_channel_name(self, channel_name):
-    #     band = ''
-    #     pol = ''
-    #     if channel_name in self.channel_to_band_pol:
-    #         band, pol = (self.channel_to_band_pol[channel_name]).split(':')
-    #     return band, pol
-
-    # def get_channels_from_band_pol(self, band, pol):
-    #     bp  = band + ':' + pol
-    #     if bp in self.band_pol_to_channel:
-    #         return self.band_pol_to_channel
-    #     else:
-    #         return []
-
-    def does_ovex_contain_current_channel_setup(self, ovex_filename, mk4_site_id):
+    def does_ovex_contain_station(self, ovex_filename, mk4_site_id):
         """check ovex file for the current channel setup for a specified station"""
-        success = True
         if os.path.isfile(ovex_filename):
             #get the ovex data from the root file
             ovex = vexpy.get_ovex(ovex_filename)
@@ -354,15 +304,7 @@ class ChannelToBandMap(object):
                     st_index = n
                     return True
                     break
-            # #fill it in and run through and populate the channel entries
-            # channel_list = []
-            # for ch in list(range(0, MAX_CHAN)):
-            #     channel_name = str( ovex.st[st_index].channels[ch].chan_name.decode() )
-            #     if len(channel_name) != 0:
-            #         if channel_name not in self.channel_to_band_pol.keys():
-            #             pcc_logger.error("Error a channel: " + channel_name + " that is not in the " + self.map_type + " band <-> channel map keys in: " + ovex_filename)
-            #             success = False #This disables proxy-cable-cal delay fitting for the scan associated with this root-file
-            #return success
+            return False
         else:
             return False
 
@@ -793,7 +735,7 @@ class StationExperimentPhasorCollection(object):
         #now we go through the root_file_list and ensure that there is only one root-file per scan
         root_file_dict = dict()
         for rf in tmp_root_file_list:
-            if self.channel_to_band_map.does_ovex_contain_current_channel_setup(rf, self.mk4_site_id):
+            if self.channel_to_band_map.does_ovex_contain_station(rf, self.mk4_site_id):
                 scan_dir = os.path.dirname(rf)
                 if scan_dir in root_file_dict:
                     pcc_logger.warning("Warning: duplicate root file present! Replacing " + root_file_dict[scan_dir] + " with " + rf)
