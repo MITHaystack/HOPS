@@ -317,22 +317,22 @@ class ChannelToBandMap(object):
             pcc_logger.error("Error: file band-channel map not yet implemented!")
             sys.exit('Error: file band-channel map not yet implemented!')
 
-        #set up inverse map
-        for b in self.band_list:
-            for p in self.pol_list:
-                bp = b + ':' + p
-                for ch in self.band_pol_to_channel[bp]:
-                    self.channel_to_band_pol[ch] = bp
+        # #set up inverse map
+        # for b in self.band_list:
+        #     for p in self.pol_list:
+        #         bp = b + ':' + p
+        #         for ch in self.band_pol_to_channel[bp]:
+        #             self.channel_to_band_pol[ch] = bp
 
     def list_types(self):
         return ["VGOS", "MIXED", "BBMIXED", "SX"]
 
-    def get_band_pol_from_channel_name(self, channel_name):
-        band = ''
-        pol = ''
-        if channel_name in self.channel_to_band_pol:
-            band, pol = (self.channel_to_band_pol[channel_name]).split(':')
-        return band, pol
+    # def get_band_pol_from_channel_name(self, channel_name):
+    #     band = ''
+    #     pol = ''
+    #     if channel_name in self.channel_to_band_pol:
+    #         band, pol = (self.channel_to_band_pol[channel_name]).split(':')
+    #     return band, pol
 
     # def get_channels_from_band_pol(self, band, pol):
     #     bp  = band + ':' + pol
@@ -352,16 +352,17 @@ class ChannelToBandMap(object):
             for n in list(range(0, ovex.nst)):
                 if str( ovex.st[n].mk4_site_id.decode() ) == mk4_site_id:
                     st_index = n
+                    return True
                     break
-            #fill it in and run through and populate the channel entries
-            channel_list = []
-            for ch in list(range(0, MAX_CHAN)):
-                channel_name = str( ovex.st[st_index].channels[ch].chan_name.decode() )
-                if len(channel_name) != 0:
-                    if channel_name not in self.channel_to_band_pol.keys():
-                        pcc_logger.error("Error a channel: " + channel_name + " that is not in the " + self.map_type + " band <-> channel map keys in: " + ovex_filename)
-                        success = False #This disables proxy-cable-cal delay fitting for the scan associated with this root-file
-            return success
+            # #fill it in and run through and populate the channel entries
+            # channel_list = []
+            # for ch in list(range(0, MAX_CHAN)):
+            #     channel_name = str( ovex.st[st_index].channels[ch].chan_name.decode() )
+            #     if len(channel_name) != 0:
+            #         if channel_name not in self.channel_to_band_pol.keys():
+            #             pcc_logger.error("Error a channel: " + channel_name + " that is not in the " + self.map_type + " band <-> channel map keys in: " + ovex_filename)
+            #             success = False #This disables proxy-cable-cal delay fitting for the scan associated with this root-file
+            #return success
         else:
             return False
 
