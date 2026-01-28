@@ -657,29 +657,6 @@ class StationScanPhaseCalibrationData(object):
             grouped_phasors[bp] = freq_phasor_pair_list
         return grouped_phasors
 
-    # def get_band_reference_frequencies(self, channel_to_band_map):
-    #     """use the frequencies of the channels which span a band to
-    #     determine an appropriate reference frequency"""
-    #     band_reference_frequencies = dict()
-    #     for bp in channel_to_band_map.band_pol_to_channel.keys():
-    #         max_frequencies = []
-    #         min_frequencies = []
-    #         for chan in channel_to_band_map.band_pol_to_channel[bp]:
-    #             if chan in self.single_channel_phasor_collections:
-    #                 scpc = self.single_channel_phasor_collections[chan]
-    #                 channel_edge1 = scpc.sky_frequency
-    #                 channel_edge2 = scpc.sky_frequency + scpc.sideband_sign*scpc.bandwidth
-    #                 min_frequencies.append( min(channel_edge1, channel_edge2) )
-    #                 max_frequencies.append( max(channel_edge1, channel_edge2) )
-    #         if len(max_frequencies) !=0 and len(min_frequencies) != 0 :
-    #             max_freq = max(max_frequencies)
-    #             min_freq = min(min_frequencies)
-    #             #use the middle of the band as the reference frequency, maybe we should use the DC edge instead?
-    #             ref_freq = (min_freq + max_freq)/2.0
-    #             band_reference_frequencies[bp] = ref_freq
-    #     print("REF FREQUENCIES = ", band_reference_frequencies)
-    #     return band_reference_frequencies
-
     def get_band_reference_frequencies(self, channel_to_band_map):
         """use the band frequencies to determine a reference frequency for each band"""
         band_reference_frequencies = dict()
