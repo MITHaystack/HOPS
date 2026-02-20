@@ -1,5 +1,5 @@
-#ifndef MHO_PolarizationRelabeler_HH__
-#define MHO_PolarizationRelabeler_HH__
+#ifndef MHO_PolarizationProductRelabeler_HH__
+#define MHO_PolarizationProductRelabeler_HH__
 
 #include <map>
 #include <stack>
@@ -15,30 +15,32 @@ namespace hops
 {
 
 /*!
- *@file MHO_PolarizationRelabeler.hh
- *@class MHO_PolarizationRelabeler
+ *@file MHO_PolarizationProductRelabeler.hh
+ *@class MHO_PolarizationProductRelabeler
  *@author J. Barrett - barrettj@mit.edu
  *@date Fri Feb 20 12:24:39 PM EST 2026
- *@brief Changes the polarization labels  of a station (X -> Y) or (R -> L), as applied to pcal data
+ *@brief Changes the polarization labels  of a station (X -> Y) or (R -> L), etc, as applied to visbility/weight data
  */
 
 /**
- * @brief Class MHO_PolarizationRelabeler
+ * @brief Class MHO_PolarizationProductRelabeler
  */
-template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_UnaryOperator< XArrayType >
+template< typename XArrayType > class MHO_PolarizationProductRelabeler: public MHO_UnaryOperator< XArrayType >
 {
     public:
-        MHO_PolarizationRelabeler()
+        MHO_PolarizationProductRelabeler()
         {
             fStationIdentity = "";
-            fStationKey = "station_code";
-            fStationMk4IDKey = "station_mk4id";
+            fRemStationKey = "remote_station";
+            fRefStationKey = "reference_station";
+            fRemStationMk4IDKey = "remote_station_mk4id";
+            fRefStationMk4IDKey = "reference_station_mk4id";
             fPol1 = "";
             fPol2 = "";
             fValid = false;
         };
 
-        virtual ~MHO_PolarizationRelabeler(){};
+        virtual ~MHO_PolarizationProductRelabeler(){};
 
         void SetPolarizationSwapPair(std::string pol1, std::string pol2)
         {
@@ -53,7 +55,7 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
             else 
             {
                 fValid = false;
-                msg_error("calibration", "MHO_PolarizationRelabeler, only single character polarization labels are supported, ignoring." << eom);
+                msg_error("calibration", "MHO_PolarizationProductRelabeler, only single character polarization labels are supported, ignoring." << eom);
             }
         }
 
@@ -99,17 +101,21 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
             if(in != nullptr)
             {
                 //need to use the user provided frequency <-> channel label map
-                auto pol_axis_ptr = &(std::get< MTPCAL_POL_AXIS >(*in));
-                std::size_t npols = pol_axis_ptr->GetSize();
-                if( IsApplicable(in) )
+                auto pprod_axis_ptr = &(std::get< POLPROD_AXIS >(*in));
+                std::size_t npprods = pprod_axis_ptr->GetSize();
+
+                for(std::size_t st_idx = 0; st_idx < 2; st_idx++)
                 {
-                    for(std::size_t i=0; i<npols; i++)
+                    if( IsApplicable(st_idx, in) )
                     {
-                        //swap any instances of pol1 <-> pol2
-                        std::string pol = pol_axis_ptr->at(i);
-                        if(pol == fPol1){pol = fPol2;}
-                        else if(pol == fPol2){pol = fPol1;}
-                        pol_axis_ptr->at(i) = pol;
+                        for(std::size_t i=0; i<npprods; i++)
+                        {
+                            //swap any instances of pol1 <-> pol2
+                            std::string pprod = pprod_axis_ptr->at(i);
+                            if(pprod[st_idx] == fPol1[0]){pprod[st_idx] = fPol2[0];}
+                            else if(pprod[st_idx] == fPol2[0]){pprod[st_idx] = fPol1[0];}
+                            pprod_axis_ptr->at(i) = pprod;
+                        }
                     }
                 }
             }
@@ -134,7 +140,10 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
 
         //keys for tag retrieval
         std::string fStationKey;
-        std::string fStationMk4IDKey;
+        std::string fRemStationKey;
+        std::string fRefStationKey;
+        std::string fRemStationMk4IDKey;
+        std::string fRefStationMk4IDKey;
 
         //data 
         std::string fStationIdentity;
@@ -142,10 +151,23 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
         std::string fPol2;
 
         //determines if to apply the pol relabelling, for the station (ref or rem)
-        bool IsApplicable( const XArrayType* in)
+        bool IsApplicable(std::size_t st_idx, const XArrayType* in)
         {
             bool apply_correction = false;
             std::string val;
+            std::string mk4id_key;
+            std::string station_code_key;
+
+            if(st_idx == 0)
+            {
+                mk4id_key = fRefStationMk4IDKey;
+                station_code_key = fRefStationKey;
+            }
+            else
+            {
+                mk4id_key = fRemStationMk4IDKey;
+                station_code_key = fRemStationKey;
+            }
 
             if(fStationIdentity.size() > 2)
             {
@@ -156,7 +178,7 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
 
             if(fStationIdentity.size() == 1) //selection by mk4 id
             {
-                in->Retrieve(fStationMk4IDKey, val);
+                in->Retrieve(mk4id_key, val);
                 if(fStationIdentity == val || fStationIdentity == "?")
                 {
                     apply_correction = true;
@@ -165,7 +187,7 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
 
             if(fStationIdentity.size() == 2) //selection by 2-char station code
             {
-                in->Retrieve(fStationKey, val);
+                in->Retrieve(station_code_key, val);
                 if(fStationIdentity == val || fStationIdentity == "??")
                 {
                     apply_correction = true;
@@ -179,4 +201,4 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_PolarizationRelabeler_HH__ */
+#endif /*! end of include guard: MHO_PolarizationProductRelabeler_HH__ */
