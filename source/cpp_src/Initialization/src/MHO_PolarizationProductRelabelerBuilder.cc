@@ -12,7 +12,7 @@ bool MHO_PolarizationProductRelabelerBuilder::Build()
         msg_debug("initialization", "building a polarization_product_relabel operator." << eom);
 
         std::string op_name = fAttributes["name"].get<std::string>();
-        std::string op_category = "calibration";
+        std::string op_category = "labeling";
         double priority = fFormat["priority"].get<double>();
 
         visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));

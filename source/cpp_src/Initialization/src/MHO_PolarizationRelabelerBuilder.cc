@@ -12,7 +12,7 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         msg_debug("initialization", "building a polarization_relabel operator." << eom);
 
         std::string op_name = fAttributes["name"].get<std::string>();
-        std::string op_category = "calibration";
+        std::string op_category = "labeling";
         double priority = fFormat["priority"].get<double>();
 
         multitone_pcal_type* pcal_data = fContainerStore->GetObject<multitone_pcal_type>(std::string("pcal"));
