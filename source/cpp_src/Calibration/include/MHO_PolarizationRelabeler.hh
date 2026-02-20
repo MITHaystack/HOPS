@@ -25,7 +25,7 @@ namespace hops
 /**
  * @brief Class MHO_PolarizationRelabeler
  */
-template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_UnaryOperator< visibility_type >
+template< typename visibility_type > class MHO_PolarizationRelabeler: public MHO_UnaryOperator< visibility_type >
 {
     public:
         MHO_PolarizationRelabeler()
@@ -71,32 +71,32 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
 
     protected:
         /**
-         * @brief Initializes XArrayType in-place and returns success.
+         * @brief Initializes visibility_type in-place and returns success.
          *
-         * @param in Pointer to XArrayType object to initialize.
+         * @param in Pointer to visibility_type object to initialize.
          * @return True if initialization was successful, false otherwise.
          * @note This is a virtual function.
          */
-        virtual bool InitializeInPlace(XArrayType* in) override { return true; }
+        virtual bool InitializeInPlace(visibility_type* in) override { return true; }
 
         /**
          * @brief Initializes output array out-of-place from input array
          *
-         * @param !in Const input XArrayType
-         * @param !out Output XArrayType initialized out-of-place
+         * @param !in Const input visibility_type
+         * @param !out Output visibility_type initialized out-of-place
          * @return True if initialization was successful, false otherwise
          * @note This is a virtual function.
          */
-        virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
+        virtual bool InitializeOutOfPlace(const visibility_type* /*!in*/, visibility_type* /*!out*/) override { return true; }
 
         /**
          * @brief Function ExecuteInPlace - attaches channel labels based on sky frequency or user specified map
          *
-         * @param in (XArrayType*)
+         * @param in (visibility_type*)
          * @return Return value (bool)
          * @note This is a virtual function.
          */
-        virtual bool ExecuteInPlace(XArrayType* in) override
+        virtual bool ExecuteInPlace(visibility_type* in) override
         {
             if(in != nullptr)
             {
@@ -104,12 +104,20 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
                 auto pprod_axis_ptr = &(std::get< POLPROD_AXIS >(*in));
                 std::size_t npprods = pprod_axis_ptr->GetSize();
 
-
-                for(std::size_t i=0; i<npprods; i++)
+                for(std::size_t st_idx = 0; st_idx < 2; st_idx++)
                 {
-
+                    if( IsApplicable(st_idx, in) )
+                    {
+                        for(std::size_t i=0; i<npprods; i++)
+                        {
+                            //swap any instances of pol1 <-> pol2
+                            std::string pprod = pprod_axis_ptr->at(i);
+                            if(pprod[st_idx] == fPol1){pprod[st_idx] = fPol2;}
+                            else if(pprod[st_idx] == fPol2){pprod[st_idx] = fPol1;}
+                            pprod_axis_ptr->at(i) = pprod;
+                        }
+                    }
                 }
-
             }
             return false;
         }
@@ -117,12 +125,12 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
         /**
          * @brief Copies input array to output and executes in-place operation on output.
          *
-         * @param in Const reference to input XArrayType
-         * @param out Reference to output XArrayType
+         * @param in Const reference to input visibility_type
+         * @param out Reference to output visibility_type
          * @return Result of ExecuteInPlace operation on out
          * @note This is a virtual function.
          */
-        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
+        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override
         {
             out->Copy(*in);
             return ExecuteInPlace(out);
