@@ -25,6 +25,8 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LSBOffsetBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MixedPolYShiftBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationDelayCorrectionBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationProductRelabelerBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationRelabelerBuilder.hh
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorBuilderManager.hh
 )
@@ -56,6 +58,8 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LSBOffsetBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MixedPolYShiftBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationDelayCorrectionBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PolarizationProductRelabelerBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PolarizationRelabelerBuilder.cc
     #manager
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OperatorBuilderManager.cc
 )

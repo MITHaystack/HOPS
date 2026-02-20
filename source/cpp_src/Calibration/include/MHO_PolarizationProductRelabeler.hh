@@ -46,7 +46,7 @@ template< typename XArrayType > class MHO_PolarizationProductRelabeler: public M
         {
             //set the polarization labels to swap, all instances of pol1 will be replaced by pol2 
             //and all instances of pol2 will be replaced with pol1
-            if(pol1.size() == 1 && pol2.size() = 1)
+            if(pol1.size() == 1 && pol2.size() == 1)
             {
                 fPol1 = pol1;
                 fPol2 = pol2;
@@ -149,6 +149,7 @@ template< typename XArrayType > class MHO_PolarizationProductRelabeler: public M
         std::string fStationIdentity;
         std::string fPol1;
         std::string fPol2;
+        bool fValid;
 
         //determines if to apply the pol relabelling, for the station (ref or rem)
         bool IsApplicable(std::size_t st_idx, const XArrayType* in)
