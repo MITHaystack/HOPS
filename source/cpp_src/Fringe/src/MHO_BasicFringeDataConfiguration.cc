@@ -204,7 +204,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     std::string freqgrp = "?";                     // the frequency group
     std::string control_file = "";                 //'-c' specifies the control file
     std::string disk_file = "";                    //'-d' specifies the name of the plot file
-    bool exclude_autos = false;                    //'-e' estimate run time
+    bool exclude_autos = false;                    //'-e' exclude auto-corrs
     int first_plot_chan = 0;                       //'-n' specifies the first channel displayed in the fringe plot
     int message_level = -1;                        //'-m' specifies the message verbosity level
     std::vector< std::string > message_categories; // -'M' limits the allowed message categories to those the user specifies
