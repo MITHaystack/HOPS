@@ -32,6 +32,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PhaseCalibrationTrim.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MixedPolYShift.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationDelayCorrection.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationProductRelabeler.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationRelabeler.hh
 )
 
