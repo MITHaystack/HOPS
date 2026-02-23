@@ -71,7 +71,7 @@ class MHO_MK4CorelInterface
         /**
          * @brief Extracts Corel file data and stores it in visibility and weight containers.
          */
-        void ExtractCorelFile();
+        int ExtractCorelFile();
 
         //TODO FIXME:
         //Depending on how the return values are managed by the external caller
