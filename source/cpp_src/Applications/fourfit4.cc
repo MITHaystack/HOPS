@@ -21,6 +21,7 @@
 //for control intialization
 #include "MHO_BasicFringeDataConfiguration.hh"
 #include "MHO_FringeControlInitialization.hh"
+#include "MHO_LockFileHandler.hh"
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
@@ -57,6 +58,9 @@ int main(int argc, char** argv)
     int process_id = 0;
     int local_id = 0;
     int n_processes = 1;
+
+    //initialize the lock-file/signal-handler
+    (void) MHO_LockFileHandler::GetInstance();
 
 #ifdef HOPS_USE_MPI
     MHO_MPIInterface::GetInstance()->Initialize(&argc, &argv, true); //true -> run with no local even/odd split
