@@ -2,6 +2,7 @@
 
 //builders
 #include "MHO_ChannelLabelerBuilder.hh"
+#include "MHO_PolarizationRelabelerBuilder.hh"
 #include "MHO_CircularFieldRotationBuilder.hh"
 #include "MHO_DCBlockBuilder.hh"
 #include "MHO_DataSelectionBuilder.hh"
@@ -38,8 +39,9 @@ std::size_t MHO_OperatorBuilderManager::GetNBuildersInCategory(std::string cat)
 
 void MHO_OperatorBuilderManager::CreateDefaultBuilders()
 {
-    //we have a very limited number of operators enabled currently
+    //we have a very limited number of labeling operators enabled currently
     AddBuilderType< MHO_ChannelLabelerBuilder >("chan_ids", "chan_ids");
+    AddBuilderType< MHO_PolarizationRelabelerBuilder >("swap_pol_labels", "swap_pol_labels");
 
     //manual per-channel pc phase corrections
     AddBuilderType< MHO_ManualChannelPhaseCorrectionBuilder >("pc_phases", "pc_phases");

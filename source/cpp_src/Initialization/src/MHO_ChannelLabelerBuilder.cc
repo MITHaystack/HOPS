@@ -60,7 +60,7 @@ bool MHO_ChannelLabelerBuilder::Build()
             wt_op->SetChannelLabelToFrequencyMap(label2freq);
         }
 
-        bool replace_duplicates = true; //replces the default labeler
+        bool replace_duplicates = true; //replaces the default labeler
         TODO_FIXME_MSG("TODO - figure out proper naming/retrieval scheme for operators")
 
         vis_op->SetPriority(priority);
