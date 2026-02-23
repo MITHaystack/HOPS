@@ -46,6 +46,12 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
+    if(message_level == -2)
+    {
+        msg_debug("main", "enabling mark4 dfio library print statements" << eom);
+        MHO_MK4ScanConverter::SetMark4MessageLevel(message_level);
+    }
+
     if(in_dir == "")
     {
         msg_fatal("main", "must specify input directory" << eom);
