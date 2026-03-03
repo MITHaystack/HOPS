@@ -1,4 +1,5 @@
 #include <map>
+#include <set>
 #include <vector>
 
 #include "MHO_BasicFringeInfo.hh"
@@ -1155,10 +1156,45 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     plot_dict["NPlots"] = nplot; //nchan+1
     plot_dict["StartPlot"] = 0;
 
+    //determine whether this is a pseudo-Stokes I fringe
+    std::string polprod = std::get< POLPROD_AXIS >(*fVisibilities).at(0);
+    bool is_pseudo_stokes_I = (polprod == "I");
+
+    //for pseudo-Stokes I, derive the individual polarization characters at each station
+    std::vector< std::string > ref_pols_vec, rem_pols_vec;
+    if(is_pseudo_stokes_I)
+    {
+        std::vector< std::string > polprod_set;
+        fParamStore->Get("/config/polprod_set", polprod_set);
+        std::set< std::string > ref_set, rem_set;
+        for(auto& pp : polprod_set)
+        {
+            ref_set.insert(std::string(1, pp[0]));
+            rem_set.insert(std::string(1, pp[1]));
+        }
+        ref_pols_vec.assign(ref_set.begin(), ref_set.end()); //e.g. {"X","Y"}
+        rem_pols_vec.assign(rem_set.begin(), rem_set.end()); //e.g. {"X","Y"}
+        plot_dict["extra"]["ref_pols"] = ref_pols_vec;
+        plot_dict["extra"]["rem_pols"] = rem_pols_vec;
+    }
+
     //add the 'PLOT_INFO' section
-    std::vector< std::string > pltheader{"#Ch",     "Freq(MHz)", "Phase",   "Ampl",    "SbdBox",  "APsRf",   "APsRm",
-                                         "PCdlyRf", "PCdlyRm",   "PCPhsRf", "PCPhsRm", "PCOffRf", "PCOffRm", "PCAmpRf",
-                                         "PCAmpRm", "ChIdRf",    "TrkRf",   "ChIdRm",  "TrkRm"};
+    std::vector< std::string > pltheader;
+    if(is_pseudo_stokes_I)
+    {
+        //pseudo-Stokes I: include second-pol keys, omit Tracks and Chan ids
+        pltheader = {"#Ch",      "Freq(MHz)", "Phase",    "Ampl",     "SbdBox",   "APsRf",    "APsRm",
+                     "PCdlyRf",  "PCdlyRf2",  "PCdlyRm",  "PCdlyRm2",
+                     "PCPhsRf",  "PCPhsRm",   "PCPhsRf2", "PCPhsRm2",
+                     "PCOffRf",  "PCOffRm",   "PCOffRf2", "PCOffRm2",
+                     "PCAmpRf",  "PCAmpRf2",  "PCAmpRm",  "PCAmpRm2"};
+    }
+    else
+    {
+        pltheader = {"#Ch",     "Freq(MHz)", "Phase",   "Ampl",    "SbdBox",  "APsRf",   "APsRm",
+                     "PCdlyRf", "PCdlyRm",   "PCPhsRf", "PCPhsRm", "PCOffRf", "PCOffRm", "PCAmpRf",
+                     "PCAmpRm", "ChIdRf",    "TrkRf",   "ChIdRm",  "TrkRm"};
+    }
     plot_dict["PLOT_INFO"]["header"] = pltheader;
 
     //includes the 'All' channel
@@ -1190,35 +1226,67 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["PLOT_INFO"]["PCOffRm"].push_back(0.0);
         plot_dict["PLOT_INFO"]["PCAmpRf"].push_back(0.0);
         plot_dict["PLOT_INFO"]["PCAmpRm"].push_back(0.0);
-        plot_dict["PLOT_INFO"]["ChIdRf"].push_back("-");
-        plot_dict["PLOT_INFO"]["TrkRf"].push_back("-");
-        plot_dict["PLOT_INFO"]["ChIdRm"].push_back("-");
-        plot_dict["PLOT_INFO"]["TrkRm"].push_back("-");
+
+        if(is_pseudo_stokes_I)
+        {
+            //initialize second-pol arrays
+            plot_dict["PLOT_INFO"]["PCdlyRf2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCdlyRm2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCPhsRf2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCPhsRm2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCOffRf2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCOffRm2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCAmpRf2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCAmpRm2"].push_back(0.0);
+        }
+        else
+        {
+            plot_dict["PLOT_INFO"]["ChIdRf"].push_back("-");
+            plot_dict["PLOT_INFO"]["TrkRf"].push_back("-");
+            plot_dict["PLOT_INFO"]["ChIdRm"].push_back("-");
+            plot_dict["PLOT_INFO"]["TrkRm"].push_back("-");
+        }
     }
 
-    int station_flag;
-    std::string pol;
-    std::string polprod = std::get< POLPROD_AXIS >(*fVisibilities).at(0);
-
-    //export reference pcal stuff
-    station_flag = 0;
-    pol = polprod;
-    if(polprod.size() == 2)
+    if(is_pseudo_stokes_I)
     {
-        pol = std::string(1, polprod[station_flag]);
+        //export pcal data for both polarizations at each station
+        //ref station, first pol (slot ""), second pol (slot "2")
+        dump_multitone_pcmodel(plot_dict, 0, ref_pols_vec[0], "");
+        dump_manual_pcmodel(plot_dict, 0, ref_pols_vec[0], "");
+        dump_multitone_pcmodel(plot_dict, 0, ref_pols_vec[1], "2");
+        dump_manual_pcmodel(plot_dict, 0, ref_pols_vec[1], "2");
+        //remote station, first pol (slot ""), second pol (slot "2")
+        dump_multitone_pcmodel(plot_dict, 1, rem_pols_vec[0], "");
+        dump_manual_pcmodel(plot_dict, 1, rem_pols_vec[0], "");
+        dump_multitone_pcmodel(plot_dict, 1, rem_pols_vec[1], "2");
+        dump_manual_pcmodel(plot_dict, 1, rem_pols_vec[1], "2");
     }
-    dump_multitone_pcmodel(plot_dict, station_flag, pol);
-    dump_manual_pcmodel(plot_dict, station_flag, pol);
-
-    //export remote pcal stuff
-    station_flag = 1;
-    pol = polprod;
-    if(polprod.size() == 2)
+    else
     {
-        pol = std::string(1, polprod[station_flag]);
+        int station_flag;
+        std::string pol;
+
+        //export reference pcal stuff
+        station_flag = 0;
+        pol = polprod;
+        if(polprod.size() == 2)
+        {
+            pol = std::string(1, polprod[station_flag]);
+        }
+        dump_multitone_pcmodel(plot_dict, station_flag, pol);
+        dump_manual_pcmodel(plot_dict, station_flag, pol);
+
+        //export remote pcal stuff
+        station_flag = 1;
+        pol = polprod;
+        if(polprod.size() == 2)
+        {
+            pol = std::string(1, polprod[station_flag]);
+        }
+        dump_multitone_pcmodel(plot_dict, station_flag, pol);
+        dump_manual_pcmodel(plot_dict, station_flag, pol);
     }
-    dump_multitone_pcmodel(plot_dict, station_flag, pol);
-    dump_manual_pcmodel(plot_dict, station_flag, pol);
 
     double fringe_amp = fParamStore->GetAs< double >("/fringe/famp");
     double tsum_weights = fParamStore->GetAs< double >("/fringe/total_summed_weights");
@@ -1725,8 +1793,9 @@ std::string MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
 }
 
 void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
-                                                 int station_flag, //0 = reference station, 1 = remote station
-                                                 std::string pol   //single char string
+                                                 int station_flag,        //0 = reference station, 1 = remote station
+                                                 std::string pol,         //single char string
+                                                 std::string key_suffix   //appended to PLOT_INFO keys, e.g. "2" for second pol
 )
 {
     //workspace for segment retrieval
@@ -1832,11 +1901,11 @@ void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
             double ave_pc_mag = MHO_MathUtilities::average(pc_mag_segs);
             if(station_flag == 0)
             {
-                plot_dict["PLOT_INFO"]["PCAmpRf"][ch] = ave_pc_mag * 1000.0; //convert to fourfit units (?)
+                plot_dict["PLOT_INFO"]["PCAmpRf" + key_suffix][ch] = ave_pc_mag * 1000.0; //convert to fourfit units (?)
             }
             if(station_flag == 1)
             {
-                plot_dict["PLOT_INFO"]["PCAmpRm"][ch] = ave_pc_mag * 1000.0;
+                plot_dict["PLOT_INFO"]["PCAmpRm" + key_suffix][ch] = ave_pc_mag * 1000.0;
             }
         }
 
@@ -1863,21 +1932,21 @@ void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
             if(station_flag == 0)
             {
                 //convert to degrees
-                plot_dict["PLOT_INFO"]["PCPhsRf"][ch] = ave_pc_phase * (180. / M_PI);
+                plot_dict["PLOT_INFO"]["PCPhsRf" + key_suffix][ch] = ave_pc_phase * (180. / M_PI);
                 for(std::size_t j = 0; j < pc_phase_segs.size(); j++)
                 {
                     pc_phase_segs[j] *= (180. / M_PI);
                 }
-                plot_dict["extra"]["ref_mtpc_phase_segs"].push_back(pc_phase_segs);
+                plot_dict["extra"]["ref_mtpc_phase_segs" + key_suffix].push_back(pc_phase_segs);
             }
             if(station_flag == 1)
             {
-                plot_dict["PLOT_INFO"]["PCPhsRm"][ch] = ave_pc_phase * (180. / M_PI);
+                plot_dict["PLOT_INFO"]["PCPhsRm" + key_suffix][ch] = ave_pc_phase * (180. / M_PI);
                 for(std::size_t j = 0; j < pc_phase_segs.size(); j++)
                 {
                     pc_phase_segs[j] *= (180. / M_PI);
                 }
-                plot_dict["extra"]["rem_mtpc_phase_segs"].push_back(pc_phase_segs);
+                plot_dict["extra"]["rem_mtpc_phase_segs" + key_suffix].push_back(pc_phase_segs);
             }
         }
 
@@ -1886,19 +1955,20 @@ void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
             double ave_pc_delay = MHO_MathUtilities::average(pc_delay_segs);
             if(station_flag == 0)
             {
-                plot_dict["PLOT_INFO"]["PCdlyRf"][ch] = ave_pc_delay * 1e9; //convert to ns
+                plot_dict["PLOT_INFO"]["PCdlyRf" + key_suffix][ch] = ave_pc_delay * 1e9; //convert to ns
             }
             if(station_flag == 1)
             {
-                plot_dict["PLOT_INFO"]["PCdlyRm"][ch] = ave_pc_delay * 1e9;
+                plot_dict["PLOT_INFO"]["PCdlyRm" + key_suffix][ch] = ave_pc_delay * 1e9;
             }
         }
     }
 }
 
 void MHO_ComputePlotData::dump_manual_pcmodel(mho_json& plot_dict,
-                                              int station_flag, //0 = reference station, 1 = remote station
-                                              std::string pol   //single char string
+                                              int station_flag,        //0 = reference station, 1 = remote station
+                                              std::string pol,         //single char string
+                                              std::string key_suffix   //appended to PLOT_INFO keys, e.g. "2" for second pol
 )
 {
     //workspace for segment retrieval
@@ -1927,11 +1997,11 @@ void MHO_ComputePlotData::dump_manual_pcmodel(mho_json& plot_dict,
         {
             if(station_flag == 0)
             {
-                plot_dict["PLOT_INFO"]["PCOffRf"][ch] = pc_phase * (180. / M_PI); //convert to fourfit units (?)
+                plot_dict["PLOT_INFO"]["PCOffRf" + key_suffix][ch] = pc_phase * (180. / M_PI); //convert to fourfit units (?)
             }
             if(station_flag == 1)
             {
-                plot_dict["PLOT_INFO"]["PCOffRm"][ch] = pc_phase * (180. / M_PI);
+                plot_dict["PLOT_INFO"]["PCOffRm" + key_suffix][ch] = pc_phase * (180. / M_PI);
             }
         }
     }

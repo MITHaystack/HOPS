@@ -188,15 +188,17 @@ class MHO_ComputePlotData
         //exports the multitone pcal data (if it was applied)
         //to the plot dictionary
         void dump_multitone_pcmodel(mho_json& plot_dict,
-                                    int station_flag, //0 = reference station, 1 = remote station,
-                                    std::string pol   //single char string
+                                    int station_flag,        //0 = reference station, 1 = remote station,
+                                    std::string pol,         //single char string
+                                    std::string key_suffix = "" //appended to PLOT_INFO keys, e.g. "2" for second pol
         );
 
         //exports the manual pcal data (pc_phases)
         //to the plot dictionary
         void dump_manual_pcmodel(mho_json& plot_dict,
-                                 int station_flag, //0 = reference station, 1 = remote station,
-                                 std::string pol   //single char string
+                                 int station_flag,        //0 = reference station, 1 = remote station,
+                                 std::string pol,         //single char string
+                                 std::string key_suffix = "" //appended to PLOT_INFO keys, e.g. "2" for second pol
         );
 
         /**
