@@ -344,6 +344,20 @@ def make_pcal_plots(fig, plot_dict):
     n_seg_plots = int(plot_dict["NPlots"]) #includes the 'All' plot
     colw = 6
 
+    # Detect pseudo-Stokes I and retrieve per-station polarization characters
+    is_pseudo_stokes_I = False
+    ref_pol1, ref_pol2, rem_pol1, rem_pol2 = '', '', '', ''
+    if 'extra' in plot_dict:
+        pp = plot_dict["extra"].get("pol_product", "")
+        if pp == "I":
+            is_pseudo_stokes_I = True
+            ref_pols = plot_dict["extra"].get("ref_pols", [])
+            rem_pols = plot_dict["extra"].get("rem_pols", [])
+            if len(ref_pols) >= 1: ref_pol1 = ref_pols[0]
+            if len(ref_pols) >= 2: ref_pol2 = ref_pols[1]
+            if len(rem_pols) >= 1: rem_pol1 = rem_pols[0]
+            if len(rem_pols) >= 2: rem_pol2 = rem_pols[1]
+
     #PCAL PLOTS
     gs = fig.add_gridspec(255, colw*n_seg_plots)
     for ch in range(0,n_seg_plots-1):
@@ -363,9 +377,9 @@ def make_pcal_plots(fig, plot_dict):
                     ref_n_seg = len(ref_pcal_phases)
                 else:
                     ref_pcal_phases = np.zeros(n_seg)
-                    ref_n_seg = n_seg;
+                    ref_n_seg = n_seg
             if "rem_mtpc_phase_segs" in plot_dict["extra"]:
-                if ch < len(  plot_dict["extra"]["rem_mtpc_phase_segs"] ):
+                if ch < len(plot_dict["extra"]["rem_mtpc_phase_segs"]):
                     rem_pcal_phases = plot_dict["extra"]["rem_mtpc_phase_segs"][ch]
                     rem_n_seg = len(rem_pcal_phases)
                 else:
@@ -377,18 +391,32 @@ def make_pcal_plots(fig, plot_dict):
         ref_pcal_phases = ref_pcal_phases[:n_seg]
         rem_pcal_phases = rem_pcal_phases[:n_seg]
 
+        # Load second-pol phase data for pseudo-Stokes I
+        ref_pcal_phases2 = np.zeros(n_seg)
+        rem_pcal_phases2 = np.zeros(n_seg)
+        if is_pseudo_stokes_I and "extra" in plot_dict:
+            if "ref_mtpc_phase_segs2" in plot_dict["extra"]:
+                if ch < len(plot_dict["extra"]["ref_mtpc_phase_segs2"]):
+                    ref_pcal_phases2 = np.array(plot_dict["extra"]["ref_mtpc_phase_segs2"][ch])[:n_seg]
+            if "rem_mtpc_phase_segs2" in plot_dict["extra"]:
+                if ch < len(plot_dict["extra"]["rem_mtpc_phase_segs2"]):
+                    rem_pcal_phases2 = np.array(plot_dict["extra"]["rem_mtpc_phase_segs2"][ch])[:n_seg]
+
         if n_seg_plots == 2:
             n_seg_plots = 1 #do not need 'all' plot if only one channel
 
         #ax8 = plt.subplot2grid((255,colw*n_seg_plots),(160,colw*ch),rowspan=16,colspan=colw)
         ax8 = fig.add_subplot(gs[160:176, colw*ch:colw*(ch+1)])
 
-        # print("range of ref pcal:", range(ref_n_seg))
-        # print("range of rem pcal:", range(rem_n_seg))
-        # print("n_seg = ", n_seg)
+        # pol1: ref (forest green, circle), rem (magenta, circle)
+        ax8.plot(range(len(ref_pcal_phases)), ref_pcal_phases, 'co', markersize=2, markerfacecolor='#228B22', linewidth=0.5, markeredgewidth=0.0)
+        ax8.plot(range(len(rem_pcal_phases)), rem_pcal_phases, 'co', markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
 
-        ax8.plot(range(len(ref_pcal_phases)), ref_pcal_phases, 'co',markersize=2, markerfacecolor='g', linewidth=0.5, markeredgewidth=0.0)
-        ax8.plot(range(len(rem_pcal_phases)), rem_pcal_phases, 'co',markersize=2, markerfacecolor='m', linewidth=0.5, markeredgewidth=0.0)
+        # pol2 for pseudo-Stokes I: ref (orange, dot), rem (purple, dot)
+        if is_pseudo_stokes_I:
+            ax8.plot(range(len(ref_pcal_phases2)), ref_pcal_phases2, marker='.', linestyle='', markersize=2, markerfacecolor='#FF8800', markeredgewidth=0.0)
+            ax8.plot(range(len(rem_pcal_phases2)), rem_pcal_phases2, marker='.', linestyle='', markersize=2, markerfacecolor='red', markeredgewidth=0.0)
+
         ax8.set_xlim(0,n_seg)
         ax8.set_ylim(-180,180)
         ax8.xaxis.set_major_locator(plt.LinearLocator(numticks=3))
@@ -413,8 +441,14 @@ def make_pcal_plots(fig, plot_dict):
     if 'extra' in plot_dict:
         ref_mk4id = plot_dict["extra"]["ref_station_mk4id"]
         rem_mk4id = plot_dict["extra"]["rem_station_mk4id"]
-        plt.text(0.925,0.37,ref_mk4id,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='g')
-        plt.text(0.94,0.37,rem_mk4id,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='m')
+        if is_pseudo_stokes_I and ref_pol1 and ref_pol2:
+            plt.text(0.925, 0.385, rem_mk4id + ':' + rem_pol1, transform=plt.gcf().transFigure, fontsize=7, verticalalignment='top', family='monospace', horizontalalignment='left', color='m')
+            plt.text(0.925, 0.370, rem_mk4id + ':' + rem_pol2, transform=plt.gcf().transFigure, fontsize=7, verticalalignment='top', family='monospace', horizontalalignment='left', color='red')
+            plt.text(0.925, 0.355, ref_mk4id + ':' + ref_pol2, transform=plt.gcf().transFigure, fontsize=7, verticalalignment='top', family='monospace', horizontalalignment='left', color='#FF8800')
+            plt.text(0.925, 0.340, ref_mk4id + ':' + ref_pol1, transform=plt.gcf().transFigure, fontsize=7, verticalalignment='top', family='monospace', horizontalalignment='left', color='#228B22')
+        else:
+            plt.text(0.925, 0.37, ref_mk4id, transform=plt.gcf().transFigure, fontsize=7, verticalalignment='top', family='monospace', horizontalalignment='left', color='#228B22')
+            plt.text(0.94,  0.37, rem_mk4id, transform=plt.gcf().transFigure, fontsize=7, verticalalignment='top', family='monospace', horizontalalignment='left', color='m')
 
 def make_channel_info_table(plot_dict):
 
@@ -422,6 +456,20 @@ def make_channel_info_table(plot_dict):
     n_seg_plots = int(plot_dict["NPlots"])
     axT = plt.subplot2grid((96,n_seg_plots),(67,0),rowspan=20,colspan=n_seg_plots)
     #plt.subplots_adjust(left=0.1, right=0.9, top=0.8, bottom=0.1)  # Adjust margins as needed
+
+    # Detect pseudo-Stokes I and retrieve per-station polarization characters
+    is_pseudo_stokes_I = False
+    ref_pol1, ref_pol2, rem_pol1, rem_pol2 = '', '', '', ''
+    if 'extra' in plot_dict:
+        pp = plot_dict["extra"].get("pol_product", "")
+        if pp == "I":
+            is_pseudo_stokes_I = True
+            ref_pols = plot_dict["extra"].get("ref_pols", [])
+            rem_pols = plot_dict["extra"].get("rem_pols", [])
+            if len(ref_pols) >= 2:
+                ref_pol1, ref_pol2 = ref_pols[0], ref_pols[1]
+            if len(rem_pols) >= 2:
+                rem_pol1, rem_pol2 = rem_pols[0], rem_pols[1]
 
     ct_header_text = {}
     ct_header_text["#Ch"] = ""
@@ -433,12 +481,6 @@ def make_channel_info_table(plot_dict):
     ct_header_text["APsRm"] = "APs used"
     ct_header_text["PCdlyRf"] = "PC delays (ns)"
     ct_header_text["PCdlyRm"] = "PC delays (ns)"
-    if 'extra' in plot_dict:
-        pp = plot_dict["extra"]["pol_product"]
-        if len(pp) == 2:
-            ct_header_text["PCdlyRf"] = "PC " + pp[0] + " delays (ns)"
-            ct_header_text["PCdlyRm"] = "PC " + pp[1] + " delays (ns)"
-
     ct_header_text["PCPhsRf"] = "PC phase"
     ct_header_text["PCPhsRm"] = "PC phase"
     ct_header_text["PCOffRf"] = "Manl PC"
@@ -450,12 +492,42 @@ def make_channel_info_table(plot_dict):
     ct_header_text["ChIdRm"] = "Chan ids"
     ct_header_text["TrkRm"] = "Tracks"
 
+    if is_pseudo_stokes_I and ref_pol1 and ref_pol2 and rem_pol1 and rem_pol2:
+        # Update first-pol labels to include the polarization character
+        ct_header_text["PCdlyRf"]  = "PC " + ref_pol1 + " dly ref (ns)"
+        ct_header_text["PCdlyRm"]  = "PC " + rem_pol1 + " dly rem (ns)"
+        ct_header_text["PCPhsRf"]  = "PC " + ref_pol1 + " phase"
+        ct_header_text["PCPhsRm"]  = "PC " + rem_pol1 + " phase"
+        ct_header_text["PCOffRf"]  = "Manl PC " + ref_pol1
+        ct_header_text["PCOffRm"]  = "Manl PC " + rem_pol1
+        ct_header_text["PCAmpRf"]  = "PC " + ref_pol1 + " amp ref"
+        ct_header_text["PCAmpRm"]  = "PC " + rem_pol1 + " amp rem"
+        # Add second-pol labels
+        ct_header_text["PCdlyRf2"] = "PC " + ref_pol2 + " dly ref (ns)"
+        ct_header_text["PCdlyRm2"] = "PC " + rem_pol2 + " dly rem (ns)"
+        ct_header_text["PCPhsRf2"] = "PC " + ref_pol2 + " phase"
+        ct_header_text["PCPhsRm2"] = "PC " + rem_pol2 + " phase"
+        ct_header_text["PCOffRf2"] = "Manl PC " + ref_pol2
+        ct_header_text["PCOffRm2"] = "Manl PC " + rem_pol2
+        ct_header_text["PCAmpRf2"] = "PC " + ref_pol2 + " amp ref"
+        ct_header_text["PCAmpRm2"] = "PC " + rem_pol2 + " amp rem"
+    elif 'extra' in plot_dict:
+        # Standard case: update PC delay headers with pol character from pol_product string
+        pp = plot_dict["extra"].get("pol_product", "")
+        if len(pp) == 2:
+            ct_header_text["PCdlyRf"] = "PC " + pp[0] + " delays (ns)"
+            ct_header_text["PCdlyRm"] = "PC " + pp[1] + " delays (ns)"
+
     #declare the elements which are paired up and printed with a ":"
     paired_data1 = {}
     paired_data2 = {}
     paired_data1["APsRf"] = "APsRm"
     paired_data1["PCPhsRf"] = "PCPhsRm"
     paired_data1["PCOffRf"] = "PCOffRm"
+    # For pseudo-Stokes I, also pair the second-pol phase and manual PC keys (ref:rem)
+    if is_pseudo_stokes_I:
+        paired_data1["PCPhsRf2"] = "PCPhsRm2"
+        paired_data1["PCOffRf2"] = "PCOffRm2"
     for k in paired_data1.keys():
         v = paired_data1[k]
         paired_data2[v] = k
@@ -482,7 +554,7 @@ def make_channel_info_table(plot_dict):
                 ct_data.append(result_list)
         else:
             if not (hdr in paired_data2.keys()):
-                hdr_txt = ct_header_text[hdr]
+                hdr_txt = ct_header_text.get(hdr, "")
                 if hdr_txt != "": #dont plot the empty labels
                     cth_text.append(hdr_txt)
                     if hdr_txt not in ["Chan ids","Tracks"]:
@@ -522,20 +594,24 @@ def make_channel_info_table(plot_dict):
     #needed to set p-cal amplitudes in green, red, and orange colors
     #also, we round the floats to the nearest integer here
     for key, cell in table._cells.items():
-        if cth_text[ key[0] ] == "PC amp":
+        row_label = cth_text[ key[0] ]
+        if "amp" in row_label:
             cell_text = (table.get_celld()[key].get_text() ).get_text()
-            if cell_text != "PC amp":
+            if cell_text not in ["PC amp", row_label]:
                 #convert text to a float, then round to int and modify color
                 entry_color = "black"
-                pcamp = int( np.round( float( cell_text ) ) )
-                if pcamp < 4 or pcamp >= 150:
-                    entry_color = "red"
-                elif pcamp < 10 or pcamp >= 100:
-                    entry_color = "orange"
-                else:
-                    entry_color = "green"
-                table.get_celld()[key].get_text().set_text( str(pcamp) ) #set to integer value
-                cell.set_text_props(color=entry_color)
+                try:
+                    pcamp = int( np.round( float( cell_text ) ) )
+                    if pcamp < 4 or pcamp >= 150:
+                        entry_color = "red"
+                    elif pcamp < 10 or pcamp >= 100:
+                        entry_color = "orange"
+                    else:
+                        entry_color = "green"
+                    table.get_celld()[key].get_text().set_text( str(pcamp) ) #set to integer value
+                    cell.set_text_props(color=entry_color)
+                except ValueError:
+                    pass #keep original text and color if conversion fails
 
     # Set the table cell height to make it smaller
     table.scale(1, 0.7)  # Adjust the scale factor as needed
@@ -693,32 +769,32 @@ def make_model_resid_info_text(plot_dict):
         make_sciformat(float(plot_dict["ResidRateError(us/s)"]), 1, 1, useMinDigits) + '\n' + \
         str( np.round(float(plot_dict["ResidPhaseError(deg)"]),2) )
 
-    bottom_yoffset = 0.16
+    bottom_yoffset = 0.1475
 
     # Add the text boxes
-    plt.text(0.01,bottom_yoffset,btmtextstr1,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.01,bottom_yoffset,btmtextstr1,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
     # Add the text boxes
-    plt.text(0.28,bottom_yoffset,btmtextstr2,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.28,bottom_yoffset,btmtextstr2,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    plt.text(0.3,bottom_yoffset,btmtextstr3,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.3,bottom_yoffset,btmtextstr3,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    plt.text(0.6,bottom_yoffset,btmtextstr4,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.6,bottom_yoffset,btmtextstr4,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    plt.text(0.65,bottom_yoffset,btmtextstr5,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.65,bottom_yoffset,btmtextstr5,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    plt.text(0.88,bottom_yoffset,btmtextstr6,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.88,bottom_yoffset,btmtextstr6,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-    plt.text(0.89,bottom_yoffset,btmtextstr7,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.89,bottom_yoffset,btmtextstr7,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='left',color='k')
 
-    plt.text(0.97,bottom_yoffset,btmtextstr8,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',
+    plt.text(0.97,bottom_yoffset,btmtextstr8,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
 
