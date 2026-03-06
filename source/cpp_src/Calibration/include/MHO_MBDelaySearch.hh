@@ -269,11 +269,17 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
 #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >;
+        using FFT_2D_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< mbd_dr_type >;
 #else
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< mbd_type >;
+        using FFT_2D_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< mbd_dr_type >;
 #endif
 
-        FFT_ENGINE_TYPE fFFTEngine;
+        FFT_ENGINE_TYPE fFFTEngine;         //1D engine — used only for MBD axis label setup
+        FFT_2D_ENGINE_TYPE fBatchedFFTEngine; //2D engine — batched FFT over all DR bins at once
+
+        //2D [DR x MBD] host buffer for batched FFT (see MHO_MBDelaySearchCUDA for the GPU analogue)
+        mbd_dr_type fHostBuffer;
 
         MHO_CyclicRotator< mbd_type > fCyclicRotator;
 
