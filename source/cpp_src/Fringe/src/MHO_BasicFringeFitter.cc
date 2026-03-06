@@ -28,7 +28,12 @@
     #include "MHO_MBDelaySearchCUDA.hh"
     #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
 #else
-    #define MBD_SEARCH_TYPE MHO_MBDelaySearch
+    #ifdef _OPENMP
+        #include "MHO_MBDelaySearchOpenMP.hh"
+        #define MBD_SEARCH_TYPE MHO_MBDelaySearchOpenMP
+    #else 
+        #define MBD_SEARCH_TYPE MHO_MBDelaySearch
+    #endif
 #endif
 
 //#define DUMP_PARAMS_ON_ERROR
