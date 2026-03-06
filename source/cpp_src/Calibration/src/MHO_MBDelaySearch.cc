@@ -59,6 +59,15 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fNGridPoints = fGridCalc.GetNGridPoints();
         fAverageFreq = fGridCalc.GetGridAverage();
         fMBDBinMap = fGridCalc.GetGridIndexMap();
+
+        //precompute flat channel -> MBD-bin lookup to avoid two std::map traversals per hot-loop iteration
+        std::size_t nch_init = in_freq_pts.size();
+        fMBDBinForChannel.resize(nch_init);
+        for(std::size_t ch = 0; ch < nch_init; ch++)
+        {
+            fMBDBinForChannel[ch] = fMBDBinMap[fChannelIndexToFreqPointIndex[ch]];
+        }
+
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
 
@@ -129,6 +138,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         //find the max for each SBD, and globally
         fNPointsSearched = 0;
         bool first = true;
+        std::size_t nch = std::get< CHANNEL_AXIS >(*in).GetSize();
         for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
         {
             double sbd = fSBDAxis(sbd_idx);
@@ -169,11 +179,9 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                         fMBDWorkspace.ZeroArray();
 
                         //copy in the data from each channel for this SDB/DR
-                        std::size_t nch = std::get< CHANNEL_AXIS >(*in).GetSize();
                         for(std::size_t ch = 0; ch < nch; ch++)
                         {
-                            std::size_t mbd_bin = fMBDBinMap[fChannelIndexToFreqPointIndex[ch]];
-                            fMBDWorkspace(mbd_bin) += sbd_dr_data(0, ch, dr_idx, 0);
+                            fMBDWorkspace(fMBDBinForChannel[ch]) += sbd_dr_data(0, ch, dr_idx, 0);
                         }
 
                         if(first)
