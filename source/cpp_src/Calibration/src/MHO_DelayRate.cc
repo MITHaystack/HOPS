@@ -31,6 +31,29 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
         fDRSPSize = CalculateSearchSpaceSize(fInDims[TIME_AXIS]);
         msg_debug("calibration", "delay rate search space size = " << fDRSPSize << eom);
 
+        //precompute per-(ch,dr) interpolation indices and weights
+        //num, l_fp, l_int depend only on (ch, dr) — not on pp or sbd — so compute once here
+        {
+            std::size_t nch_interp = fInDims[CHANNEL_AXIS];
+            int sz = 4 * fDRSPSize;
+            fInterpTable.resize(nch_interp * fDRSPSize);
+            for(std::size_t ch = 0; ch < nch_interp; ch++)
+            {
+                double chan_freq = std::get< CHANNEL_AXIS >(*in1)(ch);
+                double b = ((chan_freq / fRefFreq) * sz) / fDRSPSize;
+                for(int dr = 0; dr < fDRSPSize; dr++)
+                {
+                    double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
+                    double l_fp = std::fmod(num, (double)sz);
+                    int l_int = (int)l_fp;
+                    if(l_int < 0) { l_int = 0; }
+                    int l_int2 = l_int + 1;
+                    if(l_int2 > (sz - 1)) { l_int2 = sz - 1; }
+                    fInterpTable[ch * fDRSPSize + dr] = {l_int, l_int2, l_fp - (double)l_int};
+                }
+            }
+        }
+
         std::size_t np = fDRSPSize * 4;
         ConditionallyResizeOutput(&(fInDims[0]), np, out);
 
@@ -186,12 +209,17 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
 {
     std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
     std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
-    std::size_t nap = in1->GetDimension(TIME_AXIS);
     double time_delta = std::get< TIME_AXIS >(*in1)(1) - std::get< TIME_AXIS >(*in1)(0);
 
-    //linear interpolation and modifcation of delay rate axis (see delay_rate.c line 81)
-    int sz = 4 * fDRSPSize;
+    //linear interpolation and modification of delay rate axis (see delay_rate.c line 81)
     std::size_t nsbd = out->GetDimension(FREQ_AXIS);
+
+    //write delay-rate axis values once — they depend only on dr, not on pp/ch/sbd
+    double ax_scale = 1.0 / (time_delta * (double)fDRSPSize);
+    for(int dr = 0; dr < fDRSPSize; dr++)
+    {
+        std::get< TIME_AXIS >(*out)(dr) = ((double)dr - (double)(fDRSPSize / 2)) * ax_scale;
+    }
 
     std::vector< sbd_type::value_type > workspace;
     workspace.resize(fDRSPSize);
@@ -199,33 +227,17 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
     {
         for(std::size_t ch = 0; ch < nch; ch++)
         {
-            double chan_freq = (std::get< CHANNEL_AXIS >(*in1))(ch);
-            double b = ((chan_freq / fRefFreq) * sz) / fDRSPSize;
-
+            //use precomputed table to eliminate fmod and index arithmetic from innermost loop
+            const InterpEntry* tbl = &fInterpTable[ch * fDRSPSize];
             for(std::size_t sbd = 0; sbd < nsbd; sbd++)
             {
-                for(std::size_t dr = 0; dr < fDRSPSize; dr++)
+                for(int dr = 0; dr < fDRSPSize; dr++)
                 {
-                    double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
-                    double l_fp = fmod(num, (double)sz);
-                    int l_int = (int)l_fp;
-                    if(l_int < 0)
-                    {
-                        l_int = 0;
-                    }
-                    int l_int2 = l_int + 1;
-                    if(l_int2 > (sz - 1))
-                    {
-                        l_int2 = sz - 1;
-                    }
-                    sbd_type::value_type interp_val =
-                        (*out)(pp, ch, l_int, sbd) * (1.0 - l_fp + l_int) + (*out)(pp, ch, l_int2, sbd) * (l_fp - l_int);
-                    workspace[dr] = interp_val;
-
-                    double ax_val = ((double)dr - (double)(fDRSPSize / 2)) * (1.0 / (time_delta * (double)fDRSPSize));
-                    std::get< TIME_AXIS > (*out)(dr) = ax_val;
+                    const InterpEntry& e = tbl[dr];
+                    workspace[dr] = (*out)(pp, ch, e.l0, sbd) * (1.0 - e.w) +
+                                    (*out)(pp, ch, e.l1, sbd) * e.w;
                 }
-                for(std::size_t dr = 0; dr < fDRSPSize; dr++)
+                for(int dr = 0; dr < fDRSPSize; dr++)
                 {
                     (*out)(pp, ch, dr, sbd) = workspace[dr];
                 }
