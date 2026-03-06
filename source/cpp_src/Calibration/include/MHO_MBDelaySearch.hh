@@ -279,7 +279,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         FFT_2D_ENGINE_TYPE fBatchedFFTEngine; //2D engine — batched FFT over all DR bins at once
 
         //2D [DR x MBD] host buffer for batched FFT (see MHO_MBDelaySearchCUDA for the GPU analogue)
-        mbd_dr_type fHostBuffer;
+        mbd_dr_type fSearchBuffer;
 
         MHO_CyclicRotator< mbd_type > fCyclicRotator;
 

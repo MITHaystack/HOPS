@@ -120,8 +120,8 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         check_step_fatal(ok, "fringe", "MBD search cyclic rotation initialization failed." << eom);
 
         fNDRSP = fDelayRateCalc.GetDelayRateSearchSpaceSize();
-        fHostBuffer.Resize(fNDRSP, fNGridPoints);
-        fBatchedFFTEngine.SetArgs(&fHostBuffer);
+        fSearchBuffer.Resize(fNDRSP, fNGridPoints);
+        fBatchedFFTEngine.SetArgs(&fSearchBuffer);
         fBatchedFFTEngine.DeselectAllAxes();
         fBatchedFFTEngine.SelectAxis(1); //FFT along MBD axis (axis 1); axis 0 is DR — runs as a batch
         fBatchedFFTEngine.SetForward();
@@ -192,12 +192,12 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 }
 
                 //zero the 2D [DR x MBD] workspace once per SBD, then scatter-accumulate all channels
-                fHostBuffer.ZeroArray();
+                fSearchBuffer.ZeroArray();
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
                 {
                     for(std::size_t ch = 0; ch < nch; ch++)
                     {
-                        fHostBuffer(dr_idx, fMBDBinForChannel[ch]) += sbd_dr_data(0, ch, dr_idx, 0);
+                        fSearchBuffer(dr_idx, fMBDBinForChannel[ch]) += sbd_dr_data(0, ch, dr_idx, 0);
                     }
                 }
 
@@ -220,7 +220,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                             {
                                 //since we don't care about the actual amplitude (just searching for the max location)
                                 //this is faster since it doesn't need to take a square root
-                                double tmp_max = std::norm(fHostBuffer(dr_idx, mbd_idx));
+                                double tmp_max = std::norm(fSearchBuffer(dr_idx, mbd_idx));
                                 if(tmp_max > fMax)
                                 {
                                     fMax = tmp_max;
