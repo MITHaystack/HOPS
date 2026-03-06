@@ -129,6 +129,10 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         double fRefFreq;
 
         bool fInitialized;
+
+        //precomputed per-(ch,dr) interpolation entries — avoids fmod in hot loop
+        struct InterpEntry { int l0, l1; double w; };
+        std::vector< InterpEntry > fInterpTable;
 };
 
 } // namespace hops
