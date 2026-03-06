@@ -649,7 +649,6 @@ class StationScanPhaseCalibrationData(object):
             for chan in self.single_channel_phasor_collections:
                 scpc = self.single_channel_phasor_collections[chan]
                 if scpc.sky_frequency <= band_high and scpc.sky_frequency >= band_low and scpc.polarization == pol:
-                    print(chan, scpc.sky_frequency, bp)
                     for freq_phasor in scpc.freq_phasor_pairs:
                         freq_phasor_pair_list.append(freq_phasor)
             #now we have all the channel-frequency phasors, sort them by frequency, low to high
