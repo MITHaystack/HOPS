@@ -263,6 +263,9 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         //associated info for channel index re-mapping (needed for combining double sideband channel pairs)
         std::map< std::size_t, std::size_t > fChannelIndexToFreqPointIndex;
+        //precomputed flat lookup: fMBDBinForChannel[ch] = fMBDBinMap[fChannelIndexToFreqPointIndex[ch]]
+        //avoids two std::map traversals per (sbd, dr, ch) iteration in the hot loop
+        std::vector< std::size_t > fMBDBinForChannel;
 
 #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >;
