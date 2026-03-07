@@ -121,7 +121,7 @@ int main(int argc, char** argv)
     {
         if(pass_index % n_processes == process_id)
         {
-            profiler_start();
+            profiler_scope();
 
             //populate a few necessary parameters and  initialize the fringe/scan data
             MHO_FringeData fringeData;
@@ -157,7 +157,7 @@ int main(int argc, char** argv)
             ffit->Finalize();
 
             //flush profile events
-            profiler_stop();
+            
             std::vector< MHO_ProfileEvent > events;
             MHO_Profiler::GetInstance().GetEvents(events);
 
