@@ -101,6 +101,24 @@ class MHO_ParameterStore
          */
         template< typename XValueType > bool Set(const std::string& value_path, const XValueType& value);
 
+        /**
+         * @brief Explicit overload for mho_json values.
+         * Uses nlohmann::json_pointer to avoid template deduction ambiguities
+         * that cause the generic template to store null when passed a JSON array or object.
+         */
+        bool Set(const std::string& value_path, const mho_json& value)
+        {
+            try
+            {
+                fStore[mho_json::json_pointer(SanitizePath(value_path))] = value;
+                return true;
+            }
+            catch(...)
+            {
+                return false;
+            }
+        }
+
         //returns true if found
         /**
          * @brief Retrieves a value by path and returns it as XValueType, using default constructor if not found.
