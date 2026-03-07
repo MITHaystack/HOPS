@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!@PY_EXE@
 """
 Reads events.json produced by MHO_Profiler and prints a per-thread timing table.
 Start events (flag=1) are matched with stop events (flag=2) by (thread_id, filename, funcname).
@@ -14,9 +14,53 @@ def short_thread(thread_id):
     """Return last 6 hex digits of thread_id for readability."""
     return f"...{thread_id & 0xFFFFFF:06x}"
 
-def main(path="events.json", consolidate=False):
+
+def load_events(path):
+    """
+    Load profiler events from a JSON file.
+
+    First attempts to extract from a .frng.json structure using the path
+      .[].tags.parameters.profile.events  (top-level may be list or dict)
+    collecting all non-null lists found across every entry.
+
+    If that yields nothing (structure absent or all null), falls back to
+    treating the file directly as a flat array of event objects.
+    """
     with open(path) as f:
-        events = json.load(f)
+        data = json.load(f)
+
+    # Collect candidate items from either a list or a dict of objects
+    if isinstance(data, list):
+        candidates = data
+    elif isinstance(data, dict):
+        candidates = list(data.values())
+    else:
+        candidates = []
+
+    # Try frng extraction: .[].tags.parameters.profile.events
+    events = []
+    for item in candidates:
+        try:
+            ev = item["tags"]["parameters"]["profile"]["events"]
+            if isinstance(ev, list):
+                events.extend(ev)
+        except (KeyError, TypeError):
+            pass
+    if events:
+        print(f"Extracted {len(events)} event(s) from frng structure in {path}",
+              file=sys.stderr)
+        return events
+
+    # Fallback: file is already a flat events array
+    if isinstance(data, list):
+        return data
+
+    print(f"WARNING: could not interpret {path} as events or frng JSON", file=sys.stderr)
+    return []
+
+
+def main(path="events.json", consolidate=False):
+    events = load_events(path)
 
     # Stack of pending (start_time, depth) pairs, keyed by (thread_id, filename, funcname)
     stacks = defaultdict(list)
