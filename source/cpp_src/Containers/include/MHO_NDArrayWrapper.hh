@@ -92,8 +92,8 @@ class MHO_NDArrayWrapper
         template< typename... XDimSizeTypeS >
         typename std::enable_if< (sizeof...(XDimSizeTypeS) == RANK), void >::type Resize(XDimSizeTypeS... dim)
         {
-            fTmp = {{static_cast< size_t >(dim)...}}; //convert the arguments to an array
-            Resize(&(fTmp[0]));
+            index_type tmp = {{static_cast< size_t >(dim)...}}; //convert the arguments to an array
+            Resize(&(tmp[0]));
         }
 
         /**
@@ -196,8 +196,8 @@ class MHO_NDArrayWrapper
         template< typename... XIndexTypeS >
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type operator()(XIndexTypeS... idx)
         {
-            fTmp = {{static_cast< size_t >(idx)...}};
-            return ValueAt(fTmp);
+            index_type tmp = {{static_cast< size_t >(idx)...}};
+            return ValueAt(tmp);
         }
 
         /**
@@ -210,8 +210,8 @@ class MHO_NDArrayWrapper
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), const XValueType& >::type
         operator()(XIndexTypeS... idx) const
         {
-            fTmp = {{static_cast< size_t >(idx)...}};
-            return ValueAt(fTmp);
+            index_type tmp = {{static_cast< size_t >(idx)...}};
+            return ValueAt(tmp);
         }
 
         /**
@@ -224,10 +224,10 @@ class MHO_NDArrayWrapper
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), XValueType& >::type at(XIndexTypeS... idx)
         {
             //make sure the indices are valid for the given array dimensions
-            fTmp = {{static_cast< size_t >(idx)...}};
-            if(CheckIndexValidity(fTmp))
+            index_type tmp = {{static_cast< size_t >(idx)...}};
+            if(CheckIndexValidity(tmp))
             {
-                return ValueAt(fTmp);
+                return ValueAt(tmp);
             }
             else
             {
@@ -245,10 +245,10 @@ class MHO_NDArrayWrapper
         typename std::enable_if< (sizeof...(XIndexTypeS) == RANK), const XValueType& >::type at(XIndexTypeS... idx) const
         {
             //make sure the indices are valid for the given array dimensions
-            fTmp = {{static_cast< size_t >(idx)...}};
-            if(CheckIndexValidity(fTmp))
+            index_type tmp = {{static_cast< size_t >(idx)...}};
+            if(CheckIndexValidity(tmp))
             {
-                return ValueAt(fTmp);
+                return ValueAt(tmp);
             }
             else
             {
@@ -347,15 +347,16 @@ class MHO_NDArrayWrapper
         {
             constexpr typename std::integral_constant< std::size_t, sizeof...(XIndexTypeS) > nfixed_t;
             std::array< std::size_t, sizeof...(XIndexTypeS) > leading_idx = {{static_cast< size_t >(idx)...}};
+            index_type tmp;
             for(std::size_t i = 0; i < RANK; i++)
             {
-                fTmp[i] = 0;
+                tmp[i] = 0;
             }
             for(std::size_t i = 0; i < leading_idx.size(); i++)
             {
-                fTmp[i] = leading_idx[i];
+                tmp[i] = leading_idx[i];
             }
-            std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex< RANK >(&(fStrides[0]), &(fTmp[0]));
+            std::size_t offset = MHO_NDArrayMath::OffsetFromStrideIndex< RANK >(&(fStrides[0]), &(tmp[0]));
             return MHO_NDArrayView< XValueType, RANK - (sizeof...(XIndexTypeS)) >(&(fData[offset]), &(fDims[nfixed_t]),
                                                                                   &(fStrides[nfixed_t]));
         }
@@ -564,7 +565,6 @@ class MHO_NDArrayWrapper
         std::vector< XValueType > fData; //used for internally managed data
         index_type fDims;                //size of each dimension
         index_type fStrides;             //strides between elements in each dimension
-        mutable index_type fTmp;         //temp index workspace
 
         void Construct(XValueType* ptr, const std::size_t* dim)
         {
