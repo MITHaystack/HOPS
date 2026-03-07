@@ -1,0 +1,277 @@
+#!@PY_EXE@
+"""
+Flame graph visualization of MHO_Profiler event logs.
+
+Default: one subplot per thread.
+With -c: all threads stacked in a single plot on a shared time axis.
+
+Usage:
+  python3 profile_plot.py [events.json] [-c] [-o output.png]
+"""
+
+import argparse
+import json
+import re
+import sys
+from collections import defaultdict
+
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+
+
+# ---------------------------------------------------------------------------
+# Parsing
+# ---------------------------------------------------------------------------
+
+def parse_events(path):
+    """
+    Parse events.json. Returns a list of call dicts:
+      { thread_id, funcname, filename, depth, t_start, t_stop }
+    """
+    with open(path) as f:
+        events = json.load(f)
+
+    stacks = defaultdict(list)        # (tid, file, func) -> [(t_start, depth)]
+    global_stack = defaultdict(list)  # tid -> [key, ...]
+    calls = []
+
+    for ev in events:
+        key = (ev["thread_id"], ev["filename"], ev["funcname"])
+        tid = ev["thread_id"]
+        if ev["flag"] == 1:
+            depth = len(global_stack[tid])
+            global_stack[tid].append(key)
+            stacks[key].append((ev["time"], depth))
+        elif ev["flag"] == 2:
+            if stacks[key]:
+                t_start, depth = stacks[key].pop()
+                calls.append({
+                    "thread_id": tid,
+                    "funcname": ev["funcname"],
+                    "filename": ev["filename"],
+                    "depth": depth,
+                    "t_start": t_start,
+                    "t_stop": ev["time"],
+                })
+                # Remove from global stack (innermost matching entry)
+                if key in global_stack[tid]:
+                    idx = (len(global_stack[tid]) - 1
+                           - global_stack[tid][::-1].index(key))
+                    global_stack[tid].pop(idx)
+            else:
+                print(f"WARNING: unmatched stop for {ev['funcname']}",
+                      file=sys.stderr)
+
+    for key, stack in stacks.items():
+        if stack:
+            print(f"WARNING: {len(stack)} unmatched start(s) for {key[2]}",
+                  file=sys.stderr)
+
+    return calls
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def short_name(funcname):
+    """Extract Class::method() from a C++ pretty-function string."""
+    # Strip leading qualifiers
+    name = re.sub(r'^(virtual|static|inline|explicit)\s+', '', funcname).strip()
+    # Find the last namespace::class::method chunk before '('
+    m = re.search(r'((?:\w+::)+\w+)\s*\(', name)
+    if m:
+        # Drop leading namespaces, keep last two components (Class::method)
+        parts = m.group(1).split("::")
+        return "::".join(parts[-2:]) + "()"
+    # Fallback: just the identifier before '('
+    m2 = re.search(r'(\w+)\s*\(', name)
+    return (m2.group(1) + "()") if m2 else funcname
+
+def short_thread(tid):
+    return f"...{tid & 0xFFFFFF:06x}"
+
+def build_color_map(calls):
+    """Assign a consistent color to every unique funcname."""
+    funcs = sorted(set(c["funcname"] for c in calls))
+    cmap = plt.get_cmap("tab20", max(len(funcs), 1))
+    return {fn: cmap(i % 20) for i, fn in enumerate(funcs)}
+
+
+# ---------------------------------------------------------------------------
+# Drawing
+# ---------------------------------------------------------------------------
+
+BAR_H = 0.8   # height of each flame bar
+MIN_LABEL_FRAC = 0.03  # min fraction of total x-span needed to draw a label
+
+def draw_flames(ax, calls, color_map, t_offset=0.0, y_offset=0, x_span=None):
+    """
+    Draw one set of flame-graph bars on *ax*.
+
+    t_offset  — subtract this from all times (so x starts near 0)
+    y_offset  — shift all bars up by this many depth units
+    x_span    — total x range (used to decide whether to draw text labels)
+    """
+    if x_span is None or x_span == 0:
+        x_span = max((c["t_stop"] - c["t_start"]) for c in calls) or 1.0
+
+    for c in calls:
+        x = c["t_start"] - t_offset
+        w = c["t_stop"]  - c["t_start"]
+        y = c["depth"] + y_offset
+        color = color_map[c["funcname"]]
+
+        rect = Rectangle((x, y), w, BAR_H,
+                          linewidth=0.5, edgecolor="white",
+                          facecolor=color, alpha=0.85)
+        ax.add_patch(rect)
+
+        if w / x_span >= MIN_LABEL_FRAC:
+            label = short_name(c["funcname"])
+            ax.text(x + w / 2, y + BAR_H / 2, label,
+                    ha="center", va="center", fontsize=7,
+                    clip_on=True)
+
+
+# ---------------------------------------------------------------------------
+# Plot modes
+# ---------------------------------------------------------------------------
+
+def plot_per_thread(calls, color_map, output):
+    by_thread = defaultdict(list)
+    for c in calls:
+        by_thread[c["thread_id"]].append(c)
+    thread_ids = sorted(by_thread.keys())
+    n = len(thread_ids)
+
+    fig, axes = plt.subplots(n, 1,
+                             figsize=(14, max(3, 2 * n)),
+                             squeeze=False)
+    fig.suptitle("Flame Graph — Per Thread", fontsize=12, y=1.01)
+
+    for i, tid in enumerate(thread_ids):
+        ax = axes[i][0]
+        tcalls = by_thread[tid]
+        t_min  = min(c["t_start"] for c in tcalls)
+        t_max  = max(c["t_stop"]  for c in tcalls)
+        d_max  = max(c["depth"]   for c in tcalls)
+        x_span = t_max - t_min or 1.0
+
+        draw_flames(ax, tcalls, color_map,
+                    t_offset=t_min, x_span=x_span)
+
+        ax.set_xlim(0, x_span)
+        ax.set_ylim(-0.1, d_max + BAR_H + 0.2)
+        ax.set_title(f"Thread {short_thread(tid)}  (id={tid})", fontsize=9)
+        ax.set_ylabel("Depth")
+        ax.set_yticks(range(d_max + 1))
+        if i == n - 1:
+            ax.set_xlabel("Time (s)")
+
+    _add_legend(fig, calls, color_map)
+    _save_or_show(fig, output)
+
+
+def plot_consolidated(calls, color_map, output):
+    """
+    Single plot: all threads overlaid on a shared (time, depth) axis.
+    Bars are coloured by thread so parallel calls at the same depth are
+    distinguishable; transparency lets overlapping rectangles show through.
+    Function labels are still drawn when a bar is wide enough.
+    """
+    thread_ids = sorted(set(c["thread_id"] for c in calls))
+    n = len(thread_ids)
+
+    t_min   = min(c["t_start"] for c in calls)
+    t_max   = max(c["t_stop"]  for c in calls)
+    x_span  = t_max - t_min or 1.0
+    max_depth = max(c["depth"] for c in calls)
+
+    fig, ax = plt.subplots(figsize=(14, max(4, (max_depth + 1) * 1.5)))
+    fig.suptitle("Flame Graph — Consolidated (all threads, shared axes)",
+                 fontsize=12)
+
+    for c in calls:
+        x     = c["t_start"] - t_min
+        w     = c["t_stop"]  - c["t_start"]
+        y     = c["depth"]
+        color = color_map[c["funcname"]]
+
+        rect = Rectangle((x, y), w, BAR_H,
+                          linewidth=0.5, edgecolor="white",
+                          facecolor=color, alpha=0.75)
+        ax.add_patch(rect)
+
+        if w / x_span >= MIN_LABEL_FRAC:
+            ax.text(x + w / 2, y + BAR_H / 2, short_name(c["funcname"]),
+                    ha="center", va="center", fontsize=7, clip_on=True)
+
+    ax.set_xlim(0, x_span)
+    ax.set_ylim(-0.1, max_depth + BAR_H + 0.2)
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Depth")
+    ax.set_yticks(range(max_depth + 1))
+
+    _add_legend(fig, calls, color_map)
+
+    _save_or_show(fig, output)
+
+
+# ---------------------------------------------------------------------------
+# Shared utilities
+# ---------------------------------------------------------------------------
+
+def _add_legend(fig, calls, color_map):
+    funcs = sorted(set(c["funcname"] for c in calls))
+    patches = [mpatches.Patch(color=color_map[fn], label=short_name(fn))
+               for fn in funcs]
+    ncol = min(len(patches), 3)
+    fig.legend(handles=patches,
+               loc="lower center",
+               ncol=ncol,
+               fontsize=7,
+               bbox_to_anchor=(0.5, 0),
+               bbox_transform=fig.transFigure)
+    plt.tight_layout(rect=[0, 0.05 + 0.04 * ((len(patches) + ncol - 1) // ncol), 1, 1])
+
+
+def _save_or_show(fig, output):
+    if output:
+        fig.savefig(output, dpi=150, bbox_inches="tight")
+        print(f"Saved to {output}")
+    else:
+        plt.show()
+
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Flame graph visualization of MHO_Profiler event logs.")
+    parser.add_argument("input", nargs="?", default="events.json",
+                        help="Path to events JSON file (default: events.json)")
+    parser.add_argument("-c", "--consolidate", action="store_true",
+                        help="Show all threads on a single shared time axis")
+    parser.add_argument("-o", "--output", default=None,
+                        help="Save plot to file (e.g. flame.png) instead of displaying")
+    args = parser.parse_args()
+
+    calls = parse_events(args.input)
+    if not calls:
+        print("No events to plot.")
+        return
+
+    color_map = build_color_map(calls)
+
+    if args.consolidate:
+        plot_consolidated(calls, color_map, args.output)
+    else:
+        plot_per_thread(calls, color_map, args.output)
+
+
+if __name__ == "__main__":
+    main()

@@ -121,7 +121,10 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
 
 bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
-    return ExecuteImplOptimized(in1, in2, out);
+    profiler_start();
+    bool ret_val = ExecuteImplOptimized(in1, in2, out);
+    profiler_stop();
+    return ret_val;
 };
 
 bool MHO_DelayRate::ExecuteImplLegacy(const XArgType1* in1, const XArgType2* in2, XArgType3* out)

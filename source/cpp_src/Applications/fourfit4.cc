@@ -116,7 +116,6 @@ int main(int argc, char** argv)
     {
         msg_info("main", "fourfit will fringe " << n_pass << " passes of data" << eom);
     }
-
     //this loop could be trivially parallelized (with the exception of plotting)
     for(std::size_t pass_index = 0; pass_index < n_pass; pass_index++)
     {
@@ -164,6 +163,7 @@ int main(int argc, char** argv)
 
             //convert and dump the events into the parameter store for now (will be empty unless enabled)
             mho_json event_list = MHO_BasicFringeDataConfiguration::ConvertProfileEvents(events);
+            std::cout<<event_list.dump(2)<<std::endl;
             fringeData.GetParameterStore()->Set("/profile/events", event_list);
 
             //determine if this pass was skipped or is in test-mode
@@ -212,6 +212,8 @@ int main(int argc, char** argv)
     MHO_MPIInterface::GetInstance()->GlobalBarrier();
     MHO_MPIInterface::GetInstance()->Finalize();
 #endif
+
+    // MHO_Profiler::GetInstance().DumpEvents();
 
     return 0;
 }
