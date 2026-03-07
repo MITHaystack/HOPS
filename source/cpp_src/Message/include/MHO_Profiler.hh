@@ -26,9 +26,9 @@ namespace hops
  * when the profile is enabled, a section of code can be profiled by
  * wrapping it between a call to profiler_start() and profiler_stop(), for example:
  *
- * profiler_start();
+ * profiler_scope();
  * function_to_profile();
- * profiler_stop();
+ * 
  */
 
 namespace sn = selfname;

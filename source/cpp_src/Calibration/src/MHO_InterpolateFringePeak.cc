@@ -65,7 +65,7 @@ void MHO_InterpolateFringePeak::SetMaxBins(int sbd_max, int mbd_max, int dr_max)
 
 void MHO_InterpolateFringePeak::fine_peak_interpolation()
 {
-    profiler_start();
+    profiler_scope();
     //follow the algorithm of interp.c (SIMUL) mode, to fill out a cube and interpolate
     //double drf[5][5][5];// 5x5x5 cube of fringe values
     double xlim[3][2]; //cube limits each dim
@@ -251,7 +251,7 @@ void MHO_InterpolateFringePeak::fine_peak_interpolation()
     msg_info("calibration", "Peak max555, sbd " << sbd_max << " mbd " << mbd_max_global << " dr " << dr_max_global << " amp "
                                                 << fFringeAmp << eom);
 
-    profiler_stop();
+    
 }
 
 void MHO_InterpolateFringePeak::max555(MHO_NDArrayWrapper< double, 3 >& drf, // input: real function

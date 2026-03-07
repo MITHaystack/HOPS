@@ -156,7 +156,7 @@ bool MHO_MixedSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType*
 
 bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
 {
-    profiler_start();
+    profiler_scope();
     if(fInitialized)
     {
         bool status;
@@ -169,7 +169,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         if(!status)
         {
             msg_error("calibration", "Could not execute NaN masker MHO_MixedSidebandNormFX." << eom);
-            profiler_stop();
+            
             return false;
         }
 
@@ -177,7 +177,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         if(!status)
         {
             msg_error("calibration", "Could not execute FFT in MHO_MixedSidebandNormFX." << eom);
-            profiler_stop();
+            
             return false;
         }
 
@@ -185,7 +185,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         if(!status)
         {
             msg_error("calibration", "Could not execute sub-sampler in MHO_MixedSidebandNormFX." << eom);
-            profiler_stop();
+            
             return false;
         }
 
@@ -193,7 +193,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         if(!status)
         {
             msg_error("calibration", "Could not execute cyclic-rotation MHO_MixedSidebandNormFX." << eom);
-            profiler_stop();
+            
             return false;
         }
 
@@ -201,11 +201,11 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         double norm = 1.0 / (double)fInDims[FREQ_AXIS];
         *(out) *= norm;
 
-        profiler_stop();
+        
         return true;
     }
 
-    profiler_stop();
+    
     return false;
 };
 
