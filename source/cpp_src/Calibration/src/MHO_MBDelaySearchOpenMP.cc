@@ -97,7 +97,7 @@ bool MHO_MBDelaySearchOpenMP::InitializeImpl(const XArgType* in)
         fSearchBuffer.Resize(fNDRSP, fNGridPoints);
         fBatchedFFTEngine.SetArgs(&fSearchBuffer);
         fBatchedFFTEngine.DeselectAllAxes();
-        fBatchedFFTEngine.SelectAxis(1); //FFT along MBD axis (axis 1); axis 0 is DR — runs as a batch
+        fBatchedFFTEngine.SelectAxis(1); //FFT along MBD axis (axis 1); axis 0 is DR - runs as a batch
         fBatchedFFTEngine.SetForward();
         ok = fBatchedFFTEngine.Initialize();
         check_step_fatal(ok, "fringe", "MBD search batched fft engine initialization failed." << eom);
@@ -124,7 +124,7 @@ bool MHO_MBDelaySearchOpenMP::InitializeImpl(const XArgType* in)
 
         for(int t = 0; t < fNThreads; t++)
         {
-            //SBD workspace — same dimensions and metadata as fSBDDrWorkspace
+            //SBD workspace - same dimensions and metadata as fSBDDrWorkspace
             fPerThreadSBDWorkspace[t].Resize(&(sbd_dims[0]));
             fPerThreadSBDWorkspace[t].ZeroArray();
             fPerThreadSBDWorkspace[t].CopyTags(*in);
@@ -236,7 +236,7 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
             //batched FFT over all DR slices at once
             local_fft.Execute();
 
-            //search the 2D result — write only to thread-local lm, no synchronization needed
+            //search the 2D result - write only to thread-local lm, no synchronization needed
             for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
             {
                 double dr = fDRAxis(dr_idx);
@@ -245,7 +245,7 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
                 {
                     double mbd = fMBDAxis(mbd_idx);
                     if(fMBDWinSet && !((fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1]))) { continue; }
-                    //std::norm avoids sqrt — searching for max location only
+                    //std::norm avoids sqrt - searching for max location only
                     double tmp_max = std::norm(local_sb(dr_idx, mbd_idx));
                     if(tmp_max > lm.val)
                     {

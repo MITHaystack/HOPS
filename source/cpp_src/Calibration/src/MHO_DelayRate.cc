@@ -32,7 +32,7 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
         msg_debug("calibration", "delay rate search space size = " << fDRSPSize << eom);
 
         //precompute per-(ch,dr) interpolation indices and weights
-        //num, l_fp, l_int depend only on (ch, dr) — not on pp or sbd — so compute once here
+        //num, l_fp, l_int depend only on (ch, dr) - not on pp or sbd - so compute once here
         {
             std::size_t nch_interp = fInDims[CHANNEL_AXIS];
             int sz = 4 * fDRSPSize;
@@ -214,7 +214,7 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
     //linear interpolation and modification of delay rate axis (see delay_rate.c line 81)
     std::size_t nsbd = out->GetDimension(FREQ_AXIS);
 
-    //write delay-rate axis values once — they depend only on dr, not on pp/ch/sbd
+    //write delay-rate axis values once - they depend only on dr, not on pp/ch/sbd
     double ax_scale = 1.0 / (time_delta * (double)fDRSPSize);
     for(int dr = 0; dr < fDRSPSize; dr++)
     {
