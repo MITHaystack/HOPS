@@ -223,6 +223,27 @@ class MHO_ComputePlotData
         void precompute_vr_tables();
 
         /**
+         * @brief Merged computation of SBD amplitude spectrum and cross-power spectrum.
+         *        Single ch->ap->bin pass replaces two separate bin->ch->ap passes.
+         *        calc_sbd uses fVRTable; calc_xpower_spec uses fVRPhaseTable.
+         *
+         * @param sbd_amp     Output: SBD amplitude vs delay (was calc_sbd return value)
+         * @param cp_spectrum Output: cross-power spectrum (was calc_xpower_spec return value)
+         */
+        void calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpower_type& cp_spectrum);
+
+        /**
+         * @brief Merged computation of delay-rate spectrum, phasor segments, and fringe phase.
+         *        Single ch->ap pass over fSBDMaxBin replaces three separate passes.
+         *        DR uses fVRTable; segs and phase use fVRPhaseTable.
+         *
+         * @param coh_avg_phase Output: coherent average phase (was calc_phase return value)
+         * @param phasor_segs   Output: phasor segment data (was calc_segs return value)
+         * @return xpower_amp_type delay-rate amplitude spectrum (was calc_dr return value)
+         */
+        xpower_amp_type calc_dr_segs_phase(double& coh_avg_phase, phasor_type& phasor_segs);
+
+        /**
          * @brief calcuates the fringe error code
          */
         std::string calc_error_code(const mho_json& plot_dict);
