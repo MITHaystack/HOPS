@@ -52,6 +52,23 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
                     fInterpTable[ch * fDRSPSize + dr] = {l_int, l_int2, l_fp - (double)l_int};
                 }
             }
+
+            //build fPreRotatedInterpTable: shift l0/l1 by sz/2 (mod sz) so that
+            //ExecuteImplOptimized can read directly from the post-FFT (pre-rotation) array.
+            //The CyclicRotator left-shifts by np/2 = sz/2, so element at post-FFT position p
+            //ends up at post-rotation position (p - sz/2 + sz) % sz.  Inverting: to read
+            //post-rotation index q from the pre-rotation array, read (q + sz/2) % sz.
+            fPreRotatedInterpTable.resize(nch_interp * fDRSPSize);
+            for(std::size_t ch = 0; ch < nch_interp; ch++)
+            {
+                for(int dr = 0; dr < fDRSPSize; dr++)
+                {
+                    const InterpEntry& e = fInterpTable[ch * fDRSPSize + dr];
+                    int r0 = (e.l0 + sz / 2) % sz;
+                    int r1 = (e.l1 + sz / 2) % sz;
+                    fPreRotatedInterpTable[ch * fDRSPSize + dr] = {r0, r1, e.w};
+                }
+            }
         }
 
         std::size_t np = fDRSPSize * 4;
@@ -104,10 +121,13 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
 
 bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
+    return ExecuteImplOptimized(in1, in2, out);
+};
 
+bool MHO_DelayRate::ExecuteImplLegacy(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+{
     if(fInitialized)
     {
-        // out->ZeroArray();
         bool ok;
 
         ok = fZeroPadder.Execute();
@@ -130,7 +150,40 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
         check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom);
 
         //apply the legacy linear interpolation step -- TODO determine if this is strictly needed
-        ApplyInterpolationOptimized(in1, out);
+        ApplyInterpolationOptimized(in1, out, fInterpTable);
+
+        return true;
+    }
+
+    return false;
+};
+
+bool MHO_DelayRate::ExecuteImplOptimized(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+{
+    if(fInitialized)
+    {
+        bool ok;
+
+        ok = fZeroPadder.Execute();
+        if(!ok)
+        {
+            msg_error("operators", "Could not execute zero padder in MHO_DelayRate" << eom);
+            return false;
+        }
+
+        ApplyDataWeights(in2, out);
+
+        ok = fFFTEngine.Execute();
+        if(!ok)
+        {
+            msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom);
+            return false;
+        }
+
+        //skip CyclicRotator: fPreRotatedInterpTable absorbs the np/2 shift into l0/l1,
+        //so interpolation reads directly from the post-FFT array.
+        //Axis labels are written by ApplyInterpolationOptimized regardless.
+        ApplyInterpolationOptimized(in1, out, fPreRotatedInterpTable);
 
         return true;
     }
@@ -249,7 +302,8 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
     }
 }
 
-void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out)
+void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out,
+                                                const std::vector< InterpEntry >& table)
 {
     std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
     std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
@@ -270,7 +324,7 @@ void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3*
     {
         for(std::size_t ch = 0; ch < nch; ch++)
         {
-            const InterpEntry* tbl = &fInterpTable[ch * fDRSPSize];
+            const InterpEntry* tbl = &table[ch * fDRSPSize];
 
             //Stage results into workspace: dr(outer)->sbd(inner).
             //For each dr, l0 and l1 are constants from the table, so we obtain raw pointers
