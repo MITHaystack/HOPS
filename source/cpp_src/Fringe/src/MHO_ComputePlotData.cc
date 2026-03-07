@@ -375,25 +375,33 @@ void MHO_ComputePlotData::correct_vis()
 
     auto freq_ax = &(std::get< FREQ_AXIS >(*fVisibilities));
 
-    // Use fVRPhaseTable: pre-computed w/ proper SBD params and fMBDelay, matching the fRot state
-    // when correct_vis is called (after calc_phase has configured the SBD parameters).
-    // fNChan/fNAP from fSBDArray match fVisibilities channel/AP dimensions.
+    // Pre-compute conj(sbd_rot)[ch][sp] = conj(exp(-2pi*i * sb_sign * (freq[sp] - bw/2) * fSBDelay)).
+    // This depends on (ch, sp) but NOT on ap, eliminating one exp() call per (ap, ch, sp) from
+    // the innermost loop (saving nap x nchan x (nbins-1) exp() evaluations).
     std::complex< double > imag_unit(0, 1);
+    std::vector< std::complex< double > > sbd_phase_table(nchan * nbins);
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        double sb_sign = (double)fChanSideband[ch];
+        double bw = fChanBandwidth[ch];
+        for(std::size_t sp = 0; sp < nbins; sp++)
+        {
+            double theta = sb_sign * ((*freq_ax)[sp] - bw / 2.0) * fSBDelay;
+            sbd_phase_table[ch * nbins + sp] = std::conj(std::exp(-2.0 * M_PI * imag_unit * theta));
+        }
+    }
+
+    // Main loop: vr is a table lookup per (ap, ch); sbd_rot is a table lookup per (ch, sp).
+    // fNChan/fNAP from fSBDArray match fVisibilities channel/AP dimensions.
     for(std::size_t ap = 0; ap < nap; ap++)
     {
         for(std::size_t ch = 0; ch < nchan; ch++)
         {
-            double sb_sign = (double)fChanSideband[ch];
-            double bw = fChanBandwidth[ch];
-            //per-channel phase rotation due to MBD and delay_rate (from pre-computed table)
-            std::complex< double > vr = fVRPhaseTable[ch * fNAP + ap];
-            //now apply a rotation for the SBD at each spectral point
+            std::complex< double > conj_vr = std::conj(fVRPhaseTable[ch * fNAP + ap]);
             for(std::size_t sp = 0; sp < nbins; sp++)
             {
-                double theta = sb_sign * ((*freq_ax)[sp] - bw / 2.0) * fSBDelay;
-                std::complex< double > sbd_rot = std::exp(-2.0 * M_PI * imag_unit * theta);
                 std::complex< double > vis = (*fVisibilities)(POLPROD, ch, ap, sp);
-                (*fVisibilities)(POLPROD, ch, ap, sp) = std::conj(sbd_rot) * std::conj(vr) * vis;
+                (*fVisibilities)(POLPROD, ch, ap, sp) = sbd_phase_table[ch * nbins + sp] * conj_vr * vis;
             }
         }
     }
@@ -801,6 +809,315 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
     return cp_spectrum_out;
 }
 
+void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpower_type& cp_spectrum_out)
+{
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
+
+    int nl = fSBDArray->GetDimension(FREQ_AXIS) / 2; // nlags; nbins = 2*nl
+    std::size_t nbins = (std::size_t)(2 * nl);
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+
+    auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+
+    // - Initialize accumulators -
+    xpower_type sbd_xpower_in, X, Y, cp_spectrum;
+    sbd_xpower_in.Resize(nbins);  sbd_xpower_in.ZeroArray();
+    X.Resize(2 * nl);             X.ZeroArray();
+    Y.Resize(4 * nl);             Y.ZeroArray();
+    cp_spectrum.Resize(2 * nl);   cp_spectrum.ZeroArray();
+    sbd_amp.Resize(nbins);
+
+    std::vector< xpower_type > sbxsp(nchan);
+    std::vector< int > maxlag(nchan, 0);
+    std::vector< double > maxlag_amp(nchan, 0.0);
+    std::vector< double > sbdbox(nchan, 0.0);
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        sbxsp[ch].Resize(2 * nl);
+        sbxsp[ch].ZeroArray();
+    }
+
+    // Count sidebands (used for output range and sbdbox)
+    int nusb = 0, nlsb = 0;
+    std::vector< int > nusb_ap(nchan, 0);
+    std::vector< int > nlsb_ap(nchan, 0);
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        if(fChanSideband[ch] == 1)       { nusb++; nusb_ap[ch] = (int)nap; }
+        else if(fChanSideband[ch] == -1) { nlsb++; nlsb_ap[ch] = (int)nap; }
+    }
+
+    // Pre-compute total_usb_frac and total_lsb_frac.
+    // In the original calc_xpower_spec these were reset and re-summed for every lag, but the
+    // weights do not depend on lag, so they are constants - compute once.
+    double total_usb_frac = 0.0, total_lsb_frac = 0.0;
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        if(fChanSideband[ch] == 1)
+        {
+            for(std::size_t ap = 0; ap < nap; ap++) { total_usb_frac += (*fWeights)(POLPROD, ch, ap, 0); }
+        }
+        else if(fChanSideband[ch] == -1)
+        {
+            for(std::size_t ap = 0; ap < nap; ap++) { total_lsb_frac += (*fWeights)(POLPROD, ch, ap, 0); }
+        }
+    }
+
+    // - Main merged loop: ch -> ap -> bin -
+    // Inner bin loop accesses contiguous memory in fSBDArray (FREQ axis is innermost).
+    // calc_sbd uses fVRTable (default SBD params); calc_xpower uses fVRPhaseTable (proper SBD params).
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        for(std::size_t ap = 0; ap < nap; ap++)
+        {
+            double w = (*fWeights)(POLPROD, ch, ap, 0);
+            std::complex< double > wvr_sbd = w * fVRTable[ch * fNAP + ap];
+            std::complex< double > wvr_xp  = w * fVRPhaseTable[ch * fNAP + ap];
+
+            for(std::size_t i = 0; i < nbins; i++)
+            {
+                std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, i);
+                sbd_xpower_in(i) += wvr_sbd * vis; // for calc_sbd
+                sbxsp[ch].at(i)  += wvr_xp  * vis; // for calc_xpower_spec (per-channel)
+            }
+        }
+
+        // Accumulate into all-channel sum X and track per-channel maxlag
+        for(std::size_t i = 0; i < nbins; i++)
+        {
+            X(i) += sbxsp[ch].at(i);
+            if(std::abs(sbxsp[ch].at(i)) > maxlag_amp[ch])
+            {
+                maxlag_amp[ch] = std::abs(sbxsp[ch].at(i));
+                maxlag[ch] = (int)i;
+            }
+        }
+    }
+
+    // - Finalize SBD amplitude -
+    for(std::size_t i = 0; i < nbins; i++)
+    {
+        sbd_amp(i) = std::abs(sbd_xpower_in(i)) / total_summed_weights;
+        std::get< 0 >(sbd_amp)(i) = (*sbd_ax)(i);
+    }
+
+    // - Construct Y from X (lag -> j rearrangement) -
+    for(int lag = 0; lag < 2 * nl; lag++)
+    {
+        int j = lag - nl;
+        if(j < 0) { j += 4 * nl; }
+        if(lag == 0) { j = 2 * nl; } // pure real lsb/dc channel goes in middle
+        Y(j) = X(lag);
+        std::get< 0 >(Y)(j) = j;
+    }
+
+    // - FFT on Y -
+    fFFTEngine.SetArgs(&Y);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetForward();
+    bool ok = fFFTEngine.Initialize();
+    ok = fFFTEngine.Execute();
+
+    // - Post-processing: sbfactor and SBD phase correction -
+    std::complex< double > cmplx_unit_I(0.0, 1.0);
+    int s = Y.GetDimension(0) / 2;
+    cp_spectrum.Resize(s);
+
+    for(int i = 0; i < 2 * nl; i++)
+    {
+        int j = nl - i;
+        double sbfactor = 0.0;
+        if(j <= 0)
+        {
+            if(total_usb_frac > 0) { sbfactor = sqrt(0.5) / (M_PI * total_usb_frac); }
+        }
+        else
+        {
+            if(total_lsb_frac > 0) { sbfactor = sqrt(0.5) / (M_PI * total_lsb_frac); }
+        }
+        if(j < 0) { j += 4 * nl; }
+        cp_spectrum(i) = Y(j) * sbfactor;
+        std::complex< double > Z = std::exp(-1.0 * cmplx_unit_I * (fSBDelay * (i - nl) * M_PI / (sbd_delta * 2.0 * nl)));
+        cp_spectrum(i) = Z * cp_spectrum(i);
+    }
+
+    // - Determine USB/LSB/DSB output range -
+    double bw = fChanBandwidth[nchan - 1]; // last channel bw, same as original (ch loop ends there)
+    double xstart, xend;
+    int ncp, izero;
+    if(nusb > 0 && nlsb > 0)      { xstart = -bw; xend = bw;  ncp = 2 * nl; izero = 0; }
+    else if(nlsb > 0)              { xstart = -bw; xend = 0.0; ncp = nl;     izero = 0; }
+    else /* USB only or neither */ { xstart = 0.0; xend = bw;  ncp = nl;     izero = nl; }
+
+    cp_spectrum_out.Resize(ncp);
+    for(int i = 0; i < ncp; i++)
+    {
+        std::get< 0 >(cp_spectrum_out)(i) = xstart + (xend - xstart) * i / ncp;
+        cp_spectrum_out(i) = cp_spectrum(i + izero);
+    }
+
+    // - Compute per-channel sbdbox (parabolic interpolation of peak lag) -
+    double yy[3], q[3];
+    double peak, maxv;
+    for(int ch = 0; ch < (int)nchan; ch++)
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            int idx = std::max(maxlag[ch] - 1 + i, 0);
+            idx = std::min(idx, 2 * nl - 1);
+            yy[i] = std::abs(sbxsp[ch].at(idx));
+        }
+        MHO_MathUtilities::parabola(yy, -1.0, 1.0, &peak, &maxv, q);
+        sbdbox[ch] = maxlag[ch] + peak + 1;
+    }
+    sbdbox.push_back(nl + 1 + fSBDelay / sbd_delta); // 'All' channel sbdbox
+
+    fSBDBox = sbdbox;
+    fNLSBAP = nlsb_ap;
+    fNUSBAP = nusb_ap;
+}
+
+xpower_amp_type MHO_ComputePlotData::calc_dr_segs_phase(double& coh_avg_phase, phasor_type& phasor_segs)
+{
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+
+    // - Setup for delay-rate spectrum (from calc_dr) -
+    std::size_t drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(nap);
+    if(drsp_size < 256) { drsp_size = 256; }
+    fDRWorkspace.Resize(drsp_size);
+    fDRWorkspace.ZeroArray();
+    fDRAmpWorkspace.Resize(drsp_size);
+    fDRAmpWorkspace.ZeroArray();
+
+    fFFTEngine.SetArgs(&fDRWorkspace);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetForward();
+    bool ok = fFFTEngine.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom);
+
+    fCyclicRotator.SetOffset(0, drsp_size / 2);
+    fCyclicRotator.SetArgs(&fDRWorkspace);
+    ok = fCyclicRotator.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search cyclic rotation initialization." << eom);
+
+    auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    auto dr_ax = &(std::get< 0 >(fDRWorkspace));
+    for(std::size_t i = 0; i < drsp_size; i++) { dr_ax->at(i) = i * ap_delta; }
+
+    // - Setup for phasor segments (from calc_segs) -
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
+    std::string chan_label_key = "channel_label";
+    std::vector< std::string > channel_labels;
+    for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+    {
+        std::string ch_label;
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
+        if(key_present) { channel_labels.push_back(ch_label); }
+        else
+        {
+            msg_warn("fringe", "unlabeled channel at index: " << ch << ", using '?' " << eom);
+            channel_labels.push_back("?");
+        }
+    }
+    phasor_segs.Resize(nchan + 1, nap);
+    phasor_segs.ZeroArray();
+
+    // - Setup for fringe phase (from calc_phase) -
+    auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    // Keep setter calls for fRot state consistency (same values already set by precompute_vr_tables)
+    fRot.SetSBDSeparation(sbd_delta);
+    fRot.SetSBDMaxBin(fSBDMaxBin);
+    fRot.SetNSBDBins(sbd_ax->GetSize() / 2);
+    fRot.SetSBDMax(fSBDelay);
+    fFringe.Resize(nchan);
+
+    // Per-AP accumulators for the 'All' channel phasor
+    std::vector< std::complex< double > > sum_per_ap(nap, 0.0);
+    std::vector< double > sumwt_per_ap(nap, 0.0);
+
+    // All-channel coherent sum (for calc_phase output)
+    std::complex< double > sum_all = 0.0;
+
+    // - Main merged loop: ch -> ap -
+    // For each (ch, ap) at fSBDMaxBin, simultaneously fills:
+    //   fDRWorkspace[ap]   (DR, uses fVRTable - default SBD params)
+    //   phasor_segs[ch,ap] (segs, uses fVRPhaseTable - proper SBD params)
+    //   fFringe[ch]        (phase, uses fVRPhaseTable)
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        // Set channel metadata in output arrays
+        (&std::get< 0 >(phasor_segs))->InsertIndexLabelKeyValue(ch, chan_label_key, channel_labels[ch]);
+        (&std::get< 0 >(phasor_segs))->at(ch) = fChanFreq[ch];
+        std::get< 0 >(fFringe).at(ch) = fChanFreq[ch];
+
+        std::complex< double > fringe_phasor = 0.0;
+        double sumwt_ch = 0.0;
+
+        for(std::size_t ap = 0; ap < nap; ap++)
+        {
+            std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin);
+            double w = (*fWeights)(POLPROD, ch, ap, 0);
+
+            // DR accumulation (fVRTable - default SBD params, same as original calc_dr)
+            fDRWorkspace(ap) += w * vis * fVRTable[ch * fNAP + ap];
+
+            // Segs and phase accumulation (fVRPhaseTable - proper SBD params)
+            std::complex< double > z = vis * fVRPhaseTable[ch * fNAP + ap];
+            phasor_segs(ch, ap) = z;
+
+            std::complex< double > wz = w * z;
+            sum_per_ap[ap]  += wz;
+            sumwt_per_ap[ap] += w;
+            fringe_phasor    += wz;
+            sumwt_ch         += w;
+            sum_all          += wz;
+        }
+
+        fFringe[ch] = fringe_phasor / sumwt_ch;
+    }
+
+    // - Finalize phasor_segs: AP axis labels and 'All' channel -
+    std::string all_chan_name = "All";
+    (&std::get< 0 >(phasor_segs))->InsertIndexLabelKeyValue(nchan, chan_label_key, all_chan_name);
+    for(std::size_t ap = 0; ap < nap; ap++)
+    {
+        (&std::get< 1 >(phasor_segs))->at(ap) = ap_ax->at(ap);
+        phasor_segs(nchan, ap) = (sumwt_per_ap[ap] > 0.0) ? sum_per_ap[ap] / sumwt_per_ap[ap] : 0.0;
+    }
+
+    // - Coherent average phase (calc_phase output) -
+    coh_avg_phase = std::arg(sum_all);
+
+    // - FFT and normalization for DR spectrum -
+    ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom);
+    ok = fCyclicRotator.Execute();
+    check_step_fatal(ok, "calibration", "MBD search cyclic rotation execution." << eom);
+
+    for(std::size_t i = 0; i < drsp_size; i++)
+    {
+        fDRAmpWorkspace[i] = std::abs(fDRWorkspace[i]) / total_summed_weights;
+        TODO_FIXME_MSG("TODO FIXME, factor 1/1000 is due to need to plot axis in ns/s")
+        std::get< 0 >(fDRAmpWorkspace).at(i) = (std::get< 0 >(fDRWorkspace).at(i)) / (fRefFreq / 1000.0);
+    }
+
+    return fDRAmpWorkspace;
+}
+
 void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 {
     if(!fValid)
@@ -812,13 +1129,16 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     precompute_chan_metadata();
     precompute_vr_tables();
 
-    auto sbd_amp = calc_sbd();
+    // Merged passes replace six separate bin/AP scans with two consolidated ones.
+    xpower_amp_type sbd_amp;
+    xpower_type sbd_xpower;
+    calc_sbd_and_xpower_spec(sbd_amp, sbd_xpower); // single ch->ap->bin pass
+
     auto mbd_amp = calc_mbd();
-    auto dr_amp = calc_dr();
-    //TODO FIXME -- move the residual phase calc elsewhere (but we need it for the moment to set the fRot parameters)
-    double coh_avg_phase = calc_phase();
-    auto sbd_xpower = calc_xpower_spec();
-    auto phasors = calc_segs();
+
+    double coh_avg_phase;
+    phasor_type phasors;
+    auto dr_amp = calc_dr_segs_phase(coh_avg_phase, phasors); // single ch->ap pass at SBD max bin
 
     phasors.CopyTags(*fSBDArray);
     phasors.Insert("name", "phasors");
