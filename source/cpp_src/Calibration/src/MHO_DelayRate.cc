@@ -57,6 +57,9 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
         std::size_t np = fDRSPSize * 4;
         ConditionallyResizeOutput(&(fInDims[0]), np, out);
 
+        //pre-allocate workspace for ApplyInterpolationOptimized
+        fInterpWorkspace.resize(fDRSPSize * fInDims[FREQ_AXIS]);
+
         fZeroPadder.SetArgs(in1, out);
         fZeroPadder.DeselectAllAxes();
         fZeroPadder.SelectAxis(TIME_AXIS); //only pad on the time (to delay rate) axis
@@ -104,7 +107,7 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
 
     if(fInitialized)
     {
-        out->ZeroArray();
+        // out->ZeroArray();
         bool ok;
 
         ok = fZeroPadder.Execute();
@@ -127,7 +130,7 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
         check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom);
 
         //apply the legacy linear interpolation step -- TODO determine if this is strictly needed
-        ApplyInterpolation(in1, out);
+        ApplyInterpolationOptimized(in1, out);
 
         return true;
     }
@@ -241,6 +244,59 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
                 {
                     (*out)(pp, ch, dr, sbd) = workspace[dr];
                 }
+            }
+        }
+    }
+}
+
+void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out)
+{
+    std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
+    std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
+    double time_delta = std::get< TIME_AXIS >(*in1)(1) - std::get< TIME_AXIS >(*in1)(0);
+
+    std::size_t nsbd = out->GetDimension(FREQ_AXIS);
+
+    //write delay-rate axis values once - they depend only on dr, not on pp/ch/sbd
+    double ax_scale = 1.0 / (time_delta * (double)fDRSPSize);
+    for(int dr = 0; dr < fDRSPSize; dr++)
+    {
+        std::get< TIME_AXIS >(*out)(dr) = ((double)dr - (double)(fDRSPSize / 2)) * ax_scale;
+    }
+
+    using value_t = sbd_type::value_type;
+
+    for(std::size_t pp = 0; pp < pprod; pp++)
+    {
+        for(std::size_t ch = 0; ch < nch; ch++)
+        {
+            const InterpEntry* tbl = &fInterpTable[ch * fDRSPSize];
+
+            //Stage results into workspace: dr(outer)->sbd(inner).
+            //For each dr, l0 and l1 are constants from the table, so we obtain raw pointers
+            //to the two contiguous source sbd-rows once per dr and walk them cheaply.
+            //OffsetFromStrideIndex is called once per (pp,ch,dr) triple, not once per element.
+            for(int dr = 0; dr < fDRSPSize; dr++)
+            {
+                const InterpEntry& e = tbl[dr];
+                const double w1 = 1.0 - e.w;
+                const double w2 = e.w;
+                const value_t* src0 = &(*out)(pp, ch, e.l0, 0);
+                const value_t* src1 = &(*out)(pp, ch, e.l1, 0);
+                value_t* dst = &fInterpWorkspace[dr * nsbd];
+                for(std::size_t sbd = 0; sbd < nsbd; sbd++)
+                {
+                    dst[sbd] = src0[sbd] * w1 + src1[sbd] * w2;
+                }
+            }
+
+            //Copy staged results back into the output array row by row.
+            //Both src and dst walks are contiguous.
+            for(int dr = 0; dr < fDRSPSize; dr++)
+            {
+                value_t* out_row = &(*out)(pp, ch, dr, 0);
+                const value_t* src = &fInterpWorkspace[dr * nsbd];
+                std::copy(src, src + nsbd, out_row);
             }
         }
     }
