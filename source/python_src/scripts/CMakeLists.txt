@@ -49,6 +49,8 @@ if (PY_EXE)
             hops3_fringe_summary
             fringe_vinspect
             compare_fringe_summary
+            profile_plot
+            profile_report
         )
 
     endif(HOPS3_PYTHON_EXTRAS)
