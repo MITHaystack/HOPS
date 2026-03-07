@@ -123,7 +123,7 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
         fSearchBuffer.Resize(fNDRSP, fNGridPoints);
         fBatchedFFTEngine.SetArgs(&fSearchBuffer);
         fBatchedFFTEngine.DeselectAllAxes();
-        fBatchedFFTEngine.SelectAxis(1); //FFT along MBD axis (axis 1); axis 0 is DR — runs as a batch
+        fBatchedFFTEngine.SelectAxis(1); //FFT along MBD axis (axis 1); axis 0 is DR - runs as a batch
         fBatchedFFTEngine.SetForward();
         ok = fBatchedFFTEngine.Initialize();
         check_step_fatal(ok, "fringe", "MBD search batched fft engine initialization failed." << eom);
