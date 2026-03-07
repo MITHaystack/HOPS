@@ -207,6 +207,22 @@ class MHO_ComputePlotData
         std::string calc_quality_code(); //quality only, not error
 
         /**
+         * @brief Pre-computes per-channel metadata (freq, sideband sign, bandwidth) into flat arrays,
+         *        eliminating repeated string-keyed label lookups inside the calc_* functions.
+         */
+        void precompute_chan_metadata();
+
+        /**
+         * @brief Pre-computes vrot lookup tables indexed as [ch * fNAP + ap].
+         *        Three tables are built to match the fRot state used by each calc_* function:
+         *          fVRTable      - default SBD params + fMBDelay  (calc_sbd, calc_dr)
+         *          fVRMBD0Table  - default SBD params + MBD=0     (calc_mbd)
+         *          fVRPhaseTable - proper SBD params  + fMBDelay  (calc_phase, calc_xpower_spec,
+         *                                                           calc_segs, correct_vis)
+         */
+        void precompute_vr_tables();
+
+        /**
          * @brief calcuates the fringe error code
          */
         std::string calc_error_code(const mho_json& plot_dict);
@@ -255,6 +271,18 @@ class MHO_ComputePlotData
 
         //constants
         std::complex< double > fImagUnit;
+
+        // Pre-computed per-channel metadata (populated by precompute_chan_metadata)
+        std::size_t fNChan;
+        std::size_t fNAP;
+        std::vector< double > fChanFreq;      // sky frequency per channel
+        std::vector< int > fChanSideband;     // sideband sign per channel: +1=USB, 0=DSB, -1=LSB
+        std::vector< double > fChanBandwidth; // bandwidth per channel
+
+        // Pre-computed vrot tables indexed as [ch * fNAP + ap] (populated by precompute_vr_tables)
+        std::vector< std::complex< double > > fVRTable;      // default SBD params + fMBDelay
+        std::vector< std::complex< double > > fVRMBD0Table;  // default SBD params + MBD=0
+        std::vector< std::complex< double > > fVRPhaseTable; // proper SBD params + fMBDelay
 
         //lsb/usb validity segments
         std::vector< std::vector< double > > seg_frac_usb;
