@@ -166,7 +166,7 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
         fNPointsSearched = 0;
         std::size_t nch = std::get< CHANNEL_AXIS >(*in).GetSize();
 
-        //--- Serial axis setup before the parallel region ---
+        // Serial axis setup before the parallel region 
 
         //MBD axis: run the 1D FFT on a zeroed workspace with axis label transformation
         //to obtain the delay-space axis labels (data-independent, only grid geometry needed)
@@ -193,7 +193,7 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
             fDRBinSep = fDRAxis(1) - fDRAxis(0);
         }
 
-        //--- Reset per-thread argmax accumulators ---
+        // Reset per-thread argmax accumulators 
         for(int t = 0; t < fNThreads; t++)
         {
             fThreadMaxima[t].val      = -0.0;
@@ -203,64 +203,71 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
             fThreadMaxima[t].n_points = 0.0;
         }
 
-        //--- Parallel loop over single-band delay lags ---
-        #pragma omp parallel for schedule(dynamic) num_threads(fNThreads)
-        for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
+        // Parallel loop over single-band delay lags 
+        //#pragma omp parallel for schedule(dynamic) num_threads(fNThreads)
+        //#pragma omp parallel for num_threads(fNThreads)
+        #pragma omp parallel num_threads(fNThreads)
         {
-            double sbd = fSBDAxis(sbd_idx);
-            if(fSBDWinSet && !((fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]))) { continue; }
-
             int tid = omp_get_thread_num();
-            visibility_type&    local_ws  = fPerThreadSBDWorkspace[tid];
-            visibility_type&    local_dr  = fPerThreadSBDDrData[tid];
-            MHO_DelayRate&      local_drc = fPerThreadDelayRateCalc[tid];
-            mbd_dr_type&        local_sb  = fPerThreadSearchBuffer[tid];
-            FFT_2D_ENGINE_TYPE& local_fft = fPerThreadBatchedFFTEngine[tid];
-            LocalMax&           lm        = fThreadMaxima[tid];
 
-            //copy the SBD slice into the thread-local workspace
-            auto dims = local_ws.GetDimensionArray();
-            for(std::size_t i = 0; i < dims[CHANNEL_AXIS]; i++)
-                for(std::size_t j = 0; j < dims[TIME_AXIS]; j++)
-                    local_ws(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
-
-            //transform to delay rate space
-            local_drc.Execute();
-
-            //zero the 2D [DR x MBD] buffer then scatter-accumulate all channels
-            local_sb.ZeroArray();
-            for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
-                for(std::size_t ch = 0; ch < nch; ch++)
-                    local_sb(dr_idx, fMBDBinForChannel[ch]) += local_dr(0, ch, dr_idx, 0);
-
-            //batched FFT over all DR slices at once
-            local_fft.Execute();
-
-            //search the 2D result - write only to thread-local lm, no synchronization needed
-            for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
+            #pragma omp for schedule(static)
+            for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
             {
-                double dr = fDRAxis(dr_idx);
-                if(fDRWinSet && !((fDRWin[0] <= dr) && (dr <= fDRWin[1]))) { continue; }
-                for(std::size_t mbd_idx = 0; mbd_idx < fNGridPoints; mbd_idx++)
-                {
-                    double mbd = fMBDAxis(mbd_idx);
-                    if(fMBDWinSet && !((fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1]))) { continue; }
-                    //std::norm avoids sqrt - searching for max location only
-                    double tmp_max = std::norm(local_sb(dr_idx, mbd_idx));
-                    if(tmp_max > lm.val)
-                    {
-                        lm.val     = tmp_max;
-                        //index shift: cyclic rotator has not yet been applied to the MBD axis
-                        lm.mbd_bin = (mbd_idx + fNGridPoints / 2) % fNGridPoints;
-                        lm.sbd_bin = sbd_idx;
-                        lm.dr_bin  = dr_idx;
-                    }
-                    lm.n_points += 1;
-                }
-            }
-        } // end omp parallel for
+                double sbd = fSBDAxis(sbd_idx);
+                if(fSBDWinSet && !((fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]))) { continue; }
 
-        //--- Serial argmax reduction across threads ---
+                //int tid = omp_get_thread_num();
+                visibility_type&    local_ws  = fPerThreadSBDWorkspace[tid];
+                visibility_type&    local_dr  = fPerThreadSBDDrData[tid];
+                MHO_DelayRate&      local_drc = fPerThreadDelayRateCalc[tid];
+                mbd_dr_type&        local_sb  = fPerThreadSearchBuffer[tid];
+                FFT_2D_ENGINE_TYPE& local_fft = fPerThreadBatchedFFTEngine[tid];
+                LocalMax&           lm        = fThreadMaxima[tid];
+
+                //copy the SBD slice into the thread-local workspace
+                auto dims = local_ws.GetDimensionArray();
+                for(std::size_t i = 0; i < dims[CHANNEL_AXIS]; i++)
+                    for(std::size_t j = 0; j < dims[TIME_AXIS]; j++)
+                        local_ws(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
+
+                //transform to delay rate space
+                local_drc.Execute();
+
+                //zero the 2D [DR x MBD] buffer then scatter-accumulate all channels
+                local_sb.ZeroArray();
+                for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
+                    for(std::size_t ch = 0; ch < nch; ch++)
+                        local_sb(dr_idx, fMBDBinForChannel[ch]) += local_dr(0, ch, dr_idx, 0);
+
+                //batched FFT over all DR slices at once
+                local_fft.Execute();
+
+                //search the 2D result - write only to thread-local lm, no synchronization needed
+                for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
+                {
+                    double dr = fDRAxis(dr_idx);
+                    if(fDRWinSet && !((fDRWin[0] <= dr) && (dr <= fDRWin[1]))) { continue; }
+                    for(std::size_t mbd_idx = 0; mbd_idx < fNGridPoints; mbd_idx++)
+                    {
+                        double mbd = fMBDAxis(mbd_idx);
+                        if(fMBDWinSet && !((fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1]))) { continue; }
+                        //std::norm avoids sqrt - searching for max location only
+                        double tmp_max = std::norm(local_sb(dr_idx, mbd_idx));
+                        if(tmp_max > lm.val)
+                        {
+                            lm.val     = tmp_max;
+                            //index shift: cyclic rotator has not yet been applied to the MBD axis
+                            lm.mbd_bin = (mbd_idx + fNGridPoints / 2) % fNGridPoints;
+                            lm.sbd_bin = sbd_idx;
+                            lm.dr_bin  = dr_idx;
+                        }
+                        lm.n_points += 1;
+                    }
+                }
+            } // end omp parallel for
+        } //end omp parallel nthreads
+
+        // Serial argmax reduction across threads 
         for(int t = 0; t < fNThreads; t++)
         {
             if(fThreadMaxima[t].val > fMax)
