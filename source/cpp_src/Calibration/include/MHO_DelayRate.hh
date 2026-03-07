@@ -113,6 +113,18 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
          */
         void ApplyInterpolation(const XArgType1* in1, XArgType3* out);
 
+        /**
+         * @brief Optimized version of ApplyInterpolation.
+         *        Swaps loop order to dr(outer)->sbd(inner) so the innermost loop walks
+         *        contiguous memory via raw pointers, paying the OffsetFromStrideIndex cost
+         *        once per (pp,ch,dr) triple rather than once per element.
+         *        Results are staged in fInterpWorkspace to avoid aliasing with source rows.
+         *
+         * @param in1 Input data array of type XArgType1
+         * @param out Output data array of type XArgType3
+         */
+        void ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out);
+
 #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
 #else
@@ -133,6 +145,9 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         //precomputed per-(ch,dr) interpolation entries - avoids fmod in hot loop
         struct InterpEntry { int l0, l1; double w; };
         std::vector< InterpEntry > fInterpTable;
+
+        //staging buffer for ApplyInterpolationOptimized: fDRSPSize rows x nsbd columns
+        std::vector< sbd_type::value_type > fInterpWorkspace;
 };
 
 } // namespace hops
