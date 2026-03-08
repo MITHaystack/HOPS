@@ -27,6 +27,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearchOpenMP.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeak.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeakOptimized.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LSBOffset.hh
@@ -62,6 +63,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearchOpenMP.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeak.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeakOptimized.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LSBOffset.cc

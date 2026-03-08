@@ -10,7 +10,7 @@
 
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_CyclicRotator.hh"
-#include "MHO_EndZeroPadder.hh"
+#include "MHO_EndZeroPadderOptimized.hh"
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_NaNMasker.hh"
@@ -101,7 +101,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
 #endif
 
         FFT_ENGINE_TYPE fFFTEngine;
-        MHO_EndZeroPadder< visibility_type > fZeroPadder;
+        MHO_EndZeroPadderOptimized< visibility_type > fZeroPadder;
         MHO_CyclicRotator< visibility_type > fCyclicRotator;
         MHO_SBDTableGenerator fSBDGen;
         bool fInitialized;
