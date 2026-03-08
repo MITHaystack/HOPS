@@ -241,6 +241,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
         {
             if(fIsValid && fInitialized)
             {
+                profiler_scope();
                 //zero out the output array
                 out->ZeroArray();
                 if(!fFlipped)

@@ -12,6 +12,7 @@ bool MHO_MixedSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType*
     fInitialized = false;
     if(in != nullptr && out != nullptr)
     {
+        profiler_scope();
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
         auto channel_axis = &(std::get< CHANNEL_AXIS >(*(in)));
@@ -156,9 +157,10 @@ bool MHO_MixedSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType*
 
 bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
 {
-    profiler_scope();
+
     if(fInitialized)
     {
+        profiler_scope();
         bool status;
 
         FillWorkspace(in, &fWorkspace);

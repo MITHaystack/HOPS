@@ -122,15 +122,20 @@ def short_name(funcname):
     """Extract Class::method() from a C++ pretty-function string."""
     # Strip leading qualifiers
     name = re.sub(r'^(virtual|static|inline|explicit)\s+', '', funcname).strip()
-    # Find the last namespace::class::method chunk before '('
-    m = re.search(r'((?:\w+::)+\w+)\s*\(', name)
-    if m:
-        # Drop leading namespaces, keep last two components (Class::method)
-        parts = m.group(1).split("::")
-        return "::".join(parts[-2:]) + "()"
-    # Fallback: just the identifier before '('
-    m2 = re.search(r'(\w+)\s*\(', name)
-    return (m2.group(1) + "()") if m2 else funcname
+    # Take only the part before the first '(' to avoid matching inside parameter types
+    before_paren = name.split('(')[0].strip() if '(' in name else name
+    # Iteratively strip template parameters so 'Foo<T>::bar' becomes 'Foo::bar'
+    prev = None
+    while prev != before_paren:
+        prev = before_paren
+        before_paren = re.sub(r'<[^<>]*>', '', before_paren)
+    # Split on '::' and keep the last two components (Class::method)
+    parts = [p.strip() for p in before_paren.split('::') if p.strip()]
+    if len(parts) >= 2:
+        return '::'.join(parts[-2:]) + '()'
+    elif parts:
+        return parts[-1] + '()'
+    return funcname
 
 def short_thread(tid):
     return f"...{tid & 0xFFFFFF:06x}"

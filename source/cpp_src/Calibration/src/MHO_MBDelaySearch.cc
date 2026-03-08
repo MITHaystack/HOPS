@@ -41,6 +41,7 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
     fInitialized = false;
     if(in != nullptr)
     {
+        profiler_scope();
         //calculate the frequency grid for MBD search
         MHO_UniformGridPointsCalculator fGridCalc;
 
@@ -136,11 +137,12 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
 
 bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
 {
-    profiler_scope();
+
     bool ok;
     fMax = -0.0;
     if(fInitialized && fNSBD > 1)
     {
+        profiler_scope();
         fSBDAxis = std::get< FREQ_AXIS >(*in);
         fSBDBinSep = fSBDAxis(1) - fSBDAxis(0);
         //loop over the single-band delay 'lags', computing the MBD/DR function

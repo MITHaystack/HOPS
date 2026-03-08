@@ -78,6 +78,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
          */
         virtual bool ExecuteImpl(const XArgType* in) override
         {
+            //profiler_scope();
             Search(in);
             return true;
         }

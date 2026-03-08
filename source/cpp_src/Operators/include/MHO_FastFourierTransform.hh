@@ -145,6 +145,7 @@ template< typename XFloatType > bool MHO_FastFourierTransform< XFloatType >::Exe
 {
     if(fInitialized)
     {
+        //profiler_scope();
         if(fW.IsRadix2())
         {
             FFTRadix2(in->GetData(), fW, fForward);

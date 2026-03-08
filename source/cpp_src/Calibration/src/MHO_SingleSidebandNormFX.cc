@@ -16,6 +16,7 @@ bool MHO_SingleSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType
     fInitialized = false;
     if(in != nullptr && out != nullptr)
     {
+        profiler_scope();
         bool status = true;
         //first we initialize the SBD array, by resizing if necessary
         //all this does is expand the frequency axis by 4
@@ -77,9 +78,10 @@ bool MHO_SingleSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType
 
 bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* out)
 {
-    profiler_scope();
+
     if(fInitialized)
     {
+        profiler_scope();
         bool status;
 
         //copy in the visibility data in a zero-padded fashion (zeros go on the end here)
