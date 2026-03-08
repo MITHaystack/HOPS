@@ -560,6 +560,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 double delres_max_0 = fParameterStore->GetAs< double >("/fringe/famp");
                 fIonLoopResults[0].famp     = delres_max_0;
                 fIonLoopResults[0].ion_diff = ion_diff;
+                values[0] = delres_max_0; // populate values[0] - harvest loop starts at loop_start=1
                 if(delres_max_0 > max_so_far)
                 {
                     max_so_far = delres_max_0;
@@ -961,6 +962,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 double delres_max_0 = fParameterStore->GetAs< double >("/fringe/famp");
                 fIonLoopResults[0].famp     = delres_max_0;
                 fIonLoopResults[0].ion_diff = ion_diff;
+                values[0] = delres_max_0; // populate values[0] - harvest loop starts at loop_start=1
                 if(delres_max_0 > max_so_far)
                 {
                     max_so_far = delres_max_0;
