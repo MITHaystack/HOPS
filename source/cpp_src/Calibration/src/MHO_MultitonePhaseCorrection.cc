@@ -140,6 +140,7 @@ void MHO_MultitonePhaseCorrection::InterpolatePCData(double pcal_minus_visib_tof
 
 bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
+    profiler_scope();
     //loop over reference (0) and remote (1) stations
     for(fStationIndex = 0; fStationIndex < 2; fStationIndex++)
     {

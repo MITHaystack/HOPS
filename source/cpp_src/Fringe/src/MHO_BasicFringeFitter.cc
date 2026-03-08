@@ -18,7 +18,7 @@
 #include "MHO_BasicFringeUtilities.hh"
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_InitialFringeInfo.hh"
-#include "MHO_InterpolateFringePeak.hh"
+#include "MHO_InterpolateFringePeakOptimized.hh"
 #include "MHO_VexInfoExtractor.hh"
 
 //TODO FIXME -- remove this
@@ -28,7 +28,12 @@
     #include "MHO_MBDelaySearchCUDA.hh"
     #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
 #else
-    #define MBD_SEARCH_TYPE MHO_MBDelaySearch
+    #ifdef _OPENMP
+        #include "MHO_MBDelaySearchOpenMP.hh"
+        #define MBD_SEARCH_TYPE MHO_MBDelaySearchOpenMP
+    #else 
+        #define MBD_SEARCH_TYPE MHO_MBDelaySearch
+    #endif
 #endif
 
 //#define DUMP_PARAMS_ON_ERROR
@@ -57,7 +62,7 @@ MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
 
 void MHO_BasicFringeFitter::Configure()
 {
-    profiler_start();
+    profiler_scope();
 
     //load root file and keep around (eventually eliminate this in favor of param store only)
     fVexInfo = fScanStore->GetRootFileData();
@@ -204,7 +209,7 @@ void MHO_BasicFringeFitter::Configure()
         }
         Cache();
     }
-    profiler_stop();
+    
     
     //fOperatorToolbox.PrintOperatorNames();
     // std::cout<<"PARAMETERS = "<<std::endl;
@@ -263,7 +268,7 @@ void MHO_BasicFringeFitter::Refresh()
 
 void MHO_BasicFringeFitter::Initialize()
 {
-    profiler_start();
+    profiler_scope();
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped)
     {
@@ -282,7 +287,7 @@ void MHO_BasicFringeFitter::Initialize()
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
     }
-    profiler_stop();
+    
 }
 
 void MHO_BasicFringeFitter::PreRun()
@@ -348,7 +353,7 @@ void MHO_BasicFringeFitter::PreRun()
 
 void MHO_BasicFringeFitter::Run()
 {
-    profiler_start();
+    profiler_scope();
     bool is_finished = fParameterStore->GetAs< bool >("/status/is_finished");
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!is_finished && !skipped) //execute if we are not finished and are not skipping
@@ -369,7 +374,7 @@ void MHO_BasicFringeFitter::Run()
         //calculate the fringe properties
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
     }
-    profiler_stop();
+    
 }
 
 void MHO_BasicFringeFitter::PostRun()
@@ -389,7 +394,7 @@ bool MHO_BasicFringeFitter::IsFinished()
 
 void MHO_BasicFringeFitter::Finalize()
 {
-    profiler_start();
+    profiler_scope();
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
@@ -438,12 +443,12 @@ void MHO_BasicFringeFitter::Finalize()
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
 
-    profiler_stop();
+    
 }
 
 void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
 {
-    profiler_start();
+    profiler_scope();
     ////////////////////////////////////////////////////////////////////////////
     //COARSE SBD, DR, MBD SEARCH ALGO
     ////////////////////////////////////////////////////////////////////////////
@@ -525,12 +530,12 @@ void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
         fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
     }
 
-    profiler_stop();
+    
 }
 
 void MHO_BasicFringeFitter::interpolate_peak()
 {
-    profiler_start();
+    profiler_scope();
     ////////////////////////////////////////////////////////////////////////////
     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
     ////////////////////////////////////////////////////////////////////////////
@@ -566,7 +571,7 @@ void MHO_BasicFringeFitter::interpolate_peak()
     fParameterStore->Set("/fringe/frate", frate);
     fParameterStore->Set("/fringe/famp", famp);
 
-    profiler_stop();
+    
 }
 
 bool MHO_BasicFringeFitter::ContainsMixedSideband(visibility_type* vis)

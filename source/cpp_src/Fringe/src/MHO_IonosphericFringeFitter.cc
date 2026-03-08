@@ -43,7 +43,7 @@ MHO_IonosphericFringeFitter::~MHO_IonosphericFringeFitter(){};
 
 void MHO_IonosphericFringeFitter::Run()
 {
-    profiler_start();
+    profiler_scope();
 
     bool is_finished = fParameterStore->GetAs< bool >("/status/is_finished");
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
@@ -84,12 +84,12 @@ void MHO_IonosphericFringeFitter::Run()
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
     }
 
-    profiler_stop();
+    
 }
 
 void MHO_IonosphericFringeFitter::Finalize()
 {
-    profiler_start();
+    profiler_scope();
     ////////////////////////////////////////////////////////////////////////////
     //PLOTTING/DEBUG
     ////////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ void MHO_IonosphericFringeFitter::Finalize()
 
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
-    profiler_stop();
+    
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ void MHO_IonosphericFringeFitter::Finalize()
 
 int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
 {
-    profiler_start();
+    profiler_scope();
 
     bool ok;
 
@@ -486,7 +486,7 @@ void MHO_IonosphericFringeFitter::sort_tecs(int nion, std::vector< std::vector< 
     fParameterStore->Set("/fringe/dtec_array", dtec_values);
     fParameterStore->Set("/fringe/dtec_amp_array/", dtec_amp_values);
 
-    profiler_stop();
+    
 };
 
 // experimental ion search, which performs a smoothing step of
@@ -496,7 +496,7 @@ void MHO_IonosphericFringeFitter::sort_tecs(int nion, std::vector< std::vector< 
 int MHO_IonosphericFringeFitter::ion_search_smooth()
 {
 
-    profiler_start();
+    profiler_scope();
 
     bool ok;
     int i, k, kmax, ilmax, level, ionloop, rc, koff, nip, win_dr_save[2];
@@ -790,7 +790,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     else
         nion = 0;
 
-    profiler_stop();
+    
 
     return 0;
 }

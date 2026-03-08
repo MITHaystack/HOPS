@@ -84,11 +84,15 @@ void MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
             for(std::size_t q = 0; q < n_qual; q++)
             {
                 std::string station_code = (*it)["qualifiers"][q].get< std::string >();
-                stationCodeToFreqTableName[station_code] = keyword;
-                //std::string site_key =
-                std::string site_key = vex_root["$STATION"][station_code]["$SITE"][0]["keyword"].get< std::string >();
-                std::string mk4_id = vex_root["$SITE"][site_key]["mk4_site_ID"].get< std::string >();
-                mk4IDToFreqTableName[mk4_id] = keyword;
+                if(vex_root["$STATION"].contains(station_code))
+                {
+                    //std::cout<<"station code = "<<station_code<<std::endl;
+                    //std::string site_key =
+                    stationCodeToFreqTableName[station_code] = keyword;
+                    std::string site_key = vex_root["$STATION"][station_code]["$SITE"][0]["keyword"].get< std::string >();
+                    std::string mk4_id = vex_root["$SITE"][site_key]["mk4_site_ID"].get< std::string >();
+                    mk4IDToFreqTableName[mk4_id] = keyword;
+                }
             }
         }
     }

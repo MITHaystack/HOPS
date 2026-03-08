@@ -3,13 +3,14 @@
 
 #include <cmath>
 #include <complex>
+#include <vector>
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_TableContainer.hh"
 
 #include "MHO_ComplexConjugator.hh"
 #include "MHO_CyclicRotator.hh"
-#include "MHO_EndZeroPadder.hh"
+#include "MHO_EndZeroPadderOptimized.hh"
 #include "MHO_FunctorBroadcaster.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_NaNMasker.hh"
@@ -86,6 +87,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
     private:
         std::size_t fInDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
+        std::vector< std::size_t > fLSBChannelIndices; //cached list of LSB channel indices
 
         typedef MHO_NaNMasker< visibility_type > nanMaskerType;
         typedef MHO_ComplexConjugator< visibility_type > conjType;
@@ -99,7 +101,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
 #endif
 
         FFT_ENGINE_TYPE fFFTEngine;
-        MHO_EndZeroPadder< visibility_type > fZeroPadder;
+        MHO_EndZeroPadderOptimized< visibility_type > fZeroPadder;
         MHO_CyclicRotator< visibility_type > fCyclicRotator;
         MHO_SBDTableGenerator fSBDGen;
         bool fInitialized;

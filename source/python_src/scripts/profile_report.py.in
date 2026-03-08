@@ -1,0 +1,215 @@
+#!@PY_EXE@
+"""
+Reads events.json produced by MHO_Profiler and prints a per-thread timing table.
+Start events (flag=1) are matched with stop events (flag=2) by (thread_id, filename, funcname).
+Nested/recursive calls are handled with a stack per key.
+"""
+
+import argparse
+import json
+import sys
+from collections import defaultdict
+
+def short_thread(thread_id):
+    """Return last 6 hex digits of thread_id for readability."""
+    return f"...{thread_id & 0xFFFFFF:06x}"
+
+
+def strip_funcname(funcname):
+    """Strip return type, qualifiers, namespace prefix, and arguments."""
+    # Remove arguments (everything from first '(' onwards)
+    paren = funcname.find('(')
+    if paren != -1:
+        funcname = funcname[:paren]
+    # Remove return type and qualifiers (last whitespace-separated token)
+    parts = funcname.split()
+    funcname = parts[-1] if parts else funcname
+    # Remove hops:: namespace prefix
+    if funcname.startswith('hops::'):
+        funcname = funcname[6:]
+    return funcname
+
+
+def load_events(path):
+    """
+    Load profiler events from a JSON file.
+
+    First attempts to extract from a .frng.json structure using the path
+      .[].tags.parameters.profile.events  (top-level may be list or dict)
+    collecting all non-null lists found across every entry.
+
+    If that yields nothing (structure absent or all null), falls back to
+    treating the file directly as a flat array of event objects.
+    """
+    with open(path) as f:
+        data = json.load(f)
+
+    # Collect candidate items from either a list or a dict of objects
+    if isinstance(data, list):
+        candidates = data
+    elif isinstance(data, dict):
+        candidates = list(data.values())
+    else:
+        candidates = []
+
+    # Try frng extraction: .[].tags.parameters.profile.events
+    events = []
+    for item in candidates:
+        try:
+            ev = item["tags"]["parameters"]["profile"]["events"]
+            if isinstance(ev, list):
+                events.extend(ev)
+        except (KeyError, TypeError):
+            pass
+    if events:
+        print(f"Extracted {len(events)} event(s) from frng structure in {path}",
+              file=sys.stderr)
+        return events
+
+    # Fallback: file is already a flat events array
+    if isinstance(data, list):
+        return data
+
+    print(f"WARNING: could not interpret {path} as events or frng JSON", file=sys.stderr)
+    return []
+
+
+def main(path="events.json", consolidate=False):
+    events = load_events(path)
+
+    # Stack of pending (start_time, depth) pairs, keyed by (thread_id, filename, funcname)
+    stacks = defaultdict(list)
+
+    # Per-thread global call stack for computing nesting depth
+    global_stack = defaultdict(list)
+
+    # Accumulated stats keyed by (thread_id, filename, funcname)
+    stats = defaultdict(lambda: {"total_time": 0.0, "calls": 0, "min_depth": float("inf")})
+
+    for ev in events:
+        key = (ev["thread_id"], ev["filename"], strip_funcname(ev["funcname"]))
+        thread_id = ev["thread_id"]
+        if ev["flag"] == 1:
+            depth = len(global_stack[thread_id])
+            global_stack[thread_id].append(key)
+            stacks[key].append((ev["time"], depth))
+        elif ev["flag"] == 2:
+            if stacks[key]:
+                start, depth = stacks[key].pop()
+                elapsed = ev["time"] - start
+                stats[key]["total_time"] += elapsed
+                stats[key]["calls"] += 1
+                stats[key]["min_depth"] = min(stats[key]["min_depth"], depth)
+                # Pop from global stack (remove the matching entry)
+                if key in global_stack[thread_id]:
+                    idx = len(global_stack[thread_id]) - 1 - global_stack[thread_id][::-1].index(key)
+                    global_stack[thread_id].pop(idx)
+            else:
+                print(f"WARNING: unmatched stop event (id={ev['event_id']}) for {ev['funcname']}", file=sys.stderr)
+
+    # Warn about unmatched starts
+    for key, stack in stacks.items():
+        if stack:
+            print(f"WARNING: {len(stack)} unmatched start event(s) for {key[2]}", file=sys.stderr)
+
+    if not stats:
+        print("No matched events found.")
+        return
+
+    if consolidate:
+        print_consolidated(stats)
+    else:
+        print_per_thread(stats)
+
+
+def print_per_thread(stats):
+    """Print one section per thread."""
+    threads = defaultdict(list)
+    for (thread_id, filename, funcname), data in stats.items():
+        threads[thread_id].append({
+            "filename": filename,
+            "funcname": funcname,
+            "calls": data["calls"],
+            "total_time": data["total_time"],
+            "depth": data["min_depth"] if data["min_depth"] != float("inf") else 0,
+        })
+
+    fn_width, file_width = _col_widths(threads)
+    header = (f"{'Function':<{fn_width}}  {'File':<{file_width}}  "
+              f"{'Depth':>5}  {'Calls':>6}  {'Total (s)':>12}  {'Per call (s)':>14}")
+    divider = "-" * len(header)
+
+    for thread_id, rows in sorted(threads.items()):
+        print(f"\nThread {short_thread(thread_id)}  (id={thread_id})")
+        print(divider)
+        print(header)
+        print(divider)
+        for r in sorted(rows, key=lambda x: x["total_time"], reverse=True):
+            fname = _truncate(r["funcname"], fn_width)
+            per_call = r["total_time"] / r["calls"] if r["calls"] else 0.0
+            print(f"{fname:<{fn_width}}  {r['filename']:<{file_width}}  "
+                  f"{r['depth']:>5}  {r['calls']:>6}  {r['total_time']:>12.6f}  {per_call:>14.6f}")
+        print(divider)
+
+
+def print_consolidated(stats):
+    """Merge stats across threads; add a per-thread average column."""
+    # consolidated keyed by (filename, funcname)
+    merged = defaultdict(lambda: {"total_time": 0.0, "calls": 0,
+                                  "min_depth": float("inf"), "n_threads": 0})
+    for (thread_id, filename, funcname), data in stats.items():
+        key = (filename, funcname)
+        merged[key]["total_time"] += data["total_time"]
+        merged[key]["calls"] += data["calls"]
+        merged[key]["min_depth"] = min(merged[key]["min_depth"], data["min_depth"])
+        merged[key]["n_threads"] += 1
+
+    rows = []
+    for (filename, funcname), data in merged.items():
+        rows.append({
+            "filename": filename,
+            "funcname": funcname,
+            "calls": data["calls"],
+            "total_time": data["total_time"],
+            "depth": data["min_depth"] if data["min_depth"] != float("inf") else 0,
+            "n_threads": data["n_threads"],
+            "avg_per_thread": data["total_time"] / data["n_threads"],
+        })
+
+    fn_width = min(max(len(r["funcname"]) for r in rows), 80)
+    file_width = max(len(r["filename"]) for r in rows)
+
+    header = (f"{'Function':<{fn_width}}  {'File':<{file_width}}  "
+              f"{'Depth':>5}  {'Calls':>6}  {'N-threads':>9}  "
+              f"{'Total (s)':>12}  {'Per call (s)':>14}  {'Avg/thread (s)':>14}")
+    divider = "-" * len(header)
+
+    print("\nConsolidated across all threads")
+    print(divider)
+    print(header)
+    print(divider)
+    for r in sorted(rows, key=lambda x: x["total_time"], reverse=True):
+        fname = _truncate(r["funcname"], fn_width)
+        per_call = r["total_time"] / r["calls"] if r["calls"] else 0.0
+        print(f"{fname:<{fn_width}}  {r['filename']:<{file_width}}  "
+              f"{r['depth']:>5}  {r['calls']:>6}  {r['n_threads']:>9}  "
+              f"{r['total_time']:>12.6f}  {per_call:>14.6f}  {r['avg_per_thread']:>14.6f}")
+    print(divider)
+
+
+def _truncate(s, width):
+    return s if len(s) <= width else s[:width - 3] + "..."
+
+def _col_widths(threads):
+    fn_width = min(max(len(r["funcname"]) for rows in threads.values() for r in rows), 80)
+    file_width = max(len(r["filename"]) for rows in threads.values() for r in rows)
+    return fn_width, file_width
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Analyze MHO_Profiler event logs.")
+    parser.add_argument("input", nargs="?", default="events.json",
+                        help="Path to events JSON file (default: events.json)")
+    parser.add_argument("-c", "--consolidate", action="store_true",
+                        help="Consolidate time across threads and show per-thread average")
+    args = parser.parse_args()
+    main(args.input, consolidate=args.consolidate)

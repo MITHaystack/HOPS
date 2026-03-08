@@ -205,7 +205,7 @@ void MHO_MK4StationInterface::ReadStationFile()
     if(retval == 0)
     {
         fHaveStation = true;
-        msg_debug("mk4interface", "cuccessfully read station data file " << fStationFile << eom);
+        msg_debug("mk4interface", "successfully read station data file " << fStationFile << eom);
     }
     else
     {

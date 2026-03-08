@@ -123,6 +123,7 @@ template< class XArrayType > class MHO_SubSample: public MHO_UnaryOperator< XArr
          */
         virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
+            profiler_scope();
             size_t index[XArrayType::rank::value];
             size_t non_active_dimension_size[XArrayType::rank::value - 1];
             size_t non_active_dimension_value[XArrayType::rank::value - 1];

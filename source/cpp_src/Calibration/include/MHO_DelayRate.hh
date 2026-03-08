@@ -9,7 +9,7 @@
 
 #include "MHO_BinaryOperator.hh"
 #include "MHO_CyclicRotator.hh"
-#include "MHO_EndZeroPadder.hh"
+#include "MHO_EndZeroPadderOptimized.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_SubSample.hh"
 
@@ -89,6 +89,10 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         std::size_t fInDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
 
+        //precomputed per-(ch,dr) interpolation entries - avoids fmod in hot loop.
+        //Declared here so it is visible to all method signatures below.
+        struct InterpEntry { int l0, l1; double w; };
+
         /**
          * @brief Applies data weights from input array to output array elements.
          *
@@ -113,6 +117,37 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
          */
         void ApplyInterpolation(const XArgType1* in1, XArgType3* out);
 
+        /**
+         * @brief Optimized version of ApplyInterpolation.
+         *        Swaps loop order to dr(outer)->sbd(inner) so the innermost loop walks
+         *        contiguous memory via raw pointers, paying the OffsetFromStrideIndex cost
+         *        once per (pp,ch,dr) triple rather than once per element.
+         *        Results are staged in fInterpWorkspace to avoid aliasing with source rows.
+         *        The caller selects which interpolation table to use (fInterpTable for the
+         *        post-rotation array, fPreRotatedInterpTable for the pre-rotation array).
+         *
+         * @param in1 Input data array of type XArgType1
+         * @param out Output data array of type XArgType3
+         * @param table Interpolation table to use (l0/l1 indices into the out TIME dimension)
+         */
+        void ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out, const std::vector< InterpEntry >& table);
+
+        /**
+         * @brief Legacy execution path: ZeroPadder -> ApplyDataWeights -> FFT ->
+         *        CyclicRotator -> ApplyInterpolationOptimized(fInterpTable).
+         *        Preserved for reference and correctness comparison.
+         */
+        bool ExecuteImplLegacy(const XArgType1* in1, const XArgType2* in2, XArgType3* out);
+
+        /**
+         * @brief Optimized execution path: ZeroPadder -> ApplyDataWeights -> FFT ->
+         *        ApplyInterpolationOptimized(fPreRotatedInterpTable).
+         *        Skips the separate CyclicRotator pass by using pre-adjusted l0/l1 indices
+         *        that read directly from the post-FFT (pre-rotation) array.
+         *        Axis labels are written by ApplyInterpolationOptimized as before.
+         */
+        bool ExecuteImplOptimized(const XArgType1* in1, const XArgType2* in2, XArgType3* out);
+
 #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
 #else
@@ -122,13 +157,23 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         MHO_SubSample< sbd_type > fSubSampler;
         MHO_CyclicRotator< sbd_type > fCyclicRotator;
 
-        MHO_EndZeroPadder< visibility_type > fZeroPadder;
+        MHO_EndZeroPadderOptimized< visibility_type > fZeroPadder;
         FFT_ENGINE_TYPE fFFTEngine;
 
         int fDRSPSize;
         double fRefFreq;
 
         bool fInitialized;
+
+        std::vector< InterpEntry > fInterpTable;
+
+        //pre-rotated version of fInterpTable: l0/l1 adjusted by +np/2 (mod np) so that
+        //ApplyInterpolationOptimized can read directly from the post-FFT (pre-rotation) array,
+        //eliminating the separate CyclicRotator pass from ExecuteImplOptimized.
+        std::vector< InterpEntry > fPreRotatedInterpTable;
+
+        //staging buffer for ApplyInterpolationOptimized: fDRSPSize rows x nsbd columns
+        std::vector< sbd_type::value_type > fInterpWorkspace;
 };
 
 } // namespace hops

@@ -1,6 +1,7 @@
 #include "MHO_FringeFitterFactory.hh"
 #include "MHO_BasicFringeFitter.hh"
 #include "MHO_IonosphericFringeFitter.hh"
+#include "MHO_IonosphericFringeFitterOpenMP.hh"
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
@@ -42,7 +43,11 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
     if(do_ion)
     {
         msg_debug("fringe", "constructing an ionospheric fringe fitter" << eom);
+        // #ifdef _OPENMP
+        // fFringeFitter = new MHO_IonosphericFringeFitterOpenMP(fFringeData);
+        // #else
         fFringeFitter = new MHO_IonosphericFringeFitter(fFringeData);
+        // #endif
     }
     else
     {

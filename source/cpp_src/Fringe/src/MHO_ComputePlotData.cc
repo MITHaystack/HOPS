@@ -1,4 +1,5 @@
 #include <map>
+#include <set>
 #include <vector>
 
 #include "MHO_BasicFringeInfo.hh"
@@ -35,6 +36,8 @@ MHO_ComputePlotData::MHO_ComputePlotData()
     fSBDArray = nullptr;
     fImagUnit = MHO_Constants::imag_unit;
     fValid = false;
+    fNChan = 0;
+    fNAP = 0;
 };
 
 void MHO_ComputePlotData::Initialize()
@@ -70,6 +73,91 @@ void MHO_ComputePlotData::Initialize()
         msg_error("fringe", "could not find visibility, object with name 'sbd'." << eom);
         fValid = false;
     }
+}
+
+void MHO_ComputePlotData::precompute_chan_metadata()
+{
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
+    fNChan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    fNAP = fSBDArray->GetDimension(TIME_AXIS);
+
+    fChanFreq.resize(fNChan);
+    fChanSideband.resize(fNChan, 0);
+    fChanBandwidth.resize(fNChan, 0.0);
+
+    for(std::size_t ch = 0; ch < fNChan; ch++)
+    {
+        fChanFreq[ch] = (*chan_ax)(ch);
+
+        std::string net_sideband = "?";
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+        if(!key_present)
+        {
+            msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
+        }
+
+        int sb = 0; // default: DSB
+        if(net_sideband == "U") { sb = 1; }
+        if(net_sideband == "L") { sb = -1; }
+
+        int dsb_partner = 0;
+        bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
+        if(dsb_key_present) { sb = 0; }
+
+        fChanSideband[ch] = sb;
+
+        double bw = 0.0;
+        chan_ax->RetrieveIndexLabelKeyValue(ch, "bandwidth", bw);
+        fChanBandwidth[ch] = bw;
+    }
+}
+
+void MHO_ComputePlotData::precompute_vr_tables()
+{
+    auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
+    auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
+
+    fVRTable.resize(fNChan * fNAP);
+    fVRMBD0Table.resize(fNChan * fNAP);
+    fVRPhaseTable.resize(fNChan * fNAP);
+
+    // Config 1: default SBD params (fNSBDBins=0, fSBDMaxBin=0, fSBDMax=0, fSBDSep=1).
+    // This matches the fRot state used by calc_sbd and calc_dr, which are called before
+    // calc_phase configures the SBD parameters.
+    for(std::size_t ch = 0; ch < fNChan; ch++)
+    {
+        fRot.SetSideband(fChanSideband[ch]);
+        double freq = fChanFreq[ch];
+        for(std::size_t ap = 0; ap < fNAP; ap++)
+        {
+            double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset;
+            std::size_t idx = ch * fNAP + ap;
+            fVRTable[idx] = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+            fVRMBD0Table[idx] = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, 0.0);
+        }
+    }
+
+    // Config 2: proper SBD params (same values that calc_phase sets before its vrot calls).
+    // This matches the fRot state used by calc_phase, calc_xpower_spec, calc_segs, and correct_vis.
+    fRot.SetSBDSeparation(sbd_delta);
+    fRot.SetSBDMaxBin(fSBDMaxBin);
+    fRot.SetNSBDBins(sbd_ax->GetSize() / 2);
+    fRot.SetSBDMax(fSBDelay);
+
+    for(std::size_t ch = 0; ch < fNChan; ch++)
+    {
+        fRot.SetSideband(fChanSideband[ch]);
+        double freq = fChanFreq[ch];
+        for(std::size_t ap = 0; ap < fNAP; ap++)
+        {
+            double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset;
+            fVRPhaseTable[ch * fNAP + ap] = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
+        }
+    }
+    // fRot is now left in Config 2 state, matching what calc_phase would have set.
 }
 
 xpower_amp_type MHO_ComputePlotData::calc_mbd()
@@ -133,53 +221,17 @@ xpower_amp_type MHO_ComputePlotData::calc_mbd()
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
 
-    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
-    auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
-    auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
-    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
-    std::string sidebandlabelkey = "net_sideband";
-
+    // Use fVRMBD0Table: pre-computed w/ default SBD params and MBD=0, matching the original
+    // per-call fRot state at the time calc_mbd executes (before calc_phase sets SBD params).
     std::complex< double > sum = 0;
     for(std::size_t ch = 0; ch < nchan; ch++)
     {
-        double freq = (*chan_ax)(ch); //sky freq of this channel
-        std::string net_sideband = "?";
-        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
-        if(!key_present)
-        {
-            msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
-        }
-
-        fRot.SetSideband(0); //DSB
-        if(net_sideband == "U")
-        {
-            fRot.SetSideband(1);
-        }
-        if(net_sideband == "L")
-        {
-            fRot.SetSideband(-1);
-        }
-
-        //DSB channel
-        int dsb_partner = 0;
-        bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present)
-        {
-            fRot.SetSideband(0);
-        }
-
         sum = 0;
         for(std::size_t ap = 0; ap < nap; ap++)
         {
-            double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset;          //need time difference from the f.r.t?
-            std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex< double > vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, 0.0); //apply at MBD=0.0
-            std::complex< double > z = vis * vr;
-            //apply weight and sum
+            std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin);
             double w = (*fWeights)(POLPROD, ch, ap, 0);
-            sum += w * z;
+            sum += w * vis * fVRMBD0Table[ch * fNAP + ap];
         }
         //slot the summed data in at the appropriate location in the new grid
         std::size_t mbd_bin = fMBDBinMap[chan_index_map[ch]];
@@ -217,12 +269,7 @@ xpower_amp_type MHO_ComputePlotData::calc_sbd()
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
     std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
 
-    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
-    auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
     auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
-    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
 
     sbd_amp.Resize(nbins);
     sbd_xpower_in.Resize(nbins);
@@ -231,52 +278,21 @@ xpower_amp_type MHO_ComputePlotData::calc_sbd()
     sbd_xpower_in.ZeroArray();
     sbd_xpower_out.ZeroArray();
 
-    std::string sidebandlabelkey = "net_sideband";
-    //loop over sbd bins (4*nlags) and sum over channel/ap
+    // Use fVRTable: pre-computed w/ default SBD params and fMBDelay, matching the original
+    // per-call fRot state at the time calc_sbd executes (before calc_phase sets SBD params).
+    // vr depends only on (ch, ap), not on the bin index, so we look it up from the table.
     for(std::size_t i = 0; i < nbins; i++)
     {
-        std::complex< double > sum = 0;
         for(std::size_t ch = 0; ch < nchan; ch++)
         {
-            double freq = (*chan_ax)(ch); //sky freq of this channel
-
-            std::string net_sideband = "?";
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
-            if(!key_present)
-            {
-                msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
-            }
-
-            fRot.SetSideband(0); //DSB
-            if(net_sideband == "U")
-            {
-                fRot.SetSideband(1);
-            }
-            if(net_sideband == "L")
-            {
-                fRot.SetSideband(-1);
-            }
-
-            //DSB channel
-            int dsb_partner = 0;
-            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-            if(dsb_key_present)
-            {
-                fRot.SetSideband(0);
-            }
-
-            sum = 0;
+            std::complex< double > ch_sum = 0;
             for(std::size_t ap = 0; ap < nap; ap++)
             {
-                double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset; //need time difference from the f.r.t?
                 std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, i);
-                std::complex< double > vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-                std::complex< double > z = vis * vr;
-                //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
-                sum += w * z;
+                ch_sum += w * vis * fVRTable[ch * fNAP + ap];
             }
-            sbd_xpower_in(i) += sum;
+            sbd_xpower_in(i) += ch_sum;
         }
 
         sbd_amp(i) = std::abs(sbd_xpower_in(i)) / total_summed_weights;
@@ -294,12 +310,9 @@ phasor_type MHO_ComputePlotData::calc_segs()
     std::size_t POLPROD = 0;
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
-    std::size_t nbins = fSBDArray->GetDimension(FREQ_AXIS);
 
     auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
     auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
-    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
 
     phasor_type phasor_segs;
     phasor_segs.Resize(nchan + 1, nap);
@@ -323,46 +336,19 @@ phasor_type MHO_ComputePlotData::calc_segs()
         }
     }
 
-    std::string sidebandlabelkey = "net_sideband";
+    // Use fVRPhaseTable: pre-computed w/ proper SBD params and fMBDelay, matching the fRot state
+    // after calc_phase has run (calc_segs is called after calc_phase in DumpInfoToJSON).
     for(std::size_t ap = 0; ap < nap; ap++)
     {
         std::complex< double > sum = 0; //sum over all channels
         double sumwt = 0.0;
-        double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset; //need time difference from the f.r.t?
         for(std::size_t ch = 0; ch < nchan; ch++)
         {
-            double freq = (*chan_ax)(ch); //sky freq of this channel
-            std::string net_sideband = "?";
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
-            if(!key_present)
-            {
-                msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
-            }
-
-            fRot.SetSideband(0); //DSB
-            if(net_sideband == "U")
-            {
-                fRot.SetSideband(1);
-            }
-            if(net_sideband == "L")
-            {
-                fRot.SetSideband(-1);
-            }
-
-            //DSB channel
-            int dsb_partner = 0;
-            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-            if(dsb_key_present)
-            {
-                fRot.SetSideband(0);
-            }
-
             //make sure this plot gets the channel label:
             (&std::get< 0 >(phasor_segs))->InsertIndexLabelKeyValue(ch, chan_label_key, channel_labels[ch]);
-            (&std::get< 0 >(phasor_segs))->at(ch) = freq; //set the channel frequency label
+            (&std::get< 0 >(phasor_segs))->at(ch) = fChanFreq[ch]; //set the channel frequency label
             std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, max_sbd_bin);
-            std::complex< double > vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-            std::complex< double > z = vis * vr;
+            std::complex< double > z = vis * fVRPhaseTable[ch * fNAP + ap];
             phasor_segs(ch, ap) = z;
 
             //apply weight and sum (for 'All' channel)
@@ -387,87 +373,35 @@ void MHO_ComputePlotData::correct_vis()
     std::size_t nap = fVisibilities->GetDimension(TIME_AXIS);
     std::size_t nbins = fVisibilities->GetDimension(FREQ_AXIS);
 
-    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fVisibilities));
-    auto ap_ax = &(std::get< TIME_AXIS >(*fVisibilities));
     auto freq_ax = &(std::get< FREQ_AXIS >(*fVisibilities));
-    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
 
-    //grab the fourfit channel names
-    std::string chan_label_key = "channel_label";
-    std::vector< std::string > channel_labels;
-    for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+    // Pre-compute conj(sbd_rot)[ch][sp] = conj(exp(-2pi*i * sb_sign * (freq[sp] - bw/2) * fSBDelay)).
+    // This depends on (ch, sp) but NOT on ap, eliminating one exp() call per (ap, ch, sp) from
+    // the innermost loop (saving nap x nchan x (nbins-1) exp() evaluations).
+    std::complex< double > imag_unit(0, 1);
+    std::vector< std::complex< double > > sbd_phase_table(nchan * nbins);
+    for(std::size_t ch = 0; ch < nchan; ch++)
     {
-        std::string ch_label;
-        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
-        if(key_present)
+        double sb_sign = (double)fChanSideband[ch];
+        double bw = fChanBandwidth[ch];
+        for(std::size_t sp = 0; sp < nbins; sp++)
         {
-            channel_labels.push_back(ch_label);
+            double theta = sb_sign * ((*freq_ax)[sp] - bw / 2.0) * fSBDelay;
+            sbd_phase_table[ch * nbins + sp] = std::conj(std::exp(-2.0 * M_PI * imag_unit * theta));
         }
     }
 
-    std::string sidebandlabelkey = "net_sideband";
-    std::string bandwidthlabelkey = "bandwidth";
+    // Main loop: vr is a table lookup per (ap, ch); sbd_rot is a table lookup per (ch, sp).
+    // fNChan/fNAP from fSBDArray match fVisibilities channel/AP dimensions.
     for(std::size_t ap = 0; ap < nap; ap++)
     {
-        std::complex< double > sum = 0; //sum over all channels
-        double sumwt = 0.0;
-        double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset; //need time difference from the f.r.t?
         for(std::size_t ch = 0; ch < nchan; ch++)
         {
-            double freq = (*chan_ax)(ch); //sky freq of this channel
-            std::string net_sideband = "?";
-
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
-            if(!key_present)
-            {
-                msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
-            }
-
-            double bw = 0;
-            key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bandwidthlabelkey, bw);
-            if(!key_present)
-            {
-                msg_error("fringe", "missing bandwidth label for channel " << ch << "." << eom);
-            }
-
-            double sb_sign = 0.0;
-            fRot.SetSideband(0); //DSB
-            if(net_sideband == "U")
-            {
-                fRot.SetSideband(1);
-                sb_sign = 1.0;
-            }
-
-            if(net_sideband == "L")
-            {
-                fRot.SetSideband(-1);
-                sb_sign = -1.0;
-            }
-
-            //DSB channel
-            int dsb_partner = 0;
-            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-            if(dsb_key_present)
-            {
-                fRot.SetSideband(0);
-                sb_sign = 0;
-            }
-
-            std::complex< double > imag_unit(0, 1);
-            //calculate the per-channel phase rotation due to MBD and delay_rate
-            std::complex< double > vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-            //now apply a rotation for the SBD at each spectral point
+            std::complex< double > conj_vr = std::conj(fVRPhaseTable[ch * fNAP + ap]);
             for(std::size_t sp = 0; sp < nbins; sp++)
             {
-                //apply the rotation....hey wait a minute, what about the frequency change across the channel??!
-                //double fr = freq - (*freq_ax)[lag];
-                // std::cout<<"vrot = @"<<ap<<", "<<lag<<" = "<<std::arg(vr)*(180/M_PI)<<std::endl;
-                double theta = sb_sign * ((*freq_ax)[sp] - bw / 2.0) * fSBDelay;
-                // std::cout<<"THETA @ lag "<<lag<<" = "<<theta<<std::endl;
-                std::complex< double > sbd_rot = std::exp(-2.0 * M_PI * imag_unit * theta);
                 std::complex< double > vis = (*fVisibilities)(POLPROD, ch, ap, sp);
-                (*fVisibilities)(POLPROD, ch, ap, sp) = std::conj(sbd_rot) * std::conj(vr) * vis;
+                (*fVisibilities)(POLPROD, ch, ap, sp) = sbd_phase_table[ch * nbins + sp] * conj_vr * vis;
             }
         }
     }
@@ -552,15 +486,8 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
     ok = fCyclicRotator.Initialize();
     check_step_fatal(ok, "calibration", "MBD search cyclic rotation initialization." << eom);
 
-    //now we are going to loop over all of the channels/AP
-    //and perform the weighted sum of the data at the max-SBD bin
-    //with the fitted delay-rate rotation (but mbd=0) applied
-    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
     auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
-    auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
-    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
     auto dr_ax = &(std::get< 0 >(fDRWorkspace));
 
     for(std::size_t i = 0; i < drsp_size; i++)
@@ -568,46 +495,15 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
         dr_ax->at(i) = i * ap_delta;
     }
 
-    std::string sidebandlabelkey = "net_sideband";
+    // Use fVRTable: pre-computed w/ default SBD params and fMBDelay, matching the original
+    // per-call fRot state at the time calc_dr executes (before calc_phase sets SBD params).
     for(std::size_t ch = 0; ch < nchan; ch++)
     {
-        double freq = (*chan_ax)(ch); //sky freq of this channel
-
-        std::string net_sideband = "?";
-        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
-        if(!key_present)
-        {
-            msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
-        }
-
-        fRot.SetSideband(0); //DSB
-        if(net_sideband == "U")
-        {
-            fRot.SetSideband(1);
-        }
-        if(net_sideband == "L")
-        {
-            fRot.SetSideband(-1);
-        }
-
-        //DSB channel
-        int dsb_partner = 0;
-        bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present)
-        {
-            fRot.SetSideband(0);
-        }
-
         for(std::size_t ap = 0; ap < nap; ap++)
         {
-            double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset;          //need time difference from the f.r.t?
-            std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex< double > vr =
-                fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay); //why rotate at the max delay rate??
-            std::complex< double > z = vis * vr;
-            //apply weight and sum
+            std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin);
             double w = (*fWeights)(POLPROD, ch, ap, 0);
-            fDRWorkspace(ap) += w * z;
+            fDRWorkspace(ap) += w * vis * fVRTable[ch * fNAP + ap];
         }
     }
 
@@ -637,69 +533,31 @@ double MHO_ComputePlotData::calc_phase()
     std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
     std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
 
-    //now we are going to loop over all of the channels/AP
-    //and perform the weighted sum of the data at the max-SBD bin
-    //with the fitted delay-rate rotation (but mbd=0) applied
-    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
-    auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
+    // Use fVRPhaseTable: pre-computed w/ proper SBD params and fMBDelay (the same SBD params
+    // that calc_phase would set on fRot before calling vrot). The setter calls below are kept
+    // for state consistency so fRot remains properly configured after this function.
     auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
-    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-
     fRot.SetSBDSeparation(sbd_delta);
     fRot.SetSBDMaxBin(fSBDMaxBin);
     fRot.SetNSBDBins(sbd_ax->GetSize() / 2); //this is effective nlags
     fRot.SetSBDMax(fSBDelay);
-    double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
 
     fFringe.Resize(nchan);
 
     std::complex< double > sum_all = 0.0;
-    std::string sidebandlabelkey = "net_sideband";
     for(std::size_t ch = 0; ch < nchan; ch++)
     {
-        double freq = (*chan_ax)(ch); //sky freq of this channel
-
-        std::get< 0 >(fFringe).at(ch) = freq; //set the fringe element freq label
-
-        std::string net_sideband = "?";
-        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
-        if(!key_present)
-        {
-            msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
-        }
-
-        fRot.SetSideband(0); //DSB
-        if(net_sideband == "U")
-        {
-            fRot.SetSideband(1);
-        }
-
-        if(net_sideband == "L")
-        {
-            fRot.SetSideband(-1);
-        }
-
-        //DSB channel
-        int dsb_partner = 0;
-        bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present)
-        {
-            fRot.SetSideband(0);
-        }
+        std::get< 0 >(fFringe).at(ch) = fChanFreq[ch]; //set the fringe element freq label
 
         std::complex< double > fringe_phasor = 0.0;
         double sumwt = 0.0;
         for(std::size_t ap = 0; ap < nap; ap++)
         {
-            double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset;          //need time difference from the f.r.t?
-            std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin); //pick out data at SBD max bin
-            std::complex< double > vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-            std::complex< double > z = vis * vr;
-            //apply weight and sum
+            std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin);
             double w = (*fWeights)(POLPROD, ch, ap, 0);
+            std::complex< double > wght_phsr = w * vis * fVRPhaseTable[ch * fNAP + ap];
             sumwt += w;
-            std::complex< double > wght_phsr = z * w;
             sum_all += wght_phsr;
             fringe_phasor += wght_phsr;
         }
@@ -767,89 +625,62 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
     std::vector< int > nlsb_ap;
     nlsb_ap.resize(nchan, 0);
 
-    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
-    auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
     auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
-    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
-    double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
 
     std::complex< double > sum;
-    std::complex< double > Z, vr;
-    double frac;
+    std::complex< double > Z;
     double bw;
-    std::string net_sideband = "?";
     //count the sidebands encountered
     int nusb = 0;
     int nlsb = 0;
 
-    std::string sidebandlabelkey = "net_sideband";
-    std::string bandwidthlabelkey = "bandwidth";
-
     double total_usb_frac = 0;
     double total_lsb_frac = 0;
 
+    // Use fVRPhaseTable: pre-computed w/ proper SBD params and fMBDelay, matching the fRot state
+    // after calc_phase has run (calc_xpower_spec is called after calc_phase in DumpInfoToJSON).
+    // nusb/nlsb counts and nusb_ap/nlsb_ap are filled on first lag iteration only.
+    bool sideband_counts_done = false;
     for(int lag = 0; lag < 2 * nl; lag++)
     {
         total_usb_frac = 0;
         total_lsb_frac = 0;
         for(int ch = 0; ch < nchan; ch++)
         {
-            double freq = (*chan_ax)(ch); //sky freq of this channel
+            int sb = fChanSideband[ch];
+            bw = fChanBandwidth[ch];
 
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, sidebandlabelkey, net_sideband);
-            if(!key_present)
+            if(!sideband_counts_done)
             {
-                msg_error("fringe", "missing net_sideband label for channel " << ch << "." << eom);
-            }
-            key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, bandwidthlabelkey, bw);
-            if(!key_present)
-            {
-                msg_error("fringe", "missing bandwidth label for channel " << ch << "." << eom);
-            }
-
-            fRot.SetSideband(0); //DSB
-            if(net_sideband == "U")
-            {
-                nusb += 1;
-                fRot.SetSideband(1);
-                nusb_ap[ch] = nap;
-            }
-            else if(net_sideband == "L")
-            {
-                nlsb += 1;
-                fRot.SetSideband(-1);
-                nlsb_ap[ch] = nap;
-            }
-
-            //DSB channel
-            int dsb_partner = 0;
-            bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-            if(dsb_key_present)
-            {
-                fRot.SetSideband(0);
+                if(sb == 1)
+                {
+                    nusb += 1;
+                    nusb_ap[ch] = nap;
+                }
+                else if(sb == -1)
+                {
+                    nlsb += 1;
+                    nlsb_ap[ch] = nap;
+                }
             }
 
             sum = 0.0;
             for(int ap = 0; ap < nap; ap++)
             {
-                double tdelta = (ap_ax->at(ap) + ap_delta / 2.0) - frt_offset; //need time difference from the f.r.t?
                 std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, lag);
-                std::complex< double > vr = fRot.vrot(tdelta, freq, fRefFreq, fDelayRate, fMBDelay);
-                std::complex< double > Z = vis * vr;
-                //apply weight and sum
                 double w = (*fWeights)(POLPROD, ch, ap, 0);
+                Z = vis * fVRPhaseTable[ch * fNAP + ap];
 
-                if(net_sideband == "U")
+                if(sb == 1)
                 {
                     total_usb_frac += w;
                 }
-                if(net_sideband == "L")
+                if(sb == -1)
                 {
                     total_lsb_frac += w;
                 }
 
-                //if(dsb_key_present){ w /= 2.0;} //use average usb/lsb weight for both DSB halves
                 sum += w * Z;
             }
             sbxsp[ch].at(lag) = sum;
@@ -861,6 +692,7 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
                 maxlag[ch] = lag;
             }
         }
+        sideband_counts_done = true;
         //need to understand this
         int j = lag - nl;
         if(j < 0)
@@ -977,6 +809,315 @@ xpower_type MHO_ComputePlotData::calc_xpower_spec()
     return cp_spectrum_out;
 }
 
+void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpower_type& cp_spectrum_out)
+{
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
+
+    int nl = fSBDArray->GetDimension(FREQ_AXIS) / 2; // nlags; nbins = 2*nl
+    std::size_t nbins = (std::size_t)(2 * nl);
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+
+    auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+
+    // - Initialize accumulators -
+    xpower_type sbd_xpower_in, X, Y, cp_spectrum;
+    sbd_xpower_in.Resize(nbins);  sbd_xpower_in.ZeroArray();
+    X.Resize(2 * nl);             X.ZeroArray();
+    Y.Resize(4 * nl);             Y.ZeroArray();
+    cp_spectrum.Resize(2 * nl);   cp_spectrum.ZeroArray();
+    sbd_amp.Resize(nbins);
+
+    std::vector< xpower_type > sbxsp(nchan);
+    std::vector< int > maxlag(nchan, 0);
+    std::vector< double > maxlag_amp(nchan, 0.0);
+    std::vector< double > sbdbox(nchan, 0.0);
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        sbxsp[ch].Resize(2 * nl);
+        sbxsp[ch].ZeroArray();
+    }
+
+    // Count sidebands (used for output range and sbdbox)
+    int nusb = 0, nlsb = 0;
+    std::vector< int > nusb_ap(nchan, 0);
+    std::vector< int > nlsb_ap(nchan, 0);
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        if(fChanSideband[ch] == 1)       { nusb++; nusb_ap[ch] = (int)nap; }
+        else if(fChanSideband[ch] == -1) { nlsb++; nlsb_ap[ch] = (int)nap; }
+    }
+
+    // Pre-compute total_usb_frac and total_lsb_frac.
+    // In the original calc_xpower_spec these were reset and re-summed for every lag, but the
+    // weights do not depend on lag, so they are constants - compute once.
+    double total_usb_frac = 0.0, total_lsb_frac = 0.0;
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        if(fChanSideband[ch] == 1)
+        {
+            for(std::size_t ap = 0; ap < nap; ap++) { total_usb_frac += (*fWeights)(POLPROD, ch, ap, 0); }
+        }
+        else if(fChanSideband[ch] == -1)
+        {
+            for(std::size_t ap = 0; ap < nap; ap++) { total_lsb_frac += (*fWeights)(POLPROD, ch, ap, 0); }
+        }
+    }
+
+    // - Main merged loop: ch -> ap -> bin -
+    // Inner bin loop accesses contiguous memory in fSBDArray (FREQ axis is innermost).
+    // calc_sbd uses fVRTable (default SBD params); calc_xpower uses fVRPhaseTable (proper SBD params).
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        for(std::size_t ap = 0; ap < nap; ap++)
+        {
+            double w = (*fWeights)(POLPROD, ch, ap, 0);
+            std::complex< double > wvr_sbd = w * fVRTable[ch * fNAP + ap];
+            std::complex< double > wvr_xp  = w * fVRPhaseTable[ch * fNAP + ap];
+
+            for(std::size_t i = 0; i < nbins; i++)
+            {
+                std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, i);
+                sbd_xpower_in(i) += wvr_sbd * vis; // for calc_sbd
+                sbxsp[ch].at(i)  += wvr_xp  * vis; // for calc_xpower_spec (per-channel)
+            }
+        }
+
+        // Accumulate into all-channel sum X and track per-channel maxlag
+        for(std::size_t i = 0; i < nbins; i++)
+        {
+            X(i) += sbxsp[ch].at(i);
+            if(std::abs(sbxsp[ch].at(i)) > maxlag_amp[ch])
+            {
+                maxlag_amp[ch] = std::abs(sbxsp[ch].at(i));
+                maxlag[ch] = (int)i;
+            }
+        }
+    }
+
+    // - Finalize SBD amplitude -
+    for(std::size_t i = 0; i < nbins; i++)
+    {
+        sbd_amp(i) = std::abs(sbd_xpower_in(i)) / total_summed_weights;
+        std::get< 0 >(sbd_amp)(i) = (*sbd_ax)(i);
+    }
+
+    // - Construct Y from X (lag -> j rearrangement) -
+    for(int lag = 0; lag < 2 * nl; lag++)
+    {
+        int j = lag - nl;
+        if(j < 0) { j += 4 * nl; }
+        if(lag == 0) { j = 2 * nl; } // pure real lsb/dc channel goes in middle
+        Y(j) = X(lag);
+        std::get< 0 >(Y)(j) = j;
+    }
+
+    // - FFT on Y -
+    fFFTEngine.SetArgs(&Y);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetForward();
+    bool ok = fFFTEngine.Initialize();
+    ok = fFFTEngine.Execute();
+
+    // - Post-processing: sbfactor and SBD phase correction -
+    std::complex< double > cmplx_unit_I(0.0, 1.0);
+    int s = Y.GetDimension(0) / 2;
+    cp_spectrum.Resize(s);
+
+    for(int i = 0; i < 2 * nl; i++)
+    {
+        int j = nl - i;
+        double sbfactor = 0.0;
+        if(j <= 0)
+        {
+            if(total_usb_frac > 0) { sbfactor = sqrt(0.5) / (M_PI * total_usb_frac); }
+        }
+        else
+        {
+            if(total_lsb_frac > 0) { sbfactor = sqrt(0.5) / (M_PI * total_lsb_frac); }
+        }
+        if(j < 0) { j += 4 * nl; }
+        cp_spectrum(i) = Y(j) * sbfactor;
+        std::complex< double > Z = std::exp(-1.0 * cmplx_unit_I * (fSBDelay * (i - nl) * M_PI / (sbd_delta * 2.0 * nl)));
+        cp_spectrum(i) = Z * cp_spectrum(i);
+    }
+
+    // - Determine USB/LSB/DSB output range -
+    double bw = fChanBandwidth[nchan - 1]; // last channel bw, same as original (ch loop ends there)
+    double xstart, xend;
+    int ncp, izero;
+    if(nusb > 0 && nlsb > 0)      { xstart = -bw; xend = bw;  ncp = 2 * nl; izero = 0; }
+    else if(nlsb > 0)              { xstart = -bw; xend = 0.0; ncp = nl;     izero = 0; }
+    else /* USB only or neither */ { xstart = 0.0; xend = bw;  ncp = nl;     izero = nl; }
+
+    cp_spectrum_out.Resize(ncp);
+    for(int i = 0; i < ncp; i++)
+    {
+        std::get< 0 >(cp_spectrum_out)(i) = xstart + (xend - xstart) * i / ncp;
+        cp_spectrum_out(i) = cp_spectrum(i + izero);
+    }
+
+    // - Compute per-channel sbdbox (parabolic interpolation of peak lag) -
+    double yy[3], q[3];
+    double peak, maxv;
+    for(int ch = 0; ch < (int)nchan; ch++)
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            int idx = std::max(maxlag[ch] - 1 + i, 0);
+            idx = std::min(idx, 2 * nl - 1);
+            yy[i] = std::abs(sbxsp[ch].at(idx));
+        }
+        MHO_MathUtilities::parabola(yy, -1.0, 1.0, &peak, &maxv, q);
+        sbdbox[ch] = maxlag[ch] + peak + 1;
+    }
+    sbdbox.push_back(nl + 1 + fSBDelay / sbd_delta); // 'All' channel sbdbox
+
+    fSBDBox = sbdbox;
+    fNLSBAP = nlsb_ap;
+    fNUSBAP = nusb_ap;
+}
+
+xpower_amp_type MHO_ComputePlotData::calc_dr_segs_phase(double& coh_avg_phase, phasor_type& phasor_segs)
+{
+    double total_summed_weights = 1.0;
+    fWeights->Retrieve("total_summed_weights", total_summed_weights);
+
+    std::size_t POLPROD = 0;
+    std::size_t nchan = fSBDArray->GetDimension(CHANNEL_AXIS);
+    std::size_t nap = fSBDArray->GetDimension(TIME_AXIS);
+
+    // - Setup for delay-rate spectrum (from calc_dr) -
+    std::size_t drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(nap);
+    if(drsp_size < 256) { drsp_size = 256; }
+    fDRWorkspace.Resize(drsp_size);
+    fDRWorkspace.ZeroArray();
+    fDRAmpWorkspace.Resize(drsp_size);
+    fDRAmpWorkspace.ZeroArray();
+
+    fFFTEngine.SetArgs(&fDRWorkspace);
+    fFFTEngine.DeselectAllAxes();
+    fFFTEngine.SelectAxis(0);
+    fFFTEngine.SetForward();
+    bool ok = fFFTEngine.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search fft engine initialization." << eom);
+
+    fCyclicRotator.SetOffset(0, drsp_size / 2);
+    fCyclicRotator.SetArgs(&fDRWorkspace);
+    ok = fCyclicRotator.Initialize();
+    check_step_fatal(ok, "calibration", "MBD search cyclic rotation initialization." << eom);
+
+    auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
+    double ap_delta = ap_ax->at(1) - ap_ax->at(0);
+    auto dr_ax = &(std::get< 0 >(fDRWorkspace));
+    for(std::size_t i = 0; i < drsp_size; i++) { dr_ax->at(i) = i * ap_delta; }
+
+    // - Setup for phasor segments (from calc_segs) -
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
+    std::string chan_label_key = "channel_label";
+    std::vector< std::string > channel_labels;
+    for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+    {
+        std::string ch_label;
+        bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
+        if(key_present) { channel_labels.push_back(ch_label); }
+        else
+        {
+            msg_warn("fringe", "unlabeled channel at index: " << ch << ", using '?' " << eom);
+            channel_labels.push_back("?");
+        }
+    }
+    phasor_segs.Resize(nchan + 1, nap);
+    phasor_segs.ZeroArray();
+
+    // - Setup for fringe phase (from calc_phase) -
+    auto sbd_ax = &(std::get< FREQ_AXIS >(*fSBDArray));
+    double sbd_delta = sbd_ax->at(1) - sbd_ax->at(0);
+    // Keep setter calls for fRot state consistency (same values already set by precompute_vr_tables)
+    fRot.SetSBDSeparation(sbd_delta);
+    fRot.SetSBDMaxBin(fSBDMaxBin);
+    fRot.SetNSBDBins(sbd_ax->GetSize() / 2);
+    fRot.SetSBDMax(fSBDelay);
+    fFringe.Resize(nchan);
+
+    // Per-AP accumulators for the 'All' channel phasor
+    std::vector< std::complex< double > > sum_per_ap(nap, 0.0);
+    std::vector< double > sumwt_per_ap(nap, 0.0);
+
+    // All-channel coherent sum (for calc_phase output)
+    std::complex< double > sum_all = 0.0;
+
+    // - Main merged loop: ch -> ap -
+    // For each (ch, ap) at fSBDMaxBin, simultaneously fills:
+    //   fDRWorkspace[ap]   (DR, uses fVRTable - default SBD params)
+    //   phasor_segs[ch,ap] (segs, uses fVRPhaseTable - proper SBD params)
+    //   fFringe[ch]        (phase, uses fVRPhaseTable)
+    for(std::size_t ch = 0; ch < nchan; ch++)
+    {
+        // Set channel metadata in output arrays
+        (&std::get< 0 >(phasor_segs))->InsertIndexLabelKeyValue(ch, chan_label_key, channel_labels[ch]);
+        (&std::get< 0 >(phasor_segs))->at(ch) = fChanFreq[ch];
+        std::get< 0 >(fFringe).at(ch) = fChanFreq[ch];
+
+        std::complex< double > fringe_phasor = 0.0;
+        double sumwt_ch = 0.0;
+
+        for(std::size_t ap = 0; ap < nap; ap++)
+        {
+            std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, fSBDMaxBin);
+            double w = (*fWeights)(POLPROD, ch, ap, 0);
+
+            // DR accumulation (fVRTable - default SBD params, same as original calc_dr)
+            fDRWorkspace(ap) += w * vis * fVRTable[ch * fNAP + ap];
+
+            // Segs and phase accumulation (fVRPhaseTable - proper SBD params)
+            std::complex< double > z = vis * fVRPhaseTable[ch * fNAP + ap];
+            phasor_segs(ch, ap) = z;
+
+            std::complex< double > wz = w * z;
+            sum_per_ap[ap]  += wz;
+            sumwt_per_ap[ap] += w;
+            fringe_phasor    += wz;
+            sumwt_ch         += w;
+            sum_all          += wz;
+        }
+
+        fFringe[ch] = fringe_phasor / sumwt_ch;
+    }
+
+    // - Finalize phasor_segs: AP axis labels and 'All' channel -
+    std::string all_chan_name = "All";
+    (&std::get< 0 >(phasor_segs))->InsertIndexLabelKeyValue(nchan, chan_label_key, all_chan_name);
+    for(std::size_t ap = 0; ap < nap; ap++)
+    {
+        (&std::get< 1 >(phasor_segs))->at(ap) = ap_ax->at(ap);
+        phasor_segs(nchan, ap) = (sumwt_per_ap[ap] > 0.0) ? sum_per_ap[ap] / sumwt_per_ap[ap] : 0.0;
+    }
+
+    // - Coherent average phase (calc_phase output) -
+    coh_avg_phase = std::arg(sum_all);
+
+    // - FFT and normalization for DR spectrum -
+    ok = fFFTEngine.Execute();
+    check_step_fatal(ok, "calibration", "MBD search fft engine execution." << eom);
+    ok = fCyclicRotator.Execute();
+    check_step_fatal(ok, "calibration", "MBD search cyclic rotation execution." << eom);
+
+    for(std::size_t i = 0; i < drsp_size; i++)
+    {
+        fDRAmpWorkspace[i] = std::abs(fDRWorkspace[i]) / total_summed_weights;
+        TODO_FIXME_MSG("TODO FIXME, factor 1/1000 is due to need to plot axis in ns/s")
+        std::get< 0 >(fDRAmpWorkspace).at(i) = (std::get< 0 >(fDRWorkspace).at(i)) / (fRefFreq / 1000.0);
+    }
+
+    return fDRAmpWorkspace;
+}
+
 void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
 {
     if(!fValid)
@@ -985,13 +1126,19 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         return;
     }
 
-    auto sbd_amp = calc_sbd();
+    precompute_chan_metadata();
+    precompute_vr_tables();
+
+    // Merged passes replace six separate bin/AP scans with two consolidated ones.
+    xpower_amp_type sbd_amp;
+    xpower_type sbd_xpower;
+    calc_sbd_and_xpower_spec(sbd_amp, sbd_xpower); // single ch->ap->bin pass
+
     auto mbd_amp = calc_mbd();
-    auto dr_amp = calc_dr();
-    //TODO FIXME -- move the residual phase calc elsewhere (but we need it for the moment to set the fRot parameters)
-    double coh_avg_phase = calc_phase();
-    auto sbd_xpower = calc_xpower_spec();
-    auto phasors = calc_segs();
+
+    double coh_avg_phase;
+    phasor_type phasors;
+    auto dr_amp = calc_dr_segs_phase(coh_avg_phase, phasors); // single ch->ap pass at SBD max bin
 
     phasors.CopyTags(*fSBDArray);
     phasors.Insert("name", "phasors");
@@ -1155,10 +1302,45 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     plot_dict["NPlots"] = nplot; //nchan+1
     plot_dict["StartPlot"] = 0;
 
+    //determine whether this is a pseudo-Stokes I fringe
+    std::string polprod = std::get< POLPROD_AXIS >(*fVisibilities).at(0);
+    bool is_pseudo_stokes_I = (polprod == "I");
+
+    //for pseudo-Stokes I, derive the individual polarization characters at each station
+    std::vector< std::string > ref_pols_vec, rem_pols_vec;
+    if(is_pseudo_stokes_I)
+    {
+        std::vector< std::string > polprod_set;
+        fParamStore->Get("/config/polprod_set", polprod_set);
+        std::set< std::string > ref_set, rem_set;
+        for(auto& pp : polprod_set)
+        {
+            ref_set.insert(std::string(1, pp[0]));
+            rem_set.insert(std::string(1, pp[1]));
+        }
+        ref_pols_vec.assign(ref_set.begin(), ref_set.end()); //e.g. {"X","Y"}
+        rem_pols_vec.assign(rem_set.begin(), rem_set.end()); //e.g. {"X","Y"}
+        plot_dict["extra"]["ref_pols"] = ref_pols_vec;
+        plot_dict["extra"]["rem_pols"] = rem_pols_vec;
+    }
+
     //add the 'PLOT_INFO' section
-    std::vector< std::string > pltheader{"#Ch",     "Freq(MHz)", "Phase",   "Ampl",    "SbdBox",  "APsRf",   "APsRm",
-                                         "PCdlyRf", "PCdlyRm",   "PCPhsRf", "PCPhsRm", "PCOffRf", "PCOffRm", "PCAmpRf",
-                                         "PCAmpRm", "ChIdRf",    "TrkRf",   "ChIdRm",  "TrkRm"};
+    std::vector< std::string > pltheader;
+    if(is_pseudo_stokes_I)
+    {
+        //pseudo-Stokes I: include second-pol keys, omit Tracks and Chan ids
+        pltheader = {"#Ch",      "Freq(MHz)", "Phase",    "Ampl",     "SbdBox",   "APsRf",    "APsRm",
+                     "PCdlyRf",  "PCdlyRf2",  "PCdlyRm",  "PCdlyRm2",
+                     "PCPhsRf",  "PCPhsRm",   "PCPhsRf2", "PCPhsRm2",
+                     "PCOffRf",  "PCOffRm",   "PCOffRf2", "PCOffRm2",
+                     "PCAmpRf",  "PCAmpRf2",  "PCAmpRm",  "PCAmpRm2"};
+    }
+    else
+    {
+        pltheader = {"#Ch",     "Freq(MHz)", "Phase",   "Ampl",    "SbdBox",  "APsRf",   "APsRm",
+                     "PCdlyRf", "PCdlyRm",   "PCPhsRf", "PCPhsRm", "PCOffRf", "PCOffRm", "PCAmpRf",
+                     "PCAmpRm", "ChIdRf",    "TrkRf",   "ChIdRm",  "TrkRm"};
+    }
     plot_dict["PLOT_INFO"]["header"] = pltheader;
 
     //includes the 'All' channel
@@ -1190,35 +1372,67 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
         plot_dict["PLOT_INFO"]["PCOffRm"].push_back(0.0);
         plot_dict["PLOT_INFO"]["PCAmpRf"].push_back(0.0);
         plot_dict["PLOT_INFO"]["PCAmpRm"].push_back(0.0);
-        plot_dict["PLOT_INFO"]["ChIdRf"].push_back("-");
-        plot_dict["PLOT_INFO"]["TrkRf"].push_back("-");
-        plot_dict["PLOT_INFO"]["ChIdRm"].push_back("-");
-        plot_dict["PLOT_INFO"]["TrkRm"].push_back("-");
+
+        if(is_pseudo_stokes_I)
+        {
+            //initialize second-pol arrays
+            plot_dict["PLOT_INFO"]["PCdlyRf2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCdlyRm2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCPhsRf2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCPhsRm2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCOffRf2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCOffRm2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCAmpRf2"].push_back(0.0);
+            plot_dict["PLOT_INFO"]["PCAmpRm2"].push_back(0.0);
+        }
+        else
+        {
+            plot_dict["PLOT_INFO"]["ChIdRf"].push_back("-");
+            plot_dict["PLOT_INFO"]["TrkRf"].push_back("-");
+            plot_dict["PLOT_INFO"]["ChIdRm"].push_back("-");
+            plot_dict["PLOT_INFO"]["TrkRm"].push_back("-");
+        }
     }
 
-    int station_flag;
-    std::string pol;
-    std::string polprod = std::get< POLPROD_AXIS >(*fVisibilities).at(0);
-
-    //export reference pcal stuff
-    station_flag = 0;
-    pol = polprod;
-    if(polprod.size() == 2)
+    if(is_pseudo_stokes_I)
     {
-        pol = std::string(1, polprod[station_flag]);
+        //export pcal data for both polarizations at each station
+        //ref station, first pol (slot ""), second pol (slot "2")
+        dump_multitone_pcmodel(plot_dict, 0, ref_pols_vec[0], "");
+        dump_manual_pcmodel(plot_dict, 0, ref_pols_vec[0], "");
+        dump_multitone_pcmodel(plot_dict, 0, ref_pols_vec[1], "2");
+        dump_manual_pcmodel(plot_dict, 0, ref_pols_vec[1], "2");
+        //remote station, first pol (slot ""), second pol (slot "2")
+        dump_multitone_pcmodel(plot_dict, 1, rem_pols_vec[0], "");
+        dump_manual_pcmodel(plot_dict, 1, rem_pols_vec[0], "");
+        dump_multitone_pcmodel(plot_dict, 1, rem_pols_vec[1], "2");
+        dump_manual_pcmodel(plot_dict, 1, rem_pols_vec[1], "2");
     }
-    dump_multitone_pcmodel(plot_dict, station_flag, pol);
-    dump_manual_pcmodel(plot_dict, station_flag, pol);
-
-    //export remote pcal stuff
-    station_flag = 1;
-    pol = polprod;
-    if(polprod.size() == 2)
+    else
     {
-        pol = std::string(1, polprod[station_flag]);
+        int station_flag;
+        std::string pol;
+
+        //export reference pcal stuff
+        station_flag = 0;
+        pol = polprod;
+        if(polprod.size() == 2)
+        {
+            pol = std::string(1, polprod[station_flag]);
+        }
+        dump_multitone_pcmodel(plot_dict, station_flag, pol);
+        dump_manual_pcmodel(plot_dict, station_flag, pol);
+
+        //export remote pcal stuff
+        station_flag = 1;
+        pol = polprod;
+        if(polprod.size() == 2)
+        {
+            pol = std::string(1, polprod[station_flag]);
+        }
+        dump_multitone_pcmodel(plot_dict, station_flag, pol);
+        dump_manual_pcmodel(plot_dict, station_flag, pol);
     }
-    dump_multitone_pcmodel(plot_dict, station_flag, pol);
-    dump_manual_pcmodel(plot_dict, station_flag, pol);
 
     double fringe_amp = fParamStore->GetAs< double >("/fringe/famp");
     double tsum_weights = fParamStore->GetAs< double >("/fringe/total_summed_weights");
@@ -1384,7 +1598,6 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
     std::size_t nplot = phasors.GetDimension(0);
     std::size_t nchan = nplot - 1; //-1 is for the 'all' channel tacked on the end
     std::size_t naps = phasors.GetDimension(1);
-    auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
     double totwt, totap, wt, wtf, wtf_dsb, wt_dsb, apwt, ap_in_seg, usbfrac, lsbfrac, c;
     totwt = 0.0;
     totap = 0.0;
@@ -1393,8 +1606,6 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
     seg_frac_lsb.resize(nseg);
     std::complex< double > vsum, vsumf, wght_phsr;
 
-    std::string net_sideband = "?";
-    std::string sidebandlabelkey = "net_sideband";
     for(std::size_t seg = 0; seg < nseg; seg++)
     {
         seg_frac_usb[seg].resize(nchan,0);
@@ -1412,11 +1623,7 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
             ap_in_seg = 0.0;
             usbfrac = lsbfrac = 0.0;
 
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(fr, sidebandlabelkey, net_sideband);
-            if(!key_present)
-            {
-                msg_error("fringe", "missing net_sideband label for channel " << fr << "." << eom);
-            }
+            int sb = fChanSideband[fr]; // +1=USB, 0=DSB, -1=LSB
 
             for(std::size_t ap = seg * apseg; ap < (seg + 1) * apseg; ap++)
             {
@@ -1428,13 +1635,13 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
                 wt += apwt;
                 wtf += apwt;
 
-                if(net_sideband == "U")
+                if(sb == 1)
                 {
                     usbfrac += apwt;
                     wtf_dsb += apwt;
                     wt_dsb += apwt;
                 }
-                else if(net_sideband == "L")
+                else if(sb == -1)
                 {
                     lsbfrac += apwt;
                     wtf_dsb += apwt;
@@ -1725,8 +1932,9 @@ std::string MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
 }
 
 void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
-                                                 int station_flag, //0 = reference station, 1 = remote station
-                                                 std::string pol   //single char string
+                                                 int station_flag,        //0 = reference station, 1 = remote station
+                                                 std::string pol,         //single char string
+                                                 std::string key_suffix   //appended to PLOT_INFO keys, e.g. "2" for second pol
 )
 {
     //workspace for segment retrieval
@@ -1832,11 +2040,11 @@ void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
             double ave_pc_mag = MHO_MathUtilities::average(pc_mag_segs);
             if(station_flag == 0)
             {
-                plot_dict["PLOT_INFO"]["PCAmpRf"][ch] = ave_pc_mag * 1000.0; //convert to fourfit units (?)
+                plot_dict["PLOT_INFO"]["PCAmpRf" + key_suffix][ch] = ave_pc_mag * 1000.0; //convert to fourfit units (?)
             }
             if(station_flag == 1)
             {
-                plot_dict["PLOT_INFO"]["PCAmpRm"][ch] = ave_pc_mag * 1000.0;
+                plot_dict["PLOT_INFO"]["PCAmpRm" + key_suffix][ch] = ave_pc_mag * 1000.0;
             }
         }
 
@@ -1863,21 +2071,21 @@ void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
             if(station_flag == 0)
             {
                 //convert to degrees
-                plot_dict["PLOT_INFO"]["PCPhsRf"][ch] = ave_pc_phase * (180. / M_PI);
+                plot_dict["PLOT_INFO"]["PCPhsRf" + key_suffix][ch] = ave_pc_phase * (180. / M_PI);
                 for(std::size_t j = 0; j < pc_phase_segs.size(); j++)
                 {
                     pc_phase_segs[j] *= (180. / M_PI);
                 }
-                plot_dict["extra"]["ref_mtpc_phase_segs"].push_back(pc_phase_segs);
+                plot_dict["extra"]["ref_mtpc_phase_segs" + key_suffix].push_back(pc_phase_segs);
             }
             if(station_flag == 1)
             {
-                plot_dict["PLOT_INFO"]["PCPhsRm"][ch] = ave_pc_phase * (180. / M_PI);
+                plot_dict["PLOT_INFO"]["PCPhsRm" + key_suffix][ch] = ave_pc_phase * (180. / M_PI);
                 for(std::size_t j = 0; j < pc_phase_segs.size(); j++)
                 {
                     pc_phase_segs[j] *= (180. / M_PI);
                 }
-                plot_dict["extra"]["rem_mtpc_phase_segs"].push_back(pc_phase_segs);
+                plot_dict["extra"]["rem_mtpc_phase_segs" + key_suffix].push_back(pc_phase_segs);
             }
         }
 
@@ -1886,19 +2094,20 @@ void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
             double ave_pc_delay = MHO_MathUtilities::average(pc_delay_segs);
             if(station_flag == 0)
             {
-                plot_dict["PLOT_INFO"]["PCdlyRf"][ch] = ave_pc_delay * 1e9; //convert to ns
+                plot_dict["PLOT_INFO"]["PCdlyRf" + key_suffix][ch] = ave_pc_delay * 1e9; //convert to ns
             }
             if(station_flag == 1)
             {
-                plot_dict["PLOT_INFO"]["PCdlyRm"][ch] = ave_pc_delay * 1e9;
+                plot_dict["PLOT_INFO"]["PCdlyRm" + key_suffix][ch] = ave_pc_delay * 1e9;
             }
         }
     }
 }
 
 void MHO_ComputePlotData::dump_manual_pcmodel(mho_json& plot_dict,
-                                              int station_flag, //0 = reference station, 1 = remote station
-                                              std::string pol   //single char string
+                                              int station_flag,        //0 = reference station, 1 = remote station
+                                              std::string pol,         //single char string
+                                              std::string key_suffix   //appended to PLOT_INFO keys, e.g. "2" for second pol
 )
 {
     //workspace for segment retrieval
@@ -1927,11 +2136,11 @@ void MHO_ComputePlotData::dump_manual_pcmodel(mho_json& plot_dict,
         {
             if(station_flag == 0)
             {
-                plot_dict["PLOT_INFO"]["PCOffRf"][ch] = pc_phase * (180. / M_PI); //convert to fourfit units (?)
+                plot_dict["PLOT_INFO"]["PCOffRf" + key_suffix][ch] = pc_phase * (180. / M_PI); //convert to fourfit units (?)
             }
             if(station_flag == 1)
             {
-                plot_dict["PLOT_INFO"]["PCOffRm"][ch] = pc_phase * (180. / M_PI);
+                plot_dict["PLOT_INFO"]["PCOffRm" + key_suffix][ch] = pc_phase * (180. / M_PI);
             }
         }
     }

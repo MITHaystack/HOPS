@@ -1,5 +1,7 @@
 #include "MHO_DiFXInterface.hh"
 
+#include "difxio/difx_options.h"
+
 namespace hops
 {
 
@@ -398,6 +400,12 @@ bool MHO_DiFXInterface::IsSingleScan(const std::string& input_dir) const
         }
     }
     return false;
+}
+
+void MHO_DiFXInterface::SetTryLocalDirectoryTrue()
+{
+    int true_val = 1;
+    difxioSetOption(DIFXIO_OPT_LOCALDIR, &true_val);
 }
 
 } // namespace hops

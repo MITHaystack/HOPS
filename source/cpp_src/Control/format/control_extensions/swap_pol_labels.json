@@ -1,0 +1,17 @@
+{
+    "name": "swap_pol_labels",
+    "statement_type": "operator",
+    "operator_category" : "labeling",
+    "type" : "compound",
+    "priority": 0.1,
+    "parameters":
+    {
+        "pol1": {"type": "string"},
+        "pol2": {"type": "string"}
+    },
+    "fields":
+    [
+        "pol1",
+        "pol2"
+    ]
+}

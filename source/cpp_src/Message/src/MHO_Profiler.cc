@@ -20,7 +20,7 @@ void MHO_Profiler::AddEntry(int flag, uint64_t thread_id, std::string filename, 
     strncpy(event.fFilename, filename.c_str(), PROFILE_INFO_LEN);
     event.fFilename[PROFILE_INFO_LEN - 1] = '\0';
     strncpy(event.fFuncname, func_name.c_str(), PROFILE_INFO_LEN);
-    event.fFilename[PROFILE_INFO_LEN - 1] = '\0';
+    event.fFuncname[PROFILE_INFO_LEN - 1] = '\0';
     event.fTime = fTimer.GetTimeSinceStart();
     fEvents.push_back(event);
 }

@@ -12,7 +12,8 @@
 #include "MHO_SelfName.hh"
 #include "MHO_Timer.hh"
 
-#define HOPS_USE_PROFILER
+//this define is passed in the compiler flags
+//#define HOPS_USE_PROFILER
 
 namespace hops
 {
@@ -26,9 +27,9 @@ namespace hops
  * when the profile is enabled, a section of code can be profiled by
  * wrapping it between a call to profiler_start() and profiler_stop(), for example:
  *
- * profiler_start();
+ * profiler_scope();
  * function_to_profile();
- * profiler_stop();
+ * 
  */
 
 namespace sn = selfname;
@@ -191,11 +192,52 @@ class MHO_Profiler
         }                                                                                                                      \
         while(0)
 
+    // RAII guard: calls profiler_start() on construction and profiler_stop() on destruction.
+    // __FILE__, __LINE__, __PRETTY_FUNCTION__ are captured by the macro at the call site
+    // so they reflect the enclosing function, not the guard class itself.
+    struct MHO_ProfilerGuard
+    {
+            MHO_ProfilerGuard(uint64_t thread_id, std::string filename, int line_num, std::string funcname)
+                : fThreadID(thread_id), fFilename(std::move(filename)), fFuncname(std::move(funcname))
+            {
+                MHO_Profiler::GetInstance().Lock();
+                MHO_Profiler::GetInstance().AddEntry(pStart, fThreadID, fFilename, line_num, fFuncname);
+                MHO_Profiler::GetInstance().Unlock();
+            }
+            ~MHO_ProfilerGuard()
+            {
+                MHO_Profiler::GetInstance().Lock();
+                MHO_Profiler::GetInstance().AddEntry(pStop, fThreadID, fFilename, 0, fFuncname);
+                MHO_Profiler::GetInstance().Unlock();
+            }
+            // non-copyable, non-movable
+            MHO_ProfilerGuard(const MHO_ProfilerGuard&) = delete;
+            MHO_ProfilerGuard& operator=(const MHO_ProfilerGuard&) = delete;
+
+        private:
+            uint64_t fThreadID;
+            std::string fFilename;
+            std::string fFuncname;
+    };
+
+    // Helper macros for token-pasting to generate unique variable names
+    #define PROFILER_CONCAT_(a, b) a##b
+    #define PROFILER_CONCAT(a, b) PROFILER_CONCAT_(a, b)
+
+    // Declare a scope-guard that automatically records start/stop for the enclosing function.
+    // Place once at the top of any function body to profile the entire function.
+    #define profiler_scope()                                                                                                   \
+        hops::MHO_ProfilerGuard PROFILER_CONCAT(_pg_, __LINE__)(                                                              \
+            std::hash< std::thread::id >{}(std::this_thread::get_id()),                                                       \
+            std::string(sn::file_basename(__FILE__)), __LINE__,                                                                \
+            std::string(__PRETTY_FUNCTION__))
+
 #else
 
     //profiling is not turned on, ifdef out of compilation
     #define profiler_start()
     #define profiler_stop()
+    #define profiler_scope()
 
 #endif
 
