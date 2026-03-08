@@ -12,7 +12,8 @@
 #include "MHO_SelfName.hh"
 #include "MHO_Timer.hh"
 
-#define HOPS_USE_PROFILER
+//this define is passed in the compiler flags
+//#define HOPS_USE_PROFILER
 
 namespace hops
 {
