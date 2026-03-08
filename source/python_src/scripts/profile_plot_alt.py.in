@@ -146,7 +146,7 @@ def build_color_map(calls):
 # ---------------------------------------------------------------------------
 
 BAR_H = 0.8       # height of each flame bar
-ROW_HEIGHT = 2.0  # vertical spacing between depth levels
+ROW_HEIGHT = 1.1  # vertical spacing between depth levels
 
 
 def draw_flames(ax, calls, color_map, t_offset=0.0, y_offset=0, x_span=None):
@@ -173,7 +173,7 @@ def draw_flames(ax, calls, color_map, t_offset=0.0, y_offset=0, x_span=None):
 
 
 def draw_callout_labels(ax, calls, color_map, t_offset=0.0, y_offset=0, x_span=None):
-    """Draw one callout label per unique function, connected to its widest bar."""
+    """Draw one callout label per unique function using L-shaped connector lines."""
     if x_span is None or x_span == 0:
         x_span = max((c["t_stop"] - c["t_start"]) for c in calls) or 1.0
 
@@ -191,29 +191,38 @@ def draw_callout_labels(ax, calls, color_map, t_offset=0.0, y_offset=0, x_span=N
     n = len(items)
     max_y = max((c["depth"] + y_offset) * ROW_HEIGHT + BAR_H for c in calls)
 
-    label_x = x_span * 1.02
+    spine_x  = x_span * 1.02   # x position of the first vertical segment
+    dx_step  = x_span * 0.01                          # horizontal stagger between vertical segments
+    dy_step  = 1.5 * (ROW_HEIGHT - BAR_H) / max(n, 1)   # spread horizontal legs across the padding gap
+    text_x   = spine_x + n * dx_step + x_span * 0.005
+
     for i, c in enumerate(items):
         fn = c["funcname"]
         color = color_map[fn]
-        bar_cx = c["t_start"] - t_offset + (c["t_stop"] - c["t_start"]) / 2
-        bar_cy = (c["depth"] + y_offset) * ROW_HEIGHT + BAR_H / 2
+        bar_cx  = c["t_start"] - t_offset + (c["t_stop"] - c["t_start"]) / 2
+        bar_cy  = (c["depth"] + y_offset) * ROW_HEIGHT + BAR_H / 2
         label_y = (i / max(n - 1, 1)) * max_y if n > 1 else max_y / 2
 
-        ax.annotate(
-            fn,
-            xy=(bar_cx, bar_cy),
-            xytext=(label_x, label_y),
-            fontsize=7,
-            va="center",
-            annotation_clip=False,
-            arrowprops=dict(
-                arrowstyle="-",
-                color=color,
-                lw=0.8,
-                shrinkA=0,
-                shrinkB=0,
-            ),
-        )
+        turn_x  = spine_x + i * dx_step       # unique x for this vertical leg
+        elbow_y = bar_cy  + i * dy_step        # unique y for this horizontal leg
+
+        # Vertical segment: bar centre -> elbow height
+        if bar_cy != elbow_y:
+            ax.plot([bar_cx, bar_cx], [bar_cy, elbow_y],
+                    color=color, lw=0.8, clip_on=False, zorder=5)
+        # Horizontal segment: bar -> elbow
+        ax.plot([bar_cx, turn_x], [elbow_y, elbow_y],
+                color=color, lw=0.8, clip_on=False, zorder=5)
+        # Vertical segment: elbow -> label height
+        if elbow_y != label_y:
+            ax.plot([turn_x, turn_x], [elbow_y, label_y],
+                    color=color, lw=0.8, clip_on=False, zorder=5)
+        # Final horizontal segment: vertical leg -> text
+        ax.plot([turn_x, text_x], [label_y, label_y],
+                color=color, lw=0.8, clip_on=False, zorder=5)
+        # Label text
+        ax.text(text_x, label_y, fn,
+                fontsize=7, va="center", clip_on=False)
 
 
 # ---------------------------------------------------------------------------
