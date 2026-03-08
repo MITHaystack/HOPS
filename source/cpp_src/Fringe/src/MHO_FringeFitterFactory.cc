@@ -43,11 +43,11 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
     if(do_ion)
     {
         msg_debug("fringe", "constructing an ionospheric fringe fitter" << eom);
-        #ifdef _OPENMP
-        fFringeFitter = new MHO_IonosphericFringeFitterOpenMP(fFringeData);
-        #else
+        // #ifdef _OPENMP
+        // fFringeFitter = new MHO_IonosphericFringeFitterOpenMP(fFringeData);
+        // #else
         fFringeFitter = new MHO_IonosphericFringeFitter(fFringeData);
-        #endif
+        // #endif
     }
     else
     {
