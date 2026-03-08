@@ -26,7 +26,7 @@ struct IonLoopResult
  *@class MHO_IonosphericFringeFitterOpenMP
  *@author J. Barrettj - barrettj@mit.edu
  *@date Wed Jan 17 14:48:52 2024 -0500
- *@brief single-baseline fringe fitter with ionosphere search
+ *@brief single-baseline fringe fitter with ionosphere search, experimentally augmented with OpenMP
  */
 
 /**
