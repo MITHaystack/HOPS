@@ -12,6 +12,7 @@ bool MHO_MixedSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType*
     fInitialized = false;
     if(in != nullptr && out != nullptr)
     {
+        profiler_scope();
         bool status = true;
         //figure out if we have USB or LSB data (or a mixture)
         auto channel_axis = &(std::get< CHANNEL_AXIS >(*(in)));
@@ -159,6 +160,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
 
     if(fInitialized)
     {
+        profiler_scope();
         bool status;
 
         FillWorkspace(in, &fWorkspace);
@@ -169,6 +171,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         if(!status)
         {
             msg_error("calibration", "Could not execute NaN masker MHO_MixedSidebandNormFX." << eom);
+            
             return false;
         }
 
@@ -176,6 +179,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         if(!status)
         {
             msg_error("calibration", "Could not execute FFT in MHO_MixedSidebandNormFX." << eom);
+            
             return false;
         }
 
@@ -183,6 +187,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         if(!status)
         {
             msg_error("calibration", "Could not execute sub-sampler in MHO_MixedSidebandNormFX." << eom);
+            
             return false;
         }
 
@@ -190,6 +195,7 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         if(!status)
         {
             msg_error("calibration", "Could not execute cyclic-rotation MHO_MixedSidebandNormFX." << eom);
+            
             return false;
         }
 
@@ -197,9 +203,11 @@ bool MHO_MixedSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* ou
         double norm = 1.0 / (double)fInDims[FREQ_AXIS];
         *(out) *= norm;
 
+        
         return true;
     }
 
+    
     return false;
 };
 

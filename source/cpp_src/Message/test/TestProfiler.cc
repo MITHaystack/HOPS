@@ -15,11 +15,11 @@ void func1()
 
 int main(int /*argc*/, char** /*argv*/)
 {
-    profiler_start();
+    profiler_scope();
 
     sleep(4);
 
-    profiler_stop();
+    
 
     MHO_Profiler::GetInstance().DumpEvents();
 

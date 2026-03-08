@@ -96,6 +96,7 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
             }
             else
             {
+                //profiler_scope();
                 for(std::size_t i = 0; i < XArrayType::rank::value; i++)
                 {
                     if(fOffsets[i] != 0)
@@ -220,6 +221,7 @@ template< class XArrayType > class MHO_CyclicRotator: public MHO_UnaryOperator< 
         {
             if(fInitialized)
             {
+                //profiler_scope();
                 for(std::size_t i = 0; i < XArrayType::rank::value; i++)
                 {
                     if(fOffsets[i] != 0)

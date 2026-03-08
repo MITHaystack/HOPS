@@ -114,7 +114,7 @@ void MHO_MK4CorelInterface::ReadCorelFile()
     else
     {
         fHaveCorel = true;
-        msg_debug("mk4interface", "successfully read corel file." << fCorelFile << eom);
+        msg_debug("mk4interface", "successfully read corel file: " << fCorelFile << eom);
     }
 
     fBaselineName = "";
@@ -484,8 +484,10 @@ void MHO_MK4CorelInterface::DetermineDataDimensions()
     }
 }
 
-void MHO_MK4CorelInterface::ExtractCorelFile()
+int MHO_MK4CorelInterface::ExtractCorelFile()
 {
+    fHaveVex = false;
+    fHaveCorel = false;
     ReadCorelFile();
     ReadVexFile();
 
@@ -693,7 +695,9 @@ void MHO_MK4CorelInterface::ExtractCorelFile()
     }
     else
     {
-        msg_error("mk4interface", "Failed to read both corel and vex file." << eom);
+        if(!fHaveCorel){ msg_error("mk4interface", "Failed to read corel file, "<<fCorelFile<<", cannot convert." << eom); }
+        if(!fHaveVex){msg_error("mk4interface", "Failed to read vex file, "<<fVexFile<<", cannot convert." << eom); }
+        return -1;
     }
 
     //grab the meta data from the type_100 and tag this data with it
@@ -760,6 +764,8 @@ void MHO_MK4CorelInterface::ExtractCorelFile()
     //entirely delegate memory managment to the caller (we do not delete these in the destructor)
     fExtractedVisibilities = bl_data;
     fExtractedWeights = bl_wdata;
+
+    return 0;
 }
 
 std::string MHO_MK4CorelInterface::getstr(const char* char_array, std::size_t max_size)

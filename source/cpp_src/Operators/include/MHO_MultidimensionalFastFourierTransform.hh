@@ -116,6 +116,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
         {
             if(this->fInitialized)
             {
+                profiler_scope();
                 size_t total_size = 1;
                 for(size_t i = 0; i < XArgType::rank::value; i++)
                 {
@@ -184,6 +185,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
                     this->IfTableTransformAxis(in, d);
                 }
                 //successful
+                
                 return true;
             }
             else
@@ -191,6 +193,7 @@ class MHO_MultidimensionalFastFourierTransform: public MHO_UnaryOperator< XArgTy
                 //error
                 msg_error("math", "FFT input/output array dimensions are not valid or intialization failed. Aborting transform."
                                       << eom);
+                
                 return false;
             }
         }

@@ -211,6 +211,7 @@ class MHO_MultidimensionalFastFourierTransformFFTW: public MHO_UnaryOperator< XA
          */
         virtual bool ExecuteInPlace(XArgType* in) override
         {
+            //profiler_scope();
             if(!this->fIsValid || !this->fInitialized)
             {
                 //error

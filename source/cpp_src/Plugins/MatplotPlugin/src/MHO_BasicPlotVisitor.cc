@@ -1282,6 +1282,31 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
     int n_seg = MHO_PlotDataExtractor::extract_int(plot_dict, "NSeg", 1);
     int n_plots = MHO_PlotDataExtractor::extract_int(plot_dict, "NPlots", 1);
 
+    // Detect pseudo-Stokes I and retrieve per-station polarization characters
+    bool is_pseudo_stokes_I = false;
+    std::string ref_pol1, ref_pol2, rem_pol1, rem_pol2;
+    if(plot_dict.contains("extra") && plot_dict["extra"].contains("pol_product"))
+    {
+        auto& pp = plot_dict["extra"]["pol_product"];
+        if(pp.is_string() && pp.get< std::string >() == "I")
+            is_pseudo_stokes_I = true;
+    }
+    if(is_pseudo_stokes_I && plot_dict.contains("extra"))
+    {
+        if(plot_dict["extra"].contains("ref_pols"))
+        {
+            auto r = plot_dict["extra"]["ref_pols"].get< std::vector< std::string > >();
+            if(r.size() >= 1) ref_pol1 = r[0];
+            if(r.size() >= 2) ref_pol2 = r[1];
+        }
+        if(plot_dict["extra"].contains("rem_pols"))
+        {
+            auto m = plot_dict["extra"]["rem_pols"].get< std::vector< std::string > >();
+            if(m.size() >= 1) rem_pol1 = m[0];
+            if(m.size() >= 2) rem_pol2 = m[1];
+        }
+    }
+
     // Check for plot info section
     if(!plot_dict.contains("PLOT_INFO"))
     {
@@ -1312,7 +1337,7 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
     int n_channel_plots = n_plots - 1;
     int total_channel_slots = n_plots;
     if(n_channel_plots == 1){total_channel_slots = 1;}
-    
+
     if(!ref_pcal_off.empty() || !rem_pcal_off.empty())
     {
         for(int ch = 0; ch < n_channel_plots; ++ch)
@@ -1351,20 +1376,62 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
                 }
             }
 
-            // Plot reference station pcal (green)
+            // Load second-pol phase data for pseudo-Stokes I
+            std::vector< double > ref_phases2(n_seg, 0.0);
+            std::vector< double > rem_phases2(n_seg, 0.0);
+            if(is_pseudo_stokes_I && plot_dict.contains("extra"))
+            {
+                try
+                {
+                    if(plot_dict["extra"].contains("ref_mtpc_phase_segs2") &&
+                       ch < static_cast< int >(plot_dict["extra"]["ref_mtpc_phase_segs2"].size()))
+                    {
+                        ref_phases2 = plot_dict["extra"]["ref_mtpc_phase_segs2"][ch].get< std::vector< double > >();
+                    }
+                    if(plot_dict["extra"].contains("rem_mtpc_phase_segs2") &&
+                       ch < static_cast< int >(plot_dict["extra"]["rem_mtpc_phase_segs2"].size()))
+                    {
+                        rem_phases2 = plot_dict["extra"]["rem_mtpc_phase_segs2"][ch].get< std::vector< double > >();
+                    }
+                }
+                catch(const std::exception& e)
+                {
+                    msg_warn("plot", "Failed to parse second-pol segment pcal data for channel " << ch << ": " << e.what() << eom);
+                }
+            }
+
+            // Plot reference station pcal, pol1 (forest green, circle)
             auto ref_line = matplot::plot(seg_indices, ref_phases, "co");
             ref_line->marker_size(2.0f);
             ref_line->line_width(0.5f);
-            ref_line->color({34/255.0, 139/255.0, 34/255.0}); //forest green
+            ref_line->color({34/255.0, 139/255.0, 34/255.0}); // forest green
             ref_line->marker_color({34/255.0, 139/255.0, 34/255.0});
             fLastAxis->hold(matplot::on);
 
-            // Plot remote station pcal (magenta)
+            // Plot remote station pcal, pol1 (magenta, circle)
             auto rem_line = matplot::plot(seg_indices, rem_phases, "co");
             rem_line->marker_size(2.0f);
             rem_line->line_width(0.5f);
             rem_line->color("magenta");
             rem_line->marker_color("magenta");
+
+            // Plot second-pol data for pseudo-Stokes I
+            if(is_pseudo_stokes_I)
+            {
+                // Reference station, pol2 (orange, dot)
+                auto ref_line2 = matplot::plot(seg_indices, ref_phases2, "c.");
+                ref_line2->marker_size(2.0f);
+                ref_line2->line_width(0.5f);
+                ref_line2->color({255/255.0, 140/255.0, 0/255.0});
+                ref_line2->marker_color({255/255.0, 140/255.0, 0/255.0});
+
+                // Remote station, pol2 (purple, dot)
+                auto rem_line2 = matplot::plot(seg_indices, rem_phases2, "c.");
+                rem_line2->marker_size(2.0f);
+                rem_line2->line_width(0.5f);
+                rem_line2->color("red");
+                rem_line2->marker_color("red");
+            }
 
             matplot::xlim({0, static_cast< double >(n_seg)});
             matplot::ylim({-180, 180});
@@ -1401,6 +1468,15 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
         fSubplotConfig["station_codes"] = subplot_parameters(4*fNRows, 2*fNCols, 87, 125, 2, 1);
     }
 
+    // For pseudo-Stokes I, expand the station_codes subplot to span the full pcal
+    // band (rows 21-23 of 35 = rows 84-92 of 140), giving enough vertical room
+    // for all four pol-labeled station identifiers.
+    if(is_pseudo_stokes_I)
+    {
+        auto sc = fSubplotConfig["station_codes"];
+        fSubplotConfig["station_codes"] = subplot_parameters(sc.total_rows, sc.total_cols, 84, sc.start_col, 8, sc.colspan);
+    }
+
     ConstructYTitle(fSubplotConfig["pcal_theta_ytitle"], "pcal {/Symbol q}", "black", 8);
 
     // Add station identifiers if available
@@ -1423,14 +1499,36 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
             std::string ref_id = MHO_PlotDataExtractor::extract_string(plot_dict["extra"], "ref_station_mk4id", "REF");
             std::string rem_id = MHO_PlotDataExtractor::extract_string(plot_dict["extra"], "rem_station_mk4id", "REM");
 
-            auto ref_txt = fLastAxis->text(0.5, 0.0, ref_id);
-            ref_txt->color("#228B22"); //forest green
-            ref_txt->alignment(matplot::labels::alignment::center);
+            if(is_pseudo_stokes_I && !ref_pol1.empty() && !ref_pol2.empty())
+            {
+                // Four labels evenly spaced: ref pols at bottom, rem pols at top
+                auto ref_txt1 = fLastAxis->text(0.5, 0.125, ref_id + ":" + ref_pol1);
+                ref_txt1->color("#228B22"); // forest green
+                ref_txt1->alignment(matplot::labels::alignment::center);
 
-            auto rem_txt = fLastAxis->text(0.5, 1.0, rem_id);
-            rem_txt->alignment(matplot::labels::alignment::center);
-            rem_txt->color("magenta");
+                auto ref_txt2 = fLastAxis->text(0.5, 0.375, ref_id + ":" + ref_pol2);
+                //ref_txt2->color({255/255.0, 140/255.0, 0/255.0}); 
+                ref_txt2->color("#FF8800"); //orange
+                ref_txt2->alignment(matplot::labels::alignment::center);
 
+                auto rem_txt2 = fLastAxis->text(0.5, 0.625, rem_id + ":" + rem_pol2);
+                rem_txt2->color("red"); // purple
+                rem_txt2->alignment(matplot::labels::alignment::center);
+
+                auto rem_txt1 = fLastAxis->text(0.5, 0.875, rem_id + ":" + rem_pol1);
+                rem_txt1->color("magenta");
+                rem_txt1->alignment(matplot::labels::alignment::center);
+            }
+            else
+            {
+                auto ref_txt = fLastAxis->text(0.5, 0.0, ref_id);
+                ref_txt->color("#228B22"); // forest green
+                ref_txt->alignment(matplot::labels::alignment::center);
+
+                auto rem_txt = fLastAxis->text(0.5, 1.0, rem_id);
+                rem_txt->alignment(matplot::labels::alignment::center);
+                rem_txt->color("magenta");
+            }
         }
         catch(const std::exception& e)
         {
@@ -2328,6 +2426,45 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
         return;
     }
 
+    // Detect pseudo-Stokes I and retrieve per-station polarization characters
+    bool is_pseudo_stokes_I = false;
+    std::string ref_pol1, ref_pol2, rem_pol1, rem_pol2;
+    if(plot_dict.contains("extra") && plot_dict["extra"].contains("pol_product"))
+    {
+        try
+        {
+            auto& pp = plot_dict["extra"]["pol_product"];
+            if(pp.is_string() && pp.get< std::string >() == "I")
+            {
+                is_pseudo_stokes_I = true;
+            }
+        }
+        catch(const std::exception& e)
+        {
+            msg_warn("plot", "Failed to read pol_product: " << e.what() << eom);
+        }
+    }
+    if(is_pseudo_stokes_I && plot_dict.contains("extra"))
+    {
+        try
+        {
+            if(plot_dict["extra"].contains("ref_pols"))
+            {
+                auto r = plot_dict["extra"]["ref_pols"].get< std::vector< std::string > >();
+                if(r.size() >= 2) { ref_pol1 = r[0]; ref_pol2 = r[1]; }
+            }
+            if(plot_dict["extra"].contains("rem_pols"))
+            {
+                auto m = plot_dict["extra"]["rem_pols"].get< std::vector< std::string > >();
+                if(m.size() >= 2) { rem_pol1 = m[0]; rem_pol2 = m[1]; }
+            }
+        }
+        catch(const std::exception& e)
+        {
+            msg_warn("plot", "Failed to read ref/rem pols: " << e.what() << eom);
+        }
+    }
+
     // Define header text mappings
     std::map< std::string, std::string > header_text = {
         {"#Ch",       ""              },
@@ -2351,12 +2488,32 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
         {"TrkRm",     "Tracks"        }
     };
 
-    // Check for polarization info to update PC delay headers
-    if(plot_dict.contains("extra") && plot_dict["extra"].contains("pol_product"))
+    if(is_pseudo_stokes_I && !ref_pol1.empty() && !ref_pol2.empty() && !rem_pol1.empty() && !rem_pol2.empty())
     {
+        // Update first-pol labels to include the polarization character
+        header_text["PCdlyRf"]  = "PC " + ref_pol1 + " dly ref (ns)";
+        header_text["PCdlyRm"]  = "PC " + rem_pol1 + " dly rem (ns)";
+        header_text["PCPhsRf"]  = "PC " + ref_pol1 + " phase";
+        header_text["PCPhsRm"]  = "PC " + rem_pol1 + " phase";
+        header_text["PCOffRf"]  = "Manl PC " + ref_pol1;
+        header_text["PCOffRm"]  = "Manl PC " + rem_pol1;
+        header_text["PCAmpRf"]  = "PC " + ref_pol1 + " amp ref";
+        header_text["PCAmpRm"]  = "PC " + rem_pol1 + " amp rem";
+        // Add second-pol labels
+        header_text["PCdlyRf2"] = "PC " + ref_pol2 + " dly ref (ns)";
+        header_text["PCdlyRm2"] = "PC " + rem_pol2 + " dly rem (ns)";
+        header_text["PCPhsRf2"] = "PC " + ref_pol2 + " phase";
+        header_text["PCPhsRm2"] = "PC " + rem_pol2 + " phase";
+        header_text["PCOffRf2"] = "Manl PC " + ref_pol2;
+        header_text["PCOffRm2"] = "Manl PC " + rem_pol2;
+        header_text["PCAmpRf2"] = "PC " + ref_pol2 + " amp ref";
+        header_text["PCAmpRm2"] = "PC " + rem_pol2 + " amp rem";
+    }
+    else if(plot_dict.contains("extra") && plot_dict["extra"].contains("pol_product"))
+    {
+        // Standard case: update PC delay headers with pol character from pol_product string
         try
         {
-            // Handle both string and array formats for pol_product
             if(plot_dict["extra"]["pol_product"].is_string())
             {
                 std::string pol_str = plot_dict["extra"]["pol_product"].get< std::string >();
@@ -2388,6 +2545,13 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
         {"PCPhsRf", "PCPhsRm"},
         {"PCOffRf", "PCOffRm"}
     };
+
+    // For pseudo-Stokes I, also pair the second-pol phase and manual PC keys (ref:rem)
+    if(is_pseudo_stokes_I)
+    {
+        paired_data["PCPhsRf2"] = "PCPhsRm2";
+        paired_data["PCOffRf2"] = "PCOffRm2";
+    }
 
     // Reverse mapping for paired data
     std::set< std::string > paired_secondaries;
@@ -2536,8 +2700,10 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
             auto text = fLastAxis->text(x_pos, y_pos, table_data[row][col]);
             text->font_size(font_size);
 
-            // Apply color coding for PC amplitude rows
-            if(table_headers[row] == "PC amp" && col < static_cast< size_t >(n_channel_plots))
+            // Apply color coding for PC amplitude rows (match "PC amp" exactly or any label containing "amp")
+            bool is_amp_row = (table_headers[row] == "PC amp") ||
+                              (table_headers[row].find("amp") != std::string::npos);
+            if(is_amp_row && col < static_cast< size_t >(n_channel_plots))
             {
                 try
                 {

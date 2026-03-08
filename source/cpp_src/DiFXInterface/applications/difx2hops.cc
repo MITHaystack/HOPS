@@ -39,6 +39,7 @@ int main(int argc, char** argv)
     bool use_legacy_bands = false;
     bool use_legacy_stcodes = false;
     bool attach_difx_input = false;
+    bool difxio_localdir = false;
     bool export_as_mark4 = false;
     double bandwidth = 0;
 
@@ -83,6 +84,7 @@ int main(int argc, char** argv)
     app.add_option("-b,--band", freq_bands,
                    "set frequency band codes, must pass triplet as -b <code> <freq_low> <freq_high> (in MHz) if none specified "
                    "and '-L' flag not passed, no band assignment will be made");
+    app.add_flag("-l,--localdir", difxio_localdir, "enable difxio --localdir option (search for .input files in local directory)");
     app.add_flag("-L,--legacy-bands", use_legacy_bands, legacy_freq_bands_help.c_str())->excludes("-b");
     app.add_flag("-C,--legacy-station-codes", use_legacy_stcodes,
                  "use the legacy station code map with assigning mk4 station IDs.");
@@ -90,6 +92,7 @@ int main(int argc, char** argv)
     app.add_option("-g,--freq-groups", freq_groups, "include data only from the specified frequency groups")->delimiter(',');
     app.add_option("-w,--bandwidth", bandwidth, "include data only channels matching this bandwidth (in MHz)");
     app.add_flag("-a,--attach-difx-input", attach_difx_input, "attach the DiFX .input data to the visibility object tags");
+
 
     CLI11_PARSE(app, argc, argv);
 
@@ -198,6 +201,7 @@ int main(int argc, char** argv)
         if(MHO_DirectoryInterface::IsDirectory(input_dir))
         {
             MHO_DiFXInterface difxInterface;
+            if(difxio_localdir){ difxInterface.SetTryLocalDirectoryTrue(); }
             difxInterface.SetInputDirectory(input_dir);
             difxInterface.SetOutputDirectory(output_directory);
             difxInterface.SetStationCodes(&stcode_map);

@@ -26,6 +26,11 @@ if(ENABLE_STEPWISE_CHECK)
     hops_add_cxxflag(HOPS_ENABLE_STEPWISE_CHECK)
 endif(ENABLE_STEPWISE_CHECK)
 
+option(HOPS_ENABLE_PROFILER "Enable the built-in profiler tool for the HOPS4 code" OFF)
+if(HOPS_ENABLE_PROFILER)
+    hops_add_cxxflag(HOPS_USE_PROFILER)
+endif(HOPS_ENABLE_PROFILER)
+
 option(HOPS_ENABLE_DEV_TODO "Enable developer to-do/fix-me compiler messages" OFF)
 if(HOPS_ENABLE_DEV_TODO)
     hops_add_cxxflag(HOPS_ENABLE_DEV_TODO)

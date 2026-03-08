@@ -25,13 +25,17 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SBDTableGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayRate.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearch.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearchOpenMP.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeak.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateFringePeakOptimized.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DelayModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationModel.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LSBOffset.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PhaseCalibrationTrim.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MixedPolYShift.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationDelayCorrection.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationProductRelabeler.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationRelabeler.hh
 )
 
 #list source files #############################################################
@@ -57,7 +61,9 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SBDTableGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayRate.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearch.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearchOpenMP.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeak.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateFringePeakOptimized.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DelayModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationModel.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LSBOffset.cc
@@ -75,6 +81,10 @@ set(CALIBRATION_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Contai
 #compile and install library ###################################################
 add_library (MHO_Calibration SHARED ${CALIBRATION_SOURCEFILES})
 target_link_libraries (MHO_Calibration ${CALIBRATION_LIBS})
+
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(MHO_Calibration OpenMP::OpenMP_CXX)
+endif()
 
 hops_install_headers (${CALIBRATION_HEADERFILES})
 hops_install_libraries (MHO_Calibration )

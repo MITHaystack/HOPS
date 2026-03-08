@@ -13,7 +13,7 @@
 #include "MHO_NormFX.hh"
 #include "MHO_SingleSidebandNormFX.hh"
 
-#include "MHO_InterpolateFringePeak.hh"
+#include "MHO_InterpolateFringePeakOptimized.hh"
 #include "MHO_MBDelaySearch.hh"
 
 namespace hops
@@ -129,7 +129,7 @@ class MHO_BasicFringeFitter: public MHO_FringeFitter
         MHO_SingleSidebandNormFX fSSBNormFXOp; //used when there is only LSB or USB data
 
         MHO_MBDelaySearch* fMBDSearch;
-        MHO_InterpolateFringePeak fPeakInterpolator;
+        MHO_InterpolateFringePeakOptimized fPeakInterpolator;
         visibility_type* vis_data;
         weight_type* wt_data;
         visibility_type* sbd_data;

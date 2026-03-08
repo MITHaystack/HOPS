@@ -23,6 +23,7 @@ MHO_IonosphericPhaseCorrection::~MHO_IonosphericPhaseCorrection(){};
 
 bool MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
+    profiler_scope();
     auto pp_ax = &(std::get< POLPROD_AXIS >(*in));
     auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
 

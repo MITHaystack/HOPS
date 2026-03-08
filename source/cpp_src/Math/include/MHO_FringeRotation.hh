@@ -82,6 +82,14 @@ class MHO_FringeRotation
          */
         void SetOptimizeClosureFalse() { fOptimizeClosure = false; }
 
+        /**
+         * @brief Public accessor for the sideband correction phase angle.
+         * Returns the value of calc_sideband_correction(mbd), which depends only on mbd
+         * and the sideband/closure settings. Used to factor vrot into per-channel
+         * constant and per-AP varying parts for efficient inner-loop computation.
+         */
+        double CalcSidebandCorrection(double mbd) const { return calc_sideband_correction(mbd); }
+
     private:
         static const std::complex< double > fImagUnit;
 

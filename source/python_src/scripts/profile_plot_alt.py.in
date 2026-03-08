@@ -1,0 +1,368 @@
+#!@PY_EXE@
+"""
+Flame graph visualization of MHO_Profiler event logs.
+
+Default: one subplot per thread.
+With -c: all threads stacked in a single plot on a shared time axis.
+
+Usage:
+  python3 profile_plot.py [events.json] [-c] [-o output.png]
+"""
+
+import argparse
+import json
+import sys
+from collections import defaultdict
+
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+
+
+# ---------------------------------------------------------------------------
+# Parsing
+# ---------------------------------------------------------------------------
+
+def load_events(path):
+    """
+    Load profiler events from a JSON file.
+
+    First attempts to extract from a .frng.json structure using the path
+      .[].tags.parameters.profile.events  (top-level may be list or dict)
+    collecting all non-null lists found across every entry.
+
+    If that yields nothing (structure absent or all null), falls back to
+    treating the file directly as a flat array of event objects.
+    """
+    with open(path) as f:
+        data = json.load(f)
+
+    # Collect candidate items from either a list or a dict of objects
+    if isinstance(data, list):
+        candidates = data
+    elif isinstance(data, dict):
+        candidates = list(data.values())
+    else:
+        candidates = []
+
+    # Try frng extraction: .[].tags.parameters.profile.events
+    events = []
+    for item in candidates:
+        try:
+            ev = item["tags"]["parameters"]["profile"]["events"]
+            if isinstance(ev, list):
+                events.extend(ev)
+        except (KeyError, TypeError):
+            pass
+    if events:
+        print(f"Extracted {len(events)} event(s) from frng structure in {path}",
+              file=sys.stderr)
+        return events
+
+    # Fallback: file is already a flat events array
+    if isinstance(data, list):
+        return data
+
+    print(f"WARNING: could not interpret {path} as events or frng JSON", file=sys.stderr)
+    return []
+
+
+def parse_events(path):
+    """
+    Parse events.json. Returns a list of call dicts:
+      { thread_id, funcname, filename, depth, t_start, t_stop }
+    """
+    events = load_events(path)
+
+    stacks = defaultdict(list)        # (tid, file, func) -> [(t_start, depth)]
+    global_stack = defaultdict(list)  # tid -> [key, ...]
+    calls = []
+
+    for ev in events:
+        key = (ev["thread_id"], ev["filename"], short_name(ev["funcname"]))
+        tid = ev["thread_id"]
+        if ev["flag"] == 1:
+            depth = len(global_stack[tid])
+            global_stack[tid].append(key)
+            stacks[key].append((ev["time"], depth))
+        elif ev["flag"] == 2:
+            if stacks[key]:
+                t_start, depth = stacks[key].pop()
+                calls.append({
+                    "thread_id": tid,
+                    "funcname": short_name(ev["funcname"]),
+                    "filename": ev["filename"],
+                    "depth": depth,
+                    "t_start": t_start,
+                    "t_stop": ev["time"],
+                })
+                # Remove from global stack (innermost matching entry)
+                if key in global_stack[tid]:
+                    idx = (len(global_stack[tid]) - 1
+                           - global_stack[tid][::-1].index(key))
+                    global_stack[tid].pop(idx)
+            else:
+                print(f"WARNING: unmatched stop for {ev['funcname']}",
+                      file=sys.stderr)
+
+    for key, stack in stacks.items():
+        if stack:
+            print(f"WARNING: {len(stack)} unmatched start(s) for {key[2]}",
+                  file=sys.stderr)
+
+    return calls
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def short_name(funcname):
+    """Strip return type, qualifiers, namespace prefix, and arguments."""
+    # Remove arguments (everything from first '(' onwards)
+    paren = funcname.find('(')
+    if paren != -1:
+        funcname = funcname[:paren]
+    # Remove return type and qualifiers (last whitespace-separated token)
+    parts = funcname.split()
+    funcname = parts[-1] if parts else funcname
+    # Remove hops:: namespace prefix
+    if funcname.startswith('hops::'):
+        funcname = funcname[6:]
+    return funcname
+
+def short_thread(tid):
+    return f"...{tid & 0xFFFFFF:06x}"
+
+def build_color_map(calls):
+    """Assign a consistent color to every unique funcname."""
+    funcs = sorted(set(c["funcname"] for c in calls))
+    cmap = plt.get_cmap("tab20", max(len(funcs), 1))
+    return {fn: cmap(i % 20) for i, fn in enumerate(funcs)}
+
+
+# ---------------------------------------------------------------------------
+# Drawing
+# ---------------------------------------------------------------------------
+
+BAR_H = 0.8       # height of each flame bar
+ROW_HEIGHT = 1.1  # vertical spacing between depth levels
+
+
+def draw_flames(ax, calls, color_map, t_offset=0.0, y_offset=0, x_span=None):
+    """
+    Draw one set of flame-graph bars on *ax*.
+
+    t_offset  - subtract this from all times (so x starts near 0)
+    y_offset  - shift all bars up by this many depth units
+    x_span    - total x range (used for callout label placement)
+    """
+    if x_span is None or x_span == 0:
+        x_span = max((c["t_stop"] - c["t_start"]) for c in calls) or 1.0
+
+    for c in calls:
+        x = c["t_start"] - t_offset
+        w = c["t_stop"]  - c["t_start"]
+        y = (c["depth"] + y_offset) * ROW_HEIGHT
+        color = color_map[c["funcname"]]
+
+        rect = Rectangle((x, y), w, BAR_H,
+                          linewidth=0.5, edgecolor="white",
+                          facecolor=color, alpha=0.85)
+        ax.add_patch(rect)
+
+
+def draw_callout_labels(ax, calls, color_map, t_offset=0.0, y_offset=0, x_span=None):
+    """Draw one callout label per unique function using L-shaped connector lines."""
+    if x_span is None or x_span == 0:
+        x_span = max((c["t_stop"] - c["t_start"]) for c in calls) or 1.0
+
+    # Find the widest bar for each unique function
+    best = {}
+    for c in calls:
+        fn = c["funcname"]
+        w = c["t_stop"] - c["t_start"]
+        if fn not in best or w > (best[fn]["t_stop"] - best[fn]["t_start"]):
+            best[fn] = c
+
+    # Sort by bar y-centre to minimise line crossings on the right side
+    items = sorted(best.values(),
+                   key=lambda c: (c["depth"] + y_offset) * ROW_HEIGHT)
+    n = len(items)
+    max_y = max((c["depth"] + y_offset) * ROW_HEIGHT + BAR_H for c in calls)
+
+    spine_x  = x_span * 1.02   # x position of the first vertical segment
+    dx_step  = x_span * 0.01                          # horizontal stagger between vertical segments
+    dy_step  = 1.5 * (ROW_HEIGHT - BAR_H) / max(n, 1)   # spread horizontal legs across the padding gap
+    text_x   = spine_x + n * dx_step + x_span * 0.005
+
+    for i, c in enumerate(items):
+        fn = c["funcname"]
+        color = color_map[fn]
+        bar_cx  = c["t_start"] - t_offset + (c["t_stop"] - c["t_start"]) / 2
+        bar_cy  = (c["depth"] + y_offset) * ROW_HEIGHT + BAR_H / 2
+        label_y = (i / max(n - 1, 1)) * max_y if n > 1 else max_y / 2
+
+        turn_x  = spine_x + i * dx_step       # unique x for this vertical leg
+        elbow_y = bar_cy  + i * dy_step        # unique y for this horizontal leg
+
+        # Vertical segment: bar centre -> elbow height
+        if bar_cy != elbow_y:
+            ax.plot([bar_cx, bar_cx], [bar_cy, elbow_y],
+                    color=color, lw=0.8, clip_on=False, zorder=5)
+        # Horizontal segment: bar -> elbow
+        ax.plot([bar_cx, turn_x], [elbow_y, elbow_y],
+                color=color, lw=0.8, clip_on=False, zorder=5)
+        # Vertical segment: elbow -> label height
+        if elbow_y != label_y:
+            ax.plot([turn_x, turn_x], [elbow_y, label_y],
+                    color=color, lw=0.8, clip_on=False, zorder=5)
+        # Final horizontal segment: vertical leg -> text
+        ax.plot([turn_x, text_x], [label_y, label_y],
+                color=color, lw=0.8, clip_on=False, zorder=5)
+        # Label text
+        ax.text(text_x, label_y, fn,
+                fontsize=7, va="center", clip_on=False)
+
+
+# ---------------------------------------------------------------------------
+# Plot modes
+# ---------------------------------------------------------------------------
+
+def plot_per_thread(calls, color_map, output):
+    by_thread = defaultdict(list)
+    for c in calls:
+        by_thread[c["thread_id"]].append(c)
+    thread_ids = sorted(by_thread.keys())
+    n = len(thread_ids)
+
+    fig, axes = plt.subplots(n, 1,
+                             figsize=(18, max(4, 3 * n)),
+                             squeeze=False)
+    fig.suptitle("Flame Graph - Per Thread", fontsize=12, y=1.01)
+
+    for i, tid in enumerate(thread_ids):
+        ax = axes[i][0]
+        tcalls = by_thread[tid]
+        t_min  = min(c["t_start"] for c in tcalls)
+        t_max  = max(c["t_stop"]  for c in tcalls)
+        d_max  = max(c["depth"]   for c in tcalls)
+        x_span = t_max - t_min or 1.0
+
+        draw_flames(ax, tcalls, color_map,
+                    t_offset=t_min, x_span=x_span)
+        draw_callout_labels(ax, tcalls, color_map,
+                            t_offset=t_min, x_span=x_span)
+
+        ax.set_xlim(0, x_span)
+        ax.set_ylim(-0.2 * ROW_HEIGHT, (d_max + 1) * ROW_HEIGHT)
+        ax.set_title(f"Thread {short_thread(tid)}  (id={tid})", fontsize=9)
+        ax.set_ylabel("Depth")
+        ax.set_yticks([d * ROW_HEIGHT for d in range(d_max + 1)])
+        ax.set_yticklabels(range(d_max + 1))
+        if i == n - 1:
+            ax.set_xlabel("Time (s)")
+
+    fig.subplots_adjust(right=0.55)
+    _save_or_show(fig, output)
+
+
+def plot_consolidated(calls, color_map, output):
+    """
+    Single plot: all threads overlaid on a shared (time, depth) axis.
+    Bars are coloured by thread so parallel calls at the same depth are
+    distinguishable; transparency lets overlapping rectangles show through.
+    Function labels are still drawn when a bar is wide enough.
+    """
+    thread_ids = sorted(set(c["thread_id"] for c in calls))
+    n = len(thread_ids)
+
+    t_min   = min(c["t_start"] for c in calls)
+    t_max   = max(c["t_stop"]  for c in calls)
+    x_span  = t_max - t_min or 1.0
+    max_depth = max(c["depth"] for c in calls)
+
+    fig, ax = plt.subplots(figsize=(18, max(4, (max_depth + 1) * 1.5)))
+    fig.suptitle("Flame Graph - Consolidated (all threads, shared axes)",
+                 fontsize=12)
+
+    for c in calls:
+        x     = c["t_start"] - t_min
+        w     = c["t_stop"]  - c["t_start"]
+        y     = c["depth"] * ROW_HEIGHT
+        color = color_map[c["funcname"]]
+
+        rect = Rectangle((x, y), w, BAR_H,
+                          linewidth=0.5, edgecolor="white",
+                          facecolor=color, alpha=0.75)
+        ax.add_patch(rect)
+
+    draw_callout_labels(ax, calls, color_map, t_offset=t_min, x_span=x_span)
+
+    ax.set_xlim(0, x_span)
+    ax.set_ylim(-0.2 * ROW_HEIGHT, (max_depth + 1) * ROW_HEIGHT)
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Depth")
+    ax.set_yticks([d * ROW_HEIGHT for d in range(max_depth + 1)])
+    ax.set_yticklabels(range(max_depth + 1))
+
+    fig.subplots_adjust(right=0.55)
+    _save_or_show(fig, output)
+
+
+# ---------------------------------------------------------------------------
+# Shared utilities
+# ---------------------------------------------------------------------------
+
+def _add_legend(fig, calls, color_map):
+    funcs = sorted(set(c["funcname"] for c in calls))
+    patches = [mpatches.Patch(color=color_map[fn], label=short_name(fn))
+               for fn in funcs]
+    ncol = min(len(patches), 3)
+    fig.legend(handles=patches,
+               loc="lower center",
+               ncol=ncol,
+               fontsize=7,
+               bbox_to_anchor=(0.5, 0),
+               bbox_transform=fig.transFigure)
+    plt.tight_layout(rect=[0, 0.05 + 0.04 * ((len(patches) + ncol - 1) // ncol), 1, 1])
+
+
+def _save_or_show(fig, output):
+    if output:
+        fig.savefig(output, dpi=150, bbox_inches="tight")
+        print(f"Saved to {output}")
+    else:
+        plt.show()
+
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Flame graph visualization of MHO_Profiler event logs.")
+    parser.add_argument("input", nargs="?", default="events.json",
+                        help="Path to events JSON file (default: events.json)")
+    parser.add_argument("-c", "--consolidate", action="store_true",
+                        help="Show all threads on a single shared time axis")
+    parser.add_argument("-o", "--output", default=None,
+                        help="Save plot to file (e.g. flame.png) instead of displaying")
+    args = parser.parse_args()
+
+    calls = parse_events(args.input)
+    if not calls:
+        print("No events to plot.")
+        return
+
+    color_map = build_color_map(calls)
+
+    if args.consolidate:
+        plot_consolidated(calls, color_map, args.output)
+    else:
+        plot_per_thread(calls, color_map, args.output)
+
+
+if __name__ == "__main__":
+    main()

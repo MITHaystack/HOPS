@@ -263,14 +263,23 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
 
         //associated info for channel index re-mapping (needed for combining double sideband channel pairs)
         std::map< std::size_t, std::size_t > fChannelIndexToFreqPointIndex;
+        //precomputed flat lookup: fMBDBinForChannel[ch] = fMBDBinMap[fChannelIndexToFreqPointIndex[ch]]
+        //avoids two std::map traversals per (sbd, dr, ch) iteration in the hot loop
+        std::vector< std::size_t > fMBDBinForChannel;
 
 #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< mbd_type >;
+        using FFT_2D_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< mbd_dr_type >;
 #else
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< mbd_type >;
+        using FFT_2D_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< mbd_dr_type >;
 #endif
 
-        FFT_ENGINE_TYPE fFFTEngine;
+        FFT_ENGINE_TYPE fFFTEngine;         //1D engine - used only for MBD axis label setup
+        FFT_2D_ENGINE_TYPE fBatchedFFTEngine; //2D engine - batched FFT over all DR bins at once
+
+        //2D [DR x MBD] host buffer for batched FFT (see MHO_MBDelaySearchCUDA for the GPU analogue)
+        mbd_dr_type fSearchBuffer;
 
         MHO_CyclicRotator< mbd_type > fCyclicRotator;
 
