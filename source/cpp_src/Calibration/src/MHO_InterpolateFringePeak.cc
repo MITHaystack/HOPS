@@ -265,8 +265,7 @@ void MHO_InterpolateFringePeak::max555(MHO_NDArrayWrapper< double, 3 >& drf, // 
         epsilon = 0.0001; // convergence criterion
 
     // initialize search to center of cube
-    for(l = 0; l < 3; l++)
-        center[l] = 0.0;
+    for(l = 0; l < 3; l++){ center[l] = 0.0;}
     dx0 = dx1 = dx2 = 0.4;
 
     do
@@ -291,7 +290,9 @@ void MHO_InterpolateFringePeak::max555(MHO_NDArrayWrapper< double, 3 >& drf, // 
 
         bestval = 0.0;
         for(i = 0; i < 11; i++)
+        {
             for(j = 0; j < 11; j++)
+            {
                 for(k = 0; k < 11; k++)
                 {
                     x[0] = center[0] + dx0 * (i - 5);
@@ -308,9 +309,13 @@ void MHO_InterpolateFringePeak::max555(MHO_NDArrayWrapper< double, 3 >& drf, // 
                             xbest[l] = x[l];
                     }
                 }
+            }
+        }
         // relocate center and reduce grid size
         for(l = 0; l < 3; l++)
+        {
             center[l] = xbest[l];
+        }
         dx0 /= 5.0;
         dx1 /= 5.0;
         dx2 /= 5.0;
@@ -319,18 +324,23 @@ void MHO_InterpolateFringePeak::max555(MHO_NDArrayWrapper< double, 3 >& drf, // 
     while(dx0 > epsilon || dx1 > epsilon || dx2 > epsilon);
     // return result to caller
     *drfmax = bestval;
-    for(l = 0; l < 3; l++)
-        xi[l] = xbest[l];
+    for(l = 0; l < 3; l++){ xi[l] = xbest[l]; }
 }
 
 double MHO_InterpolateFringePeak::dwin(double value, double lower, double upper)
 {
     if(value < lower)
+    {
         return (lower);
+    }
     else if(value > upper)
+    {
         return (upper);
+    }
     else
+    {
         return (value);
+    }
 }
 
 void MHO_InterpolateFringePeak::interp555(MHO_NDArrayWrapper< double, 3 >& drf, // input: real function
@@ -357,11 +367,15 @@ void MHO_InterpolateFringePeak::interp555(MHO_NDArrayWrapper< double, 3 >& drf, 
     *drfval = 0.0;
 
     for(i = 0; i < 5; i++)
+    {
         for(j = 0; j < 5; j++)
+        {
             for(k = 0; k < 5; k++)
             {
                 *drfval += a[i][0] * a[j][1] * a[k][2] * drf(i, j, k);
             }
+        }
+    }
 }
 
 } // namespace hops
