@@ -187,8 +187,12 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
         {
             auto pre_dims = fSBDDrWorkspace.GetDimensionArray();
             for(std::size_t i = 0; i < pre_dims[CHANNEL_AXIS]; i++)
+            {
                 for(std::size_t j = 0; j < pre_dims[TIME_AXIS]; j++)
+                {
                     fSBDDrWorkspace(0, i, j, 0) = (*in)(0, i, j, 0);
+                }
+            }
             ok = fDelayRateCalc.Execute();
             check_step_fatal(ok, "fringe", "Delay rate pre-pass execution failed." << eom);
             fDRAxis = std::get< TIME_AXIS >(sbd_dr_data);
@@ -230,8 +234,12 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
                 //copy the SBD slice into the thread-local workspace
                 auto dims = local_ws.GetDimensionArray();
                 for(std::size_t i = 0; i < dims[CHANNEL_AXIS]; i++)
+                {
                     for(std::size_t j = 0; j < dims[TIME_AXIS]; j++)
+                    {
                         local_ws(0, i, j, 0) = (*in)(0, i, j, sbd_idx);
+                    }
+                }
 
                 //transform to delay rate space
                 local_drc.Execute();
@@ -239,8 +247,12 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
                 //zero the 2D [DR x MBD] buffer then scatter-accumulate all channels
                 local_sb.ZeroArray();
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
+                {
                     for(std::size_t ch = 0; ch < nch; ch++)
+                    {
                         local_sb(dr_idx, fMBDBinForChannel[ch]) += local_dr(0, ch, dr_idx, 0);
+                    }
+                }
 
                 //batched FFT over all DR slices at once
                 local_fft.Execute();
