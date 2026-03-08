@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <complex>
+#include <vector>
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_TableContainer.hh"
@@ -86,6 +87,7 @@ class MHO_SingleSidebandNormFX: public MHO_NormFX //MHO_UnaryOperator< visibilit
     private:
         std::size_t fInDims[VIS_NDIM];
         std::size_t fOutDims[VIS_NDIM];
+        std::vector< std::size_t > fLSBChannelIndices; //cached list of LSB channel indices
 
         typedef MHO_NaNMasker< visibility_type > nanMaskerType;
         typedef MHO_ComplexConjugator< visibility_type > conjType;

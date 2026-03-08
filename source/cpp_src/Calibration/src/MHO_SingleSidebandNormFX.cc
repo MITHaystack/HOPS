@@ -42,13 +42,13 @@ bool MHO_SingleSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType
             return false;
         }
 
-        fNaNBroadcaster.SetArgs(out);
-        status = fNaNBroadcaster.Initialize();
-        if(!status)
-        {
-            msg_error("calibration", "could not initialize NaN mask broadcast in MHO_SingleSidebandNormFX" << eom);
-            return false;
-        }
+        // fNaNBroadcaster.SetArgs(out);
+        // status = fNaNBroadcaster.Initialize();
+        // if(!status)
+        // {
+        //     msg_error("calibration", "could not initialize NaN mask broadcast in MHO_SingleSidebandNormFX" << eom);
+        //     return false;
+        // }
 
         fFFTEngine.SetArgs(out);
         fFFTEngine.DeselectAllAxes();
@@ -70,6 +70,19 @@ bool MHO_SingleSidebandNormFX::InitializeOutOfPlace(const XArgType* in, XArgType
             return false;
         }
 
+        //cache the indices of LSB channels so we avoid repeated JSON metadata lookups in Execute
+        fLSBChannelIndices.clear();
+        auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
+        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+        {
+            std::string net_sideband;
+            chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
+            if(net_sideband == "L")
+            {
+                fLSBChannelIndices.push_back(ch);
+            }
+        }
+
         fInitialized = true;
     }
 
@@ -84,8 +97,8 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         profiler_scope();
         bool status;
 
-        //copy in the visibility data in a zero-padded fashion (zeros go on the end here)
-        out->ZeroArray();
+        // //copy in the visibility data in a zero-padded fashion (zeros go on the end here)
+        // out->ZeroArray();
         status = fZeroPadder.Execute(); //use pre-configured zero-padder operator
         if(!status)
         {
@@ -94,14 +107,14 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
             return false;
         }
 
-        //filter out any NaNs
-        status = fNaNBroadcaster.Execute();
-        if(!status)
-        {
-            msg_error("calibration", "could not execute NaN masker in MHO_SingleSidebandNormFX" << eom);
-            
-            return false;
-        }
+        // //filter out any NaNs
+        // status = fNaNBroadcaster.Execute();
+        // if(!status)
+        // {
+        //     msg_error("calibration", "could not execute NaN masker in MHO_SingleSidebandNormFX" << eom);
+        // 
+        //     return false;
+        // }
 
         // //apply the data weights if set
         // if(this->fWeights != nullptr)
@@ -152,19 +165,13 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
 
         //for lower sideband channels we complex conjugate the data after the FFT
         //this is equivalent to a frequency axis flip and conjugate before the FFT
-        auto chan_ax = &(std::get< CHANNEL_AXIS >(*out));
-        for(std::size_t ch = 0; ch < chan_ax->GetSize(); ch++)
+        //LSB channel indices are pre-cached in fLSBChannelIndices during Initialize
+        for(std::size_t ch : fLSBChannelIndices)
         {
-            std::string net_sideband;
-            bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", net_sideband);
-            if(net_sideband == "L")
+            auto slice = out->SliceView(":", ch, ":", ":");
+            for(auto it = slice.begin(); it != slice.end(); it++)
             {
-                //just the slice that matches this channel
-                auto slice = out->SliceView(":", ch, ":", ":");
-                for(auto it = slice.begin(); it != slice.end(); it++)
-                {
-                    *it = std::conj(*it);
-                }
+                *it = std::conj(*it);
             }
         }
 
