@@ -18,7 +18,7 @@
 #include "MHO_BasicFringeUtilities.hh"
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_InitialFringeInfo.hh"
-#include "MHO_InterpolateFringePeak.hh"
+#include "MHO_InterpolateFringePeakOptimized.hh"
 #include "MHO_VexInfoExtractor.hh"
 
 //TODO FIXME -- remove this

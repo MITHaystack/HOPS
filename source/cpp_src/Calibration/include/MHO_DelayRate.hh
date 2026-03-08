@@ -9,7 +9,7 @@
 
 #include "MHO_BinaryOperator.hh"
 #include "MHO_CyclicRotator.hh"
-#include "MHO_EndZeroPadder.hh"
+#include "MHO_EndZeroPadderOptimized.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
 #include "MHO_SubSample.hh"
 
@@ -157,7 +157,7 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         MHO_SubSample< sbd_type > fSubSampler;
         MHO_CyclicRotator< sbd_type > fCyclicRotator;
 
-        MHO_EndZeroPadder< visibility_type > fZeroPadder;
+        MHO_EndZeroPadderOptimized< visibility_type > fZeroPadder;
         FFT_ENGINE_TYPE fFFTEngine;
 
         int fDRSPSize;
