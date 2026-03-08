@@ -117,6 +117,7 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
         {
             if(fInitialized)
             {
+                profiler_scope();
                 std::array< std::size_t, XArgType::rank::value > out_dim;
                 std::array< std::size_t, XArgType::rank::value > out_loc;
                 std::array< std::size_t, XArgType::rank::value > in_loc;

@@ -21,6 +21,7 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
     fInitialized = false;
     if(in1 != nullptr && in2 != nullptr && out != nullptr)
     {
+        profiler_scope();
         bool ok = true;
 
         in1->GetDimensions(fInDims);
@@ -123,7 +124,6 @@ bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArg
 {
     profiler_scope();
     bool ret_val = ExecuteImplOptimized(in1, in2, out);
-    
     return ret_val;
 };
 
