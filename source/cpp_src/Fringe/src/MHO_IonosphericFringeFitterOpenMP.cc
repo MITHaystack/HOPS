@@ -37,14 +37,14 @@ namespace hops
 MHO_IonosphericFringeFitterOpenMP::MHO_IonosphericFringeFitterOpenMP(MHO_FringeData* data): MHO_BasicFringeFitter(data)
 {
     ion_npts = MAX_ION_PTS;
-    delete this->fMBDSearch; //delete the base class version of fMBDSearch (which could be OpenMP enabled)
-    this->fMBDSearch = new MHO_MBDelaySearch(); //use single threaded version for this fringe fitter
+    // delete this->fMBDSearch; //delete the base class version of fMBDSearch (which could be OpenMP enabled)
+    // this->fMBDSearch = new MHO_MBDelaySearch(); //use single threaded version for this fringe fitter
 };
 
 MHO_IonosphericFringeFitterOpenMP::~MHO_IonosphericFringeFitterOpenMP()
 {
-    delete this->fMBDSearch;
-    this->fMBDSearch = nullptr;
+    // delete this->fMBDSearch;
+    // this->fMBDSearch = nullptr;
 };
 
 void MHO_IonosphericFringeFitterOpenMP::Run()

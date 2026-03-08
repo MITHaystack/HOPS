@@ -11,7 +11,6 @@ Usage:
 
 import argparse
 import json
-import re
 import sys
 from collections import defaultdict
 
@@ -80,7 +79,7 @@ def parse_events(path):
     calls = []
 
     for ev in events:
-        key = (ev["thread_id"], ev["filename"], ev["funcname"])
+        key = (ev["thread_id"], ev["filename"], short_name(ev["funcname"]))
         tid = ev["thread_id"]
         if ev["flag"] == 1:
             depth = len(global_stack[tid])
@@ -91,7 +90,7 @@ def parse_events(path):
                 t_start, depth = stacks[key].pop()
                 calls.append({
                     "thread_id": tid,
-                    "funcname": ev["funcname"],
+                    "funcname": short_name(ev["funcname"]),
                     "filename": ev["filename"],
                     "depth": depth,
                     "t_start": t_start,
@@ -119,22 +118,17 @@ def parse_events(path):
 # ---------------------------------------------------------------------------
 
 def short_name(funcname):
-    """Extract Class::method() from a C++ pretty-function string."""
-    # Strip leading qualifiers
-    name = re.sub(r'^(virtual|static|inline|explicit)\s+', '', funcname).strip()
-    # Take only the part before the first '(' to avoid matching inside parameter types
-    before_paren = name.split('(')[0].strip() if '(' in name else name
-    # Iteratively strip template parameters so 'Foo<T>::bar' becomes 'Foo::bar'
-    prev = None
-    while prev != before_paren:
-        prev = before_paren
-        before_paren = re.sub(r'<[^<>]*>', '', before_paren)
-    # Split on '::' and keep the last two components (Class::method)
-    parts = [p.strip() for p in before_paren.split('::') if p.strip()]
-    if len(parts) >= 2:
-        return '::'.join(parts[-2:]) + '()'
-    elif parts:
-        return parts[-1] + '()'
+    """Strip return type, qualifiers, namespace prefix, and arguments."""
+    # Remove arguments (everything from first '(' onwards)
+    paren = funcname.find('(')
+    if paren != -1:
+        funcname = funcname[:paren]
+    # Remove return type and qualifiers (last whitespace-separated token)
+    parts = funcname.split()
+    funcname = parts[-1] if parts else funcname
+    # Remove hops:: namespace prefix
+    if funcname.startswith('hops::'):
+        funcname = funcname[6:]
     return funcname
 
 def short_thread(tid):
