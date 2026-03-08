@@ -15,6 +15,21 @@ def short_thread(thread_id):
     return f"...{thread_id & 0xFFFFFF:06x}"
 
 
+def strip_funcname(funcname):
+    """Strip return type, qualifiers, namespace prefix, and arguments."""
+    # Remove arguments (everything from first '(' onwards)
+    paren = funcname.find('(')
+    if paren != -1:
+        funcname = funcname[:paren]
+    # Remove return type and qualifiers (last whitespace-separated token)
+    parts = funcname.split()
+    funcname = parts[-1] if parts else funcname
+    # Remove hops:: namespace prefix
+    if funcname.startswith('hops::'):
+        funcname = funcname[6:]
+    return funcname
+
+
 def load_events(path):
     """
     Load profiler events from a JSON file.
@@ -72,7 +87,7 @@ def main(path="events.json", consolidate=False):
     stats = defaultdict(lambda: {"total_time": 0.0, "calls": 0, "min_depth": float("inf")})
 
     for ev in events:
-        key = (ev["thread_id"], ev["filename"], ev["funcname"])
+        key = (ev["thread_id"], ev["filename"], strip_funcname(ev["funcname"]))
         thread_id = ev["thread_id"]
         if ev["flag"] == 1:
             depth = len(global_stack[thread_id])
