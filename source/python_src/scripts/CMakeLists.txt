@@ -50,6 +50,7 @@ if (PY_EXE)
             fringe_vinspect
             compare_fringe_summary
             profile_plot
+            profile_plot_alt
             profile_report
         )
 
