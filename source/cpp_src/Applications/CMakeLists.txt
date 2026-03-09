@@ -27,7 +27,7 @@ set(SOURCE_BASENAMES
     fplot4
     alist4
     fourfit4
-    blingfit
+    #blingfit
 )
 
 set(TEST_BASENAMES
