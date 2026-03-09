@@ -13,7 +13,7 @@ cd $EXP_DIR
 HOPS_VPAL_FRINGE_FITTER=fourfit4
 
 #don't let OpenMP grab too many processes (if happens to be enabled)
-#since pythong spwans many jobs at once
+#since python spwans many jobs at once
 export OMP_NUM_THREADS=1
 export OMP_PROC_BIND=false
 export OMP_WAIT_POLICY=PASSIVE
