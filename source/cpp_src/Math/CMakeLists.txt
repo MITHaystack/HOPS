@@ -11,6 +11,7 @@ set (MATH_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UniformGridPointsCalculator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeRotation.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MathUtilities.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LinearAlgebraUtilities.hh
 )
 
 

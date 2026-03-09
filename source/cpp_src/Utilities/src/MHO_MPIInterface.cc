@@ -485,6 +485,91 @@ void MHO_MPIInterface::SetupSubGroups()
         }
     }
 #endif
+
 }
+
+
+std::set<std::string>
+MHO_MPIInterface::MergeStringSet(const std::set<std::string>& local_set)
+{
+    // Serialize the local set
+    std::vector<int> key_lengths;
+    std::string concatenated_keys;
+
+    for (const auto& key : local_set)
+    {
+        key_lengths.push_back(static_cast<int>(key.size()));
+        concatenated_keys += key;
+    }
+
+    int local_entry_count = static_cast<int>(local_set.size());
+    int local_char_count = static_cast<int>(concatenated_keys.size());
+
+    // Gather counts across ranks
+    std::vector<int> entry_counts(fNProcesses);
+    std::vector<int> char_counts(fNProcesses);
+
+    MPI_Gather(&local_entry_count, 1, MPI_INT,
+               entry_counts.data(), 1, MPI_INT,
+               0, MPI_COMM_WORLD);
+
+    MPI_Gather(&local_char_count, 1, MPI_INT,
+               char_counts.data(), 1, MPI_INT,
+               0, MPI_COMM_WORLD);
+
+    std::set<std::string> merged;
+
+    if (fGlobalProcessID == 0)
+    {
+        // Compute displacements
+        std::vector<int> entry_displs(fNProcesses, 0);
+        std::vector<int> char_displs(fNProcesses, 0);
+        for (int i = 1; i < fNProcesses; ++i)
+        {
+            entry_displs[i] = entry_displs[i-1] + entry_counts[i-1];
+            char_displs[i]  = char_displs[i-1] + char_counts[i-1];
+        }
+
+        int total_entries = entry_displs.back() + entry_counts.back();
+        int total_chars   = char_displs.back()  + char_counts.back();
+
+        // Allocate receive buffers
+        std::vector<int> all_key_lengths(total_entries);
+        std::vector<char> all_chars(total_chars);
+
+        // Gather serialized data
+        MPI_Gatherv(key_lengths.data(), local_entry_count, MPI_INT,
+                    all_key_lengths.data(), entry_counts.data(), entry_displs.data(), MPI_INT,
+                    0, MPI_COMM_WORLD);
+
+        MPI_Gatherv(concatenated_keys.data(), local_char_count, MPI_CHAR,
+                    all_chars.data(), char_counts.data(), char_displs.data(), MPI_CHAR,
+                    0, MPI_COMM_WORLD);
+
+        // Reconstruct merged set
+        size_t pos = 0;
+        for (int i = 0; i < total_entries; ++i)
+        {
+            int len = all_key_lengths[i];
+            std::string key(all_chars.begin() + pos, all_chars.begin() + pos + len);
+            pos += len;
+            merged.insert(std::move(key));
+        }
+    }
+    else
+    {
+        // Non-root ranks just participate in gathers
+        MPI_Gatherv(key_lengths.data(), local_entry_count, MPI_INT,
+                    nullptr, nullptr, nullptr, MPI_INT,
+                    0, MPI_COMM_WORLD);
+
+        MPI_Gatherv(concatenated_keys.data(), local_char_count, MPI_CHAR,
+                    nullptr, nullptr, nullptr, MPI_CHAR,
+                    0, MPI_COMM_WORLD);
+    }
+    return merged;
+}
+
+
 
 } // namespace hops

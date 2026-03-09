@@ -35,12 +35,12 @@ class MHO_ClassIdentityMap
         {
             for(auto it = fFactoryMap.begin(); it != fFactoryMap.end(); it++)
             {
-                delete it->second;
+                if(it->second){delete it->second; it->second = nullptr;}
             }
 
             for(auto it = fJSONConverterMap.begin(); it != fJSONConverterMap.end(); it++)
             {
-                delete it->second;
+                if(it->second){delete it->second; it->second = nullptr;}
             }
         };
 

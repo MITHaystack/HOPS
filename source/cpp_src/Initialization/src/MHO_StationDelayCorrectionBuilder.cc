@@ -11,12 +11,12 @@ bool MHO_StationDelayCorrectionBuilder::Build()
 {
     if(IsConfigurationOk())
     {
-        msg_debug("initialization", "building a manual per-pol delay correction operator." << eom);
+        msg_debug("initialization", "building a manual per-station delay correction operator." << eom);
         //assume attributes are ok for now - TODO add checks!
 
         std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "calibration";
-        double pc_delay_offset = fAttributes["value"].get< double >();
+        double pc_delay_offset = fAttributes["value"].get< double >(); //assumption is nano seconds
         double priority = fFormat["priority"].get< double >();
 
         std::string station_id = ExtractStationIdentifier();

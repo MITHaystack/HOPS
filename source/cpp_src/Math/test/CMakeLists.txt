@@ -11,6 +11,10 @@ set(SOURCE_BASENAMES
     TestUniformGridCalculator2
     TestFastFourierTransform2
     TestTwiddleFactors
+    TestBasicVectorOperations
+    TestBasicMatrixOperations
+    TestBasicMatrixSVD
+    TestBasicMatrixSVDSolve
 )
 
 if(HOPS_USE_FFTW3)
