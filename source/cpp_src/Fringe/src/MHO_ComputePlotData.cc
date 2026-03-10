@@ -2146,4 +2146,128 @@ void MHO_ComputePlotData::dump_manual_pcmodel(mho_json& plot_dict,
     }
 }
 
+void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
+{
+    // Fetch the spec-DR workspace stored by MHO_SpectralLineFringeFitter::Finalize().
+    visibility_type* spec_dr = fContainerStore->GetObject< visibility_type >(std::string("spec_dr"));
+    if(spec_dr == nullptr)
+    {
+        msg_error("fringe", "DumpSpectralLineInfoToJSON: 'spec_dr' container not found in store." << eom);
+        return;
+    }
+
+    if(fVisibilities == nullptr)
+    {
+        msg_error("fringe", "DumpSpectralLineInfoToJSON: 'vis' container not found." << eom);
+        return;
+    }
+
+    int peak_chan = fParamStore->GetAs< int >("/fringe/peak_channel_idx");
+    int peak_dr   = fParamStore->GetAs< int >("/fringe/max_dr_bin");
+    int peak_freq = fParamStore->GetAs< int >("/fringe/peak_freq_bin");
+
+    std::size_t n_dr   = spec_dr->GetDimension(TIME_AXIS);
+    std::size_t n_freq = spec_dr->GetDimension(FREQ_AXIS);
+    std::size_t n_chan  = spec_dr->GetDimension(CHANNEL_AXIS);
+
+    // -----------------------------------------------------------------------
+    // Build the DR axis (ns/s).  Use the pre-stored axis when available,
+    // otherwise reconstruct it from the data dimensions.
+    // -----------------------------------------------------------------------
+    std::vector< double > dr_axis_ns;
+    bool ok = fParamStore->Get("/fringe/sl_dr_axis_ns_per_s", dr_axis_ns);
+    if(!ok || dr_axis_ns.size() != n_dr)
+    {
+        auto& time_ax_vis = std::get< TIME_AXIS >(*fVisibilities);
+        double ap_delta = time_ax_vis(1) - time_ax_vis(0);
+        double ref_freq_hz = fRefFreq * 1e6;
+        dr_axis_ns.resize(n_dr);
+        for(std::size_t k = 0; k < n_dr; k++)
+        {
+            double fr = (static_cast< double >(k) - static_cast< double >(n_dr) / 2.0) /
+                        (static_cast< double >(n_dr) * ap_delta);
+            dr_axis_ns[k] = fr / ref_freq_hz * 1e9;
+        }
+    }
+
+    // Freq axis: copied from vis into spec_dr during search initialisation.
+    auto& freq_ax = std::get< FREQ_AXIS >(*spec_dr);
+
+    // -----------------------------------------------------------------------
+    // 1-D delay-rate spectrum at (peak_chan, peak_freq_bin).
+    // -----------------------------------------------------------------------
+    std::size_t pc = static_cast< std::size_t >(peak_chan);
+    std::size_t pf = static_cast< std::size_t >(peak_freq);
+    std::size_t pd = static_cast< std::size_t >(peak_dr);
+
+    for(std::size_t dr = 0; dr < n_dr; dr++)
+    {
+        double amp = std::abs((*spec_dr)(0, pc, dr, pf));
+        plot_dict["DLYRATE"].push_back(amp);
+        plot_dict["DLYRATE_XAXIS"].push_back(dr_axis_ns[dr]);
+    }
+
+    // -----------------------------------------------------------------------
+    // 1-D frequency spectrum at (peak_chan, peak_DR_bin) - amplitude and phase.
+    // -----------------------------------------------------------------------
+    for(std::size_t f = 0; f < n_freq; f++)
+    {
+        std::complex< double > v = (*spec_dr)(0, pc, pd, f);
+        double freq_val = (freq_ax.GetSize() > f) ? freq_ax(f) : static_cast< double >(f);
+        plot_dict["SL_FREQ_AMP"].push_back(std::abs(v));
+        plot_dict["SL_FREQ_PHS"].push_back(std::arg(v) * (180.0 / M_PI));
+        plot_dict["SL_FREQ_XAXIS"].push_back(freq_val);
+    }
+
+    // -----------------------------------------------------------------------
+    // 2-D amplitude surface at peak_chan: rows = DR bins, cols = freq bins.
+    // -----------------------------------------------------------------------
+    for(std::size_t dr = 0; dr < n_dr; dr++)
+    {
+        std::vector< double > row;
+        row.reserve(n_freq);
+        for(std::size_t f = 0; f < n_freq; f++)
+        {
+            row.push_back(std::abs((*spec_dr)(0, pc, dr, f)));
+        }
+        plot_dict["SL_2D_AMP"].push_back(row);
+    }
+    for(std::size_t dr = 0; dr < n_dr; dr++)
+    {
+        plot_dict["SL_2D_DR_AXIS"].push_back(dr_axis_ns[dr]);
+    }
+    for(std::size_t f = 0; f < n_freq; f++)
+    {
+        double freq_val = (freq_ax.GetSize() > f) ? freq_ax(f) : static_cast< double >(f);
+        plot_dict["SL_2D_FREQ_AXIS"].push_back(freq_val);
+    }
+
+    // -----------------------------------------------------------------------
+    // Peak-location metadata for plot overlays.
+    // -----------------------------------------------------------------------
+    plot_dict["extra"]["sl_peak_chan"]        = peak_chan;
+    plot_dict["extra"]["sl_peak_dr_bin"]      = peak_dr;
+    plot_dict["extra"]["sl_peak_freq_bin"]    = peak_freq;
+    plot_dict["extra"]["sl_peak_dr_ns_per_s"] = dr_axis_ns[pd];
+    double peak_freq_axis_val = (freq_ax.GetSize() > pf) ? freq_ax(pf) : static_cast< double >(pf);
+    plot_dict["extra"]["sl_peak_freq_axis_val"] = peak_freq_axis_val;
+    plot_dict["extra"]["sl_peak_sky_freq_mhz"]  = fParamStore->GetAs< double >("/fringe/peak_spectral_freq");
+    plot_dict["extra"]["is_spectral_line"]       = true;
+
+    // Minimal fields required by channel/segment machinery (not used in spectral-line plot, but
+    // prevents crashes if generic code downstream iterates over them).
+    plot_dict["NSeg"]      = 1;
+    plot_dict["NPlots"]    = 1;
+    plot_dict["StartPlot"] = 0;
+
+    // Quality code and error code - same path as DumpInfoToJSON.
+    std::string qc = calc_quality_code();
+    fParamStore->Set("/fringe/quality_code", qc);
+    plot_dict["Quality"] = qc;
+    plot_dict["extra"]["nlags"]      = fParamStore->GetAs< int >("/config/nlags");
+    std::string errcode = calc_error_code(plot_dict);
+    plot_dict["extra"]["error_code"] = errcode;
+    fParamStore->Set("/fringe/error_code", errcode);
+}
+
 } // namespace hops

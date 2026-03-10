@@ -105,6 +105,17 @@ class MHO_ComputePlotData
          */
         void DumpInfoToJSON(mho_json& plot_dict);
 
+        /**
+         * @brief Dumps spectral-line fringe plot data into a JSON object.
+         *        Uses the 'spec_dr' container (stored by MHO_SpectralLineFringeFitter) instead of the
+         *        broadband 'sbd' container. Populates DLYRATE/DLYRATE_XAXIS (1-D DR spectrum),
+         *        SL_FREQ_AMP/SL_FREQ_PHS/SL_FREQ_XAXIS (1-D freq spectrum at peak DR bin),
+         *        and SL_2D_AMP/SL_2D_DR_AXIS/SL_2D_FREQ_AXIS (2-D amplitude surface at peak channel).
+         *
+         * @param plot_dict JSON object to store spectral-line plot data.
+         */
+        void DumpSpectralLineInfoToJSON(mho_json& plot_dict);
+
         //protected:
 
         TODO_FIXME_MSG("TODO FIXME, temporary kludge to pass sbd amp data for test")

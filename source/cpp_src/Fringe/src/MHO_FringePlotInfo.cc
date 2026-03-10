@@ -49,7 +49,16 @@ mho_json MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, M
     mk_plotdata.Initialize();
 
     mho_json plot_dict;
-    mk_plotdata.DumpInfoToJSON(plot_dict);
+    bool is_spectral_line = false;
+    paramStore->Get("/fringe/is_spectral_line", is_spectral_line);
+    if(is_spectral_line)
+    {
+        mk_plotdata.DumpSpectralLineInfoToJSON(plot_dict);
+    }
+    else
+    {
+        mk_plotdata.DumpInfoToJSON(plot_dict);
+    }
 
     mho_json sched_section = vexInfo["$SCHED"];
     std::string scan_name = sched_section.begin().key();

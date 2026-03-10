@@ -17,6 +17,7 @@
 #include "MHO_BasicFringeInfo.hh"
 #include "MHO_BasicFringeUtilities.hh"
 #include "MHO_FringePlotInfo.hh"
+#include "MHO_FringeData.hh"
 #include "MHO_InitialFringeInfo.hh"
 #include "MHO_VexInfoExtractor.hh"
 
@@ -363,6 +364,34 @@ void MHO_SpectralLineFringeFitter::Finalize()
         fParameterStore->Set("/fringe/sb_win", zero_win);
         fParameterStore->Set("/fringe/mb_win", zero_win);
 
+        // Store the spec-DR workspace in the container store so MHO_ComputePlotData can access it.
+        visibility_type* spec_dr_ptr = fSLFringeSearch.GetSpecDRData();
+        if(spec_dr_ptr != nullptr)
+        {
+            auto spec_dr_clone = spec_dr_ptr->Clone();
+            fContainerStore->AddObject(spec_dr_clone);
+            fContainerStore->SetShortName(spec_dr_clone->GetObjectUUID(), std::string("spec_dr"));
+        }
+
+        // Store the DR axis (ns/s) for use by the plot layer.
+        auto dr_ax_ptr = fSLFringeSearch.GetDRAxis();
+        if(dr_ax_ptr != nullptr)
+        {
+            std::vector< double > dr_axis_ns;
+            dr_axis_ns.reserve(dr_ax_ptr->GetSize());
+            for(std::size_t k = 0; k < dr_ax_ptr->GetSize(); k++)
+            {
+                dr_axis_ns.push_back(dr_ax_ptr->at(k) * 1e9); // sec/sec -> ns/s
+            }
+            fParameterStore->Set("/fringe/sl_dr_axis_ns_per_s", dr_axis_ns);
+        }
+
+        // Populate fFringeData->fPlotData so the Python plot visitor receives a valid dict
+        // (not None) from get_plot_data().  Must happen before the finalize operators run.
+        mho_json& plot_data = fFringeData->GetPlotData();
+        plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
+        MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
+
         // Run finalize-category operators (e.g. output writers).
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
@@ -408,6 +437,11 @@ void MHO_SpectralLineFringeFitter::coarse_spectral_line_search()
     fParameterStore->Set("/fringe/n_dr_points",       fSLFringeSearch.GetNDRBins());
     fParameterStore->Set("/fringe/n_pts_searched",    (double)fSLFringeSearch.GetNDRBins());
     fParameterStore->Set("/fringe/is_spectral_line",  true);
+    // Sentinel values for broadband-only parameters not applicable here
+    fParameterStore->Set("/fringe/n_mbd_points",  0);
+    fParameterStore->Set("/fringe/n_sbd_points",  0);
+    fParameterStore->Set("/fringe/n_drsp_points", 0);
+    fParameterStore->Set("/config/nlags",         0);
 
     msg_debug("fringe", "coarse spectral line search: peak (chan=" << peak_chan
                                                                    << " dr=" << peak_dr
