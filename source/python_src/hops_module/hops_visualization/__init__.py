@@ -1,3 +1,5 @@
 from .__version__ import __version__
 
 from .fourfit_plot import make_fourfit_plot
+from .fourfit_plot import make_fourfit_plot_wrapper
+from .fourfit_spectral_line_plot import make_fourfit_spectral_line_plot_wrapper

@@ -101,7 +101,6 @@ class MHO_PyGenericOperator: public MHO_Operator
                 try
                 {
                     auto mod = py::module::import(fModuleName.c_str());
-                    // mod.attr(fFunctionName.c_str())(*fContainerInterface, *fParameterInterface);
                     mod.attr(fFunctionName.c_str())(*fFringeDataInterface);
                     success = true;
                 }

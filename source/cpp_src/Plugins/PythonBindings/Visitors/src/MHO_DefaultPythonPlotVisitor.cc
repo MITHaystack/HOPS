@@ -34,14 +34,25 @@ MHO_DefaultPythonPlotVisitor::MHO_DefaultPythonPlotVisitor():
 
 void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
 {
-    msg_debug("fringe", "attempting to plot data with the python (matplotlib) plotting utility" << eom);
+    msg_debug("python_bindings", "attempting to plot data with the python (matplotlib) plotting utility" << eom);
     
     bool is_skipped = data->GetParameterStore()->GetAs< bool >("/status/skipped");
     if(!is_skipped)
     {
-        msg_debug("main", "python plot generation enabled." << eom);
+        msg_debug("python_bindings", "python plot generation enabled." << eom);
 
         //determine if we have been passed a special/custom plotting function
+        if( data->GetParameterStore()->IsPresent("/control/config/python_custom_plot") )
+        {
+            bool ok = false;
+            ok = data->GetParameterStore()->Get("/control/config/python_custom_plot/module_name", fPythonModuleName);
+            ok &= data->GetParameterStore()->Get("/control/config/python_custom_plot/library_name", fPythonLibraryName);
+            ok &= data->GetParameterStore()->Get("/control/config/python_custom_plot/function_name", fPythonAttrName);
+            if(!ok)
+            {
+                msg_error("python_bindings", "error retrieving python custom plot information" << eom);
+            }
+        }
 
         ConstructPlot(data);
 

@@ -1,0 +1,6 @@
+{
+    "name": "spectral_line",
+    "statement_type": "parameter",
+    "parameter_type": "fit",
+    "type": "bool"
+}
