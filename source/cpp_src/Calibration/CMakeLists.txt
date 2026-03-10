@@ -36,6 +36,8 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationDelayCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationProductRelabeler.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationRelabeler.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SpectralLineFringeSearch.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateSpectralLinePeak.hh
 )
 
 #list source files #############################################################
@@ -70,6 +72,8 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PhaseCalibrationTrim.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MixedPolYShift.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationDelayCorrection.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SpectralLineFringeSearch.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateSpectralLinePeak.cc
 )
 
 #declare header paths ##########################################################

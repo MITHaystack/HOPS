@@ -75,7 +75,7 @@ int test_overconstrained_system()
     A(2,0) = 1.0;  A(2,1) = 3.0;
     A(3,0) = 1.0;  A(3,1) = 4.0;
 
-    //set true solution for least-squares model: b ≈ A * x_true
+    //set true solution for least-squares model: b ~= A * x_true
     MHO_linalg_vector<double> x_true(2);
     x_true(0) = 2.0;  // intercept
     x_true(1) = 0.5;  // slope

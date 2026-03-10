@@ -134,7 +134,32 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     paramStore->Set("/fringe/integration_time", integration_time);
 
     //residual phase in radians and degrees
-    double resid_phase_rad = calculate_residual_phase(conStore, paramStore);
+    double resid_phase_rad;
+    auto sbd_chk = conStore->GetObject< visibility_type >(std::string("sbd"));
+    if(sbd_chk != nullptr)
+    {
+        resid_phase_rad = calculate_residual_phase(conStore, paramStore);
+        // sbd_separation is set as a side-effect of calculate_residual_phase
+    }
+    else
+    {
+        // Spectral-line path: sbd container absent; caller must pre-set /fringe/raw_resid_phase_rad.
+        resid_phase_rad = paramStore->GetAs< double >("/fringe/raw_resid_phase_rad");
+        // sbd_separation is also normally set by calculate_residual_phase; compute a fallback.
+        if(!paramStore->IsPresent("/fringe/sbd_separation"))
+        {
+            visibility_type* vis_fb = conStore->GetObject< visibility_type >(std::string("vis"));
+            if(vis_fb != nullptr && vis_fb->GetDimension(FREQ_AXIS) >= 2)
+            {
+                auto& freq_ax_fb = std::get< FREQ_AXIS >(*vis_fb);
+                paramStore->Set("/fringe/sbd_separation", freq_ax_fb(1) - freq_ax_fb(0));
+            }
+            else
+            {
+                paramStore->Set("/fringe/sbd_separation", 1.0);
+            }
+        }
+    }
     paramStore->Set("/fringe/raw_resid_phase_rad", resid_phase_rad);
     double resid_phase_deg = std::fmod(resid_phase_rad * (180.0 / M_PI), 360.0);
 

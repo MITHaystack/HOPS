@@ -18,10 +18,7 @@
 #include "MHO_BasicFringeUtilities.hh"
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_InitialFringeInfo.hh"
-#include "MHO_InterpolateFringePeak.hh"
 #include "MHO_VexInfoExtractor.hh"
-
-//#define DUMP_PARAMS_ON_ERROR
 
 namespace hops
 {
@@ -31,59 +28,59 @@ MHO_SpectralLineFringeFitter::MHO_SpectralLineFringeFitter(MHO_FringeData* data)
     fEnableCaching = false;
     vis_data = nullptr;
     wt_data = nullptr;
-    sbd_data = nullptr;
 
-    //must build the operator build manager
-    fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
-};
+    fOperatorBuildManager =
+        new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
+}
 
 MHO_SpectralLineFringeFitter::~MHO_SpectralLineFringeFitter()
 {
-    if(fOperatorBuildManager){delete fOperatorBuildManager; fOperatorBuildManager = nullptr;}
-    delete fMBDSearch;
-};
+    if(fOperatorBuildManager)
+    {
+        delete fOperatorBuildManager;
+        fOperatorBuildManager = nullptr;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Configure - identical bookkeeping to MHO_BasicFringeFitter::Configure()
+////////////////////////////////////////////////////////////////////////////////
 
 void MHO_SpectralLineFringeFitter::Configure()
 {
-    profiler_start();
+    profiler_scope();
 
-    //load root file and keep around (eventually eliminate this in favor of param store only)
     fVexInfo = fScanStore->GetRootFileData();
 
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped)
     {
         std::string baseline = fParameterStore->GetAs< std::string >("/config/baseline");
-        std::string polprod = fParameterStore->GetAs< std::string >("/config/polprod");
+        std::string polprod  = fParameterStore->GetAs< std::string >("/config/polprod");
 
-        ////////////////////////////////////////////////////////////////////////////
-        //LOAD DATA AND ASSEMBLE THE DATA STORE
-        ////////////////////////////////////////////////////////////////////////////
-
-        //load baseline data
+        //-------------------------------------------------------------------
+        // Load data and assemble the container store
+        //-------------------------------------------------------------------
         fScanStore->LoadBaseline(baseline, fContainerStore);
         fParameterStore->Set("/files/baseline_input_file", fScanStore->GetBaselineFilename(baseline));
 
-        //loads visibility data and performs float -> double cast
         MHO_BasicFringeDataConfiguration::configure_visibility_data(fContainerStore);
 
         vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
-        wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
+        wt_data  = fContainerStore->GetObject< weight_type >(std::string("weight"));
         if(vis_data == nullptr || wt_data == nullptr)
         {
-            msg_error("fringe", "could not find visibility or weight objects with names (vis, weight)." << eom);
-            fParameterStore->Set("/status/skipped", true); //skipped
+            msg_error("fringe", "could not find visibility or weight objects (vis, weight)." << eom);
+            fParameterStore->Set("/status/skipped", true);
             return;
         }
 
-        //safety check
         if(vis_data->GetSize() == 0)
         {
             msg_error("fringe", "visibility data has size 0, skipping." << eom);
             fParameterStore->Set("/status/skipped", true);
             fParameterStore->Set("/status/is_finished", true);
         }
-
         if(wt_data->GetSize() == 0)
         {
             msg_error("fringe", "weight data has size 0, skipping." << eom);
@@ -91,17 +88,13 @@ void MHO_SpectralLineFringeFitter::Configure()
             fParameterStore->Set("/status/is_finished", true);
         }
 
-        std::string vis_uuid = vis_data->GetObjectUUID().as_string();
-        std::string wt_uuid = wt_data->GetObjectUUID().as_string();
-        fParameterStore->Set("/uuid/visibilities", vis_uuid);
-        fParameterStore->Set("/uuid/weights", wt_uuid);
+        fParameterStore->Set("/uuid/visibilities", vis_data->GetObjectUUID().as_string());
+        fParameterStore->Set("/uuid/weights",      wt_data->GetObjectUUID().as_string());
 
-        //load and rename station data according to reference/remote
-        //also load pcal data if it is present
         std::string ref_station_mk4id = std::string(1, baseline[0]);
         std::string rem_station_mk4id = std::string(1, baseline[1]);
         MHO_BasicFringeDataConfiguration::configure_station_data(fScanStore, fContainerStore, ref_station_mk4id,
-                                                                 rem_station_mk4id);
+                                                                  rem_station_mk4id);
         fParameterStore->Set("/files/ref_station_input_file", fScanStore->GetStationFilename(ref_station_mk4id));
         fParameterStore->Set("/files/rem_station_input_file", fScanStore->GetStationFilename(rem_station_mk4id));
 
@@ -109,60 +102,44 @@ void MHO_SpectralLineFringeFitter::Configure()
         station_coord_type* rem_data = fContainerStore->GetObject< station_coord_type >(std::string("rem_sta"));
         if(ref_data == nullptr || rem_data == nullptr)
         {
-            msg_error("fringe", "could not find station coordinate data with names (ref_sta, rem_sta)." << eom);
-            fParameterStore->Set("/status/skipped", true); //skipped
+            msg_error("fringe", "could not find station coordinate data (ref_sta, rem_sta)." << eom);
+            fParameterStore->Set("/status/skipped", true);
             return;
         }
-        std::string ref_uuid = ref_data->GetObjectUUID().as_string();
-        std::string rem_uuid = rem_data->GetObjectUUID().as_string();
-        fParameterStore->Set("/uuid/ref_coord", ref_uuid);
-        fParameterStore->Set("/uuid/rem_coord", rem_uuid);
+        fParameterStore->Set("/uuid/ref_coord", ref_data->GetObjectUUID().as_string());
+        fParameterStore->Set("/uuid/rem_coord", rem_data->GetObjectUUID().as_string());
 
-        multitone_pcal_type* ref_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("ref_pcal"));
-        multitone_pcal_type* rem_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("rem_pcal"));
-        if(ref_pcal_data != nullptr)
-        {
-            std::string ref_pcal_uuid = ref_pcal_data->GetObjectUUID().as_string();
-            fParameterStore->Set("/uuid/ref_pcal", ref_pcal_uuid);
-        }
-        if(rem_pcal_data != nullptr)
-        {
-            std::string rem_pcal_uuid = rem_pcal_data->GetObjectUUID().as_string();
-            fParameterStore->Set("/uuid/rem_pcal", rem_pcal_uuid);
-        }
+        multitone_pcal_type* ref_pcal = fContainerStore->GetObject< multitone_pcal_type >(std::string("ref_pcal"));
+        multitone_pcal_type* rem_pcal = fContainerStore->GetObject< multitone_pcal_type >(std::string("rem_pcal"));
+        if(ref_pcal != nullptr) { fParameterStore->Set("/uuid/ref_pcal", ref_pcal->GetObjectUUID().as_string()); }
+        if(rem_pcal != nullptr) { fParameterStore->Set("/uuid/rem_pcal", rem_pcal->GetObjectUUID().as_string()); }
 
-        ////////////////////////////////////////////////////////////////////////////
-        //PARAMETER SETTING
-        ////////////////////////////////////////////////////////////////////////////
+        //-------------------------------------------------------------------
+        // Parameter setup
+        //-------------------------------------------------------------------
         MHO_InitialFringeInfo::configure_reference_frequency(fContainerStore, fParameterStore);
 
-        ////////////////////////////////////////////////////////////////////////////
-        //CONFIGURE THE OPERATOR BUILD MANAGER
-        ////////////////////////////////////////////////////////////////////////////
+        //-------------------------------------------------------------------
+        // Operator build manager
+        //-------------------------------------------------------------------
         fOperatorBuildManager->CreateDefaultBuilders();
         fOperatorBuildManager->SetControlStatements(&(fFringeData->GetControlStatements()));
         fOperatorBuildManager->BuildOperatorCategory("default");
 
-        //take a snapshot if enabled
-        take_snapshot_here("test", "visib", __FILE__, __LINE__, vis_data);
+        take_snapshot_here("test", "visib",   __FILE__, __LINE__, vis_data);
         take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
 
-        ////////////////////////////////////////////////////////////////////////////
-        //OPERATOR CONSTRUCTION
-        ////////////////////////////////////////////////////////////////////////////
         fOperatorBuildManager->BuildOperatorCategory("labeling");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         fOperatorBuildManager->BuildOperatorCategory("selection");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
-        //safety check
         if(vis_data->GetSize() == 0)
         {
             msg_warn("fringe", "no visibility data left after cuts, skipping." << eom);
             fParameterStore->Set("/status/skipped", true);
             fParameterStore->Set("/status/is_finished", true);
         }
-
         if(wt_data->GetSize() == 0)
         {
             msg_warn("fringe", "no weight data left after cuts, skipping." << eom);
@@ -170,419 +147,323 @@ void MHO_SpectralLineFringeFitter::Configure()
             fParameterStore->Set("/status/is_finished", true);
         }
 
-        //calculate useful quantities to stash in the parameter store
         MHO_InitialFringeInfo::precalculate_quantities(fContainerStore, fParameterStore);
 
-        //build the rest of the operator categories
         fOperatorBuildManager->BuildOperatorCategory("flagging");
         fOperatorBuildManager->BuildOperatorCategory("calibration");
         fOperatorBuildManager->BuildOperatorCategory("prefit");
         fOperatorBuildManager->BuildOperatorCategory("postfit");
         fOperatorBuildManager->BuildOperatorCategory("finalize");
 
-        //if we have any additional prefit and postfit operators there is a possibility
-        //that more than one fitting loop is run, in that case we will
-        //cache the configured visibilities and weights
-        if(fOperatorToolbox.GetNOperatorsInCategory("prefit") > 0 && fOperatorToolbox.GetNOperatorsInCategory("postfit") > 0)
+        if(fOperatorToolbox.GetNOperatorsInCategory("prefit") > 0 &&
+           fOperatorToolbox.GetNOperatorsInCategory("postfit") > 0)
         {
-            msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators ("
-                                    << fOperatorToolbox.GetNOperatorsInCategory("prefit") << ", "
-                                    << fOperatorToolbox.GetNOperatorsInCategory("postfit") << ")" << eom);
+            msg_debug("fringe", "enabling visibility/weight caching due to prefit/postfit operators." << eom);
             fEnableCaching = true;
         }
         Cache();
     }
-    profiler_stop();
-
-    // std::cout<<"PARAMETERS = "<<std::endl;
-    // fParameterStore->Dump();
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Cache / Refresh
+////////////////////////////////////////////////////////////////////////////////
 
 void MHO_SpectralLineFringeFitter::Cache()
 {
     if(fEnableCaching)
     {
         vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
-        wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
+        wt_data  = fContainerStore->GetObject< weight_type >(std::string("weight"));
         if(vis_data != nullptr)
         {
-            auto cached_vis_data = vis_data->Clone();
-            msg_debug("fringe", "caching visibility data to object: " << cached_vis_data->GetObjectUUID().as_string() << eom);
-            fContainerStore->AddObject(cached_vis_data);
-            std::string shortname = "cached_v";
-            fContainerStore->SetShortName(cached_vis_data->GetObjectUUID(), shortname);
+            auto cached = vis_data->Clone();
+            fContainerStore->AddObject(cached);
+            fContainerStore->SetShortName(cached->GetObjectUUID(), std::string("cached_v"));
         }
-
         if(wt_data != nullptr)
         {
-            auto cached_wt_data = wt_data->Clone();
-            msg_debug("fringe", "caching weight data to object: " << cached_wt_data->GetObjectUUID().as_string() << eom);
-            fContainerStore->AddObject(cached_wt_data);
-            std::string shortname = "cached_w";
-            fContainerStore->SetShortName(cached_wt_data->GetObjectUUID(), shortname);
+            auto cached = wt_data->Clone();
+            fContainerStore->AddObject(cached);
+            fContainerStore->SetShortName(cached->GetObjectUUID(), std::string("cached_w"));
         }
     }
-};
+}
 
 void MHO_SpectralLineFringeFitter::Refresh()
 {
     if(fEnableCaching)
     {
-        auto vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
-        auto wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
-        auto cached_vis_data = fContainerStore->GetObject< visibility_type >(std::string("cached_v"));
-        auto cached_wt_data = fContainerStore->GetObject< weight_type >(std::string("cached_w"));
-        if(vis_data != nullptr && cached_vis_data != nullptr)
-        {
-            //deep copy
-            msg_debug("fringe", "refreshing visibility data from cache" << eom);
-            vis_data->Copy(*cached_vis_data);
-        }
-
-        if(wt_data != nullptr && cached_wt_data != nullptr)
-        {
-            //deep copy
-            msg_debug("fringe", "refreshing weight data from cache" << eom);
-            wt_data->Copy(*cached_wt_data);
-        }
+        auto vd  = fContainerStore->GetObject< visibility_type >(std::string("vis"));
+        auto wd  = fContainerStore->GetObject< weight_type >(std::string("weight"));
+        auto cvd = fContainerStore->GetObject< visibility_type >(std::string("cached_v"));
+        auto cwd = fContainerStore->GetObject< weight_type >(std::string("cached_w"));
+        if(vd != nullptr && cvd != nullptr) { vd->Copy(*cvd); }
+        if(wd != nullptr && cwd != nullptr) { wd->Copy(*cwd); }
     }
-};
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Initialize
+////////////////////////////////////////////////////////////////////////////////
 
 void MHO_SpectralLineFringeFitter::Initialize()
 {
-    profiler_start();
+    profiler_scope();
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped)
     {
-        //refresh the visibility/weight data from the cache
-        //this mechanism is necessary if we want to be able to provide that ability for a user-specified
-        //outer layer of iteration, where they are able to modify operator parameters
-        //until some convergence criteria is met
         Refresh();
-
-        //compute the sum of all weights and stash in the parameter store
-        //(before any other operations (e.g. passband, notches) modify them)
         MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
-        //figure out the number of channels which have data with weights >0 in at least 1 AP
         MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
-
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
     }
-    profiler_stop();
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// PreRun - set up spectral-line search operators
+////////////////////////////////////////////////////////////////////////////////
 
 void MHO_SpectralLineFringeFitter::PreRun()
 {
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
-    if(!skipped) //execute if we are not finished and are not skipping
+    if(!skipped)
     {
-        // //create space for the visibilities transformed into single-band-delay space
-        // sbd_data = fContainerStore->GetObject< visibility_type >(std::string("sbd"));
-        // if(sbd_data == nullptr) //doesn't yet exist so create and cache it in the store
-        // {
-        //     sbd_data = new sbd_type();
-        //     fContainerStore->AddObject(sbd_data);
-        //     fContainerStore->SetShortName(sbd_data->GetObjectUUID(), std::string("sbd"));
-        // }
-
-        //user specified python scripts that are in the 'prefit' category are run here
-        //as well as the 'pol-product' summation operator (which is applied last if applicable)
+        // User-specified prefit operators (pol-product summation, passband, etc.).
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "prefit");
 
-        // //initialize the fringe search operators ///////////////////////////////
-        // //determine the type of NormFX operator we need (either mixed sideband or single-sideband)
-        // if(ContainsMixedSideband(vis_data))
-        // {
-        //     fNormFXOp = &fMSBNormFXOp;
-        // }
-        // else
-        // {
-        //     fNormFXOp = &fSSBNormFXOp;
-        // }
+        // Re-fetch pointers in case prefit operators modified the containers.
+        vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
+        wt_data  = fContainerStore->GetObject< weight_type >(std::string("weight"));
+        if(vis_data == nullptr || wt_data == nullptr)
+        {
+            msg_error("fringe", "spectral line fitter: visibility/weight data missing after prefit." << eom);
+            fParameterStore->Set("/status/skipped", true);
+            return;
+        }
 
-        // //initialize norm-fx (x-form to SBD space)
-        // fNormFXOp->SetArgs(vis_data, sbd_data);
-        // fNormFXOp->SetWeights(wt_data);
-        // bool ok = fNormFXOp->Initialize(); //initialize takes care of properly re-sizing SBD data
-        // check_step_fatal(ok, "fringe", "normfx initialization." << eom);
+        // Validate the polprod assumption.
+        if(vis_data->GetDimension(POLPROD_AXIS) != 1)
+        {
+            msg_error("fringe",
+                      "MHO_SpectralLineFringeFitter requires polprod axis size = 1, got "
+                          << vis_data->GetDimension(POLPROD_AXIS)
+                          << ". Apply pol-product summation in the prefit stage." << eom);
+            fParameterStore->Set("/status/skipped", true);
+            return;
+        }
 
-        // //configure the coarse SBD/DR/MBD search
-        // double ref_freq = fParameterStore->GetAs< double >("/control/config/ref_freq");
-        // fMBDSearch->SetWeights(wt_data);
-        // fMBDSearch->SetReferenceFrequency(ref_freq);
-        // fMBDSearch->SetArgs(sbd_data);
-        // ok = fMBDSearch->Initialize();
-        // check_step_fatal(ok, "fringe", "mbd initialization." << eom);
+        double ref_freq_mhz = fParameterStore->GetAs< double >("/control/config/ref_freq");
 
-        // //configure the fringe-peak interpolator
-        // bool optimize_closure_flag = false;
-        // bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag);
-        // double frt_offset = fParameterStore->GetAs< double >("/config/frt_offset");
-        // //NOTE: the optimize_closure_flag has no effect on fringe-phase when
-        // //using the 'simul' algorithm, which is currently the only one implemented
-        // //This is also true of the legacy code 'simul' implementation.
-        // if(optimize_closure_flag)
-        // {
-        //     fPeakInterpolator.EnableOptimizeClosure();
-        // }
-        // fPeakInterpolator.SetReferenceFrequency(ref_freq);
-        // fPeakInterpolator.SetReferenceTimeOffset(frt_offset);
-        // fPeakInterpolator.SetSBDArray(sbd_data);
-        // fPeakInterpolator.SetWeights(wt_data);
+        // Configure spectral-line fringe search.
+        fSLFringeSearch.SetWeights(wt_data);
+        fSLFringeSearch.SetReferenceFrequency(ref_freq_mhz);
+        fSLFringeSearch.SetArgs(vis_data);
+
+        // Apply optional user-specified DR window.
+        if(fParameterStore->IsPresent("/control/fit/dr_win"))
+        {
+            std::vector< double > drwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/dr_win");
+            fSLFringeSearch.SetDRWindow(drwin[0], drwin[1]);
+        }
+
+        // Apply optional user-specified frequency search window (MHz).
+        if(fParameterStore->IsPresent("/control/fit/spectral_line_freq_win"))
+        {
+            std::vector< double > fwin =
+                fParameterStore->GetAs< std::vector< double > >("/control/fit/spectral_line_freq_win");
+            fSLFringeSearch.SetFrequencyWindow(fwin[0], fwin[1]);
+        }
+
+        bool ok = fSLFringeSearch.Initialize();
+        if(!ok)
+        {
+            msg_error("fringe", "spectral line fringe search initialization failed." << eom);
+            fParameterStore->Set("/status/skipped", true);
+            return;
+        }
+
+        // Configure peak interpolator.
+        fSLPeakInterpolator.SetSpecDRData(fSLFringeSearch.GetSpecDRData());
+        fSLPeakInterpolator.SetWeights(wt_data);
+        fSLPeakInterpolator.SetReferenceFrequency(ref_freq_mhz);
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Run - coarse search then fine interpolation
+////////////////////////////////////////////////////////////////////////////////
 
 void MHO_SpectralLineFringeFitter::Run()
 {
-    profiler_start();
+    profiler_scope();
+
     bool is_finished = fParameterStore->GetAs< bool >("/status/is_finished");
-    bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
-    if(!is_finished && !skipped) //execute if we are not finished and are not skipping
+    bool skipped     = fParameterStore->GetAs< bool >("/status/skipped");
+    if(!is_finished && !skipped)
     {
-        // //execute the coarse fringe search algorithm
-        // coarse_fringe_search();
+        coarse_spectral_line_search();
     }
 
-    //check again since, if there is an error during the fringe search we should skip this pass
+    // Re-check: coarse search may have set skipped on failure.
     is_finished = fParameterStore->GetAs< bool >("/status/is_finished");
-    skipped = fParameterStore->GetAs< bool >("/status/skipped");
-    // if(!is_finished && !skipped) //execute if we are not finished and are not skipping
-    // {
-    //     interpolate_peak();
-    //     // MHO_BasicFringeUtilities::basic_fringe_search(fContainerStore, fParameterStore);
-    //     fParameterStore->Set("/status/is_finished", true);
-    //     //have sampled all grid points, find the solution and finalize
-    //     //calculate the fringe properties
-    //     MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
-    // }
-    profiler_stop();
+    skipped     = fParameterStore->GetAs< bool >("/status/skipped");
+    if(!is_finished && !skipped)
+    {
+        interpolate_spectral_line_peak();
+        fParameterStore->Set("/status/is_finished", true);
+        MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
+    }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// PostRun
+////////////////////////////////////////////////////////////////////////////////
 
 void MHO_SpectralLineFringeFitter::PostRun()
 {
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
-    if(!skipped) //execute if we are not finished and are not skipping
+    if(!skipped)
     {
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "postfit");
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// IsFinished
+////////////////////////////////////////////////////////////////////////////////
+
 bool MHO_SpectralLineFringeFitter::IsFinished()
 {
-    bool is_finished = fParameterStore->GetAs< bool >("/status/is_finished");
-    return is_finished;
+    return fParameterStore->GetAs< bool >("/status/is_finished");
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Finalize - store search windows; plot data is deferred to a later step
+////////////////////////////////////////////////////////////////////////////////
 
 void MHO_SpectralLineFringeFitter::Finalize()
 {
-    profiler_start();
-    ////////////////////////////////////////////////////////////////////////////
-    //PLOTTING/DEBUG
-    ////////////////////////////////////////////////////////////////////////////
-    //TODO may want to reorg the way this is done
+    profiler_scope();
 
     bool status_is_finished = fParameterStore->GetAs< bool >("/status/is_finished");
-    bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
-    if(status_is_finished && !skipped) //have to be finished and not-skipped
+    bool skipped             = fParameterStore->GetAs< bool >("/status/skipped");
+    if(status_is_finished && !skipped)
     {
-        // //get the actual search windows that were used
-        // double low, high;
-        // std::vector< double > win;
-        // win.resize(2);
-        // fMBDSearch->GetSBDWindow(low, high);
-        // win[0] = low;
-        // win[1] = high;
-        // fParameterStore->Set("/fringe/sb_win", win);
-        // 
-        // fMBDSearch->GetDRWindow(low, high);
-        // win[0] = low;
-        // win[1] = high;
-        // fParameterStore->Set("/fringe/dr_win", win);
-        // 
-        // fMBDSearch->GetMBDWindow(low, high);
-        // win[0] = low;
-        // win[1] = high;
-        // fParameterStore->Set("/fringe/mb_win", win);
-        // 
-        // mho_json& plot_data = fFringeData->GetPlotData();
-        // plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
-        // MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
+        // Store the DR window that was actually used.
+        double dr_low, dr_high;
+        fSLFringeSearch.GetDRWindow(dr_low, dr_high);
+        std::vector< double > dr_win = {dr_low, dr_high};
+        fParameterStore->Set("/fringe/dr_win", dr_win);
 
+        // For compatibility with downstream consumers that expect sb_win and mb_win,
+        // set them to a sentinel range indicating they are not meaningful here.
+        std::vector< double > zero_win = {0.0, 0.0};
+        fParameterStore->Set("/fringe/sb_win", zero_win);
+        fParameterStore->Set("/fringe/mb_win", zero_win);
+
+        // Run finalize-category operators (e.g. output writers).
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
-
-    profiler_stop();
 }
-// 
-// void MHO_SpectralLineFringeFitter::coarse_fringe_search(bool set_windows)
-// {
-//     profiler_start();
-//     ////////////////////////////////////////////////////////////////////////////
-//     //COARSE SBD, DR, MBD SEARCH ALGO
-//     ////////////////////////////////////////////////////////////////////////////
-//     sbd_data->ZeroArray();
-// 
-//     //run norm_fx (takes visibilities to (single band) delay space)
-//     bool ok = fNormFXOp->Execute();
-//     check_step_fatal(ok, "fringe", "normfx execution." << eom);
-// 
-//     //take snapshot of sbd data after normfx
-//     take_snapshot_here("test", "sbd", __FILE__, __LINE__, sbd_data);
-// 
-//     //set the coarse SBD/MBD/DR search windows here
-//     if(fParameterStore->IsPresent("/control/fit/sb_win") && set_windows)
-//     {
-//         std::vector< double > sbwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/sb_win");
-//         fMBDSearch->SetSBDWindow(sbwin[0], sbwin[1]); //units are microsec
-//     }
-// 
-//     if(fParameterStore->IsPresent("/control/fit/mb_win") && set_windows)
-//     {
-//         std::vector< double > mbwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/mb_win");
-//         fMBDSearch->SetMBDWindow(mbwin[0], mbwin[1]); //units are microsec
-//     }
-// 
-//     if(fParameterStore->IsPresent("/control/fit/dr_win") && set_windows)
-//     {
-//         std::vector< double > drwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/dr_win");
-//         fMBDSearch->SetDRWindow(drwin[0], drwin[1]);
-//     }
-// 
-//     ok = fMBDSearch->Execute();
-// 
-//     check_step_fatal(ok, "fringe", "mbd execution." << eom);
-// 
-//     int n_mbd_pts = fMBDSearch->GetNMBDBins();
-//     int n_dr_pts = fMBDSearch->GetNDRBins();
-//     int n_sbd_pts = fMBDSearch->GetNSBDBins();
-//     int n_drsp_pts = fMBDSearch->GetNDRSPBins();
-//     double n_pts_searched = fMBDSearch->GetNPointsSearched();
-// 
-//     fParameterStore->Set("/fringe/n_mbd_points", n_mbd_pts);
-//     fParameterStore->Set("/fringe/n_sbd_points", n_sbd_pts);
-//     fParameterStore->Set("/fringe/n_dr_points", n_dr_pts);
-//     fParameterStore->Set("/fringe/n_drsp_points", n_drsp_pts);
-//     fParameterStore->Set("/fringe/n_pts_searched", n_pts_searched);
-// 
-//     int c_mbdmax = fMBDSearch->GetMBDMaxBin();
-//     int c_sbdmax = fMBDSearch->GetSBDMaxBin();
-//     int c_drmax = fMBDSearch->GetDRMaxBin();
-//     double freq_spacing = fMBDSearch->GetFrequencySpacing();
-//     double ave_freq = fMBDSearch->GetAverageFrequency();
-// 
-//     if(c_mbdmax < 0 || c_sbdmax < 0 || c_drmax < 0)
-//     {
-//         msg_fatal("fringe", "coarse fringe search could not locate peak, bin (sbd, mbd, dr) = ("
-//                                 << c_sbdmax << ", " << c_mbdmax << "," << c_drmax << "), skipping this pass" << eom);
-// #ifdef HOPS_ENABLE_DEBUG_MSG
-//     #ifdef DUMP_PARAMS_ON_ERROR
-//         msg_fatal("fringe", "dumping parameter store for debugging" << eom);
-//         fParameterStore->Dump();
-//     #endif
-// #endif
-//         fParameterStore->Set("/status/skipped", true);
-//         fParameterStore->Set("/status/is_finished", true);
-//     }
-//     else
-//     {
-//         //get the coarse maximum and re-scale by the total weights
-//         double search_max_amp = fMBDSearch->GetSearchMaximumAmplitude();
-//         double total_summed_weights = fParameterStore->GetAs< double >("/fringe/total_summed_weights");
-// 
-//         fParameterStore->Set("/fringe/coarse_search_max_amp", search_max_amp / total_summed_weights);
-//         fParameterStore->Set("/fringe/max_mbd_bin", c_mbdmax);
-//         fParameterStore->Set("/fringe/max_sbd_bin", c_sbdmax);
-//         fParameterStore->Set("/fringe/max_dr_bin", c_drmax);
-// 
-//         double coarse_sbdelay = fMBDSearch->GetCoarseSBD();
-//         fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
-//     }
-// 
-//     profiler_stop();
-// }
-// 
-// void MHO_SpectralLineFringeFitter::interpolate_peak()
-// {
-//     profiler_start();
-//     ////////////////////////////////////////////////////////////////////////////
-//     //FINE INTERPOLATION STEP (search over 5x5x5 grid around peak)
-//     ////////////////////////////////////////////////////////////////////////////
-//     int c_mbdmax = fParameterStore->GetAs< int >("/fringe/max_mbd_bin");
-//     int c_sbdmax = fParameterStore->GetAs< int >("/fringe/max_sbd_bin");
-//     int c_drmax = fParameterStore->GetAs< int >("/fringe/max_dr_bin");
-// 
-//     fPeakInterpolator.SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
-//     fPeakInterpolator.SetMBDAxis(fMBDSearch->GetMBDAxis());
-//     fPeakInterpolator.SetDRAxis(fMBDSearch->GetDRAxis());
-// 
-//     fPeakInterpolator.Initialize();
-//     fPeakInterpolator.Execute();
-// 
-//     double sbdelay = fPeakInterpolator.GetSBDelay();
-//     double mbdelay = fPeakInterpolator.GetMBDelay();
-//     double drate = fPeakInterpolator.GetDelayRate();
-//     double frate = fPeakInterpolator.GetFringeRate();
-//     double famp = fPeakInterpolator.GetFringeAmplitude();
-// 
-//     //if there is only one channel, original/default fourfit behavior is to set MBD = SBD
-//     int n_active = fParameterStore->GetAs< int >("/fringe/n_active_channels");
-//     if(n_active == 1)
-//     {
-//         msg_info("fringe", "only one active data channel, setting MBD(" << mbdelay << ") to SBD(" << sbdelay << ")" << eom);
-//         //see original fourfit code: interp.c, line 238
-//         mbdelay = sbdelay;
-//     }
-// 
-//     fParameterStore->Set("/fringe/sbdelay", sbdelay);
-//     fParameterStore->Set("/fringe/mbdelay", mbdelay);
-//     fParameterStore->Set("/fringe/drate", drate);
-//     fParameterStore->Set("/fringe/frate", frate);
-//     fParameterStore->Set("/fringe/famp", famp);
-// 
-//     profiler_stop();
-// }
-// 
-// bool MHO_SpectralLineFringeFitter::ContainsMixedSideband(visibility_type* vis)
-// {
-//     //figure out if we have USB or LSB data, or a mixture, or double-sideband data
-//     auto channel_axis = &(std::get< CHANNEL_AXIS >(*(vis)));
-// 
-//     //first check for double-sideband channels
-//     std::vector< mho_json > dsb_labels = channel_axis->GetMatchingIntervalLabels("double_sideband");
-//     std::size_t n_dsb_chan = dsb_labels.size();
-//     if(n_dsb_chan != 0)
-//     {
-//         return true;
-//     }
-// 
-//     //now check for the number of other sidebands
-//     std::string sb_key = "net_sideband";
-//     std::string usb_flag = "U";
-//     std::string lsb_flag = "L";
-//     auto usb_chan = channel_axis->GetMatchingIndexes(sb_key, usb_flag);
-//     auto lsb_chan = channel_axis->GetMatchingIndexes(sb_key, lsb_flag);
-//     std::size_t n_usb_chan = usb_chan.size();
-//     std::size_t n_lsb_chan = lsb_chan.size();
-// 
-//     //mixed sideband data should be ok, but warn user since it is not well tested
-//     if(n_usb_chan != 0 && n_lsb_chan != 0)
-//     {
-//         return true; //mixed set of channels with USB or LSB
-//     }
-// 
-//     if(n_lsb_chan != 0 && n_usb_chan == 0)
-//     {
-//         return false; //single sideband (LSB)
-//     }
-// 
-//     if(n_usb_chan != 0 && n_lsb_chan == 0)
-//     {
-//         return false; //single side band (USB)
-//     }
-// 
-//     msg_warn("fringe", "could not determine type of sidebands present in visibility data" << eom);
-//     return false;
-// }
+
+////////////////////////////////////////////////////////////////////////////////
+// Private helpers
+////////////////////////////////////////////////////////////////////////////////
+
+void MHO_SpectralLineFringeFitter::coarse_spectral_line_search()
+{
+    profiler_scope();
+
+    bool ok = fSLFringeSearch.Execute();
+    if(!ok)
+    {
+        msg_fatal("fringe", "spectral line fringe search execution failed." << eom);
+        fParameterStore->Set("/status/skipped", true);
+        fParameterStore->Set("/status/is_finished", true);
+        return;
+    }
+
+    int peak_chan = fSLFringeSearch.GetChanMaxBin();
+    int peak_dr   = fSLFringeSearch.GetDRMaxBin();
+    int peak_freq = fSLFringeSearch.GetFreqMaxBin();
+
+    if(peak_chan < 0 || peak_dr < 0 || peak_freq < 0)
+    {
+        msg_fatal("fringe", "spectral line search could not locate peak, skipping." << eom);
+        fParameterStore->Set("/status/skipped", true);
+        fParameterStore->Set("/status/is_finished", true);
+        return;
+    }
+
+    double total_summed_weights = fParameterStore->GetAs< double >("/fringe/total_summed_weights");
+    double search_max_amp       = fSLFringeSearch.GetSearchMaximumAmplitude();
+
+    fParameterStore->Set("/fringe/coarse_search_max_amp", search_max_amp / total_summed_weights);
+    fParameterStore->Set("/fringe/peak_channel_idx",  peak_chan);
+    fParameterStore->Set("/fringe/peak_freq_bin",     peak_freq);
+    fParameterStore->Set("/fringe/max_dr_bin",        peak_dr);
+    fParameterStore->Set("/fringe/peak_spectral_freq", fSLFringeSearch.GetCoarsePeakSkyFrequencyMHz());
+    fParameterStore->Set("/fringe/n_dr_points",       fSLFringeSearch.GetNDRBins());
+    fParameterStore->Set("/fringe/n_pts_searched",    (double)fSLFringeSearch.GetNDRBins());
+    fParameterStore->Set("/fringe/is_spectral_line",  true);
+
+    msg_debug("fringe", "coarse spectral line search: peak (chan=" << peak_chan
+                                                                   << " dr=" << peak_dr
+                                                                   << " freq=" << peak_freq << ")"
+                                                                   << " amp=" << search_max_amp / total_summed_weights
+                                                                   << eom);
+}
+
+void MHO_SpectralLineFringeFitter::interpolate_spectral_line_peak()
+{
+    profiler_scope();
+
+    int peak_chan = fParameterStore->GetAs< int >("/fringe/peak_channel_idx");
+    int peak_dr   = fParameterStore->GetAs< int >("/fringe/max_dr_bin");
+    int peak_freq = fParameterStore->GetAs< int >("/fringe/peak_freq_bin");
+
+    fSLPeakInterpolator.SetMaxBins(peak_chan, peak_dr, peak_freq);
+    fSLPeakInterpolator.SetDRAxis(fSLFringeSearch.GetDRAxis());
+
+    bool ok = fSLPeakInterpolator.Initialize();
+    if(!ok)
+    {
+        msg_error("fringe", "spectral line peak interpolator initialization failed." << eom);
+        fParameterStore->Set("/status/skipped", true);
+        return;
+    }
+
+    ok = fSLPeakInterpolator.Execute();
+    if(!ok)
+    {
+        msg_error("fringe", "spectral line peak interpolator execution failed." << eom);
+        fParameterStore->Set("/status/skipped", true);
+        return;
+    }
+
+    double drate        = fSLPeakInterpolator.GetDelayRate();
+    double frate        = fSLPeakInterpolator.GetFringeRate();
+    double famp         = fSLPeakInterpolator.GetFringeAmplitude();
+    double fphase       = fSLPeakInterpolator.GetFringePhase();
+    double phase_delay  = fSLPeakInterpolator.GetPhaseDelay();   // seconds
+    double peak_mhz     = fSLPeakInterpolator.GetPeakSkyFrequencyMHz();
+
+    // sbdelay is undefined for spectral-line data; set to 0.
+    fParameterStore->Set("/fringe/sbdelay", 0.0);
+
+    // mbdelay is set to the phase delay expressed in microseconds.
+    // Downstream consumers expect microseconds for this key.
+    // NOTE: this is the PHASE delay, not the group delay.
+    fParameterStore->Set("/fringe/mbdelay", phase_delay * 1e6);
+
+    fParameterStore->Set("/fringe/drate",          drate);
+    fParameterStore->Set("/fringe/frate",          frate);
+    fParameterStore->Set("/fringe/famp",           famp);
+    fParameterStore->Set("/fringe/fringe_phase",   fphase);
+    fParameterStore->Set("/fringe/raw_resid_phase_rad", fphase);
+    fParameterStore->Set("/fringe/peak_spectral_freq", peak_mhz);
+}
 
 } // namespace hops

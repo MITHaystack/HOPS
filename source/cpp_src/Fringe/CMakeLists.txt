@@ -19,6 +19,7 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileDefinitions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitterFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotVisitorFactory.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SpectralLineFringeFitter.hh
 )
 
 #list source files #############################################################
@@ -38,6 +39,7 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileDefinitions.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeFitterFactory.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringePlotVisitorFactory.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SpectralLineFringeFitter.cc
 )
 
 #declare header paths ##########################################################

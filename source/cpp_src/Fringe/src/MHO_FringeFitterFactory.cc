@@ -2,6 +2,7 @@
 #include "MHO_BasicFringeFitter.hh"
 #include "MHO_IonosphericFringeFitter.hh"
 #include "MHO_IonosphericFringeFitterOpenMP.hh"
+#include "MHO_SpectralLineFringeFitter.hh"
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
@@ -35,25 +36,32 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
         return fFringeFitter;
     }
 
-    //currently we only have two fringe-fitting options (basic or with ionosphere fitting)
-    //but if we add more types, we need to add logic to decide what type should be built
+    //determine which fringe fitter to construct
+    bool do_spectral_line = false;
+    fFringeData->GetParameterStore()->Get("/config/spectral_line", do_spectral_line);
+
     bool do_ion = false;
     fFringeData->GetParameterStore()->Get("/config/do_ion", do_ion);
 
-    if(do_ion)
+    //if(do_spectral_line)
     {
-        msg_debug("fringe", "constructing an ionospheric fringe fitter" << eom);
-        // #ifdef _OPENMP
-        // fFringeFitter = new MHO_IonosphericFringeFitterOpenMP(fFringeData);
-        // #else
-        fFringeFitter = new MHO_IonosphericFringeFitter(fFringeData);
-        // #endif
+        msg_debug("fringe", "constructing a spectral line fringe fitter" << eom);
+        fFringeFitter = new MHO_SpectralLineFringeFitter(fFringeData);
     }
-    else
-    {
-        msg_debug("fringe", "constructing a basic fringe fitter" << eom);
-        fFringeFitter = new MHO_BasicFringeFitter(fFringeData);
-    }
+    // else if(do_ion)
+    // {
+    //     msg_debug("fringe", "constructing an ionospheric fringe fitter" << eom);
+    //     // #ifdef _OPENMP
+    //     // fFringeFitter = new MHO_IonosphericFringeFitterOpenMP(fFringeData);
+    //     // #else
+    //     fFringeFitter = new MHO_IonosphericFringeFitter(fFringeData);
+    //     // #endif
+    // }
+    // else
+    // {
+    //     msg_debug("fringe", "constructing a basic fringe fitter" << eom);
+    //     fFringeFitter = new MHO_BasicFringeFitter(fFringeData);
+    // }
 
     ////////////////////////////////////////////////////////////////////////////
     //POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS

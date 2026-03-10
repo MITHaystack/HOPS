@@ -26,7 +26,7 @@ int main()
     //execute the SVD
     MHO_linalg_matrix_svd(A, U, S, V);
 
-    //check reconstruction of the original matrix A ≈ U * diag(S) * V^T
+    //check reconstruction of the original matrix A ~= U * diag(S) * V^T
     auto D = MHO_linalg_diag_matrix(S);
     auto VT = MHO_linalg_transpose_matrix(V);
     auto temp = A; 
