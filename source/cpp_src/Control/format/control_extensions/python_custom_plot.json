@@ -1,0 +1,18 @@
+{
+    "name": "python_custom_plot",
+    "statement_type": "parameter",
+    "parameter_type": "config",
+    "type": "compound",
+    "parameters":
+    {
+        "module_name": {"type": "string"},
+        "library_name": {"type": "string"},
+        "function_name": {"type": "string"}
+    },
+    "fields":
+    [
+        "module_name",
+        "library_name",
+        "function_name"
+    ]
+}
