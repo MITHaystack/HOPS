@@ -266,7 +266,7 @@ void MHO_SpectralLineFringeFitter::PreRun()
         if(fParameterStore->IsPresent("/control/fit/dr_win"))
         {
             std::vector< double > drwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/dr_win");
-            fSLFringeSearch.SetDRWindow(drwin[0], drwin[1]);
+            if(drwin.size() == 2){fSLFringeSearch.SetDRWindow(drwin[0], drwin[1]);}
         }
 
         // Apply optional user-specified frequency search window (MHz).
@@ -274,7 +274,7 @@ void MHO_SpectralLineFringeFitter::PreRun()
         {
             std::vector< double > fwin =
                 fParameterStore->GetAs< std::vector< double > >("/control/fit/spectral_line_freq_win");
-            fSLFringeSearch.SetFrequencyWindow(fwin[0], fwin[1]);
+            if(fwin.size() == 2){fSLFringeSearch.SetFrequencyWindow(fwin[0], fwin[1]);}
         }
 
         bool ok = fSLFringeSearch.Initialize();
@@ -490,7 +490,7 @@ void MHO_SpectralLineFringeFitter::interpolate_spectral_line_peak()
     // mbdelay is set to the phase delay expressed in microseconds.
     // Downstream consumers expect microseconds for this key.
     // NOTE: this is the PHASE delay, not the group delay.
-    fParameterStore->Set("/fringe/mbdelay", phase_delay * 1e6);
+    fParameterStore->Set("/fringe/mbdelay", phase_delay * 1e6); //us
 
     fParameterStore->Set("/fringe/drate",          drate);
     fParameterStore->Set("/fringe/frate",          frate);

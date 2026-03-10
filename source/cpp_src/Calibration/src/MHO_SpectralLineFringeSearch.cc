@@ -153,7 +153,7 @@ bool MHO_SpectralLineFringeSearch::InitializeImpl(const XArgType* in)
     }
     fDRBinSep = (fNDR >= 2) ? (fDRAxis(1) - fDRAxis(0)) : 0.0;
 
-    msg_debug("calibration", "SpectralLineFringeSearch: N_chan=" << fNChan << " N_AP=" << fNAP
+    msg_debug("calibration", "MHO_SpectralLineFringeSearch: N_chan=" << fNChan << " N_AP=" << fNAP
                                                                  << " N_padded=" << fNPaddedAP << " N_freq=" << fNFreq
                                                                  << " DR_bin_sep=" << fDRBinSep << " s/s" << eom);
 
@@ -169,7 +169,7 @@ bool MHO_SpectralLineFringeSearch::InitializeImpl(const XArgType* in)
         return false;
     }
 
-    // Configure cyclic rotator to shift TIME_AXIS by N/2 (fftshift: puts DC at centre).
+    // Configure cyclic rotator to shift TIME_AXIS by N/2 (fftshift: puts DC (DR=0) at centre).
     fCyclicRotator.SetOffset(TIME_AXIS, static_cast< int64_t >(fNPaddedAP / 2));
     fCyclicRotator.SetArgs(&fSpecDRWorkspace);
     ok = fCyclicRotator.Initialize();
@@ -195,7 +195,7 @@ bool MHO_SpectralLineFringeSearch::ExecuteImpl(const XArgType* in)
 
     // -----------------------------------------------------------------
     // Step 1: Fill workspace with weighted visibilities.
-    // Weight dim layout: [polprod][channel][AP][freq], but weights are
+    // Weight dim layout: [polprod][channel][AP][freq], note that weights are
     // per (channel, AP) - the freq dimension of the weight array has size 1
     // (a single scalar weight applies to all spectral bins in that channel/AP).
     // -----------------------------------------------------------------
@@ -285,7 +285,7 @@ bool MHO_SpectralLineFringeSearch::ExecuteImpl(const XArgType* in)
         fCoarsePeakSkyFreqMHz = chan_ax(static_cast< std::size_t >(fChanMaxBin));
 
         msg_debug("calibration",
-                  "SpectralLineFringeSearch coarse peak: chan=" << fChanMaxBin << " dr_bin=" << fDRMaxBin
+                  "MHO_SpectralLineFringeSearch coarse peak: chan=" << fChanMaxBin << " dr_bin=" << fDRMaxBin
                                                                 << " freq_bin=" << fFreqMaxBin
                                                                 << " DR=" << fCoarseDR << " s/s"
                                                                 << " sky_freq=" << fCoarsePeakSkyFreqMHz << " MHz"

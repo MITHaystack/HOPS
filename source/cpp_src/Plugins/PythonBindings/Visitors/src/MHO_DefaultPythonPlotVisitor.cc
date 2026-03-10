@@ -22,6 +22,15 @@ using namespace pybind11::literals;
 
 namespace hops
 {
+    
+MHO_DefaultPythonPlotVisitor::MHO_DefaultPythonPlotVisitor():
+    fPythonModuleName("hops_visualization"),
+    fPythonLibraryName("fourfit_plot"),
+    fPythonAttrName("make_fourfit_plot_wrapper")
+{
+    //default: module/library/attr names point to the broadband fringe plot
+};
+
 
 void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
 {
@@ -31,7 +40,10 @@ void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
     if(!is_skipped)
     {
         msg_debug("main", "python plot generation enabled." << eom);
-        MHO_PyFringeDataInterface data_wrapper(data);
+
+        //determine if we have been passed a special/custom plotting function
+
+        ConstructPlot(data);
 
         // // //QUICK HACK FOR PCPHASES UNTIL WE GET est_pc_maual working/////////////
         // try
@@ -45,33 +57,39 @@ void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
         //     msg_error("python_bindings", "python error message: "<< excep.what() << eom);
         //     PyErr_Clear(); //clear the error and attempt to continue
         // }
+    }
+}
 
-        ////////////////////////////////////////////////////////////////////////
-        //load our interface module -- this is extremely slow!
-        try
+void MHO_DefaultPythonPlotVisitor::ConstructPlot(MHO_FringeData* data)
+{
+    MHO_PyFringeDataInterface data_wrapper(data);
+    ////////////////////////////////////////////////////////////////////////
+    //load our interface module -- this is extremely slow!
+    try
+    {
+        //required modules pyMHO_Containers and pyMHO_Operators are imported by configure_pypath()
+        auto vis_module = py::module::import(fPythonModuleName.c_str());
+        auto plot_lib = vis_module.attr(fPythonLibraryName.c_str());
+        plot_lib.attr(fPythonAttrName.c_str())(data_wrapper);
+    }
+    catch(py::error_already_set& excep)
+    {
+        if(std::string(excep.what()).find("SystemExit") != std::string::npos)
         {
-            //required modules pyMHO_Containers and pyMHO_Operators are imported by configure_pypath()
-            auto vis_module = py::module::import("hops_visualization");
-            auto plot_lib = vis_module.attr("fourfit_plot");
-            plot_lib.attr("make_fourfit_plot_wrapper")(data_wrapper);
+            msg_debug("python_bindings", "sys.exit() called from within python, exiting" << eom);
+            std::exit(0); //ok to exit program entirely
         }
-        catch(py::error_already_set& excep)
+        else
         {
-            if(std::string(excep.what()).find("SystemExit") != std::string::npos)
-            {
-                msg_debug("python_bindings", "sys.exit() called from within python, exiting" << eom);
-                std::exit(0); //ok to exit program entirely
-            }
-            else
-            {
-                msg_error("python_bindings", "python exception when calling subroutine ("
-                                                 << "fourfit_plot"
-                                                 << ","
-                                                 << "make_fourfit_plot_wrapper"
-                                                 << ")" << eom);
-                msg_error("python_bindings", "python error message: " << excep.what() << eom);
-                PyErr_Clear(); //clear the error and attempt to continue
-            }
+            msg_error("python_bindings", "python exception when calling subroutine ("
+                                             << fPythonLibraryName
+                                             << ","
+                                             << fPythonAttrName
+                                             << ") in module: "
+                                             << fPythonModuleName
+                                             << eom);
+            msg_error("python_bindings", "python error message: " << excep.what() << eom);
+            PyErr_Clear(); //clear the error and attempt to continue
         }
     }
 }

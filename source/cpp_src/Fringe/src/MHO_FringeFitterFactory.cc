@@ -37,31 +37,31 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
     }
 
     //determine which fringe fitter to construct
-    bool do_spectral_line = false;
-    fFringeData->GetParameterStore()->Get("/config/spectral_line", do_spectral_line);
+    bool do_spectral_line = true; //false;
+    //fFringeData->GetParameterStore()->Get("/config/spectral_line", do_spectral_line);
 
     bool do_ion = false;
     fFringeData->GetParameterStore()->Get("/config/do_ion", do_ion);
 
-    //if(do_spectral_line)
+    if(do_spectral_line)
     {
         msg_debug("fringe", "constructing a spectral line fringe fitter" << eom);
         fFringeFitter = new MHO_SpectralLineFringeFitter(fFringeData);
     }
-    // else if(do_ion)
-    // {
-    //     msg_debug("fringe", "constructing an ionospheric fringe fitter" << eom);
-    //     // #ifdef _OPENMP
-    //     // fFringeFitter = new MHO_IonosphericFringeFitterOpenMP(fFringeData);
-    //     // #else
-    //     fFringeFitter = new MHO_IonosphericFringeFitter(fFringeData);
-    //     // #endif
-    // }
-    // else
-    // {
-    //     msg_debug("fringe", "constructing a basic fringe fitter" << eom);
-    //     fFringeFitter = new MHO_BasicFringeFitter(fFringeData);
-    // }
+    else if(do_ion)
+    {
+        msg_debug("fringe", "constructing an ionospheric fringe fitter" << eom);
+        // #ifdef _OPENMP
+        // fFringeFitter = new MHO_IonosphericFringeFitterOpenMP(fFringeData);
+        // #else
+        fFringeFitter = new MHO_IonosphericFringeFitter(fFringeData);
+        // #endif
+    }
+    else
+    {
+        msg_debug("fringe", "constructing a basic fringe fitter" << eom);
+        fFringeFitter = new MHO_BasicFringeFitter(fFringeData);
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     //POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS

@@ -11,8 +11,9 @@ namespace hops
  */
 class MHO_DefaultPythonPlotVisitor: public MHO_FringePlotVisitor
 {
+
     public:
-        MHO_DefaultPythonPlotVisitor(){};
+        MHO_DefaultPythonPlotVisitor();
         virtual ~MHO_DefaultPythonPlotVisitor(){};
 
         //default visit behavior is fine
@@ -27,6 +28,14 @@ class MHO_DefaultPythonPlotVisitor: public MHO_FringePlotVisitor
         virtual void Plot(MHO_FringeData* data) override;
 
     protected:
+
+        std::string fPythonModuleName; //python module to import
+        std::string fPythonLibraryName; //also the (python) file name
+        std::string fPythonAttrName; //python function to call (must accept MHO_PyFringeDataInterface)
+        
+        virtual void ConstructPlot(MHO_FringeData* data);
+
+
 
 };
 
