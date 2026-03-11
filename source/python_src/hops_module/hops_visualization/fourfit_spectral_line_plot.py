@@ -144,7 +144,7 @@ def make_sl_2d_surface_plot(plot_dict):
         im = ax3.imshow(amp_2d, aspect='auto', origin='lower',
                         extent=extent, cmap='inferno', interpolation='nearest')
 
-        ax3.set_xlabel('freq (MHz)', fontsize=9)
+        ax3.set_xlabel('sky freq (MHz)', fontsize=9)
         ax3.set_ylabel('DR (ns/s)', fontsize=9)
         ax3.xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
         ax3.yaxis.set_major_formatter(FormatStrFormatter('%.3f'))
@@ -232,7 +232,7 @@ def make_sl_freq_spectrum_plot(plot_dict):
     if len(freq_x) > 0:
         ax4.set_xlim(float(freq_x[0]), float(freq_x[-1]))
     ax4.set_ylim(bottom=0)
-    ax4.set_xlabel('freq (MHz)', fontsize=9)
+    ax4.set_xlabel('sky freq (MHz)', fontsize=9)
     ax4.xaxis.label.set_color('k')
     ax4.xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
     ax4.set_ylabel('amplitude', fontsize=9)
@@ -260,7 +260,7 @@ def make_sl_freq_spectrum_plot(plot_dict):
         peak_fq = float(plot_dict['extra']['sl_peak_freq_axis_val'])
         ax4.axvline(x=peak_fq, color='b', linestyle='--', linewidth=0.7, alpha=0.7)
 
-    ax4.set_title('Freq spectrum at peak DR bin', fontsize=8, loc='left')
+    ax4.set_title('Sky freq spectrum at peak DR bin', fontsize=8, loc='left')
 
 
 def make_sl_phasor_time_plot(plot_dict):

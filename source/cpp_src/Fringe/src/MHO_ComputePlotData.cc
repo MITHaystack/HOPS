@@ -2191,7 +2191,13 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
     }
 
     // Freq axis: copied from vis into spec_dr during search initialisation.
+    // Values are intra-channel offsets (MHz from channel centre).
     auto& freq_ax = std::get< FREQ_AXIS >(*spec_dr);
+
+    // sky frequency for the peak channel (MHz).
+    // Sky freq of any bin = chan_sky_freq_MHz + freq_ax(f).
+    auto& chan_ax_sd    = std::get< CHANNEL_AXIS >(*spec_dr);
+    double chan_sky_freq_MHz = chan_ax_sd(static_cast< std::size_t >(peak_chan));
 
     // -----------------------------------------------------------------------
     // 1-D delay-rate spectrum at (peak_chan, peak_freq_bin).
@@ -2209,18 +2215,20 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
 
     // -----------------------------------------------------------------------
     // 1-D frequency spectrum at (peak_chan, peak_DR_bin) - amplitude and phase.
+    // X-axis values are sky frequencies (MHz).
     // -----------------------------------------------------------------------
     for(std::size_t f = 0; f < n_freq; f++)
     {
         std::complex< double > v = (*spec_dr)(0, pc, pd, f);
-        double freq_val = (freq_ax.GetSize() > f) ? freq_ax(f) : static_cast< double >(f);
+        double freq_offset = (freq_ax.GetSize() > f) ? freq_ax(f) : static_cast< double >(f);
         plot_dict["SL_FREQ_AMP"].push_back(std::abs(v));
         plot_dict["SL_FREQ_PHS"].push_back(std::arg(v) * (180.0 / M_PI));
-        plot_dict["SL_FREQ_XAXIS"].push_back(freq_val);
+        plot_dict["SL_FREQ_XAXIS"].push_back(chan_sky_freq_MHz + freq_offset);
     }
 
     // -----------------------------------------------------------------------
     // 2-D amplitude surface at peak_chan: rows = DR bins, cols = freq bins.
+    // Freq axis values are sky frequencies (MHz).
     // -----------------------------------------------------------------------
     for(std::size_t dr = 0; dr < n_dr; dr++)
     {
@@ -2238,8 +2246,8 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
     }
     for(std::size_t f = 0; f < n_freq; f++)
     {
-        double freq_val = (freq_ax.GetSize() > f) ? freq_ax(f) : static_cast< double >(f);
-        plot_dict["SL_2D_FREQ_AXIS"].push_back(freq_val);
+        double freq_offset = (freq_ax.GetSize() > f) ? freq_ax(f) : static_cast< double >(f);
+        plot_dict["SL_2D_FREQ_AXIS"].push_back(chan_sky_freq_MHz + freq_offset);
     }
 
     // -----------------------------------------------------------------------
@@ -2252,7 +2260,8 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
         std::size_t n_ap   = fVisibilities->GetDimension(TIME_AXIS);
         double ap_delta    = (n_ap > 1) ? (vis_ap_ax(1) - vis_ap_ax(0)) : 1.0;
         double frt_offset  = fParamStore->GetAs< double >("/config/frt_offset");
-        double peak_sky_freq_mhz = (freq_ax.GetSize() > pf) ? freq_ax(pf) : static_cast< double >(pf);
+        double peak_freq_offset  = (freq_ax.GetSize() > pf) ? freq_ax(pf) : 0.0;
+        double peak_sky_freq_mhz = chan_sky_freq_MHz + peak_freq_offset;
 
         // Build a local fringe-rotator configured for DR-only (SBD params left at default zero).
         MHO_FringeRotation sl_rot;
@@ -2327,8 +2336,8 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
     plot_dict["extra"]["sl_peak_dr_bin"]      = peak_dr;
     plot_dict["extra"]["sl_peak_freq_bin"]    = peak_freq;
     plot_dict["extra"]["sl_peak_dr_ns_per_s"] = dr_axis_ns[pd];
-    double peak_freq_axis_val = (freq_ax.GetSize() > pf) ? freq_ax(pf) : static_cast< double >(pf);
-    plot_dict["extra"]["sl_peak_freq_axis_val"] = peak_freq_axis_val;
+    double peak_freq_offset_val = (freq_ax.GetSize() > pf) ? freq_ax(pf) : 0.0;
+    plot_dict["extra"]["sl_peak_freq_axis_val"] = chan_sky_freq_MHz + peak_freq_offset_val;
     plot_dict["extra"]["sl_peak_sky_freq_mhz"]  = fParamStore->GetAs< double >("/fringe/peak_spectral_freq");
     plot_dict["extra"]["is_spectral_line"]       = true;
 
