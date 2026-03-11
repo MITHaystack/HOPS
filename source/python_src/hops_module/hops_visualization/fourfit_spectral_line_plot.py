@@ -263,6 +263,50 @@ def make_sl_freq_spectrum_plot(plot_dict):
     ax4.set_title('Freq spectrum at peak DR bin', fontsize=8, loc='left')
 
 
+def make_sl_phasor_time_plot(plot_dict):
+    '''Peak-phasor amplitude and phase vs time (delay-rate correction only).
+    Placed in the same grid cell as make_channel_segment_plots_alt.
+    Data: SL_SEG_AMP (amplitude per segment), SL_SEG_PHS (phase in degrees per segment).
+    '''
+    sl_seg_amp = plot_dict.get('SL_SEG_AMP', [])
+    sl_seg_phs = plot_dict.get('SL_SEG_PHS', [])
+    n_seg = len(sl_seg_amp)
+
+    ax6 = plt.subplot2grid((16,16),(7,0),rowspan=3,colspan=13)
+
+    if n_seg == 0:
+        ax6.text(0.5, 0.5, 'no segment data', ha='center', va='center',
+                 transform=ax6.transAxes, fontsize=8)
+        ax6.axis('off')
+        return
+
+    seg_x = np.arange(n_seg)
+    ax6.plot(seg_x, sl_seg_amp, 'co-', markersize=2, markerfacecolor='b',
+             linewidth=0.5, markeredgewidth=0.0)
+    ax6.set_xlim(0, max(n_seg - 1, 1))
+    ax6.set_ylim(bottom=0)
+    ax6.set_xlabel('time segment', fontsize=9)
+    ax6.set_ylabel('amplitude', fontsize=9)
+    ax6.yaxis.label.set_color('b')
+    ax6.minorticks_on()
+    ax6.tick_params(axis='both', direction='in', which='both')
+    plt.xticks(fontsize=8)
+    plt.yticks(fontsize=8, rotation=90)
+
+    ax6a = ax6.twinx()
+    ax6a.plot(seg_x, sl_seg_phs, 'ro', markersize=2, linewidth=0.5, markeredgewidth=0.0)
+    ax6a.set_xlim(0, max(n_seg - 1, 1))
+    ax6a.set_ylim(-180, 180)
+    ax6a.set_ylabel('phase [deg]', fontsize=9)
+    ytick_locs = [-180, -90, 0, 90, 180]
+    ax6a.set_yticks(ytick_locs)
+    ax6a.set_yticklabels([str(y) for y in ytick_locs], fontsize=8, rotation=90)
+    ax6a.yaxis.label.set_color('r')
+    ax6a.tick_params(axis='both', direction='in', which='both')
+
+    ax6.set_title('Peak phasor vs time (DR-corrected)', fontsize=8, loc='left')
+
+
 def make_xpower_plot(plot_dict):
 
     #make sure there is x-axis info
@@ -1169,6 +1213,7 @@ def make_fourfit_spectral_line_plot(plot_dict, show_on_screen, filename):
         make_sl_dr_spectrum_plot(plot_dict)    # 1-D DR spectrum
         make_sl_2d_surface_plot(plot_dict)     # 2-D DR x freq surface
         make_sl_freq_spectrum_plot(plot_dict)  # 1-D freq spectrum (amp + phase)
+        make_sl_phasor_time_plot(plot_dict)    # peak phasor amp/phase vs time
     else:
         make_dr_mbd_plot(plot_dict)    #constructs the delay-rate/multiband delay twin plot
         make_sbd_dtec_plot(plot_dict)  #constructs the single-band delay and (ion-dTEC) twin plot

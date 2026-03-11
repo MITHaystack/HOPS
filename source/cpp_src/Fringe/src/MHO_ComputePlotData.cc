@@ -2243,6 +2243,84 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
     }
 
     // -----------------------------------------------------------------------
+    // Time-segment phasors at the peak (channel, freq_bin) with DR-only correction.
+    // Apply vrot with MBD=0 and default SBD params (all zero), giving DR-only rotation.
+    // -----------------------------------------------------------------------
+    {
+        auto& vis_ap_ax   = std::get< TIME_AXIS >(*fVisibilities);
+        auto& vis_chan_ax  = std::get< CHANNEL_AXIS >(*fVisibilities);
+        std::size_t n_ap   = fVisibilities->GetDimension(TIME_AXIS);
+        double ap_delta    = (n_ap > 1) ? (vis_ap_ax(1) - vis_ap_ax(0)) : 1.0;
+        double frt_offset  = fParamStore->GetAs< double >("/config/frt_offset");
+        double peak_sky_freq_mhz = (freq_ax.GetSize() > pf) ? freq_ax(pf) : static_cast< double >(pf);
+
+        // Build a local fringe-rotator configured for DR-only (SBD params left at default zero).
+        MHO_FringeRotation sl_rot;
+        {
+            int sl_sideband = 0;
+            std::string net_sideband = "?";
+            vis_chan_ax.RetrieveIndexLabelKeyValue(pc, "net_sideband", net_sideband);
+            if(net_sideband == "U") { sl_sideband = 1; }
+            else if(net_sideband == "L") { sl_sideband = -1; }
+            int dsb_partner = 0;
+            if(vis_chan_ax.RetrieveIndexLabelKeyValue(pc, "dsb_partner", dsb_partner)) { sl_sideband = 0; }
+            sl_rot.SetSideband(sl_sideband);
+        }
+
+        // Segment size: match broadband ap_per_seg logic.
+        int ap_per_seg_val = 0;
+        fParamStore->Get("/cmdline/ap_per_seg", ap_per_seg_val);
+        std::size_t apseg;
+        std::size_t n_sl_seg;
+        if(ap_per_seg_val == 0)
+        {
+            n_sl_seg = std::min(n_ap, (std::size_t)10);
+            if(n_sl_seg == 0) { n_sl_seg = 1; }
+            apseg = n_ap / n_sl_seg;
+            if(apseg == 0) { apseg = 1; }
+            n_sl_seg = n_ap / apseg;
+        }
+        else
+        {
+            apseg = static_cast< std::size_t >(ap_per_seg_val);
+            if(apseg > n_ap) { apseg = (n_ap > 0) ? n_ap : 1; }
+            if(apseg == 0) { apseg = 1; }
+            n_sl_seg = n_ap / apseg;
+        }
+        if((n_ap % apseg) != 0) { n_sl_seg += 1; }
+
+        std::vector< std::complex< double > > seg_sum(n_sl_seg, 0.0);
+        std::vector< double > seg_wt(n_sl_seg, 0.0);
+
+        for(std::size_t ap = 0; ap < n_ap; ap++)
+        {
+            double tdelta             = (vis_ap_ax(ap) + ap_delta / 2.0) - frt_offset;
+            std::complex< double > vr = sl_rot.vrot(tdelta, peak_sky_freq_mhz, fRefFreq, fDelayRate, 0.0);
+            std::complex< double > v  = (*fVisibilities)(0, pc, ap, pf);
+            double w                  = (fWeights != nullptr) ? (*fWeights)(0, pc, ap, 0) : 1.0;
+            std::size_t seg_idx       = ap / apseg;
+            if(seg_idx >= n_sl_seg) { seg_idx = n_sl_seg - 1; }
+            seg_sum[seg_idx] += v * vr * w;
+            seg_wt[seg_idx] += w;
+        }
+
+        std::vector< double > sl_seg_amp;
+        std::vector< double > sl_seg_phs;
+        sl_seg_amp.reserve(n_sl_seg);
+        sl_seg_phs.reserve(n_sl_seg);
+        for(std::size_t s = 0; s < n_sl_seg; s++)
+        {
+            std::complex< double > avg = (seg_wt[s] > 0.0) ? (seg_sum[s] / seg_wt[s]) : 0.0;
+            sl_seg_amp.push_back(std::abs(avg));
+            sl_seg_phs.push_back(std::arg(avg) * (180.0 / M_PI));
+        }
+
+        plot_dict["SL_SEG_AMP"] = sl_seg_amp;
+        plot_dict["SL_SEG_PHS"] = sl_seg_phs;
+        plot_dict["NSeg"]        = n_sl_seg;
+    }
+
+    // -----------------------------------------------------------------------
     // Peak-location metadata for plot overlays.
     // -----------------------------------------------------------------------
     plot_dict["extra"]["sl_peak_chan"]        = peak_chan;
@@ -2254,9 +2332,8 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
     plot_dict["extra"]["sl_peak_sky_freq_mhz"]  = fParamStore->GetAs< double >("/fringe/peak_spectral_freq");
     plot_dict["extra"]["is_spectral_line"]       = true;
 
-    // Minimal fields required by channel/segment machinery (not used in spectral-line plot, but
-    // prevents crashes if generic code downstream iterates over them).
-    plot_dict["NSeg"]      = 1;
+    // Minimal fields required by channel/segment machinery.
+    // NSeg is set by the time-segment phasor section above.
     plot_dict["NPlots"]    = 1;
     plot_dict["StartPlot"] = 0;
 
