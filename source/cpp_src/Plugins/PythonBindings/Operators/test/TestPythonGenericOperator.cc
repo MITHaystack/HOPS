@@ -203,7 +203,7 @@ int main(int argc, char** argv)
     paramStore->Set("/uuid/rem_station", rem_uuid);
 
     MHO_PyGenericOperator pyOper;
-    pyOper.SetModuleName("mho_test");
+    pyOper.SetModulePath("mho_test");
     pyOper.SetFunctionName("test_plot_visibilities");
     pyOper.SetFringeData(&fdata);
     // pyOper.SetContainerStore(&conStore->;

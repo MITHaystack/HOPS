@@ -24,9 +24,8 @@ namespace hops
 {
     
 MHO_DefaultPythonPlotVisitor::MHO_DefaultPythonPlotVisitor():
-    fPythonModuleName("hops_visualization"),
-    fPythonLibraryName("fourfit_plot"),
-    fPythonAttrName("make_fourfit_plot_wrapper")
+    fModulePath("hops_visualization.fourfit_plot"), //note dot syntax
+    fFunctionName("make_fourfit_plot_wrapper")
 {
     //default: module/library/attr names point to the broadband fringe plot
 };
@@ -45,9 +44,8 @@ void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
         if( data->GetParameterStore()->IsPresent("/control/config/python_custom_plot") )
         {
             bool ok = false;
-            ok = data->GetParameterStore()->Get("/control/config/python_custom_plot/module_name", fPythonModuleName);
-            ok &= data->GetParameterStore()->Get("/control/config/python_custom_plot/library_name", fPythonLibraryName);
-            ok &= data->GetParameterStore()->Get("/control/config/python_custom_plot/function_name", fPythonAttrName);
+            ok = data->GetParameterStore()->Get("/control/config/python_custom_plot/module_path", fModulePath);
+            ok &= data->GetParameterStore()->Get("/control/config/python_custom_plot/function_name", fFunctionName);
             if(!ok)
             {
                 msg_error("python_bindings", "error retrieving python custom plot information" << eom);
@@ -78,10 +76,9 @@ void MHO_DefaultPythonPlotVisitor::ConstructPlot(MHO_FringeData* data)
     //load our interface module -- this is extremely slow!
     try
     {
-        //required modules pyMHO_Containers and pyMHO_Operators are imported by configure_pypath()
-        auto vis_module = py::module::import(fPythonModuleName.c_str());
-        auto plot_lib = vis_module.attr(fPythonLibraryName.c_str());
-        plot_lib.attr(fPythonAttrName.c_str())(data_wrapper);
+        //the modules pyMHO_Containers and pyMHO_Operators (required) are imported by configure_pypath()
+        auto mod = py::module::import(fModulePath.c_str());
+        mod.attr(fFunctionName.c_str())(data_wrapper);
     }
     catch(py::error_already_set& excep)
     {
@@ -93,12 +90,10 @@ void MHO_DefaultPythonPlotVisitor::ConstructPlot(MHO_FringeData* data)
         else
         {
             msg_error("python_bindings", "python exception when calling subroutine ("
-                                             << fPythonLibraryName
-                                             << ","
-                                             << fPythonAttrName
-                                             << ") in module: "
-                                             << fPythonModuleName
-                                             << eom);
+                                             << fModulePath
+                                             << ":"
+                                             << fFunctionName
+                                             << ")" << eom);
             msg_error("python_bindings", "python error message: " << excep.what() << eom);
             PyErr_Clear(); //clear the error and attempt to continue
         }

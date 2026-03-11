@@ -841,9 +841,6 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     
     //make sure we construct our global map of station identities (mk4id <-> 2 char code <-> station name)
     MHO_VexInfoExtractor::extract_station_identities(vexInfo);
-    
-    std::cout<<"DUMPING PARAMS"<<std::endl;
-    paramStore->Dump();
 }
 
 //more helper functions

@@ -36,9 +36,9 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
             fHelper = new helper_specific< XTableType >(in);
         };
 
-        void SetModuleFunctionName(std::string module_name, std::string function_name)
+        void SetModuleFunctionName(std::string module_path, std::string function_name)
         {
-            fModuleName = module_name;
+            fModulePath = module_path;
             fFunctionName = function_name;
         }
 
@@ -57,7 +57,7 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
         {
             if(fInitialized)
             {
-                fHelper->SetModuleName(fModuleName);
+                fHelper->SetModulePath(fModulePath);
                 fHelper->SetFunctionName(fFunctionName);
                 fHelper->exe();
             }
@@ -71,14 +71,14 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
                 helper_base(){};
                 virtual ~helper_base(){};
 
-                void SetModuleName(std::string mod) { fModuleName = mod; }
+                void SetModulePath(std::string mod) { fModulePath = mod; }
 
                 void SetFunctionName(std::string func) { fFunctionName = func; };
 
                 virtual bool exe() = 0;
 
             protected:
-                std::string fModuleName;
+                std::string fModulePath;
                 std::string fFunctionName;
         };
 
@@ -95,7 +95,7 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
                         fPtr->template MakeExtension< MHO_PyTableContainer< XTableType > >();
                     }
                     //assume the python interpreter is already running (should we use try/catch?)
-                    auto mod = py::module::import(fModuleName.c_str());
+                    auto mod = py::module::import(fModulePath.c_str());
                     auto extension = fPtr->template AsExtension< MHO_PyTableContainer< XTableType > >();
                     MHO_PyTableContainer< XTableType >* container =
                         dynamic_cast< MHO_PyTableContainer< XTableType >* >(extension);
@@ -117,7 +117,7 @@ class MHO_PyUnaryTableOperator: public MHO_Operator
         helper_base* fHelper;
 
         bool fInitialized;
-        std::string fModuleName;
+        std::string fModulePath;
         std::string fFunctionName;
 };
 

@@ -5,14 +5,12 @@
     "type": "compound",
     "parameters":
     {
-        "module_name": {"type": "string"},
-        "library_name": {"type": "string"},
+        "module_path": {"type": "string"},
         "function_name": {"type": "string"}
     },
     "fields":
     [
-        "module_name",
-        "library_name",
+        "module_path",
         "function_name"
     ]
 }

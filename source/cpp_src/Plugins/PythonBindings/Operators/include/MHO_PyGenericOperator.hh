@@ -35,7 +35,7 @@ class MHO_PyGenericOperator: public MHO_Operator
     public:
         MHO_PyGenericOperator(): fInitialized(false), fFringeData(nullptr), fFringeDataInterface(nullptr)
         {
-            fModuleName = "";
+            fModulePath = "";
             fFunctionName = "";
         };
 
@@ -47,14 +47,14 @@ class MHO_PyGenericOperator: public MHO_Operator
         //
         // void SetContainerStore(MHO_ContainerStore* cstore) { fContainerStore = cstore; };
 
-        void SetModuleName(std::string module_name) { fModuleName = module_name; }
+        void SetModulePath(std::string module_path) { fModulePath = module_path; }
 
         void SetFunctionName(std::string function_name) { fFunctionName = function_name; }
 
         virtual bool Initialize() override
         {
             fInitialized = false;
-            if(fModuleName == "")
+            if(fModulePath == "")
             {
                 return false;
             }
@@ -92,7 +92,7 @@ class MHO_PyGenericOperator: public MHO_Operator
                 {
                     //the internal python interpreter has not been started, bail out
                     msg_error("python_bindings", "python interpreter not running/initialized, "
-                                                     << "cannot call python subroutine (" << fModuleName << "," << fFunctionName
+                                                     << "cannot call python subroutine (" << fModulePath << "," << fFunctionName
                                                      << ")." << eom);
                     return success;
                 }
@@ -100,14 +100,14 @@ class MHO_PyGenericOperator: public MHO_Operator
                 //calling user code, so use try-catch in case there are errors
                 try
                 {
-                    auto mod = py::module::import(fModuleName.c_str());
+                    auto mod = py::module::import(fModulePath.c_str());
                     mod.attr(fFunctionName.c_str())(*fFringeDataInterface);
                     success = true;
                 }
                 catch(py::error_already_set& excep)
                 {
                     success = false;
-                    msg_error("python_bindings", "python exception when calling subroutine (" << fModuleName << ","
+                    msg_error("python_bindings", "python exception when calling subroutine (" << fModulePath << ","
                                                                                               << fFunctionName << ")" << eom);
                     msg_error("python_bindings", "python error message: " << excep.what() << eom);
                     msg_warn("python_bindings", "attempting to continue, but in-memory data may be in unknown state." << eom);
@@ -121,7 +121,7 @@ class MHO_PyGenericOperator: public MHO_Operator
 
     private:
         bool fInitialized;
-        std::string fModuleName;
+        std::string fModulePath;
         std::string fFunctionName;
 
         MHO_FringeData* fFringeData;
