@@ -68,6 +68,10 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
 endif(HOPS_USE_PYBIND11)
 
+if(HOPS_USE_JL_CXXWRAP)
+    add_subdirectory(${CPPSOURCE}/Plugins/JuliaBindings) #julia bindings
+endif(HOPS_USE_JL_CXXWRAP)
+
 if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
     add_subdirectory(${CPPSOURCE}/Plugins/MatplotPlugin) #Matplot++ (gnuplot) wrapper support
 endif()

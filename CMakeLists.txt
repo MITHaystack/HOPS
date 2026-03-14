@@ -139,6 +139,7 @@ option(HOPS_ENABLE_TEST "Build developer tests." ON)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but highly recommended)" ON)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
+option(HOPS_USE_JL_CXXWRAP "Build Julia bindings with CxxWrap.jl" OFF)
 option(HOPS_USE_MATPLOTPP "Build copy of matplot++ (requires gnuplot & C++17) for fast plotting" ON) 
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
@@ -277,6 +278,26 @@ else()
 
 endif(PY_EXE)
 
+# Julia/CxxWrap bindings ######################################################
+if(HOPS_USE_JL_CXXWRAP)
+    # Get JlCxx prefix from Julia (user must have CxxWrap.jl installed)
+    execute_process(
+        COMMAND julia -e "using CxxWrap; print(CxxWrap.prefix_path())"
+        OUTPUT_VARIABLE JLCXX_PREFIX
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        RESULT_VARIABLE JLCXX_RESULT)
+    if(JLCXX_RESULT EQUAL 0 AND JLCXX_PREFIX)
+        message(STATUS "JlCxx prefix: ${JLCXX_PREFIX}")
+        list(PREPEND CMAKE_PREFIX_PATH "${JLCXX_PREFIX}")
+        find_package(JlCxx REQUIRED)
+        set(JULIA_MODULE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/julia_modules"
+            CACHE PATH "Install directory for Julia binding shared libraries")
+        message(STATUS "Julia module install dir: ${JULIA_MODULE_INSTALL_DIR}")
+    else()
+        message(WARNING "Could not determine CxxWrap prefix from Julia; disabling Julia bindings.")
+        set(HOPS_USE_JL_CXXWRAP OFF CACHE BOOL "Build Julia bindings with CxxWrap.jl" FORCE)
+    endif()
+endif(HOPS_USE_JL_CXXWRAP)
 
 ################################################################################
 #call build in the subdirectories
