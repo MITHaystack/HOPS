@@ -52,37 +52,52 @@ add_subdirectory(${CPPSOURCE}/Vex2JSON) #library to convert ovex to json
 add_subdirectory(${CPPSOURCE}/Math) #the generic math library
 add_subdirectory(${CPPSOURCE}/Containers) #data container base classes and generic containers
 add_subdirectory(${CPPSOURCE}/Operators) #data operator base classes and generic operators
-
 add_subdirectory(${CPPSOURCE}/Calibration) #VLBI specific data containers and operators
-add_subdirectory(${CPPSOURCE}/Control) #library to parse old-fourfit control files
+add_subdirectory(${CPPSOURCE}/Control) #library to parse fourfit control files
 add_subdirectory(${CPPSOURCE}/Initialization) #library to build objects/operators
-
 add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
 
-
 if(HOPS_USE_DIFXIO)
-add_subdirectory(${CPPSOURCE}/DiFXInterface) #difxio input support
+    #difxio input support
+add_subdirectory(${CPPSOURCE}/DiFXInterface) 
 endif(HOPS_USE_DIFXIO)
 
 if(HOPS_USE_PYBIND11)
-    add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings) #python bindings
+    #python bindings (container access, and user plugins)
+    add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings)
 endif(HOPS_USE_PYBIND11)
 
 if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
-    add_subdirectory(${CPPSOURCE}/Plugins/MatplotPlugin) #Matplot++ (gnuplot) wrapper support
+    #Matplot++ (gnuplot) wrapper support (fast default fringe plotting)
+    add_subdirectory(${CPPSOURCE}/Plugins/MatplotPlugin)
 endif()
 
+if(HOPS_USE_OPENMP)
+    #OpenMP (cpu parallelism) plugin
+    add_subdirectory(${CPPSOURCE}/Plugins/OpenMP)
+endif(HOPS_USE_OPENMP)
+
 if(HOPS_USE_OPENCL)
-add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) #opencl plugin
+    #opencl plugin (GPU/accelerator parallelism)
+    add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) 
 endif(HOPS_USE_OPENCL)
 
 if(HOPS_USE_CUDA)
-add_subdirectory(${CPPSOURCE}/Plugins/CUDA) #cuda plugin
+    #cuda plugin (GPU parallelism for FFTs)
+    add_subdirectory(${CPPSOURCE}/Plugins/CUDA)
 endif(HOPS_USE_CUDA)
-add_subdirectory(${CPPSOURCE}/Fringe) #library of fringe-fitting related functionality
-
-add_subdirectory(${CPPSOURCE}/Applications) #applications
 
 if(HOPS_USE_HDF5)
-add_subdirectory(${CPPSOURCE}/Plugins/HDF5) #hdf5 plugin
+    #hdf5 plugin (export to HDF5 files)
+    add_subdirectory(${CPPSOURCE}/Plugins/HDF5)
 endif(HOPS_USE_HDF5)
+
+#library of fringe-fitting related functionality 
+#(may depend on enabled plugins)
+add_subdirectory(${CPPSOURCE}/Fringe) 
+
+#applications 
+#(may depend on enabled plugins)
+add_subdirectory(${CPPSOURCE}/Applications) 
+
+

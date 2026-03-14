@@ -74,16 +74,6 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_InterpolateSpectralLinePeak.cc
 )
 
-if(HOPS_USE_OPENMP)
-    list(APPEND CALIBRATION_HEADERFILES
-            ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearchOpenMP.hh
-        )
-
-    list(APPEND CALIBRATION_SOURCEFILES
-            ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MBDelaySearchOpenMP.cc
-        )
-endif(HOPS_USE_OPENMP)
-
 #declare header paths ##########################################################
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
@@ -93,10 +83,6 @@ set(CALIBRATION_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Contai
 #compile and install library ###################################################
 add_library (MHO_Calibration SHARED ${CALIBRATION_SOURCEFILES})
 target_link_libraries (MHO_Calibration ${CALIBRATION_LIBS})
-
-if(HOPS_USE_OPENMP AND OpenMP_CXX_FOUND)
-    target_link_libraries(MHO_Calibration OpenMP::OpenMP_CXX)
-endif()
 
 hops_install_headers (${CALIBRATION_HEADERFILES})
 hops_install_libraries (MHO_Calibration )
