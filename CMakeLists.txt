@@ -185,6 +185,8 @@ if(HOPS_USE_OPENMP)
     if(NOT OpenMP_CXX_FOUND)
         message(STATUS "OpenMP not found, disabling HOPS_USE_OPENMP")
         set(HOPS_USE_OPENMP OFF CACHE BOOL "Use OpenMP for shared-memory parallelism" FORCE)
+    else()
+        hops_add_cxxflag(HOPS_USE_OPENMP)
     endif()
 endif(HOPS_USE_OPENMP)
 

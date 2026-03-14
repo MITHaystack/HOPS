@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+#clang-tidy cache 
+*.cache
+
 # Compiled Object files
 *.slo
 *.lo
@@ -49,6 +52,7 @@
 
 # Build and install directories
 *build/
+*build_*
 *x86_64*
 
 #extern stuff we don't want to come back 

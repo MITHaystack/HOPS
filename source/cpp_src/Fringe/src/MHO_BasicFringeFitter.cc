@@ -28,7 +28,7 @@
     #include "MHO_MBDelaySearchCUDA.hh"
     #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
 #else
-    #ifdef _OPENMP
+    #ifdef HOPS_USE_OPENMP
         #include "MHO_MBDelaySearchOpenMP.hh"
         #define MBD_SEARCH_TYPE MHO_MBDelaySearchOpenMP
     #else 
