@@ -67,9 +67,9 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings)
 endif(HOPS_USE_PYBIND11)
 
-if(HOPS_USE_JL_CXXWRAP)
+if(HOPS_USE_JULIA)
     add_subdirectory(${CPPSOURCE}/Plugins/JuliaBindings) #julia bindings
-endif(HOPS_USE_JL_CXXWRAP)
+endif(HOPS_USE_JULIA)
 
 if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
     #Matplot++ (gnuplot) wrapper support (fast default fringe plotting)

@@ -14,12 +14,13 @@ namespace hops
  *@brief Constructs MHO_JlGenericOperator instances from control-file config.
  *
  * The control file entry must supply:
- *   "module_path":   string identifier (used for operator naming; informational only)
- *   "function_name": string identifier (used for operator naming; informational only)
+ *   "module_path":   path to a Julia source file (passed to include() at Initialize() time)
+ *   "function_name": name of the no-arg, Bool-returning function defined in that file
  *
- * The actual Julia function pointer must be set via
- *   MHO_JlGenericOperator::SetJuliaFunction() before Initialize() is called.
- * This builder only creates the operator and registers it in the toolbox.
+ * Initialize() will call include(module_path) and look up function_name in Main.
+ * Alternatively, the Julia function pointer can be set directly via
+ *   MHO_JlGenericOperator::SetJuliaFunction() before Initialize() is called,
+ * in which case module_path/function_name are used only for naming/logging.
  */
 
 class MHO_JuliaOperatorBuilder : public MHO_OperatorBuilder

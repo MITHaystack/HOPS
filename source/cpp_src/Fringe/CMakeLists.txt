@@ -56,6 +56,15 @@ if(HOPS_USE_PYBIND11)
     list(APPEND FRINGE_LIBS ${PYBIND_APP_LIBS})
 endif(HOPS_USE_PYBIND11)
 
+# #add julia deps if available
+# if(HOPS_USE_JULIA)
+#     hops_internal_include_directories(../Plugins/JuliaBindings/Containers/include)
+#     hops_internal_include_directories(../Plugins/JuliaBindings/Operators/include)
+#     #hops_internal_include_directories(../Plugins/JuliaBindings/Visitors/include)
+#     list(APPEND JULIA_APP_LIBS jlMHO_Operators jlMHO_Operators JlCxx::cxxwrap_julia JlCxx::cxxwrap_julia_stl)
+#     list(APPEND FRINGE_LIBS ${JULIA_APP_LIBS})
+# endif(HOPS_USE_JULIA)
+
 if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
     hops_internal_include_directories(../../../extern/matplotplusplus/source/)
     hops_internal_include_directories(../Plugins/MatplotPlugin/include)

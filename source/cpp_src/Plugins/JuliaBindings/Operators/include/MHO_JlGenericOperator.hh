@@ -66,7 +66,10 @@ class MHO_JlGenericOperator : public MHO_Operator
         //! The function must accept no arguments and return a Bool.
         void SetJuliaFunction(jl_function_t* f) { fJuliaFunc = f; }
 
-        // Legacy string-based identifiers (kept for compatibility with operator toolbox)
+        // Path to a Julia source file and the function name to load from it.
+        // Initialize() calls include(module_path) then looks up function_name in Main.
+        // These are used when no explicit Julia function pointer has been set via
+        // SetJuliaFunction() - i.e., the normal path when built by MHO_JuliaOperatorBuilder.
         void SetModulePath(const std::string& path) { fModulePath = path; }
         void SetFunctionName(const std::string& name) { fFunctionName = name; }
         std::string GetModulePath()   const { return fModulePath; }
@@ -75,6 +78,33 @@ class MHO_JlGenericOperator : public MHO_Operator
         virtual bool Initialize() override
         {
             fInitialized = false;
+
+            // If no function pointer yet, try to load from module_path + function_name.
+            // module_path is a path to a Julia source file; function_name is exported
+            // at top level (or in Main) after include().
+            if(!fJuliaFunc && !fModulePath.empty() && !fFunctionName.empty())
+            {
+                std::string include_cmd = "include(\"" + fModulePath + "\")";
+                jl_eval_string(include_cmd.c_str());
+                if(jl_exception_occurred())
+                {
+                    msg_error("julia_bindings",
+                              "Failed to include Julia file \"" << fModulePath << "\": "
+                                  << jl_typeof_str(jl_exception_occurred()) << eom);
+                    jl_exception_clear();
+                    return false;
+                }
+
+                fJuliaFunc = jl_get_function(jl_main_module, fFunctionName.c_str());
+                if(!fJuliaFunc)
+                {
+                    msg_error("julia_bindings",
+                              "Julia function \"" << fFunctionName << "\" not found in Main "
+                                  << "after including \"" << fModulePath << "\"" << eom);
+                    return false;
+                }
+            }
+
             if(!fJuliaFunc) { return false; }
             if(fFringeData && !fFringeDataInterface)
             {
