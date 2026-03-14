@@ -163,18 +163,14 @@ void MHO_IonosphericFringeFitterOpenMP::initialize_ion_threads()
     //clear previous state (allows re-initialization if called again)
     fPerThreadVis.clear();
     fPerThreadSBD.clear();
-    fPerThreadSSBNormFX.clear();
-    fPerThreadMSBNormFX.clear();
-    fPerThreadNormFXPtr.clear();
+    fPerThreadNormFX.clear();
     fPerThreadMBDSearch.clear();
     fPerThreadPeakInterp.clear();
     fPerThreadIono.clear();
 
     fPerThreadVis.resize(fNIonThreads);
     fPerThreadSBD.resize(fNIonThreads);
-    fPerThreadSSBNormFX.resize(fNIonThreads);
-    fPerThreadMSBNormFX.resize(fNIonThreads);
-    fPerThreadNormFXPtr.resize(fNIonThreads, nullptr);
+    fPerThreadNormFX.resize(fNIonThreads);
     fPerThreadMBDSearch.resize(fNIonThreads);
     fPerThreadPeakInterp.resize(fNIonThreads);
     fPerThreadIono.resize(fNIonThreads);
@@ -188,26 +184,22 @@ void MHO_IonosphericFringeFitterOpenMP::initialize_ion_threads()
         //per-thread SBD output (copy structure from already-sized sbd_data)
         fPerThreadSBD[t].Copy(*sbd_data);
 
-        //per-thread normFX: choose SSB or MSB to match the main pipeline
         if(is_mixed)
         {
-            fPerThreadMSBNormFX[t] = std::make_unique< MHO_MixedSidebandNormFX >();
-            fPerThreadMSBNormFX[t]->SetArgs(&fPerThreadVis[t], &fPerThreadSBD[t]);
-            fPerThreadMSBNormFX[t]->SetWeights(wt_data);
-            fPerThreadMSBNormFX[t]->Initialize();
-            fPerThreadNormFXPtr[t] = fPerThreadMSBNormFX[t].get();
+            fPerThreadNormFX[t].reset(new MHO_MixedSidebandNormFX());
         }
         else
         {
-            fPerThreadSSBNormFX[t] = std::make_unique< MHO_SingleSidebandNormFX >();
-            fPerThreadSSBNormFX[t]->SetArgs(&fPerThreadVis[t], &fPerThreadSBD[t]);
-            fPerThreadSSBNormFX[t]->SetWeights(wt_data);
-            fPerThreadSSBNormFX[t]->Initialize();
-            fPerThreadNormFXPtr[t] = fPerThreadSSBNormFX[t].get();
+            fPerThreadNormFX[t].reset(new MHO_SingleSidebandNormFX());
         }
 
+        auto* fx = fPerThreadNormFX[t].get();
+        fx->SetArgs(&fPerThreadVis[t], &fPerThreadSBD[t]);
+        fx->SetWeights(wt_data);
+        fx->Initialize();
+
         //per-thread MBD search (always single-threaded to avoid nested parallelism)
-        fPerThreadMBDSearch[t] = std::make_unique< MHO_MBDelaySearch >();
+        fPerThreadMBDSearch[t].reset( new MHO_MBDelaySearch() );
         fPerThreadMBDSearch[t]->SetWeights(wt_data);
         fPerThreadMBDSearch[t]->SetReferenceFrequency(ref_freq);
         fPerThreadMBDSearch[t]->SetArgs(&fPerThreadSBD[t]);
@@ -603,7 +595,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
 
                 //coarse SBD/MBD/DR search
                 fPerThreadSBD[tid].ZeroArray();
-                fPerThreadNormFXPtr[tid]->Execute();
+                fPerThreadNormFX[tid]->Execute();
                 fPerThreadMBDSearch[tid]->Execute();
 
                 int c_mbdmax = fPerThreadMBDSearch[tid]->GetMBDMaxBin();
@@ -1005,7 +997,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
 
                 //coarse SBD/MBD/DR search
                 fPerThreadSBD[tid].ZeroArray();
-                fPerThreadNormFXPtr[tid]->Execute();
+                fPerThreadNormFX[tid]->Execute();
                 fPerThreadMBDSearch[tid]->Execute();
 
                 int c_mbdmax = fPerThreadMBDSearch[tid]->GetMBDMaxBin();
