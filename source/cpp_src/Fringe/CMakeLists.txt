@@ -14,7 +14,6 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeUtilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeFitter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitter.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitterOpenMP.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileInfoExtractor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileDefinitions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitterFactory.hh
@@ -34,7 +33,6 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeUtilities.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeFitter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericFringeFitter.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericFringeFitterOpenMP.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileInfoExtractor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileDefinitions.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeFitterFactory.cc
