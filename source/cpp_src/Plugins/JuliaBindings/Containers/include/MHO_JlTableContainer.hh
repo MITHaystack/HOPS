@@ -51,47 +51,28 @@ template< typename XTableType > class MHO_JlTableContainer
         //----------------------------------------------------------------------
 
         /*!
-         * Return an N-dimensional native Julia Array wrapping the C++ memory (zero-copy).
+         * Return an N-dimensional CxxWrap ArrayRef wrapping the C++ memory (zero-copy).
          *
-         * Returns jl_value_t* so CxxWrap passes it through directly to Julia as a
-         * concrete Base.Array{T,N} — not a CxxWrap AbstractArray wrapper.  This
-         * means all Julia array operations (slicing, broadcasting, etc.) work without
-         * any data copy.
+         * The returned object is a CxxWrap AbstractArray wrapper.  Dimensions are
+         * passed in REVERSED order so Julia's column-major first index aligns with
+         * the C++ row-major last (fastest-varying) dimension:
          *
-         * Dimensions are passed in REVERSED order so that Julia's column-major first
-         * index aligns with the C++ row-major last (fastest-varying) dimension:
-         *
-         *   Julia vis[i_freq, i_time, i_channel, i_pol]  (1-based)
+         *   Julia arr[i_freq, i_time, i_channel, i_pol]  (1-based)
          *   <->  C++  arr[pol][channel][time][freq]         (0-based)
          *
-         * own_buffer=0: Julia will NOT free the underlying C++ data pointer.
-         * Do NOT resize!, push!, or append! to the returned array.
+         * Scalar element access (arr[i,j,k,l]) is zero-copy.
+         * Slice / broadcast operations (arr[:, :, ch, pp]) require an explicit
+         * copy by the caller because CxxWrap's AbstractArray dispatch does not
+         * support the fast native Array path:
+         *
+         *   raw = get_array(obj)
+         *   arr = copy(reshape(raw, reverse(get_dimensions(obj))...))
+         *
+         * Do NOT resize!, push!, or append! to the returned object.
          */
-        /*!
-         * Return the array data as a flat 1-D Julia Array wrapping C++ memory (zero-copy).
-         *
-         * Using jl_ptr_to_array_1d avoids the multi-dimensional dims-tuple
-         * construction required by jl_ptr_to_array, whose behaviour varies
-         * across Julia minor versions.  Julia callers should reshape the result:
-         *
-         *   raw  = get_array(obj)                              # 1-D view
-         *   arr  = reshape(raw, reverse(get_dimensions(obj))...) # N-D view
-         *
-         * get_dimensions() returns C++ logical order [dim0 (slowest) … dimN-1 (fastest)].
-         * Reversing gives Julia column-major order so that
-         *   arr[i_freq, i_time, i_channel, i_pol]  ↔  C++ arr[pol][ch][time][freq].
-         *
-         * own_buffer=0: Julia will NOT free the C++ data pointer.
-         * Do NOT resize!, push!, or append! to the returned array.
-         */
-        jl_value_t* GetNDArray()
+        jlcxx::ArrayRef< value_type, RANK > GetNDArray()
         {
-            std::size_t nel = 1;
-            for(std::size_t i = 0; i < RANK; ++i) nel *= fTable->GetDimension(i);
-
-            jl_value_t* arr_type = jl_apply_array_type(julia_value_type(), 1);
-            return reinterpret_cast< jl_value_t* >(
-                jl_ptr_to_array_1d(arr_type, fTable->GetData(), nel, 0));
+            return GetNDArray_impl(std::make_index_sequence< RANK >{});
         }
 
         //! Logical dimensions in C++ order (dim[0]=slowest, dim[RANK-1]=fastest).
@@ -183,27 +164,14 @@ template< typename XTableType > class MHO_JlTableContainer
         }
 
     private:
-        // Map value_type to the corresponding Julia primitive type constant,
-        // bypassing CxxWrap's registry (which doesn't cover std::complex<>).
-        // jl_complex_type is a UnionAll; jl_apply_type1 instantiates it.
-        static jl_value_t* julia_value_type()
+        // Reverse dimensions at compile time so Julia column-major <-> C++ row-major.
+        template< std::size_t... I >
+        jlcxx::ArrayRef< value_type, RANK > GetNDArray_impl(std::index_sequence< I... >)
         {
-            if constexpr(std::is_same_v< value_type, double >)
-                return reinterpret_cast< jl_value_t* >(jl_float64_type);
-            else if constexpr(std::is_same_v< value_type, float >)
-                return reinterpret_cast< jl_value_t* >(jl_float32_type);
-            else if constexpr(std::is_same_v< value_type, std::complex< double > >)
-                return jl_apply_type1(jl_get_global(jl_base_module, jl_symbol("Complex")),
-                                      reinterpret_cast< jl_value_t* >(jl_float64_type));
-            else if constexpr(std::is_same_v< value_type, std::complex< float > >)
-                return jl_apply_type1(jl_get_global(jl_base_module, jl_symbol("Complex")),
-                                      reinterpret_cast< jl_value_t* >(jl_float32_type));
-            else
-            {
-                static_assert(sizeof(value_type) == 0,
-                              "MHO_JlTableContainer: unsupported value_type for Julia array binding");
-                return nullptr;
-            }
+            // I = 0,1,...,RANK-1  ->  RANK-1-I = RANK-1,...,1,0  (reversed)
+            return jlcxx::ArrayRef< value_type, RANK >(
+                fTable->GetData(),
+                static_cast< std::size_t >(fTable->GetDimension(RANK - 1 - I))...);
         }
 
         // Functor: serialize an axis's labels to a JSON array string

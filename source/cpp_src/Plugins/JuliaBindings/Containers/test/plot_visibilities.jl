@@ -76,13 +76,13 @@ Julia array layout (from get_array): arr[i_freq, i_time, i_channel, i_pol]
 C++ logical layout:                  arr[pol][channel][time][freq]
 """
 function plot_vis_surfaces(vis_obj, baseline::String, scan_dir::String)
-    # get_array returns a flat 1-D view of C++ memory.
-    # get_dimensions returns C++ logical order [n_pol, n_chan, n_time, n_freq].
-    # Reversing gives Julia column-major order.
-    # copy() is required: CxxWrap declares the return type as Any, so reshape
-    # produces a ReshapedArray{T,N,Any,...} whose AbstractArray element-dispatch
-    # path misbehaves under Julia 1.12's interpreter.  copy() produces a concrete
-    # Array{T,N} with fast native indexing for all subsequent slices.
+    # get_array returns a CxxWrap ArrayRef — zero-copy, but only supports scalar
+    # element access.  Slicing (arr[:, :, ch, pp]) requires a concrete Array.
+    # copy(reshape(...)) performs a single up-front copy (~one alloc) into
+    # Julia-owned memory so that all subsequent per-channel slices are fast
+    # native Array operations with no further allocation overhead.
+    # get_dimensions returns C++ logical order [n_pol, n_chan, n_time, n_freq];
+    # reversing gives Julia column-major (n_freq, n_time, n_chan, n_pol).
     raw  = get_array(vis_obj)
     arr  = copy(reshape(raw, reverse(get_dimensions(vis_obj))...))  # (n_freq, n_time, n_chan, n_pol)
     sz   = size(arr)

@@ -150,14 +150,15 @@ function main()
         if vis === nothing || isnull(vis)
             println("  WARNING: getter returned null pointer for $vis_label.")
         else
-            # get_array returns a flat 1-D Julia Array wrapping C++ memory (zero-copy).
+            # get_array returns a CxxWrap ArrayRef — zero-copy scalar access.
             # get_dimensions returns C++ logical order [dim0(slowest)...dimN-1(fastest)].
             # Reversing and reshaping gives Julia column-major layout:
             #   arr[i_freq, i_time, i_channel, i_pol]  (Julia, 1-based)
             #   <->  arr[pol][channel][time][freq]         (C++, 0-based)
+            # Note: slicing (arr[:, :, i, j]) requires an explicit copy first.
             # Do NOT resize!, push!, or append! — C++ owns the backing memory.
             cpp_dims = get_dimensions(vis)   # C++ logical order for reference
-            arr = copy(reshape(get_array(vis), reverse(cpp_dims)...))
+            arr = reshape(get_array(vis), reverse(cpp_dims)...)
             println("  type              = $vis_label")
             println("  classname         = $(get_classname(vis))")
             println("  C++ dims (logical)= $cpp_dims")
