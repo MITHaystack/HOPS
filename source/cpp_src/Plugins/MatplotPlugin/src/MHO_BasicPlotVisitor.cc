@@ -268,7 +268,7 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
                         break;
                     }
                     case 'q':
-                        std::exit(1);
+                        std::exit(0);
                     default:
                         msg_info("fringe", "continuing..." << eom);
                         loop = false;

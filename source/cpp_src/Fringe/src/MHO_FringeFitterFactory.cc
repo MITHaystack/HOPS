@@ -92,15 +92,26 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
     if(!julia_runtime_initialized)
     {
         jl_init();
-        std::atexit([]{ jl_atexit_hook(0); });
+        // Do NOT register jl_atexit_hook via std::atexit.
+        // In Julia 1.12+, running GC finalizers during C++ atexit crashes because
+        // the JIT tries to compile finalizer methods for the first time while LLVM's
+        // type registry is in a partially-torn-down state.  This also fires from any
+        // std::exit() call (e.g. the interactive plot 'q' key), with no way to
+        // guarantee a safe JIT state.  For a short-lived embedded Julia runtime the
+        // OS reclaims all memory; explicit callers can call jl_atexit_hook(0) before
+        // their own exit if a clean finalizer sweep is required.
 
-        // Load HOPS CxxWrap modules into Main.
+        // Load HOPS CxxWrap modules.
         //
-        // @wrapmodule stores a guard constant (__cxxwrap_methodkeys) in the
-        // target Julia module so it can only be called once per module.
-        // Containers is loaded normally via @wrapmodule; for operators we
-        // bypass the guard by calling CxxWrap.register_julia_module +
-        // wraptypes + wrapfunctions directly.
+        // Containers -> loaded into Main via @wrapmodule / @initcxx.
+        // Operators  -> @wrapmodule can only be called once per Julia module
+        //              (it stores a guard in __cxxwrap_methodkeys).  Load the
+        //              operators into a dedicated HOPSOps submodule instead,
+        //              then import get_current_fringe_data into Main so that
+        //              user Julia scripts can call it without qualification.
+        //
+        // CxxWrap.register_julia_module was removed in CxxWrap >= 0.15; this
+        // approach works with all supported versions (0.15+).
         //
         // JULIA_MODULES_DIR is injected as a compile-time string by CMake.
         // Helper: evaluate one Julia statement, log+clear any exception, return false on failure.
@@ -118,20 +129,20 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
         };
 
         bool ok = true;
-        ok &= jl_eval_checked("using CxxWrap,Libdl",   "using CxxWrap, Libdl");
+        ok &= jl_eval_checked("using CxxWrap", "using CxxWrap");
         ok &= jl_eval_checked("wrapmodule containers",
                               "@wrapmodule(() -> \"" JULIA_MODULES_DIR "/libjlMHO_Containers.so\")");
-        ok &= jl_eval_checked("initcxx containers",    "@initcxx");
-        // Operators: bypass readmodule's one-per-module guard on Main
-        ok &= jl_eval_checked("register operators",
-                              "let fptr = Libdl.dlsym("
-                              "  Libdl.dlopen(\"" JULIA_MODULES_DIR "/libjlMHO_Operators.so\","
-                              "               Libdl.RTLD_LAZY | Libdl.RTLD_DEEPBIND),"
-                              "  :define_julia_module)\n"
-                              "  CxxWrap.register_julia_module(Main, fptr)\n"
-                              "  CxxWrap.wraptypes(Main)\n"
-                              "  CxxWrap.wrapfunctions(Main)\n"
+        ok &= jl_eval_checked("initcxx containers", "@initcxx");
+        // Load operators into HOPSOps submodule (avoids the @wrapmodule guard on Main)
+        ok &= jl_eval_checked("wrapmodule operators",
+                              "module HOPSOps\n"
+                              "  using CxxWrap\n"
+                              "  @wrapmodule(() -> \"" JULIA_MODULES_DIR "/libjlMHO_Operators.so\")\n"
+                              "  @initcxx\n"
                               "end");
+        // Import get_current_fringe_data into Main so user scripts can call it unqualified
+        ok &= jl_eval_checked("import get_current_fringe_data",
+                              "import .HOPSOps: get_current_fringe_data");
         // Diagnostic: confirm the key symbol landed in Main
         ok &= jl_eval_checked("verify",
                               "isdefined(Main, :get_current_fringe_data) || "
