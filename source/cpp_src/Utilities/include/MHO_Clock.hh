@@ -738,16 +738,16 @@ inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& yea
 
     //convert the time point to sys time, and extract the date
     auto sys_tp = hops_clock::to_sys(tp);
-    auto dp = sys_days(floor< date::days >(sys_tp));
+    auto dp = date::sys_days(floor< date::days >(sys_tp));
 
     //get all of the date information
-    year_month_day ymd{dp};
+    date::year_month_day ymd{dp};
     auto year_value = ymd.year();
     //get the ordinal day of the year
     auto ordinal_day = day_of_year(dp); //note: count starts at 1
     int integer_days = ordinal_day.count() - 1;
     //get the time and convert to fractional day
-    hh_mm_ss< std::chrono::nanoseconds > time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
+    date::hh_mm_ss< std::chrono::nanoseconds > time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
     int ihours = time.hours().count();
     int imins = time.minutes().count();
     int isecs = time.seconds().count();
@@ -796,10 +796,10 @@ inline std::string hops_clock::to_vex_format(const time_point& tp, bool truncate
 
     //convert the time point to sys time, and extract the date
     auto sys_tp = hops_clock::to_sys(tp);
-    auto dp = sys_days(floor< date::days >(sys_tp));
+    auto dp = date::sys_days(floor< date::days >(sys_tp));
 
     //get all of the date information
-    year_month_day ymd{dp};
+    date::year_month_day ymd{dp};
     auto year = ymd.year();
     // auto month = ymd.month();
     // auto day = ymd.day();
@@ -808,7 +808,7 @@ inline std::string hops_clock::to_vex_format(const time_point& tp, bool truncate
     auto ordinal_day = day_of_year(dp);
 
     //get the time
-    hh_mm_ss< std::chrono::nanoseconds > time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
+    date::hh_mm_ss< std::chrono::nanoseconds > time{floor< std::chrono::nanoseconds >(sys_tp - dp)};
     auto hours = time.hours();
     auto mins = time.minutes();
     auto secs = time.seconds();
@@ -853,10 +853,10 @@ inline void hops_clock::to_vdif_format(const time_point& tp, int& vdif_epoch, in
 
     //convert the time point to sys time, and extract the date
     auto sys_tp = hops_clock::to_sys(tp);
-    auto dp = sys_days(floor< date::days >(sys_tp));
+    auto dp = date::sys_days(floor< date::days >(sys_tp));
 
     //get all of the date information so we can figure out the epoch
-    year_month_day ymd{dp};
+    date::year_month_day ymd{dp};
     auto year = ymd.year();
     auto month = ymd.month();
     auto day = ymd.day();
