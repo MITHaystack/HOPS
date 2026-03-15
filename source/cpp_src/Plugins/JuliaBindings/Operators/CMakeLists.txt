@@ -16,7 +16,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(JLOPERATOR_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators jlMHO_Containers)
 
 add_library(jlMHO_Operators SHARED ${JLOPERATOR_SOURCEFILES})
-set_target_properties(jlMHO_Operators PROPERTIES CXX_STANDARD 17)
+#set_target_properties(jlMHO_Operators PROPERTIES CXX_STANDARD 17)
 
 target_link_libraries(jlMHO_Operators PRIVATE
     ${JLOPERATOR_LIBS}

@@ -281,6 +281,8 @@ else()
 endif(PY_EXE)
 
 # Julia/CxxWrap bindings ######################################################
+set(JULIA_LIB_DIR "")   # fallback: empty → no Julia entry in hops.bash LD_LIBRARY_PATH
+set(JLCXX_LIB_DIR "")  # fallback: empty → no JlCxx entry in hops.bash LD_LIBRARY_PATH
 if(HOPS_USE_JULIA)
     # Get JlCxx prefix from Julia (user must have CxxWrap.jl installed)
     execute_process(
@@ -296,6 +298,15 @@ if(HOPS_USE_JULIA)
             CACHE PATH "Install directory for Julia binding shared libraries")
         message(STATUS "Julia module install dir: ${JULIA_MODULE_INSTALL_DIR}")
         hops_add_cxxflag(HOPS_USE_JULIA)
+        # Capture Julia's lib dir so hops.bash can add it to LD_LIBRARY_PATH
+        execute_process(
+            COMMAND julia -e "using Libdl; print(dirname(Libdl.dlpath(\"libjulia\")))"
+            OUTPUT_VARIABLE JULIA_LIB_DIR
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
+        message(STATUS "Julia lib dir: ${JULIA_LIB_DIR}")
+        # CxxWrap (JlCxx) lib dir — contains libcxxwrap_julia.so
+        set(JLCXX_LIB_DIR "${JLCXX_PREFIX}/lib")
+        message(STATUS "JlCxx lib dir: ${JLCXX_LIB_DIR}")
     else()
         message(WARNING "Could not determine CxxWrap prefix from Julia; disabling Julia bindings.")
         set(HOPS_USE_JULIA OFF CACHE BOOL "Build Julia bindings with CxxWrap.jl" FORCE)

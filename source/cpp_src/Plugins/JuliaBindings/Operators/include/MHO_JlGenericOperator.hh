@@ -50,6 +50,19 @@ namespace hops
 // (set during Execute(), cleared afterwards)
 inline thread_local MHO_JlFringeDataInterface* g_current_fringe_data = nullptr;
 
+// Returns the full exception message string via sprint(showerror, e).
+// Caller must have already checked jl_exception_occurred() != nullptr.
+inline std::string jl_exception_message()
+{
+    jl_value_t* exc        = jl_exception_occurred();
+    jl_value_t* sprint_fn  = jl_get_function(jl_base_module, "sprint");
+    jl_value_t* showerr_fn = jl_get_function(jl_base_module, "showerror");
+    if(!sprint_fn || !showerr_fn) { return jl_typeof_str(exc); }
+    jl_value_t* msg = jl_call2(sprint_fn, showerr_fn, exc);
+    if(!msg || jl_exception_occurred()) { return jl_typeof_str(exc); }
+    return std::string(jl_string_ptr(msg));
+}
+
 
 class MHO_JlGenericOperator : public MHO_Operator
 {
@@ -84,12 +97,17 @@ class MHO_JlGenericOperator : public MHO_Operator
             // at top level (or in Main) after include().
             if(!fJuliaFunc && !fModulePath.empty() && !fFunctionName.empty())
             {
-                std::string include_cmd = "include(\"" + fModulePath + "\")";
+                // Ensure the path has a .jl extension so Julia's include() can find it.
+                std::string path = fModulePath;
+                if(path.size() < 3 || path.substr(path.size() - 3) != ".jl")
+                    path += ".jl";
+
+                std::string include_cmd = "include(\"" + path + "\")";
                 jl_eval_string(include_cmd.c_str());
                 if(jl_exception_occurred())
                 {
                     msg_error("julia_bindings",
-                              "Failed to include Julia file \"" << fModulePath << "\": "
+                              "Failed to include Julia file \"" << path << "\": "
                                   << jl_typeof_str(jl_exception_occurred()) << eom);
                     jl_exception_clear();
                     return false;
@@ -100,7 +118,7 @@ class MHO_JlGenericOperator : public MHO_Operator
                 {
                     msg_error("julia_bindings",
                               "Julia function \"" << fFunctionName << "\" not found in Main "
-                                  << "after including \"" << fModulePath << "\"" << eom);
+                                  << "after including \"" << path << "\"" << eom);
                     return false;
                 }
             }
@@ -129,7 +147,7 @@ class MHO_JlGenericOperator : public MHO_Operator
             {
                 msg_error("julia_bindings",
                           "Julia exception in operator (" << fModulePath << ":" << fFunctionName << "): "
-                              << jl_typeof_str(jl_exception_occurred()) << eom);
+                              << jl_exception_message() << eom);
                 jl_exception_clear();
                 return false;
             }

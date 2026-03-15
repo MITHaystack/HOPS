@@ -16,6 +16,11 @@ using namespace pybind11::literals;
     #include "MHO_PythonOperatorBuilder.hh"
 #endif
 
+//julia/cxxwrap stuff to interface with julia
+#ifdef HOPS_USE_JULIA
+    #include "MHO_JuliaOperatorBuilder.hh"
+#endif
+
 namespace hops
 {
 
@@ -78,6 +83,65 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_prefit", "python_prefit");
     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_postfit", "python_postfit");
     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_finalize", "python_finalize");
+#endif
+
+#ifdef HOPS_USE_JULIA
+    // Initialize the Julia runtime once per process before any Julia API calls.
+    // jl_init() is not idempotent; guard with a static flag.
+    static bool julia_runtime_initialized = false;
+    if(!julia_runtime_initialized)
+    {
+        jl_init();
+        std::atexit([]{ jl_atexit_hook(0); });
+
+        // Load HOPS CxxWrap modules into Main.
+        //
+        // @wrapmodule stores a guard constant (__cxxwrap_methodkeys) in the
+        // target Julia module so it can only be called once per module.
+        // Containers is loaded normally via @wrapmodule; for operators we
+        // bypass the guard by calling CxxWrap.register_julia_module +
+        // wraptypes + wrapfunctions directly.
+        //
+        // JULIA_MODULES_DIR is injected as a compile-time string by CMake.
+        // Helper: evaluate one Julia statement, log+clear any exception, return false on failure.
+        auto jl_eval_checked = [](const char* label, const char* code) -> bool {
+            jl_eval_string(code);
+            if(jl_exception_occurred())
+            {
+                msg_error("julia_bindings",
+                          "Julia init step \"" << label << "\" failed: "
+                              << jl_exception_message() << eom);
+                jl_exception_clear();
+                return false;
+            }
+            return true;
+        };
+
+        bool ok = true;
+        ok &= jl_eval_checked("using CxxWrap,Libdl",   "using CxxWrap, Libdl");
+        ok &= jl_eval_checked("wrapmodule containers",
+                              "@wrapmodule(() -> \"" JULIA_MODULES_DIR "/libjlMHO_Containers.so\")");
+        ok &= jl_eval_checked("initcxx containers",    "@initcxx");
+        // Operators: bypass readmodule's one-per-module guard on Main
+        ok &= jl_eval_checked("register operators",
+                              "let fptr = Libdl.dlsym("
+                              "  Libdl.dlopen(\"" JULIA_MODULES_DIR "/libjlMHO_Operators.so\","
+                              "               Libdl.RTLD_LAZY | Libdl.RTLD_DEEPBIND),"
+                              "  :define_julia_module)\n"
+                              "  CxxWrap.register_julia_module(Main, fptr)\n"
+                              "  CxxWrap.wraptypes(Main)\n"
+                              "  CxxWrap.wrapfunctions(Main)\n"
+                              "end");
+        // Diagnostic: confirm the key symbol landed in Main
+        ok &= jl_eval_checked("verify",
+                              "isdefined(Main, :get_current_fringe_data) || "
+                              "  error(\"get_current_fringe_data not defined in Main after init\")");
+        if(!ok)
+            msg_error("julia_bindings", "HOPS Julia module initialisation incomplete." << eom);
+
+        julia_runtime_initialized = true;
+    }
+    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_JuliaOperatorBuilder >("julia_postfit", "julia_postfit");
 #endif
 
     //configures data and builds operators
