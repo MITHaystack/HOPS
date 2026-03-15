@@ -14,10 +14,13 @@
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
+
+
+
 //initialization
-#include "MHO_OperatorBuilderManager.hh"
-#include "MHO_ParameterConfigurator.hh"
-#include "MHO_ParameterManager.hh"
+// #include "MHO_OperatorBuilderManager.hh"
+// #include "MHO_ParameterConfigurator.hh"
+// #include "MHO_ParameterManager.hh"
 
 namespace hops
 {
@@ -35,6 +38,13 @@ namespace hops
  * @brief Class MHO_FringeFitterVisitor
  */
 class MHO_FringeFitterVisitor;
+
+
+//forware declare these initialization related classes
+class MHO_OperatorBuilderManager;
+class MHO_ParameterConfigurator;
+class MHO_ParameterManager;
+
 
 /**
  * @brief Class MHO_FringeFitter

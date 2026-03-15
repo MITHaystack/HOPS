@@ -9,7 +9,7 @@ if(OpenMP_CXX_FOUND)
     #list header files #############################################################
     set (OPENMP_PLUGIN_HEADERFILES
         ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MBDelaySearchOpenMP.hh
-        #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitterOpenMP.hh //circular dependency with MHO_Fringe
+        #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericFringeFitterOpenMP.hh
     )
 
     #list source files #############################################################

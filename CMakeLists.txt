@@ -107,11 +107,16 @@ set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
 
 ################################################################################
-#compiler settings
-#use c++11 standard by default
-hops_require_cpp11()
-#hops_require_cpp17()
-#hops_require_cpp20()
+#compiler settings (C++11 standard is the default)
+set(HOPS_CXX_STANDARD "11" CACHE STRING "C++ standard to use (11, 17, or 20)")
+set_property(CACHE HOPS_CXX_STANDARD PROPERTY STRINGS "11" "17" "20")
+if(HOPS_CXX_STANDARD STREQUAL "11")
+    hops_require_cpp11()
+elseif(HOPS_CXX_STANDARD STREQUAL "17")
+    hops_require_cpp17()
+else()
+    hops_require_cpp20()
+endif()
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
 
 option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)

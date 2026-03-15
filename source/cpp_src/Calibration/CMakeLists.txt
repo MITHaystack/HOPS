@@ -37,6 +37,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PolarizationRelabeler.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SpectralLineFringeSearch.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InterpolateSpectralLinePeak.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitter.hh
 )
 
 #list source files #############################################################

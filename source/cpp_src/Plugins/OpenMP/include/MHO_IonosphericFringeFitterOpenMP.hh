@@ -107,7 +107,7 @@ class MHO_IonosphericFringeFitterOpenMP: public MHO_BasicFringeFitter
 
         std::vector< visibility_type > fPerThreadVis; //per-thread working vis copies
         std::vector< visibility_type > fPerThreadSBD; //per-thread SBD output buffers
-        std::vector< std::unique_ptr< MMHO_NormFX > > fPerThreadNormFX; //per-thread norm fx operator
+        std::vector< std::unique_ptr< MHO_NormFX > > fPerThreadNormFX; //per-thread norm fx operator
 
         std::vector< std::unique_ptr< MHO_MBDelaySearch > >                    fPerThreadMBDSearch;
         std::vector< std::unique_ptr< MHO_InterpolateFringePeakOptimized > >   fPerThreadPeakInterp;
