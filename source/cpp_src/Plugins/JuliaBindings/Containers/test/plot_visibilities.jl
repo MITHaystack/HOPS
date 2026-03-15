@@ -76,8 +76,16 @@ Julia array layout (from get_array): arr[i_freq, i_time, i_channel, i_pol]
 C++ logical layout:                  arr[pol][channel][time][freq]
 """
 function plot_vis_surfaces(vis_obj, baseline::String, scan_dir::String)
-    arr = get_array(vis_obj)   # ComplexF64 array, Julia col-major
-    sz  = size(arr)            # (n_freq, n_time, n_chan, n_pol)
+    # get_array returns a flat 1-D view of C++ memory.
+    # get_dimensions returns C++ logical order [n_pol, n_chan, n_time, n_freq].
+    # Reversing gives Julia column-major order.
+    # copy() is required: CxxWrap declares the return type as Any, so reshape
+    # produces a ReshapedArray{T,N,Any,...} whose AbstractArray element-dispatch
+    # path misbehaves under Julia 1.12's interpreter.  copy() produces a concrete
+    # Array{T,N} with fast native indexing for all subsequent slices.
+    raw  = get_array(vis_obj)
+    arr  = copy(reshape(raw, reverse(get_dimensions(vis_obj))...))  # (n_freq, n_time, n_chan, n_pol)
+    sz   = size(arr)
     n_freq, n_time, n_chan, n_pol = sz
     println("  Array size (Julia): $sz  -> n_freq=$n_freq  n_time=$n_time  n_chan=$n_chan  n_pol=$n_pol")
 
