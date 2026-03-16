@@ -4,7 +4,7 @@
 
 install(
     PROGRAMS
-        ${CMAKE_CURRENT_SOURCE_DIR}/test_jl_containers.jl
+        ${CMAKE_CURRENT_SOURCE_DIR}/test_containers.jl
         ${CMAKE_CURRENT_SOURCE_DIR}/plot_visibilities.jl
     DESTINATION ${JULIA_MODULE_INSTALL_DIR}
 )

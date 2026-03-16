@@ -1,11 +1,11 @@
 #!/usr/bin/env julia
-# example_jl_operator.jl
+# example_operator.jl
 #
 # Example Julia operator function for use with MHO_JlGenericOperator.
 #
 # To wire this into the C++ pipeline, set in the control file:
-#   "module_path":   "<install_dir>/example_jl_operator.jl"
-#   "function_name": "example_jl_operator"
+#   "module_path":   "<install_dir>/example_operator.jl"
+#   "function_name": "example_operator"
 #
 # The function is called with one argument (the fringe data interface) by
 # MHO_JlGenericOperator::Execute() and must return a Bool (true = success).
@@ -19,7 +19,7 @@ Example operator: prints a summary of the current baseline's data and returns tr
 Called by MHO_JlGenericOperator::Execute() with the fringe data interface as
 the sole argument.  Must return a Bool (true = success, false = failure).
 """
-function example_jl_operator(fd)
+function example_operator(fd)
 
     # --- Parameter store access ---
     ps = get_parameter_store(fd)
