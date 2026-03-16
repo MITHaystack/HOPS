@@ -22,23 +22,18 @@ namespace hops
  *@author  J. Barrett - barrettj@mit.edu
  *@brief  Calls a Julia function as part of the fringe-fitting operator pipeline.
  *
- * The fringe-data interface is passed directly as an argument to the Julia
- * function using jlcxx::box<MHO_JlFringeDataInterface*>(ptr).  This creates a
- * CxxWrap-boxed jl_value_t* with julia_owned=false (GC will not free the C++
- * memory), which is then passed via jl_call1.
+ * The fringe-data interface is passed directly as the sole argument to the
+ * Julia function via jlcxx::box<MHO_JlFringeDataInterface*>(ptr), which
+ * creates a CxxWrap-boxed jl_value_t* with julia_owned=false (the GC will
+ * not free the underlying C++ memory).
  *
  * Usage from Julia:
- *   op = HOPS.JlGenericOperator()
- *   HOPS.set_julia_function(op, function(fd)
+ *   function my_operator(fd)
  *       ps = get_parameter_store(fd)
  *       println(get_by_path(ps, "/ref_station/mk4id"))
  *       return true
- *   end)
+ *   end
  */
-
-// Thread-local pointer to the interface currently executing
-// (set during Execute(), cleared afterwards)
-inline thread_local MHO_JlFringeDataInterface* g_current_fringe_data = nullptr;
 
 // Returns the full exception message string via sprint(showerror, e).
 // Caller must have already checked jl_exception_occurred() != nullptr.
@@ -133,9 +128,7 @@ class MHO_JlGenericOperator : public MHO_Operator
             jl_value_t* result   = nullptr;
             JL_GC_PUSH2(&boxed_fd, &result);
 
-            g_current_fringe_data = fFringeDataInterface;
-            result                = jl_call1(fJuliaFunc, boxed_fd);
-            g_current_fringe_data = nullptr;
+            result = jl_call1(fJuliaFunc, boxed_fd);
 
             JL_GC_POP();
 

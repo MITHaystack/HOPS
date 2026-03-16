@@ -27,8 +27,8 @@ JLCXX_MODULE define_julia_module(jlcxx::Module& mod)
         .method("execute",           &hops::MHO_JlOperator::Execute);
 
     // ------------------------------------------------------------------
-    // MHO_JlGenericOperator: calls a no-arg Julia function per Execute()
-    // The fringe data interface is accessed via get_current_fringe_data().
+    // MHO_JlGenericOperator: calls a Julia function(fd) per Execute().
+    // The fringe data interface is passed directly as the first argument.
     // ------------------------------------------------------------------
     mod.add_type< MHO_JlGenericOperator >("JlGenericOperator",
                                            jlcxx::julia_base_type< MHO_Operator >())
@@ -41,17 +41,4 @@ JLCXX_MODULE define_julia_module(jlcxx::Module& mod)
         .method("initialize",          &hops::MHO_JlGenericOperator::Initialize)
         .method("execute",             &hops::MHO_JlGenericOperator::Execute);
 
-    // ------------------------------------------------------------------
-    // Global accessor for the fringe data interface currently executing.
-    // Call from within a Julia operator function body:
-    //   fd = HOPS.get_current_fringe_data()
-    // ------------------------------------------------------------------
-    mod.method("get_current_fringe_data",
-               []() -> MHO_JlFringeDataInterface& {
-                   if(!g_current_fringe_data)
-                   {
-                       jl_error("get_current_fringe_data() called outside of an Execute() context");
-                   }
-                   return *g_current_fringe_data;
-               });
 }
