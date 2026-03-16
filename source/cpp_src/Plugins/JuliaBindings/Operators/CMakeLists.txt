@@ -25,3 +25,7 @@ target_link_libraries(jlMHO_Operators PRIVATE
 )
 
 install(TARGETS jlMHO_Operators DESTINATION ${JULIA_MODULE_INSTALL_DIR})
+
+if (HOPS_ENABLE_TEST)
+    add_subdirectory(test)
+endif (HOPS_ENABLE_TEST)
