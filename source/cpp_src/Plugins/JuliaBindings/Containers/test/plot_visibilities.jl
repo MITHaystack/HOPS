@@ -156,8 +156,8 @@ function plot_vis_surfaces(vis_obj, baseline::String, scan_dir::String)
             )
 
             outfile = "vis_$(baseline)_$(pp_label)_ch$(ch).png"
-            savefig(p, outfile)
-            println("  Saved: $outfile")
+            #savefig(p, outfile)
+            #println("  Saved: $outfile")
             plots_made += 1
         end
     end
