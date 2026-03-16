@@ -19,7 +19,7 @@ set(JLCONTAINER_LIBS MHO_Message MHO_Utilities MHO_Containers)
 
 # Build as a regular shared library (not a pybind11 extension module)
 add_library(jlMHO_Containers SHARED ${JLCONTAINER_SOURCEFILES})
-set_target_properties(jlMHO_Containers PROPERTIES CXX_STANDARD 17)
+# set_target_properties(jlMHO_Containers PROPERTIES CXX_STANDARD 17)
 
 target_link_libraries(jlMHO_Containers PRIVATE
     ${JLCONTAINER_LIBS}
