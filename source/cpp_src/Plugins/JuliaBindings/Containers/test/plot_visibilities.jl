@@ -29,6 +29,30 @@ end
 
 # -- Helpers -----------------------------------------------------------------
 
+"""
+    get_axis_values(container, julia_dim) -> Vector
+
+Return axis labels for the given Julia dimension (1-based, matching the layout
+of the array returned by get_array).  Automatically maps to the corresponding
+C++ axis index (cpp_idx = rank - julia_dim) and returns a plain Julia Vector:
+  numeric axes -> Vector{Float64},  string axes -> Vector{String}.
+
+Example for a rank-4 visibility array arr[i_freq, i_time, i_chan, i_pol]:
+  get_axis_values(vis, 1)  ->  freq labels
+  get_axis_values(vis, 2)  ->  time labels
+  get_axis_values(vis, 3)  ->  channel labels
+  get_axis_values(vis, 4)  ->  pol-product labels
+"""
+function get_axis_values(container, julia_dim::Integer)
+    cpp_idx = get_rank(container) - julia_dim   # e.g. rank=4, dim=4 -> cpp_idx=0
+    t = get_axis_value_type(container, cpp_idx)
+    if t == "string"
+        String.(get_axis_strings(container, cpp_idx))
+    else
+        collect(Float64, get_axis_doubles(container, cpp_idx))
+    end
+end
+
 """Return the first object entry matching `shortname`, or nothing."""
 function find_object(objs, shortname::String)
     for obj in objs
@@ -76,15 +100,13 @@ Julia array layout (from get_array): arr[i_freq, i_time, i_channel, i_pol]
 C++ logical layout:                  arr[pol][channel][time][freq]
 """
 function plot_vis_surfaces(vis_obj, baseline::String, scan_dir::String)
-    # get_array returns a CxxWrap ArrayRef — zero-copy, but only supports scalar
-    # element access.  Slicing (arr[:, :, ch, pp]) requires a concrete Array.
-    # copy(reshape(...)) performs a single up-front copy (~one alloc) into
-    # Julia-owned memory so that all subsequent per-channel slices are fast
-    # native Array operations with no further allocation overhead.
-    # get_dimensions returns C++ logical order [n_pol, n_chan, n_time, n_freq];
-    # reversing gives Julia column-major (n_freq, n_time, n_chan, n_pol).
-    raw  = get_array(vis_obj)
-    arr  = copy(reshape(raw, reverse(get_dimensions(vis_obj))...))  # (n_freq, n_time, n_chan, n_pol)
+    # get_array returns a CxxWrap ArrayRef (zero-copy). GetNDArray_impl already
+    # reverses the C++ row-major dimensions, so Julia sees column-major order
+    # directly: arr[i_freq, i_time, i_chan, i_pol].
+    # Slicing (arr[:, :, ch, pp]) requires an explicit copy - copy() here is the
+    # one mandatory allocation; all per-channel slices below are then free.
+    # Do NOT resize!, push!, or append! - C++ owns the backing memory.
+    arr  = copy(get_array(vis_obj))   # (n_freq, n_time, n_chan, n_pol)
     sz   = size(arr)
     n_freq, n_time, n_chan, n_pol = sz
     println("  Array size (Julia): $sz  -> n_freq=$n_freq  n_time=$n_time  n_chan=$n_chan  n_pol=$n_pol")
@@ -93,9 +115,9 @@ function plot_vis_surfaces(vis_obj, baseline::String, scan_dir::String)
     # C++ axis 0 = pol products  -> Julia dim 4
     # C++ axis 2 = AP times (s)  -> Julia dim 2
     # C++ axis 3 = freq lags     -> Julia dim 1
-    pol_products = JSON3.read(get_axis(vis_obj, 0))   # e.g. ["XX","XY","YX","YY"]
-    ap_times     = Float64.(JSON3.read(get_axis(vis_obj, 2)))  # seconds
-    freq_lags    = Float64.(JSON3.read(get_axis(vis_obj, 3)))  # lag indices or Hz
+    pol_products = get_axis_values(vis_obj, 4)   # Julia dim 4 -> polprod, Vector{String}
+    ap_times     = get_axis_values(vis_obj, 2)   # Julia dim 2 -> time,    Vector{Float64}
+    freq_lags    = get_axis_values(vis_obj, 1)   # Julia dim 1 -> freq,    Vector{Float64}
 
     println("  Pol products : $pol_products")
     println("  AP times     : $(length(ap_times)) points  [$(ap_times[1]) ... $(ap_times[end])] s")

@@ -25,6 +25,24 @@ end
 
 # -- Helpers -----------------------------------------------------------------
 
+"""
+    get_axis_values(container, julia_dim) -> Vector
+
+Return axis labels for the given Julia dimension (1-based, matching the layout
+of the array returned by get_array).  Automatically maps to the corresponding
+C++ axis index (cpp_idx = rank - julia_dim).
+  numeric axes -> Vector{Float64},  string axes -> Vector{String}.
+"""
+function get_axis_values(container, julia_dim::Integer)
+    cpp_idx = get_rank(container) - julia_dim
+    t = get_axis_value_type(container, cpp_idx)
+    if t == "string"
+        String.(get_axis_strings(container, cpp_idx))
+    else
+        collect(Float64, get_axis_doubles(container, cpp_idx))
+    end
+end
+
 """Pretty-print the container object list from a ContainerStore."""
 function print_object_list(cstore)
     objs = JSON3.read(get_object_id_list(cstore))
@@ -150,19 +168,18 @@ function main()
         if vis === nothing || isnull(vis)
             println("  WARNING: getter returned null pointer for $vis_label.")
         else
-            # get_array returns a CxxWrap ArrayRef — zero-copy scalar access.
-            # get_dimensions returns C++ logical order [dim0(slowest)...dimN-1(fastest)].
-            # Reversing and reshaping gives Julia column-major layout:
+            # get_array returns a CxxWrap ArrayRef - zero-copy scalar access.
+            # GetNDArray_impl already reverses the C++ row-major dimensions, so Julia sees
+            # column-major order directly - no reshape needed:
             #   arr[i_freq, i_time, i_channel, i_pol]  (Julia, 1-based)
             #   <->  arr[pol][channel][time][freq]         (C++, 0-based)
             # Note: slicing (arr[:, :, i, j]) requires an explicit copy first.
-            # Do NOT resize!, push!, or append! — C++ owns the backing memory.
-            cpp_dims = get_dimensions(vis)   # C++ logical order for reference
-            arr = reshape(get_array(vis), reverse(cpp_dims)...)
+            # Do NOT resize!, push!, or append! - C++ owns the backing memory.
+            arr = get_array(vis)
             println("  type              = $vis_label")
             println("  classname         = $(get_classname(vis))")
-            println("  C++ dims (logical)= $cpp_dims")
-            println("  Julia size        = $(size(arr))   # reversed")
+            println("  C++ dims (logical)= $(get_dimensions(vis))")
+            println("  Julia size        = $(size(arr))")
             println("  ndims             = $(ndims(arr))")
             println("  eltype            = $(eltype(arr))")
             println("  total bytes       = $(sizeof(eltype(arr)) * length(arr))")
@@ -170,9 +187,8 @@ function main()
             # Direct N-dimensional indexing (no reshape required).
             println("  arr[1,1,1,1]      = $(arr[1,1,1,1])")
 
-            # Axis 0 (pol-products) in C++ / axis RANK (last Julia dim).
-            axis0_json = get_axis(vis, 0)
-            println("  axis[0] (pol-products, C++ order): $(JSON3.read(axis0_json))")
+            # Pol-products are Julia dim 4 (last dim in column-major layout).
+            println("  axis (pol-products, Julia dim 4): $(get_axis_values(vis, 4))")
 
             # Metadata
             meta = JSON3.read(get_metadata(vis))

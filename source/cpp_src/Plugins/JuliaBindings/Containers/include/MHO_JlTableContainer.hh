@@ -93,7 +93,7 @@ template< typename XTableType > class MHO_JlTableContainer
 
         std::string GetClassName() const { return MHO_ClassName< XTableType >(); }
 
-        //! Return the N-th axis label values as a JSON string array.
+        //! Return the N-th axis label values as a JSON string array (kept for compatibility).
         std::string GetCoordinateAxisJSON(std::size_t index) const
         {
             if(index < RANK)
@@ -104,6 +104,46 @@ template< typename XTableType > class MHO_JlTableContainer
             }
             msg_error("julia_bindings", "axis index: " << index << " exceeds table rank of: " << RANK << eom);
             return "[]";
+        }
+
+        //! Return a string naming the axis value type: "string", "double", "float", "integer", or "unknown".
+        std::string GetAxisValueTypeName(std::size_t index) const
+        {
+            if(index < RANK)
+            {
+                JlAxisTypeNameFiller filler;
+                apply_at< typename XTableType::axis_pack_tuple_type, JlAxisTypeNameFiller >(*fTable, index, filler);
+                return filler.GetTypeName();
+            }
+            msg_error("julia_bindings", "axis index: " << index << " exceeds table rank of: " << RANK << eom);
+            return "unknown";
+        }
+
+        //! Return the N-th axis labels as a vector of doubles (for numeric axes).
+        //! Returns an empty vector for non-numeric axes.
+        std::vector< double > GetCoordinateAxisAsDoubles(std::size_t index) const
+        {
+            if(index < RANK)
+            {
+                JlAxisDoublesFiller filler;
+                apply_at< typename XTableType::axis_pack_tuple_type, JlAxisDoublesFiller >(*fTable, index, filler);
+                return filler.GetValues();
+            }
+            msg_error("julia_bindings", "axis index: " << index << " exceeds table rank of: " << RANK << eom);
+            return {};
+        }
+
+        //! Return the N-th axis labels as a vector of strings (works for any axis type).
+        std::vector< std::string > GetCoordinateAxisAsStrings(std::size_t index) const
+        {
+            if(index < RANK)
+            {
+                JlAxisStringsFiller filler;
+                apply_at< typename XTableType::axis_pack_tuple_type, JlAxisStringsFiller >(*fTable, index, filler);
+                return filler.GetValues();
+            }
+            msg_error("julia_bindings", "axis index: " << index << " exceeds table rank of: " << RANK << eom);
+            return {};
         }
 
         //! Set a single coordinate label from a JSON-encoded value string.
@@ -173,6 +213,88 @@ template< typename XTableType > class MHO_JlTableContainer
                 fTable->GetData(),
                 static_cast< std::size_t >(fTable->GetDimension(RANK - 1 - I))...);
         }
+
+        // Functor: return the axis value type name as a string
+        class JlAxisTypeNameFiller
+        {
+            public:
+                JlAxisTypeNameFiller(){};
+                ~JlAxisTypeNameFiller(){};
+
+                template< typename XAxisType > void operator()(const XAxisType& /*axis*/)
+                {
+                    using T = typename XAxisType::value_type;
+                    if constexpr(std::is_same_v< T, std::string >)
+                        fTypeName = "string";
+                    else if constexpr(std::is_same_v< T, double >)
+                        fTypeName = "double";
+                    else if constexpr(std::is_same_v< T, float >)
+                        fTypeName = "float";
+                    else if constexpr(std::is_integral_v< T >)
+                        fTypeName = "integer";
+                    else
+                        fTypeName = "unknown";
+                }
+
+                std::string GetTypeName() const { return fTypeName; }
+
+            private:
+                std::string fTypeName = "unknown";
+        };
+
+        // Functor: collect axis labels into a vector<double> (numeric axes only)
+        class JlAxisDoublesFiller
+        {
+            public:
+                JlAxisDoublesFiller(){};
+                ~JlAxisDoublesFiller(){};
+
+                template< typename XAxisType > void operator()(const XAxisType& axis)
+                {
+                    using T = typename XAxisType::value_type;
+                    if constexpr(std::is_arithmetic_v< T >)
+                    {
+                        fValues.reserve(axis.GetSize());
+                        for(std::size_t i = 0; i < axis.GetSize(); i++)
+                            fValues.push_back(static_cast< double >(axis[i]));
+                    }
+                    // non-numeric: leave fValues empty
+                }
+
+                std::vector< double > GetValues() const { return fValues; }
+
+            private:
+                std::vector< double > fValues;
+        };
+
+        // Functor: collect axis labels into a vector<string> (works for any axis type)
+        class JlAxisStringsFiller
+        {
+            public:
+                JlAxisStringsFiller(){};
+                ~JlAxisStringsFiller(){};
+
+                template< typename XAxisType > void operator()(const XAxisType& axis)
+                {
+                    using T = typename XAxisType::value_type;
+                    fValues.reserve(axis.GetSize());
+                    if constexpr(std::is_same_v< T, std::string >)
+                    {
+                        for(std::size_t i = 0; i < axis.GetSize(); i++)
+                            fValues.push_back(axis[i]);
+                    }
+                    else
+                    {
+                        for(std::size_t i = 0; i < axis.GetSize(); i++)
+                            fValues.push_back(std::to_string(axis[i]));
+                    }
+                }
+
+                std::vector< std::string > GetValues() const { return fValues; }
+
+            private:
+                std::vector< std::string > fValues;
+        };
 
         // Functor: serialize an axis's labels to a JSON array string
         class JlAxisJSONFiller
@@ -274,15 +396,23 @@ void DeclareJlTableContainer(jlcxx::Module& mod, const std::string& jl_type_name
         .method("get_classname",     &MHO_JlTableContainer< XTableType >::GetClassName)
         .method("get_dimension",     &MHO_JlTableContainer< XTableType >::GetDimension)
         // get_array returns an N-dimensional Julia array (zero-copy, dims reversed for column-major).
-        .method("get_array",         &MHO_JlTableContainer< XTableType >::GetNDArray)
+        .method("get_array",           &MHO_JlTableContainer< XTableType >::GetNDArray)
         // get_dimensions returns C++ logical dims [dim0, ..., dimN-1] for reference.
-        .method("get_dimensions",    &MHO_JlTableContainer< XTableType >::GetDimensions)
-        .method("get_metadata",      &MHO_JlTableContainer< XTableType >::GetMetaDataJSON)
-        .method("set_metadata",      &MHO_JlTableContainer< XTableType >::SetMetaDataJSON)
-        .method("get_axis",          &MHO_JlTableContainer< XTableType >::GetCoordinateAxisJSON)
-        .method("get_axis_metadata", &MHO_JlTableContainer< XTableType >::GetCoordinateAxisMetaDataJSON)
-        .method("set_axis_metadata", &MHO_JlTableContainer< XTableType >::SetCoordinateAxisMetaDataJSON)
-        .method("set_axis_label",    &MHO_JlTableContainer< XTableType >::SetCoordinateLabelFromJSON);
+        .method("get_dimensions",      &MHO_JlTableContainer< XTableType >::GetDimensions)
+        .method("get_metadata",        &MHO_JlTableContainer< XTableType >::GetMetaDataJSON)
+        .method("set_metadata",        &MHO_JlTableContainer< XTableType >::SetMetaDataJSON)
+        // get_axis returns axis labels as a JSON string (kept for compatibility).
+        .method("get_axis",            &MHO_JlTableContainer< XTableType >::GetCoordinateAxisJSON)
+        // Typed axis accessors - prefer these over get_axis to avoid JSON round-trips.
+        //   get_axis_value_type  -> "string" | "double" | "float" | "integer" | "unknown"
+        //   get_axis_doubles     -> StdVector{Float64}   (use collect() for a plain Julia Vector)
+        //   get_axis_strings     -> StdVector{StdString} (use String.() for a plain Julia Vector)
+        .method("get_axis_value_type", &MHO_JlTableContainer< XTableType >::GetAxisValueTypeName)
+        .method("get_axis_doubles",    &MHO_JlTableContainer< XTableType >::GetCoordinateAxisAsDoubles)
+        .method("get_axis_strings",    &MHO_JlTableContainer< XTableType >::GetCoordinateAxisAsStrings)
+        .method("get_axis_metadata",   &MHO_JlTableContainer< XTableType >::GetCoordinateAxisMetaDataJSON)
+        .method("set_axis_metadata",   &MHO_JlTableContainer< XTableType >::SetCoordinateAxisMetaDataJSON)
+        .method("set_axis_label",      &MHO_JlTableContainer< XTableType >::SetCoordinateLabelFromJSON);
 }
 
 } // namespace hops
