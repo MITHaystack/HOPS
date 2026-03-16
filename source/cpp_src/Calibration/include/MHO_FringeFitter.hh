@@ -14,9 +14,6 @@
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
-
-
-
 //initialization
 // #include "MHO_OperatorBuilderManager.hh"
 // #include "MHO_ParameterConfigurator.hh"
