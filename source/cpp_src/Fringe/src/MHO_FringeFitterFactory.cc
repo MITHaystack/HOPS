@@ -140,15 +140,9 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
                               "  @wrapmodule(() -> \"" JULIA_MODULES_DIR "/libjlMHO_Operators.so\")\n"
                               "  @initcxx\n"
                               "end");
-        // Import get_current_fringe_data into Main so user scripts can call it unqualified
-        ok &= jl_eval_checked("import get_current_fringe_data",
-                              "import .HOPSOps: get_current_fringe_data");
-        // Diagnostic: confirm the key symbol landed in Main
-        ok &= jl_eval_checked("verify",
-                              "isdefined(Main, :get_current_fringe_data) || "
-                              "  error(\"get_current_fringe_data not defined in Main after init\")");
+
         if(!ok)
-            msg_error("julia_bindings", "HOPS Julia module initialisation incomplete." << eom);
+            msg_error("julia_bindings", "HOPS Julia module initialization incomplete." << eom);
 
         julia_runtime_initialized = true;
     }
