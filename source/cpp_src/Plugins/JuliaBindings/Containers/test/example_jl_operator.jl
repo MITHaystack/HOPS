@@ -7,9 +7,8 @@
 #   "module_path":   "<install_dir>/example_jl_operator.jl"
 #   "function_name": "example_jl_operator"
 #
-# The function is called with no arguments by MHO_JlGenericOperator::Execute().
-# It retrieves the current fringe data interface via get_current_fringe_data()
-# and must return a Bool (true = success, false = failure).
+# The function is called with one argument (the fringe data interface) by
+# MHO_JlGenericOperator::Execute() and must return a Bool (true = success).
 
 using CxxWrap   # for isnull()
 using JSON3
@@ -17,11 +16,10 @@ using JSON3
 """
 Example operator: prints a summary of the current baseline's data and returns true.
 
-Called by MHO_JlGenericOperator::Execute() with no arguments.
-The fringe data interface is retrieved via get_current_fringe_data().
+Called by MHO_JlGenericOperator::Execute() with the fringe data interface as
+the sole argument.  Must return a Bool (true = success, false = failure).
 """
-function example_jl_operator()
-    fd = get_current_fringe_data()
+function example_jl_operator(fd)
 
     # --- Parameter store access ---
     ps = get_parameter_store(fd)

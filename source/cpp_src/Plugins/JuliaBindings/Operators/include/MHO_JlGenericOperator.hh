@@ -22,24 +22,14 @@ namespace hops
  *@author  J. Barrett - barrettj@mit.edu
  *@brief  Calls a Julia function as part of the fringe-fitting operator pipeline.
  *
- * Design (global-state pattern):
- *   - At Execute() time, the current MHO_JlFringeDataInterface* is stored in
- *     a thread-local global (g_current_fringe_data).
- *   - The no-argument Julia function is then called.
- *   - Inside the Julia function, the user retrieves the interface with:
- *       fd = HOPS.get_current_fringe_data()
- *
- * This avoids the need to box the C++ interface object for jl_call1.
- *
- * Alternative approach: use SetJuliaFunction() and set_execute_fn() to
- * store a pre-wrapped fringe data reference at Initialize() time, then
- * call jl_call0(fJuliaFunc) at Execute() with the interface available
- * via the global.
+ * The fringe-data interface is passed directly as an argument to the Julia
+ * function using jlcxx::box<MHO_JlFringeDataInterface*>(ptr).  This creates a
+ * CxxWrap-boxed jl_value_t* with julia_owned=false (GC will not free the C++
+ * memory), which is then passed via jl_call1.
  *
  * Usage from Julia:
  *   op = HOPS.JlGenericOperator()
- *   HOPS.set_julia_function(op, () -> begin
- *       fd = HOPS.get_current_fringe_data()
+ *   HOPS.set_julia_function(op, function(fd)
  *       ps = get_parameter_store(fd)
  *       println(get_by_path(ps, "/ref_station/mk4id"))
  *       return true
@@ -76,7 +66,7 @@ class MHO_JlGenericOperator : public MHO_Operator
         void SetFringeData(MHO_FringeData* fdata) { fFringeData = fdata; }
 
         //! Store the Julia function to invoke on each Execute() call.
-        //! The function must accept no arguments and return a Bool.
+        //! The function must accept one argument (the fringe-data interface) and return a Bool.
         void SetJuliaFunction(jl_function_t* f) { fJuliaFunc = f; }
 
         // Path to a Julia source file and the function name to load from it.
@@ -136,12 +126,18 @@ class MHO_JlGenericOperator : public MHO_Operator
         {
             if(!fInitialized || !fJuliaFunc || !fFringeDataInterface) { return false; }
 
-            // Expose the current interface via the thread-local global so that
-            // the Julia function can retrieve it with get_current_fringe_data().
-            g_current_fringe_data = fFringeDataInterface;
+            // Box the C++ interface pointer as a Julia value.
+            // jlcxx::box<T*> uses julia_owned=false so the GC will not free
+            // the C++ memory when the Julia wrapper is collected.
+            jl_value_t* boxed_fd = jlcxx::box< MHO_JlFringeDataInterface* >(fFringeDataInterface).value;
+            jl_value_t* result   = nullptr;
+            JL_GC_PUSH2(&boxed_fd, &result);
 
-            jl_value_t* result = jl_call0(fJuliaFunc);
+            g_current_fringe_data = fFringeDataInterface;
+            result                = jl_call1(fJuliaFunc, boxed_fd);
             g_current_fringe_data = nullptr;
+
+            JL_GC_POP();
 
             if(jl_exception_occurred())
             {

@@ -27,10 +27,11 @@ namespace hops
  *@class MHO_JlTableContainer
  *@author J. Barrett - barrettj@mit.edu
  *@brief Julia (CxxWrap) bindings for template MHO_TableContainer objects.
- * Exposes the N-dimensional array directly as a Julia AbstractArray via
- * CxxWrap's ArrayTraits specialization. This gives zero-copy, correct
- * multidimensional indexing (row-major strides) with no reshape required.
- * JSON metadata is returned as std::string; Julia parses with JSON3.jl.
+ * Exposes the N-dimensional array as a jlcxx::ArrayRef<T,N> (backed by a
+ * jl_array_t* created via jl_ptr_to_array), giving zero-copy access with
+ * dimensions reversed for Julia column-major layout.  No reshape is required
+ * on the Julia side.  JSON metadata is returned as std::string; Julia parses
+ * with JSON3.jl.
  */
 
 template< typename XTableType > class MHO_JlTableContainer
@@ -53,20 +54,17 @@ template< typename XTableType > class MHO_JlTableContainer
         /*!
          * Return an N-dimensional CxxWrap ArrayRef wrapping the C++ memory (zero-copy).
          *
-         * The returned object is a CxxWrap AbstractArray wrapper.  Dimensions are
-         * passed in REVERSED order so Julia's column-major first index aligns with
-         * the C++ row-major last (fastest-varying) dimension:
+         * Dimensions are passed in REVERSED order (see GetNDArray_impl) so Julia's
+         * column-major first index aligns with the C++ row-major last dimension:
          *
          *   Julia arr[i_freq, i_time, i_channel, i_pol]  (1-based)
          *   <->  C++  arr[pol][channel][time][freq]         (0-based)
          *
-         * Scalar element access (arr[i,j,k,l]) is zero-copy.
-         * Slice / broadcast operations (arr[:, :, ch, pp]) require an explicit
-         * copy by the caller because CxxWrap's AbstractArray dispatch does not
-         * support the fast native Array path:
+         * No reshape is needed on the Julia side - the array already has the correct
+         * Julia column-major shape.  Scalar element access (arr[i,j,k,l]) is zero-copy.
+         * Slice / broadcast operations (arr[:, :, ch, pp]) require an explicit copy:
          *
-         *   raw = get_array(obj)
-         *   arr = copy(reshape(raw, reverse(get_dimensions(obj))...))
+         *   arr = copy(get_array(obj))
          *
          * Do NOT resize!, push!, or append! to the returned object.
          */
