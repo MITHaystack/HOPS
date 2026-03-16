@@ -23,19 +23,9 @@
 #include "MHO_FringeControlInitialization.hh"
 #include "MHO_LockFileHandler.hh"
 
-//pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
-    #include "pybind11_json/pybind11_json.hpp"
-    #include <pybind11/embed.h>
-    #include <pybind11/pybind11.h>
-namespace py = pybind11;
-namespace nl = nlohmann;
-using namespace pybind11::literals;
-    #include "MHO_DefaultPythonPlotVisitor.hh"
-    #include "MHO_PyConfigurePath.hh"
-    #include "MHO_PyFringeDataInterface.hh"
-    #include "MHO_PythonOperatorBuilder.hh"
-#endif
+#include "MHO_PythonPluginInterface.hh"
+#endif 
 
 //needed to export to mark4 fringe files
 #include "MHO_MK4FringeExport.hh"
@@ -69,11 +59,16 @@ int main(int argc, char** argv)
     n_processes = MHO_MPIInterface::GetInstance()->GetNProcesses();
 #endif
 
+// #ifdef USE_PYBIND11
+//     //start the interpreter and keep it alive, need this or we segfault
+//     //each process has its own interpreter
+//     py::scoped_interpreter guard{};
+//     configure_pypath();
+// #endif
+
 #ifdef USE_PYBIND11
     //start the interpreter and keep it alive, need this or we segfault
-    //each process has its own interpreter
-    py::scoped_interpreter guard{};
-    configure_pypath();
+    MHO_PythonPluginInterface::GetInstance()->Initialize();
 #endif
 
     MHO_Message::GetInstance().AcceptAllKeys();
@@ -144,7 +139,19 @@ int main(int argc, char** argv)
 
             //build the fringe fitter based on the input (only 2 choices currently -- basic and ionospheric)
             MHO_FringeFitterFactory ff_factory(&fringeData);
-            MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter(); //configuration is done here
+            MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter(); //just builds the fringe fitter
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Plugin library initialization (if these were built)
+            #ifdef USE_PYBIND11
+                //add the python extensions
+                MHO_PythonPluginInterface::GetInstance()->Visit(ffit);
+            #endif
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //now (after plugin-initialization) we can configure the fringe fitter
+            ffit->Configure(); 
 
             //initialize and perform run loop
             while(!ffit->IsFinished())
@@ -213,6 +220,12 @@ int main(int argc, char** argv)
 #endif
 
     // MHO_Profiler::GetInstance().DumpEvents();
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Plugin library finialization (if these were built)
+    #ifdef USE_PYBIND11
+        MHO_PythonPluginInterface::GetInstance()->Finalize();
+    #endif
 
     return 0;
 }

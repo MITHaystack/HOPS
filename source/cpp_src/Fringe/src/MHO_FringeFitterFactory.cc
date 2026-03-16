@@ -4,17 +4,17 @@
 // #include "MHO_IonosphericFringeFitterOpenMP.hh"
 #include "MHO_SpectralLineFringeFitter.hh"
 
-//pybind11 stuff to interface with python
-#ifdef USE_PYBIND11
-    #include "pybind11_json/pybind11_json.hpp"
-    #include <pybind11/embed.h>
-    #include <pybind11/pybind11.h>
-namespace py = pybind11;
-namespace nl = nlohmann;
-using namespace pybind11::literals;
-    #include "MHO_PyConfigurePath.hh"
-    #include "MHO_PythonOperatorBuilder.hh"
-#endif
+// //pybind11 stuff to interface with python
+// #ifdef USE_PYBIND11
+//     #include "pybind11_json/pybind11_json.hpp"
+//     #include <pybind11/embed.h>
+//     #include <pybind11/pybind11.h>
+// namespace py = pybind11;
+// namespace nl = nlohmann;
+// using namespace pybind11::literals;
+//     #include "MHO_PyConfigurePath.hh"
+//     #include "MHO_PythonOperatorBuilder.hh"
+// #endif
 
 //julia/cxxwrap stuff to interface with julia
 #ifdef HOPS_USE_JULIA
@@ -73,17 +73,17 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
 
     ////////////////////////////////////////////////////////////////////////////
     //POST-CONFIGURE FOR COMPILE-TIME EXTENSIONS
-    ////////////////////////////////////////////////////////////////////////////
-
-#ifdef USE_PYBIND11
-    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
-    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_flagging", "python_flagging");
-    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_calibration",
-                                                                                          "python_calibration");
-    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_prefit", "python_prefit");
-    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_postfit", "python_postfit");
-    fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_finalize", "python_finalize");
-#endif
+//     ////////////////////////////////////////////////////////////////////////////
+// 
+// #ifdef USE_PYBIND11
+//     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
+//     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_flagging", "python_flagging");
+//     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_calibration",
+//                                                                                           "python_calibration");
+//     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_prefit", "python_prefit");
+//     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_postfit", "python_postfit");
+//     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_PythonOperatorBuilder >("python_finalize", "python_finalize");
+// #endif
 
 #ifdef HOPS_USE_JULIA
     // Initialize the Julia runtime once per process before any Julia API calls.
@@ -148,9 +148,6 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
     }
     fFringeFitter->GetOperatorBuildManager()->AddBuilderType< MHO_JuliaOperatorBuilder >("julia_postfit", "julia_postfit");
 #endif
-
-    //configures data and builds operators
-    fFringeFitter->Configure();
 
     return fFringeFitter;
 }

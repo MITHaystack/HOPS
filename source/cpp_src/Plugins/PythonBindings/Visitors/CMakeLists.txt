@@ -18,7 +18,8 @@ set(PYVISITOR_LIBS
     MHO_Utilities 
     MHO_Containers 
     MHO_Operators 
-    MHO_Calibration 
+    MHO_Calibration
+    MHO_Initialization
     pyMHO_Containers 
     pyMHO_Operators 
     pybind11::embed

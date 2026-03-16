@@ -5,8 +5,13 @@ namespace hops
 
 MHO_PythonPluginInterface* MHO_PythonPluginInterface::fPythonPluginInterface = nullptr;
 
-MHO_PythonPluginInterface::MHO_PythonPluginInterface(){}
-MHO_PythonPluginInterface::~MHO_PythonPluginInterface() = default;
+MHO_PythonPluginInterface::MHO_PythonPluginInterface():fInitialized(false){}
+
+
+MHO_PythonPluginInterface::~MHO_PythonPluginInterface()
+{
+    Finalize();
+}
 
 MHO_PythonPluginInterface* MHO_PythonPluginInterface::GetInstance()
 {
@@ -18,9 +23,32 @@ MHO_PythonPluginInterface* MHO_PythonPluginInterface::GetInstance()
     return fPythonPluginInterface;
 }
 
+
+void MHO_PythonPluginInterface::Initialize()
+{
+    if(!fInitialized)
+    {
+        py::initialize_interpreter();
+        configure_pypath();
+        fInitialized = true;
+    }
+}
+
+
+void MHO_PythonPluginInterface::Finalize()
+{
+    if(fInitialized)
+    {
+        py::finalize_interpreter();
+        fInitialized = false;
+    }
+}
+
+
 void 
 MHO_PythonPluginInterface::Visit(MHO_FringeFitter* fitter)
 {
+    msg_error("python_bindings", "initializing python plugin" << eom);
     auto build_man = fitter->GetOperatorBuildManager();
     build_man->AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
     build_man->AddBuilderType< MHO_PythonOperatorBuilder >("python_flagging", "python_flagging");
