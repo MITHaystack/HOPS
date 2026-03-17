@@ -116,6 +116,10 @@ class MHO_FringeControlInitialization
          * @note This is a static function.
          */
         static bool need_ion_search(mho_json* control);
+        
+        static bool need_python_plugin(mho_json* control);
+        
+        static bool need_julia_plugin(mho_json* control);
 };
 
 } // namespace hops

@@ -36,7 +36,6 @@ set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileInfoExtractor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AFileDefinitions.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeFitterFactory.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringePlotVisitorFactory.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SpectralLineFringeFitter.cc
 )
 
@@ -44,7 +43,16 @@ set( FRINGE_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list of c++ libraries
-set(FRINGE_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration MHO_Control MHO_Initialization)
+set(FRINGE_LIBS 
+    MHO_Message 
+    MHO_Math 
+    MHO_Utilities 
+    MHO_Operators 
+    MHO_Containers 
+    MHO_Calibration 
+    MHO_Control 
+    MHO_Initialization
+)
 
 #add pybind11 deps if available
 if(HOPS_USE_PYBIND11)

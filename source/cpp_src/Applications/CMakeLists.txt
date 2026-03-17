@@ -14,6 +14,7 @@ set(HOPS_APP_LIBS
     MHO_Control
     MHO_Initialization
     MHO_Fringe
+    MHO_PluginManagement
 )
 
 set(SOURCE_BASENAMES

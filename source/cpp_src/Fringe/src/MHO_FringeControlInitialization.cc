@@ -43,6 +43,53 @@ bool MHO_FringeControlInitialization::need_ion_search(mho_json* control)
     return false;
 }
 
+
+bool MHO_FringeControlInitialization::need_python_plugin(mho_json* control)
+{
+    //loop over control statements, find statements which contain ionospheric
+    //search related settings, return true on first one encountered
+    for(auto ctrl_iter = control->begin(); ctrl_iter != control->end(); ctrl_iter++)
+    {
+        auto ctrl_item = *(ctrl_iter);
+        if(ctrl_iter->contains("statements"))
+        {
+            auto statements = &((*ctrl_iter)["statements"]);
+            for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); stmt_iter++)
+            {
+                std::string name = (*stmt_iter)["name"];
+                if(name.find("python") != std::string::npos)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+bool MHO_FringeControlInitialization::need_julia_plugin(mho_json* control)
+{
+    //loop over control statements, find statements which contain ionospheric
+    //search related settings, return true on first one encountered
+    for(auto ctrl_iter = control->begin(); ctrl_iter != control->end(); ctrl_iter++)
+    {
+        auto ctrl_item = *(ctrl_iter);
+        if(ctrl_iter->contains("statements"))
+        {
+            auto statements = &((*ctrl_iter)["statements"]);
+            for(auto stmt_iter = statements->begin(); stmt_iter != statements->end(); stmt_iter++)
+            {
+                std::string name = (*stmt_iter)["name"];
+                if(name.find("julia") != std::string::npos)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
 void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* paramStore, mho_json& control_format,
                                                            mho_json& control_statements)
 {
@@ -136,6 +183,12 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     //to check for ion keywords before processing/consuming them
     bool do_ion = MHO_FringeControlInitialization::need_ion_search(&control_statements);
     paramStore->Set("/config/do_ion", do_ion);
+
+    bool need_python_plugin = MHO_FringeControlInitialization::need_python_plugin(&control_statements);
+    paramStore->Set("/config/plugins/activate_python", need_python_plugin);
+    
+    bool need_julia_plugin = MHO_FringeControlInitialization::need_julia_plugin(&control_statements);
+    paramStore->Set("/config/plugins/activate_julia", need_julia_plugin);
 
     //configure parameter store from control statements
     //note that this class consumes relevant control statements (and removes them upon use)
