@@ -36,7 +36,6 @@ if(HOPS_ENABLE_DEV_TODO)
     hops_add_cxxflag(HOPS_ENABLE_DEV_TODO)
 endif()
 
-
 #add the plugin directory definition, so we can search in this path
 add_compile_definitions("HOPS_DEFAULT_PLUGINS_DIR=${PLUGINS_INSTALL_DIR}")
 
@@ -45,7 +44,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_version.hh.cmake ${CMAKE_CURRENT
 hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_version.hh)
 hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-#source sub directories (in order of dependence...this is important!)
+#########################################################################
+# Core HOPS4 source sub directories 
+# listed in order of dependence...this is important!
 add_subdirectory(${CPPSOURCE}/Message) #the messaging library
 add_subdirectory(${CPPSOURCE}/Utilities) #other generic utilities
 add_subdirectory(${CPPSOURCE}/Vex2JSON) #library to convert ovex to json
@@ -57,9 +58,36 @@ add_subdirectory(${CPPSOURCE}/Control) #library to parse fourfit control files
 add_subdirectory(${CPPSOURCE}/Initialization) #library to build objects/operators
 add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and import
 
+
+#######################################################################
+## Accelerator plugins
+
+if(HOPS_USE_OPENMP)
+    #OpenMP (cpu parallelism) plugin
+    add_subdirectory(${CPPSOURCE}/Plugins/OpenMP)
+endif(HOPS_USE_OPENMP)
+
+if(HOPS_USE_CUDA)
+    #cuda plugin (GPU parallelism for FFTs)
+    add_subdirectory(${CPPSOURCE}/Plugins/CUDA)
+endif(HOPS_USE_CUDA)
+
+if(HOPS_USE_OPENCL)
+    #opencl plugin (GPU/accelerator parallelism)
+    add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) 
+endif(HOPS_USE_OPENCL)
+
+#########################################################################
+# HOPS4 library of fringe-fitting related functionality 
+# this library may depend on any of the above accelerator plugins (if enabled)
+add_subdirectory(${CPPSOURCE}/Fringe) 
+
+#########################################################################
+# plugins which extend capabilities, and external language interfaces
+
 if(HOPS_USE_DIFXIO)
     #difxio input support
-add_subdirectory(${CPPSOURCE}/DiFXInterface) 
+    add_subdirectory(${CPPSOURCE}/DiFXInterface) 
 endif(HOPS_USE_DIFXIO)
 
 if(HOPS_USE_PYBIND11)
@@ -76,34 +104,17 @@ if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
     add_subdirectory(${CPPSOURCE}/Plugins/MatplotPlugin)
 endif()
 
-if(HOPS_USE_OPENMP)
-    #OpenMP (cpu parallelism) plugin
-    add_subdirectory(${CPPSOURCE}/Plugins/OpenMP)
-endif(HOPS_USE_OPENMP)
-
-if(HOPS_USE_OPENCL)
-    #opencl plugin (GPU/accelerator parallelism)
-    add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) 
-endif(HOPS_USE_OPENCL)
-
-if(HOPS_USE_CUDA)
-    #cuda plugin (GPU parallelism for FFTs)
-    add_subdirectory(${CPPSOURCE}/Plugins/CUDA)
-endif(HOPS_USE_CUDA)
-
 if(HOPS_USE_HDF5)
     #hdf5 plugin (export to HDF5 files)
     add_subdirectory(${CPPSOURCE}/Plugins/HDF5)
 endif(HOPS_USE_HDF5)
 
+#management layer for capability plugins
 add_subdirectory(${CPPSOURCE}/Plugins/PluginManagement)
 
-#library of fringe-fitting related functionality 
-#(may depend on enabled plugins)
-add_subdirectory(${CPPSOURCE}/Fringe) 
-
-#applications 
-#(may depend on enabled plugins)
+######################################################################
+# lastly we build our applications 
+# which may depend on any of the enabled plugins
 add_subdirectory(${CPPSOURCE}/Applications) 
 
 

@@ -23,6 +23,8 @@
 #include "MHO_FringeControlInitialization.hh"
 #include "MHO_LockFileHandler.hh"
 
+#include "MHO_PluginVisitorFactory.hh"
+
 #ifdef USE_PYBIND11
 #include "MHO_PythonPluginInterface.hh"
 #endif 
@@ -105,16 +107,18 @@ int main(int argc, char** argv)
 
     ////////////////////////////////////////
     //plugin interfaces 
+    MHO_PluginVisitorFactory plugin_factory;
+    std::vector< MHO_FringeFitterVisitor* > plugins;
 
-    #ifdef USE_PYBIND11
-        //declare the python extension
-        MHO_PythonPluginInterface py_plugin;
-    #endif
-
-    #ifdef HOPS_USE_JULIA
-        //declare the julia extension
-        MHO_JuliaPluginInterface jl_plugin;
-    #endif
+    // #ifdef USE_PYBIND11
+    //     //declare the python extension
+    //     MHO_PythonPluginInterface py_plugin;
+    // #endif
+    // 
+    // #ifdef HOPS_USE_JULIA
+    //     //declare the julia extension
+    //     MHO_JuliaPluginInterface jl_plugin;
+    // #endif
 
     ///////////////////////////////////////
 
@@ -148,13 +152,19 @@ int main(int argc, char** argv)
 
             //////////////////////////////////////////////////////////////
             // Plugin library initialization (if these modules were built)
-            #ifdef USE_PYBIND11
-                ffit->Accept( &py_plugin );
-            #endif
-
-            #ifdef HOPS_USE_JULIA
-                ffit->Accept( &jl_plugin );
-            #endif
+            plugin_factory.SetParameterStore(fringeData.GetParameterStore());
+            plugin_factory.GetPluginVisitors(plugins);
+            for(std::size_t np=0; np<plugins.size(); np++)
+            {
+                ffit->Accept(plugins[np]);
+            }
+            // #ifdef USE_PYBIND11
+            //     ffit->Accept( &py_plugin );
+            // #endif
+            // 
+            // #ifdef HOPS_USE_JULIA
+            //     ffit->Accept( &jl_plugin );
+            // #endif
 
             //now (after plugin-initialization) we can configure the fringe fitter
             ffit->Configure(); 

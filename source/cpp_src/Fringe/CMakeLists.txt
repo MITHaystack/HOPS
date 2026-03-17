@@ -53,29 +53,13 @@ set(FRINGE_LIBS
     MHO_Initialization
 )
 
-#add pybind11 deps if available
-if(HOPS_USE_PYBIND11)
-    hops_internal_include_directories(../Plugins/PythonBindings/Containers/include)
-    hops_internal_include_directories(../Plugins/PythonBindings/Operators/include)
-    hops_internal_include_directories(../Plugins/PythonBindings/Visitors/include)
-    list(APPEND PYBIND_APP_LIBS pyMHO_Containers pyMHO_Operators MHO_pyVisitors pybind11::embed)
-    add_cflag(USE_PYBIND11)
-    list(APPEND FRINGE_LIBS ${PYBIND_APP_LIBS})
-endif(HOPS_USE_PYBIND11)
-
-if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
-    hops_internal_include_directories(../../../extern/matplotplusplus/source/)
-    hops_internal_include_directories(../Plugins/MatplotPlugin/include)
-    list(APPEND MPP_LIBS MHO_MatplotPlugin matplot)
-    list(APPEND FRINGE_LIBS ${MPP_LIBS})
-endif()
-
 #add cuda deps if available
 if(HOPS_USE_CUDA)
     hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Plugins/CUDA/CUDAModules/include)
     list(APPEND FRINGE_LIBS MHO_CUDAModules ${CUDA_LIBRARIES} ${CUDA_CUFFT_LIBRARIES} )
 endif(HOPS_USE_CUDA)
 
+#add OpenMP deps if needed
 if(HOPS_USE_OPENMP)
     hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Plugins/OpenMP/include)
     list(APPEND FRINGE_LIBS MHO_OpenMPPlugin OpenMP::OpenMP_CXX)
