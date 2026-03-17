@@ -27,33 +27,18 @@ namespace hops
 
 class MHO_PythonPluginInterface: public MHO_FringeFitterVisitor
 {
-
-    private:
+    public:
         MHO_PythonPluginInterface();
         virtual ~MHO_PythonPluginInterface();
-
-        static MHO_PythonPluginInterface* fPythonPluginInterface;
-
-    public:
-
-        //singleton interface
-        /**
-         * @brief Getter for instance
-         *
-         * @return MHO_PythonPluginInterface* singleton instance
-         * @note This is a static function.
-         */
-        static MHO_PythonPluginInterface* GetInstance();
-
-        void Initialize();
-
-        void Finalize();
 
         virtual void Visit(MHO_FringeFitter* fitter) override;
 
     protected:
 
-        bool fInitialized;
+        void Initialize();
+        void Finalize();
+
+        static bool fInitialized;
 
 };
 

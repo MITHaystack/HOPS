@@ -56,18 +56,18 @@ if(HOPS_USE_PYBIND11)
     list(APPEND FRINGE_LIBS ${PYBIND_APP_LIBS})
 endif(HOPS_USE_PYBIND11)
 
-#add julia deps if available
-if(HOPS_USE_JULIA)
-    hops_internal_include_directories(../Plugins/JuliaBindings/Containers/include)
-    hops_internal_include_directories(../Plugins/JuliaBindings/Operators/include)
-    list(APPEND JULIA_APP_LIBS jlMHO_Containers jlMHO_Operators JlCxx::cxxwrap_julia JlCxx::cxxwrap_julia_stl)
-    list(APPEND FRINGE_LIBS ${JULIA_APP_LIBS})
-    # Bake the julia_modules install path into MHO_Fringe so the factory can
-    # load the CxxWrap modules via @wrapmodule at runtime.
-    set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeFitterFactory.cc
-        APPEND PROPERTY COMPILE_DEFINITIONS
-        JULIA_MODULES_DIR="${JULIA_MODULE_INSTALL_DIR}")
-endif(HOPS_USE_JULIA)
+# #add julia deps if available
+# if(HOPS_USE_JULIA)
+#     hops_internal_include_directories(../Plugins/JuliaBindings/Containers/include)
+#     hops_internal_include_directories(../Plugins/JuliaBindings/Operators/include)
+#     list(APPEND JULIA_APP_LIBS jlMHO_Containers jlMHO_Operators JlCxx::cxxwrap_julia JlCxx::cxxwrap_julia_stl)
+#     list(APPEND FRINGE_LIBS ${JULIA_APP_LIBS})
+#     # Bake the julia_modules install path into MHO_Fringe so the factory can
+#     # load the CxxWrap modules via @wrapmodule at runtime.
+#     set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeFitterFactory.cc
+#         APPEND PROPERTY COMPILE_DEFINITIONS
+#         JULIA_MODULES_DIR="${JULIA_MODULE_INSTALL_DIR}")
+# endif(HOPS_USE_JULIA)
 
 if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
     hops_internal_include_directories(../../../extern/matplotplusplus/source/)

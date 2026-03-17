@@ -27,6 +27,10 @@
 #include "MHO_PythonPluginInterface.hh"
 #endif 
 
+#ifdef HOPS_USE_JULIA
+#include "MHO_JuliaPluginInterface.hh"
+#endif
+
 //needed to export to mark4 fringe files
 #include "MHO_MK4FringeExport.hh"
 
@@ -45,30 +49,18 @@ using namespace hops;
 
 int main(int argc, char** argv)
 {
+    //initialize the lock-file/signal-handler
+    (void) MHO_LockFileHandler::GetInstance();
+
     int process_id = 0;
     int local_id = 0;
     int n_processes = 1;
-
-    //initialize the lock-file/signal-handler
-    (void) MHO_LockFileHandler::GetInstance();
 
 #ifdef HOPS_USE_MPI
     MHO_MPIInterface::GetInstance()->Initialize(&argc, &argv, true); //true -> run with no local even/odd split
     process_id = MHO_MPIInterface::GetInstance()->GetGlobalProcessID();
     local_id = MHO_MPIInterface::GetInstance()->GetLocalProcessID();
     n_processes = MHO_MPIInterface::GetInstance()->GetNProcesses();
-#endif
-
-// #ifdef USE_PYBIND11
-//     //start the interpreter and keep it alive, need this or we segfault
-//     //each process has its own interpreter
-//     py::scoped_interpreter guard{};
-//     configure_pypath();
-// #endif
-
-#ifdef USE_PYBIND11
-    //start the interpreter and keep it alive, need this or we segfault
-    MHO_PythonPluginInterface::GetInstance()->Initialize();
 #endif
 
     MHO_Message::GetInstance().AcceptAllKeys();
@@ -84,7 +76,6 @@ int main(int argc, char** argv)
     }
 
     //flattened pass-info parameters (these are flattened into a single string primarily for MPI)
-    std::string concat_delim = ",";
     std::string cscans, croots, cbaselines, cfgroups, cpolprods;
 
     MPI_SINGLE_PROCESS
@@ -128,24 +119,29 @@ int main(int argc, char** argv)
             fringeData.GetParameterStore()->Set("/pass", pass);
 
             //initializes the scan data store, reads the ovex file and sets the value of '/pass/source'
-            bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(),
-                                                                                      fringeData.GetScanDataStore());
-            MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(),
-                                                                          fringeData.GetScanDataStore());
+            bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
+
+            MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(), fringeData.GetScanDataStore());
 
             //parse the control file and form the control statements
-            MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(),
-                                                                  fringeData.GetControlStatements());
+            MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(), fringeData.GetControlStatements());
 
             //build the fringe fitter based on the input (only 2 choices currently -- basic and ionospheric)
             MHO_FringeFitterFactory ff_factory(&fringeData);
             MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter(); //just builds the fringe fitter
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Plugin library initialization (if these were built)
+            // Plugin library initialization (if these modules were built)
             #ifdef USE_PYBIND11
                 //add the python extensions
-                MHO_PythonPluginInterface::GetInstance()->Visit(ffit);
+                MHO_PythonPluginInterface py_plugin;
+                ffit->Accept( &py_plugin );
+            #endif
+
+            #ifdef HOPS_USE_JULIA
+                //add the python extensions
+                MHO_JuliaPluginInterface jl_plugin;
+                ffit->Accept( &jl_plugin );
             #endif
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,12 +216,6 @@ int main(int argc, char** argv)
 #endif
 
     // MHO_Profiler::GetInstance().DumpEvents();
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Plugin library finialization (if these were built)
-    #ifdef USE_PYBIND11
-        MHO_PythonPluginInterface::GetInstance()->Finalize();
-    #endif
 
     return 0;
 }
