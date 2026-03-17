@@ -203,13 +203,14 @@ int main(int argc, char** argv)
                 }
 
                 //use the plotter factory to construct one of the available plotting backends
+                //whether or not the plot is displayed depends on the value of '/cmdline/show_plot' 
+                //but this logic is handled by the plot visitors themselves
                 plugin_factory.GetPlotVisitors(plot_visitors);
                 for(std::size_t np=0; np<plot_visitors.size(); np++)
                 {
                     ffit->Accept(plot_visitors[np]);
                 }
             }
-
         }
     } //end of pass loop
 

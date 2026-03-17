@@ -34,11 +34,7 @@ MHO_PluginVisitorFactory::~MHO_PluginVisitorFactory()
     fPluginVisitors.clear();
     fPluginsInitialized = false;
 
-    for(std::size_t i = 0; i<fPlotVisitors.size(); i++)
-    {
-        delete fPlotVisitors[i];
-        fPlotVisitors[i] = nullptr;
-    }
+    //plot visitors are managed by their respective factory (do not delete here)
     fPlotVisitors.clear();
     fPlotInitialized = false;
 
@@ -89,6 +85,7 @@ MHO_PluginVisitorFactory::ConstructPlugins()
             bool need_julia_plugin = fParameterStore->GetAs<bool>("/config/plugins/activate_julia");
             if(need_julia_plugin)
             {
+                msg_debug("plugins", "constructing the julia plugin interface" << eom);
                 MHO_FringeFitterVisitor* jl_visitor = new MHO_JuliaPluginInterface();
                 fPluginVisitors.push_back(jl_visitor);
             }
@@ -112,6 +109,7 @@ MHO_PluginVisitorFactory::ConstructPlugins()
 
         if(need_python_plugin)
         {
+            msg_debug("plugins", "constructing the python plugin interface" << eom);
             MHO_FringeFitterVisitor* py_visitor = new MHO_PythonPluginInterface();
             fPluginVisitors.push_back(py_visitor);
         }
@@ -130,7 +128,11 @@ MHO_PluginVisitorFactory::ConstructPlotters()
         std::string plot_backend;
         fParameterStore->Get("/control/config/plot_backend", plot_backend);
         MHO_FringePlotVisitor* plotter = fPlotterFactory.ConstructPlotter(plot_backend);
-        if(plotter){fPlotVisitors.push_back(plotter);}
+        if(plotter)
+        {
+            msg_debug("plugin", "plot factory is adding a plotter with the backend: "<< plot_backend << eom);
+            fPlotVisitors.push_back(plotter);
+        }
     }
 }
 
