@@ -17,7 +17,6 @@ set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileInfoExtractor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AFileDefinitions.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeFitterFactory.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotVisitorFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SpectralLineFringeFitter.hh
 )
 

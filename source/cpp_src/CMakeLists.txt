@@ -96,6 +96,8 @@ if(HOPS_USE_HDF5)
     add_subdirectory(${CPPSOURCE}/Plugins/HDF5)
 endif(HOPS_USE_HDF5)
 
+add_subdirectory(${CPPSOURCE}/Plugins/PluginManagement)
+
 #library of fringe-fitting related functionality 
 #(may depend on enabled plugins)
 add_subdirectory(${CPPSOURCE}/Fringe) 

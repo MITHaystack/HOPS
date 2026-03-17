@@ -9,7 +9,7 @@
 #endif
 
 #ifdef HOPS_USE_JULIA
-    #include "MHO_JuliaPluginInteface.hh"
+    #include "MHO_JuliaPluginInterface.hh"
 #endif
 
 namespace hops
@@ -48,10 +48,10 @@ void MHO_PluginVisitorFactory::ConstructPlugins()
         #ifdef HOPS_USE_JULIA
         if( fParameterStore->IsPresent("/config/plugins/activate_julia") )
         {
-            bool need_julia_plugin = fParameterStore->GetAs<bool>("/config/plugins/activate_julia")
+            bool need_julia_plugin = fParameterStore->GetAs<bool>("/config/plugins/activate_julia");
             if(need_julia_plugin)
             {
-                MHO_FringeFitterVisitor* jl_visitor = new MHO_JuliaPluginInteface();
+                MHO_FringeFitterVisitor* jl_visitor = new MHO_JuliaPluginInterface();
                 fPluginVisitors.push_back(jl_visitor);
             }
         }
@@ -61,11 +61,11 @@ void MHO_PluginVisitorFactory::ConstructPlugins()
         #ifdef USE_PYBIND11
         if( fParameterStore->IsPresent("/config/plugins/activate_python") )
         {
-            bool need_python_plugin = fParameterStore->GetAs<bool>("/config/plugins/activate_python")
+            bool need_python_plugin = fParameterStore->GetAs<bool>("/config/plugins/activate_python");
             if(need_python_plugin)
             {
                 MHO_FringeFitterVisitor* py_visitor = new MHO_PythonPluginInterface();
-                fPluginVisitors.push_back(jl_visitor);
+                fPluginVisitors.push_back(py_visitor);
             }
         }
         #endif 
