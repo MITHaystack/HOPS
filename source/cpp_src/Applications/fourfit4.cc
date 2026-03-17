@@ -102,6 +102,22 @@ int main(int argc, char** argv)
     {
         msg_info("main", "fourfit will fringe " << n_pass << " passes of data" << eom);
     }
+
+    ////////////////////////////////////////
+    //plugin interfaces 
+
+    #ifdef USE_PYBIND11
+        //declare the python extension
+        MHO_PythonPluginInterface py_plugin;
+    #endif
+
+    #ifdef HOPS_USE_JULIA
+        //declare the julia extension
+        MHO_JuliaPluginInterface jl_plugin;
+    #endif
+
+    ///////////////////////////////////////
+
     //this loop could be trivially parallelized (with the exception of plotting)
     for(std::size_t pass_index = 0; pass_index < n_pass; pass_index++)
     {
@@ -130,21 +146,15 @@ int main(int argc, char** argv)
             MHO_FringeFitterFactory ff_factory(&fringeData);
             MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter(); //just builds the fringe fitter
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
             // Plugin library initialization (if these modules were built)
             #ifdef USE_PYBIND11
-                //add the python extensions
-                MHO_PythonPluginInterface py_plugin;
                 ffit->Accept( &py_plugin );
             #endif
 
             #ifdef HOPS_USE_JULIA
-                //add the python extensions
-                MHO_JuliaPluginInterface jl_plugin;
                 ffit->Accept( &jl_plugin );
             #endif
-
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             //now (after plugin-initialization) we can configure the fringe fitter
             ffit->Configure(); 
