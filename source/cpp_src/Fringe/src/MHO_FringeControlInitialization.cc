@@ -198,9 +198,9 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
 
     //the control statement 'skip' is special because we want to bail out
     //as soon as possible (before reading in data) in order to save time
-    if(paramStore->IsPresent("skip"))
+    if(paramStore->IsPresent("/control/flagging/skip") )
     {
-        bool do_skip = paramStore->GetAs< bool >("skip");
+        bool do_skip = paramStore->GetAs< bool >("/control/flagging/skip");
         if(do_skip)
         {
             //set "is_finished" to true, since we are skipping this data

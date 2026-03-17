@@ -6,6 +6,7 @@
 
 #ifdef USE_PYBIND11
     #include "MHO_PythonPluginInterface.hh"
+    #include "MHO_DefaultPythonPlotVisitor.hh"
 #endif
 
 #ifdef HOPS_USE_JULIA
@@ -17,7 +18,9 @@ namespace hops
     
     
 MHO_PluginVisitorFactory::MHO_PluginVisitorFactory():
-    fInitialized(false),
+    fPluginsInitialized(false),
+    fPlotInitialized(false),
+    fOutputInitialized(false),
     fParameterStore(nullptr)
 {}
 
@@ -29,19 +32,54 @@ MHO_PluginVisitorFactory::~MHO_PluginVisitorFactory()
         fPluginVisitors[i] = nullptr;
     }
     fPluginVisitors.clear();
-    fInitialized = false;
+    fPluginsInitialized = false;
+
+    for(std::size_t i = 0; i<fPlotVisitors.size(); i++)
+    {
+        delete fPlotVisitors[i];
+        fPlotVisitors[i] = nullptr;
+    }
+    fPlotVisitors.clear();
+    fPlotInitialized = false;
+
+    for(std::size_t i = 0; i<fOutputVisitors.size(); i++)
+    {
+        delete fOutputVisitors[i];
+        fOutputVisitors[i] = nullptr;
+    }
+    fOutputVisitors.clear();
+    fOutputInitialized = false;
 }
 
-
-void MHO_PluginVisitorFactory::GetPluginVisitors(std::vector< MHO_FringeFitterVisitor* >& visitors)
+void 
+MHO_PluginVisitorFactory::GetPluginVisitors(std::vector< MHO_FringeFitterVisitor* >& visitors)
 {
-    if(!fInitialized){ConstructPlugins();}
+    if(!fPluginsInitialized){ConstructPlugins();}
     visitors.clear();
     visitors = fPluginVisitors;
 }
 
 
-void MHO_PluginVisitorFactory::ConstructPlugins()
+void 
+MHO_PluginVisitorFactory::GetPlotVisitors(std::vector< MHO_FringePlotVisitor* >& visitors)
+{
+    if(!fPlotInitialized){ConstructPlotters();}
+    visitors.clear();
+    visitors = fPlotVisitors;
+}
+
+
+void 
+MHO_PluginVisitorFactory::GetOutputVisitors(std::vector< MHO_FringeFitterVisitor*>& visitors)
+{
+    if(!fOutputInitialized){ConstructOutputVisitors();}
+    visitors.clear();
+    visitors = fOutputVisitors;
+}
+
+
+void 
+MHO_PluginVisitorFactory::ConstructPlugins()
 {
     if(fParameterStore != nullptr)
     {
@@ -59,17 +97,56 @@ void MHO_PluginVisitorFactory::ConstructPlugins()
         
         
         #ifdef USE_PYBIND11
+        bool need_python_plugin = false;
         if( fParameterStore->IsPresent("/config/plugins/activate_python") )
         {
-            bool need_python_plugin = fParameterStore->GetAs<bool>("/config/plugins/activate_python");
-            if(need_python_plugin)
-            {
-                MHO_FringeFitterVisitor* py_visitor = new MHO_PythonPluginInterface();
-                fPluginVisitors.push_back(py_visitor);
-            }
+            need_python_plugin |= fParameterStore->GetAs<bool>("/config/plugins/activate_python");
         }
+
+        std::string plot_backend;
+        fParameterStore->Get("/control/config/plot_backend", plot_backend);
+        if(plot_backend == "matplotlib") //we need the python plugin if the plotter is matplotlib too
+        {
+            need_python_plugin |= true;
+        }
+
+        if(need_python_plugin)
+        {
+            MHO_FringeFitterVisitor* py_visitor = new MHO_PythonPluginInterface();
+            fPluginVisitors.push_back(py_visitor);
+        }
+
         #endif 
     }
 }
+
+
+void 
+MHO_PluginVisitorFactory::ConstructPlotters()
+{
+    if(fParameterStore != nullptr)
+    {
+        //currently we only have two fringe plotting options (gnuplot or matplotlib)
+        std::string plot_backend;
+        fParameterStore->Get("/control/config/plot_backend", plot_backend);
+        MHO_FringePlotVisitor* plotter = fPlotterFactory.ConstructPlotter(plot_backend);
+        if(plotter){fPlotVisitors.push_back(plotter);}
+    }
+}
+
+
+void 
+MHO_PluginVisitorFactory::ConstructOutputVisitors()
+{
+
+}
+
+
+
+
+
+
+
+
 
 } // namespace hops

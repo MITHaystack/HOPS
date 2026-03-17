@@ -23,15 +23,8 @@
 #include "MHO_FringeControlInitialization.hh"
 #include "MHO_LockFileHandler.hh"
 
+//interface with plugin libraries
 #include "MHO_PluginVisitorFactory.hh"
-
-#ifdef USE_PYBIND11
-#include "MHO_PythonPluginInterface.hh"
-#endif 
-
-#ifdef HOPS_USE_JULIA
-#include "MHO_JuliaPluginInterface.hh"
-#endif
 
 //needed to export to mark4 fringe files
 #include "MHO_MK4FringeExport.hh"
@@ -106,20 +99,11 @@ int main(int argc, char** argv)
     }
 
     ////////////////////////////////////////
-    //plugin interfaces 
-    MHO_PluginVisitorFactory plugin_factory;
-    std::vector< MHO_FringeFitterVisitor* > plugins;
-
-    // #ifdef USE_PYBIND11
-    //     //declare the python extension
-    //     MHO_PythonPluginInterface py_plugin;
-    // #endif
-    // 
-    // #ifdef HOPS_USE_JULIA
-    //     //declare the julia extension
-    //     MHO_JuliaPluginInterface jl_plugin;
-    // #endif
-
+    //plugin/plot/output interface (manages plugin RAII and visitor creation)
+    MHO_PluginVisitorFactory plugin_factory; //must remain persistent until end of main to call plugin 'finalize' routines
+    std::vector< MHO_FringeFitterVisitor* > plugin_visitors;
+    std::vector< MHO_FringePlotVisitor* > plot_visitors;
+    std::vector< MHO_FringeFitterVisitor* > output_visitors;
     ///////////////////////////////////////
 
     //this loop could be trivially parallelized (with the exception of plotting)
@@ -146,27 +130,20 @@ int main(int argc, char** argv)
             //parse the control file and form the control statements
             MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(), fringeData.GetControlStatements());
 
-            //build the fringe fitter based on the input (only 2 choices currently -- basic and ionospheric)
+            //build the fringe fitter based on the input/control
             MHO_FringeFitterFactory ff_factory(&fringeData);
-            MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter(); //just builds the fringe fitter
+            MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter();
 
             //////////////////////////////////////////////////////////////
-            // Plugin library initialization (if these modules were built)
+            // Plugin library (operator builder) registration (if any modules were built)
             plugin_factory.SetParameterStore(fringeData.GetParameterStore());
-            plugin_factory.GetPluginVisitors(plugins);
-            for(std::size_t np=0; np<plugins.size(); np++)
+            plugin_factory.GetPluginVisitors(plugin_visitors);
+            for(std::size_t np=0; np<plugin_visitors.size(); np++)
             {
-                ffit->Accept(plugins[np]);
+                ffit->Accept(plugin_visitors[np]);
             }
-            // #ifdef USE_PYBIND11
-            //     ffit->Accept( &py_plugin );
-            // #endif
-            // 
-            // #ifdef HOPS_USE_JULIA
-            //     ffit->Accept( &jl_plugin );
-            // #endif
 
-            //now (after plugin-initialization) we can configure the fringe fitter
+            //now (after plugin registration) we can configure the fringe fitter
             ffit->Configure(); 
 
             //initialize and perform run loop
@@ -192,38 +169,44 @@ int main(int argc, char** argv)
             bool is_skipped = fringeData.GetParameterStore()->GetAs< bool >("/status/skipped");
             bool test_mode = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
 
-            //OUTPUT
-            //open and dump to file -- should we profile this as well?
-            if(!test_mode && !is_skipped)
-            {
-                bool use_mk4_output = false;
-                fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
-
-                if(!use_mk4_output)
-                {
-                    fringeData.WriteOutput();
-                }
-                else
-                {
-                    MHO_MK4FringeExport fexporter;
-                    fexporter.SetParameterStore(fringeData.GetParameterStore());
-                    fexporter.SetPlotData(fringeData.GetPlotData());
-                    fexporter.SetContainerStore(fringeData.GetContainerStore());
-                    fexporter.ExportFringeFile();
-                }
-            }
-
-            //use the plotter factory to construct one of the available plotting backends
             if(!is_skipped)
             {
-                //currently we only have two fringe plotting options (gnuplot or matplotlib)
-                std::string plot_backend;
-                fringeData.GetParameterStore()->Get("/control/config/plot_backend", plot_backend);
-                MHO_FringePlotVisitorFactory plotter_factory;
-                MHO_FringePlotVisitor* plotter = plotter_factory.ConstructPlotter(plot_backend);
-                if(plotter != nullptr)
+                // //output visitors 
+                // if(!test_mode)
+                // {
+                //     plugin_factory.GetOutputVisitors(output_visitors);
+                //     for(std::size_t np=0; np<output_visitors.size(); np++)
+                //     {
+                //         ffit->Accept(output_visitors[np]);
+                //     }
+                // }
+
+                //OUTPUT
+                //open and dump to file -- should we profile this as well?
+                if(!test_mode)
                 {
-                    ffit->Accept(plotter);
+                    bool use_mk4_output = false;
+                    fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
+                
+                    if(!use_mk4_output)
+                    {
+                        fringeData.WriteOutput();
+                    }
+                    else
+                    {
+                        MHO_MK4FringeExport fexporter;
+                        fexporter.SetParameterStore(fringeData.GetParameterStore());
+                        fexporter.SetPlotData(fringeData.GetPlotData());
+                        fexporter.SetContainerStore(fringeData.GetContainerStore());
+                        fexporter.ExportFringeFile();
+                    }
+                }
+
+                //use the plotter factory to construct one of the available plotting backends
+                plugin_factory.GetPlotVisitors(plot_visitors);
+                for(std::size_t np=0; np<plot_visitors.size(); np++)
+                {
+                    ffit->Accept(plot_visitors[np]);
                 }
             }
 
