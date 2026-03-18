@@ -2,12 +2,18 @@ hops_internal_include_directories()
 
 #list header files #############################################################
 set (PLUGIN_MANAGEMENT_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_HopsOutputVisitor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Mark4OutputVisitor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OutputVisitorFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PluginVisitorFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotVisitorFactory.hh
 )
 
 #list source files #############################################################
 set( PLUGIN_MANAGEMENT_SOURCEFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_HopsOutputVisitor.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Mark4OutputVisitor.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OutputVisitorFactory.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PluginVisitorFactory.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringePlotVisitorFactory.cc
 )
@@ -25,6 +31,7 @@ set(PLUGIN_MANAGEMENT_LIBS
     MHO_Calibration 
     MHO_Control 
     MHO_Initialization
+    MHO_MK4Interface
 )
 
 #python/pybind11 libraries

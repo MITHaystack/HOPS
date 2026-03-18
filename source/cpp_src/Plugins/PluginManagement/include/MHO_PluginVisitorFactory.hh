@@ -7,6 +7,7 @@
 #include "MHO_FringeFitter.hh"
 #include "MHO_FringePlotVisitor.hh"
 #include "MHO_FringePlotVisitorFactory.hh"
+#include "MHO_OutputVisitorFactory.hh"
 
 namespace hops
 {
@@ -27,7 +28,7 @@ class MHO_PluginVisitorFactory
         void GetPlotVisitors(std::vector< MHO_FringePlotVisitor* >& visitors);
 
         //(file) output visitors
-        void GetOutputVisitors(std::vector< MHO_FringeFitterVisitor*>& visitors);
+        void GetOutputVisitors(std::vector< MHO_FringeFitterVisitor* >& visitors);
 
     protected:
         
@@ -41,10 +42,13 @@ class MHO_PluginVisitorFactory
         MHO_ParameterStore* fParameterStore;
 
         std::vector< MHO_FringeFitterVisitor* > fPluginVisitors;
-        std::vector< MHO_FringeFitterVisitor* > fOutputVisitors;
 
+        std::vector< MHO_FringeFitterVisitor* > fOutputVisitors;
+        MHO_OutputVisitorFactory fOutputFactory;
+        
         std::vector< MHO_FringePlotVisitor* > fPlotVisitors;
         MHO_FringePlotVisitorFactory fPlotterFactory;
+    
 };
 
 

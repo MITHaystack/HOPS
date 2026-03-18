@@ -167,50 +167,50 @@ int main(int argc, char** argv)
 
             //determine if this pass was skipped or is in test-mode
             bool is_skipped = fringeData.GetParameterStore()->GetAs< bool >("/status/skipped");
+            if(is_skipped){continue;}
+
             bool test_mode = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
 
-            if(!is_skipped)
+            //output visitors 
+            if(!test_mode)
             {
-                // //output visitors 
-                // if(!test_mode)
-                // {
-                //     plugin_factory.GetOutputVisitors(output_visitors);
-                //     for(std::size_t np=0; np<output_visitors.size(); np++)
-                //     {
-                //         ffit->Accept(output_visitors[np]);
-                //     }
-                // }
-
-                //OUTPUT
-                //open and dump to file -- should we profile this as well?
-                if(!test_mode)
+                plugin_factory.GetOutputVisitors(output_visitors);
+                for(std::size_t np=0; np<output_visitors.size(); np++)
                 {
-                    bool use_mk4_output = false;
-                    fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
-                
-                    if(!use_mk4_output)
-                    {
-                        fringeData.WriteOutput();
-                    }
-                    else
-                    {
-                        MHO_MK4FringeExport fexporter;
-                        fexporter.SetParameterStore(fringeData.GetParameterStore());
-                        fexporter.SetPlotData(fringeData.GetPlotData());
-                        fexporter.SetContainerStore(fringeData.GetContainerStore());
-                        fexporter.ExportFringeFile();
-                    }
-                }
-
-                //use the plotter factory to construct one of the available plotting backends
-                //whether or not the plot is displayed depends on the value of '/cmdline/show_plot' 
-                //but this logic is handled by the plot visitors themselves
-                plugin_factory.GetPlotVisitors(plot_visitors);
-                for(std::size_t np=0; np<plot_visitors.size(); np++)
-                {
-                    ffit->Accept(plot_visitors[np]);
+                    ffit->Accept(output_visitors[np]);
                 }
             }
+
+            // //OUTPUT
+            // //open and dump to file -- should we profile this as well?
+            // if(!test_mode)
+            // {
+            //     bool use_mk4_output = false;
+            //     fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
+            // 
+            //     if(!use_mk4_output)
+            //     {
+            //         fringeData.WriteOutput();
+            //     }
+            //     else
+            //     {
+            //         MHO_MK4FringeExport fexporter;
+            //         fexporter.SetParameterStore(fringeData.GetParameterStore());
+            //         fexporter.SetPlotData(fringeData.GetPlotData());
+            //         fexporter.SetContainerStore(fringeData.GetContainerStore());
+            //         fexporter.ExportFringeFile();
+            //     }
+            // }
+
+            //use the plotter factory to construct one of the available plotting backends
+            //whether or not the plot is displayed depends on the value of '/cmdline/show_plot' 
+            //but this logic is handled by the plot visitors themselves
+            plugin_factory.GetPlotVisitors(plot_visitors);
+            for(std::size_t np=0; np<plot_visitors.size(); np++)
+            {
+                ffit->Accept(plot_visitors[np]);
+            }
+
         }
     } //end of pass loop
 

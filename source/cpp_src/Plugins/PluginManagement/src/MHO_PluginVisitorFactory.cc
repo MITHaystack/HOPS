@@ -38,11 +38,7 @@ MHO_PluginVisitorFactory::~MHO_PluginVisitorFactory()
     fPlotVisitors.clear();
     fPlotInitialized = false;
 
-    for(std::size_t i = 0; i<fOutputVisitors.size(); i++)
-    {
-        delete fOutputVisitors[i];
-        fOutputVisitors[i] = nullptr;
-    }
+    //output visitor are managed by their respective factory (do not delete here)
     fOutputVisitors.clear();
     fOutputInitialized = false;
 }
@@ -140,7 +136,25 @@ MHO_PluginVisitorFactory::ConstructPlotters()
 void 
 MHO_PluginVisitorFactory::ConstructOutputVisitors()
 {
+    //currently, we assume only one format is requested at a time 
+    //however, there is no limitation to having multiple formats generated at the same time if desired
+    
+    std::string output_format = "hops4";
+    if(fParameterStore != nullptr)
+    {
+        bool use_mk4_output = false;
+        fParameterStore->Get("/cmdline/mk4format_output", use_mk4_output);
+        if(use_mk4_output){output_format = "mark4";}
+        
+        MHO_FringeFitterVisitor* output_visitor = nullptr;
+        output_visitor = fOutputFactory.GetOutputVisitor(output_format);
 
+        if(output_visitor)
+        {
+            msg_debug("plugin", "output factory is adding format: "<< output_format << eom);
+            fOutputVisitors.push_back(output_visitor);
+        }
+    }
 }
 
 
