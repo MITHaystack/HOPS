@@ -18,14 +18,14 @@ MHO_HopsOutputVisitor::~MHO_HopsOutputVisitor(){}
 void 
 MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
 {
-    MHO_FringeData* data = fitter->GetFringeData();
-    if(!data)
+    MHO_FringeData* fringeData = fitter->GetFringeData();
+    if(!fringeData)
     {
         msg_error("fringe", "fringe data is null, aborting output write" << eom);
         return;
     }
 
-    std::string directory = data->GetParameterStore()->GetAs< std::string >("/files/directory");
+    std::string directory = fringeData->GetParameterStore()->GetAs< std::string >("/files/directory");
     directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
 
     MHO_UUIDGenerator gen;
@@ -39,12 +39,12 @@ MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
     std::string ref_code;
     std::string rem_code;
 
-    bool ok1 = data->GetParameterStore()->Get("/config/baseline", baseline);
-    bool ok2 = data->GetParameterStore()->Get("/config/root_code", root_code);
-    bool ok3 = data->GetParameterStore()->Get("/config/frequency_group", frequency_group);
-    bool ok4 = data->GetParameterStore()->Get("/config/polprod", polprod);
-    bool ok5 = data->GetParameterStore()->Get("/config/reference_station", ref_code);
-    bool ok6 = data->GetParameterStore()->Get("/config/remote_station", rem_code);
+    bool ok1 = fringeData->GetParameterStore()->Get("/config/baseline", baseline);
+    bool ok2 = fringeData->GetParameterStore()->Get("/config/root_code", root_code);
+    bool ok3 = fringeData->GetParameterStore()->Get("/config/frequency_group", frequency_group);
+    bool ok4 = fringeData->GetParameterStore()->Get("/config/polprod", polprod);
+    bool ok5 = fringeData->GetParameterStore()->Get("/config/reference_station", ref_code);
+    bool ok6 = fringeData->GetParameterStore()->Get("/config/remote_station", rem_code);
 
     if(!ok1)
     {
@@ -79,8 +79,8 @@ MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
     //since they can write in parallel and only need to queue up to rename their files
 
     std::string temp_name =
-        ConstructTempFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, temp_id);
-    int write_ok = WriteDataObjects(data, temp_name);
+        fringeData->ConstructTempFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, temp_id);
+    int write_ok = WriteDataObjects(fringeData, temp_name);
 
     // for locking
     int lock_retval = LOCK_PROCESS_NO_PRIORITY;
@@ -93,7 +93,7 @@ MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
         std::string output_file =
-            ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, the_seq_no);
+            fringeData->ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, the_seq_no);
 
         //rename the temp file to the proper output name
         if(write_ok == 0)
@@ -116,33 +116,33 @@ MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
     //return write_ok;
 }
 
-int MHO_HopsOutputVisitor::WriteDataObjects(MHO_FringeData* data, std::string filename)
+int MHO_HopsOutputVisitor::WriteDataObjects(MHO_FringeData* fringeData, std::string filename)
 {
     //now we attach the parameter store and plot data as object tags
     MHO_ObjectTags tags;
-    tags.SetTagValue("plot_data", data->GetPlotData());
+    tags.SetTagValue("plot_data", fringeData->GetPlotData());
 
     mho_json params;
-    data->GetParameterStore()->DumpData(params);
+    fringeData->GetParameterStore()->DumpData(params);
     tags.SetTagValue("parameters", params);
 
     //only enable this type of output iff the -X option has been passed
     //and it has a value of 0 or greater
     int xpower_output = -1;
-    xpower_output = data->GetParameterStore()->GetAs< int >("/cmdline/xpower_output");
+    xpower_output = fringeData->GetParameterStore()->GetAs< int >("/cmdline/xpower_output");
 
     visibility_type* vis_data = nullptr;
     weight_type* wt_data = nullptr;
 
     if(0 <= xpower_output)
     {
-        vis_data = data->GetContainerStore()->GetObject< visibility_type >(std::string("vis"));
+        vis_data = fringeData->GetContainerStore()->GetObject< visibility_type >(std::string("vis"));
         if(vis_data == nullptr)
         {
             msg_error("fringe", "could not find visibility object to write output." << eom);
         }
 
-        wt_data = data->GetContainerStore()->GetObject< weight_type >(std::string("weight"));
+        wt_data = fringeData->GetContainerStore()->GetObject< weight_type >(std::string("weight"));
         if(wt_data == nullptr)
         {
             msg_error("fringe", "could not find weights object to write output." << eom);
@@ -150,7 +150,7 @@ int MHO_HopsOutputVisitor::WriteDataObjects(MHO_FringeData* data, std::string fi
     }
 
     //Add the time/frequency averaged visibilities with the fringe solution applied (e.g. AP x CH) (e.g. type212 equivalent)
-    phasor_type* phasor_data = data->GetContainerStore()->GetObject< phasor_type >(std::string("phasors"));
+    phasor_type* phasor_data = fringeData->GetContainerStore()->GetObject< phasor_type >(std::string("phasors"));
     if(phasor_data == nullptr)
     {
         msg_error("fringe", "could not find time/frequency averaged phasor object to write output." << eom);
@@ -197,32 +197,6 @@ int MHO_HopsOutputVisitor::WriteDataObjects(MHO_FringeData* data, std::string fi
     }
 
     return 0;
-}
-
-std::string MHO_HopsOutputVisitor::ConstructFrngFileName(const std::string directory, const std::string& baseline,
-                                                  const std::string& ref_station, const std::string& rem_station,
-                                                  const std::string& frequency_group, const std::string& polprod,
-                                                  const std::string& root_code, int seq_no)
-{
-    std::stringstream ss;
-    ss << directory << "/" << baseline << ".";
-    ss << ref_station << "-" << rem_station << ".";
-    ss << frequency_group << "." << polprod << ".";
-    ss << root_code << "." << seq_no << ".frng";
-    return ss.str();
-}
-
-std::string MHO_HopsOutputVisitor::ConstructTempFileName(const std::string directory, const std::string& baseline,
-                                                  const std::string& ref_station, const std::string& rem_station,
-                                                  const std::string& frequency_group, const std::string& polprod,
-                                                  const std::string& root_code, const std::string& temp_id)
-{
-    std::stringstream ss;
-    ss << directory << "/" << baseline << ".";
-    ss << ref_station << "-" << rem_station << ".";
-    ss << frequency_group << "." << polprod << ".";
-    ss << root_code << ".frng." << temp_id;
-    return ss.str();
 }
 
 } // namespace hops

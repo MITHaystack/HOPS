@@ -19,17 +19,6 @@ class MHO_HopsOutputVisitor: public MHO_FringeFitterVisitor
 
         int WriteDataObjects(MHO_FringeData* data, std::string filename);
 
-
-        std::string ConstructFrngFileName(const std::string directory, const std::string& baseline,
-                                          const std::string& ref_station, const std::string& rem_station,
-                                          const std::string& frequency_group, const std::string& polprod,
-                                          const std::string& root_code, int seq_no);
-
-        std::string ConstructTempFileName(const std::string directory, const std::string& baseline,
-                                          const std::string& ref_station, const std::string& rem_station,
-                                          const std::string& frequency_group, const std::string& polprod,
-                                          const std::string& root_code, const std::string& temp_id);
-
 };
 
 }//end namespace

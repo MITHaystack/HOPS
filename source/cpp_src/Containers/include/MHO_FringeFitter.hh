@@ -14,11 +14,6 @@
 //needed to read hops files and extract objects from scan dir
 #include "MHO_ScanDataStore.hh"
 
-// //initialization
-// #include "MHO_OperatorBuilderManager.hh"
-// #include "MHO_ParameterConfigurator.hh"
-// #include "MHO_ParameterManager.hh"
-
 namespace hops
 {
 
@@ -30,7 +25,7 @@ namespace hops
  *@brief Abstract base class for a basic fringe fitter
  */
 
-//forward declare visitor and operator build manager 
+//forward declare visitor and operator build manager (MHO_Initialization library)
 class MHO_FringeFitterVisitor;
 class MHO_OperatorBuilderManager;
 

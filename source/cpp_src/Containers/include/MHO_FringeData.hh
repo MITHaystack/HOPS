@@ -74,7 +74,6 @@ class MHO_FringeData
          */
         mho_json& GetControlStatements() { return fControlStatements; }
 
-        //TODO remove this hack in favor of 'plotting'/'output' visitors
         /**
          * @brief Getter for plot data
          *
@@ -82,21 +81,6 @@ class MHO_FringeData
          */
         mho_json& GetPlotData() { return fPlotData; }
 
-        /**
-         * @brief Writes output data to disk with a temporary unique name and renames it afterwards.
-         *
-         * @return Returns an integer value indicating success or failure.
-         */
-        int WriteOutput();
-
-    protected:
-        /**
-         * @brief Writes data objects to a file with given filename.
-         *
-         * @param filename Filename to write data objects.
-         * @return 0 on success, error code otherwise.
-         */
-        int WriteDataObjects(std::string filename);
 
         /**
          * @brief Constructs a fringe file name string from given parameters.
@@ -111,10 +95,10 @@ class MHO_FringeData
          * @param seq_no Sequence number for the fringe file.
          * @return A string representing the constructed fringe file name.
          */
-        std::string ConstructFrngFileName(const std::string directory, const std::string& baseline,
-                                          const std::string& ref_station, const std::string& rem_station,
-                                          const std::string& frequency_group, const std::string& polprod,
-                                          const std::string& root_code, int seq_no);
+        static std::string ConstructFrngFileName(const std::string directory, const std::string& baseline,
+                                              const std::string& ref_station, const std::string& rem_station,
+                                              const std::string& frequency_group, const std::string& polprod,
+                                              const std::string& root_code, int seq_no);
 
         /**
          * @brief Constructs a temporary file name using provided parameters and concatenation.
@@ -129,10 +113,13 @@ class MHO_FringeData
          * @param temp_id Temporary ID for the file.
          * @return The constructed temporary file name as a string.
          */
-        std::string ConstructTempFileName(const std::string directory, const std::string& baseline,
-                                          const std::string& ref_station, const std::string& rem_station,
-                                          const std::string& frequency_group, const std::string& polprod,
-                                          const std::string& root_code, const std::string& temp_id);
+        static std::string ConstructTempFileName(const std::string directory, const std::string& baseline,
+                                              const std::string& ref_station, const std::string& rem_station,
+                                              const std::string& frequency_group, const std::string& polprod,
+                                              const std::string& root_code, const std::string& temp_id);
+
+
+    protected:
 
         //data objects
         MHO_ParameterStore fParameterStore; //stores various parameters using string keys
@@ -143,7 +130,7 @@ class MHO_FringeData
         mho_json fControlFormat;
         mho_json fControlStatements;
 
-        //plot data storage
+        //plot data storage (could in theory be moved into plot visitors themselves)
         mho_json fPlotData;
 };
 

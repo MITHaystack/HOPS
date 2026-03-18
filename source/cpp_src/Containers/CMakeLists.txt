@@ -9,10 +9,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayMath.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayView.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BidirectionalIndexedIterator.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabel.hh
-    #${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IntervalLabelTree.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Taggable.hh
-    # ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IndexLabelInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ObjectTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NDArrayWrapper_0.hh
@@ -43,8 +40,6 @@ set (CONTAINER_HEADERFILES
 )
 
 set( CONTAINER_SOURCEFILES
-#    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabel.cc
-#    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IntervalLabelTree.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerDictionary.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ContainerFileInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ScanDataStore.cc
