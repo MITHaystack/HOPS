@@ -84,10 +84,10 @@ hops_install_share_vhelp_aedit( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit/yscale )
 hops_install_share_vhelp_aedit( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit/zoom )
 
 
-option(BUILD_DOCS "Build documentation with doxygen/sphinx" OFF)
-option(DEPLOY_DOCS "Configure documentation to deploy html pages on github" OFF)
+option(HOPS_BUILD_DOCS "Build documentation with doxygen/sphinx" OFF)
+option(HOPS_DEPLOY_DOCS "Configure documentation to deploy html pages on github" OFF)
 
-if(BUILD_DOCS)
+if(HOPS_BUILD_DOCS)
 
 find_package(Doxygen REQUIRED)
 find_package(Sphinx REQUIRED)
@@ -107,9 +107,9 @@ find_package(Sphinx REQUIRED)
         # we use REF_BUILD_DIR to direct sphinx-doxylink to the local file system, 
         # MIT_BASE_URL for github.mit.edu and GITHUB_BASE_URL for github.com (deployment)
         set(DOC_BASE_URL "${REF_BUILD_DIR}") 
-        if(DEPLOY_DOCS)
+        if(HOPS_DEPLOY_DOCS)
             set(DOC_BASE_URL "${GITHUB_BASE_URL}") 
-        endif(DEPLOY_DOCS)
+        endif(HOPS_DEPLOY_DOCS)
 
         #first generate the doxygen C++ API reference
         set(DOXYGEN_FILE "hops.doxygen")
@@ -175,4 +175,4 @@ find_package(Sphinx REQUIRED)
 
     endif(DOXYGEN_FOUND AND SPHINX_FOUND)
 
-endif(BUILD_DOCS)
+endif(HOPS_BUILD_DOCS)
