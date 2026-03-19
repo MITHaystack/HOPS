@@ -60,7 +60,7 @@ add_subdirectory(${CPPSOURCE}/MK4Interface) #interface to MK4 data types and imp
 
 
 #######################################################################
-## Accelerator plugins
+## Accelerator plugins (these are generally ifdef'd into the code which uses them)
 
 if(HOPS_USE_OPENMP)
     #OpenMP (cpu parallelism) plugin
@@ -109,7 +109,54 @@ if(HOPS_USE_HDF5)
     add_subdirectory(${CPPSOURCE}/Plugins/HDF5)
 endif(HOPS_USE_HDF5)
 
-#management layer for capability plugins
+#########################################################################
+# Aggregate all optional capability plugin deps into a single INTERFACE
+# target. Any library or executable that needs them only needs to link to this one
+# target (MHO_OptionalPlugins), adding a new plugin requires editing this block, but 
+# we don't need to have a bunch of if statements wrapping plugin dependencies
+# for executables/libs downstream
+add_library(MHO_OptionalPlugins INTERFACE)
+
+if(HOPS_USE_PYBIND11)
+    target_link_libraries(MHO_OptionalPlugins INTERFACE
+        pyMHO_Containers pyMHO_Operators MHO_pyVisitors pybind11::embed)
+    target_include_directories(MHO_OptionalPlugins INTERFACE
+        ${CPPSOURCE}/Plugins/PythonBindings/Containers/include
+        ${CPPSOURCE}/Plugins/PythonBindings/Operators/include
+        ${CPPSOURCE}/Plugins/PythonBindings/Visitors/include)
+    target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_PYBIND11)
+endif()
+
+if(HOPS_USE_JULIA)
+    target_link_libraries(MHO_OptionalPlugins INTERFACE
+        jlMHO_Containers jlMHO_Operators MHO_jlVisitors
+        JlCxx::cxxwrap_julia JlCxx::cxxwrap_julia_stl)
+    target_include_directories(MHO_OptionalPlugins INTERFACE
+        ${CPPSOURCE}/Plugins/JuliaBindings/Containers/include
+        ${CPPSOURCE}/Plugins/JuliaBindings/Operators/include
+        ${CPPSOURCE}/Plugins/JuliaBindings/Visitors/include)
+endif()
+
+if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
+    target_link_libraries(MHO_OptionalPlugins INTERFACE MHO_MatplotPlugin matplot)
+    target_include_directories(MHO_OptionalPlugins INTERFACE
+        ${CPPSOURCE}/../extern/matplotplusplus/source/
+        ${CPPSOURCE}/Plugins/MatplotPlugin/include)
+    target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_MATPLOTPP)
+endif()
+
+if(HOPS_USE_HDF5)
+    find_package(HDF5 COMPONENTS C CXX HL QUIET)
+    if(HDF5_FOUND)
+        target_link_libraries(MHO_OptionalPlugins INTERFACE MHO_HDF5Interface)
+        target_include_directories(MHO_OptionalPlugins INTERFACE
+            ${CPPSOURCE}/Plugins/HDF5/include
+            ${HDF5_INCLUDE_DIRS})
+        target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_HDF5)
+    endif()
+endif()
+
+#management layer for optional plugins
 add_subdirectory(${CPPSOURCE}/Plugins/PluginManagement)
 
 ######################################################################

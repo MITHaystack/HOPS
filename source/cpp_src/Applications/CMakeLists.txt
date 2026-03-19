@@ -38,32 +38,6 @@ set(TEST_BASENAMES
     TestPCalExtraction
 )
 
-if(HOPS_USE_PYBIND11)
-    hops_internal_include_directories(../Plugins/PythonBindings/Containers/include)
-    hops_internal_include_directories(../Plugins/PythonBindings/Operators/include)
-    hops_internal_include_directories(../Plugins/PythonBindings/Visitors/include)
-    list(APPEND PYBIND_APP_LIBS pyMHO_Containers pyMHO_Operators MHO_pyVisitors pybind11::embed)
-    add_cflag(USE_PYBIND11)
-    list(APPEND HOPS_APP_LIBS ${PYBIND_APP_LIBS})
-endif(HOPS_USE_PYBIND11)
-
-#add julia deps if available
-if(HOPS_USE_JULIA)
-    hops_internal_include_directories(../Plugins/JuliaBindings/Containers/include)
-    hops_internal_include_directories(../Plugins/JuliaBindings/Operators/include)
-    hops_internal_include_directories(../Plugins/JuliaBindings/Visitors/include)
-    list(APPEND JULIA_APP_LIBS jlMHO_Containers jlMHO_Operators MHO_jlVisitors JlCxx::cxxwrap_julia JlCxx::cxxwrap_julia_stl)
-    list(APPEND HOPS_APP_LIBS ${JULIA_APP_LIBS})
-endif(HOPS_USE_JULIA)
-
-if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
-    hops_internal_include_directories(../../../extern/matplotplusplus/source/)
-    hops_internal_include_directories(../Plugins/MatplotPlugin/include)
-    list(APPEND MPP_LIBS MHO_MatplotPlugin matplot)
-    add_cflag(USE_MATPLOTPP)
-    list(APPEND HOPS_APP_LIBS ${MPP_LIBS})
-endif()
-
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     if( "${BASENAME}" STREQUAL "fourfit4") 
