@@ -105,20 +105,6 @@ set(PYSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/python_src)
 set(PERLSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/perl_src)
 set(EXTERN_HLIBS ${CMAKE_CURRENT_SOURCE_DIR}/extern)
 
-
-################################################################################
-#compiler settings (C++11 standard is the default)
-set(HOPS_CXX_STANDARD "11" CACHE STRING "C++ standard to use (11, 17, or 20)")
-set_property(CACHE HOPS_CXX_STANDARD PROPERTY STRINGS "11" "17" "20")
-if(HOPS_CXX_STANDARD STREQUAL "11")
-    hops_require_cpp11()
-elseif(HOPS_CXX_STANDARD STREQUAL "17")
-    hops_require_cpp17()
-else()
-    hops_require_cpp20()
-endif()
-message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION}")
-
 option(EXTRA_WARNINGS "Turn on extra compiler warnings." OFF)
 if(EXTRA_WARNINGS)
     set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra" )
@@ -138,7 +124,6 @@ string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
 message(STATUS "The build timestamp is ${BUILD_TIME}")
 
 ################################################################################
-
 #options for triggering additional dependencies
 option(HOPS_ENABLE_TEST "Build developer tests." ON)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but highly recommended)" ON)
@@ -147,12 +132,12 @@ option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
 option(HOPS_USE_JULIA "Build Julia bindings with CxxWrap.jl" OFF)
 option(HOPS_USE_MATPLOTPP "Build copy of matplot++ (requires gnuplot & C++17) for fast plotting" ON) 
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
-option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 option(HOPS_IS_HOPS4 "Install the HOPS4 version of relevant executables (symlinked to expected names, e.g. fourfit, fplot)" OFF)
 option(HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
 option(HOPS_USE_CUDA "Build CUDA support." OFF)
 option(HOPS_USE_HDF5 "Build HDF5 export support." OFF)
 
+option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 mark_as_advanced(HOPS3_USE_CXX)
 
@@ -237,7 +222,6 @@ if(HOPS_ENABLE_TEST)
     add_subdirectory(${TEST_DATA_SOURCE})
 endif(HOPS_ENABLE_TEST)
 
-
 ################################################################################
 #python package setup
 option(HOPS_PYPI_MANAGE_DEPS "Allow pip to download and install python dependencies via PyPi." OFF)
@@ -321,8 +305,21 @@ endif(HOPS_USE_JULIA)
 ################################################################################
 #call build in the subdirectories
 add_subdirectory(${SHSOURCE}) #shell scripts
-add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
 add_subdirectory(${CSOURCE}) #mostly hops3 source
+add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
+
+################################################################################
+#compiler settings (C++11 standard is the default) -- overrides anything set in EXTERN_HLIBS
+set(HOPS_CXX_STANDARD "11" CACHE STRING "C++ standard to use (11, 17, or 20)")
+set_property(CACHE HOPS_CXX_STANDARD PROPERTY STRINGS "11" "17" "20")
+if(HOPS_CXX_STANDARD STREQUAL "11")
+    hops_require_cpp11()
+elseif(HOPS_CXX_STANDARD STREQUAL "17")
+    hops_require_cpp17()
+else()
+    hops_require_cpp20()
+endif()
+message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION} for HOPS4")
 add_subdirectory(${CPPSOURCE}) #mostly hops4 source
 
 if(PY_EXE)

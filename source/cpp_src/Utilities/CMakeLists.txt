@@ -1,4 +1,4 @@
-hops_require_cpp11()
+#hops_require_cpp11()
 
 include_directories(${EXTERN_HLIBS}/date/include)
 
