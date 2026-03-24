@@ -1,6 +1,12 @@
 #include "MHO_DiFXInterface.hh"
 
+//NOTE: difx_options.h only showed up in DiFX v2.8.1 
+//it is not available for older versions, so the '--localdir'
+//will not be enabled for these older versions
+
+#ifdef HAVE_DIFX_OPTS
 #include "difxio/difx_options.h"
+#endif
 
 namespace hops
 {
@@ -404,8 +410,12 @@ bool MHO_DiFXInterface::IsSingleScan(const std::string& input_dir) const
 
 void MHO_DiFXInterface::SetTryLocalDirectoryTrue()
 {
-    int true_val = 1;
-    difxioSetOption(DIFXIO_OPT_LOCALDIR, &true_val);
+    #ifdef HAVE_DIFX_OPTS
+        int true_val = 1;
+        difxioSetOption(DIFXIO_OPT_LOCALDIR, &true_val);
+    #else 
+        msg_error("difx_interface", "the linked version of difxio does not provide difxioSetOption, --localdir is disabled" << eom);
+    #endif
 }
 
 } // namespace hops

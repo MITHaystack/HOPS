@@ -36,6 +36,24 @@ set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities MHO_Vex2JSON MHO_Containers MHO
 find_package(PkgConfig)
 pkg_search_module(DIFXIO REQUIRED difxio IMPORTED_TARGET)
 hops_external_include_directories (${DIFXIO_INCLUDE_DIRS})
+message(STATUS "found difxio version: ${DIFXIO_VERSION}")
+message(STATUS "difx include dirs: ${DIFXIO_INCLUDE_DIRS}")
+
+# Probe for the difx_options.h header...this showed up sometime around DiFX 2.7.1?
+# without difx_options.h we have to disable the --localdir option
+# for reading/converting difx input files
+include(CheckIncludeFile)
+set(CMAKE_REQUIRED_INCLUDES ${DIFXIO_INCLUDE_DIRS})
+unset(HAVE_DIFX_OPTIONS_H CACHE)
+check_include_file("difxio/difx_options.h" HAVE_DIFX_OPTIONS_H)
+unset(CMAKE_REQUIRED_INCLUDES)
+
+if(HAVE_DIFX_OPTIONS_H)
+    message(STATUS "Found difx_options.h: will enable --localdir option")
+    add_compile_definitions(HAVE_DIFX_OPTS)
+else()
+    message(STATUS "difx_options.h not found: --localdir option is unavailable")
+endif()
 
 # list(APPEND DIFXINTERFACE_LIBS ${DIFXIO_LDFLAGS})
 message(STATUS "DIFXIO LDFLAGS = ${DIFXIO_LDFLAGS}")
