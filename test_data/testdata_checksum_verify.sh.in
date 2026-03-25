@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#this script is to be called by cmake-tests in the <build>/test_data directory 
+#after the tarballs have been copied in
+NVALID=$(sha256sum --check SHA256SUMS.txt | grep "OK" | wc -l)
+
+RET_VAL=1 #script return value, default to bad
+# Check the value
+if [[ "$NVALID" == "7" ]]; then
+  RET_VAL=0 #all good
+  echo "Test data checksums valid."
+fi
+
+exit $RET_VAL

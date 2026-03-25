@@ -3,6 +3,24 @@ DATA_DIR=@HOPS_CACHED_TEST_DATADIR@
 
 current_dir=$(pwd)
 
+#old test data links
+HOPS4_TESTDATA_MIT_LINK="http://www.mit.edu/~barrettj/hops/hops4_testdata.tar.gz"
+AE_TESTDATA_MIT_LINK="http://www.mit.edu/~barrettj/hops/ae_testdata.tar.gz"
+VT9105_MIT_LINK="http://www.mit.edu/~barrettj/hops/vt9105.tar.gz"
+E3593_MIT_LINK="http://www.mit.edu/~barrettj/hops/3593.tar.gz"
+E3741_MIT_LINK="http://www.mit.edu/~barrettj/hops/3741.tar.gz"
+E3764_MIT_LINK="http://www.mit.edu/~barrettj/hops/3764.tar.gz"
+E3768_MIT_LINK="http://www.mit.edu/~barrettj/hops/3768.tar.gz"
+
+#current dropbox test data links (AE test data needs update)
+HOPS4_TESTDATA_DB_LINK="https://www.dropbox.com/scl/fi/zrgsfsf9yyfewb6trb3ik/hops4_testdata.tar.gz?rlkey=8jv5w5b0s5k9mmf18lgvro7y0&st=kbjw8ljw&dl=0"
+AE_TESTDATA_DB_LINK="https://www.dropbox.com/scl/fi/2wh4tfwxxkhc5uo1dqe4o/ae_testdata.tar.gz?rlkey=t7f067ct91h4sqhk5vklct261&st=9twsu043&dl=0"
+VT9105_DB_LINK="https://www.dropbox.com/scl/fi/oybx6gzrq41wkow0z77m4/vt9105.tar.gz?rlkey=fb6lexy4h2up520wf5vz02jsj&st=05ipz2jq&dl=0"
+E3593_DB_LINK="https://www.dropbox.com/scl/fi/0726rhxlsyd7c1s3ga2vi/3593.tar.gz?rlkey=f0353ebzjlv8nw951r0n9yzv3&st=8atbk5ay&dl=0"
+E3741_DB_LINK="https://www.dropbox.com/scl/fi/bt4rtgqkxyjxrq3gcowgr/3741.tar.gz?rlkey=0cw0ekqsh9vg0hloime3w007i&st=1p02ua5f&dl=0"
+E3764_DB_LINK="https://www.dropbox.com/scl/fi/uy553dx4fwm7e28rghfg0/3764.tar.gz?rlkey=80pinp2eais2mocobfh4z4ysf&st=jzsa0lc1&dl=0"
+E3768_DB_LINK="https://www.dropbox.com/scl/fi/csksqh09p49122swzjqha/3768.tar.gz?rlkey=8jrriqwwohfjnczel6w38qtz9&st=q61cb2cs&dl=0"
+
 if [ -d "$DATA_DIR" ]; then
     echo "$DATA_DIR exists."
 else 
@@ -14,59 +32,67 @@ echo "Downloading data to: ${DATA_DIR}"
 cd $DATA_DIR
 
 DATA_TARBALL=hops4_testdata.tar.gz
+DATA_LINK="${HOPS4_TESTDATA_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
     echo "Dowloading ${DATA_TARBALL} (65MB) to ${DATA_DIR}"
-    wget -q http://www.mit.edu/~barrettj/hops/hops4_testdata.tar.gz -O $DATA_TARBALL
+    wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
+
 DATA_TARBALL=ae_testdata.tar.gz
+DATA_LINK="${AE_TESTDATA_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
     echo "Dowloading ${DATA_TARBALL} (97K) to ${DATA_DIR}"
-    wget -q http://www.mit.edu/~barrettj/hops/ae_testdata.tar.gz -O $DATA_TARBALL
+    wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
 DATA_TARBALL=vt9105.tar.gz
+DATA_LINK="${VT9105_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
     echo "Downloading ${DATA_TARBALL} (134MB) to ${DATA_DIR}"
-    wget -q http://www.mit.edu/~barrettj/hops/vt9105.tar.gz -O $DATA_TARBALL
+    wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
 DATA_TARBALL=3593.tar.gz
+DATA_LINK="${E3593_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else 
     echo "Downloading ${DATA_TARBALL} (43MB) to ${DATA_DIR}"
-    wget -q http://www.mit.edu/~barrettj/hops/3593.tar.gz -O $DATA_TARBALL
+    wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
 DATA_TARBALL=3741.tar.gz
+DATA_LINK="${E3741_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else 
     echo "Downloading ${DATA_TARBALL} (58MB) to ${DATA_DIR}"
-    wget -q http://www.mit.edu/~barrettj/hops/3741.tar.gz -O $DATA_TARBALL
+    wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
 DATA_TARBALL=3764.tar.gz
+DATA_LINK="${E3764_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
     echo "Downloading ${DATA_TARBALL} (155MB) to ${DATA_DIR}"
-    wget -q http://www.mit.edu/~barrettj/hops/3764.tar.gz ./${DATA_TARBALL}
+    wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
 DATA_TARBALL=3768.tar.gz
+DATA_LINK="${E3768_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
     echo "Downloading ${DATA_TARBALL} (127MB) to ${DATA_DIR}"
-    wget -q http://www.mit.edu/~barrettj/hops/3768.tar.gz ./${DATA_TARBALL}
+    wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
 #switch back to the original dir
