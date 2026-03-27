@@ -35,8 +35,6 @@
 #include "MHO_AFileInfoExtractor.hh"
 #include "MHO_DelayModel.hh"
 
-#define LEGACY_IMPL
-
 using namespace hops;
 
 // ---------------------------------------------------------------------------
@@ -500,7 +498,7 @@ compute_segments(const phasor_type&        phasors,
         double epochoff   = seg_center - frt_offset; // seconds
 
         // 360 * ref_freq [MHz] * delay [us] = 360 * 10^6 * 10^{-6} * cycles = 360 degrees/cycle
-#ifdef LEGACY_IMPL
+
         // Mirrors fringex: TPHAS = rphase + bl_phase where bl_phase is the a-priori geometric
         // model phase (correlator splines).  Net: raw_phase - fourfit_fit.
         // Use quadratic Taylor expansion from spline model when available:
@@ -520,11 +518,7 @@ compute_segments(const phasor_type&        phasors,
             apriori_delay_at_epoch = apriori_mbdelay + apriori_drate * epochoff;
         }
         double total_phas = resid_phas + 360.0 * ref_freq * apriori_delay_at_epoch;
-#else
-        double total_phas = resid_phas
-                            + 360.0 * ref_freq
-                                  * (eff_total_mbdelay + eff_total_drate * epochoff);
-#endif
+
         // Wrap to [0, 360) matching fringex convention
         total_phas = std::fmod(total_phas, 360.0);
         if(total_phas < 0.0) total_phas += 360.0;
