@@ -53,6 +53,8 @@ struct SegmentResult
     // effective total delay/rate used for phase calculation
     double eff_total_mbdelay; // us
     double eff_total_drate;   // us/s
+    double resid_mbdelay;     // us: residual + user offset (for MBDLY column)
+    double resid_drate;       // us/s: residual rate + user offset (for DRATE column)
 };
 
 // ---------------------------------------------------------------------------
@@ -186,16 +188,17 @@ compute_segments(const phasor_type&        phasors,
     double ap_period     = params.GetAs< double >("/config/ap_period");          // s
     double frt_offset    = params.GetAs< double >("/config/frt_offset");         // s from scan start
     double ref_freq      = params.GetAs< double >("/control/config/ref_freq");   // MHz
-    double fit_mbdelay   = params.GetAs< double >("/fringe/mbdelay");            // us (residual)
-    double fit_drate     = params.GetAs< double >("/fringe/drate");              // us/s (residual)
-    double total_mbdelay = params.GetAs< double >("/fringe/total_mbdelay");      // us (a-priori)
-    double total_drate   = params.GetAs< double >("/fringe/total_drate");        // us/s (a-priori)
+    double fit_mbdelay   = params.GetAs< double >("/fringe/mbdelay");            // us (residual only)
+    double fit_drate     = params.GetAs< double >("/fringe/drate");              // us/s (residual only)
+    double total_mbdelay = params.GetAs< double >("/fringe/total_mbdelay");      // us (a-priori + residual)
+    double total_drate   = params.GetAs< double >("/fringe/total_drate");        // us/s (a-priori + residual)
     double full_snr      = params.GetAs< double >("/fringe/snr");
+    double fourfit_amp   = params.GetAs< double >("/fringe/famp");
     double total_weight  = params.GetAs< double >("/fringe/total_summed_weights");
 
-    // Total applied delay and rate (what has been removed from the phasors)
-    double applied_mbdelay = total_mbdelay + fit_mbdelay; // us
-    double applied_drate   = total_drate   + fit_drate;   // us/s
+    // total_mbdelay/total_drate already include fit_mbdelay/fit_drate (no double-counting)
+    double applied_mbdelay = total_mbdelay; // us
+    double applied_drate   = total_drate;   // us/s
 
     // Effective delta correction to apply to the already-stopped phasors
     double eff_dr, eff_mbd;
@@ -212,9 +215,13 @@ compute_segments(const phasor_type&        phasors,
         eff_mbd = user_mbdelay;
     }
 
-    // Effective total delay and rate to report in A-file
+    // Effective total delay and rate to report in TOTMBDELAY/TOTDRATE columns
     double eff_total_drate   = applied_drate   + eff_dr;
     double eff_total_mbdelay = applied_mbdelay + eff_mbd;
+
+    // Residual + user offset for MBDLY/DRATE columns (mirrors fringex: delayoff = resid + user)
+    double resid_mbdelay = fit_mbdelay + eff_mbd;
+    double resid_drate   = fit_drate   + eff_dr;
 
     // --- Phasor dimensions ---
     std::size_t nchan_plus1 = phasors.GetDimension(0); // nchan real channels + 1 "All"
@@ -324,12 +331,15 @@ compute_segments(const phasor_type&        phasors,
 
         // Normalize by number of accumulated APs -> amplitude per AP
         double amp       = std::sqrt(rsum * rsum + isum * isum) / seg_nap;
-        double resid_phas = std::atan2(isum, rsum) * 180.0 / M_PI; // degrees
+        double resid_phas = std::atan2(isum, rsum) * 180.0 / M_PI; // degrees, wrap to [0, 360)
+        if(resid_phas < 0.0) resid_phas += 360.0;
 
-        // SNR scales as sqrt of integration time (equal-weight assumption)
+        // SNR: scale by sqrt(seg_nap/total_weight) for integration time, then by seg_amp/fourfit_amp
+        // to account for amplitude variation across segments (mirrors fringex calc_seg.c)
         double snr = 0.0;
-        if(total_weight > 0.0)
-            snr = full_snr * std::sqrt(static_cast< double >(seg_nap) / total_weight);
+        if(total_weight > 0.0 && fourfit_amp > 0.0)
+            snr = full_snr * std::sqrt(static_cast< double >(seg_nap) / total_weight)
+                           * (amp / fourfit_amp);
 
         // Total phase = residual phase + linear delay/rate phase at segment centre
         // epochoff = time from FRT to segment centre
@@ -340,10 +350,9 @@ compute_segments(const phasor_type&        phasors,
         double total_phas = resid_phas
                             + 360.0 * ref_freq
                                   * (eff_total_mbdelay + eff_total_drate * epochoff);
-        // Wrap to (-180, +180]
+        // Wrap to [0, 360) matching fringex convention
         total_phas = std::fmod(total_phas, 360.0);
-        if(total_phas >  180.0) total_phas -= 360.0;
-        if(total_phas < -180.0) total_phas += 360.0;
+        if(total_phas < 0.0) total_phas += 360.0;
 
         // AP-weighted mean time offset from nominal midpoint (mirroring fringex calc_seg.c)
         // = round(mean AP center time) - nominal segment midpoint, in whole seconds
@@ -363,6 +372,8 @@ compute_segments(const phasor_type&        phasors,
         seg.offset_sec        = offset_sec;
         seg.eff_total_mbdelay = eff_total_mbdelay;
         seg.eff_total_drate   = eff_total_drate;
+        seg.resid_mbdelay     = resid_mbdelay;
+        seg.resid_drate       = resid_drate;
         results.push_back(seg);
     }
 
@@ -514,8 +525,8 @@ int main(int argc, char** argv)
 
             // Delay / rate - residual part stored in mbdelay/delay_rate;
             // total (a-priori + residual + user offset) in total_mbdelay/total_rate
-            row["mbdelay"]        = seg.eff_total_mbdelay; // effective total MBD (us)
-            row["delay_rate"]     = seg.eff_total_drate;   // effective total rate (us/s)
+            row["mbdelay"]        = seg.resid_mbdelay;      // residual + user offset (us)
+            row["delay_rate"]     = seg.resid_drate;        // residual rate + user offset (us/s)
             row["total_mbdelay"]  = seg.eff_total_mbdelay;
             row["total_rate"]     = seg.eff_total_drate;
             row["resid_delay"]    = seg.eff_total_mbdelay; // v6 RESIDUALDELAY column

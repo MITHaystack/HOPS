@@ -296,7 +296,7 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     //calculate the (U,V) coordinates
     //TODO FIXME...move all constants to MHO_Constants
     double speed_of_light_Mm = 299.792458; // in mega-meters
-    double radians_to_arcsec = 4.848137e-6;
+    double radians_to_arcsec = (180./M_PI)*(3600.); //1.0/4.848137e-6;
     double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
 
     double ref_u = paramStore->GetAs< double >("/ref_station/u");
