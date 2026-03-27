@@ -339,8 +339,8 @@ compute_segments(const phasor_type&        phasors,
     double frt_offset    = params.GetAs< double >("/config/frt_offset");         // s from scan start
     double ref_freq      = params.GetAs< double >("/control/config/ref_freq");   // MHz
     double fit_mbdelay   = params.GetAs< double >("/fringe/mbdelay");            // us (residual only)
-    // /fringe/drate is stored in sec/sec (native interpolator units); convert to us/s
-    double fit_drate     = params.GetAs< double >("/fringe/drate") * 1e6;        // sec/sec -> us/s
+    // /fringe/drate is stored in us/s; multiply by 1e6 only at output time for the ps/s column
+    double fit_drate     = params.GetAs< double >("/fringe/drate");              // us/s (residual only)
     double total_mbdelay = params.GetAs< double >("/fringe/total_mbdelay");      // us (a-priori + residual)
     double total_drate   = params.GetAs< double >("/fringe/total_drate");        // us/s (a-priori + residual)
     double full_snr      = params.GetAs< double >("/fringe/snr");
