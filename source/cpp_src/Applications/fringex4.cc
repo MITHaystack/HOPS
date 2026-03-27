@@ -194,7 +194,6 @@ compute_segments(const phasor_type&        phasors,
     double total_drate   = params.GetAs< double >("/fringe/total_drate");        // us/s (a-priori + residual)
     double full_snr      = params.GetAs< double >("/fringe/snr");
     double fourfit_amp   = params.GetAs< double >("/fringe/famp");
-    double total_weight  = params.GetAs< double >("/fringe/total_summed_weights");
 
     // total_mbdelay/total_drate already include fit_mbdelay/fit_drate (no double-counting)
     double applied_mbdelay = total_mbdelay; // us
@@ -334,11 +333,13 @@ compute_segments(const phasor_type&        phasors,
         double resid_phas = std::atan2(isum, rsum) * 180.0 / M_PI; // degrees, wrap to [0, 360)
         if(resid_phas < 0.0) resid_phas += 360.0;
 
-        // SNR: scale by sqrt(seg_nap/total_weight) for integration time, then by seg_amp/fourfit_amp
-        // to account for amplitude variation across segments (mirrors fringex calc_seg.c)
+        // SNR: scale by sqrt(seg_nap/nap) for integration time, then by seg_amp/fourfit_amp
+        // to account for amplitude variation across segments (mirrors fringex calc_seg.c:
+        //   snr = t208->snr * sqrt(seglen[seg] / numaccp) * amp / tamp)
+        // Note: use nap (AP count) not total_summed_weights (which sums over all axes)
         double snr = 0.0;
-        if(total_weight > 0.0 && fourfit_amp > 0.0)
-            snr = full_snr * std::sqrt(static_cast< double >(seg_nap) / total_weight)
+        if(nap > 0 && fourfit_amp > 0.0)
+            snr = full_snr * std::sqrt(static_cast< double >(seg_nap) / static_cast< double >(nap))
                            * (amp / fourfit_amp);
 
         // Total phase = residual phase + linear delay/rate phase at segment centre
