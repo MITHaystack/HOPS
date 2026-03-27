@@ -33,6 +33,9 @@
 #include "MHO_ParameterStore.hh"
 
 #include "MHO_AFileInfoExtractor.hh"
+#include "MHO_DelayModel.hh"
+
+#define LEGACY_IMPL
 
 using namespace hops;
 
@@ -54,8 +57,154 @@ struct SegmentResult
     double eff_total_mbdelay; // us
     double eff_total_drate;   // us/s
     double resid_mbdelay;     // us: residual + user offset (for MBDLY column)
-    double resid_drate;       // us/s: residual rate + user offset (for DRATE column)
+    double resid_drate;       // ps/s: residual rate + user offset (for DRATE column)
 };
+
+// ---------------------------------------------------------------------------
+// A-priori delay model (delay, rate, accel) evaluated at the FRT from splines
+// ---------------------------------------------------------------------------
+struct AprioriDelayModel
+{
+    double delay = 0.0; // us
+    double rate  = 0.0; // us/s
+    double accel = 0.0; // us/s^2
+    bool   valid = false;
+};
+
+// ---------------------------------------------------------------------------
+// Parse ref/rem .sta file paths from a .frng file path.
+// Convention (from observed files):
+//   frng: <dir>/GE.Gs-Wf.X.YY.<root>.1.frng
+//   ref:  <dir>/G.Gs.<root>.sta
+//   rem:  <dir>/E.Wf.<root>.sta
+// ---------------------------------------------------------------------------
+static bool parse_sta_paths(const std::string& frng_path,
+                              std::string&       ref_sta_path,
+                              std::string&       rem_sta_path)
+{
+    auto slash = frng_path.rfind('/');
+    std::string dir      = (slash != std::string::npos) ? frng_path.substr(0, slash + 1) : "";
+    std::string basename = (slash != std::string::npos) ? frng_path.substr(slash + 1) : frng_path;
+
+    // Split basename on '.' -> ["GE","Gs-Wf","X","YY","47R0AQ","1","frng"]
+    std::vector< std::string > parts;
+    std::istringstream         ss(basename);
+    std::string                tok;
+    while(std::getline(ss, tok, '.'))
+        parts.push_back(tok);
+
+    // Need at least 7 fields: baseline, stations, band, pol, root, version, frng
+    if(parts.size() < 7 || parts[0].size() < 2)
+    {
+        msg_error("fringex4", "cannot parse station names from filename: " << basename << eom);
+        return false;
+    }
+
+    std::string ref_char(1, parts[0][0]);
+    std::string rem_char(1, parts[0][1]);
+
+    // Split "Gs-Wf" on '-'
+    auto hyphen = parts[1].find('-');
+    if(hyphen == std::string::npos)
+    {
+        msg_error("fringex4", "cannot find '-' in station name field: " << parts[1] << eom);
+        return false;
+    }
+    std::string ref_name = parts[1].substr(0, hyphen);
+    std::string rem_name = parts[1].substr(hyphen + 1);
+    std::string root     = parts[4];
+
+    ref_sta_path = dir + ref_char + "." + ref_name + "." + root + ".sta";
+    rem_sta_path = dir + rem_char + "." + rem_name + "." + root + ".sta";
+    return true;
+}
+
+// ---------------------------------------------------------------------------
+// Read station_coord_type from a .sta binary file
+// ---------------------------------------------------------------------------
+static bool read_sta_file(const std::string& path, station_coord_type& sta_data)
+{
+    MHO_BinaryFileInterface      inter;
+    std::vector< MHO_FileKey >   keys;
+    std::vector< std::size_t >   offsets;
+    if(!inter.ExtractFileObjectKeysAndOffsets(path, keys, offsets))
+    {
+        msg_error("fringex4", "failed to read object keys from: " << path << eom);
+        return false;
+    }
+
+    MHO_ContainerDictionary cdict;
+    MHO_UUID                sta_uuid = cdict.GetUUIDFor< station_coord_type >();
+
+    for(std::size_t i = 0; i < keys.size(); i++)
+    {
+        if(keys[i].fTypeId == sta_uuid)
+        {
+            inter.OpenToReadAtOffset(path, offsets[i]);
+            MHO_FileKey key;
+            bool        ok = inter.Read(sta_data, key);
+            inter.Close();
+            if(!ok)
+                msg_error("fringex4", "failed to read station_coord_type from: " << path << eom);
+            return ok;
+        }
+    }
+
+    msg_error("fringex4", "no station_coord_type object found in: " << path << eom);
+    return false;
+}
+
+// ---------------------------------------------------------------------------
+// Load station spline data and evaluate the a-priori delay model at the FRT.
+// Returns false (valid=false) if the .sta files cannot be found or loaded;
+// callers should then fall back to the linear (total_mbdelay/total_drate) model.
+// ---------------------------------------------------------------------------
+static AprioriDelayModel compute_apriori_delay_model(const std::string&       frng_path,
+                                                      const MHO_ParameterStore& params)
+{
+    AprioriDelayModel result;
+
+    std::string ref_sta_path, rem_sta_path;
+    if(!parse_sta_paths(frng_path, ref_sta_path, rem_sta_path))
+        return result;
+
+    station_coord_type ref_data, rem_data;
+    if(!read_sta_file(ref_sta_path, ref_data))
+    {
+        msg_warn("fringex4", "cannot load ref station file " << ref_sta_path
+                             << " - falling back to linear delay model" << eom);
+        return result;
+    }
+    if(!read_sta_file(rem_sta_path, rem_data))
+    {
+        msg_warn("fringex4", "cannot load rem station file " << rem_sta_path
+                             << " - falling back to linear delay model" << eom);
+        return result;
+    }
+
+    std::string frt_vex      = params.GetAs< std::string >("/vex/scan/fourfit_reftime");
+    double      ref_clockoff  = params.GetAs< double >("/ref_station/clock_early_offset"); // usec
+    double      ref_clockrate = params.GetAs< double >("/ref_station/clock_rate");
+
+    MHO_DelayModel delay_model;
+    delay_model.SetFourfitReferenceTimeVexString(frt_vex);
+    delay_model.SetReferenceStationData(&ref_data);
+    delay_model.SetRemoteStationData(&rem_data);
+    delay_model.SetReferenceStationClockOffset(ref_clockoff * 1e-6); // usec -> sec
+    delay_model.SetReferenceStationClockRate(ref_clockrate);
+    delay_model.ComputeModel();
+
+    // GetDelay/GetRate/GetAcceleration return in sec, sec/sec, sec/sec^2 (spline native units).
+    // Convert to us, us/s, us/s^2 to be consistent with /fringe/total_mbdelay and total_drate.
+    result.delay = delay_model.GetDelay()         * 1e6; // sec -> us
+    result.rate  = delay_model.GetRate()          * 1e6; // sec/sec -> us/s
+    result.accel = delay_model.GetAcceleration()  * 1e6; // sec/sec^2 -> us/s^2
+    result.valid = true;
+
+    msg_info("fringex4", "a-priori delay model: delay=" << result.delay
+             << " us  rate=" << result.rate << " us/s  accel=" << result.accel << " us/s^2" << eom);
+    return result;
+}
 
 // ---------------------------------------------------------------------------
 // Read phasor data and parameters from a .frng binary file
@@ -182,14 +331,16 @@ compute_segments(const phasor_type&        phasors,
                  double                    user_drate,   // us/s: offset or absolute (cmode)
                  double                    user_mbdelay, // us:   offset or absolute (cmode)
                  bool                      cmode,        // true -> user values are absolute
-                 bool                      overlap)      // true -> half-step interleaved windows
+                 bool                      overlap,      // true -> half-step interleaved windows
+                 const AprioriDelayModel&  dm)           // a-priori delay model from splines
 {
     // --- Parameters from file ---
     double ap_period     = params.GetAs< double >("/config/ap_period");          // s
     double frt_offset    = params.GetAs< double >("/config/frt_offset");         // s from scan start
     double ref_freq      = params.GetAs< double >("/control/config/ref_freq");   // MHz
     double fit_mbdelay   = params.GetAs< double >("/fringe/mbdelay");            // us (residual only)
-    double fit_drate     = params.GetAs< double >("/fringe/drate");              // us/s (residual only)
+    // /fringe/drate is stored in sec/sec (native interpolator units); convert to us/s
+    double fit_drate     = params.GetAs< double >("/fringe/drate") * 1e6;        // sec/sec -> us/s
     double total_mbdelay = params.GetAs< double >("/fringe/total_mbdelay");      // us (a-priori + residual)
     double total_drate   = params.GetAs< double >("/fringe/total_drate");        // us/s (a-priori + residual)
     double full_snr      = params.GetAs< double >("/fringe/snr");
@@ -219,8 +370,9 @@ compute_segments(const phasor_type&        phasors,
     double eff_total_mbdelay = applied_mbdelay + eff_mbd;
 
     // Residual + user offset for MBDLY/DRATE columns (mirrors fringex: delayoff = resid + user)
+    // resid_mbdelay in us; resid_drate converted us/s -> ps/s for the DRATE output column
     double resid_mbdelay = fit_mbdelay + eff_mbd;
-    double resid_drate   = fit_drate   + eff_dr;
+    double resid_drate   = (fit_drate  + eff_dr) * 1e6;  // us/s -> ps/s
 
     // --- Phasor dimensions ---
     std::size_t nchan_plus1 = phasors.GetDimension(0); // nchan real channels + 1 "All"
@@ -347,10 +499,32 @@ compute_segments(const phasor_type&        phasors,
         double seg_center = seg_start + nsecs / 2.0;
         double epochoff   = seg_center - frt_offset; // seconds
 
-        // 360 * ref_freq [MHz] * delay [us] = 360 * 10^6 * 10^{-6} * cycles = 360 degrees/cycle 
+        // 360 * ref_freq [MHz] * delay [us] = 360 * 10^6 * 10^{-6} * cycles = 360 degrees/cycle
+#ifdef LEGACY_IMPL
+        // Mirrors fringex: TPHAS = rphase + bl_phase where bl_phase is the a-priori geometric
+        // model phase (correlator splines).  Net: raw_phase - fourfit_fit.
+        // Use quadratic Taylor expansion from spline model when available:
+        //   delay(epochoff) = dm.delay + dm.rate*epochoff + 0.5*dm.accel*epochoff^2
+        // Fall back to linear (a-priori = total - fit) when spline data is unavailable.
+        double apriori_delay_at_epoch;
+        if(dm.valid)
+        {
+            apriori_delay_at_epoch = dm.delay
+                                     + dm.rate  * epochoff
+                                     + 0.5 * dm.accel * epochoff * epochoff;
+        }
+        else
+        {
+            double apriori_mbdelay = eff_total_mbdelay - fit_mbdelay;
+            double apriori_drate   = eff_total_drate   - fit_drate;
+            apriori_delay_at_epoch = apriori_mbdelay + apriori_drate * epochoff;
+        }
+        double total_phas = resid_phas + 360.0 * ref_freq * apriori_delay_at_epoch;
+#else
         double total_phas = resid_phas
                             + 360.0 * ref_freq
                                   * (eff_total_mbdelay + eff_total_drate * epochoff);
+#endif
         // Wrap to [0, 360) matching fringex convention
         total_phas = std::fmod(total_phas, 360.0);
         if(total_phas < 0.0) total_phas += 360.0;
@@ -484,11 +658,14 @@ int main(int argc, char** argv)
         }
         hops_clock::time_point scan_start_tp = hops_clock::from_vex_format(scan_start_vex);
 
+        // Load spline-based a-priori delay model for accurate TPHAS (quadratic correction)
+        AprioriDelayModel dm = compute_apriori_delay_model(fname, params);
+
         // Compute segments
         auto segments = compute_segments(phasors, params,
                                          seg_nsecs,
                                          rate_offset, delay_offset,
-                                         cmode, overlap);
+                                         cmode, overlap, dm);
 
         msg_info("fringex4", "  -> " << segments.size() << " segment(s)" << eom);
 
