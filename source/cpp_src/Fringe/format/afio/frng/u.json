@@ -2,7 +2,7 @@
 	"name": "u",
 	"type": "double",
 	"source_object": "parameters",
-	"path": "/fringe/du",
+	"path": "/fringe/du_megalambda",
 	"description": "",
 	"units": ""
 }

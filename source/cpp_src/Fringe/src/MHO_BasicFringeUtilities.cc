@@ -296,7 +296,8 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     //calculate the (U,V) coordinates
     //TODO FIXME...move all constants to MHO_Constants
     double speed_of_light_Mm = 299.792458; // in mega-meters
-    double radians_to_arcsec = (180./M_PI)*(3600.); //1.0/4.848137e-6;
+    double radians_to_arcsec = (180./M_PI)*(3600.);
+    double arcsec_per_radian = 1.0/radians_to_arcsec;
     double lambda = speed_of_light_Mm / ref_freq; // wavelength (m)
 
     double ref_u = paramStore->GetAs< double >("/ref_station/u");
@@ -304,10 +305,18 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     double rem_u = paramStore->GetAs< double >("/rem_station/u");
     double rem_v = paramStore->GetAs< double >("/rem_station/v");
 
-    double du = radians_to_arcsec * (rem_u - ref_u) / lambda;
-    double dv = radians_to_arcsec * (rem_v - ref_v) / lambda;
-    paramStore->Set("/fringe/du", du);
-    paramStore->Set("/fringe/dv", dv);
+
+    double du_fringes_per_arcsec = arcsec_per_radian * (rem_u - ref_u) / lambda;
+    double dv_fringes_per_arcsec = arcsec_per_radian * (rem_v - ref_v) / lambda;
+
+    double du_megalambda = 1e-6 * (rem_u - ref_u) / lambda;
+    double dv_megalambda = 1e-6 * (rem_v - ref_v) / lambda;
+
+    paramStore->Set("/fringe/du", du_fringes_per_arcsec); //value expected in t202
+    paramStore->Set("/fringe/dv", dv_fringes_per_arcsec);
+
+    paramStore->Set("/fringe/du_megalambda", du_megalambda); //megalambda
+    paramStore->Set("/fringe/dv_megalambda", dv_megalambda);
 
     //needed by alist -- residual delay corrected by mbd_anchor=sbd
     double alist_resid_delay = mbdelay + ambig * std::floor(((sbdelay - mbdelay) / ambig) + 0.5);
