@@ -49,6 +49,7 @@ struct SegmentResult
     int    nap;           // number of APs accumulated
     int    duration_sec;  // segment duration in whole seconds
     int    start_sec;     // segment start offset from scan start (seconds)
+    int    offset_sec;    // AP-weighted mean time minus nominal midpoint (seconds)
     // effective total delay/rate used for phase calculation
     double eff_total_mbdelay; // us
     double eff_total_drate;   // us/s
@@ -263,9 +264,10 @@ compute_segments(const phasor_type&        phasors,
     {
         double seg_end = seg_start + nsecs;
 
-        double rsum    = 0.0;
-        double isum    = 0.0;
-        int    seg_nap = 0;
+        double rsum        = 0.0;
+        double isum        = 0.0;
+        double ap_time_sum = 0.0; // sum of AP center times (s from scan start)
+        int    seg_nap     = 0;
 
         for(std::size_t ap = 0; ap < nap; ap++)
         {
@@ -310,6 +312,7 @@ compute_segments(const phasor_type&        phasors,
                 // Average across channels (equal weights)
                 rsum += ch_rsum / valid;
                 isum += ch_isum / valid;
+                ap_time_sum += ap_center;
                 seg_nap++;
             }
         }
@@ -342,6 +345,12 @@ compute_segments(const phasor_type&        phasors,
         if(total_phas >  180.0) total_phas -= 360.0;
         if(total_phas < -180.0) total_phas += 360.0;
 
+        // AP-weighted mean time offset from nominal midpoint (mirroring fringex calc_seg.c)
+        // = round(mean AP center time) - nominal segment midpoint, in whole seconds
+        double mean_ap_time = ap_time_sum / seg_nap;
+        int offset_sec = static_cast< int >(std::round(mean_ap_time)) -
+                         static_cast< int >(std::round(seg_center));
+
         SegmentResult seg;
         seg.time_tag_sec      = seg_center;
         seg.amp               = amp;
@@ -351,6 +360,7 @@ compute_segments(const phasor_type&        phasors,
         seg.nap               = seg_nap;
         seg.duration_sec      = static_cast< int >(std::round(nsecs));
         seg.start_sec         = static_cast< int >(std::round(seg_start));
+        seg.offset_sec        = offset_sec;
         seg.eff_total_mbdelay = eff_total_mbdelay;
         seg.eff_total_drate   = eff_total_drate;
         results.push_back(seg);
@@ -377,29 +387,29 @@ int main(int argc, char** argv)
     double      delay_offset  = 0.0;  // us
     bool        cmode         = false;
     bool        overlap       = false;
-    bool        quiet         = false;
     bool        verbose       = false;
+    int         msglev        = 1;    // message level: <0 debug, 0 verbose, 1 normal, 2+ quiet
     int         alist_version = 6;
     std::string output_file   = "-";  // "-" -> stdout
 
-    app.add_option("input_files,-i,--input", input_files,
+    app.add_option("input_files", input_files,
                    "Input .frng file(s)")
         ->required();
-    app.add_option("-d,--duration", seg_nsecs,
+    app.add_option("-i,--duration", seg_nsecs,
                    "Segment duration in seconds (0 or omit = full scan)");
     app.add_option("-r,--rate", rate_offset,
                    "Delay rate offset in us/s (default 0; absolute value with -c)");
-    app.add_option("-m,--delay", delay_offset,
+    app.add_option("-D,--delay", delay_offset,
                    "MBD offset in us (default 0; absolute value with -c)");
     app.add_flag("-c,--cmode", cmode,
-                 "Absolute mode: -r/-m give total delay rate/MBD, not offsets");
+                 "Absolute mode: -r/-D give total delay rate/MBD, not offsets");
     app.add_flag("-o,--overlap", overlap,
                  "Overlap mode: produce double segments with half-segment offset");
-    app.add_flag("-q,--quiet", quiet,
-                 "Suppress informational messages");
-    app.add_flag("-v,--verbose", verbose,
-                 "Enable verbose/debug output");
-    app.add_option("-V,--alist-version", alist_version,
+    app.add_option("-m,--msglev", msglev,
+                   "Message level: -3..3, lower = more verbose (default 1)");
+    app.add_flag("--verbose", verbose,
+                 "Enable verbose/debug output (equivalent to -m 0)");
+    app.add_option("-v,--alist-version", alist_version,
                    "A-file output version: 5 or 6 (default 6)")
         ->check(CLI::IsMember({5, 6}));
     app.add_option("-O,--output", output_file,
@@ -407,11 +417,13 @@ int main(int argc, char** argv)
 
     CLI11_PARSE(app, argc, argv);
 
-    // --- Verbosity ---
-    if(quiet)
-        MHO_Message::GetInstance().SetMessageLevel(eWarning);
-    else if(verbose)
+    // --- Verbosity (mirror fringex -m convention: lower = more verbose) ---
+    if(verbose)
+        msglev = 0;
+    if(msglev <= 0)
         MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    else if(msglev >= 2)
+        MHO_Message::GetInstance().SetMessageLevel(eWarning);
 
     // --- Output stream ---
     std::ofstream out_file_stream;
@@ -469,7 +481,6 @@ int main(int argc, char** argv)
         msg_info("fringex4", "  -> " << segments.size() << " segment(s)" << eom);
 
         // Output one A-file record per segment
-        int seg_idx = 1;
         for(const SegmentResult& seg : segments)
         {
             // Absolute time of segment centre
@@ -483,7 +494,7 @@ int main(int argc, char** argv)
             mho_json row = base_fsum;
 
             // Identity / position in scan
-            row["extent_no"]  = seg_idx;
+            // extent_no: keep file-derived value from base_fsum (not per-segment counter)
             row["time_tag"]   = seg_time_tag;
             row["epoch"]      = seg_time_tag; // EPCH = segment centre (mm:ss)
             row["procdate"]   = procdate_vex;
@@ -491,8 +502,8 @@ int main(int argc, char** argv)
             // Segment timing
             row["duration"]     = static_cast< int64_t >(seg.duration_sec);
             row["length"]       = seg.nap;       // APs accumulated
-            row["offset"]       = 0;             // lag offset (not applicable)
-            row["scan_offset"]  = seg.start_sec; // seconds from scan start
+            row["offset"]       = seg.offset_sec; // AP mean time minus nominal midpoint
+            row["scan_offset"]  = seg.start_sec + seg.duration_sec / 2; // segment midpoint
 
             // Fringe quantities for this segment
             row["amp"]          = seg.amp;
@@ -509,8 +520,14 @@ int main(int argc, char** argv)
             row["total_rate"]     = seg.eff_total_drate;
             row["resid_delay"]    = seg.eff_total_mbdelay; // v6 RESIDUALDELAY column
 
+            // datatype: 'C'=coherent, 'O'=overlap mode; always 'f' suffix (mirroring fringex)
+            row["datatype"] = overlap ? "Of" : "Cf";
+
+            // coherence times: not computed by fringex4, use 0 (matches fringex default)
+            row["srch_cotime"]   = 0;
+            row["noloss_cotime"] = 0;
+
             *out << extractor.ConvertToAlistRow(row, alist_version);
-            seg_idx++;
             total_segments++;
         }
 
