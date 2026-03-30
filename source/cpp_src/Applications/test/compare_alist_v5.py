@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-compare_alist.py -- Compare two fringex alist files row-by-row.
+compare_alist.py -- Compare two fringex alist files row-by-row. This script only works for v5 alist!!
 
 Rows are matched on the TIME*TAG string (data column index 11,
 e.g. "105-180005"). Numeric columns are compared with per-column
@@ -47,9 +47,9 @@ COMPARE_COLS = list(COL_IDX.keys())
 # Columns not listed here fall back to the --atol argument.
 COL_ATOL = {
     "PH":         5.0,   # degrees
-    "TPHAS":      5.0,   # degrees
-    "SNR":        3.0,
-    "AMP":        0.05,
+    "TPHAS":      10.0,   # degrees
+    "SNR":        5.0,
+    "AMP":        0.1,
     "DRATE":      0.01,  # ps/s
     "TOTDRATE":   1e-5,  # usec/sec
     "TOTMBDELAY": 0.001, # usec

@@ -394,22 +394,35 @@ static std::vector< SegmentResult > compute_segments(const phasor_type& phasors,
 
     std::vector< double > seg_starts;
     for(double t = 0.0; t < scan_duration - 0.5 * ap_period; t += nsecs)
+    {
         seg_starts.push_back(t);
+    }
     if(seg_starts.empty())
+    {
         seg_starts.push_back(0.0);
+    }
 
-    if(overlap)
+    //OMODE (doubles the number of segments)
+    if(overlap) 
     {
         double half = nsecs / 2.0;
         std::vector< double > extra;
         for(double st : seg_starts)
         {
-            double shifted = st + half;
+            double shifted = st - half; //OMODE starts segments half-a-chunk before the start of the scan
             if(shifted < scan_duration - 0.5 * ap_period)
+            {
                 extra.push_back(shifted);
+            }
         }
         seg_starts.insert(seg_starts.end(), extra.begin(), extra.end());
-        std::sort(seg_starts.begin(), seg_starts.end());
+        std::sort(seg_starts.begin(), seg_starts.end()); //fix up the order
+        //add the last overlap segment if we can 
+        double shifted = seg_starts.back() + half;
+        if(shifted < scan_duration - 0.5 * ap_period)
+        {
+            seg_starts.push_back(shifted);
+        }
     }
 
     // --- Segmentation loop ---
@@ -533,6 +546,7 @@ static std::vector< SegmentResult > compute_segments(const phasor_type& phasors,
 
         SegmentResult seg;
         seg.time_tag_sec = seg_center;
+        if(overlap){seg.time_tag_sec -= nsecs/2.0;}
         seg.amp = amp;
         seg.resid_phas = resid_phas;
         seg.total_phas = total_phas;

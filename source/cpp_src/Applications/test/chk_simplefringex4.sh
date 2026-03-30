@@ -47,21 +47,20 @@ cmdname=$1
 output_file3=$2
 echo "fourfit3 output file: $output_file3"
 
-# #run fringex4 on the fourfit4 ouput
-# fringex4 -o -v 5 -i 10 ${output_file4} > ${EXP_DIR}/fringex4.alist
-# 
-# #run fringex (original) on the fourfit3 output
-# fringex -o -v 5 -i 10 ${output_file3} > ${EXP_DIR}/fringex3.alist
-
 #run fringex4 on the fourfit4 ouput
-fringex4 -v 5 -i 10 ${output_file4} > ${EXP_DIR}/fringex4.alist
+fringex4 -o -v 5 -i 2 ${output_file4} > ${EXP_DIR}/fringex4.alist
 
 #run fringex (original) on the fourfit3 output
-fringex -v 5 -i 10 ${output_file3} > ${EXP_DIR}/fringex3.alist
+fringex -o -v 5 -i 2 ${output_file3} > ${EXP_DIR}/fringex3.alist
+
+# #run fringex4 on the fourfit4 ouput
+# fringex4 -v 5 -i 10 ${output_file4} > ${EXP_DIR}/fringex4.alist
+# #run fringex (original) on the fourfit3 output
+# fringex -v 5 -i 10 ${output_file3} > ${EXP_DIR}/fringex3.alist
 
 
 #compare the two alist outputs
-@PY_EXE@ @CMAKE_CURRENT_BINARY_DIR@/compare_alist.py \
+@PY_EXE@ @CMAKE_CURRENT_BINARY_DIR@/compare_alist_v5.py \
     ${EXP_DIR}/fringex4.alist \
     ${EXP_DIR}/fringex3.alist \
     --verbose
