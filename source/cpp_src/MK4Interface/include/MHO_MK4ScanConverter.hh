@@ -78,7 +78,6 @@ class MHO_MK4ScanConverter
          */
         static void ProcessScan(const std::string& input_dir, const std::string& output_dir);
 
-
         static void SetMark4MessageLevel(int msg_level);
 
     private:

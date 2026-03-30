@@ -28,10 +28,7 @@ class MHO_JlParameterStoreInterface
         MHO_JlParameterStoreInterface(MHO_ParameterStore* paramStore): fParameterStore(paramStore){};
         virtual ~MHO_JlParameterStoreInterface(){};
 
-        bool IsPresent(const std::string& value_path) const
-        {
-            return fParameterStore->IsPresent(value_path);
-        }
+        bool IsPresent(const std::string& value_path) const { return fParameterStore->IsPresent(value_path); }
 
         //! Return the value at path as a JSON string.
         std::string GetJSON(const std::string& value_path) const
@@ -40,8 +37,7 @@ class MHO_JlParameterStoreInterface
             bool ok = fParameterStore->Get(value_path, obj);
             if(!ok)
             {
-                msg_error("julia_bindings",
-                          "error getting value associated with key: " << value_path << eom);
+                msg_error("julia_bindings", "error getting value associated with key: " << value_path << eom);
                 return "null";
             }
             return obj.dump();
@@ -54,8 +50,7 @@ class MHO_JlParameterStoreInterface
             bool ok = fParameterStore->Set(value_path, obj);
             if(!ok)
             {
-                msg_error("julia_bindings",
-                          "error setting value associated with key: " << value_path << eom);
+                msg_error("julia_bindings", "error setting value associated with key: " << value_path << eom);
             }
         }
 
@@ -71,15 +66,14 @@ class MHO_JlParameterStoreInterface
         MHO_ParameterStore* fParameterStore;
 };
 
-
 inline void DeclareJlParameterStoreInterface(jlcxx::Module& mod, const std::string& jl_type_name)
 {
     mod.add_type< MHO_JlParameterStoreInterface >(jl_type_name)
         // Not constructable from Julia (wraps a C++-owned object).
-        .method("is_present",    &hops::MHO_JlParameterStoreInterface::IsPresent)
-        .method("get_by_path",   &hops::MHO_JlParameterStoreInterface::GetJSON)
-        .method("set_by_path",   &hops::MHO_JlParameterStoreInterface::SetFromJSON)
-        .method("get_contents",  &hops::MHO_JlParameterStoreInterface::GetContentsJSON);
+        .method("is_present", &hops::MHO_JlParameterStoreInterface::IsPresent)
+        .method("get_by_path", &hops::MHO_JlParameterStoreInterface::GetJSON)
+        .method("set_by_path", &hops::MHO_JlParameterStoreInterface::SetFromJSON)
+        .method("get_contents", &hops::MHO_JlParameterStoreInterface::GetContentsJSON);
 }
 
 } // namespace hops

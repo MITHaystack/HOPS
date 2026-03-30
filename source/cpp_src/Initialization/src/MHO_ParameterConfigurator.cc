@@ -56,7 +56,7 @@ bool MHO_ParameterConfigurator::Configure()
                     std::string station_id = *(++tokit);
                     //map from control file token to station name
                     std::string station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(station_id);
-                    //then map from station name to 2-char station code 
+                    //then map from station name to 2-char station code
                     std::string station_code = MHO_StationIdentifier::GetInstance()->StationCodeFromName(station_name);
                     std::string station_path = "/control/" + parameter_type + "/" + station_code + "/" + name;
                     explicit_paths.push_back(station_path);

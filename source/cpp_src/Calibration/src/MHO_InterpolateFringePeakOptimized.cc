@@ -150,7 +150,7 @@ void MHO_InterpolateFringePeakOptimized::fine_peak_interpolation()
         for(std::size_t fr = 0; fr < nchan; fr++)
         {
             step_phasor[idr][fr] = std::exp(neg_two_pi_i * freq_arr[fr] * dr * ap_delta);
-            ap0_phasor[idr][fr]  = std::exp(neg_two_pi_i * freq_arr[fr] * dr * tdelta[0]);
+            ap0_phasor[idr][fr] = std::exp(neg_two_pi_i * freq_arr[fr] * dr * tdelta[0]);
         }
     }
 
@@ -178,12 +178,30 @@ void MHO_InterpolateFringePeakOptimized::fine_peak_interpolation()
 
                 //printf("idr = %d and dr = %.8f \n", idr, dr);
 
-                if(sbd < sbd_lower) { sbd_lower = sbd; }
-                if(sbd > sbd_upper) { sbd_upper = sbd; }
-                if(dr < dr_lower)   { dr_lower = dr; }
-                if(dr > dr_upper)   { dr_upper = dr; }
-                if(mbd < mbd_lower) { mbd_lower = mbd; }
-                if(mbd > mbd_upper) { mbd_upper = mbd; }
+                if(sbd < sbd_lower)
+                {
+                    sbd_lower = sbd;
+                }
+                if(sbd > sbd_upper)
+                {
+                    sbd_upper = sbd;
+                }
+                if(dr < dr_lower)
+                {
+                    dr_lower = dr;
+                }
+                if(dr > dr_upper)
+                {
+                    dr_upper = dr;
+                }
+                if(mbd < mbd_lower)
+                {
+                    mbd_lower = mbd;
+                }
+                if(mbd > mbd_upper)
+                {
+                    mbd_upper = mbd;
+                }
 
                 // counter-rotate data from all freqs. and AP's.
                 // vrot(tdelta, freq, ref_freq, dr, mbd) = exp(-2*pi*i*theta) where
@@ -275,14 +293,12 @@ void MHO_InterpolateFringePeakOptimized::fine_peak_interpolation()
     // std::cout<<"change (sbd, mbd, dr) = "<<sbd_change<<", "<<mbd_change<<", "<<dr_change<<std::endl;
     msg_info("calibration", "Peak max555, sbd " << sbd_max << " mbd " << mbd_max_global << " dr " << dr_max_global << " amp "
                                                 << fFringeAmp << eom);
-
-    
 }
 
 void MHO_InterpolateFringePeakOptimized::max555(MHO_NDArrayWrapper< double, 3 >& drf, // input: real function
-                                       double xlim[3][2],                    // input: lower & upper bounds in 3 dimensions
-                                       double xi[3],                         // output: coordinates at maximum value
-                                       double* drfmax)                       // output: maximum value
+                                                double xlim[3][2], // input: lower & upper bounds in 3 dimensions
+                                                double xi[3],      // output: coordinates at maximum value
+                                                double* drfmax)    // output: maximum value
 {
     int i, j, k, l;
 
@@ -290,7 +306,10 @@ void MHO_InterpolateFringePeakOptimized::max555(MHO_NDArrayWrapper< double, 3 >&
         epsilon = 0.0001; // convergence criterion
 
     // initialize search to center of cube
-    for(l = 0; l < 3; l++){ center[l] = 0.0;}
+    for(l = 0; l < 3; l++)
+    {
+        center[l] = 0.0;
+    }
     dx0 = dx1 = dx2 = 0.4;
 
     do
@@ -349,7 +368,10 @@ void MHO_InterpolateFringePeakOptimized::max555(MHO_NDArrayWrapper< double, 3 >&
     while(dx0 > epsilon || dx1 > epsilon || dx2 > epsilon);
     // return result to caller
     *drfmax = bestval;
-    for(l = 0; l < 3; l++){ xi[l] = xbest[l]; }
+    for(l = 0; l < 3; l++)
+    {
+        xi[l] = xbest[l];
+    }
 }
 
 double MHO_InterpolateFringePeakOptimized::dwin(double value, double lower, double upper)
@@ -369,8 +391,8 @@ double MHO_InterpolateFringePeakOptimized::dwin(double value, double lower, doub
 }
 
 void MHO_InterpolateFringePeakOptimized::interp555(MHO_NDArrayWrapper< double, 3 >& drf, // input: real function
-                                          double xi[3],                         // input: coordinates to be evaluated at
-                                          double* drfval)                       // output: interpolated value
+                                                   double xi[3],   // input: coordinates to be evaluated at
+                                                   double* drfval) // output: interpolated value
 {
     int i, j, k;
 

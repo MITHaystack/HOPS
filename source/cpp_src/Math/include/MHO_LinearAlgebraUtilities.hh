@@ -2,13 +2,13 @@
 #define MHO_LinearAlgebraUtilities_HH__
 
 #include <cmath>
-#include <cstddef>
 #include <complex>
-#include <string>
-#include <vector>
+#include <cstddef>
+#include <functional>
 #include <limits>
 #include <sstream>
-#include <functional>
+#include <string>
+#include <vector>
 
 #include "MHO_Message.hh"
 
@@ -20,20 +20,20 @@ namespace hops
 {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Error Handling 
+// Error Handling
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //error codes
-enum class MHO_linalg_error 
+enum class MHO_linalg_error
 {
     Success = 0,
-    DomainError, //1
-    Overflow, //2
-    Underflow, //3
+    DomainError,         //1
+    Overflow,            //2
+    Underflow,           //3
     MismatchedDimension, //4
-    DivideByZero, //5
-    FailedToConverge, //6
-    ArrayOverrun, //7
+    DivideByZero,        //5
+    FailedToConverge,    //6
+    ArrayOverrun,        //7
     Unknown
 };
 
@@ -42,67 +42,65 @@ thread_local MHO_linalg_error last_error = MHO_linalg_error::Success;
 thread_local std::string last_error_msg;
 
 //provide and optional callback method (defaults to null)
-using MHO_linalg_error_handler = std::function<void(MHO_linalg_error, const std::string&)>;
+using MHO_linalg_error_handler = std::function< void(MHO_linalg_error, const std::string&) >;
 thread_local MHO_linalg_error_handler error_handler = nullptr;
 
-inline void report_error(MHO_linalg_error code, const std::string& msg) 
+inline void report_error(MHO_linalg_error code, const std::string& msg)
 {
     last_error = code;
     last_error_msg = msg;
-    if (error_handler) 
+    if(error_handler)
     {
         error_handler(code, msg);
     }
-    #ifdef MHO_LINALG_PRINT_ERROR
-    if( code != MHO_linalg_error::Success)
+#ifdef MHO_LINALG_PRINT_ERROR
+    if(code != MHO_linalg_error::Success)
     {
         msg_warn("math", msg << eom);
     }
-    #endif
+#endif
 }
 
 //query functions
-inline MHO_linalg_error get_last_error() noexcept { return last_error; }
-inline const std::string& get_last_error_message() noexcept { return last_error_msg; }
-inline void set_error_handler(MHO_linalg_error_handler handler) { error_handler = std::move(handler); }
+inline MHO_linalg_error get_last_error() noexcept
+{
+    return last_error;
+}
 
+inline const std::string& get_last_error_message() noexcept
+{
+    return last_error_msg;
+}
+
+inline void set_error_handler(MHO_linalg_error_handler handler)
+{
+    error_handler = std::move(handler);
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //vector class
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-template< typename XValueType = double >
-class MHO_linalg_vector
+template< typename XValueType = double > class MHO_linalg_vector
 {
     public:
+        MHO_linalg_vector(): fSize(0), fData(){};
 
-        MHO_linalg_vector():
-            fSize(0), 
-            fData()
-        {};
-
-        MHO_linalg_vector(unsigned int sz): 
-            fSize(sz)
+        MHO_linalg_vector(unsigned int sz): fSize(sz)
         {
-            
+
             fData.resize(fSize);
             zero();
         };
 
-        MHO_linalg_vector(MHO_linalg_vector&& other) noexcept: 
-            fSize(other.fSize), 
-            fData(std::move(other.fData)) 
-        {}
+        MHO_linalg_vector(MHO_linalg_vector&& other) noexcept: fSize(other.fSize), fData(std::move(other.fData)) {}
 
-        MHO_linalg_vector(const MHO_linalg_vector& copy) noexcept: 
-            fSize(copy.fSize),
-            fData(copy.fData)
-        {}
+        MHO_linalg_vector(const MHO_linalg_vector& copy) noexcept: fSize(copy.fSize), fData(copy.fData) {}
 
         //no virtual destructor, since we do not plan on inheritance
         //virtual ~MHO_linalg_vector() {};
 
-        unsigned int size() const {return fSize;};
+        unsigned int size() const { return fSize; };
 
         void resize(unsigned int sz)
         {
@@ -114,48 +112,45 @@ class MHO_linalg_vector
             fData.resize(fSize);
         }
 
-        void zero()
-        {
-            std::fill(fData.begin(), fData.end(), 0.0);
-        }
+        void zero() { std::fill(fData.begin(), fData.end(), 0.0); }
 
         // access (no safety checks)
-        XValueType& operator()(unsigned int i) 
+        XValueType& operator()(unsigned int i)
         {
-            #ifndef MHO_CHECK_ARRAY_OVERRUN
+#ifndef MHO_CHECK_ARRAY_OVERRUN
+            return fData[i];
+#else
+            if(i < fSize)
+            {
                 return fData[i];
-            #else
-                if(i < fSize)
-                {
-                    return fData[i]; 
-                }
-                else
-                {
-                    std::stringstream ss;
-                    ss << "MHO_linalg_vector::operator() error, out of range: " << i << " !< " << fSize;
-                    report_error(MHO_linalg_error::ArrayOverrun, ss.str());
-                    return fDummy;
-                }
-            #endif
+            }
+            else
+            {
+                std::stringstream ss;
+                ss << "MHO_linalg_vector::operator() error, out of range: " << i << " !< " << fSize;
+                report_error(MHO_linalg_error::ArrayOverrun, ss.str());
+                return fDummy;
+            }
+#endif
         }
 
-        const XValueType& operator()(unsigned int i) const 
-        { 
-            #ifndef MHO_CHECK_ARRAY_OVERRUN
+        const XValueType& operator()(unsigned int i) const
+        {
+#ifndef MHO_CHECK_ARRAY_OVERRUN
+            return fData[i];
+#else
+            if(i < fSize)
+            {
                 return fData[i];
-            #else
-                if(i < fSize)
-                {
-                    return fData[i]; 
-                }
-                else
-                {
-                    std::stringstream ss;
-                    ss << "MHO_linalg_vector::operator() error, out of range: " << i << " !< " << fSize;
-                    report_error(MHO_linalg_error::ArrayOverrun, ss.str());
-                    return fDummy;
-                }
-            #endif
+            }
+            else
+            {
+                std::stringstream ss;
+                ss << "MHO_linalg_vector::operator() error, out of range: " << i << " !< " << fSize;
+                report_error(MHO_linalg_error::ArrayOverrun, ss.str());
+                return fDummy;
+            }
+#endif
         }
 
         // assignment
@@ -169,9 +164,9 @@ class MHO_linalg_vector
         }
 
         //move assignment
-        inline MHO_linalg_vector& operator=(MHO_linalg_vector&& other) noexcept 
+        inline MHO_linalg_vector& operator=(MHO_linalg_vector&& other) noexcept
         {
-            if (this != &other) 
+            if(this != &other)
             {
                 fSize = other.fSize;
                 fData = std::move(other.fData);
@@ -181,7 +176,7 @@ class MHO_linalg_vector
 
         inline MHO_linalg_vector& operator+=(const MHO_linalg_vector& other)
         {
-            if(this->fSize == other.size() )
+            if(this->fSize == other.size())
             {
                 for(unsigned int i = 0; i < fSize; ++i)
                 {
@@ -190,14 +185,15 @@ class MHO_linalg_vector
             }
             else
             {
-                report_error(MHO_linalg_error::MismatchedDimension, "MHO_linalg_vector::operator+= error, vectors have difference sizes.");
+                report_error(MHO_linalg_error::MismatchedDimension,
+                             "MHO_linalg_vector::operator+= error, vectors have difference sizes.");
             }
             return *this;
         }
 
         inline MHO_linalg_vector& operator-=(const MHO_linalg_vector& other)
         {
-            if(this->fSize == other.size() )
+            if(this->fSize == other.size())
             {
                 for(unsigned int i = 0; i < fSize; ++i)
                 {
@@ -206,11 +202,11 @@ class MHO_linalg_vector
             }
             else
             {
-                report_error(MHO_linalg_error::MismatchedDimension, "MHO_linalg_vector::operator-= error, vectors have difference sizes.");
+                report_error(MHO_linalg_error::MismatchedDimension,
+                             "MHO_linalg_vector::operator-= error, vectors have difference sizes.");
             }
             return *this;
         }
-
 
         inline MHO_linalg_vector operator+(const MHO_linalg_vector& other)
         {
@@ -238,7 +234,7 @@ class MHO_linalg_vector
         inline XValueType inner_product(const MHO_linalg_vector& b) const
         {
             XValueType val = 0;
-            if( fSize == b.size() )
+            if(fSize == b.size())
             {
                 for(unsigned int i = 0; i < fSize; i++)
                 {
@@ -248,8 +244,9 @@ class MHO_linalg_vector
             else
             {
                 std::stringstream ss;
-                ss << "MHO_linalg_inner_product: error, vectors have different sizes: " << fSize << " != " << b.size() << "." << "\n";
-                report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+                ss << "MHO_linalg_inner_product: error, vectors have different sizes: " << fSize << " != " << b.size() << "."
+                   << "\n";
+                report_error(MHO_linalg_error::MismatchedDimension, ss.str());
             }
             return val;
         }
@@ -267,11 +264,11 @@ class MHO_linalg_vector
         inline void normalize()
         {
             XValueType norm = this->norm();
-            if( norm != 0)
+            if(norm != 0)
             {
                 this->scale(1.0 / norm);
             }
-            else 
+            else
             {
                 report_error(MHO_linalg_error::DivideByZero, "MHO_linalg_vector::normalize: error, vector has zero norm.");
             }
@@ -288,51 +285,39 @@ class MHO_linalg_vector
             }
             else
             {
-                report_error(MHO_linalg_error::MismatchedDimension, "MHO_linalg_vector_cross_product: error, requires vectors of size 3" );
+                report_error(MHO_linalg_error::MismatchedDimension,
+                             "MHO_linalg_vector_cross_product: error, requires vectors of size 3");
             }
             return c;
         }
 
     private:
-
         unsigned int fSize;
-        std::vector<XValueType> fData;
+        std::vector< XValueType > fData;
         XValueType fDummy;
 };
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //matrix class
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-template< typename XValueType = double >
-class MHO_linalg_matrix
+template< typename XValueType = double > class MHO_linalg_matrix
 {
     public:
+        MHO_linalg_matrix(): fNRows(0), fNCols(0), fTotalSize(0), fData() {}
 
-        MHO_linalg_matrix() : fNRows(0), fNCols(0), fTotalSize(0), fData() {}
-
-        MHO_linalg_matrix(unsigned int nrows, unsigned int ncols):
-            fNRows(nrows),
-            fNCols(ncols),
-            fTotalSize(nrows*ncols),
-            fData(nrows*ncols, 0.0)
+        MHO_linalg_matrix(unsigned int nrows, unsigned int ncols)
+            : fNRows(nrows), fNCols(ncols), fTotalSize(nrows * ncols), fData(nrows * ncols, 0.0)
         {}
 
         //copy cons.
-        MHO_linalg_matrix(const MHO_linalg_matrix& copy) : 
-            fNRows(copy.fNRows), 
-            fNCols(copy.fNCols), 
-            fTotalSize(copy.fTotalSize),
-            fData(copy.fData)
+        MHO_linalg_matrix(const MHO_linalg_matrix& copy)
+            : fNRows(copy.fNRows), fNCols(copy.fNCols), fTotalSize(copy.fTotalSize), fData(copy.fData)
         {}
 
         //move constructor
-        MHO_linalg_matrix(MHO_linalg_matrix&& other) :
-            fNRows(other.fNRows), 
-            fNCols(other.fNCols), 
-            fTotalSize(other.fTotalSize),
-            fData(std::move(other.fData))
+        MHO_linalg_matrix(MHO_linalg_matrix&& other)
+            : fNRows(other.fNRows), fNCols(other.fNCols), fTotalSize(other.fTotalSize), fData(std::move(other.fData))
         {
             //reset the moved-from object
             other.fNRows = 0;
@@ -342,20 +327,21 @@ class MHO_linalg_matrix
 
         //no inheritance or virtual functions
         //virtual ~MHO_linalg_matrix(){};
- 
+
         void resize(unsigned int nrows, unsigned int ncols)
         {
-            if(fTotalSize != nrows*ncols)
+            if(fTotalSize != nrows * ncols)
             {
-                fData.resize(nrows*ncols);
+                fData.resize(nrows * ncols);
             }
             fNRows = nrows;
             fNCols = ncols;
             fTotalSize = fNRows * fNCols;
         }
 
-        unsigned int n_rows() const {return fNRows;};
-        unsigned int n_cols() const {return fNCols;};
+        unsigned int n_rows() const { return fNRows; };
+
+        unsigned int n_cols() const { return fNCols; };
 
         void zero()
         {
@@ -384,42 +370,44 @@ class MHO_linalg_matrix
         }
 
         // access (no safety checks)
-        XValueType& operator()(unsigned int i, unsigned int j) 
+        XValueType& operator()(unsigned int i, unsigned int j)
         {
-            #ifndef MHO_CHECK_ARRAY_OVERRUN
+#ifndef MHO_CHECK_ARRAY_OVERRUN
+            return fData[i * fNCols + j];
+#else
+            if(i < fNRows && j < fNCols)
+            {
                 return fData[i * fNCols + j];
-            #else 
-                if(i < fNRows && j < fNCols)
-                {
-                    return fData[i * fNCols + j];
-                }
-                else 
-                {
-                    std::stringstream ss;
-                    ss << "MHO_linalg_matrix::operator() error, out of range, row: " << i << " !< " << fNRows << " or col: " << j << " !< " << fNCols;
-                    report_error(MHO_linalg_error::ArrayOverrun, ss.str());
-                    return fDummy;
-                }
-            #endif
+            }
+            else
+            {
+                std::stringstream ss;
+                ss << "MHO_linalg_matrix::operator() error, out of range, row: " << i << " !< " << fNRows << " or col: " << j
+                   << " !< " << fNCols;
+                report_error(MHO_linalg_error::ArrayOverrun, ss.str());
+                return fDummy;
+            }
+#endif
         }
 
-        const XValueType& operator()(unsigned int i, unsigned int j) const 
+        const XValueType& operator()(unsigned int i, unsigned int j) const
         {
-            #ifndef MHO_CHECK_ARRAY_OVERRUN
+#ifndef MHO_CHECK_ARRAY_OVERRUN
+            return fData[i * fNCols + j];
+#else
+            if(i < fNRows && j < fNCols)
+            {
                 return fData[i * fNCols + j];
-            #else 
-                if(i < fNRows && j < fNCols)
-                {
-                    return fData[i * fNCols + j];
-                }
-                else 
-                {
-                    std::stringstream ss;
-                    ss << "MHO_linalg_matrix::operator() error, out of range, row: " << i << " !< " << fNRows << " or col: " << j << " !< " << fNCols;
-                    report_error(MHO_linalg_error::ArrayOverrun, ss.str());
-                    return fDummy;
-                }
-            #endif
+            }
+            else
+            {
+                std::stringstream ss;
+                ss << "MHO_linalg_matrix::operator() error, out of range, row: " << i << " !< " << fNRows << " or col: " << j
+                   << " !< " << fNCols;
+                report_error(MHO_linalg_error::ArrayOverrun, ss.str());
+                return fDummy;
+            }
+#endif
         }
 
         // assignment
@@ -435,9 +423,9 @@ class MHO_linalg_matrix
         }
 
         //move assignment
-        inline MHO_linalg_matrix& operator=(MHO_linalg_matrix&& other) noexcept 
+        inline MHO_linalg_matrix& operator=(MHO_linalg_matrix&& other) noexcept
         {
-            if(this != &other) 
+            if(this != &other)
             {
                 this->fNRows = other.fNRows;
                 this->fNCols = other.fNCols;
@@ -464,7 +452,8 @@ class MHO_linalg_matrix
             }
             else
             {
-                report_error(MHO_linalg_error::MismatchedDimension, "MHO_linalg_matrix::operator+: error, matrices have difference sizes.");     
+                report_error(MHO_linalg_error::MismatchedDimension,
+                             "MHO_linalg_matrix::operator+: error, matrices have difference sizes.");
             }
             return *this;
         }
@@ -481,7 +470,8 @@ class MHO_linalg_matrix
             }
             else
             {
-                report_error(MHO_linalg_error::MismatchedDimension, "MHO_linalg_matrix::operator-: error, matrices have difference sizes.");     
+                report_error(MHO_linalg_error::MismatchedDimension,
+                             "MHO_linalg_matrix::operator-: error, matrices have difference sizes.");
             }
             return *this;
         }
@@ -508,35 +498,33 @@ class MHO_linalg_matrix
                 this->fData[i] *= scale_factor;
             }
         }
-        
+
         //Frobenius norm of matrix
         XValueType frobenius_norm()
         {
             XValueType sum = 0;
             for(unsigned int i = 0; i < fTotalSize; ++i)
             {
-                sum += fData[i]*fData[i]; // TODO FIXME FOR COMPLEX DATA
+                sum += fData[i] * fData[i]; // TODO FIXME FOR COMPLEX DATA
             }
             return std::sqrt(sum);
         }
-
 
     private:
         unsigned int fNRows;
         unsigned int fNCols;
         unsigned int fTotalSize;
-        std::vector<XValueType> fData;
+        std::vector< XValueType > fData;
         XValueType fDummy;
 };
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //matrix-vector operations
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 template< typename XValueType = double >
-void MHO_linalg_matrix_vector_product(const MHO_linalg_matrix<XValueType>& m, const MHO_linalg_vector<XValueType>& in, MHO_linalg_vector<XValueType>& out)
+void MHO_linalg_matrix_vector_product(const MHO_linalg_matrix< XValueType >& m, const MHO_linalg_vector< XValueType >& in,
+                                      MHO_linalg_vector< XValueType >& out)
 {
     // check sizes
     if((in.size() == m.n_cols()) && (out.size() == m.n_rows()))
@@ -555,16 +543,21 @@ void MHO_linalg_matrix_vector_product(const MHO_linalg_matrix<XValueType>& m, co
     else
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_vector_product: error, matrix/vector sizes are mismatched." << "\n";
-        ss << "matrix m is " << m.n_rows() << " by " << m.n_cols() << "." << "\n";
-        ss << "input vector has size " << in.size() << "."  << "\n";
-        ss << "output vector has size " << out.size() << "."  << "\n";
-        report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        ss << "MHO_linalg_matrix_vector_product: error, matrix/vector sizes are mismatched."
+           << "\n";
+        ss << "matrix m is " << m.n_rows() << " by " << m.n_cols() << "."
+           << "\n";
+        ss << "input vector has size " << in.size() << "."
+           << "\n";
+        ss << "output vector has size " << out.size() << "."
+           << "\n";
+        report_error(MHO_linalg_error::MismatchedDimension, ss.str());
     }
 }
 
 template< typename XValueType = double >
-void MHO_linalg_matrix_transpose_vector_product(const MHO_linalg_matrix<XValueType>& m, const MHO_linalg_vector<XValueType>& in, MHO_linalg_vector<XValueType>& out)
+void MHO_linalg_matrix_transpose_vector_product(const MHO_linalg_matrix< XValueType >& m,
+                                                const MHO_linalg_vector< XValueType >& in, MHO_linalg_vector< XValueType >& out)
 {
     // check sizes
     if((in.size() == m.n_rows()) && (out.size() == m.n_cols()))
@@ -585,19 +578,24 @@ void MHO_linalg_matrix_transpose_vector_product(const MHO_linalg_matrix<XValueTy
     else
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_transpose_vector_product: error, matrix/vector sizes are mismatched." << "\n";
-        ss << "transpose of matrix m is " << m.n_cols() << " by " << m.n_rows() << "."  << "\n";
-        ss << "input vector has size " << in.size() << "."  << "\n";
-        ss << "output vector has size " << out.size() << "."  << "\n";
-        report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        ss << "MHO_linalg_matrix_transpose_vector_product: error, matrix/vector sizes are mismatched."
+           << "\n";
+        ss << "transpose of matrix m is " << m.n_cols() << " by " << m.n_rows() << "."
+           << "\n";
+        ss << "input vector has size " << in.size() << "."
+           << "\n";
+        ss << "output vector has size " << out.size() << "."
+           << "\n";
+        report_error(MHO_linalg_error::MismatchedDimension, ss.str());
     }
 }
 
 template< typename XValueType = double >
-void MHO_linalg_vector_outer_product(const MHO_linalg_vector<XValueType>& a, const MHO_linalg_vector<XValueType>& b, MHO_linalg_matrix<XValueType>& p)
+void MHO_linalg_vector_outer_product(const MHO_linalg_vector< XValueType >& a, const MHO_linalg_vector< XValueType >& b,
+                                     MHO_linalg_matrix< XValueType >& p)
 {
     //resize if necessary
-    if( (a.size() == p.n_rows()) && (b.size() == p.n_cols()) )
+    if((a.size() == p.n_rows()) && (b.size() == p.n_cols()))
     {
         p.resize(a.size(), b.size());
     }
@@ -609,9 +607,7 @@ void MHO_linalg_vector_outer_product(const MHO_linalg_vector<XValueType>& a, con
             p(i, j) = a(i) * b(j);
         }
     }
-
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //matrix-matrix operations
@@ -619,7 +615,8 @@ void MHO_linalg_vector_outer_product(const MHO_linalg_vector<XValueType>& a, con
 
 //C = A x B
 template< typename XValueType = double >
-void MHO_linalg_matrix_multiply(const MHO_linalg_matrix<XValueType>& A, const MHO_linalg_matrix<XValueType>& B, MHO_linalg_matrix<XValueType>& C)
+void MHO_linalg_matrix_multiply(const MHO_linalg_matrix< XValueType >& A, const MHO_linalg_matrix< XValueType >& B,
+                                MHO_linalg_matrix< XValueType >& C)
 {
     // check that sizes are valid
     unsigned int a_row = A.n_rows();
@@ -651,28 +648,32 @@ void MHO_linalg_matrix_multiply(const MHO_linalg_matrix<XValueType>& A, const MH
     else
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_multiply: error, matrices have different sizes." << "\n";
-        ss << "matrix a is " << A.n_rows() << " by " << A.n_cols() << "." << "\n";
-        ss << "matrix b is " << B.n_rows() << " by " << B.n_cols() << "." << "\n";
-        ss << "matrix c is " << C.n_rows() << " by " << C.n_cols() << "." << "\n";
-        report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        ss << "MHO_linalg_matrix_multiply: error, matrices have different sizes."
+           << "\n";
+        ss << "matrix a is " << A.n_rows() << " by " << A.n_cols() << "."
+           << "\n";
+        ss << "matrix b is " << B.n_rows() << " by " << B.n_cols() << "."
+           << "\n";
+        ss << "matrix c is " << C.n_rows() << " by " << C.n_cols() << "."
+           << "\n";
+        report_error(MHO_linalg_error::MismatchedDimension, ss.str());
     }
 }
 
 //matrix multiply which constructs return matrix
 template< typename XValueType = double >
-MHO_linalg_matrix<XValueType> 
-MHO_linalg_matrix_multiply(const MHO_linalg_matrix<XValueType>& A, const MHO_linalg_matrix<XValueType>& B)
+MHO_linalg_matrix< XValueType > MHO_linalg_matrix_multiply(const MHO_linalg_matrix< XValueType >& A,
+                                                           const MHO_linalg_matrix< XValueType >& B)
 {
-    MHO_linalg_matrix<XValueType> C;
+    MHO_linalg_matrix< XValueType > C;
     C.resize(A.n_rows(), B.n_cols());
-    MHO_linalg_matrix_multiply(A,B,C);
+    MHO_linalg_matrix_multiply(A, B, C);
     return C;
 }
 
 template< typename XValueType = double >
-void MHO_linalg_matrix_multiply_with_transpose(bool transposeA, bool transposeB, const MHO_linalg_matrix<XValueType>& A, const MHO_linalg_matrix<XValueType>& B,
-                                         MHO_linalg_matrix<XValueType>& C)
+void MHO_linalg_matrix_multiply_with_transpose(bool transposeA, bool transposeB, const MHO_linalg_matrix< XValueType >& A,
+                                               const MHO_linalg_matrix< XValueType >& B, MHO_linalg_matrix< XValueType >& C)
 {
     // check that sizes are valid
     unsigned int a_row = A.n_rows();
@@ -743,32 +744,43 @@ void MHO_linalg_matrix_multiply_with_transpose(bool transposeA, bool transposeB,
     else
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_multiply_with_transpose: error, matrices have different sizes." << "\n";
-        ss << "matrix a is " << A.n_rows() << " by " << A.n_cols() << "." << "\n";
-        ss << "matrix b is " << B.n_rows() << " by " << B.n_cols() << "." << "\n";
-        ss << "matrix c is " << C.n_rows() << " by " << C.n_cols() << "." << "\n";
-        report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        ss << "MHO_linalg_matrix_multiply_with_transpose: error, matrices have different sizes."
+           << "\n";
+        ss << "matrix a is " << A.n_rows() << " by " << A.n_cols() << "."
+           << "\n";
+        ss << "matrix b is " << B.n_rows() << " by " << B.n_cols() << "."
+           << "\n";
+        ss << "matrix c is " << C.n_rows() << " by " << C.n_cols() << "."
+           << "\n";
+        report_error(MHO_linalg_error::MismatchedDimension, ss.str());
     }
 }
 
 //matrix multiply with transpose which constructs return matrix
 template< typename XValueType = double >
-MHO_linalg_matrix<XValueType> 
-MHO_linalg_matrix_multiply_with_transpose(bool transposeA, bool transposeB, const MHO_linalg_matrix<XValueType>& A, const MHO_linalg_matrix<XValueType>& B)
+MHO_linalg_matrix< XValueType > MHO_linalg_matrix_multiply_with_transpose(bool transposeA, bool transposeB,
+                                                                          const MHO_linalg_matrix< XValueType >& A,
+                                                                          const MHO_linalg_matrix< XValueType >& B)
 {
-    MHO_linalg_matrix<XValueType> C;
+    MHO_linalg_matrix< XValueType > C;
     unsigned int c_row = A.n_rows();
     unsigned int c_col = B.n_cols();
-    if(transposeA){c_row = A.n_cols();}
-    if(transposeB){c_col = B.n_rows();}
+    if(transposeA)
+    {
+        c_row = A.n_cols();
+    }
+    if(transposeB)
+    {
+        c_col = B.n_rows();
+    }
     C.resize(c_row, c_col);
-    MHO_linalg_matrix_multiply_with_transpose(transposeA,transposeB,A,B,C);
+    MHO_linalg_matrix_multiply_with_transpose(transposeA, transposeB, A, B, C);
     return C;
 }
 
-
 template< typename XValueType = double >
-void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_matrix<XValueType>& U, MHO_linalg_vector<XValueType>& S, MHO_linalg_matrix<XValueType>& V)
+void MHO_linalg_matrix_svd(const MHO_linalg_matrix< XValueType >& A, MHO_linalg_matrix< XValueType >& U,
+                           MHO_linalg_vector< XValueType >& S, MHO_linalg_matrix< XValueType >& V)
 {
     // this function uses the slower but more accurate one-sided jacobi svd
     // as defined in the paper:
@@ -782,42 +794,52 @@ void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_ma
 
     unsigned int n = A.n_rows();
     unsigned int m = A.n_cols();
-    
-    if (n < m)
+
+    if(n < m)
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_svd: error, only tall (n_row >= m_cols) or square matrices supported." << "\n";
-        ss << "matrix A is " << n << " by " << m << "." << "\n";
-        report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        ss << "MHO_linalg_matrix_svd: error, only tall (n_row >= m_cols) or square matrices supported."
+           << "\n";
+        ss << "matrix A is " << n << " by " << m << "."
+           << "\n";
+        report_error(MHO_linalg_error::MismatchedDimension, ss.str());
     }
-    
+
     if(U.n_rows() != n || U.n_cols() != m)
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_svd: error, matrices A and U have different sizes, will resize U." << "\n";
-        ss << "matrix A is " << n << " by " << m << "." << "\n";
-        ss << "matrix U was " << U.n_rows() << " by " << U.n_cols() << "." << "\n";
-        report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
-        U.resize(n,m);
+        ss << "MHO_linalg_matrix_svd: error, matrices A and U have different sizes, will resize U."
+           << "\n";
+        ss << "matrix A is " << n << " by " << m << "."
+           << "\n";
+        ss << "matrix U was " << U.n_rows() << " by " << U.n_cols() << "."
+           << "\n";
+        report_error(MHO_linalg_error::MismatchedDimension, ss.str());
+        U.resize(n, m);
     }
-    
+
     if(V.n_rows() != m || V.n_cols() != m)
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_svd: error, matrix V has wrong size, will resize." << "\n";
-        ss << "matrix V is " << V.n_rows() << " by " << V.n_cols() << "." << "\n";
-        ss << "matrix V should be " << m << " by " << m << "." << "\n";
-        report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
-        V.resize(m,m);
+        ss << "MHO_linalg_matrix_svd: error, matrix V has wrong size, will resize."
+           << "\n";
+        ss << "matrix V is " << V.n_rows() << " by " << V.n_cols() << "."
+           << "\n";
+        ss << "matrix V should be " << m << " by " << m << "."
+           << "\n";
+        report_error(MHO_linalg_error::MismatchedDimension, ss.str());
+        V.resize(m, m);
     }
-    
+
     if(S.size() != m)
     {
         std::stringstream ss;
-        ss << "MHO_linalg_matrix_svd: error, vector S has wrong size, will resize" << "\n";
+        ss << "MHO_linalg_matrix_svd: error, vector S has wrong size, will resize"
+           << "\n";
         ss << "vector S is length " << S.size() << "\n";
-        ss << "vector S should be length " << m << "." << "\n";
-        report_error(MHO_linalg_error::MismatchedDimension, ss.str() );
+        ss << "vector S should be length " << m << "."
+           << "\n";
+        report_error(MHO_linalg_error::MismatchedDimension, ss.str());
         S.resize(m);
     }
 
@@ -840,7 +862,7 @@ void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_ma
             tol += g1 * g1;
         }
     }
-    tol = tol * n * m * std::numeric_limits<XValueType>::epsilon() * std::numeric_limits<XValueType>::epsilon();
+    tol = tol * n * m * std::numeric_limits< XValueType >::epsilon() * std::numeric_limits< XValueType >::epsilon();
 
     // convergence count
     int count = 0;
@@ -907,8 +929,9 @@ void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_ma
         if(n_iter >= n_max_iter)
         {
             std::stringstream ss;
-            ss << "MHO_linalg_matrix_svd: error, SVD failed to converge within " << n_max_iter << " iterations, " << "\n";
-            report_error(MHO_linalg_error::FailedToConverge, ss.str() );
+            ss << "MHO_linalg_matrix_svd: error, SVD failed to converge within " << n_max_iter << " iterations, "
+               << "\n";
+            report_error(MHO_linalg_error::FailedToConverge, ss.str());
             break;
         }
     }
@@ -930,7 +953,7 @@ void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_ma
         S(i) = a;
     }
     norm_s = std::sqrt(norm_s);
-    tol = std::numeric_limits<XValueType>::epsilon() * norm_s;
+    tol = std::numeric_limits< XValueType >::epsilon() * norm_s;
     // eliminate all those singular values which are below the tolerance
     for(unsigned int i = 0; i < m; i++)
     {
@@ -959,12 +982,12 @@ void MHO_linalg_matrix_svd(const MHO_linalg_matrix<XValueType>& A, MHO_linalg_ma
 }
 
 template< typename XValueType = double >
-void MHO_linalg_matrix_transpose(const MHO_linalg_matrix<XValueType>& in, MHO_linalg_matrix<XValueType>& out)
+void MHO_linalg_matrix_transpose(const MHO_linalg_matrix< XValueType >& in, MHO_linalg_matrix< XValueType >& out)
 {
 
     if((in.n_rows() != out.n_cols()) || (in.n_cols() != out.n_rows()))
     {
-        report_error(MHO_linalg_error::MismatchedDimension, "MHO_linalg_matrix_transpose: error, dimension mismatch." );
+        report_error(MHO_linalg_error::MismatchedDimension, "MHO_linalg_matrix_transpose: error, dimension mismatch.");
     }
 
     unsigned int nrows = in.n_rows();
@@ -982,31 +1005,32 @@ void MHO_linalg_matrix_transpose(const MHO_linalg_matrix<XValueType>& in, MHO_li
 }
 
 template< typename XValueType = double >
-void
-MHO_linalg_matrix_svd_solve(const MHO_linalg_matrix<XValueType>& U, const MHO_linalg_vector<XValueType>& S, const MHO_linalg_matrix<XValueType>& V, const MHO_linalg_vector<XValueType>& b, MHO_linalg_vector<XValueType>& x)
+void MHO_linalg_matrix_svd_solve(const MHO_linalg_matrix< XValueType >& U, const MHO_linalg_vector< XValueType >& S,
+                                 const MHO_linalg_matrix< XValueType >& V, const MHO_linalg_vector< XValueType >& b,
+                                 MHO_linalg_vector< XValueType >& x)
 {
     //the solution is given by:
     //x = [V*diag(S)^{-1}*U^{T}]b
     //workspace
-    MHO_linalg_vector<XValueType> work(x.size());
+    MHO_linalg_vector< XValueType > work(x.size());
     //first we apply U^T to b
     x.zero();
     work.zero();
     MHO_linalg_matrix_transpose_vector_product(U, b, work);
     x = work;
-    
+
     //now we apply the inverse of diag(S) to x
     //with the exception that if a singular value is zero, then we apply zero
     //we assume anything less than EPSILON*norm(S) to be essentially zero (singular values should all be positive)
     double s, elem;
     double norm_s = S.norm();
-    for(unsigned int i=0; i<S.size(); i++)
+    for(unsigned int i = 0; i < S.size(); i++)
     {
         s = S(i);
-        if(s > std::numeric_limits<XValueType>::epsilon()*norm_s)
+        if(s > std::numeric_limits< XValueType >::epsilon() * norm_s)
         {
             //multiply 1/s against the i'th element of x
-            elem = (1.0/s)*x(i); //MHO_linalg_vector_get(x,i);
+            elem = (1.0 / s) * x(i); //MHO_linalg_vector_get(x,i);
             x(i) = elem;
         }
         else
@@ -1020,8 +1044,7 @@ MHO_linalg_matrix_svd_solve(const MHO_linalg_matrix<XValueType>& U, const MHO_li
     x = work;
 }
 
-template< typename XValueType = double >
-void MHO_linalg_matrix_print(const MHO_linalg_matrix<XValueType>& m)
+template< typename XValueType = double > void MHO_linalg_matrix_print(const MHO_linalg_matrix< XValueType >& m)
 {
     for(unsigned int i = 0; i < m.n_rows(); i++) // rows
     {
@@ -1034,23 +1057,21 @@ void MHO_linalg_matrix_print(const MHO_linalg_matrix<XValueType>& m)
     }
 }
 
-template< typename XValueType = double >
-void MHO_linalg_vector_print(const MHO_linalg_vector<XValueType>& m)
+template< typename XValueType = double > void MHO_linalg_vector_print(const MHO_linalg_vector< XValueType >& m)
 {
-    for(unsigned int j = 0; j < m.size() - 1 ; j++)
+    for(unsigned int j = 0; j < m.size() - 1; j++)
     {
         std::cout << m(j) << ", ";
     }
-    std::cout << m( m.size() - 1 );
+    std::cout << m(m.size() - 1);
     std::cout << std::endl;
 }
 
 //build diagonal matrix from a vector
-template<typename XValueType>
-MHO_linalg_matrix<XValueType> MHO_linalg_diag_matrix(const MHO_linalg_vector<XValueType>& s)
+template< typename XValueType > MHO_linalg_matrix< XValueType > MHO_linalg_diag_matrix(const MHO_linalg_vector< XValueType >& s)
 {
     unsigned int n = s.size();
-    MHO_linalg_matrix<XValueType> D(n, n);
+    MHO_linalg_matrix< XValueType > D(n, n);
     D.zero();
     for(unsigned int i = 0; i < n; ++i)
     {
@@ -1060,10 +1081,10 @@ MHO_linalg_matrix<XValueType> MHO_linalg_diag_matrix(const MHO_linalg_vector<XVa
 }
 
 //construct the transpose of a matrix
-template<typename XValueType>
-MHO_linalg_matrix<XValueType> MHO_linalg_transpose_matrix(const MHO_linalg_matrix<XValueType>& A)
+template< typename XValueType >
+MHO_linalg_matrix< XValueType > MHO_linalg_transpose_matrix(const MHO_linalg_matrix< XValueType >& A)
 {
-    MHO_linalg_matrix<XValueType> AT(A.n_cols(), A.n_rows());
+    MHO_linalg_matrix< XValueType > AT(A.n_cols(), A.n_rows());
     for(unsigned int i = 0; i < A.n_rows(); ++i)
     {
         for(unsigned int j = 0; j < A.n_cols(); ++j)
@@ -1074,8 +1095,6 @@ MHO_linalg_matrix<XValueType> MHO_linalg_transpose_matrix(const MHO_linalg_matri
     return AT;
 }
 
-
-
-} //end namespace
+} // namespace hops
 
 #endif /*! end of include guard: MHO_LinearAlgebraUtilities_HH__ */

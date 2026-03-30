@@ -15,8 +15,8 @@
 #include "MHO_TableContainer.hh"
 #include "MHO_TemplateTypenameDeduction.hh"
 
-#include "jlcxx/jlcxx.hpp"
 #include "jlcxx/array.hpp"
+#include "jlcxx/jlcxx.hpp"
 #include "jlcxx/stl.hpp"
 
 namespace hops
@@ -68,16 +68,16 @@ template< typename XTableType > class MHO_JlTableContainer
          *
          * Do NOT resize!, push!, or append! to the returned object.
          */
-        jlcxx::ArrayRef< value_type, RANK > GetNDArray()
-        {
-            return GetNDArray_impl(std::make_index_sequence< RANK >{});
-        }
+        jlcxx::ArrayRef< value_type, RANK > GetNDArray() { return GetNDArray_impl(std::make_index_sequence< RANK >{}); }
 
         //! Logical dimensions in C++ order (dim[0]=slowest, dim[RANK-1]=fastest).
         std::vector< int64_t > GetDimensions() const
         {
             std::vector< int64_t > dims(RANK);
-            for(std::size_t i = 0; i < RANK; i++) { dims[i] = static_cast< int64_t >(fTable->GetDimension(i)); }
+            for(std::size_t i = 0; i < RANK; i++)
+            {
+                dims[i] = static_cast< int64_t >(fTable->GetDimension(i));
+            }
             return dims;
         }
 
@@ -154,8 +154,7 @@ template< typename XTableType > class MHO_JlTableContainer
             }
             else
             {
-                msg_error("julia_bindings",
-                          "axis index: " << axis_index << " exceeds table rank of: " << RANK << eom);
+                msg_error("julia_bindings", "axis index: " << axis_index << " exceeds table rank of: " << RANK << eom);
             }
         }
 
@@ -196,20 +195,17 @@ template< typename XTableType > class MHO_JlTableContainer
             }
             else
             {
-                msg_error("julia_bindings",
-                          "axis index: " << index << " exceeds table rank of: " << RANK << eom);
+                msg_error("julia_bindings", "axis index: " << index << " exceeds table rank of: " << RANK << eom);
             }
         }
 
     private:
         // Reverse dimensions at compile time so Julia column-major <-> C++ row-major.
-        template< std::size_t... I >
-        jlcxx::ArrayRef< value_type, RANK > GetNDArray_impl(std::index_sequence< I... >)
+        template< std::size_t... I > jlcxx::ArrayRef< value_type, RANK > GetNDArray_impl(std::index_sequence< I... >)
         {
             // I = 0,1,...,RANK-1  ->  RANK-1-I = RANK-1,...,1,0  (reversed)
-            return jlcxx::ArrayRef< value_type, RANK >(
-                fTable->GetData(),
-                static_cast< std::size_t >(fTable->GetDimension(RANK - 1 - I))...);
+            return jlcxx::ArrayRef< value_type, RANK >(fTable->GetData(),
+                                                       static_cast< std::size_t >(fTable->GetDimension(RANK - 1 - I))...);
         }
 
         // Functor: return the axis value type name as a string
@@ -304,7 +300,10 @@ template< typename XTableType > class MHO_JlTableContainer
                 template< typename XAxisType > void operator()(const XAxisType& axis)
                 {
                     fJSON = mho_json::array();
-                    for(size_t i = 0; i < axis.GetSize(); i++) { fJSON.push_back(axis[i]); }
+                    for(size_t i = 0; i < axis.GetSize(); i++)
+                    {
+                        fJSON.push_back(axis[i]);
+                    }
                 }
 
                 std::string GetJSON() const { return fJSON.dump(); }
@@ -320,10 +319,7 @@ template< typename XTableType > class MHO_JlTableContainer
                 JlAxisMetaDataFiller(){};
                 ~JlAxisMetaDataFiller(){};
 
-                template< typename XAxisType > void operator()(const XAxisType& axis)
-                {
-                    fJSON = axis.GetMetaDataAsJSON();
-                }
+                template< typename XAxisType > void operator()(const XAxisType& axis) { fJSON = axis.GetMetaDataAsJSON(); }
 
                 std::string GetJSON() const { return fJSON.dump(); }
 
@@ -338,10 +334,7 @@ template< typename XTableType > class MHO_JlTableContainer
                 JlAxisMetaDataSetter(const std::string& json_str): fJSON(mho_json::parse(json_str)){};
                 ~JlAxisMetaDataSetter(){};
 
-                template< typename XAxisType > void operator()(XAxisType& axis)
-                {
-                    axis.SetMetaDataAsJSON(fJSON);
-                }
+                template< typename XAxisType > void operator()(XAxisType& axis) { axis.SetMetaDataAsJSON(fJSON); }
 
             private:
                 mho_json fJSON;
@@ -363,8 +356,8 @@ template< typename XTableType > class MHO_JlTableContainer
                     }
                     else
                     {
-                        msg_error("julia_bindings", "axis coordinate index out of bounds: "
-                                                        << fIndex << " >= " << axis.GetSize() << eom);
+                        msg_error("julia_bindings",
+                                  "axis coordinate index out of bounds: " << fIndex << " >= " << axis.GetSize() << eom);
                     }
                 }
 
@@ -386,31 +379,30 @@ template< typename XTableType > class MHO_JlTableContainer
 namespace hops
 {
 
-template< typename XTableType >
-void DeclareJlTableContainer(jlcxx::Module& mod, const std::string& jl_type_name)
+template< typename XTableType > void DeclareJlTableContainer(jlcxx::Module& mod, const std::string& jl_type_name)
 {
     mod.add_type< MHO_JlTableContainer< XTableType > >(jl_type_name)
-        .method("get_rank",          &MHO_JlTableContainer< XTableType >::GetRank)
-        .method("get_classname",     &MHO_JlTableContainer< XTableType >::GetClassName)
-        .method("get_dimension",     &MHO_JlTableContainer< XTableType >::GetDimension)
+        .method("get_rank", &MHO_JlTableContainer< XTableType >::GetRank)
+        .method("get_classname", &MHO_JlTableContainer< XTableType >::GetClassName)
+        .method("get_dimension", &MHO_JlTableContainer< XTableType >::GetDimension)
         // get_array returns an N-dimensional Julia array (zero-copy, dims reversed for column-major).
-        .method("get_array",           &MHO_JlTableContainer< XTableType >::GetNDArray)
+        .method("get_array", &MHO_JlTableContainer< XTableType >::GetNDArray)
         // get_dimensions returns C++ logical dims [dim0, ..., dimN-1] for reference.
-        .method("get_dimensions",      &MHO_JlTableContainer< XTableType >::GetDimensions)
-        .method("get_metadata",        &MHO_JlTableContainer< XTableType >::GetMetaDataJSON)
-        .method("set_metadata",        &MHO_JlTableContainer< XTableType >::SetMetaDataJSON)
+        .method("get_dimensions", &MHO_JlTableContainer< XTableType >::GetDimensions)
+        .method("get_metadata", &MHO_JlTableContainer< XTableType >::GetMetaDataJSON)
+        .method("set_metadata", &MHO_JlTableContainer< XTableType >::SetMetaDataJSON)
         // get_axis returns axis labels as a JSON string (kept for compatibility).
-        .method("get_axis",            &MHO_JlTableContainer< XTableType >::GetCoordinateAxisJSON)
+        .method("get_axis", &MHO_JlTableContainer< XTableType >::GetCoordinateAxisJSON)
         // Typed axis accessors - prefer these over get_axis to avoid JSON round-trips.
         //   get_axis_value_type  -> "string" | "double" | "float" | "integer" | "unknown"
         //   get_axis_doubles     -> StdVector{Float64}   (use collect() for a plain Julia Vector)
         //   get_axis_strings     -> StdVector{StdString} (use String.() for a plain Julia Vector)
         .method("get_axis_value_type", &MHO_JlTableContainer< XTableType >::GetAxisValueTypeName)
-        .method("get_axis_doubles",    &MHO_JlTableContainer< XTableType >::GetCoordinateAxisAsDoubles)
-        .method("get_axis_strings",    &MHO_JlTableContainer< XTableType >::GetCoordinateAxisAsStrings)
-        .method("get_axis_metadata",   &MHO_JlTableContainer< XTableType >::GetCoordinateAxisMetaDataJSON)
-        .method("set_axis_metadata",   &MHO_JlTableContainer< XTableType >::SetCoordinateAxisMetaDataJSON)
-        .method("set_axis_label",      &MHO_JlTableContainer< XTableType >::SetCoordinateLabelFromJSON);
+        .method("get_axis_doubles", &MHO_JlTableContainer< XTableType >::GetCoordinateAxisAsDoubles)
+        .method("get_axis_strings", &MHO_JlTableContainer< XTableType >::GetCoordinateAxisAsStrings)
+        .method("get_axis_metadata", &MHO_JlTableContainer< XTableType >::GetCoordinateAxisMetaDataJSON)
+        .method("set_axis_metadata", &MHO_JlTableContainer< XTableType >::SetCoordinateAxisMetaDataJSON)
+        .method("set_axis_label", &MHO_JlTableContainer< XTableType >::SetCoordinateLabelFromJSON);
 }
 
 } // namespace hops

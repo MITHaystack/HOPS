@@ -26,7 +26,6 @@ void MHO_PythonPluginInterface::Initialize()
     }
 }
 
-
 void MHO_PythonPluginInterface::Finalize()
 {
     if(fInitialized)
@@ -36,9 +35,7 @@ void MHO_PythonPluginInterface::Finalize()
     }
 }
 
-
-void 
-MHO_PythonPluginInterface::Visit(MHO_FringeFitter* fitter)
+void MHO_PythonPluginInterface::Visit(MHO_FringeFitter* fitter)
 {
     auto build_man = fitter->GetOperatorBuildManager();
     build_man->AddBuilderType< MHO_PythonOperatorBuilder >("python_labeling", "python_labeling");
@@ -49,5 +46,4 @@ MHO_PythonPluginInterface::Visit(MHO_FringeFitter* fitter)
     build_man->AddBuilderType< MHO_PythonOperatorBuilder >("python_finalize", "python_finalize");
 }
 
-
-}
+} // namespace hops

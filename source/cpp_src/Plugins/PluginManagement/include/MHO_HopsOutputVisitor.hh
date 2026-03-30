@@ -3,7 +3,7 @@
 
 #include "MHO_FringeFitter.hh"
 
-namespace hops 
+namespace hops
 {
 
 class MHO_HopsOutputVisitor: public MHO_FringeFitterVisitor
@@ -14,13 +14,10 @@ class MHO_HopsOutputVisitor: public MHO_FringeFitterVisitor
 
         virtual void Visit(MHO_FringeFitter* fitter) override;
 
-
     protected:
-
         int WriteDataObjects(MHO_FringeData* data, std::string filename);
-
 };
 
-}//end namespace
+} // namespace hops
 
 #endif /* end of include guard: MHO_HopsOutputVisitor_HH__ */

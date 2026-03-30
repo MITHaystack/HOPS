@@ -251,7 +251,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
             fCoarseMBD = fMBDAxis(fMBDMaxBin);
             fCoarseSBD = fSBDAxis(fSBDMaxBin);
             fCoarseDR = fDRAxis(fDRMaxBin);
-            
+
             return true;
         }
         else
@@ -263,8 +263,6 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
     {
         msg_error("calibration", "MHO_MBDelaySearch could not execute, intialization failure." << eom);
     }
-
-    
 
     return false;
 };

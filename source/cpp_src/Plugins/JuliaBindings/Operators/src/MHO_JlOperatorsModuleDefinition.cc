@@ -12,21 +12,19 @@ JLCXX_MODULE define_julia_module(jlcxx::Module& mod)
     // ------------------------------------------------------------------
     mod.add_type< MHO_Operator >("MHO_Operator")
         .method("initialize", &MHO_Operator::Initialize)
-        .method("execute",    &MHO_Operator::Execute);
+        .method("execute", &MHO_Operator::Execute);
 
     // ------------------------------------------------------------------
     // MHO_JlGenericOperator: calls a Julia function(fd) per Execute().
     // The fringe data interface is passed directly as the first argument.
     // ------------------------------------------------------------------
-    mod.add_type< MHO_JlGenericOperator >("JlGenericOperator",
-                                           jlcxx::julia_base_type< MHO_Operator >())
+    mod.add_type< MHO_JlGenericOperator >("JlGenericOperator", jlcxx::julia_base_type< MHO_Operator >())
         .constructor<>()
-        .method("set_julia_function",  &hops::MHO_JlGenericOperator::SetJuliaFunction)
-        .method("set_module_path",     &hops::MHO_JlGenericOperator::SetModulePath)
-        .method("set_function_name",   &hops::MHO_JlGenericOperator::SetFunctionName)
-        .method("get_module_path",     &hops::MHO_JlGenericOperator::GetModulePath)
-        .method("get_function_name",   &hops::MHO_JlGenericOperator::GetFunctionName)
-        .method("initialize",          &hops::MHO_JlGenericOperator::Initialize)
-        .method("execute",             &hops::MHO_JlGenericOperator::Execute);
-
+        .method("set_julia_function", &hops::MHO_JlGenericOperator::SetJuliaFunction)
+        .method("set_module_path", &hops::MHO_JlGenericOperator::SetModulePath)
+        .method("set_function_name", &hops::MHO_JlGenericOperator::SetFunctionName)
+        .method("get_module_path", &hops::MHO_JlGenericOperator::GetModulePath)
+        .method("get_function_name", &hops::MHO_JlGenericOperator::GetFunctionName)
+        .method("initialize", &hops::MHO_JlGenericOperator::Initialize)
+        .method("execute", &hops::MHO_JlGenericOperator::Execute);
 }

@@ -61,7 +61,6 @@ class MHO_VexInfoExtractor
          */
         static void extract_clock_model(const mho_json& vexInfo, MHO_ParameterStore* paramStore);
 
-
         static void extract_station_identities(const mho_json& vexInfo);
 
         /**

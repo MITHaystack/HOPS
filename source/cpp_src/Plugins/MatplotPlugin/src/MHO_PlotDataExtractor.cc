@@ -2,13 +2,10 @@
 #include <iomanip>
 #include <sstream>
 
-
-namespace hops 
+namespace hops
 {
 
-
-std::vector< double > 
-MHO_PlotDataExtractor::extract_vector(const mho_json& plot_dict, const std::string& key)
+std::vector< double > MHO_PlotDataExtractor::extract_vector(const mho_json& plot_dict, const std::string& key)
 {
     try
     {
@@ -27,24 +24,21 @@ MHO_PlotDataExtractor::extract_vector(const mho_json& plot_dict, const std::stri
     return std::vector< double >();
 }
 
-std::vector< double > 
-MHO_PlotDataExtractor::create_index_vector(size_t size)
+std::vector< double > MHO_PlotDataExtractor::create_index_vector(size_t size)
 {
     std::vector< double > indices(size);
     std::iota(indices.begin(), indices.end(), 0.0);
     return indices;
 }
 
-std::string 
-MHO_PlotDataExtractor::format_scientific(double value, int precision)
+std::string MHO_PlotDataExtractor::format_scientific(double value, int precision)
 {
     std::ostringstream oss;
     oss << std::scientific << std::setprecision(precision) << value;
     return oss.str();
 }
 
-std::string 
-MHO_PlotDataExtractor::format_standard(double value, int minDigits, int roundPlaces)
+std::string MHO_PlotDataExtractor::format_standard(double value, int minDigits, int roundPlaces)
 {
     double scale = std::pow(10.0, roundPlaces);
     double rounded = std::round(value * scale) / scale;
@@ -54,8 +48,7 @@ MHO_PlotDataExtractor::format_standard(double value, int minDigits, int roundPla
     return oss.str();
 }
 
-int 
-MHO_PlotDataExtractor::extract_int(const mho_json& plot_dict, const std::string& key, int default_value)
+int MHO_PlotDataExtractor::extract_int(const mho_json& plot_dict, const std::string& key, int default_value)
 {
     try
     {
@@ -78,8 +71,7 @@ MHO_PlotDataExtractor::extract_int(const mho_json& plot_dict, const std::string&
     return default_value;
 }
 
-std::string 
-MHO_PlotDataExtractor::extract_string(const mho_json& plot_dict, const std::string& key,
+std::string MHO_PlotDataExtractor::extract_string(const mho_json& plot_dict, const std::string& key,
                                                   const std::string& default_value)
 {
     try
@@ -99,8 +91,7 @@ MHO_PlotDataExtractor::extract_string(const mho_json& plot_dict, const std::stri
     return default_value;
 }
 
-double 
-MHO_PlotDataExtractor::extract_double(const mho_json& plot_dict, const std::string& key, double default_value)
+double MHO_PlotDataExtractor::extract_double(const mho_json& plot_dict, const std::string& key, double default_value)
 {
     try
     {
@@ -123,5 +114,4 @@ MHO_PlotDataExtractor::extract_double(const mho_json& plot_dict, const std::stri
     return default_value;
 }
 
-
-}
+} // namespace hops

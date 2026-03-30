@@ -5,8 +5,8 @@
 #endif
 
 #ifdef USE_PYBIND11
-    #include "MHO_PythonPluginInterface.hh"
     #include "MHO_DefaultPythonPlotVisitor.hh"
+    #include "MHO_PythonPluginInterface.hh"
 #endif
 
 #ifdef HOPS_USE_JULIA
@@ -15,18 +15,14 @@
 
 namespace hops
 {
-    
-    
-MHO_PluginVisitorFactory::MHO_PluginVisitorFactory():
-    fPluginsInitialized(false),
-    fPlotInitialized(false),
-    fOutputInitialized(false),
-    fParameterStore(nullptr)
+
+MHO_PluginVisitorFactory::MHO_PluginVisitorFactory()
+    : fPluginsInitialized(false), fPlotInitialized(false), fOutputInitialized(false), fParameterStore(nullptr)
 {}
 
 MHO_PluginVisitorFactory::~MHO_PluginVisitorFactory()
 {
-    for(std::size_t i = 0; i<fPluginVisitors.size(); i++)
+    for(std::size_t i = 0; i < fPluginVisitors.size(); i++)
     {
         delete fPluginVisitors[i];
         fPluginVisitors[i] = nullptr;
@@ -43,42 +39,44 @@ MHO_PluginVisitorFactory::~MHO_PluginVisitorFactory()
     fOutputInitialized = false;
 }
 
-void 
-MHO_PluginVisitorFactory::GetPluginVisitors(std::vector< MHO_FringeFitterVisitor* >& visitors)
+void MHO_PluginVisitorFactory::GetPluginVisitors(std::vector< MHO_FringeFitterVisitor* >& visitors)
 {
-    if(!fPluginsInitialized){ConstructPlugins();}
+    if(!fPluginsInitialized)
+    {
+        ConstructPlugins();
+    }
     visitors.clear();
     visitors = fPluginVisitors;
 }
 
-
-void 
-MHO_PluginVisitorFactory::GetPlotVisitors(std::vector< MHO_FringePlotVisitor* >& visitors)
+void MHO_PluginVisitorFactory::GetPlotVisitors(std::vector< MHO_FringePlotVisitor* >& visitors)
 {
-    if(!fPlotInitialized){ConstructPlotters();}
+    if(!fPlotInitialized)
+    {
+        ConstructPlotters();
+    }
     visitors.clear();
     visitors = fPlotVisitors;
 }
 
-
-void 
-MHO_PluginVisitorFactory::GetOutputVisitors(std::vector< MHO_FringeFitterVisitor*>& visitors)
+void MHO_PluginVisitorFactory::GetOutputVisitors(std::vector< MHO_FringeFitterVisitor* >& visitors)
 {
-    if(!fOutputInitialized){ConstructOutputVisitors();}
+    if(!fOutputInitialized)
+    {
+        ConstructOutputVisitors();
+    }
     visitors.clear();
     visitors = fOutputVisitors;
 }
 
-
-void 
-MHO_PluginVisitorFactory::ConstructPlugins()
+void MHO_PluginVisitorFactory::ConstructPlugins()
 {
     if(fParameterStore != nullptr)
     {
-        #ifdef HOPS_USE_JULIA
-        if( fParameterStore->IsPresent("/config/plugins/activate_julia") )
+#ifdef HOPS_USE_JULIA
+        if(fParameterStore->IsPresent("/config/plugins/activate_julia"))
         {
-            bool need_julia_plugin = fParameterStore->GetAs<bool>("/config/plugins/activate_julia");
+            bool need_julia_plugin = fParameterStore->GetAs< bool >("/config/plugins/activate_julia");
             if(need_julia_plugin)
             {
                 msg_debug("plugins", "constructing the julia plugin interface" << eom);
@@ -86,14 +84,13 @@ MHO_PluginVisitorFactory::ConstructPlugins()
                 fPluginVisitors.push_back(jl_visitor);
             }
         }
-        #endif 
-        
-        
-        #ifdef USE_PYBIND11
+#endif
+
+#ifdef USE_PYBIND11
         bool need_python_plugin = false;
-        if( fParameterStore->IsPresent("/config/plugins/activate_python") )
+        if(fParameterStore->IsPresent("/config/plugins/activate_python"))
         {
-            need_python_plugin |= fParameterStore->GetAs<bool>("/config/plugins/activate_python");
+            need_python_plugin |= fParameterStore->GetAs< bool >("/config/plugins/activate_python");
         }
 
         std::string plot_backend;
@@ -110,13 +107,11 @@ MHO_PluginVisitorFactory::ConstructPlugins()
             fPluginVisitors.push_back(py_visitor);
         }
 
-        #endif 
+#endif
     }
 }
 
-
-void 
-MHO_PluginVisitorFactory::ConstructPlotters()
+void MHO_PluginVisitorFactory::ConstructPlotters()
 {
     if(fParameterStore != nullptr)
     {
@@ -126,43 +121,36 @@ MHO_PluginVisitorFactory::ConstructPlotters()
         MHO_FringePlotVisitor* plotter = fPlotterFactory.ConstructPlotter(plot_backend);
         if(plotter)
         {
-            msg_debug("plugin", "plot factory is adding a plotter with the backend: "<< plot_backend << eom);
+            msg_debug("plugin", "plot factory is adding a plotter with the backend: " << plot_backend << eom);
             fPlotVisitors.push_back(plotter);
         }
     }
 }
 
-
-void 
-MHO_PluginVisitorFactory::ConstructOutputVisitors()
+void MHO_PluginVisitorFactory::ConstructOutputVisitors()
 {
-    //currently, we assume only one format is requested at a time 
+    //currently, we assume only one format is requested at a time
     //however, there is no limitation to having multiple formats generated at the same time if desired
-    
+
     std::string output_format = "hops4";
     if(fParameterStore != nullptr)
     {
         bool use_mk4_output = false;
         fParameterStore->Get("/cmdline/mk4format_output", use_mk4_output);
-        if(use_mk4_output){output_format = "mark4";}
-        
+        if(use_mk4_output)
+        {
+            output_format = "mark4";
+        }
+
         MHO_FringeFitterVisitor* output_visitor = nullptr;
         output_visitor = fOutputFactory.GetOutputVisitor(output_format);
 
         if(output_visitor)
         {
-            msg_debug("plugin", "output factory is adding format: "<< output_format << eom);
+            msg_debug("plugin", "output factory is adding format: " << output_format << eom);
             fOutputVisitors.push_back(output_visitor);
         }
     }
 }
-
-
-
-
-
-
-
-
 
 } // namespace hops

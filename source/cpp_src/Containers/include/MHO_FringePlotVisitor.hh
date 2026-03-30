@@ -35,9 +35,8 @@ class MHO_FringePlotVisitor: public MHO_FringeFitterVisitor
          * @note This is a virtual function.
          */
         virtual void Plot(MHO_FringeData* data) = 0;
-        
-    protected:
 
+    protected:
 };
 
 } // namespace hops

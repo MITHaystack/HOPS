@@ -43,7 +43,6 @@ bool MHO_FringeControlInitialization::need_ion_search(mho_json* control)
     return false;
 }
 
-
 bool MHO_FringeControlInitialization::need_python_plugin(mho_json* control)
 {
     //loop over control statements, find statements which contain ionospheric
@@ -186,7 +185,7 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
 
     bool need_python_plugin = MHO_FringeControlInitialization::need_python_plugin(&control_statements);
     paramStore->Set("/config/plugins/activate_python", need_python_plugin);
-    
+
     bool need_julia_plugin = MHO_FringeControlInitialization::need_julia_plugin(&control_statements);
     paramStore->Set("/config/plugins/activate_julia", need_julia_plugin);
 
@@ -198,7 +197,7 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
 
     //the control statement 'skip' is special because we want to bail out
     //as soon as possible (before reading in data) in order to save time
-    if(paramStore->IsPresent("/control/flagging/skip") )
+    if(paramStore->IsPresent("/control/flagging/skip"))
     {
         bool do_skip = paramStore->GetAs< bool >("/control/flagging/skip");
         if(do_skip)

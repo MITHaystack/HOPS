@@ -42,7 +42,7 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
 
         void SetPolarizationSwapPair(std::string pol1, std::string pol2)
         {
-            //set the polarization labels to swap, all instances of pol1 will be replaced by pol2 
+            //set the polarization labels to swap, all instances of pol1 will be replaced by pol2
             //and all instances of pol2 will be replaced with pol1
             if(pol1.size() == 1 && pol2.size() == 1)
             {
@@ -50,10 +50,12 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
                 fPol2 = pol2;
                 fValid = true;
             }
-            else 
+            else
             {
                 fValid = false;
-                msg_error("calibration", "MHO_PolarizationRelabeler, only single character polarization labels are supported, ignoring." << eom);
+                msg_error("calibration",
+                          "MHO_PolarizationRelabeler, only single character polarization labels are supported, ignoring."
+                              << eom);
             }
         }
 
@@ -101,14 +103,20 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
                 //need to use the user provided frequency <-> channel label map
                 auto pol_axis_ptr = &(std::get< MTPCAL_POL_AXIS >(*in));
                 std::size_t npols = pol_axis_ptr->GetSize();
-                if( IsApplicable(in) )
+                if(IsApplicable(in))
                 {
-                    for(std::size_t i=0; i<npols; i++)
+                    for(std::size_t i = 0; i < npols; i++)
                     {
                         //swap any instances of pol1 <-> pol2
                         std::string pol = pol_axis_ptr->at(i);
-                        if(pol == fPol1){pol = fPol2;}
-                        else if(pol == fPol2){pol = fPol1;}
+                        if(pol == fPol1)
+                        {
+                            pol = fPol2;
+                        }
+                        else if(pol == fPol2)
+                        {
+                            pol = fPol1;
+                        }
                         pol_axis_ptr->at(i) = pol;
                     }
                 }
@@ -131,19 +139,18 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
         }
 
     private:
-
         //keys for tag retrieval
         std::string fStationKey;
         std::string fStationMk4IDKey;
 
-        //data 
+        //data
         std::string fStationIdentity;
         std::string fPol1;
         std::string fPol2;
         bool fValid;
 
         //determines if to apply the pol relabelling, for the station (ref or rem)
-        bool IsApplicable( const XArrayType* in)
+        bool IsApplicable(const XArrayType* in)
         {
             bool apply_correction = false;
             std::string val;
@@ -174,8 +181,6 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
             }
             return apply_correction;
         }
-
-
 };
 
 } // namespace hops

@@ -83,7 +83,7 @@ class MHO_DirectoryInterface
         /**
          * @brief Extracts the file extension from a file name
          *
-         * @param aFilename 
+         * @param aFilename
          * @return string containing the file extension, empty if no extension
          */
         static std::string GetFileExtension(const std::string& aFilename);
@@ -137,7 +137,7 @@ class MHO_DirectoryInterface
          * @param aSubDirList Output parameter: vector to store subdirectory list
          */
         void GetSubDirectoryList(std::vector< std::string >& aSubDirList) const;
-        
+
         /**
          * @brief Getter for files matching extention
          *

@@ -136,7 +136,7 @@ void MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Para
 
 void MHO_VexInfoExtractor::extract_station_identities(const mho_json& vexInfo)
 {
-    if( vexInfo.contains("$SITE") )
+    if(vexInfo.contains("$SITE"))
     {
         for(auto elem = vexInfo["$SITE"].begin(); elem != vexInfo["$SITE"].end(); elem++)
         {

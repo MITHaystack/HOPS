@@ -97,7 +97,8 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
         }
 
         //multitone pcal not triggered for this station
-        msg_debug("initialization", "MHO_MultitonePhaseCorrection will not be applied to station: " << station_id << "." << eom);
+        msg_debug("initialization",
+                  "MHO_MultitonePhaseCorrection will not be applied to station: " << station_id << "." << eom);
         return false;
     }
     return false;

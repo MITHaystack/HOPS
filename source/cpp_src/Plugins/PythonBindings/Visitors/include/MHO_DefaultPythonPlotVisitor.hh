@@ -28,14 +28,10 @@ class MHO_DefaultPythonPlotVisitor: public MHO_FringePlotVisitor
         virtual void Plot(MHO_FringeData* data) override;
 
     protected:
-
-        std::string fModulePath; //python module to import (. syntax works, e.g. hops_visualization.fourfit_plot)
+        std::string fModulePath;   //python module to import (. syntax works, e.g. hops_visualization.fourfit_plot)
         std::string fFunctionName; //python function to call (must be a free function that accepts MHO_PyFringeDataInterface)
-        
+
         virtual void ConstructPlot(MHO_FringeData* data);
-
-
-
 };
 
 } // namespace hops

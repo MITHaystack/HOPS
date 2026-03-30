@@ -195,8 +195,8 @@ class MHO_OperatorToolbox
             {
                 std::string op_name = it->first;
                 MHO_Operator* op_ptr = it->second;
-                
-                //brute force search for category 
+
+                //brute force search for category
                 std::string op_category = "none";
                 for(auto it2 = fCategoryToOperatorMap.begin(); it2 != fCategoryToOperatorMap.end(); it2++)
                 {
@@ -207,10 +207,9 @@ class MHO_OperatorToolbox
                     }
                 }
 
-                std::cout<<"operator: "<<op_name<<", category: "<<op_category<<std::endl;
+                std::cout << "operator: " << op_name << ", category: " << op_category << std::endl;
             }
         }
-
 
     private:
         /**

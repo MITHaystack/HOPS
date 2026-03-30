@@ -26,11 +26,11 @@ MHO_FringeFitter* MHO_FringeFitterFactory::ConstructFringeFitter()
 
     //determine which fringe fitter to construct
     bool do_spectral_line = false;
-    if(fFringeData->GetParameterStore()->IsPresent("/control/fit/spectral_line") )
+    if(fFringeData->GetParameterStore()->IsPresent("/control/fit/spectral_line"))
     {
         fFringeData->GetParameterStore()->Get("/control/fit/spectral_line", do_spectral_line);
     }
-    
+
     bool do_ion = false;
     fFringeData->GetParameterStore()->Get("/config/do_ion", do_ion);
 

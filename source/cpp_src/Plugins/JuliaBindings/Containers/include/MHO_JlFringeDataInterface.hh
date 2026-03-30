@@ -32,16 +32,16 @@ class MHO_JlFringeDataInterface
 {
     public:
         MHO_JlFringeDataInterface(MHO_FringeData* fdata)
-            : fFringeData(fdata),
-              fScanInterface(fdata->GetScanDataStore()),
-              fContainerInterface(fdata->GetContainerStore()),
+            : fFringeData(fdata), fScanInterface(fdata->GetScanDataStore()), fContainerInterface(fdata->GetContainerStore()),
               fParameterInterface(fdata->GetParameterStore()){};
 
         virtual ~MHO_JlFringeDataInterface(){};
 
         MHO_JlParameterStoreInterface& GetParameterStore() { return fParameterInterface; }
+
         MHO_JlContainerStoreInterface& GetContainerStore() { return fContainerInterface; }
-        MHO_JlScanStoreInterface&      GetScanStore()      { return fScanInterface; }
+
+        MHO_JlScanStoreInterface& GetScanStore() { return fScanInterface; }
 
         //! Return the vex/root file data as a JSON string.
         std::string GetVexJSON() const
@@ -59,11 +59,10 @@ class MHO_JlFringeDataInterface
 
     private:
         MHO_FringeData* fFringeData;
-        MHO_JlScanStoreInterface      fScanInterface;
+        MHO_JlScanStoreInterface fScanInterface;
         MHO_JlContainerStoreInterface fContainerInterface;
         MHO_JlParameterStoreInterface fParameterInterface;
 };
-
 
 inline void DeclareJlFringeDataInterface(jlcxx::Module& mod, const std::string& jl_type_name)
 {
@@ -71,9 +70,9 @@ inline void DeclareJlFringeDataInterface(jlcxx::Module& mod, const std::string& 
         // Not constructable from Julia (wraps a C++-owned object).
         .method("get_parameter_store", &hops::MHO_JlFringeDataInterface::GetParameterStore)
         .method("get_container_store", &hops::MHO_JlFringeDataInterface::GetContainerStore)
-        .method("get_scan_store",      &hops::MHO_JlFringeDataInterface::GetScanStore)
-        .method("get_vex",             &hops::MHO_JlFringeDataInterface::GetVexJSON)
-        .method("get_plot_data",       &hops::MHO_JlFringeDataInterface::GetPlotDataJSON);
+        .method("get_scan_store", &hops::MHO_JlFringeDataInterface::GetScanStore)
+        .method("get_vex", &hops::MHO_JlFringeDataInterface::GetVexJSON)
+        .method("get_plot_data", &hops::MHO_JlFringeDataInterface::GetPlotDataJSON);
 }
 
 } // namespace hops

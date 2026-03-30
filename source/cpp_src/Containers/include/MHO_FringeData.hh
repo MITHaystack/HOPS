@@ -81,7 +81,6 @@ class MHO_FringeData
          */
         mho_json& GetPlotData() { return fPlotData; }
 
-
         /**
          * @brief Constructs a fringe file name string from given parameters.
          *
@@ -96,9 +95,9 @@ class MHO_FringeData
          * @return A string representing the constructed fringe file name.
          */
         static std::string ConstructFrngFileName(const std::string directory, const std::string& baseline,
-                                              const std::string& ref_station, const std::string& rem_station,
-                                              const std::string& frequency_group, const std::string& polprod,
-                                              const std::string& root_code, int seq_no);
+                                                 const std::string& ref_station, const std::string& rem_station,
+                                                 const std::string& frequency_group, const std::string& polprod,
+                                                 const std::string& root_code, int seq_no);
 
         /**
          * @brief Constructs a temporary file name using provided parameters and concatenation.
@@ -114,13 +113,11 @@ class MHO_FringeData
          * @return The constructed temporary file name as a string.
          */
         static std::string ConstructTempFileName(const std::string directory, const std::string& baseline,
-                                              const std::string& ref_station, const std::string& rem_station,
-                                              const std::string& frequency_group, const std::string& polprod,
-                                              const std::string& root_code, const std::string& temp_id);
-
+                                                 const std::string& ref_station, const std::string& rem_station,
+                                                 const std::string& frequency_group, const std::string& polprod,
+                                                 const std::string& root_code, const std::string& temp_id);
 
     protected:
-
         //data objects
         MHO_ParameterStore fParameterStore; //stores various parameters using string keys
         MHO_ScanDataStore fScanStore;       //provides access to data associated with this scan

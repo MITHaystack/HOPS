@@ -46,14 +46,11 @@ void MHO_JuliaPluginInterface::Initialize()
         // JULIA_MODULES_DIR is injected as a compile-time string by CMake.
 
         // Helper lambda: evaluate one Julia statement, log+clear any exception, return false on failure.
-        auto jl_eval_checked = [](const char* label, const char* code) -> bool 
-        {
+        auto jl_eval_checked = [](const char* label, const char* code) -> bool {
             jl_eval_string(code);
             if(jl_exception_occurred())
             {
-                msg_error("julia_bindings",
-                          "Julia init step \"" << label << "\" failed: "
-                              << jl_exception_message() << eom);
+                msg_error("julia_bindings", "Julia init step \"" << label << "\" failed: " << jl_exception_message() << eom);
                 jl_exception_clear();
                 return false;
             }
@@ -65,12 +62,11 @@ void MHO_JuliaPluginInterface::Initialize()
         ok &= jl_eval_checked("wrapmodule containers", "@wrapmodule(() -> \"" JULIA_MODULES_DIR "/libjlMHO_Containers.so\")");
         ok &= jl_eval_checked("initcxx containers", "@initcxx");
         // Load operators into HOPSOps submodule (avoids the @wrapmodule guard on Main)
-        ok &= jl_eval_checked("wrapmodule operators",
-                              "module HOPSOps\n"
-                              "  using CxxWrap\n"
-                              "  @wrapmodule(() -> \"" JULIA_MODULES_DIR "/libjlMHO_Operators.so\")\n"
-                              "  @initcxx\n"
-                              "end");
+        ok &= jl_eval_checked("wrapmodule operators", "module HOPSOps\n"
+                                                      "  using CxxWrap\n"
+                                                      "  @wrapmodule(() -> \"" JULIA_MODULES_DIR "/libjlMHO_Operators.so\")\n"
+                                                      "  @initcxx\n"
+                                                      "end");
 
         if(!ok)
         {
@@ -81,19 +77,16 @@ void MHO_JuliaPluginInterface::Initialize()
     }
 }
 
-
 void MHO_JuliaPluginInterface::Finalize()
 {
     if(fInitialized)
     {
-        jl_atexit_hook(0); 
+        jl_atexit_hook(0);
         fInitialized = false;
     }
 }
 
-
-void 
-MHO_JuliaPluginInterface::Visit(MHO_FringeFitter* fitter)
+void MHO_JuliaPluginInterface::Visit(MHO_FringeFitter* fitter)
 {
     auto build_man = fitter->GetOperatorBuildManager();
     build_man->AddBuilderType< MHO_JuliaOperatorBuilder >("julia_labeling", "julia_labeling");
@@ -104,5 +97,4 @@ MHO_JuliaPluginInterface::Visit(MHO_FringeFitter* fitter)
     build_man->AddBuilderType< MHO_JuliaOperatorBuilder >("julia_finalize", "julia_finalize");
 }
 
-
-}
+} // namespace hops

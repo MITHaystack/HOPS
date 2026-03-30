@@ -28,7 +28,7 @@ void MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseli
     {
         //no ':' present, so we must only have a baseline specification
         baseline = baseline_freqgrp;
-        freqgrp = "?";           //not passed, set to wildcard
+        freqgrp = "?"; //not passed, set to wildcard
     }
     else
     {
@@ -48,13 +48,16 @@ void MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(std::string baseli
         baseline = tokens[0];
         freqgrp = tokens[1];
     }
-    
-    if(baseline.size() != 2) 
+
+    if(baseline.size() != 2)
     {
         if(baseline.find('-') == std::string::npos)
         {
             //error out if something odd was passed
-            msg_fatal("fringe", "baseline must be passed as pair of 1-char MK4 ids or station codes delimited by '-' (e.g. GE or Gs-Wf), not: " << baseline << eom);
+            msg_fatal(
+                "fringe",
+                "baseline must be passed as pair of 1-char MK4 ids or station codes delimited by '-' (e.g. GE or Gs-Wf), not: "
+                    << baseline << eom);
             std::exit(1);
         }
     }
@@ -220,8 +223,9 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     bool use_mk4_output = false;
     std::string input;
 
-    std::vector< std::string > msg_cats = {"main",           "calibration",  "containers", "control", "fringe",         "file",
-                                           "initialization", "mk4interface", "utilities",  "vex",  "plot", "python_bindings"};
+    std::vector< std::string > msg_cats = {"main",      "calibration", "containers",     "control",
+                                           "fringe",    "file",        "initialization", "mk4interface",
+                                           "utilities", "vex",         "plot",           "python_bindings"};
 
     std::stringstream ss;
     ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
@@ -480,9 +484,8 @@ void MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& di
                 keep = true;
             }
         }
-        else if( (baseline.size() == 5 && tok[1].size() == 5) && 
-                 (baseline.find('-') != std::string::npos ) && 
-                 (tok[1].find('-') != std::string::npos) ) 
+        else if((baseline.size() == 5 && tok[1].size() == 5) && (baseline.find('-') != std::string::npos) &&
+                (tok[1].find('-') != std::string::npos))
         {
             bl = tok[1]; //check the extended baseline-identifier (using 2 char station codes)
             if(baseline == bl)
@@ -491,7 +494,7 @@ void MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& di
                 keep = true;
             }
         }
-        
+
         if(keep)
         {
             baseline_files.push_back(std::make_pair(bl, corFiles[i]));
@@ -838,7 +841,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     //load root file and extract useful vex info into parameter store
     auto vexInfo = scanStore->GetRootFileData();
     MHO_VexInfoExtractor::extract_vex_info(vexInfo, paramStore);
-    
+
     //make sure we construct our global map of station identities (mk4id <-> 2 char code <-> station name)
     MHO_VexInfoExtractor::extract_station_identities(vexInfo);
 }

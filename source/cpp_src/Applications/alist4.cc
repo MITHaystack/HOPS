@@ -44,7 +44,8 @@ int main(int argc, char** argv)
     app.add_option("-o,--output-file", output_file, "name of the output file (default: alist.out)");
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-c,--comment-character", comment_char, "the character indicating a comment line, default is '*'");
-    app.add_option("-v,--version", version, "the alist version (default: 6)");
+    app.add_option("-v,--version", version, "the a-file version: 5 or 6 (default 6)")
+        ->check(CLI::IsMember({5, 6})); //We only support version 5 & 6 output
     app.add_flag("-j,--json", json_mode, "generate a json summary file instead of an 'alist' formatted file");
     app.add_option("input_files,-i,--input-files", input_files, "list of the files to process")->required();
     CLI11_PARSE(app, argc, argv);

@@ -97,12 +97,21 @@ void MHO_ComputePlotData::precompute_chan_metadata()
         }
 
         int sb = 0; // default: DSB
-        if(net_sideband == "U") { sb = 1; }
-        if(net_sideband == "L") { sb = -1; }
+        if(net_sideband == "U")
+        {
+            sb = 1;
+        }
+        if(net_sideband == "L")
+        {
+            sb = -1;
+        }
 
         int dsb_partner = 0;
         bool dsb_key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, "dsb_partner", dsb_partner);
-        if(dsb_key_present) { sb = 0; }
+        if(dsb_key_present)
+        {
+            sb = 0;
+        }
 
         fChanSideband[ch] = sb;
 
@@ -826,10 +835,14 @@ void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpo
 
     // - Initialize accumulators -
     xpower_type sbd_xpower_in, X, Y, cp_spectrum;
-    sbd_xpower_in.Resize(nbins);  sbd_xpower_in.ZeroArray();
-    X.Resize(2 * nl);             X.ZeroArray();
-    Y.Resize(4 * nl);             Y.ZeroArray();
-    cp_spectrum.Resize(2 * nl);   cp_spectrum.ZeroArray();
+    sbd_xpower_in.Resize(nbins);
+    sbd_xpower_in.ZeroArray();
+    X.Resize(2 * nl);
+    X.ZeroArray();
+    Y.Resize(4 * nl);
+    Y.ZeroArray();
+    cp_spectrum.Resize(2 * nl);
+    cp_spectrum.ZeroArray();
     sbd_amp.Resize(nbins);
 
     std::vector< xpower_type > sbxsp(nchan);
@@ -848,8 +861,16 @@ void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpo
     std::vector< int > nlsb_ap(nchan, 0);
     for(std::size_t ch = 0; ch < nchan; ch++)
     {
-        if(fChanSideband[ch] == 1)       { nusb++; nusb_ap[ch] = (int)nap; }
-        else if(fChanSideband[ch] == -1) { nlsb++; nlsb_ap[ch] = (int)nap; }
+        if(fChanSideband[ch] == 1)
+        {
+            nusb++;
+            nusb_ap[ch] = (int)nap;
+        }
+        else if(fChanSideband[ch] == -1)
+        {
+            nlsb++;
+            nlsb_ap[ch] = (int)nap;
+        }
     }
 
     // Pre-compute total_usb_frac and total_lsb_frac.
@@ -860,11 +881,17 @@ void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpo
     {
         if(fChanSideband[ch] == 1)
         {
-            for(std::size_t ap = 0; ap < nap; ap++) { total_usb_frac += (*fWeights)(POLPROD, ch, ap, 0); }
+            for(std::size_t ap = 0; ap < nap; ap++)
+            {
+                total_usb_frac += (*fWeights)(POLPROD, ch, ap, 0);
+            }
         }
         else if(fChanSideband[ch] == -1)
         {
-            for(std::size_t ap = 0; ap < nap; ap++) { total_lsb_frac += (*fWeights)(POLPROD, ch, ap, 0); }
+            for(std::size_t ap = 0; ap < nap; ap++)
+            {
+                total_lsb_frac += (*fWeights)(POLPROD, ch, ap, 0);
+            }
         }
     }
 
@@ -877,13 +904,13 @@ void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpo
         {
             double w = (*fWeights)(POLPROD, ch, ap, 0);
             std::complex< double > wvr_sbd = w * fVRTable[ch * fNAP + ap];
-            std::complex< double > wvr_xp  = w * fVRPhaseTable[ch * fNAP + ap];
+            std::complex< double > wvr_xp = w * fVRPhaseTable[ch * fNAP + ap];
 
             for(std::size_t i = 0; i < nbins; i++)
             {
                 std::complex< double > vis = (*fSBDArray)(POLPROD, ch, ap, i);
                 sbd_xpower_in(i) += wvr_sbd * vis; // for calc_sbd
-                sbxsp[ch].at(i)  += wvr_xp  * vis; // for calc_xpower_spec (per-channel)
+                sbxsp[ch].at(i) += wvr_xp * vis;   // for calc_xpower_spec (per-channel)
             }
         }
 
@@ -910,8 +937,14 @@ void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpo
     for(int lag = 0; lag < 2 * nl; lag++)
     {
         int j = lag - nl;
-        if(j < 0) { j += 4 * nl; }
-        if(lag == 0) { j = 2 * nl; } // pure real lsb/dc channel goes in middle
+        if(j < 0)
+        {
+            j += 4 * nl;
+        }
+        if(lag == 0)
+        {
+            j = 2 * nl;
+        } // pure real lsb/dc channel goes in middle
         Y(j) = X(lag);
         std::get< 0 >(Y)(j) = j;
     }
@@ -935,13 +968,22 @@ void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpo
         double sbfactor = 0.0;
         if(j <= 0)
         {
-            if(total_usb_frac > 0) { sbfactor = sqrt(0.5) / (M_PI * total_usb_frac); }
+            if(total_usb_frac > 0)
+            {
+                sbfactor = sqrt(0.5) / (M_PI * total_usb_frac);
+            }
         }
         else
         {
-            if(total_lsb_frac > 0) { sbfactor = sqrt(0.5) / (M_PI * total_lsb_frac); }
+            if(total_lsb_frac > 0)
+            {
+                sbfactor = sqrt(0.5) / (M_PI * total_lsb_frac);
+            }
         }
-        if(j < 0) { j += 4 * nl; }
+        if(j < 0)
+        {
+            j += 4 * nl;
+        }
         cp_spectrum(i) = Y(j) * sbfactor;
         std::complex< double > Z = std::exp(-1.0 * cmplx_unit_I * (fSBDelay * (i - nl) * M_PI / (sbd_delta * 2.0 * nl)));
         cp_spectrum(i) = Z * cp_spectrum(i);
@@ -951,9 +993,27 @@ void MHO_ComputePlotData::calc_sbd_and_xpower_spec(xpower_amp_type& sbd_amp, xpo
     double bw = fChanBandwidth[nchan - 1]; // last channel bw, same as original (ch loop ends there)
     double xstart, xend;
     int ncp, izero;
-    if(nusb > 0 && nlsb > 0)      { xstart = -bw; xend = bw;  ncp = 2 * nl; izero = 0; }
-    else if(nlsb > 0)              { xstart = -bw; xend = 0.0; ncp = nl;     izero = 0; }
-    else /* USB only or neither */ { xstart = 0.0; xend = bw;  ncp = nl;     izero = nl; }
+    if(nusb > 0 && nlsb > 0)
+    {
+        xstart = -bw;
+        xend = bw;
+        ncp = 2 * nl;
+        izero = 0;
+    }
+    else if(nlsb > 0)
+    {
+        xstart = -bw;
+        xend = 0.0;
+        ncp = nl;
+        izero = 0;
+    }
+    else /* USB only or neither */
+    {
+        xstart = 0.0;
+        xend = bw;
+        ncp = nl;
+        izero = nl;
+    }
 
     cp_spectrum_out.Resize(ncp);
     for(int i = 0; i < ncp; i++)
@@ -994,7 +1054,10 @@ xpower_amp_type MHO_ComputePlotData::calc_dr_segs_phase(double& coh_avg_phase, p
 
     // - Setup for delay-rate spectrum (from calc_dr) -
     std::size_t drsp_size = 2 * MHO_BitReversalPermutation::NextLowestPowerOfTwo(nap);
-    if(drsp_size < 256) { drsp_size = 256; }
+    if(drsp_size < 256)
+    {
+        drsp_size = 256;
+    }
     fDRWorkspace.Resize(drsp_size);
     fDRWorkspace.ZeroArray();
     fDRAmpWorkspace.Resize(drsp_size);
@@ -1015,7 +1078,10 @@ xpower_amp_type MHO_ComputePlotData::calc_dr_segs_phase(double& coh_avg_phase, p
     auto ap_ax = &(std::get< TIME_AXIS >(*fSBDArray));
     double ap_delta = ap_ax->at(1) - ap_ax->at(0);
     auto dr_ax = &(std::get< 0 >(fDRWorkspace));
-    for(std::size_t i = 0; i < drsp_size; i++) { dr_ax->at(i) = i * ap_delta; }
+    for(std::size_t i = 0; i < drsp_size; i++)
+    {
+        dr_ax->at(i) = i * ap_delta;
+    }
 
     // - Setup for phasor segments (from calc_segs) -
     auto chan_ax = &(std::get< CHANNEL_AXIS >(*fSBDArray));
@@ -1025,7 +1091,10 @@ xpower_amp_type MHO_ComputePlotData::calc_dr_segs_phase(double& coh_avg_phase, p
     {
         std::string ch_label;
         bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, chan_label_key, ch_label);
-        if(key_present) { channel_labels.push_back(ch_label); }
+        if(key_present)
+        {
+            channel_labels.push_back(ch_label);
+        }
         else
         {
             msg_warn("fringe", "unlabeled channel at index: " << ch << ", using '?' " << eom);
@@ -1080,11 +1149,11 @@ xpower_amp_type MHO_ComputePlotData::calc_dr_segs_phase(double& coh_avg_phase, p
             phasor_segs(ch, ap) = z;
 
             std::complex< double > wz = w * z;
-            sum_per_ap[ap]  += wz;
+            sum_per_ap[ap] += wz;
             sumwt_per_ap[ap] += w;
-            fringe_phasor    += wz;
-            sumwt_ch         += w;
-            sum_all          += wz;
+            fringe_phasor += wz;
+            sumwt_ch += w;
+            sum_all += wz;
         }
 
         fFringe[ch] = fringe_phasor / sumwt_ch;
@@ -1329,11 +1398,9 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     if(is_pseudo_stokes_I)
     {
         //pseudo-Stokes I: include second-pol keys, omit Tracks and Chan ids
-        pltheader = {"#Ch",      "Freq(MHz)", "Phase",    "Ampl",     "SbdBox",   "APsRf",    "APsRm",
-                     "PCdlyRf",  "PCdlyRf2",  "PCdlyRm",  "PCdlyRm2",
-                     "PCPhsRf",  "PCPhsRm",   "PCPhsRf2", "PCPhsRm2",
-                     "PCOffRf",  "PCOffRm",   "PCOffRf2", "PCOffRm2",
-                     "PCAmpRf",  "PCAmpRf2",  "PCAmpRm",  "PCAmpRm2"};
+        pltheader = {"#Ch",      "Freq(MHz)", "Phase",    "Ampl",    "SbdBox",   "APsRf",    "APsRm",    "PCdlyRf",
+                     "PCdlyRf2", "PCdlyRm",   "PCdlyRm2", "PCPhsRf", "PCPhsRm",  "PCPhsRf2", "PCPhsRm2", "PCOffRf",
+                     "PCOffRm",  "PCOffRf2",  "PCOffRm2", "PCAmpRf", "PCAmpRf2", "PCAmpRm",  "PCAmpRm2"};
     }
     else
     {
@@ -1608,8 +1675,8 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
 
     for(std::size_t seg = 0; seg < nseg; seg++)
     {
-        seg_frac_usb[seg].resize(nchan,0);
-        seg_frac_lsb[seg].resize(nchan,0);
+        seg_frac_usb[seg].resize(nchan, 0);
+        seg_frac_lsb[seg].resize(nchan, 0);
 
         vsum = 0.0;
         wt = 0.0;     /* Loop over freqs, and ap's in segment */
@@ -1657,9 +1724,9 @@ void MHO_ComputePlotData::calc_timerms(phasor_type& phasors, std::size_t nseg, s
                 vsumf = vsumf + wght_phsr;
             }
 
-            double usb_result =  (usbfrac >= 0.0) ? usbfrac / (double)apseg : 0.0;
-            double lsb_result =  (lsbfrac >= 0.0) ? lsbfrac / (double)apseg : 0.0;
-            seg_frac_usb[seg][fr] = usb_result; 
+            double usb_result = (usbfrac >= 0.0) ? usbfrac / (double)apseg : 0.0;
+            double lsb_result = (lsbfrac >= 0.0) ? lsbfrac / (double)apseg : 0.0;
+            seg_frac_usb[seg][fr] = usb_result;
             seg_frac_lsb[seg][fr] = lsb_result;
         }
 
@@ -1932,9 +1999,9 @@ std::string MHO_ComputePlotData::calc_error_code(const mho_json& plot_dict)
 }
 
 void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
-                                                 int station_flag,        //0 = reference station, 1 = remote station
-                                                 std::string pol,         //single char string
-                                                 std::string key_suffix   //appended to PLOT_INFO keys, e.g. "2" for second pol
+                                                 int station_flag,      //0 = reference station, 1 = remote station
+                                                 std::string pol,       //single char string
+                                                 std::string key_suffix //appended to PLOT_INFO keys, e.g. "2" for second pol
 )
 {
     //workspace for segment retrieval
@@ -2105,9 +2172,9 @@ void MHO_ComputePlotData::dump_multitone_pcmodel(mho_json& plot_dict,
 }
 
 void MHO_ComputePlotData::dump_manual_pcmodel(mho_json& plot_dict,
-                                              int station_flag,        //0 = reference station, 1 = remote station
-                                              std::string pol,         //single char string
-                                              std::string key_suffix   //appended to PLOT_INFO keys, e.g. "2" for second pol
+                                              int station_flag,      //0 = reference station, 1 = remote station
+                                              std::string pol,       //single char string
+                                              std::string key_suffix //appended to PLOT_INFO keys, e.g. "2" for second pol
 )
 {
     //workspace for segment retrieval
@@ -2163,12 +2230,12 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
     }
 
     int peak_chan = fParamStore->GetAs< int >("/fringe/peak_channel_idx");
-    int peak_dr   = fParamStore->GetAs< int >("/fringe/max_dr_bin");
+    int peak_dr = fParamStore->GetAs< int >("/fringe/max_dr_bin");
     int peak_freq = fParamStore->GetAs< int >("/fringe/peak_freq_bin");
 
-    std::size_t n_dr   = spec_dr->GetDimension(TIME_AXIS);
+    std::size_t n_dr = spec_dr->GetDimension(TIME_AXIS);
     std::size_t n_freq = spec_dr->GetDimension(FREQ_AXIS);
-    std::size_t n_chan  = spec_dr->GetDimension(CHANNEL_AXIS);
+    std::size_t n_chan = spec_dr->GetDimension(CHANNEL_AXIS);
 
     // -----------------------------------------------------------------------
     // Build the DR axis (ns/s).  Use the pre-stored axis when available,
@@ -2184,8 +2251,8 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
         dr_axis_ns.resize(n_dr);
         for(std::size_t k = 0; k < n_dr; k++)
         {
-            double fr = (static_cast< double >(k) - static_cast< double >(n_dr) / 2.0) /
-                        (static_cast< double >(n_dr) * ap_delta);
+            double fr =
+                (static_cast< double >(k) - static_cast< double >(n_dr) / 2.0) / (static_cast< double >(n_dr) * ap_delta);
             dr_axis_ns[k] = fr / ref_freq_hz * 1e9;
         }
     }
@@ -2196,7 +2263,7 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
 
     // sky frequency for the peak channel (MHz).
     // Sky freq of any bin = chan_sky_freq_MHz + freq_ax(f).
-    auto& chan_ax_sd    = std::get< CHANNEL_AXIS >(*spec_dr);
+    auto& chan_ax_sd = std::get< CHANNEL_AXIS >(*spec_dr);
     double chan_sky_freq_MHz = chan_ax_sd(static_cast< std::size_t >(peak_chan));
 
     // -----------------------------------------------------------------------
@@ -2255,12 +2322,12 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
     // Apply vrot with MBD=0 and default SBD params (all zero), giving DR-only rotation.
     // -----------------------------------------------------------------------
     {
-        auto& vis_ap_ax   = std::get< TIME_AXIS >(*fVisibilities);
-        auto& vis_chan_ax  = std::get< CHANNEL_AXIS >(*fVisibilities);
-        std::size_t n_ap   = fVisibilities->GetDimension(TIME_AXIS);
-        double ap_delta    = (n_ap > 1) ? (vis_ap_ax(1) - vis_ap_ax(0)) : 1.0;
-        double frt_offset  = fParamStore->GetAs< double >("/config/frt_offset");
-        double peak_freq_offset  = (freq_ax.GetSize() > pf) ? freq_ax(pf) : 0.0;
+        auto& vis_ap_ax = std::get< TIME_AXIS >(*fVisibilities);
+        auto& vis_chan_ax = std::get< CHANNEL_AXIS >(*fVisibilities);
+        std::size_t n_ap = fVisibilities->GetDimension(TIME_AXIS);
+        double ap_delta = (n_ap > 1) ? (vis_ap_ax(1) - vis_ap_ax(0)) : 1.0;
+        double frt_offset = fParamStore->GetAs< double >("/config/frt_offset");
+        double peak_freq_offset = (freq_ax.GetSize() > pf) ? freq_ax(pf) : 0.0;
         double peak_sky_freq_mhz = chan_sky_freq_MHz + peak_freq_offset;
 
         // Build a local fringe-rotator configured for DR-only (SBD params left at default zero).
@@ -2269,10 +2336,19 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
             int sl_sideband = 0;
             std::string net_sideband = "?";
             vis_chan_ax.RetrieveIndexLabelKeyValue(pc, "net_sideband", net_sideband);
-            if(net_sideband == "U") { sl_sideband = 1; }
-            else if(net_sideband == "L") { sl_sideband = -1; }
+            if(net_sideband == "U")
+            {
+                sl_sideband = 1;
+            }
+            else if(net_sideband == "L")
+            {
+                sl_sideband = -1;
+            }
             int dsb_partner = 0;
-            if(vis_chan_ax.RetrieveIndexLabelKeyValue(pc, "dsb_partner", dsb_partner)) { sl_sideband = 0; }
+            if(vis_chan_ax.RetrieveIndexLabelKeyValue(pc, "dsb_partner", dsb_partner))
+            {
+                sl_sideband = 0;
+            }
             sl_rot.SetSideband(sl_sideband);
         }
 
@@ -2284,31 +2360,49 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
         if(ap_per_seg_val == 0)
         {
             n_sl_seg = std::min(n_ap, (std::size_t)10);
-            if(n_sl_seg == 0) { n_sl_seg = 1; }
+            if(n_sl_seg == 0)
+            {
+                n_sl_seg = 1;
+            }
             apseg = n_ap / n_sl_seg;
-            if(apseg == 0) { apseg = 1; }
+            if(apseg == 0)
+            {
+                apseg = 1;
+            }
             n_sl_seg = n_ap / apseg;
         }
         else
         {
             apseg = static_cast< std::size_t >(ap_per_seg_val);
-            if(apseg > n_ap) { apseg = (n_ap > 0) ? n_ap : 1; }
-            if(apseg == 0) { apseg = 1; }
+            if(apseg > n_ap)
+            {
+                apseg = (n_ap > 0) ? n_ap : 1;
+            }
+            if(apseg == 0)
+            {
+                apseg = 1;
+            }
             n_sl_seg = n_ap / apseg;
         }
-        if((n_ap % apseg) != 0) { n_sl_seg += 1; }
+        if((n_ap % apseg) != 0)
+        {
+            n_sl_seg += 1;
+        }
 
         std::vector< std::complex< double > > seg_sum(n_sl_seg, 0.0);
         std::vector< double > seg_wt(n_sl_seg, 0.0);
 
         for(std::size_t ap = 0; ap < n_ap; ap++)
         {
-            double tdelta             = (vis_ap_ax(ap) + ap_delta / 2.0) - frt_offset;
+            double tdelta = (vis_ap_ax(ap) + ap_delta / 2.0) - frt_offset;
             std::complex< double > vr = sl_rot.vrot(tdelta, peak_sky_freq_mhz, fRefFreq, fDelayRate, 0.0);
-            std::complex< double > v  = (*fVisibilities)(0, pc, ap, pf);
-            double w                  = (fWeights != nullptr) ? (*fWeights)(0, pc, ap, 0) : 1.0;
-            std::size_t seg_idx       = ap / apseg;
-            if(seg_idx >= n_sl_seg) { seg_idx = n_sl_seg - 1; }
+            std::complex< double > v = (*fVisibilities)(0, pc, ap, pf);
+            double w = (fWeights != nullptr) ? (*fWeights)(0, pc, ap, 0) : 1.0;
+            std::size_t seg_idx = ap / apseg;
+            if(seg_idx >= n_sl_seg)
+            {
+                seg_idx = n_sl_seg - 1;
+            }
             seg_sum[seg_idx] += v * vr * w;
             seg_wt[seg_idx] += w;
         }
@@ -2326,31 +2420,31 @@ void MHO_ComputePlotData::DumpSpectralLineInfoToJSON(mho_json& plot_dict)
 
         plot_dict["SL_SEG_AMP"] = sl_seg_amp;
         plot_dict["SL_SEG_PHS"] = sl_seg_phs;
-        plot_dict["NSeg"]        = n_sl_seg;
+        plot_dict["NSeg"] = n_sl_seg;
     }
 
     // -----------------------------------------------------------------------
     // Peak-location metadata for plot overlays.
     // -----------------------------------------------------------------------
-    plot_dict["extra"]["sl_peak_chan"]        = peak_chan;
-    plot_dict["extra"]["sl_peak_dr_bin"]      = peak_dr;
-    plot_dict["extra"]["sl_peak_freq_bin"]    = peak_freq;
+    plot_dict["extra"]["sl_peak_chan"] = peak_chan;
+    plot_dict["extra"]["sl_peak_dr_bin"] = peak_dr;
+    plot_dict["extra"]["sl_peak_freq_bin"] = peak_freq;
     plot_dict["extra"]["sl_peak_dr_ns_per_s"] = dr_axis_ns[pd];
     double peak_freq_offset_val = (freq_ax.GetSize() > pf) ? freq_ax(pf) : 0.0;
     plot_dict["extra"]["sl_peak_freq_axis_val"] = chan_sky_freq_MHz + peak_freq_offset_val;
-    plot_dict["extra"]["sl_peak_sky_freq_mhz"]  = fParamStore->GetAs< double >("/fringe/peak_spectral_freq");
-    plot_dict["extra"]["is_spectral_line"]       = true;
+    plot_dict["extra"]["sl_peak_sky_freq_mhz"] = fParamStore->GetAs< double >("/fringe/peak_spectral_freq");
+    plot_dict["extra"]["is_spectral_line"] = true;
 
     // Minimal fields required by channel/segment machinery.
     // NSeg is set by the time-segment phasor section above.
-    plot_dict["NPlots"]    = 1;
+    plot_dict["NPlots"] = 1;
     plot_dict["StartPlot"] = 0;
 
     // Quality code and error code - same path as DumpInfoToJSON.
     std::string qc = calc_quality_code();
     fParamStore->Set("/fringe/quality_code", qc);
     plot_dict["Quality"] = qc;
-    plot_dict["extra"]["nlags"]      = fParamStore->GetAs< int >("/config/nlags");
+    plot_dict["extra"]["nlags"] = fParamStore->GetAs< int >("/config/nlags");
     std::string errcode = calc_error_code(plot_dict);
     plot_dict["extra"]["error_code"] = errcode;
     fParamStore->Set("/fringe/error_code", errcode);

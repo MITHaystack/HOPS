@@ -2,8 +2,7 @@
 
 namespace hops
 {
-    
-    
+
 MHO_StationIdentifier* MHO_StationIdentifier::fStationIdentifier = nullptr;
 
 MHO_StationIdentifier::MHO_StationIdentifier()

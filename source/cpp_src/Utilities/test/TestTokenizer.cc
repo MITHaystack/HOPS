@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 
-#include "MHO_Tokenizer.hh"
 #include "MHO_StationIdentity.hh"
+#include "MHO_Tokenizer.hh"
 
 using namespace hops;
 
@@ -123,25 +123,24 @@ int main(int /*argc*/, char** /*argv*/)
         std::cout << tok7[i] << "|";
     }
     std::cout << std::endl;
-    
-    
+
     //minor test of the station identifier class
     MHO_StationIdentity west;
     west.SetAll("WESTFORD", "Wf", "E");
-    
-    std::cout<<"station: "<<west.as_string()<<std::endl;
-    
+
+    std::cout << "station: " << west.as_string() << std::endl;
+
     MHO_StationIdentity ggao;
     ggao.SetAll("GGAO12M", "Gs", "G");
-    
-    std::cout<<"station: "<<ggao.as_string()<<std::endl;
-    
-    bool ok = (ggao == west);
-    std::cout<<"equivalent? "<< ok <<std::endl;
 
-    std::cout<<"Westford matches 'E'? "<<west.matches("E")<<std::endl;
-    std::cout<<"Westford matches 'G'? "<<west.matches("G")<<std::endl;
-    std::cout<<"GGAO matches 'G'? "<<ggao.matches("G")<<std::endl;
+    std::cout << "station: " << ggao.as_string() << std::endl;
+
+    bool ok = (ggao == west);
+    std::cout << "equivalent? " << ok << std::endl;
+
+    std::cout << "Westford matches 'E'? " << west.matches("E") << std::endl;
+    std::cout << "Westford matches 'G'? " << west.matches("G") << std::endl;
+    std::cout << "GGAO matches 'G'? " << ggao.matches("G") << std::endl;
 
     return 0;
 }

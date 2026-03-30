@@ -78,7 +78,7 @@ bool MHO_InterpolateSpectralLinePeak::Execute()
     int dr_p1 = (fPeakDRBin + 1) % static_cast< int >(N_dr);
 
     double amp_dr_m1 = std::abs((*fSpecDRData)(0, fPeakChan, dr_m1, fPeakFreqBin));
-    double amp_dr_0  = std::abs((*fSpecDRData)(0, fPeakChan, fPeakDRBin, fPeakFreqBin));
+    double amp_dr_0 = std::abs((*fSpecDRData)(0, fPeakChan, fPeakDRBin, fPeakFreqBin));
     double amp_dr_p1 = std::abs((*fSpecDRData)(0, fPeakChan, dr_p1, fPeakFreqBin));
 
     double dr_sub = parabolic_offset(amp_dr_m1, amp_dr_0, amp_dr_p1);
@@ -92,7 +92,7 @@ bool MHO_InterpolateSpectralLinePeak::Execute()
     int f_p1 = (fPeakFreqBin + 1) % static_cast< int >(N_freq);
 
     double amp_f_m1 = std::abs((*fSpecDRData)(0, fPeakChan, fPeakDRBin, f_m1));
-    double amp_f_0  = std::abs((*fSpecDRData)(0, fPeakChan, fPeakDRBin, fPeakFreqBin));
+    double amp_f_0 = std::abs((*fSpecDRData)(0, fPeakChan, fPeakDRBin, fPeakFreqBin));
     double amp_f_p1 = std::abs((*fSpecDRData)(0, fPeakChan, fPeakDRBin, f_p1));
 
     double freq_sub = parabolic_offset(amp_f_m1, amp_f_0, amp_f_p1);
@@ -105,9 +105,10 @@ bool MHO_InterpolateSpectralLinePeak::Execute()
     double chan_sky_freq_MHz = chan_ax(static_cast< std::size_t >(fPeakChan));
     double freq_offset_MHz = freq_ax(static_cast< std::size_t >(fPeakFreqBin)) + freq_sub * freq_bin_width;
     fPeakSkyFreqMHz = chan_sky_freq_MHz + freq_offset_MHz;
-    std::cout<<"peak freq bin = "<<fPeakFreqBin<<std::endl;
-    std::cout<<"freq bin width = "<<freq_bin_width<<std::endl;
-    std::cout<<"peak freq = "<<fPeakSkyFreqMHz<<" chan freq = "<<chan_sky_freq_MHz<<" offset = "<<freq_offset_MHz<<std::endl;
+    std::cout << "peak freq bin = " << fPeakFreqBin << std::endl;
+    std::cout << "freq bin width = " << freq_bin_width << std::endl;
+    std::cout << "peak freq = " << fPeakSkyFreqMHz << " chan freq = " << chan_sky_freq_MHz << " offset = " << freq_offset_MHz
+              << std::endl;
 
     // -----------------------------------------------------------------
     // Fringe phase and amplitude at the coarse peak bin.
@@ -119,8 +120,8 @@ bool MHO_InterpolateSpectralLinePeak::Execute()
     // -----------------------------------------------------------------
     // Delay rate and fringe rate.
     // -----------------------------------------------------------------
-    fDelayRate = fine_dr;                          // sec/sec
-    fFringeRate = fine_dr * (fRefFreqMHz * 1e6);   // Hz
+    fDelayRate = fine_dr;                        // sec/sec
+    fFringeRate = fine_dr * (fRefFreqMHz * 1e6); // Hz
 
     // -----------------------------------------------------------------
     // Phase delay at the spectral-line frequency.
@@ -138,13 +139,10 @@ bool MHO_InterpolateSpectralLinePeak::Execute()
         fPhaseDelay = 0.0;
     }
 
-    msg_info("calibration", "SpectralLine peak interpolation: sky_freq=" << fPeakSkyFreqMHz
-                                                                          << " MHz  drate=" << fDelayRate
-                                                                          << " s/s  frate=" << fFringeRate
-                                                                          << " Hz  amp=" << fFringeAmp
-                                                                          << "  phase=" << fFringePhase << " rad"
-                                                                          << "  phase_delay=" << fPhaseDelay * 1e6
-                                                                          << " us" << eom);
+    msg_info("calibration", "SpectralLine peak interpolation: sky_freq="
+                                << fPeakSkyFreqMHz << " MHz  drate=" << fDelayRate << " s/s  frate=" << fFringeRate
+                                << " Hz  amp=" << fFringeAmp << "  phase=" << fFringePhase << " rad"
+                                << "  phase_delay=" << fPhaseDelay * 1e6 << " us" << eom);
     return true;
 }
 
@@ -159,8 +157,14 @@ double MHO_InterpolateSpectralLinePeak::parabolic_offset(double fm1, double f0, 
     }
     double offset = 0.5 * (fm1 - fp1) / denom;
     // Clamp to +/-0.5 bin.
-    if(offset > 0.5)  { offset = 0.5; }
-    if(offset < -0.5) { offset = -0.5; }
+    if(offset > 0.5)
+    {
+        offset = 0.5;
+    }
+    if(offset < -0.5)
+    {
+        offset = -0.5;
+    }
     return offset;
 }
 

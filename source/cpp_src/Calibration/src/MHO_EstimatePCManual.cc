@@ -86,7 +86,7 @@ void MHO_EstimatePCManual::est_pc_manual(int mode)
     //use 2-char station codes
     std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/site_id");
     std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/site_id");
-    
+
     fRefStationMk4ID = ref_id;
     fRemStationMk4ID = rem_id;
 

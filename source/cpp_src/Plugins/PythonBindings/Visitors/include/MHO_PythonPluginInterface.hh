@@ -13,7 +13,6 @@ using namespace pybind11::literals;
 #include "MHO_PyFringeDataInterface.hh"
 #include "MHO_PythonOperatorBuilder.hh"
 
-
 #include "MHO_FringeFitter.hh"
 #include "MHO_OperatorBuilderManager.hh"
 #include "MHO_PythonOperatorBuilder.hh"
@@ -34,12 +33,10 @@ class MHO_PythonPluginInterface: public MHO_FringeFitterVisitor
         virtual void Visit(MHO_FringeFitter* fitter) override;
 
     protected:
-
         void Initialize();
         void Finalize();
 
         static bool fInitialized;
-
 };
 
 } // namespace hops

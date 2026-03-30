@@ -404,8 +404,10 @@ std::string MHO_AFileInfoExtractor::ConvertToAlistRow(const mho_json& data, int 
     // For v5, year fields are 2-digit (matching write_fsumm.c behavior)
     if(version == 5)
     {
-        if(pyear >= 100) pyear %= 100;
-        if(syear >= 100) syear %= 100;
+        if(pyear >= 100)
+            pyear %= 100;
+        if(syear >= 100)
+            syear %= 100;
     }
 
     /* Version 5, Mk4 only, September 99 on */

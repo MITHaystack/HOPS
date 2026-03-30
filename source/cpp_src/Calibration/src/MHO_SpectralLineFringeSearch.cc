@@ -33,7 +33,8 @@ MHO_SpectralLineFringeSearch::MHO_SpectralLineFringeSearch()
     fMax = 0.0;
 }
 
-MHO_SpectralLineFringeSearch::~MHO_SpectralLineFringeSearch() {}
+MHO_SpectralLineFringeSearch::~MHO_SpectralLineFringeSearch()
+{}
 
 void MHO_SpectralLineFringeSearch::SetWindow(double* win, double low, double high)
 {
@@ -147,15 +148,15 @@ bool MHO_SpectralLineFringeSearch::InitializeImpl(const XArgType* in)
     fDRAxis.Resize(fNDR);
     for(std::size_t k = 0; k < fNDR; k++)
     {
-        double fringe_rate = (static_cast< double >(k) - static_cast< double >(fNDR) / 2.0) /
-                             (static_cast< double >(fNDR) * ap_delta);
+        double fringe_rate =
+            (static_cast< double >(k) - static_cast< double >(fNDR) / 2.0) / (static_cast< double >(fNDR) * ap_delta);
         fDRAxis(k) = fringe_rate / ref_freq_hz;
     }
     fDRBinSep = (fNDR >= 2) ? (fDRAxis(1) - fDRAxis(0)) : 0.0;
 
-    msg_debug("calibration", "MHO_SpectralLineFringeSearch: N_chan=" << fNChan << " N_AP=" << fNAP
-                                                                 << " N_padded=" << fNPaddedAP << " N_freq=" << fNFreq
-                                                                 << " DR_bin_sep=" << fDRBinSep << " s/s" << eom);
+    msg_debug("calibration", "MHO_SpectralLineFringeSearch: N_chan=" << fNChan << " N_AP=" << fNAP << " N_padded=" << fNPaddedAP
+                                                                     << " N_freq=" << fNFreq << " DR_bin_sep=" << fDRBinSep
+                                                                     << " s/s" << eom);
 
     // Configure in-place FFT engine along the time (delay-rate after FFT) axis.
     fFFTEngine.SetArgs(&fSpecDRWorkspace);
@@ -284,12 +285,11 @@ bool MHO_SpectralLineFringeSearch::ExecuteImpl(const XArgType* in)
         fCoarseDR = fDRAxis(static_cast< std::size_t >(fDRMaxBin));
         fCoarsePeakSkyFreqMHz = chan_ax(static_cast< std::size_t >(fChanMaxBin));
 
-        msg_debug("calibration",
-                  "MHO_SpectralLineFringeSearch coarse peak: chan=" << fChanMaxBin << " dr_bin=" << fDRMaxBin
-                                                                << " freq_bin=" << fFreqMaxBin
-                                                                << " DR=" << fCoarseDR << " s/s"
-                                                                << " sky_freq=" << fCoarsePeakSkyFreqMHz << " MHz"
-                                                                << " amp=" << fMax << eom);
+        msg_debug("calibration", "MHO_SpectralLineFringeSearch coarse peak: chan="
+                                     << fChanMaxBin << " dr_bin=" << fDRMaxBin << " freq_bin=" << fFreqMaxBin
+                                     << " DR=" << fCoarseDR << " s/s"
+                                     << " sky_freq=" << fCoarsePeakSkyFreqMHz << " MHz"
+                                     << " amp=" << fMax << eom);
         return true;
     }
 

@@ -695,8 +695,14 @@ int MHO_MK4CorelInterface::ExtractCorelFile()
     }
     else
     {
-        if(!fHaveCorel){ msg_error("mk4interface", "Failed to read corel file, "<<fCorelFile<<", cannot convert." << eom); }
-        if(!fHaveVex){msg_error("mk4interface", "Failed to read vex file, "<<fVexFile<<", cannot convert." << eom); }
+        if(!fHaveCorel)
+        {
+            msg_error("mk4interface", "Failed to read corel file, " << fCorelFile << ", cannot convert." << eom);
+        }
+        if(!fHaveVex)
+        {
+            msg_error("mk4interface", "Failed to read vex file, " << fVexFile << ", cannot convert." << eom);
+        }
         return -1;
     }
 

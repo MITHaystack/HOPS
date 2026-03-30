@@ -14,8 +14,8 @@
 
 //fringe finding
 #include "MHO_FringeFitter.hh"
-#include "MHO_FringePlotVisitor.hh"
 #include "MHO_FringeFitterFactory.hh"
+#include "MHO_FringePlotVisitor.hh"
 #include "MHO_FringePlotVisitorFactory.hh"
 
 //for control intialization
@@ -50,18 +50,16 @@ using namespace pybind11::literals;
     #define HOPS_BUILD_TIMESTAMP "2000-01-01T00:00:00.0Z"
 #endif
 
-
 #include "MHO_LinearAlgebraUtilities.hh"
-
 
 #include <cmath>
 #include <cstddef>
 #include <vector>
 
-#include <string>
+#include <functional>
 #include <limits>
 #include <sstream>
-#include <functional>
+#include <string>
 
 using namespace hops;
 
@@ -119,13 +117,13 @@ int main(int argc, char** argv)
 
     std::vector< mho_json > pass_vector;
     MHO_BasicFringeDataConfiguration::split_passes(pass_vector, cscans, croots, cbaselines, cfgroups, cpolprods);
-    
+
     //construct the scan/directory set
     std::set< std::string > scan_set;
     for(std::size_t pass_index = 0; pass_index < pass_vector.size(); pass_index++)
     {
         mho_json pass = pass_vector[pass_index];
-        std::string sdir = pass["directory"].get<std::string>();
+        std::string sdir = pass["directory"].get< std::string >();
         scan_set.insert(sdir);
     }
 
@@ -134,7 +132,6 @@ int main(int argc, char** argv)
     {
         msg_info("main", "blingfit will fringe " << n_scans << " n_scans of data" << eom);
     }
-
 
     //loop over all scans
     for(auto scan_dir_it = scan_set.begin(); scan_dir_it != scan_set.end(); scan_dir_it++)
@@ -145,14 +142,14 @@ int main(int argc, char** argv)
         for(std::size_t pass_index = 0; pass_index < pass_vector.size(); pass_index++)
         {
             mho_json pass = pass_vector[pass_index];
-            std::string sdir = pass["directory"].get<std::string>();
+            std::string sdir = pass["directory"].get< std::string >();
             if(sdir == scan_dir)
             {
                 scan_pass_vector.push_back(pass);
             }
         }
 
-        msg_info("main", "scan " << scan_dir << " contains "<< scan_pass_vector.size()<< " passes of data" << eom);
+        msg_info("main", "scan " << scan_dir << " contains " << scan_pass_vector.size() << " passes of data" << eom);
 
         //keep track of all the stations encountered
         std::set< std::string > scanStations;
@@ -174,7 +171,7 @@ int main(int argc, char** argv)
                 //set the current pass info (directory, root_file, source, baseline, pol-product, frequency-group)
                 mho_json pass = scan_pass_vector[pass_index];
                 pass["build_time"] = HOPS_BUILD_TIMESTAMP; //set the build time stamp in the pass info
-        
+
                 MHO_FringeData fringeData;
                 fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
                 fringeData.GetParameterStore()->Set("/pass", pass);
@@ -186,14 +183,13 @@ int main(int argc, char** argv)
                                                                               fringeData.GetScanDataStore());
 
                 //parse the control file and form the control statements
-                MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), 
-                                                                      fringeData.GetControlFormat(),
-                                                                      fringeData.GetControlStatements());
-        
+                MHO_FringeControlInitialization::process_control_file(
+                    fringeData.GetParameterStore(), fringeData.GetControlFormat(), fringeData.GetControlStatements());
+
                 //build the fringe fitter based on the input (only 2 choices currently -- basic and ionospheric)
                 MHO_FringeFitterFactory ff_factory(&(fringeData));
                 MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter(); //configuration is done here
-        
+
                 //initialize and perform run loop
                 while(!ffit->IsFinished())
                 {
@@ -203,7 +199,7 @@ int main(int argc, char** argv)
                     ffit->PostRun();
                 }
                 ffit->Finalize();
-                
+
                 //keep track of the stations
                 std::string ref_station;
                 std::string rem_station;
@@ -213,30 +209,30 @@ int main(int argc, char** argv)
                 scanStations.insert(rem_station);
 
                 //construct the scan-pass-key from baseline-polprod-fgroup
-                std::string pprod = pass["polprod"].get<std::string>();
-                std::string fg = pass["frequency_group"].get<std::string>();
+                std::string pprod = pass["polprod"].get< std::string >();
+                std::string fg = pass["frequency_group"].get< std::string >();
                 //std::string rootcode = pass["root_file"].get<std::string>();
-                std::string pkey = ref_station + "|" + rem_station  + "|" + pprod + "|" + fg; 
+                std::string pkey = ref_station + "|" + rem_station + "|" + pprod + "|" + fg;
 
                 //flush profile events
                 profiler_stop();
                 std::vector< MHO_ProfileEvent > events;
                 MHO_Profiler::GetInstance().GetEvents(events);
-                
+
                 //convert and dump the events into the parameter store for now (will be empty unless enabled)
                 mho_json event_list = MHO_BasicFringeDataConfiguration::ConvertProfileEvents(events);
                 fringeData.GetParameterStore()->Set("/profile/events", event_list);
-        
+
                 //determine if this pass was skipped or is in test-mode
                 bool is_skipped = fringeData.GetParameterStore()->GetAs< bool >("/status/skipped");
                 bool test_mode = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
-                
+
                 //open and dump to file -- should we profile this as well?
                 if(!test_mode && !is_skipped)
                 {
                     bool use_mk4_output = false;
                     fringeData.GetParameterStore()->Get("/cmdline/mk4format_output", use_mk4_output);
-                
+
                     if(!use_mk4_output)
                     {
                         fringeData.WriteOutput();
@@ -250,7 +246,7 @@ int main(int argc, char** argv)
                         fexporter.ExportFringeFile();
                     }
                 }
-                
+
                 //use the plotter factory to construct one of the available plotting backends
                 if(!is_skipped)
                 {
@@ -265,7 +261,7 @@ int main(int argc, char** argv)
                     }
                 }
 
-                //extract our quanties of interest from the parameter store 
+                //extract our quanties of interest from the parameter store
                 double mbd;
                 double drate;
                 double snr;
@@ -274,7 +270,8 @@ int main(int argc, char** argv)
                 fringeData.GetParameterStore()->Get("/fringe/drate", drate);
                 fringeData.GetParameterStore()->Get("/fringe/snr", snr);
                 fringeData.GetParameterStore()->Get("/fringe/ion_diff", dtec);
-                std::cout<<"process_id: "<<process_id<<" pkey: "<<pkey<<", mbd: "<<mbd<<", drate: "<<drate<<" snr: "<<snr<<" dtec: "<<dtec<<std::endl;
+                std::cout << "process_id: " << process_id << " pkey: " << pkey << ", mbd: " << mbd << ", drate: " << drate
+                          << " snr: " << snr << " dtec: " << dtec << std::endl;
 
                 //stash these quantites in the map
                 baseline_delay[pkey] = mbd;
@@ -284,12 +281,10 @@ int main(int argc, char** argv)
             }
         } //end of pass loop
 
-
-        //wait for every process to finish
-        #ifdef HOPS_USE_MPI
+//wait for every process to finish
+#ifdef HOPS_USE_MPI
         MHO_MPIInterface::GetInstance()->GlobalBarrier();
-        #endif
-
+#endif
 
         //now collect all map data across all processes
         auto bl_delays = baseline_delay;
@@ -297,74 +292,74 @@ int main(int argc, char** argv)
         auto bl_ion = baseline_ion_diff;
         auto bl_snr = baseline_snr;
         auto station_set = scanStations;
-        #ifdef HOPS_USE_MPI
+#ifdef HOPS_USE_MPI
         //merge the data from all processes so the root process can use it
         bl_delays = MHO_MPIInterface::GetInstance()->MergeMap(baseline_delay);
         bl_drates = MHO_MPIInterface::GetInstance()->MergeMap(baseline_delay_rate);
         bl_snr = MHO_MPIInterface::GetInstance()->MergeMap(baseline_snr);
         bl_ion = MHO_MPIInterface::GetInstance()->MergeMap(baseline_ion_diff);
         station_set = MHO_MPIInterface::GetInstance()->MergeStringSet(scanStations);
-        #endif
+#endif
 
         MPI_SINGLE_PROCESS
         {
-            for(const auto& kv : bl_delays) 
+            for(const auto& kv : bl_delays)
             {
-                std::cout<<"mbd: "<< kv.first <<", "<< kv.second <<std::endl;
+                std::cout << "mbd: " << kv.first << ", " << kv.second << std::endl;
             }
 
-            for(const auto& kv : bl_drates) 
+            for(const auto& kv : bl_drates)
             {
-                std::cout<<"delay rate: "<< kv.first <<", "<< kv.second <<std::endl;
+                std::cout << "delay rate: " << kv.first << ", " << kv.second << std::endl;
             }
 
-            for(const auto& kv : bl_snr) 
+            for(const auto& kv : bl_snr)
             {
-                std::cout<<"snr: "<< kv.first <<", "<< kv.second <<std::endl;
+                std::cout << "snr: " << kv.first << ", " << kv.second << std::endl;
             }
 
-            for(const auto& kv : bl_ion) 
+            for(const auto& kv : bl_ion)
             {
-                std::cout<<"dtec: "<< kv.first <<", "<< kv.second <<std::endl;
+                std::cout << "dtec: " << kv.first << ", " << kv.second << std::endl;
             }
 
-            for(const auto& k : station_set) 
+            for(const auto& k : station_set)
             {
-                std::cout<<"station: "<< k <<std::endl;
+                std::cout << "station: " << k << std::endl;
             }
 
-            //map stations to integers 
-            std::map<std::string, int> station2int;
-            std::map<int, std::string> int2station;
+            //map stations to integers
+            std::map< std::string, int > station2int;
+            std::map< int, std::string > int2station;
             int count = 0;
             for(auto sit = station_set.begin(); sit != station_set.end(); sit++)
             {
                 std::string st = *sit;
                 station2int[st] = count;
                 int2station[count] = st;
-                std::cout<<count<<": "<<st<<std::endl;
+                std::cout << count << ": " << st << std::endl;
                 count++;
             }
             int nstations = station_set.size();
 
             //construct the b-vector
-            std::size_t n_baseline_parameters = bl_delays.size();// + baseline_delay_rate.size() + baseline_ion_diff.size();
+            std::size_t n_baseline_parameters = bl_delays.size(); // + baseline_delay_rate.size() + baseline_ion_diff.size();
             MHO_linalg_vector b(n_baseline_parameters);
             b.zero();
 
             //construct the x-vector
             std::size_t NQTY = 1;
-            std::size_t n_station_parameters = NQTY*nstations;
+            std::size_t n_station_parameters = NQTY * nstations;
             MHO_linalg_vector x(n_station_parameters);
             x.zero();
-            
-            //construct the network difference matrix 
+
+            //construct the network difference matrix
             MHO_linalg_matrix A(n_baseline_parameters, n_station_parameters);
             A.zero();
 
-            std::cout<<"fringe-fitted: "<<baseline_delay.size()<<std::endl;
-            std::cout<<"nstations = "<<nstations<<std::endl;
-            
+            std::cout << "fringe-fitted: " << baseline_delay.size() << std::endl;
+            std::cout << "nstations = " << nstations << std::endl;
+
             MHO_Tokenizer tokenizer;
             tokenizer.SetDelimiter("|");
 
@@ -380,29 +375,31 @@ int main(int argc, char** argv)
                 std::string rem_station = tokens[1];
                 int ref_idx = station2int[ref_station];
                 int rem_idx = station2int[rem_station];
-            
+
                 if(ref_idx != rem_idx)
                 {
                     double mbd = bl_delays[pkey];
                     double drate = bl_drates[pkey];
                     double dtec = bl_ion[pkey];
                     double snr = bl_snr[pkey];
-                    std::cout<<ref_station<<":"<<rem_station<<", "<<"pkey: "<<pkey<<", mbd: "<<mbd<<", drate: "<<drate<<" snr: "<<snr<<"dtec: "<<dtec<<std::endl;
-            
+                    std::cout << ref_station << ":" << rem_station << ", "
+                              << "pkey: " << pkey << ", mbd: " << mbd << ", drate: " << drate << " snr: " << snr
+                              << "dtec: " << dtec << std::endl;
+
                     if(snr > 15.0)
                     {
                         //set the output vector elements
                         b(count) = mbd;
                         // b(count+1) = drate;
                         // b(count+2) = dtec;
-            
+
                         //set the station network difference matrix elements
                         A(count, ref_idx) = -1.0;
                         A(count, rem_idx) = 1.0;
 
                         // A(count, ref_idx) = -1.0;
                         // A(count, rem_idx) = 1.0;
-                        // 
+                        //
                         // A(count, ref_idx) = -1.0;
                         // A(count, rem_idx) = 1.0;
                     }
@@ -410,57 +407,54 @@ int main(int argc, char** argv)
                 count++;
             }
 
-            
-            std::cout<<"xform mx = "<<std::endl;
+            std::cout << "xform mx = " << std::endl;
             MHO_linalg_matrix_print(A);
-                
+
             //now solve for the station delays with SVD decomp;
             MHO_linalg_matrix U(n_baseline_parameters, n_station_parameters);
             MHO_linalg_matrix V(n_station_parameters, n_station_parameters);
             MHO_linalg_vector S(n_station_parameters);
-            MHO_linalg_matrix_svd(A,U,S,V);
-            
-            std::cout<<"singular values:"<<std::endl;
+            MHO_linalg_matrix_svd(A, U, S, V);
+
+            std::cout << "singular values:" << std::endl;
             MHO_linalg_vector_print(S);
-            
-            MHO_linalg_matrix_svd_solve(U,S,V,b,x);
-            std::cout<<"solution: "<<std::endl;
+
+            MHO_linalg_matrix_svd_solve(U, S, V, b, x);
+            std::cout << "solution: " << std::endl;
             MHO_linalg_vector_print(x);
-            
-            //check the solution 
+
+            //check the solution
             MHO_linalg_vector bprime = b;
             bprime.zero();
-            MHO_linalg_matrix_vector_product(A,x,bprime);
-            
-            std::cout<<"b:"<<std::endl;
+            MHO_linalg_matrix_vector_product(A, x, bprime);
+
+            std::cout << "b:" << std::endl;
             MHO_linalg_vector_print(b);
-            std::cout<<"bprime:"<<std::endl;
+            std::cout << "bprime:" << std::endl;
             MHO_linalg_vector_print(bprime);
-            
-            MHO_linalg_vector delta = bprime -b;
-            std::cout<<"delta = "<<std::endl;
+
+            MHO_linalg_vector delta = bprime - b;
+            std::cout << "delta = " << std::endl;
             MHO_linalg_vector_print(delta);
-            
-            std::cout<<"L2 norm = "<<delta.norm()<<std::endl;
+
+            std::cout << "L2 norm = " << delta.norm() << std::endl;
 
             std::stringstream ss;
             for(auto sit = station_set.begin(); sit != station_set.end(); sit++)
             {
                 std::string st = *sit;
                 int idx = station2int[st];
-                ss << "if station "<< st<< " station_delay "<< -1000.0*x(idx)<<" ";
+                ss << "if station " << st << " station_delay " << -1000.0 * x(idx) << " ";
             }
-            std::cout<<ss.str()<<std::endl;
+            std::cout << ss.str() << std::endl;
 
         } //end of MPI_SINGLE_PROCESS
 
-        #ifdef HOPS_USE_MPI
+#ifdef HOPS_USE_MPI
         MHO_MPIInterface::GetInstance()->GlobalBarrier();
-        #endif
+#endif
 
-    }//end of scan loop
-
-
+    } //end of scan loop
 
 #ifdef HOPS_USE_MPI
     MHO_MPIInterface::GetInstance()->GlobalBarrier();

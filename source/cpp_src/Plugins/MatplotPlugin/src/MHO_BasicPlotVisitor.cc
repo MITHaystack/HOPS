@@ -1,42 +1,42 @@
 #include "MHO_BasicPlotVisitor.hh"
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
-#include "MHO_DirectoryInterface.hh"
 
-#include <iomanip>
-#include <sstream>
 #include <cctype>
 #include <cstdlib>
+#include <iomanip>
+#include <sstream>
 #include <termios.h> // for file name capture on command line
 
-
-std::string extension_to_terminal_cmd(const std::string& ext) 
+std::string extension_to_terminal_cmd(const std::string& ext)
 {
     //we only support .pdf, .eps, and .svg output
-    if (ext == "pdf")  return "set term pdfcairo size 8.5in,11in fontscale 0.6";
-    if (ext == "svg")  return "svg size 816,1056 dynamic fontscale 0.5";
-    if (ext == "eps")  return "set term postscript portrait size 8.5in,11in fontscale 0.8";
+    if(ext == "pdf")
+        return "set term pdfcairo size 8.5in,11in fontscale 0.6";
+    if(ext == "svg")
+        return "svg size 816,1056 dynamic fontscale 0.5";
+    if(ext == "eps")
+        return "set term postscript portrait size 8.5in,11in fontscale 0.8";
     return "";
 }
-
 
 namespace hops
 {
 
-MHO_BasicPlotVisitor::MHO_BasicPlotVisitor(): 
-    fShowPlot(true), 
-    fFilename("")
+MHO_BasicPlotVisitor::MHO_BasicPlotVisitor(): fShowPlot(true), fFilename("")
 {
     //standard 8.5"x11" letter size (100 DPI)
     fPageWidth = 850;
     fPageHeight = 1100;
 
-    //A4 size 
+    //A4 size
     //fPageWidth = 827;
     //fPageHeight = 1169;
 }
 
-MHO_BasicPlotVisitor::~MHO_BasicPlotVisitor(){}
+MHO_BasicPlotVisitor::~MHO_BasicPlotVisitor()
+{}
 
 void MHO_BasicPlotVisitor::ConstructPlot(const mho_json& fPlotData)
 {
@@ -69,26 +69,26 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     fNRows = nrows;
     fNCols = ncols;
 
-    fSubplotConfig["mbd_plot"] = subplot_parameters(2*nrows, ncols, 3, 3, 12, 46);
-    fSubplotConfig["mbd_title"] = subplot_parameters(2*nrows, ncols, 2, 2, 1, 48);
-    fSubplotConfig["mbd_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 5, 4, 8, 1);
-    fSubplotConfig["dlyrate_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 5, 106, 8, 2);
-    fSubplotConfig["delay_rate_xtitle"] = subplot_parameters(2*nrows, ncols, 2, 2, 15, 48);
-    fSubplotConfig["sbd_plot"] = subplot_parameters(2*nrows, ncols, 19, 3, 8, 21);
-    fSubplotConfig["sbd_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 19, 4, 8, 1);
-    fSubplotConfig["ion_tec_title"] = subplot_parameters(2*nrows, ncols, 18, 4, 1, 14);
-    fSubplotConfig["sbd_title"] = subplot_parameters(2*nrows, ncols, 28, 2, 1, 14);
-    fSubplotConfig["xpower_plot"] = subplot_parameters(2*nrows, 2*ncols, 19, 56, 8, 42);
-    fSubplotConfig["xpower_xtitle"] = subplot_parameters(2*nrows, ncols, 28, 32, 1, 2);
-    fSubplotConfig["xpower_phase_ytitle"] = subplot_parameters(2*nrows, ncols, 19, 49, 8, 2);
-    fSubplotConfig["channel_phase_ytitle"] = subplot_parameters(2*nrows, ncols, 32, 60, 8, 1);
-    fSubplotConfig["channel_amp_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 32, 4, 8, 1);
-    fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(2*nrows, 2*ncols, 40, 119, 8, 1);
-    fSubplotConfig["station_codes"] = subplot_parameters(4*nrows, 2*ncols, 87, 119, 2, 1);
-    fSubplotConfig["usblsb_frac"] = subplot_parameters(4*nrows, 4*ncols, 81, 9, 2, 1);
+    fSubplotConfig["mbd_plot"] = subplot_parameters(2 * nrows, ncols, 3, 3, 12, 46);
+    fSubplotConfig["mbd_title"] = subplot_parameters(2 * nrows, ncols, 2, 2, 1, 48);
+    fSubplotConfig["mbd_amp_ytitle"] = subplot_parameters(2 * nrows, 2 * ncols, 5, 4, 8, 1);
+    fSubplotConfig["dlyrate_amp_ytitle"] = subplot_parameters(2 * nrows, 2 * ncols, 5, 106, 8, 2);
+    fSubplotConfig["delay_rate_xtitle"] = subplot_parameters(2 * nrows, ncols, 2, 2, 15, 48);
+    fSubplotConfig["sbd_plot"] = subplot_parameters(2 * nrows, ncols, 19, 3, 8, 21);
+    fSubplotConfig["sbd_amp_ytitle"] = subplot_parameters(2 * nrows, 2 * ncols, 19, 4, 8, 1);
+    fSubplotConfig["ion_tec_title"] = subplot_parameters(2 * nrows, ncols, 18, 4, 1, 14);
+    fSubplotConfig["sbd_title"] = subplot_parameters(2 * nrows, ncols, 28, 2, 1, 14);
+    fSubplotConfig["xpower_plot"] = subplot_parameters(2 * nrows, 2 * ncols, 19, 56, 8, 42);
+    fSubplotConfig["xpower_xtitle"] = subplot_parameters(2 * nrows, ncols, 28, 32, 1, 2);
+    fSubplotConfig["xpower_phase_ytitle"] = subplot_parameters(2 * nrows, ncols, 19, 49, 8, 2);
+    fSubplotConfig["channel_phase_ytitle"] = subplot_parameters(2 * nrows, ncols, 32, 60, 8, 1);
+    fSubplotConfig["channel_amp_ytitle"] = subplot_parameters(2 * nrows, 2 * ncols, 32, 4, 8, 1);
+    fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(2 * nrows, 2 * ncols, 40, 119, 8, 1);
+    fSubplotConfig["station_codes"] = subplot_parameters(4 * nrows, 2 * ncols, 87, 119, 2, 1);
+    fSubplotConfig["usblsb_frac"] = subplot_parameters(4 * nrows, 4 * ncols, 81, 9, 2, 1);
     fSubplotConfig["top_info_textbox"] = subplot_parameters(nrows, ncols, 0, 0, 2, 62);
     fSubplotConfig["basic_info_textbox"] = subplot_parameters(nrows, ncols, 2, 52, 18, 12);
-    fSubplotConfig["model_resid_info_textbox"] = subplot_parameters(2*nrows, ncols, 57, 0, 10, 64);
+    fSubplotConfig["model_resid_info_textbox"] = subplot_parameters(2 * nrows, ncols, 57, 0, 10, 64);
     fSubplotConfig["rms_textbox"] = subplot_parameters(nrows, ncols, 31, 0, 4, 16);
     fSubplotConfig["coord_textbox"] = subplot_parameters(nrows, ncols, 33, 0, 2, 64);
     fSubplotConfig["amp_table_textbox"] = subplot_parameters(nrows, ncols, 31, 12, 4, 13);
@@ -99,8 +99,8 @@ void MHO_BasicPlotVisitor::ConfigureSubplots()
     fRightMargin = 0.08;
 }
 
-
-void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, double x_coord, double y_coord, bool center)
+void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color,
+                                           int font_size, double x_coord, double y_coord, bool center)
 {
     try
     {
@@ -111,28 +111,30 @@ void MHO_BasicPlotVisitor::ConstructXTitle(const subplot_parameters& params, std
         text_ax->x_axis().visible(false);
         text_ax->y_axis().visible(false);
         text_ax->box(false);
-        
+
         // Set up coordinate system for text placement (0-1 range)
         text_ax->xlim({0, 1});
         text_ax->ylim({0, 1});
-        
+
         // Add centered axis label
         auto label = text_ax->text(x_coord, y_coord, title);
         label->color(font_color);
         label->font_size(font_size);
-        if(center){label->alignment(matplot::labels::alignment::center);}
-        
-        msg_debug("plot", "added title: "<<title<<" to plot" << eom);
+        if(center)
+        {
+            label->alignment(matplot::labels::alignment::center);
+        }
+
+        msg_debug("plot", "added title: " << title << " to plot" << eom);
     }
     catch(const std::exception& e)
     {
-        msg_warn("plot", "failed to add title: "<<title<<" to plot: " << e.what() << eom);
+        msg_warn("plot", "failed to add title: " << title << " to plot: " << e.what() << eom);
     }
-
 }
 
-
-void MHO_BasicPlotVisitor::ConstructYTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, bool is_y2)
+void MHO_BasicPlotVisitor::ConstructYTitle(const subplot_parameters& params, std::string title, std::string font_color,
+                                           int font_size, bool is_y2)
 {
     try
     {
@@ -153,7 +155,7 @@ void MHO_BasicPlotVisitor::ConstructYTitle(const subplot_parameters& params, std
             text_ax->y_axis().label_color(font_color);
             text_ax->y_axis().tick_values({});
         }
-        else 
+        else
         {
             text_ax->x_axis().visible(false);
             text_ax->y_axis().visible(false);
@@ -167,11 +169,11 @@ void MHO_BasicPlotVisitor::ConstructYTitle(const subplot_parameters& params, std
             text_ax->y2_axis().tick_values({});
         }
 
-        msg_debug("plot", "adding y-axis title: "<< title << " to plot" << eom);
+        msg_debug("plot", "adding y-axis title: " << title << " to plot" << eom);
     }
     catch(const std::exception& e)
     {
-        msg_warn("plot", "failed to add y-axis title: "<< title << " to plot: " << e.what() << eom);
+        msg_warn("plot", "failed to add y-axis title: " << title << " to plot: " << e.what() << eom);
     }
 }
 
@@ -181,11 +183,11 @@ void MHO_BasicPlotVisitor::DirectSavePlot(std::string filename)
     auto backend = fCurrentFigure->backend();
     std::string ext = MHO_DirectoryInterface::GetFileExtension(filename);
     std::string cmd = extension_to_terminal_cmd(ext);
-    msg_debug("fringe", "plotting backend setup command: "<< cmd << eom);
+    msg_debug("fringe", "plotting backend setup command: " << cmd << eom);
     if(cmd == "")
     {
-        msg_warn("fringe", "only .pdf, .eps, and .svg export is available from the command line, " << 
-                 "use the plot GUI to export to other formats" << eom );
+        msg_warn("fringe", "only .pdf, .eps, and .svg export is available from the command line, "
+                               << "use the plot GUI to export to other formats" << eom);
         return;
     }
     backend->run_command(cmd);
@@ -223,7 +225,7 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
             msg_debug("plot", "saving plot to: " << fFilename << eom);
             DirectSavePlot(fFilename);
         }
-        else 
+        else
         {
             // build the plot from fringe data
             ConstructPlot(fPlotData);
@@ -235,7 +237,7 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
             fCurrentFigure->draw(); // don't use show();
             bool loop = true;
             msg_info("fringe", "press a key: 's'=save (as .pdf, .eps, or .svg), 'q'=quit, other=continue" << eom);
-            while(loop) 
+            while(loop)
             {
                 // Save old terminal settings
                 termios oldt;
@@ -254,19 +256,19 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
                 // Restore old settings
                 tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
-                switch (c) 
+                switch(c)
                 {
                     case 's':
-                    case 'S': 
-                    {
-                        msg_info("fringe", "type the filename to save the plot to: " << eom);
-                        std::cout.flush();
-                        std::string response;
-                        std::getline(std::cin, response);
-                        std::string fileName = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(response);
-                        DirectSavePlot(fileName);
-                        break;
-                    }
+                    case 'S':
+                        {
+                            msg_info("fringe", "type the filename to save the plot to: " << eom);
+                            std::cout.flush();
+                            std::string response;
+                            std::getline(std::cin, response);
+                            std::string fileName = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(response);
+                            DirectSavePlot(fileName);
+                            break;
+                        }
                     case 'q':
                         std::exit(0);
                     default:
@@ -294,15 +296,14 @@ void MHO_BasicPlotVisitor::setup_figure_layout()
     fCurrentFigure->color("white");
 }
 
-
-matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid_wrapper(const subplot_parameters sp, double left_margin, double right_margin)
+matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid_wrapper(const subplot_parameters sp, double left_margin,
+                                                                double right_margin)
 {
-    return subplot2grid({sp.total_rows, sp.total_cols}, {sp.start_row, sp.start_col}, sp.rowspan, sp.colspan, left_margin, right_margin);
+    return subplot2grid({sp.total_rows, sp.total_cols}, {sp.start_row, sp.start_col}, sp.rowspan, sp.colspan, left_margin,
+                        right_margin);
 }
 
-
-matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, int >& shape, 
-                                                        const std::pair< int, int >& loc,
+matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, int >& shape, const std::pair< int, int >& loc,
                                                         int rowspan, int colspan, float left_margin, float right_margin)
 {
     int total_rows = shape.first;
@@ -311,18 +312,18 @@ matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, in
     int start_col = loc.second;
 
     float left = static_cast< float >(start_col) / total_cols;
-    float width = static_cast< float  >(colspan) / total_cols;
+    float width = static_cast< float >(colspan) / total_cols;
 
     //calculate normalized position and size
     if(left_margin != 0.0 || right_margin != 0.0)
     {
-        width = (static_cast< float >(colspan) - (right_margin+left_margin) ) / total_cols;
-        left = start_col*width + left_margin;
+        width = (static_cast< float >(colspan) - (right_margin + left_margin)) / total_cols;
+        left = start_col * width + left_margin;
     }
 
     // Flip row calculation since matplotlib uses bottom-origin, we use top-origin
-    float bottom = static_cast< float  >(total_rows - start_row - rowspan) / total_rows;
-    float height = static_cast< float  >(rowspan) / total_rows;
+    float bottom = static_cast< float >(total_rows - start_row - rowspan) / total_rows;
+    float height = static_cast< float >(rowspan) / total_rows;
 
     // if we want space between plots, change value of 'padding' below to something non-zero
     const double padding = 0.0;
@@ -331,7 +332,7 @@ matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid(const std::pair< int, in
     width -= padding;
     height -= padding;
 
-    fAxes.push_back( fCurrentFigure->add_axes( {left, bottom, width, height}) );
+    fAxes.push_back(fCurrentFigure->add_axes({left, bottom, width, height}));
     fLastAxis = fAxes.back();
     return fLastAxis;
 }
@@ -380,28 +381,41 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         x_max = mbd_x.back();
     }
 
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
     int N = 0;
-    double ymax = std::numeric_limits<double>::min();
-    double ymin = std::numeric_limits<double>::max();
-    for(std::size_t i=0; i<dlyrate.size(); i++)
+    double ymax = std::numeric_limits< double >::min();
+    double ymin = std::numeric_limits< double >::max();
+    for(std::size_t i = 0; i < dlyrate.size(); i++)
     {
-        if(dlyrate[i] > ymax){ymax = dlyrate[i];}
-        if(dlyrate[i] < ymin){ymin = dlyrate[i];}
+        if(dlyrate[i] > ymax)
+        {
+            ymax = dlyrate[i];
+        }
+        if(dlyrate[i] < ymin)
+        {
+            ymin = dlyrate[i];
+        }
     }
-    for(std::size_t i=0; i<mbd_amp.size(); i++)
+    for(std::size_t i = 0; i < mbd_amp.size(); i++)
     {
-        if(mbd_amp[i] > ymax){ymax = mbd_amp[i];}
-        if(mbd_amp[i] < ymin){ymin = mbd_amp[i];}
+        if(mbd_amp[i] > ymax)
+        {
+            ymax = mbd_amp[i];
+        }
+        if(mbd_amp[i] < ymin)
+        {
+            ymin = mbd_amp[i];
+        }
     }
     double yabsmax = std::max(std::fabs(ymax), std::fabs(ymin));
-    if(dlyrate.empty()){N = 0;}
-    else 
+    if(dlyrate.empty())
     {
-        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+        N = 0;
+    }
+    else
+    {
+        N = (yabsmax > 0) ? static_cast< int >(std::floor(std::log10(yabsmax))) : 0;
     }
     double scale = std::pow(10.0, N);
 
@@ -413,8 +427,8 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     // Plot delay rate data (red) - use original x-axis
     if(!dlyrate.empty() && !dly_x.empty())
     {
-        //rescale the y-axis if needed 
-        for(std::size_t i=0; i<dlyrate.size(); i++)
+        //rescale the y-axis if needed
+        for(std::size_t i = 0; i < dlyrate.size(); i++)
         {
             dlyrate[i] /= scale;
         }
@@ -429,7 +443,6 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         proper_y_limits = matplot::ylim();
         msg_debug("plot", "Captured original Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
     }
-
 
     // Plot MBD data (blue) - rescale x-axis to match delay rate range
     if(!mbd_amp.empty() && !mbd_x.empty())
@@ -456,7 +469,10 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         }
 
         //scale the amplitude
-        for(std::size_t i=0; i<mbd_amp.size(); i++){mbd_amp[i] /= scale;}
+        for(std::size_t i = 0; i < mbd_amp.size(); i++)
+        {
+            mbd_amp[i] /= scale;
+        }
 
         auto line2 = matplot::plot(mbd_x_rescaled, mbd_amp, "b-");
         line2->line_width(0.5f);
@@ -513,7 +529,8 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
                 double mbd_min = mbd_x.front();
                 double mbd_max = mbd_x.back();
                 double orig_mbd_range = mbd_max - mbd_min;
-                std::vector<double> tspace = {0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1., 5., 10., 50., 100., 500, 1000.};
+                std::vector< double > tspace = {0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1,  0.5,
+                                                1.,     5.,     10.,   50.,   100., 500,  1000.};
                 double tick_spacing = determine_desired_tick_spacing(7, mbd_min, mbd_max, tspace);
 
                 std::vector< double > tick_x_positions;
@@ -588,14 +605,18 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
     }
 
     std::stringstream ss;
-    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
-    else{ ss << "amplitude"; } 
+    if(N != 0)
+    {
+        ss << "amplitude (x10^{" << N << "})";
+    }
+    else
+    {
+        ss << "amplitude";
+    }
     ConstructYTitle(fSubplotConfig["mbd_amp_ytitle"], ss.str(), "blue", 8);
     ConstructYTitle(fSubplotConfig["dlyrate_amp_ytitle"], ss.str(), "red", 8);
 
-
     ConstructXTitle(fSubplotConfig["delay_rate_xtitle"], "delay rate (ns/s)", "red", 9, 0.5, 0.0, true);
-
 }
 
 void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
@@ -683,39 +704,41 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
         }
     }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
     int N = 0;
     double yabsmax = std::max(std::fabs(y_max), std::fabs(y_min));
-    if (sbd_amp.empty()){N = 0;}
-    else 
+    if(sbd_amp.empty())
     {
-        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+        N = 0;
+    }
+    else
+    {
+        N = (yabsmax > 0) ? static_cast< int >(std::floor(std::log10(yabsmax))) : 0;
     }
     //scale the amplitudes
     double scale = std::pow(10.0, N);
-    for(std::size_t i=0; i<sbd_amp.size(); i++)
+    for(std::size_t i = 0; i < sbd_amp.size(); i++)
     {
         sbd_amp[i] /= scale;
     }
 
-    for(std::size_t i=0; i<dtec_y.size(); i++)
+    for(std::size_t i = 0; i < dtec_y.size(); i++)
     {
         dtec_y[i] /= scale;
     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Use the combined y-limits we calculated earlier (before any auto-expansion) but rescaled
-    std::array< double, 2 > proper_y_limits = {y_min/scale, y_max/scale};
+    std::array< double, 2 > proper_y_limits = {y_min / scale, y_max / scale};
 
     // Plot SBD data (green) - use original x-axis
     auto sbd_line = matplot::plot(sbd_x, sbd_amp, "g-");
     sbd_line->line_width(0.5f);
-    sbd_line->color({34/255.0, 139/255.0, 34/255.0}); //forest green
-    //if(N !=0){ fLastAxis->ytickformat("%.3g"); } 
+    sbd_line->color({34 / 255.0, 139 / 255.0, 34 / 255.0}); //forest green
+    //if(N !=0){ fLastAxis->ytickformat("%.3g"); }
 
     msg_debug("plot", "Using combined SBD+dTEC Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
 
@@ -766,10 +789,10 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
                 double tick_mark_y = y_top - 0.03 * y_range;  // Tick marks extend 3% down from top edge
                 double tick_label_y = y_top - 0.05 * y_range; // Labels 5% down from top edge
                 double axis_label_y = y_top - 0.08 * y_range; // Axis label 8% down from top edge
-    
+
                 std::vector< double > tick_x_positions;
                 std::vector< double > tick_values;
-                std::vector<double> tspace = {0.1, 0.5, 1, 5, 10, 25, 50, 100, 200, 500}; //target spacing
+                std::vector< double > tspace = {0.1, 0.5, 1, 5, 10, 25, 50, 100, 200, 500}; //target spacing
                 double dtec_min = dtec_x.front();
                 double dtec_max = dtec_x.back();
                 double tick_spacing = determine_desired_tick_spacing(5, dtec_min, dtec_max, tspace);
@@ -836,17 +859,23 @@ void MHO_BasicPlotVisitor::make_sbd_dtec_plot(const mho_json& plot_dict)
 
     //format the y-axis and the labels/title
     std::stringstream ss;
-    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
-    else{ ss << "amplitude"; } 
+    if(N != 0)
+    {
+        ss << "amplitude (x10^{" << N << "})";
+    }
+    else
+    {
+        ss << "amplitude";
+    }
     //ax->ylabel(ss.str());
 
     ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], ss.str(), "#228B22", 8);
     // ConstructYTitle(fSubplotConfig["sbd_amp_ytitle"], "amplitude", "#228B22", 8);
 
-    // Configure axis properties  
-    auto ax_handle = fLastAxis;//matplot::gca();
+    // Configure axis properties
+    auto ax_handle = fLastAxis;          //matplot::gca();
     ax_handle->y2_axis().visible(false); // Hide the right-side y-axis (y2) if it exists
-    ax_handle->minor_grid(true); // Enable minor grid lines as substitute for minor ticks
+    ax_handle->minor_grid(true);         // Enable minor grid lines as substitute for minor ticks
 
     // Add twin x-axis label in separate text area above the plot (safe approach)
     if(!dtec_x.empty())
@@ -884,25 +913,37 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     size_t data_len = std::min(xpspec_abs.size(), xpow_x.size());
     std::vector< double > xpspec_abs_trunc(xpspec_abs.begin(), xpspec_abs.begin() + data_len);
     std::vector< double > xpspec_arg_trunc(xpspec_arg.begin(), xpspec_arg.begin() + data_len);
-    
+
     //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
     int N = 0;
-    double ymax = std::numeric_limits<double>::min();
-    double ymin = std::numeric_limits<double>::max();
-    for(std::size_t i=0; i<xpspec_abs_trunc.size(); i++)
+    double ymax = std::numeric_limits< double >::min();
+    double ymin = std::numeric_limits< double >::max();
+    for(std::size_t i = 0; i < xpspec_abs_trunc.size(); i++)
     {
-        if(xpspec_abs_trunc[i] > ymax){ymax = xpspec_abs_trunc[i];}
-        if(xpspec_abs_trunc[i] < ymin){ymin = xpspec_abs_trunc[i];}
+        if(xpspec_abs_trunc[i] > ymax)
+        {
+            ymax = xpspec_abs_trunc[i];
+        }
+        if(xpspec_abs_trunc[i] < ymin)
+        {
+            ymin = xpspec_abs_trunc[i];
+        }
     }
     double yabsmax = std::max(std::fabs(ymax), std::fabs(ymin));
-    if (xpspec_abs_trunc.empty()){N = 0;}
-    else 
+    if(xpspec_abs_trunc.empty())
     {
-        N = (yabsmax > 0) ? static_cast<int>(std::floor(std::log10(yabsmax))) : 0;
+        N = 0;
+    }
+    else
+    {
+        N = (yabsmax > 0) ? static_cast< int >(std::floor(std::log10(yabsmax))) : 0;
     }
     //scale the amplitude
     double scale = std::pow(10.0, N);
-    for(std::size_t i=0; i<xpspec_abs_trunc.size(); i++){xpspec_abs_trunc[i] /= scale;}
+    for(std::size_t i = 0; i < xpspec_abs_trunc.size(); i++)
+    {
+        xpspec_abs_trunc[i] /= scale;
+    }
 
     // Plot amplitude (blue circles)
     auto amp_line = matplot::plot(xpow_x, xpspec_abs_trunc, "co-");
@@ -910,12 +951,18 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     amp_line->line_width(0.5f);
     amp_line->marker_color("blue");
     matplot::xlim({xpow_x.front(), xpow_x.back()});
-    
+
     //format the y-axis and the labels/title
-    ax->ytickformat("%.2g");  // 2 digits mantissa
+    ax->ytickformat("%.2g"); // 2 digits mantissa
     std::stringstream ss;
-    if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
-    else{ ss << "amplitude"; } 
+    if(N != 0)
+    {
+        ss << "amplitude (x10^{" << N << "})";
+    }
+    else
+    {
+        ss << "amplitude";
+    }
     ax->ylabel(ss.str());
 
     //change the label font sizes
@@ -923,7 +970,7 @@ void MHO_BasicPlotVisitor::make_xpower_plot(const mho_json& plot_dict)
     ax->y_axis().label_font_size(8);
     ax->x_axis().label_font_size(8);
 
-    // Configure axis properties - enable minor grid 
+    // Configure axis properties - enable minor grid
     auto ax_handle = matplot::gca();
     ax_handle->minor_grid(true); // Enable minor grid lines as substitute for minor ticks
 
@@ -970,7 +1017,6 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
     std::vector< double > seg_phs_deg(seg_phs.size());
     std::transform(seg_phs.begin(), seg_phs.end(), seg_phs_deg.begin(), [](double rad) { return rad * 180.0 / M_PI; });
 
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //figure out if we need scientific notation for the y-axis labels, compute min/max and exponent
     int N = 0;
@@ -981,9 +1027,9 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
         try
         {
             double amp_val = MHO_PlotDataExtractor::extract_double(plot_dict, "Amp", 1.0);
-            N = static_cast<int>(std::floor(std::log10(amp_val)));
+            N = static_cast< int >(std::floor(std::log10(amp_val)));
             scale = std::pow(10.0, N);
-            amp_scale = amp_val * 3.0/scale;
+            amp_scale = amp_val * 3.0 / scale;
         }
         catch(const std::exception& e)
         {
@@ -1015,9 +1061,12 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
         }
     }
 
-    // Skip "All" channel for individual channel plots if we only have 1 channel 
+    // Skip "All" channel for individual channel plots if we only have 1 channel
     int n_channel_plots = n_plots;
-    if(n_plots == 2){n_channel_plots = n_plots - 1;}
+    if(n_plots == 2)
+    {
+        n_channel_plots = n_plots - 1;
+    }
 
     if(static_cast< int >(seg_amp.size()) >= n_seg * n_plots && static_cast< int >(seg_phs_deg.size()) >= n_seg * n_plots &&
        n_channel_plots > 0)
@@ -1025,7 +1074,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
         for(int ch = 0; ch < n_channel_plots; ++ch)
         {
 
-            auto ch_ax = subplot2grid({35, n_channel_plots}, {16, ch} , 4, 1, fLeftMargin, fRightMargin);
+            auto ch_ax = subplot2grid({35, n_channel_plots}, {16, ch}, 4, 1, fLeftMargin, fRightMargin);
             ch_ax->font_size(8);
 
             // Extract data for this channel
@@ -1038,7 +1087,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
                 int idx = seg * n_plots + ch;
                 if(idx < static_cast< int >(seg_amp.size()))
                 {
-                    ch_amp[seg] = seg_amp[idx]/scale;
+                    ch_amp[seg] = seg_amp[idx] / scale;
                 }
                 if(idx < static_cast< int >(seg_phs_deg.size()))
                 {
@@ -1071,8 +1120,14 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
             // Only show y-axis labels on first (leftmost) channel
             bool plot_y1ax = false;
             bool plot_y2ax = false;
-            if(ch == 0){ plot_y1ax = true; }
-            if(ch == n_channel_plots - 1){plot_y2ax = true;}
+            if(ch == 0)
+            {
+                plot_y1ax = true;
+            }
+            if(ch == n_channel_plots - 1)
+            {
+                plot_y2ax = true;
+            }
 
             if(plot_y1ax)
             {
@@ -1080,12 +1135,12 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
                 ax_handle->y_axis().label_font_size(6);
                 ax_handle->y_axis().label_color("blue");
             }
-            else 
+            else
             {
                 ax_handle->y_axis().visible(false);
                 ax_handle->y_axis().ticklabels({});
             }
-            
+
             if(plot_y2ax)
             {
                 // Only show phase ylabel on last (rightmost) subplot
@@ -1093,7 +1148,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
                 ax_handle->y2_axis().label_color("red");
                 ax_handle->y2_axis().tick_values({-180, -90, 0, 90, 180});
             }
-            else 
+            else
             {
                 ax_handle->y2_axis().visible(false);
                 ax_handle->y2_axis().ticklabels({});
@@ -1105,7 +1160,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
             try
             {
                 //add the channel column labels
-                auto text_ax = subplot2grid({72, n_channel_plots}, {31, ch} , 1, 1, fLeftMargin, fRightMargin);
+                auto text_ax = subplot2grid({72, n_channel_plots}, {31, ch}, 1, 1, fLeftMargin, fRightMargin);
 
                 // Turn off axis display for text subplot
                 text_ax->x_axis().visible(false);
@@ -1126,12 +1181,17 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
                 msg_warn("plot", "Failed to add twin x-axis label above plot: " << e.what() << eom);
             }
 
-
             ConstructYTitle(fSubplotConfig["channel_phase_ytitle"], "phase [deg]", "red", 8, true);
 
             std::stringstream ss;
-            if(N != 0){ ss << "amplitude (x10^{" << N << "})"; }
-            else{ ss << "amplitude"; } 
+            if(N != 0)
+            {
+                ss << "amplitude (x10^{" << N << "})";
+            }
+            else
+            {
+                ss << "amplitude";
+            }
 
             ConstructYTitle(fSubplotConfig["channel_amp_ytitle"], ss.str(), "blue", 8);
         }
@@ -1141,7 +1201,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_plots(const mho_json& plot_dict)
 void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& plot_dict)
 {
     msg_debug("plot", "Creating channel segment validity plots" << eom);
-    
+
     int n_seg = MHO_PlotDataExtractor::extract_int(plot_dict, "NSeg", 1);
     int n_plots = MHO_PlotDataExtractor::extract_int(plot_dict, "NPlots", 1);
 
@@ -1152,21 +1212,25 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
     // Calculate the number of channel plots (exclude last channel as per Python implementation)
     int n_channel_plots = n_plots - 1; //remove the 'All' channel
     int total_channel_slots = n_plots;
-    if(n_channel_plots == 1){total_channel_slots = 1;}
-    
-    if(n_channel_plots <= 0) {
+    if(n_channel_plots == 1)
+    {
+        total_channel_slots = 1;
+    }
+
+    if(n_channel_plots <= 0)
+    {
         msg_debug("plot", "No validity plots needed (n_channel_plots <= 0)" << eom);
         return;
     }
-    
+
     // Create separate validity plot box for each channel, aligned with channel plots above
     // Position them at row 20 with height 1, between channel segments (row 16-19) and pcal plots (row 21+)
     for(int ch = 0; ch < n_channel_plots; ++ch)
     {
-        try 
+        try
         {
             // Create subplot for this channel's validity plot (aligned with channel plots)
-            auto validity_ax = subplot2grid({35, total_channel_slots}, {20, ch} , 1, 1, fLeftMargin, fRightMargin);
+            auto validity_ax = subplot2grid({35, total_channel_slots}, {20, ch}, 1, 1, fLeftMargin, fRightMargin);
 
             // Set up plotting area and hold for multiple plots
             fLastAxis->hold(matplot::on);
@@ -1179,7 +1243,7 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
             for(int seg = 0; seg < n_seg; ++seg)
             {
                 int idx = seg * n_channel_plots + ch;
-                
+
                 if(idx < static_cast< int >(usb_frac.size()))
                 {
                     usb_validity[seg] = usb_frac[idx];
@@ -1191,53 +1255,52 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
             }
 
             // Draw vertical lines for each time segment
-            for(int seg = 0; seg < n_seg; ++seg) 
+            for(int seg = 0; seg < n_seg; ++seg)
             {
-                double x = static_cast<double>(seg) + 0.5; // Center the line in the segment
-                
+                double x = static_cast< double >(seg) + 0.5; // Center the line in the segment
+
                 //threshold is hard-coded to 0.95 (see generate_graphs.c)
-                if (usb_validity[seg] >= 0.95) 
+                if(usb_validity[seg] >= 0.95)
                 {
                     auto usb_line = matplot::plot({x, x}, {0.5, 1.0}, "g-"); // Green for valid
                     usb_line->line_width(1.0f);
-                    usb_line->color({34/255.0, 139/255.0, 34/255.0});
-                } 
-                else if (usb_validity[seg] < 0.95 && usb_validity[seg] > 0. ) 
+                    usb_line->color({34 / 255.0, 139 / 255.0, 34 / 255.0});
+                }
+                else if(usb_validity[seg] < 0.95 && usb_validity[seg] > 0.)
                 {
                     auto usb_line = matplot::plot({x, x}, {0.5, 1.0}, "r-"); // Red for invalid
                     usb_line->line_width(1.0f);
                 }
-                
+
                 // LSB validity line (lower half: y from 0.0 to 0.5) - should be GREEN
-                if (lsb_validity[seg] >= 0.95) 
+                if(lsb_validity[seg] >= 0.95)
                 {
                     auto lsb_line = matplot::plot({x, x}, {0.0, 0.5}, "g-"); // Green for valid
                     lsb_line->line_width(1.0f);
-                    lsb_line->color({34/255.0, 139/255.0, 34/255.0});
-                } 
-                else if (lsb_validity[seg] < 0.95 && lsb_validity[seg] > 0. ) 
+                    lsb_line->color({34 / 255.0, 139 / 255.0, 34 / 255.0});
+                }
+                else if(lsb_validity[seg] < 0.95 && lsb_validity[seg] > 0.)
                 {
                     auto lsb_line = matplot::plot({x, x}, {0.0, 0.5}, "r-"); // Red for invalid
                     lsb_line->line_width(1.0f);
                 }
             }
-            
+
             // Draw horizontal divider line at y=0.5 to separate USB/LSB
-            auto divider = matplot::plot({0.0, static_cast<double>(n_seg)}, {0.5, 0.5}, "k-");
+            auto divider = matplot::plot({0.0, static_cast< double >(n_seg)}, {0.5, 0.5}, "k-");
             divider->line_width(1.0f);
-            
+
             // Set axis properties
-            matplot::xlim({0, static_cast<double>(n_seg)});
+            matplot::xlim({0, static_cast< double >(n_seg)});
             matplot::ylim({0, 1});
-            
+
             // Hide tick labels and ticks as per Python implementation
             auto ax_handle = matplot::gca();
             ax_handle->x_axis().tick_values({});
             ax_handle->y_axis().tick_values({});
-            
+
             // Turn off hold for next plot
             matplot::hold(matplot::off);
-
 
             // USB/LSB indicators
             try
@@ -1258,17 +1321,13 @@ void MHO_BasicPlotVisitor::make_channel_segment_validity_plots(const mho_json& p
                 auto lsb_txt = fLastAxis->text(0.5, 0.1, "L");
                 lsb_txt->alignment(matplot::labels::alignment::center);
                 lsb_txt->font_size(7);
-
             }
             catch(const std::exception& e)
             {
                 msg_warn("plot", "Failed to add twin x-axis label above plot: " << e.what() << eom);
             }
-
-
-
         }
-        catch(const std::exception& e) 
+        catch(const std::exception& e)
         {
             msg_warn("plot", "failed to create validity plot for channel " << ch << ": " << e.what() << eom);
         }
@@ -1296,14 +1355,18 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
         if(plot_dict["extra"].contains("ref_pols"))
         {
             auto r = plot_dict["extra"]["ref_pols"].get< std::vector< std::string > >();
-            if(r.size() >= 1) ref_pol1 = r[0];
-            if(r.size() >= 2) ref_pol2 = r[1];
+            if(r.size() >= 1)
+                ref_pol1 = r[0];
+            if(r.size() >= 2)
+                ref_pol2 = r[1];
         }
         if(plot_dict["extra"].contains("rem_pols"))
         {
             auto m = plot_dict["extra"]["rem_pols"].get< std::vector< std::string > >();
-            if(m.size() >= 1) rem_pol1 = m[0];
-            if(m.size() >= 2) rem_pol2 = m[1];
+            if(m.size() >= 1)
+                rem_pol1 = m[0];
+            if(m.size() >= 2)
+                rem_pol2 = m[1];
         }
     }
 
@@ -1336,13 +1399,16 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
     // Skip "All" channel for individual channel plots
     int n_channel_plots = n_plots - 1;
     int total_channel_slots = n_plots;
-    if(n_channel_plots == 1){total_channel_slots = 1;}
+    if(n_channel_plots == 1)
+    {
+        total_channel_slots = 1;
+    }
 
     if(!ref_pcal_off.empty() || !rem_pcal_off.empty())
     {
         for(int ch = 0; ch < n_channel_plots; ++ch)
         {
-            auto pcal_ax = subplot2grid({35, total_channel_slots}, {21, ch} , 2, 1, fLeftMargin, fRightMargin);
+            auto pcal_ax = subplot2grid({35, total_channel_slots}, {21, ch}, 2, 1, fLeftMargin, fRightMargin);
             pcal_ax->font_size(8);
 
             std::vector< double > seg_indices = MHO_PlotDataExtractor::create_index_vector(n_seg);
@@ -1396,7 +1462,8 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
                 }
                 catch(const std::exception& e)
                 {
-                    msg_warn("plot", "Failed to parse second-pol segment pcal data for channel " << ch << ": " << e.what() << eom);
+                    msg_warn("plot",
+                             "Failed to parse second-pol segment pcal data for channel " << ch << ": " << e.what() << eom);
                 }
             }
 
@@ -1404,8 +1471,8 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
             auto ref_line = matplot::plot(seg_indices, ref_phases, "co");
             ref_line->marker_size(2.0f);
             ref_line->line_width(0.5f);
-            ref_line->color({34/255.0, 139/255.0, 34/255.0}); // forest green
-            ref_line->marker_color({34/255.0, 139/255.0, 34/255.0});
+            ref_line->color({34 / 255.0, 139 / 255.0, 34 / 255.0}); // forest green
+            ref_line->marker_color({34 / 255.0, 139 / 255.0, 34 / 255.0});
             fLastAxis->hold(matplot::on);
 
             // Plot remote station pcal, pol1 (magenta, circle)
@@ -1422,8 +1489,8 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
                 auto ref_line2 = matplot::plot(seg_indices, ref_phases2, "c.");
                 ref_line2->marker_size(2.0f);
                 ref_line2->line_width(0.5f);
-                ref_line2->color({255/255.0, 140/255.0, 0/255.0});
-                ref_line2->marker_color({255/255.0, 140/255.0, 0/255.0});
+                ref_line2->color({255 / 255.0, 140 / 255.0, 0 / 255.0});
+                ref_line2->marker_color({255 / 255.0, 140 / 255.0, 0 / 255.0});
 
                 // Remote station, pol2 (purple, dot)
                 auto rem_line2 = matplot::plot(seg_indices, rem_phases2, "c.");
@@ -1445,7 +1512,7 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
                 ax_handle->y_axis().tick_values({-180, -90, 0, 90, 180});
                 ax_handle->font_size(6);
             }
-            else if(ch == n_channel_plots-1)
+            else if(ch == n_channel_plots - 1)
             {
                 auto ax_handle = matplot::gca();
                 matplot::yticklabels({});
@@ -1464,8 +1531,8 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
 
     if(total_channel_slots == 1)
     {
-        fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(2*fNRows, 2*fNCols, 40, 125, 8, 1);
-        fSubplotConfig["station_codes"] = subplot_parameters(4*fNRows, 2*fNCols, 87, 125, 2, 1);
+        fSubplotConfig["pcal_theta_ytitle"] = subplot_parameters(2 * fNRows, 2 * fNCols, 40, 125, 8, 1);
+        fSubplotConfig["station_codes"] = subplot_parameters(4 * fNRows, 2 * fNCols, 87, 125, 2, 1);
     }
 
     // For pseudo-Stokes I, expand the station_codes subplot to span the full pcal
@@ -1507,7 +1574,7 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
                 ref_txt1->alignment(matplot::labels::alignment::center);
 
                 auto ref_txt2 = fLastAxis->text(0.5, 0.375, ref_id + ":" + ref_pol2);
-                //ref_txt2->color({255/255.0, 140/255.0, 0/255.0}); 
+                //ref_txt2->color({255/255.0, 140/255.0, 0/255.0});
                 ref_txt2->color("#FF8800"); //orange
                 ref_txt2->alignment(matplot::labels::alignment::center);
 
@@ -1534,7 +1601,6 @@ void MHO_BasicPlotVisitor::make_pcal_plots(const mho_json& plot_dict)
         {
             msg_warn("plot", "Failed to add twin x-axis label above plot: " << e.what() << eom);
         }
-
     }
 }
 
@@ -1617,13 +1683,16 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     // Remove quotes if present
     quality.erase(std::remove(quality.begin(), quality.end(), '\''), quality.end());
 
-    std::string snr = MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "SNR", 0.0), 1, 1);
+    std::string snr =
+        MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "SNR", 0.0), 1, 1);
     std::string intg_time =
         MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "IntgTime", 0.0), 3, 3);
-    std::string amp = MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "Amp", 0.0), 3, 3);
+    std::string amp =
+        MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "Amp", 0.0), 3, 3);
     std::string phase =
         MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "ResPhase", 0.0), 1, 1);
-    std::string pfd = MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "PFD", 0.0), 1, 1);
+    std::string pfd =
+        MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "PFD", 0.0), 1, 1);
 
     std::string sbd =
         MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "ResidSbd(us)", 0.0), 6, 6);
@@ -1656,7 +1725,10 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     // if(dec.find("d") != std::string::npos){ dec.replace(dec.find("d"), 1, "°"); }
     //we use a superscript 'o' as a stand-in for the degree symbol, because not all
     //of the gnuplot backends support UTF-8 code points, and we don't know what backend is being used here
-    if(dec.find("d") != std::string::npos){ dec.replace(dec.find("d"), 1, "{^o}"); }
+    if(dec.find("d") != std::string::npos)
+    {
+        dec.replace(dec.find("d"), 1, "{^o}");
+    }
 
     // Check for error code
     std::string error_code = "";
@@ -1731,8 +1803,8 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     green_label(fLastAxis, y_pos, "RA, Dec (J2000)");
 
     // Lambda function to create right-justified text
-    auto right_justify_text = [](matplot::axes_handle ax, double right_x, double y, const std::string& text, std::string color="") 
-    {
+    auto right_justify_text = [](matplot::axes_handle ax, double right_x, double y, const std::string& text,
+                                 std::string color = "") {
         auto txt = ax->text(right_x, y, text);
         txt->font_size(9); // Smaller font size
         txt->font("monospace");
@@ -1799,8 +1871,6 @@ void MHO_BasicPlotVisitor::make_basic_info_text(const mho_json& plot_dict)
     right_justify_text(fLastAxis, value_x, y_pos, ra);
     y_pos -= y_step;
     right_justify_text(fLastAxis, value_x, y_pos, dec);
-
-
 }
 
 // ============================================================================
@@ -1897,7 +1967,7 @@ void MHO_BasicPlotVisitor::make_model_resid_info_text(const mho_json& plot_dict)
     double table1_value_x = 0.25; // Python: 0.28 (right-justified)
 
     // Table 2: Apriori values (left-justified labels, right-justified values)
-    double table2_label_x = 0.3; // Python: 0.3
+    double table2_label_x = 0.3;  // Python: 0.3
     double table2_value_x = 0.57; // Python: 0.6 (right-justified)
 
     // Table 3: Residual values (left-justified labels, right-justified values)
@@ -1907,8 +1977,7 @@ void MHO_BasicPlotVisitor::make_model_resid_info_text(const mho_json& plot_dict)
     double error_x = 0.97;        // Python: 0.97 (right-justified)
 
     // Helper lambda for right-justified text with smaller font size
-    auto right_justify_text = [](matplot::axes_handle ax, double right_x, double y, const std::string& text) 
-    {
+    auto right_justify_text = [](matplot::axes_handle ax, double right_x, double y, const std::string& text) {
         double char_width = 0.006; // Reduced character width for smaller text
         double text_width = text.length() * char_width;
         double left_x = right_x - text_width;
@@ -2073,10 +2142,22 @@ void MHO_BasicPlotVisitor::make_coord_text(const mho_json& plot_dict)
     std::string baseline_input = MHO_PlotDataExtractor::extract_string(extra, "baseline_input_file", "");
 
     //TODO FIXME horrible hack to keep gnuplot from interpreting underscore as subscript indcator
-    while(control_file.find("_") != std::string::npos){ control_file.replace(control_file.find("_"), 1, "*"); }
-    while(control_file.find("*") != std::string::npos){ control_file.replace(control_file.find("*"), 1, "\\\\_"); }
-    while(baseline_input.find("_") != std::string::npos){ baseline_input.replace(baseline_input.find("_"), 1, "*"); }
-    while(baseline_input.find("*") != std::string::npos){ baseline_input.replace(baseline_input.find( "*"), 1, "\\\\_"); }
+    while(control_file.find("_") != std::string::npos)
+    {
+        control_file.replace(control_file.find("_"), 1, "*");
+    }
+    while(control_file.find("*") != std::string::npos)
+    {
+        control_file.replace(control_file.find("*"), 1, "\\\\_");
+    }
+    while(baseline_input.find("_") != std::string::npos)
+    {
+        baseline_input.replace(baseline_input.find("_"), 1, "*");
+    }
+    while(baseline_input.find("*") != std::string::npos)
+    {
+        baseline_input.replace(baseline_input.find("*"), 1, "\\\\_");
+    }
 
     // Create coordinate text at bottom - give it more height and better positioning
     auto text_ax = subplot2grid_wrapper(fSubplotConfig["coord_textbox"]);
@@ -2160,7 +2241,7 @@ void MHO_BasicPlotVisitor::make_amplitude_table(const mho_json& plot_dict)
     double y_start = 0.9;
     double y_step = 0.09; // Tight vertical spacing
     double label_x = 0.08;
-    double value_x = 0.68; 
+    double value_x = 0.68;
 
     // Draw single-column table
     for(size_t i = 0; i < labels.size(); ++i)
@@ -2170,7 +2251,7 @@ void MHO_BasicPlotVisitor::make_amplitude_table(const mho_json& plot_dict)
         // Label (left-justified)
         auto label = fLastAxis->text(label_x, y_pos, labels[i]);
         label->font_size(8);
-        
+
         auto txt = fLastAxis->text(value_x, y_pos, values[i]);
         txt->font_size(8);
     }
@@ -2239,7 +2320,7 @@ void MHO_BasicPlotVisitor::make_window_table(const mho_json& plot_dict)
     };
 
     // Layout parameters - compact style
-    double y_start = 1.0 - (0.006 + 0.09)*2;
+    double y_start = 1.0 - (0.006 + 0.09) * 2;
     double y_step = 0.09; // Tight vertical spacing
     double label_x = 0.02;
     double min_val_x = 0.65;
@@ -2308,30 +2389,31 @@ void MHO_BasicPlotVisitor::make_data_stats_text(const mho_json& plot_dict)
     double y_step = 0.095;
 
     auto text1 = fLastAxis->text(0.02, y_pos,
-                               "Pcal mode: " + ref_pc_mode + ", " + rem_pc_mode + " PC period (AP's) " +
-                                   std::to_string(ref_pc_period) + "," + std::to_string(rem_pc_period));
+                                 "Pcal mode: " + ref_pc_mode + ", " + rem_pc_mode + " PC period (AP's) " +
+                                     std::to_string(ref_pc_period) + "," + std::to_string(rem_pc_period));
     text1->font_size(8); // Slightly smaller font
     y_pos -= y_step;
 
     auto text2 = fLastAxis->text(0.02, y_pos, "Pcal rate: X,X (us/s)"); //not implemented yet
-    text2->font_size(8); // Slightly smaller font
+    text2->font_size(8);                                                // Slightly smaller font
     y_pos -= y_step;
 
     auto text3 = fLastAxis->text(0.02, y_pos,
-                               "Bits/sample: " + std::to_string(ref_bits) + "x" + std::to_string(rem_bits) +
-                                   "      SampCntNorm: disabled");
+                                 "Bits/sample: " + std::to_string(ref_bits) + "x" + std::to_string(rem_bits) +
+                                     "      SampCntNorm: disabled");
     text3->font_size(8); // Slightly smaller font
     y_pos -= y_step;
 
     auto text4 = fLastAxis->text(0.02, y_pos,
-                               "Data rate(MSamp/s) " + std::to_string(static_cast< int >(sample_rate)) + " MBpts " +
-                                   std::to_string(grid_pts) + " Amb " + MHO_PlotDataExtractor::format_standard(ambiguity,3,3) + " us");
+                                 "Data rate(MSamp/s) " + std::to_string(static_cast< int >(sample_rate)) + " MBpts " +
+                                     std::to_string(grid_pts) + " Amb " +
+                                     MHO_PlotDataExtractor::format_standard(ambiguity, 3, 3) + " us");
     text4->font_size(8); // Slightly smaller font
     y_pos -= y_step;
 
     auto text5 = fLastAxis->text(0.02, y_pos,
-                               "Data rate(Mb/s) " + std::to_string(static_cast< int >(data_rate)) +
-                                   "  nlags: " + std::to_string(nlags) + "   t\\\\_cohere infinite");
+                                 "Data rate(Mb/s) " + std::to_string(static_cast< int >(data_rate)) +
+                                     "  nlags: " + std::to_string(nlags) + "   t\\\\_cohere infinite");
     text5->font_size(8); // Slightly smaller font
 }
 
@@ -2405,7 +2487,7 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
         return;
     }
 
-    // Create text area aligned just below the channel plots 
+    // Create text area aligned just below the channel plots
     auto text_ax = subplot2grid({35, 1}, {23, 0}, 8, 1, fLeftMargin, fRightMargin);
     text_ax->x_axis().visible(false);
     text_ax->y_axis().visible(false);
@@ -2451,12 +2533,20 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
             if(plot_dict["extra"].contains("ref_pols"))
             {
                 auto r = plot_dict["extra"]["ref_pols"].get< std::vector< std::string > >();
-                if(r.size() >= 2) { ref_pol1 = r[0]; ref_pol2 = r[1]; }
+                if(r.size() >= 2)
+                {
+                    ref_pol1 = r[0];
+                    ref_pol2 = r[1];
+                }
             }
             if(plot_dict["extra"].contains("rem_pols"))
             {
                 auto m = plot_dict["extra"]["rem_pols"].get< std::vector< std::string > >();
-                if(m.size() >= 2) { rem_pol1 = m[0]; rem_pol2 = m[1]; }
+                if(m.size() >= 2)
+                {
+                    rem_pol1 = m[0];
+                    rem_pol2 = m[1];
+                }
             }
         }
         catch(const std::exception& e)
@@ -2491,14 +2581,14 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
     if(is_pseudo_stokes_I && !ref_pol1.empty() && !ref_pol2.empty() && !rem_pol1.empty() && !rem_pol2.empty())
     {
         // Update first-pol labels to include the polarization character
-        header_text["PCdlyRf"]  = "PC " + ref_pol1 + " dly ref (ns)";
-        header_text["PCdlyRm"]  = "PC " + rem_pol1 + " dly rem (ns)";
-        header_text["PCPhsRf"]  = "PC " + ref_pol1 + " phase";
-        header_text["PCPhsRm"]  = "PC " + rem_pol1 + " phase";
-        header_text["PCOffRf"]  = "Manl PC " + ref_pol1;
-        header_text["PCOffRm"]  = "Manl PC " + rem_pol1;
-        header_text["PCAmpRf"]  = "PC " + ref_pol1 + " amp ref";
-        header_text["PCAmpRm"]  = "PC " + rem_pol1 + " amp rem";
+        header_text["PCdlyRf"] = "PC " + ref_pol1 + " dly ref (ns)";
+        header_text["PCdlyRm"] = "PC " + rem_pol1 + " dly rem (ns)";
+        header_text["PCPhsRf"] = "PC " + ref_pol1 + " phase";
+        header_text["PCPhsRm"] = "PC " + rem_pol1 + " phase";
+        header_text["PCOffRf"] = "Manl PC " + ref_pol1;
+        header_text["PCOffRm"] = "Manl PC " + rem_pol1;
+        header_text["PCAmpRf"] = "PC " + ref_pol1 + " amp ref";
+        header_text["PCAmpRm"] = "PC " + rem_pol1 + " amp rem";
         // Add second-pol labels
         header_text["PCdlyRf2"] = "PC " + ref_pol2 + " dly ref (ns)";
         header_text["PCdlyRm2"] = "PC " + rem_pol2 + " dly rem (ns)";
@@ -2681,11 +2771,14 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
     // Calculate layout parameters
     double table_width = 1.0;
     double col_width = table_width / (n_channel_plots + 1); // +1 for header column
-    double row_height = 1.0 / table_data.size() / 1.5; // Reduce row height by factor of 1.5
-    int font_size = 7; //this might be somewhat conservative (on the small size)
-    int n_decrement = std::floor(n_channel_plots/7 - 1);
+    double row_height = 1.0 / table_data.size() / 1.5;      // Reduce row height by factor of 1.5
+    int font_size = 7;                                      //this might be somewhat conservative (on the small size)
+    int n_decrement = std::floor(n_channel_plots / 7 - 1);
     font_size -= n_decrement;
-    if(font_size <= 2){font_size = 2;}
+    if(font_size <= 2)
+    {
+        font_size = 2;
+    }
 
     // Draw the table with tighter row spacing
     for(size_t row = 0; row < table_data.size(); ++row)
@@ -2694,15 +2787,14 @@ void MHO_BasicPlotVisitor::make_channel_info_table(const mho_json& plot_dict)
 
         for(size_t col = 0; col < table_data[row].size(); ++col)
         {
-            double x_pos = col * col_width;// + col_width * 0.1; // Small left padding
+            double x_pos = col * col_width; // + col_width * 0.1; // Small left padding
 
             // Update text to integer value - re-create the text object with proper color
             auto text = fLastAxis->text(x_pos, y_pos, table_data[row][col]);
             text->font_size(font_size);
 
             // Apply color coding for PC amplitude rows (match "PC amp" exactly or any label containing "amp")
-            bool is_amp_row = (table_headers[row] == "PC amp") ||
-                              (table_headers[row].find("amp") != std::string::npos);
+            bool is_amp_row = (table_headers[row] == "PC amp") || (table_headers[row].find("amp") != std::string::npos);
             if(is_amp_row && col < static_cast< size_t >(n_channel_plots))
             {
                 try

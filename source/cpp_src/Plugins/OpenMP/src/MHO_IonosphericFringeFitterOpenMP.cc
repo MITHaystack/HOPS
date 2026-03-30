@@ -41,8 +41,7 @@ MHO_IonosphericFringeFitterOpenMP::MHO_IonosphericFringeFitterOpenMP(MHO_FringeD
     // this->fMBDSearch = new MHO_MBDelaySearch(); //use single threaded version for this fringe fitter
 };
 
-MHO_IonosphericFringeFitterOpenMP::~MHO_IonosphericFringeFitterOpenMP()
-{
+MHO_IonosphericFringeFitterOpenMP::~MHO_IonosphericFringeFitterOpenMP(){
     // delete this->fMBDSearch;
     // this->fMBDSearch = nullptr;
 };
@@ -89,8 +88,6 @@ void MHO_IonosphericFringeFitterOpenMP::Run()
         //calculate the fringe properties
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
     }
-
-    
 }
 
 void MHO_IonosphericFringeFitterOpenMP::Finalize()
@@ -130,7 +127,6 @@ void MHO_IonosphericFringeFitterOpenMP::Finalize()
 
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
-    
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -145,10 +141,13 @@ void MHO_IonosphericFringeFitterOpenMP::initialize_ion_threads()
     fNIonThreads = 1;
 #endif
     //no benefit in having more threads than ion points
-    if(fNIonThreads > ion_npts) { fNIonThreads = std::max(1, ion_npts); }
+    if(fNIonThreads > ion_npts)
+    {
+        fNIonThreads = std::max(1, ion_npts);
+    }
 
-    msg_debug("fringe", "MHO_IonosphericFringeFitterOpenMP using " << fNIonThreads
-                            << " thread(s) for parallel ion search" << eom);
+    msg_debug("fringe",
+              "MHO_IonosphericFringeFitterOpenMP using " << fNIonThreads << " thread(s) for parallel ion search" << eom);
 
     //snapshot clean vis_data before any ion correction is applied
     fVisRef.Copy(*vis_data);
@@ -199,7 +198,7 @@ void MHO_IonosphericFringeFitterOpenMP::initialize_ion_threads()
         fx->Initialize();
 
         //per-thread MBD search (always single-threaded to avoid nested parallelism)
-        fPerThreadMBDSearch[t].reset( new MHO_MBDelaySearch() );
+        fPerThreadMBDSearch[t].reset(new MHO_MBDelaySearch());
         fPerThreadMBDSearch[t]->SetWeights(wt_data);
         fPerThreadMBDSearch[t]->SetReferenceFrequency(ref_freq);
         fPerThreadMBDSearch[t]->SetArgs(&fPerThreadSBD[t]);
@@ -224,7 +223,10 @@ void MHO_IonosphericFringeFitterOpenMP::initialize_ion_threads()
 
         //per-thread peak interpolator
         fPerThreadPeakInterp[t] = std::make_unique< MHO_InterpolateFringePeakOptimized >();
-        if(optimize_closure_flag) { fPerThreadPeakInterp[t]->EnableOptimizeClosure(); }
+        if(optimize_closure_flag)
+        {
+            fPerThreadPeakInterp[t]->EnableOptimizeClosure();
+        }
         fPerThreadPeakInterp[t]->SetReferenceFrequency(ref_freq);
         fPerThreadPeakInterp[t]->SetReferenceTimeOffset(frt_offset);
         fPerThreadPeakInterp[t]->SetSBDArray(&fPerThreadSBD[t]);
@@ -493,8 +495,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
             // interpolated best ion correction, and runs the full pipeline so
             // that fParameterStore and vis_data are in the correct final state.
             //////////////////////////////////////////////////////////////////////
-            std::memcpy(vis_data->GetData(), fVisRef.GetData(),
-                        fVisRef.GetSize() * sizeof(*vis_data->GetData()));
+            std::memcpy(vis_data->GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*vis_data->GetData()));
 
             ion_diff = bottom; // ilmax=1, step=0
             iono.SetDifferentialTEC(-1.0 * ion_diff);
@@ -539,9 +540,9 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                     double approx_snr = calculate_approx_snr();
                     if(approx_snr > 15.0)
                     {
-                        msg_debug("fringe", "ionospheric fringe search cached SBD window to: ("
-                                                << sbdelay << ", " << sbdelay << ")" << eom);
-                        narrowed_sbd_low  = sbdelay - sbdsep;
+                        msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay
+                                                                                                << ")" << eom);
+                        narrowed_sbd_low = sbdelay - sbdsep;
                         narrowed_sbd_high = sbdelay + sbdsep;
                         fMBDSearch->SetSBDWindow(narrowed_sbd_low, narrowed_sbd_high);
                         sbd_narrowed = true;
@@ -550,7 +551,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 }
 
                 double delres_max_0 = fParameterStore->GetAs< double >("/fringe/famp");
-                fIonLoopResults[0].famp     = delres_max_0;
+                fIonLoopResults[0].famp = delres_max_0;
                 fIonLoopResults[0].ion_diff = ion_diff;
                 values[0] = delres_max_0; // populate values[0] - harvest loop starts at loop_start=1
                 if(delres_max_0 > max_so_far)
@@ -560,8 +561,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 }
 
                 //restore vis_data to clean reference for the upcoming parallel section
-                std::memcpy(vis_data->GetData(), fVisRef.GetData(),
-                            fVisRef.GetSize() * sizeof(*vis_data->GetData()));
+                std::memcpy(vis_data->GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*vis_data->GetData()));
 
                 //propagate the (possibly narrowed) SBD window to per-thread objects
                 if(sbd_narrowed)
@@ -573,21 +573,20 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 loop_start = 1;
             }
 
-            //--- parallel ionloops (loop_start..ilmax-1) ---
-            #pragma omp parallel for num_threads(fNIonThreads) schedule(dynamic)
+//--- parallel ionloops (loop_start..ilmax-1) ---
+#pragma omp parallel for num_threads(fNIonThreads) schedule(dynamic)
             for(ionloop = loop_start; ionloop < ilmax; ionloop++)
             {
-                #ifdef _OPENMP
-                    int tid = omp_get_thread_num();
-                #else
-                    int tid = 0;
-                #endif
+#ifdef _OPENMP
+                int tid = omp_get_thread_num();
+#else
+                int tid = 0;
+#endif
 
                 double local_ion_diff = bottom + ionloop * step;
 
                 //reset thread-local vis from the clean reference
-                std::memcpy(fPerThreadVis[tid].GetData(), fVisRef.GetData(),
-                            fVisRef.GetSize() * sizeof(*fVisRef.GetData()));
+                std::memcpy(fPerThreadVis[tid].GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*fVisRef.GetData()));
 
                 //apply this iteration's ion correction (from clean state, no undo needed)
                 fPerThreadIono[tid]->SetDifferentialTEC(-1.0 * local_ion_diff);
@@ -600,7 +599,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
 
                 int c_mbdmax = fPerThreadMBDSearch[tid]->GetMBDMaxBin();
                 int c_sbdmax = fPerThreadMBDSearch[tid]->GetSBDMaxBin();
-                int c_drmax  = fPerThreadMBDSearch[tid]->GetDRMaxBin();
+                int c_drmax = fPerThreadMBDSearch[tid]->GetDRMaxBin();
 
                 //fine peak interpolation
                 fPerThreadPeakInterp[tid]->SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
@@ -609,7 +608,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 fPerThreadPeakInterp[tid]->Initialize();
                 fPerThreadPeakInterp[tid]->Execute();
 
-                fIonLoopResults[ionloop].famp     = fPerThreadPeakInterp[tid]->GetFringeAmplitude();
+                fIonLoopResults[ionloop].famp = fPerThreadPeakInterp[tid]->GetFringeAmplitude();
                 fIonLoopResults[ionloop].ion_diff = local_ion_diff;
             }
 
@@ -677,8 +676,6 @@ void MHO_IonosphericFringeFitterOpenMP::sort_tecs(int nion, std::vector< std::ve
 
     fParameterStore->Set("/fringe/dtec_array", dtec_values);
     fParameterStore->Set("/fringe/dtec_amp_array/", dtec_amp_values);
-
-    
 };
 
 // experimental ion search, which performs a smoothing step of
@@ -895,8 +892,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
             // interpolated best ion correction, and runs the full pipeline so
             // that fParameterStore and vis_data are in the correct final state.
             //////////////////////////////////////////////////////////////////////
-            std::memcpy(vis_data->GetData(), fVisRef.GetData(),
-                        fVisRef.GetSize() * sizeof(*vis_data->GetData()));
+            std::memcpy(vis_data->GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*vis_data->GetData()));
 
             ion_diff = bottom; // ilmax=1, step=0
             iono.SetDifferentialTEC(-1.0 * ion_diff);
@@ -941,9 +937,9 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                     double approx_snr = calculate_approx_snr();
                     if(approx_snr > 15.0)
                     {
-                        msg_debug("fringe", "ionospheric fringe search cached SBD window to: ("
-                                                << sbdelay << ", " << sbdelay << ")" << eom);
-                        narrowed_sbd_low  = sbdelay - sbdsep;
+                        msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay
+                                                                                                << ")" << eom);
+                        narrowed_sbd_low = sbdelay - sbdsep;
                         narrowed_sbd_high = sbdelay + sbdsep;
                         fMBDSearch->SetSBDWindow(narrowed_sbd_low, narrowed_sbd_high);
                         sbd_narrowed = true;
@@ -952,7 +948,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 }
 
                 double delres_max_0 = fParameterStore->GetAs< double >("/fringe/famp");
-                fIonLoopResults[0].famp     = delres_max_0;
+                fIonLoopResults[0].famp = delres_max_0;
                 fIonLoopResults[0].ion_diff = ion_diff;
                 values[0] = delres_max_0; // populate values[0] - harvest loop starts at loop_start=1
                 if(delres_max_0 > max_so_far)
@@ -962,8 +958,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 }
 
                 //restore vis_data to clean reference for the upcoming parallel section
-                std::memcpy(vis_data->GetData(), fVisRef.GetData(),
-                            fVisRef.GetSize() * sizeof(*vis_data->GetData()));
+                std::memcpy(vis_data->GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*vis_data->GetData()));
 
                 //propagate the (possibly narrowed) SBD window to per-thread objects
                 if(sbd_narrowed)
@@ -975,21 +970,20 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 loop_start = 1;
             }
 
-            //--- parallel ionloops (loop_start..ilmax-1) ---
-            #pragma omp parallel for num_threads(fNIonThreads) schedule(dynamic)
+//--- parallel ionloops (loop_start..ilmax-1) ---
+#pragma omp parallel for num_threads(fNIonThreads) schedule(dynamic)
             for(ionloop = loop_start; ionloop < ilmax; ionloop++)
             {
-                #ifdef _OPENMP
-                    int tid = omp_get_thread_num();
-                #else
-                    int tid = 0;
-                #endif
+#ifdef _OPENMP
+                int tid = omp_get_thread_num();
+#else
+                int tid = 0;
+#endif
 
                 double local_ion_diff = bottom + ionloop * step;
 
                 //reset thread-local vis from the clean reference
-                std::memcpy(fPerThreadVis[tid].GetData(), fVisRef.GetData(),
-                            fVisRef.GetSize() * sizeof(*fVisRef.GetData()));
+                std::memcpy(fPerThreadVis[tid].GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*fVisRef.GetData()));
 
                 //apply this iteration's ion correction (from clean state, no undo needed)
                 fPerThreadIono[tid]->SetDifferentialTEC(-1.0 * local_ion_diff);
@@ -1002,7 +996,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
 
                 int c_mbdmax = fPerThreadMBDSearch[tid]->GetMBDMaxBin();
                 int c_sbdmax = fPerThreadMBDSearch[tid]->GetSBDMaxBin();
-                int c_drmax  = fPerThreadMBDSearch[tid]->GetDRMaxBin();
+                int c_drmax = fPerThreadMBDSearch[tid]->GetDRMaxBin();
 
                 //fine peak interpolation
                 fPerThreadPeakInterp[tid]->SetMaxBins(c_sbdmax, c_mbdmax, c_drmax);
@@ -1011,7 +1005,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 fPerThreadPeakInterp[tid]->Initialize();
                 fPerThreadPeakInterp[tid]->Execute();
 
-                fIonLoopResults[ionloop].famp     = fPerThreadPeakInterp[tid]->GetFringeAmplitude();
+                fIonLoopResults[ionloop].famp = fPerThreadPeakInterp[tid]->GetFringeAmplitude();
                 fIonLoopResults[ionloop].ion_diff = local_ion_diff;
             }
 
@@ -1049,9 +1043,9 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
 // the result g
 
 void MHO_IonosphericFringeFitterOpenMP::smoother(double* f,        // input data array with arbitrary positive length
-                                           double* g,        // output data array with fourfold interpolation
-                                           double* tec_step, // grid spacing of f in TEC units
-                                           int* npts)        // pointer to length of input array - modified!
+                                                 double* g,        // output data array with fourfold interpolation
+                                                 double* tec_step, // grid spacing of f in TEC units
+                                                 int* npts)        // pointer to length of input array - modified!
 {
     int i, j, k, kbeg, kend, n,
         nf, // # of input pts

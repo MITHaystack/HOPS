@@ -2,16 +2,16 @@
 #define MHO_StationIdentity_HH__
 
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <iomanip>
 #include <sstream>
 #include <string>
-#include <cctype>
 
-#include "MHO_Message.hh"
-#include "MHO_Types.hh"
-#include "MHO_Tokenizer.hh"
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_Message.hh"
+#include "MHO_Tokenizer.hh"
+#include "MHO_Types.hh"
 
 namespace hops
 {
@@ -21,37 +21,29 @@ namespace hops
  *@class MHO_StationIdentity
  *@author J. Barrett - barrettj@mit.edu
  *@date Thu Nov 13 01:34:27 PM EST 2025
- *@brief Class MHO_StationIdentity - a class to store, associate, and compare 
+ *@brief Class MHO_StationIdentity - a class to store, associate, and compare
  * 1-char, 2-char, and 8-char station code/id/name identifiers
  */
-
 
 class MHO_StationIdentity
 {
 
     public:
-        MHO_StationIdentity():
-            fStationName(""),
-            fStationCode(""),
-            fStationMk4ID("")
-        {}
-            
+        MHO_StationIdentity(): fStationName(""), fStationCode(""), fStationMk4ID("") {}
+
         MHO_StationIdentity(const std::string& name, const std::string& code, const std::string& mk4id)
         {
-            SetAll(name,code,mk4id);
+            SetAll(name, code, mk4id);
         }
-        
-        MHO_StationIdentity( const mho_json& site_vex ):
-            fStationName(""),
-            fStationCode(""),
-            fStationMk4ID("")
+
+        MHO_StationIdentity(const mho_json& site_vex): fStationName(""), fStationCode(""), fStationMk4ID("")
         {
             if(site_vex.contains("mk4_site_ID") && site_vex.contains("site_ID") && site_vex.contains("site_name"))
             {
-                std::string mk4id = site_vex["mk4_site_ID"].get<std::string>();
-                std::string code = site_vex["site_ID"].get<std::string>();
-                std::string name = site_vex["site_name"].get<std::string>();
-                SetAll(name,code,mk4id);
+                std::string mk4id = site_vex["mk4_site_ID"].get< std::string >();
+                std::string code = site_vex["site_ID"].get< std::string >();
+                std::string name = site_vex["site_name"].get< std::string >();
+                SetAll(name, code, mk4id);
             }
         }
 
@@ -74,12 +66,15 @@ class MHO_StationIdentity
 
         bool operator==(const MHO_StationIdentity& rhs) const
         {
-            if(fStationName == rhs.fStationName ){return true;}
+            if(fStationName == rhs.fStationName)
+            {
+                return true;
+            }
             // if(fStationCode == rhs.fStationCode){return true;}
             // if(fStationMk4ID == rhs.fStationMk4ID){return true;}
             return false;
         }
-        
+
         bool operator!=(const MHO_StationIdentity& rhs) const { return !(*this == rhs); }
 
         //ordering on name
@@ -101,7 +96,7 @@ class MHO_StationIdentity
                 return (fStationMk4ID < rhs.fStationMk4ID);
             }
         }
-        
+
         /*!*
          * Check if this station identity matches the given 1-char/2-char code or multi-char name
          * @return A boolean if successful match
@@ -151,12 +146,12 @@ class MHO_StationIdentity
             tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
             tokenizer.SetString(&input);
             tokenizer.GetTokens(&tokens);
-            
+
             if(tokens.size() < 3)
             {
                 return false;
             }
-            else 
+            else
             {
                 SetStationName(tokens[0]);
                 SetStationCode(tokens[1]);
@@ -171,12 +166,16 @@ class MHO_StationIdentity
             fStationName = name;
             std::transform(fStationName.begin(), fStationName.end(), fStationName.begin(), ::toupper);
         }
-        
-        std::string GetStationName() const {return fStationName;}
-        void SetStationCode(const std::string& code){fStationCode = code.substr(0,2);}
-        std::string GetStationCode() const {return fStationCode;}
-        void SetStationMk4ID(const std::string& id){fStationMk4ID = id.substr(0,1);}
-        std::string GetStationMk4Id() const {return fStationMk4ID;}
+
+        std::string GetStationName() const { return fStationName; }
+
+        void SetStationCode(const std::string& code) { fStationCode = code.substr(0, 2); }
+
+        std::string GetStationCode() const { return fStationCode; }
+
+        void SetStationMk4ID(const std::string& id) { fStationMk4ID = id.substr(0, 1); }
+
+        std::string GetStationMk4Id() const { return fStationMk4ID; }
 
         void SetAll(const std::string& name, const std::string& code, const std::string& mk4id)
         {
@@ -186,11 +185,9 @@ class MHO_StationIdentity
         }
 
     protected:
-        
-        std::string fStationName; //8 or more char
-        std::string fStationCode; //2 char
+        std::string fStationName;  //8 or more char
+        std::string fStationCode;  //2 char
         std::string fStationMk4ID; //1 char;
-
 };
 
 } // namespace hops

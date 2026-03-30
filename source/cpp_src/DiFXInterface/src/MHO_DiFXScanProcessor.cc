@@ -478,7 +478,6 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
         station_coord_data_ptr->Insert(std::string("root_code"), fRootCode);
         station_coord_data_ptr->Insert(std::string("name"), std::string("station_data"));
 
-
         MHO_ObjectTags tags;
         tags.AddObjectUUID(station_coord_data_ptr->GetObjectUUID());
         if(pcal_data_ptr)
@@ -519,7 +518,6 @@ void MHO_DiFXScanProcessor::ConvertStationFileObjects()
             converter.WriteStationFile();
             converter.FreeAllocated();
         }
-
     }
 }
 
@@ -1044,7 +1042,7 @@ void MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string 
     }
 
     //clear all existing tracks in the $MODE section, and re-link to only our 'trax'
-    if( vex_root["$MODE"][mode_name].contains("$TRACKS") )
+    if(vex_root["$MODE"][mode_name].contains("$TRACKS"))
     {
         vex_root["$MODE"][mode_name]["$TRACKS"].clear();
     }
@@ -1058,7 +1056,7 @@ void MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string 
     }
 
     //clear all existing PHASE_CAL_DETECT objects from "$MODE" section
-    if( vex_root["$MODE"][mode_name].contains("$PHASE_CAL_DETECT") )
+    if(vex_root["$MODE"][mode_name].contains("$PHASE_CAL_DETECT"))
     {
         vex_root["$MODE"][mode_name]["$PHASE_CAL_DETECT"].clear();
     }

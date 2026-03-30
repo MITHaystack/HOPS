@@ -103,7 +103,7 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         if(!status)
         {
             msg_error("calibration", "could not execute zero padder in MHO_SingleSidebandNormFX" << eom);
-            
+
             return false;
         }
 
@@ -112,7 +112,7 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         // if(!status)
         // {
         //     msg_error("calibration", "could not execute NaN masker in MHO_SingleSidebandNormFX" << eom);
-        // 
+        //
         //     return false;
         // }
 
@@ -135,7 +135,7 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         if(!status)
         {
             msg_error("calibration", "could not execute FFT in MHO_SingleSidebandNormFX" << eom);
-            
+
             return false;
         }
 
@@ -143,7 +143,7 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         if(!status)
         {
             msg_error("calibration", "could not execute cyclic-rotation in MHO_SingleSidebandNormFX" << eom);
-            
+
             return false;
         }
 
@@ -180,11 +180,10 @@ bool MHO_SingleSidebandNormFX::ExecuteOutOfPlace(const XArgType* in, XArgType* o
         double length = (double)fInDims[FREQ_AXIS];
         double norm = 1.0 / length;
         *(out) *= norm;
-        
+
         return true;
     }
 
-    
     return false;
 };
 

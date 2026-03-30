@@ -11,11 +11,11 @@
 #include "MHO_BasicFringeDataConfiguration.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_FringePlotVisitorFactory.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 #include "MHO_ParameterStore.hh"
 #include "MHO_Tokenizer.hh"
-#include "MHO_FringePlotVisitorFactory.hh"
 
 //pybind11 stuff to interface with python
 #ifdef USE_PYBIND11
@@ -108,8 +108,9 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     std::vector< std::string > fringe_file_list;
     std::string backend = "gnuplot";
 
-    std::vector< std::string > msg_cats = {"main",           "calibration",  "containers", "control", "fringe",         "file",
-                                           "initialization", "mk4interface", "utilities",  "vex", "plot",  "python_bindings"};
+    std::vector< std::string > msg_cats = {"main",      "calibration", "containers",     "control",
+                                           "fringe",    "file",        "initialization", "mk4interface",
+                                           "utilities", "vex",         "plot",           "python_bindings"};
 
     std::stringstream ss;
     ss << "limit the allowed message categories to only those which the user specifies, the available categories are: \n";
@@ -335,7 +336,7 @@ int main(int argc, char** argv)
     //each process has its own interpreter
     py::scoped_interpreter guard{};
     configure_pypath();
-#endif 
+#endif
 
     MHO_ParameterStore paramStore;
     parse_fplot_command_line(argc, argv, &paramStore);
@@ -365,9 +366,9 @@ int main(int argc, char** argv)
         if(ok)
         {
             //grab the selection info
-            std::string obj_baseline = fdata.GetParameterStore()->GetAs<std::string>("/pass/baseline"); 
-            std::string obj_fgroup = fdata.GetParameterStore()->GetAs<std::string>("pass/frequency_group");
-            std::string obj_polprod = fdata.GetParameterStore()->GetAs<std::string>("pass/polprod");
+            std::string obj_baseline = fdata.GetParameterStore()->GetAs< std::string >("/pass/baseline");
+            std::string obj_fgroup = fdata.GetParameterStore()->GetAs< std::string >("pass/frequency_group");
+            std::string obj_polprod = fdata.GetParameterStore()->GetAs< std::string >("pass/polprod");
 
             if(match_baseline(baseline, obj_baseline) && match_fgroup(fgroup, obj_fgroup) &&
                match_polprod(polprod, obj_polprod))
@@ -375,12 +376,12 @@ int main(int argc, char** argv)
                 //specify what plotting operation is needed in the parameter store
                 fdata.GetParameterStore()->Set("/cmdline/disk_file", disk_file);
                 fdata.GetParameterStore()->Set("/cmdline/show_plot", show_plot);
-                
+
                 //use the plotter factory to construct one of the available plotting backends
                 //currently we only have two fringe plotting options (gnuplot or matplotlib)
                 //default is gnuplot
-                std::string plot_backend = paramStore.GetAs<std::string>("/cmdline/backend");
-                msg_debug("main", "plotting backend is: "<< plot_backend << eom);
+                std::string plot_backend = paramStore.GetAs< std::string >("/cmdline/backend");
+                msg_debug("main", "plotting backend is: " << plot_backend << eom);
                 //fringeData.GetParameterStore()->Get("/control/config/plot_backend", plot_backend);
                 MHO_FringePlotVisitorFactory plotter_factory;
                 MHO_FringePlotVisitor* plotter = plotter_factory.ConstructPlotter(plot_backend);
@@ -392,8 +393,6 @@ int main(int argc, char** argv)
             }
         }
     }
-
-
 
     return 0;
 }

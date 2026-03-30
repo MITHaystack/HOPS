@@ -47,9 +47,15 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
                     double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
                     double l_fp = std::fmod(num, (double)sz);
                     int l_int = (int)l_fp;
-                    if(l_int < 0) { l_int = 0; }
+                    if(l_int < 0)
+                    {
+                        l_int = 0;
+                    }
                     int l_int2 = l_int + 1;
-                    if(l_int2 > (sz - 1)) { l_int2 = sz - 1; }
+                    if(l_int2 > (sz - 1))
+                    {
+                        l_int2 = sz - 1;
+                    }
                     fInterpTable[ch * fDRSPSize + dr] = {l_int, l_int2, l_fp - (double)l_int};
                 }
             }
@@ -279,7 +285,7 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
     double ax_scale = 1.0 / (time_delta * (double)fDRSPSize);
     for(int dr = 0; dr < fDRSPSize; dr++)
     {
-        std::get< TIME_AXIS >(*out)(dr) = ((double)dr - (double)(fDRSPSize / 2)) * ax_scale;
+        std::get< TIME_AXIS > (*out)(dr) = ((double)dr - (double)(fDRSPSize / 2)) * ax_scale;
     }
 
     std::vector< sbd_type::value_type > workspace;
@@ -295,8 +301,7 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
                 for(int dr = 0; dr < fDRSPSize; dr++)
                 {
                     const InterpEntry& e = tbl[dr];
-                    workspace[dr] = (*out)(pp, ch, e.l0, sbd) * (1.0 - e.w) +
-                                    (*out)(pp, ch, e.l1, sbd) * e.w;
+                    workspace[dr] = (*out)(pp, ch, e.l0, sbd) * (1.0 - e.w) + (*out)(pp, ch, e.l1, sbd) * e.w;
                 }
                 for(int dr = 0; dr < fDRSPSize; dr++)
                 {
@@ -307,8 +312,7 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
     }
 }
 
-void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out,
-                                                const std::vector< InterpEntry >& table)
+void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out, const std::vector< InterpEntry >& table)
 {
     profiler_scope();
     std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
@@ -321,7 +325,7 @@ void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3*
     double ax_scale = 1.0 / (time_delta * (double)fDRSPSize);
     for(int dr = 0; dr < fDRSPSize; dr++)
     {
-        std::get< TIME_AXIS >(*out)(dr) = ((double)dr - (double)(fDRSPSize / 2)) * ax_scale;
+        std::get< TIME_AXIS > (*out)(dr) = ((double)dr - (double)(fDRSPSize / 2)) * ax_scale;
     }
 
     using value_t = sbd_type::value_type;

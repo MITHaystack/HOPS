@@ -2,7 +2,6 @@
 
 //builders
 #include "MHO_ChannelLabelerBuilder.hh"
-#include "MHO_PolarizationRelabelerBuilder.hh"
 #include "MHO_CircularFieldRotationBuilder.hh"
 #include "MHO_DCBlockBuilder.hh"
 #include "MHO_DataSelectionBuilder.hh"
@@ -18,6 +17,7 @@
 #include "MHO_NotchesBuilder.hh"
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_PolProductSummationBuilder.hh"
+#include "MHO_PolarizationRelabelerBuilder.hh"
 #include "MHO_SamplerLabelerBuilder.hh"
 #include "MHO_StationDelayCorrectionBuilder.hh"
 

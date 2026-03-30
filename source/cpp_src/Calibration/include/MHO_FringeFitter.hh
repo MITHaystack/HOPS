@@ -36,12 +36,10 @@ namespace hops
  */
 class MHO_FringeFitterVisitor;
 
-
 //forware declare these initialization related classes
 class MHO_OperatorBuilderManager;
 class MHO_ParameterConfigurator;
 class MHO_ParameterManager;
-
 
 /**
  * @brief Class MHO_FringeFitter

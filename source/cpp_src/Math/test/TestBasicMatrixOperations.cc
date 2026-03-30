@@ -1,6 +1,6 @@
-#include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <iostream>
 
 #include "MHO_LinearAlgebraUtilities.hh"
 
@@ -13,17 +13,17 @@ int main(int /*argc*/, char** /*argv*/)
     const unsigned int NVectorSize = 3;
 
     //allocate a vector
-    MHO_linalg_vector<double> v1(NVectorSize);
-    MHO_linalg_vector<double> v2(NVectorSize);
-    MHO_linalg_vector<double> v3(NVectorSize);
+    MHO_linalg_vector< double > v1(NVectorSize);
+    MHO_linalg_vector< double > v2(NVectorSize);
+    MHO_linalg_vector< double > v3(NVectorSize);
 
     //allocate 4 matrices, to construct an euler rotation
-    MHO_linalg_matrix<double> m1(NVectorSize, NVectorSize);
-    MHO_linalg_matrix<double> m2(NVectorSize, NVectorSize);
-    MHO_linalg_matrix<double> m3(NVectorSize, NVectorSize);
-    MHO_linalg_matrix<double> m4(NVectorSize, NVectorSize);
-    MHO_linalg_matrix<double> m4_inv(NVectorSize, NVectorSize);
-    MHO_linalg_matrix<double> temp(NVectorSize, NVectorSize);
+    MHO_linalg_matrix< double > m1(NVectorSize, NVectorSize);
+    MHO_linalg_matrix< double > m2(NVectorSize, NVectorSize);
+    MHO_linalg_matrix< double > m3(NVectorSize, NVectorSize);
+    MHO_linalg_matrix< double > m4(NVectorSize, NVectorSize);
+    MHO_linalg_matrix< double > m4_inv(NVectorSize, NVectorSize);
+    MHO_linalg_matrix< double > temp(NVectorSize, NVectorSize);
 
     //generate three angles
     double alpha = M_PI / 2.2313;
@@ -49,7 +49,7 @@ int main(int /*argc*/, char** /*argv*/)
 
     m3.set_as_identity();
     m3(0, 0) = std::cos(gamma);
-    m3(0, 1) =  -1.0 * std::sin(gamma);
+    m3(0, 1) = -1.0 * std::sin(gamma);
     m3(1, 0) = std::sin(gamma);
     m3(1, 1) = std::cos(gamma);
 
@@ -78,12 +78,12 @@ int main(int /*argc*/, char** /*argv*/)
 
     MHO_linalg_matrix_print(m4_inv);
 
-    for (unsigned int n = 0; n < NVectors; n++) 
+    for(unsigned int n = 0; n < NVectors; n++)
     {
         //generate three points to make the triangle and compute centroid
-        for (unsigned int j = 0; j < NVectorSize; j++) 
+        for(unsigned int j = 0; j < NVectorSize; j++)
         {
-            v1(j) =  ((double) rand() / (double) RAND_MAX);
+            v1(j) = ((double)rand() / (double)RAND_MAX);
         }
         v1.normalize();
 
@@ -91,7 +91,7 @@ int main(int /*argc*/, char** /*argv*/)
         std::cout << "|v1| = " << v1.norm() << std::endl;
 
         std::cout << "v1 = ";
-        for (unsigned int j = 0; j < NVectorSize; j++) 
+        for(unsigned int j = 0; j < NVectorSize; j++)
         {
             std::cout << v1(j) << ", ";
         }
@@ -104,7 +104,7 @@ int main(int /*argc*/, char** /*argv*/)
         MHO_linalg_matrix_vector_product(m2, v3, v2);
         MHO_linalg_matrix_vector_product(m3, v2, v3);
         std::cout << "M3*M2*M1*v = ";
-        for (unsigned int j = 0; j < NVectorSize; j++)
+        for(unsigned int j = 0; j < NVectorSize; j++)
         {
             std::cout << v3(j) << ", ";
         }
@@ -116,7 +116,7 @@ int main(int /*argc*/, char** /*argv*/)
 
         //multiply by series of inverse rotations
         std::cout << "(M1^T)*(M2^T)*(M3^T)*v = ";
-        for (unsigned int j = 0; j < NVectorSize; j++) 
+        for(unsigned int j = 0; j < NVectorSize; j++)
         {
             std::cout << v2(j) << ", ";
         }
@@ -129,7 +129,7 @@ int main(int /*argc*/, char** /*argv*/)
         v2 = v1;
         MHO_linalg_matrix_vector_product(m4, v2, v3);
         std::cout << "m4*v1 = ";
-        for (unsigned int j = 0; j < NVectorSize; j++) 
+        for(unsigned int j = 0; j < NVectorSize; j++)
         {
             std::cout << v3(j) << ", ";
         }
@@ -139,7 +139,7 @@ int main(int /*argc*/, char** /*argv*/)
         MHO_linalg_matrix_vector_product(m4_inv, v3, v2);
 
         std::cout << "(m4^T)*(M4*v) = ";
-        for (unsigned int j = 0; j < NVectorSize; j++) 
+        for(unsigned int j = 0; j < NVectorSize; j++)
         {
             std::cout << v2(j) << ", ";
         }
@@ -147,15 +147,12 @@ int main(int /*argc*/, char** /*argv*/)
 
         std::cout << "----------------------------------------------------" << std::endl;
 
-
         std::cout << "####################################################" << std::endl;
     }
-
 
     //multiply rotation by inverse
     MHO_linalg_matrix_multiply(m4_inv, m4, temp);
     MHO_linalg_matrix_print(temp);
-
 
     return 0;
 }

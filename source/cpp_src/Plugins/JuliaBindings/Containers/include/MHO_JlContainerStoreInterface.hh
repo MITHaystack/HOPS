@@ -39,14 +39,14 @@ class MHO_JlContainerStoreInterface
 
         bool IsValid() const { return fContainerStore != nullptr; }
 
-        std::size_t GetNObjects() const
-        {
-            return fContainerStore ? fContainerStore->GetNObjects() : 0;
-        }
+        std::size_t GetNObjects() const { return fContainerStore ? fContainerStore->GetNObjects() : 0; }
 
         bool IsObjectPresent(const std::string& uuid_string) const
         {
-            if(!fContainerStore) { return false; }
+            if(!fContainerStore)
+            {
+                return false;
+            }
             MHO_UUID uuid;
             uuid.from_string(uuid_string);
             return fContainerStore->IsObjectPresent(uuid);
@@ -54,7 +54,10 @@ class MHO_JlContainerStoreInterface
 
         std::string GetObjectTypeUUID(const std::string& uuid_string) const
         {
-            if(!fContainerStore) { return ""; }
+            if(!fContainerStore)
+            {
+                return "";
+            }
             MHO_UUID uuid;
             uuid.from_string(uuid_string);
             return fContainerStore->GetObjectTypeUUID(uuid).as_string();
@@ -71,9 +74,9 @@ class MHO_JlContainerStoreInterface
                 for(auto& item : info)
                 {
                     mho_json entry;
-                    entry["type_uuid"]   = std::get< 0 >(item);
+                    entry["type_uuid"] = std::get< 0 >(item);
                     entry["object_uuid"] = std::get< 1 >(item);
-                    entry["shortname"]   = std::get< 2 >(item);
+                    entry["shortname"] = std::get< 2 >(item);
                     info_array.push_back(entry);
                 }
             }
@@ -83,77 +86,106 @@ class MHO_JlContainerStoreInterface
         // Typed accessors - return the wrapper for the concrete container type.
         // Returns nullptr when the UUID is not found or has the wrong type.
 
-        MHO_JlTableContainer< visibility_type >*   GetVisibility(const std::string& uuid)
-        { return GetExtension< visibility_type >(uuid); }
+        MHO_JlTableContainer< visibility_type >* GetVisibility(const std::string& uuid)
+        {
+            return GetExtension< visibility_type >(uuid);
+        }
 
-        MHO_JlTableContainer< weight_type >*       GetWeight(const std::string& uuid)
-        { return GetExtension< weight_type >(uuid); }
+        MHO_JlTableContainer< weight_type >* GetWeight(const std::string& uuid) { return GetExtension< weight_type >(uuid); }
 
         MHO_JlTableContainer< visibility_store_type >* GetVisibilityStore(const std::string& uuid)
-        { return GetExtension< visibility_store_type >(uuid); }
+        {
+            return GetExtension< visibility_store_type >(uuid);
+        }
 
         MHO_JlTableContainer< weight_store_type >* GetWeightStore(const std::string& uuid)
-        { return GetExtension< weight_store_type >(uuid); }
+        {
+            return GetExtension< weight_store_type >(uuid);
+        }
 
         MHO_JlTableContainer< station_coord_type >* GetStationCoord(const std::string& uuid)
-        { return GetExtension< station_coord_type >(uuid); }
+        {
+            return GetExtension< station_coord_type >(uuid);
+        }
 
-        MHO_JlTableContainer< phasor_type >*       GetPhasor(const std::string& uuid)
-        { return GetExtension< phasor_type >(uuid); }
+        MHO_JlTableContainer< phasor_type >* GetPhasor(const std::string& uuid) { return GetExtension< phasor_type >(uuid); }
 
         MHO_JlTableContainer< multitone_pcal_type >* GetMultitonePcal(const std::string& uuid)
-        { return GetExtension< multitone_pcal_type >(uuid); }
+        {
+            return GetExtension< multitone_pcal_type >(uuid);
+        }
 
         //! Return the MHO_ObjectTags metadata for a tag object as a JSON string.
         std::string GetObjectTagsJSON(const std::string& uuid_string) const
         {
-            if(!fContainerStore) { return "{}"; }
+            if(!fContainerStore)
+            {
+                return "{}";
+            }
             MHO_UUID uuid;
             uuid.from_string(uuid_string);
             MHO_ObjectTags* tags = fContainerStore->GetObject< MHO_ObjectTags >(uuid);
-            if(!tags) { return "{}"; }
+            if(!tags)
+            {
+                return "{}";
+            }
             mho_json meta_data = tags->GetMetaDataAsJSON();
             std::set< MHO_UUID > tagged_ids = tags->GetTaggedObjectUUIDSet();
             std::vector< std::string > id_list;
-            for(auto& id : tagged_ids) { id_list.push_back(id.as_string()); }
+            for(auto& id : tagged_ids)
+            {
+                id_list.push_back(id.as_string());
+            }
             meta_data["tagged_object_uuid_list"] = id_list;
             return meta_data.dump();
         }
 
         //! Return the registered runtime type UUID for each container type (useful for dispatch in Julia).
-        std::string GetVisibilityTypeUUID()      const { return TypeUUIDStr< visibility_type >(); }
-        std::string GetWeightTypeUUID()          const { return TypeUUIDStr< weight_type >(); }
+        std::string GetVisibilityTypeUUID() const { return TypeUUIDStr< visibility_type >(); }
+
+        std::string GetWeightTypeUUID() const { return TypeUUIDStr< weight_type >(); }
+
         std::string GetVisibilityStoreTypeUUID() const { return TypeUUIDStr< visibility_store_type >(); }
-        std::string GetWeightStoreTypeUUID()     const { return TypeUUIDStr< weight_store_type >(); }
-        std::string GetStationCoordTypeUUID()    const { return TypeUUIDStr< station_coord_type >(); }
-        std::string GetPhasorTypeUUID()          const { return TypeUUIDStr< phasor_type >(); }
-        std::string GetMultitonePcalTypeUUID()   const { return TypeUUIDStr< multitone_pcal_type >(); }
+
+        std::string GetWeightStoreTypeUUID() const { return TypeUUIDStr< weight_store_type >(); }
+
+        std::string GetStationCoordTypeUUID() const { return TypeUUIDStr< station_coord_type >(); }
+
+        std::string GetPhasorTypeUUID() const { return TypeUUIDStr< phasor_type >(); }
+
+        std::string GetMultitonePcalTypeUUID() const { return TypeUUIDStr< multitone_pcal_type >(); }
 
         // Exposed for C++ internal use (e.g. MHO_JlScanStoreInterface)
         MHO_ContainerStore* GetContainerStore() { return fContainerStore; }
 
     private:
-        template< typename XClassType >
-        std::string TypeUUIDStr() const
+        template< typename XClassType > std::string TypeUUIDStr() const
         {
-            if(!fContainerStore) { return ""; }
+            if(!fContainerStore)
+            {
+                return "";
+            }
             return fContainerStore->GetTypeUUID< XClassType >().as_string();
         }
 
-        template< typename XClassType >
-        MHO_JlTableContainer< XClassType >* GetExtension(const std::string& uuid_string)
+        template< typename XClassType > MHO_JlTableContainer< XClassType >* GetExtension(const std::string& uuid_string)
         {
-            if(!fContainerStore) { return nullptr; }
+            if(!fContainerStore)
+            {
+                return nullptr;
+            }
             MHO_UUID uuid;
             bool ok = uuid.from_string(uuid_string);
             if(!ok)
             {
-                msg_error("julia_bindings",
-                          "cannot convert " << uuid_string << " to UUID" << eom);
+                msg_error("julia_bindings", "cannot convert " << uuid_string << " to UUID" << eom);
                 return nullptr;
             }
             XClassType* obj = fContainerStore->GetObject< XClassType >(uuid);
-            if(!obj) { return nullptr; }
+            if(!obj)
+            {
+                return nullptr;
+            }
             if(obj->template HasExtension< MHO_JlTableContainer< XClassType > >())
             {
                 return obj->template AsExtension< MHO_JlTableContainer< XClassType > >();
@@ -164,32 +196,31 @@ class MHO_JlContainerStoreInterface
         MHO_ContainerStore* fContainerStore;
 };
 
-
 inline void DeclareJlContainerStoreInterface(jlcxx::Module& mod, const std::string& jl_type_name)
 {
     mod.add_type< MHO_JlContainerStoreInterface >(jl_type_name)
-        .method("is_valid",              &hops::MHO_JlContainerStoreInterface::IsValid)
-        .method("get_nobjects",          &hops::MHO_JlContainerStoreInterface::GetNObjects)
-        .method("is_object_present",     &hops::MHO_JlContainerStoreInterface::IsObjectPresent)
-        .method("get_object_type_uuid",  &hops::MHO_JlContainerStoreInterface::GetObjectTypeUUID)
-        .method("get_object_id_list",    &hops::MHO_JlContainerStoreInterface::GetObjectListJSON)
-        .method("get_object_tags",       &hops::MHO_JlContainerStoreInterface::GetObjectTagsJSON)
+        .method("is_valid", &hops::MHO_JlContainerStoreInterface::IsValid)
+        .method("get_nobjects", &hops::MHO_JlContainerStoreInterface::GetNObjects)
+        .method("is_object_present", &hops::MHO_JlContainerStoreInterface::IsObjectPresent)
+        .method("get_object_type_uuid", &hops::MHO_JlContainerStoreInterface::GetObjectTypeUUID)
+        .method("get_object_id_list", &hops::MHO_JlContainerStoreInterface::GetObjectListJSON)
+        .method("get_object_tags", &hops::MHO_JlContainerStoreInterface::GetObjectTagsJSON)
         // Typed getters for each container type:
-        .method("get_visibility",        &hops::MHO_JlContainerStoreInterface::GetVisibility)
-        .method("get_weight",            &hops::MHO_JlContainerStoreInterface::GetWeight)
-        .method("get_visibility_store",  &hops::MHO_JlContainerStoreInterface::GetVisibilityStore)
-        .method("get_weight_store",      &hops::MHO_JlContainerStoreInterface::GetWeightStore)
-        .method("get_station_coord",     &hops::MHO_JlContainerStoreInterface::GetStationCoord)
-        .method("get_phasor",            &hops::MHO_JlContainerStoreInterface::GetPhasor)
-        .method("get_multitone_pcal",    &hops::MHO_JlContainerStoreInterface::GetMultitonePcal)
+        .method("get_visibility", &hops::MHO_JlContainerStoreInterface::GetVisibility)
+        .method("get_weight", &hops::MHO_JlContainerStoreInterface::GetWeight)
+        .method("get_visibility_store", &hops::MHO_JlContainerStoreInterface::GetVisibilityStore)
+        .method("get_weight_store", &hops::MHO_JlContainerStoreInterface::GetWeightStore)
+        .method("get_station_coord", &hops::MHO_JlContainerStoreInterface::GetStationCoord)
+        .method("get_phasor", &hops::MHO_JlContainerStoreInterface::GetPhasor)
+        .method("get_multitone_pcal", &hops::MHO_JlContainerStoreInterface::GetMultitonePcal)
         // Type UUID helpers for dispatch in Julia:
-        .method("get_visibility_type_uuid",       &hops::MHO_JlContainerStoreInterface::GetVisibilityTypeUUID)
-        .method("get_weight_type_uuid",           &hops::MHO_JlContainerStoreInterface::GetWeightTypeUUID)
+        .method("get_visibility_type_uuid", &hops::MHO_JlContainerStoreInterface::GetVisibilityTypeUUID)
+        .method("get_weight_type_uuid", &hops::MHO_JlContainerStoreInterface::GetWeightTypeUUID)
         .method("get_visibility_store_type_uuid", &hops::MHO_JlContainerStoreInterface::GetVisibilityStoreTypeUUID)
-        .method("get_weight_store_type_uuid",     &hops::MHO_JlContainerStoreInterface::GetWeightStoreTypeUUID)
-        .method("get_station_coord_type_uuid",    &hops::MHO_JlContainerStoreInterface::GetStationCoordTypeUUID)
-        .method("get_phasor_type_uuid",           &hops::MHO_JlContainerStoreInterface::GetPhasorTypeUUID)
-        .method("get_multitone_pcal_type_uuid",   &hops::MHO_JlContainerStoreInterface::GetMultitonePcalTypeUUID);
+        .method("get_weight_store_type_uuid", &hops::MHO_JlContainerStoreInterface::GetWeightStoreTypeUUID)
+        .method("get_station_coord_type_uuid", &hops::MHO_JlContainerStoreInterface::GetStationCoordTypeUUID)
+        .method("get_phasor_type_uuid", &hops::MHO_JlContainerStoreInterface::GetPhasorTypeUUID)
+        .method("get_multitone_pcal_type_uuid", &hops::MHO_JlContainerStoreInterface::GetMultitonePcalTypeUUID);
 }
 
 } // namespace hops

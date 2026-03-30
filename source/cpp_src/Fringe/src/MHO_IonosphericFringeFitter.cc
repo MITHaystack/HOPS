@@ -83,8 +83,6 @@ void MHO_IonosphericFringeFitter::Run()
         //calculate the fringe properties
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
     }
-
-    
 }
 
 void MHO_IonosphericFringeFitter::Finalize()
@@ -124,7 +122,6 @@ void MHO_IonosphericFringeFitter::Finalize()
 
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
-    
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -485,8 +482,6 @@ void MHO_IonosphericFringeFitter::sort_tecs(int nion, std::vector< std::vector< 
 
     fParameterStore->Set("/fringe/dtec_array", dtec_values);
     fParameterStore->Set("/fringe/dtec_amp_array/", dtec_amp_values);
-
-    
 };
 
 // experimental ion search, which performs a smoothing step of
@@ -789,8 +784,6 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     }
     else
         nion = 0;
-
-    
 
     return 0;
 }

@@ -1,6 +1,5 @@
 #include "MHO_OutputVisitorFactory.hh"
 
-
 #include "MHO_HopsOutputVisitor.hh"
 #include "MHO_Mark4OutputVisitor.hh"
 
@@ -11,7 +10,8 @@
 namespace hops
 {
 
-MHO_OutputVisitorFactory::MHO_OutputVisitorFactory(){}
+MHO_OutputVisitorFactory::MHO_OutputVisitorFactory()
+{}
 
 MHO_OutputVisitorFactory::~MHO_OutputVisitorFactory()
 {
@@ -26,10 +26,10 @@ MHO_OutputVisitorFactory::~MHO_OutputVisitorFactory()
 MHO_FringeFitterVisitor* MHO_OutputVisitorFactory::GetOutputVisitor(std::string format)
 {
     MHO_FringeFitterVisitor* output_visitor = nullptr;
-    msg_debug("fringe", "output format choice is: "<< format << eom);
+    msg_debug("fringe", "output format choice is: " << format << eom);
 
     if(format == "hops4")
-    {   
+    {
         auto it = fOutputVisitors.find("hops4");
         if(it == fOutputVisitors.end())
         {
@@ -37,7 +37,7 @@ MHO_FringeFitterVisitor* MHO_OutputVisitorFactory::GetOutputVisitor(std::string 
             fOutputVisitors["hops4"] = output_visitor;
             return output_visitor;
         }
-        else 
+        else
         {
             output_visitor = it->second;
         }
@@ -51,7 +51,7 @@ MHO_FringeFitterVisitor* MHO_OutputVisitorFactory::GetOutputVisitor(std::string 
             fOutputVisitors["mark4"] = output_visitor;
             return output_visitor;
         }
-        else 
+        else
         {
             output_visitor = it->second;
         }
@@ -66,14 +66,14 @@ MHO_FringeFitterVisitor* MHO_OutputVisitorFactory::GetOutputVisitor(std::string 
     //             fOutputVisitors["hdf5"] = output_visitor;
     //             return output_visitor;
     //         }
-    //         else 
+    //         else
     //         {
     //             output_visitor = it->second;
     //         }
-    //     #else 
+    //     #else
     //         msg_warn("fringe", "output format choice: "<< format <<" is not available on this system " << eom);
     //     #endif
-    // 
+    //
     // }
 
     //if we don't have the output format enabled/available, this will return nullptr

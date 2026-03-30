@@ -91,7 +91,11 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
 
         //precomputed per-(ch,dr) interpolation entries - avoids fmod in hot loop.
         //Declared here so it is visible to all method signatures below.
-        struct InterpEntry { int l0, l1; double w; };
+        struct InterpEntry
+        {
+                int l0, l1;
+                double w;
+        };
 
         /**
          * @brief Applies data weights from input array to output array elements.

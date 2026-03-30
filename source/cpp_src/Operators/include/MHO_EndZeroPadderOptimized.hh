@@ -278,7 +278,8 @@ template< typename XArgType > class MHO_EndZeroPadderOptimized: public MHO_Unary
                                 idx[d]++;
                                 in_offset += fInStride[d];
                                 out_offset += fOutStride[d];
-                                if(idx[d] < fInputDimensionSize[d]) break;
+                                if(idx[d] < fInputDimensionSize[d])
+                                    break;
                                 idx[d] = 0;
                                 in_offset -= fInputDimensionSize[d] * fInStride[d];
                                 out_offset -= fInputDimensionSize[d] * fOutStride[d];
@@ -617,10 +618,10 @@ template< typename XArgType > class MHO_EndZeroPadderOptimized: public MHO_Unary
 
         //precomputed for fast ExecuteOutOfPlace
         bool fHasPaddedAxis;
-        std::size_t fInnermostPaddedAxis;  //max axis index where fAxesToXForm[d]==true
-        std::size_t fBlockElems;           //contiguous input elements per row (!fFlipped path)
-        std::size_t fNRows;                //number of rows to copy (!fFlipped path)
-        std::size_t fTotalInputElems;      //total number of input elements
+        std::size_t fInnermostPaddedAxis; //max axis index where fAxesToXForm[d]==true
+        std::size_t fBlockElems;          //contiguous input elements per row (!fFlipped path)
+        std::size_t fNRows;               //number of rows to copy (!fFlipped path)
+        std::size_t fTotalInputElems;     //total number of input elements
         std::size_t fInStride[XArgType::rank::value];
         std::size_t fOutStride[XArgType::rank::value];
         std::vector< std::vector< std::size_t > > fOutAxisOffset; //[dim][idx] -> out flat offset contribution (fFlipped path)

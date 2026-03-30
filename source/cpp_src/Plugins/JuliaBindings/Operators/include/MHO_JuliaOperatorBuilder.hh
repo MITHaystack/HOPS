@@ -23,15 +23,13 @@ namespace hops
  * in which case module_path/function_name are used only for naming/logging.
  */
 
-class MHO_JuliaOperatorBuilder : public MHO_OperatorBuilder
+class MHO_JuliaOperatorBuilder: public MHO_OperatorBuilder
 {
     public:
-        MHO_JuliaOperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_JuliaOperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
 
-        MHO_JuliaOperatorBuilder(MHO_OperatorToolbox* toolbox,
-                                  MHO_ContainerStore* cstore = nullptr,
-                                  MHO_ParameterStore* pstore = nullptr)
+        MHO_JuliaOperatorBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
+                                 MHO_ParameterStore* pstore = nullptr)
             : MHO_OperatorBuilder(toolbox, cstore, pstore){};
 
         virtual ~MHO_JuliaOperatorBuilder(){};
@@ -47,11 +45,11 @@ class MHO_JuliaOperatorBuilder : public MHO_OperatorBuilder
             auto* op = new MHO_JlGenericOperator();
             op->SetFringeData(this->fFringeData);
 
-            std::string op_name      = this->fFormat["name"].get< std::string >();
-            std::string op_category  = this->fFormat["operator_category"].get< std::string >();
-            std::string module_path  = fAttributes["value"]["module_path"].get< std::string >();
-            std::string func_name    = fAttributes["value"]["function_name"].get< std::string >();
-            double priority          = this->fFormat["priority"].get< double >();
+            std::string op_name = this->fFormat["name"].get< std::string >();
+            std::string op_category = this->fFormat["operator_category"].get< std::string >();
+            std::string module_path = fAttributes["value"]["module_path"].get< std::string >();
+            std::string func_name = fAttributes["value"]["function_name"].get< std::string >();
+            double priority = this->fFormat["priority"].get< double >();
 
             op->SetPriority(priority);
             op->SetModulePath(module_path);

@@ -31,7 +31,7 @@
     #ifdef HOPS_USE_OPENMP
         #include "MHO_MBDelaySearchOpenMP.hh"
         #define MBD_SEARCH_TYPE MHO_MBDelaySearchOpenMP
-    #else 
+    #else
         #define MBD_SEARCH_TYPE MHO_MBDelaySearch
     #endif
 #endif
@@ -56,7 +56,11 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
 
 MHO_BasicFringeFitter::~MHO_BasicFringeFitter()
 {
-    if(fOperatorBuildManager){delete fOperatorBuildManager; fOperatorBuildManager = nullptr;}
+    if(fOperatorBuildManager)
+    {
+        delete fOperatorBuildManager;
+        fOperatorBuildManager = nullptr;
+    }
     delete fMBDSearch;
 };
 
@@ -209,8 +213,7 @@ void MHO_BasicFringeFitter::Configure()
         }
         Cache();
     }
-    
-    
+
     //fOperatorToolbox.PrintOperatorNames();
     // std::cout<<"PARAMETERS = "<<std::endl;
     // fParameterStore->Dump();
@@ -287,7 +290,6 @@ void MHO_BasicFringeFitter::Initialize()
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
     }
-    
 }
 
 void MHO_BasicFringeFitter::PreRun()
@@ -374,7 +376,6 @@ void MHO_BasicFringeFitter::Run()
         //calculate the fringe properties
         MHO_BasicFringeUtilities::calculate_fringe_solution_info(fContainerStore, fParameterStore, fVexInfo);
     }
-    
 }
 
 void MHO_BasicFringeFitter::PostRun()
@@ -442,8 +443,6 @@ void MHO_BasicFringeFitter::Finalize()
 
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
-
-    
 }
 
 void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
@@ -529,8 +528,6 @@ void MHO_BasicFringeFitter::coarse_fringe_search(bool set_windows)
         double coarse_sbdelay = fMBDSearch->GetCoarseSBD();
         fParameterStore->Set("/fringe/sbdelay", coarse_sbdelay);
     }
-
-    
 }
 
 void MHO_BasicFringeFitter::interpolate_peak()
@@ -570,8 +567,6 @@ void MHO_BasicFringeFitter::interpolate_peak()
     fParameterStore->Set("/fringe/drate", drate);
     fParameterStore->Set("/fringe/frate", frate);
     fParameterStore->Set("/fringe/famp", famp);
-
-    
 }
 
 bool MHO_BasicFringeFitter::ContainsMixedSideband(visibility_type* vis)

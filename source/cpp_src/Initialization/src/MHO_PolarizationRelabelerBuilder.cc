@@ -1,7 +1,7 @@
 #include "MHO_PolarizationRelabelerBuilder.hh"
+#include "MHO_Meta.hh"
 #include "MHO_PolarizationProductRelabeler.hh"
 #include "MHO_PolarizationRelabeler.hh"
-#include "MHO_Meta.hh"
 
 namespace hops
 {
@@ -12,20 +12,21 @@ bool MHO_PolarizationRelabelerBuilder::Build()
     {
         msg_debug("initialization", "building a polarization_relabel operator." << eom);
 
-        std::string op_name = fAttributes["name"].get<std::string>();
+        std::string op_name = fAttributes["name"].get< std::string >();
         std::string op_category = "labeling";
-        double priority = fFormat["priority"].get<double>();
+        double priority = fFormat["priority"].get< double >();
 
         std::string station_id = ExtractStationIdentifier();
-        std::string pol1 = fAttributes["value"]["pol1"].get<std::string>();
-        std::string pol2 = fAttributes["value"]["pol2"].get<std::string>();
+        std::string pol1 = fAttributes["value"]["pol1"].get< std::string >();
+        std::string pol2 = fAttributes["value"]["pol2"].get< std::string >();
 
-        visibility_type* vis_data = fContainerStore->GetObject<visibility_type>(std::string("vis"));
+        visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
         weight_type* wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
 
         if(vis_data == nullptr || wt_data == nullptr)
         {
-            msg_error("initialization", "cannot construct MHO_PolarizationProductRelabeler without visibility or weight data." << eom);
+            msg_error("initialization",
+                      "cannot construct MHO_PolarizationProductRelabeler without visibility or weight data." << eom);
             return false;
         }
 
@@ -54,7 +55,7 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         multitone_pcal_type* ref_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("ref_pcal"));
         if(ref_pcal_data != nullptr)
         {
-            auto ref_pcal_relabeler = new MHO_PolarizationRelabeler<multitone_pcal_type>();
+            auto ref_pcal_relabeler = new MHO_PolarizationRelabeler< multitone_pcal_type >();
 
             ref_pcal_relabeler->SetStationIdentifier(station_id);
             ref_pcal_relabeler->SetPolarizationSwapPair(pol1, pol2);
@@ -63,30 +64,31 @@ bool MHO_PolarizationRelabelerBuilder::Build()
             ref_pcal_relabeler->SetPriority(priority);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(ref_pcal_relabeler, ref_pcal_relabeler->GetName(), op_category, replace_duplicates);
+            this->fOperatorToolbox->AddOperator(ref_pcal_relabeler, ref_pcal_relabeler->GetName(), op_category,
+                                                replace_duplicates);
         }
 
         multitone_pcal_type* rem_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("rem_pcal"));
         if(rem_pcal_data != nullptr)
         {
-            auto rem_pcal_relabeler = new MHO_PolarizationRelabeler<multitone_pcal_type>();
+            auto rem_pcal_relabeler = new MHO_PolarizationRelabeler< multitone_pcal_type >();
 
             rem_pcal_relabeler->SetStationIdentifier(station_id);
             rem_pcal_relabeler->SetPolarizationSwapPair(pol1, pol2);
-        
+
             rem_pcal_relabeler->SetArgs(rem_pcal_data);
             rem_pcal_relabeler->SetName(op_name);
             rem_pcal_relabeler->SetPriority(priority);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(rem_pcal_relabeler, rem_pcal_relabeler->GetName(), op_category, replace_duplicates);
+            this->fOperatorToolbox->AddOperator(rem_pcal_relabeler, rem_pcal_relabeler->GetName(), op_category,
+                                                replace_duplicates);
         }
 
         return true;
     }
     return false;
 }
-
 
 std::string MHO_PolarizationRelabelerBuilder::ExtractStationIdentifier()
 {
@@ -111,4 +113,4 @@ std::string MHO_PolarizationRelabelerBuilder::ExtractStationIdentifier()
     return station_id;
 }
 
-}
+} // namespace hops

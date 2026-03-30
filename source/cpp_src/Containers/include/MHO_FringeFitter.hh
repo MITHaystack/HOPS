@@ -43,11 +43,10 @@ class MHO_FringeFitter
             fOperatorBuildManager = nullptr;
         };
 
-        virtual ~MHO_FringeFitter() 
-        {
-            //if derived classes allocate an MHO_OperatorBuilderManager, they 
+        virtual ~MHO_FringeFitter(){
+            //if derived classes allocate an MHO_OperatorBuilderManager, they
             //should call delete on them in their destructor
-            //delete fOperatorBuildManager; 
+            //delete fOperatorBuildManager;
         };
 
         /**
@@ -165,9 +164,9 @@ class MHO_FringeFitter
         //data objects
         MHO_FringeData* fFringeData;
 
-        MHO_ParameterStore* fParameterStore; //stores various parameters using string keys
-        MHO_ScanDataStore* fScanStore;       //provides access to data associated with this scan
-        MHO_ContainerStore* fContainerStore; //stores data containers for in-use data
+        MHO_ParameterStore* fParameterStore;  //stores various parameters using string keys
+        MHO_ScanDataStore* fScanStore;        //provides access to data associated with this scan
+        MHO_ContainerStore* fContainerStore;  //stores data containers for in-use data
         MHO_OperatorToolbox fOperatorToolbox; //stores the data operator objects
 
         //configuration/initialization managers

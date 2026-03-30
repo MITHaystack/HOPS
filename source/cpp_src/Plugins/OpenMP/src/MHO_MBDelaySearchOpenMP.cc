@@ -106,7 +106,8 @@ bool MHO_MBDelaySearchOpenMP::InitializeImpl(const XArgType* in)
         //allocate and initialize per-thread workspaces for the OpenMP SBD loop.
         //all reserves happen before SetArgs so that element addresses are stable.
         fNThreads = omp_get_max_threads();
-        msg_debug("calibration", "MHO_MBDelaySearchOpenMP will use: "<<fNThreads<<" OpenMP threads for the coarse search" << eom );
+        msg_debug("calibration",
+                  "MHO_MBDelaySearchOpenMP will use: " << fNThreads << " OpenMP threads for the coarse search" << eom);
         fThreadMaxima.resize(fNThreads);
         fPerThreadSBDWorkspace.reserve(fNThreads);
         fPerThreadSBDDrData.reserve(fNThreads);
@@ -130,13 +131,12 @@ bool MHO_MBDelaySearchOpenMP::InitializeImpl(const XArgType* in)
             fPerThreadSBDWorkspace[t].ZeroArray();
             fPerThreadSBDWorkspace[t].CopyTags(*in);
             std::get< CHANNEL_AXIS >(fPerThreadSBDWorkspace[t]) = std::get< CHANNEL_AXIS >(*in);
-            std::get< TIME_AXIS >(fPerThreadSBDWorkspace[t])    = std::get< TIME_AXIS >(*in);
+            std::get< TIME_AXIS >(fPerThreadSBDWorkspace[t]) = std::get< TIME_AXIS >(*in);
             std::get< FREQ_AXIS >(fPerThreadSBDWorkspace[t])(0) = 0.0;
 
             //delay rate calculator bound to this thread's input/output buffers
             fPerThreadDelayRateCalc[t].SetReferenceFrequency(fRefFreq);
-            fPerThreadDelayRateCalc[t].SetArgs(&fPerThreadSBDWorkspace[t], fWeights,
-                                               &fPerThreadSBDDrData[t]);
+            fPerThreadDelayRateCalc[t].SetArgs(&fPerThreadSBDWorkspace[t], fWeights, &fPerThreadSBDDrData[t]);
             ok = fPerThreadDelayRateCalc[t].Initialize();
             check_step_fatal(ok, "fringe", "Per-thread delay rate search initialization failed." << eom);
 
@@ -169,14 +169,17 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
         fNPointsSearched = 0;
         std::size_t nch = std::get< CHANNEL_AXIS >(*in).GetSize();
 
-        // Serial axis setup before the parallel region 
+        // Serial axis setup before the parallel region
 
         //MBD axis: run the 1D FFT on a zeroed workspace with axis label transformation
         //to obtain the delay-space axis labels (data-independent, only grid geometry needed)
         fMBDWorkspace.ZeroArray();
         fFFTEngine.EnableAxisLabelTransformation();
         auto* mbd_ax = &(std::get< 0 >(fMBDWorkspace));
-        for(std::size_t i = 0; i < fNGridPoints; i++) { (*mbd_ax)(i) = fGridStart + i * fGridSpace; }
+        for(std::size_t i = 0; i < fNGridPoints; i++)
+        {
+            (*mbd_ax)(i) = fGridStart + i * fGridSpace;
+        }
         ok = fFFTEngine.Execute();
         check_step_fatal(ok, "fringe", "MBD search fft engine execution." << eom);
         fMBDAxis = std::get< 0 >(fMBDWorkspace);
@@ -200,36 +203,39 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
             fDRBinSep = fDRAxis(1) - fDRAxis(0);
         }
 
-        // Reset per-thread argmax accumulators 
+        // Reset per-thread argmax accumulators
         for(int t = 0; t < fNThreads; t++)
         {
-            fThreadMaxima[t].val      = -0.0;
-            fThreadMaxima[t].mbd_bin  = -1;
-            fThreadMaxima[t].sbd_bin  = -1;
-            fThreadMaxima[t].dr_bin   = -1;
+            fThreadMaxima[t].val = -0.0;
+            fThreadMaxima[t].mbd_bin = -1;
+            fThreadMaxima[t].sbd_bin = -1;
+            fThreadMaxima[t].dr_bin = -1;
             fThreadMaxima[t].n_points = 0.0;
         }
 
-        // Parallel loop over single-band delay lags 
-        //#pragma omp parallel for schedule(dynamic) num_threads(fNThreads)
-        //#pragma omp parallel for num_threads(fNThreads)
-        #pragma omp parallel num_threads(fNThreads)
+// Parallel loop over single-band delay lags
+//#pragma omp parallel for schedule(dynamic) num_threads(fNThreads)
+//#pragma omp parallel for num_threads(fNThreads)
+#pragma omp parallel num_threads(fNThreads)
         {
             int tid = omp_get_thread_num();
 
-            #pragma omp for schedule(static)
+#pragma omp for schedule(static)
             for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
             {
                 double sbd = fSBDAxis(sbd_idx);
-                if(fSBDWinSet && !((fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]))) { continue; }
+                if(fSBDWinSet && !((fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1])))
+                {
+                    continue;
+                }
 
                 //int tid = omp_get_thread_num();
-                visibility_type&    local_ws  = fPerThreadSBDWorkspace[tid];
-                visibility_type&    local_dr  = fPerThreadSBDDrData[tid];
-                MHO_DelayRate&      local_drc = fPerThreadDelayRateCalc[tid];
-                mbd_dr_type&        local_sb  = fPerThreadSearchBuffer[tid];
+                visibility_type& local_ws = fPerThreadSBDWorkspace[tid];
+                visibility_type& local_dr = fPerThreadSBDDrData[tid];
+                MHO_DelayRate& local_drc = fPerThreadDelayRateCalc[tid];
+                mbd_dr_type& local_sb = fPerThreadSearchBuffer[tid];
                 FFT_2D_ENGINE_TYPE& local_fft = fPerThreadBatchedFFTEngine[tid];
-                LocalMax&           lm        = fThreadMaxima[tid];
+                LocalMax& lm = fThreadMaxima[tid];
 
                 //copy the SBD slice into the thread-local workspace
                 auto dims = local_ws.GetDimensionArray();
@@ -261,36 +267,42 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
                 {
                     double dr = fDRAxis(dr_idx);
-                    if(fDRWinSet && !((fDRWin[0] <= dr) && (dr <= fDRWin[1]))) { continue; }
+                    if(fDRWinSet && !((fDRWin[0] <= dr) && (dr <= fDRWin[1])))
+                    {
+                        continue;
+                    }
                     for(std::size_t mbd_idx = 0; mbd_idx < fNGridPoints; mbd_idx++)
                     {
                         double mbd = fMBDAxis(mbd_idx);
-                        if(fMBDWinSet && !((fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1]))) { continue; }
+                        if(fMBDWinSet && !((fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1])))
+                        {
+                            continue;
+                        }
                         //std::norm avoids sqrt - searching for max location only
                         double tmp_max = std::norm(local_sb(dr_idx, mbd_idx));
                         if(tmp_max > lm.val)
                         {
-                            lm.val     = tmp_max;
+                            lm.val = tmp_max;
                             //index shift: cyclic rotator has not yet been applied to the MBD axis
                             lm.mbd_bin = (mbd_idx + fNGridPoints / 2) % fNGridPoints;
                             lm.sbd_bin = sbd_idx;
-                            lm.dr_bin  = dr_idx;
+                            lm.dr_bin = dr_idx;
                         }
                         lm.n_points += 1;
                     }
                 }
             } // end omp parallel for
-        } //end omp parallel nthreads
+        }     //end omp parallel nthreads
 
-        // Serial argmax reduction across threads 
+        // Serial argmax reduction across threads
         for(int t = 0; t < fNThreads; t++)
         {
             if(fThreadMaxima[t].val > fMax)
             {
-                fMax       = fThreadMaxima[t].val;
+                fMax = fThreadMaxima[t].val;
                 fMBDMaxBin = fThreadMaxima[t].mbd_bin;
                 fSBDMaxBin = fThreadMaxima[t].sbd_bin;
-                fDRMaxBin  = fThreadMaxima[t].dr_bin;
+                fDRMaxBin = fThreadMaxima[t].dr_bin;
             }
             fNPointsSearched += fThreadMaxima[t].n_points;
         }
@@ -305,8 +317,8 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
         {
             fCoarseMBD = fMBDAxis(fMBDMaxBin);
             fCoarseSBD = fSBDAxis(fSBDMaxBin);
-            fCoarseDR  = fDRAxis(fDRMaxBin);
-            
+            fCoarseDR = fDRAxis(fDRMaxBin);
+
             return true;
         }
         else
@@ -318,11 +330,8 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
     {
         msg_error("calibration", "MHO_MBDelaySearchOpenMP could not execute, intialization failure." << eom);
     }
-    
+
     return false;
 };
-
-
-
 
 } // namespace hops

@@ -1,22 +1,22 @@
 #include "MHO_HopsOutputVisitor.hh"
 
-#include "MHO_FringeData.hh"
-#include "MHO_UUIDGenerator.hh"
 #include "MHO_BinaryFileInterface.hh"
+#include "MHO_FringeData.hh"
 #include "MHO_LockFileHandler.hh"
+#include "MHO_UUIDGenerator.hh"
 
 #include <cstdio>
 
-namespace hops 
+namespace hops
 {
 
+MHO_HopsOutputVisitor::MHO_HopsOutputVisitor()
+{}
 
-MHO_HopsOutputVisitor::MHO_HopsOutputVisitor(){}
+MHO_HopsOutputVisitor::~MHO_HopsOutputVisitor()
+{}
 
-MHO_HopsOutputVisitor::~MHO_HopsOutputVisitor(){}
-
-void 
-MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
+void MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
 {
     MHO_FringeData* fringeData = fitter->GetFringeData();
     if(!fringeData)
@@ -78,8 +78,8 @@ MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
     //ideally this should reduce the amount of time each independent process waits to access the directory
     //since they can write in parallel and only need to queue up to rename their files
 
-    std::string temp_name =
-        fringeData->ConstructTempFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, temp_id);
+    std::string temp_name = fringeData->ConstructTempFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod,
+                                                              root_code, temp_id);
     int write_ok = WriteDataObjects(fringeData, temp_name);
 
     // for locking
@@ -92,8 +92,8 @@ MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
 
     if(lock_retval == LOCK_STATUS_OK && the_seq_no > 0)
     {
-        std::string output_file =
-            fringeData->ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group, polprod, root_code, the_seq_no);
+        std::string output_file = fringeData->ConstructFrngFileName(directory, baseline, ref_code, rem_code, frequency_group,
+                                                                    polprod, root_code, the_seq_no);
 
         //rename the temp file to the proper output name
         if(write_ok == 0)
@@ -155,7 +155,6 @@ int MHO_HopsOutputVisitor::WriteDataObjects(MHO_FringeData* fringeData, std::str
     {
         msg_error("fringe", "could not find time/frequency averaged phasor object to write output." << eom);
     }
-
 
     MHO_BinaryFileInterface inter;
     bool status = inter.OpenToWrite(filename);

@@ -12,8 +12,8 @@
 #include <numeric>
 #include <sstream>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
 
 namespace hops
 {
@@ -31,35 +31,18 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
         virtual void Plot(MHO_FringeData* data) override;
 
     protected:
-
-
     private:
-
-
         class subplot_parameters
         {
             public:
-                subplot_parameters():
-                    total_rows(0),
-                    total_cols(0),
-                    start_row(0),
-                    start_col(0),
-                    rowspan(0),
-                    colspan(0)
-                {};
+                subplot_parameters(): total_rows(0), total_cols(0), start_row(0), start_col(0), rowspan(0), colspan(0){};
 
-                subplot_parameters(int a, int b, int c, int d, int e, int f):
-                    total_rows(a),
-                    total_cols(b),
-                    start_row(c),
-                    start_col(d),
-                    rowspan(e),
-                    colspan(f)
-                {};
+                subplot_parameters(int a, int b, int c, int d, int e, int f)
+                    : total_rows(a), total_cols(b), start_row(c), start_col(d), rowspan(e), colspan(f){};
 
                 virtual ~subplot_parameters(){};
 
-            //data
+                //data
                 int total_rows;
                 int total_cols;
                 int start_row;
@@ -68,12 +51,14 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
                 int colspan;
         };
 
-        std::map<std::string, subplot_parameters> fSubplotConfig;
+        std::map< std::string, subplot_parameters > fSubplotConfig;
 
         void ConfigureSubplots();
 
-        void ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, double x_coord, double y_coord, bool center = false);
-        void ConstructYTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size, bool is_y2 = false);// double x_coord, double y_coord, bool center)
+        void ConstructXTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size,
+                             double x_coord, double y_coord, bool center = false);
+        void ConstructYTitle(const subplot_parameters& params, std::string title, std::string font_color, int font_size,
+                             bool is_y2 = false); // double x_coord, double y_coord, bool center)
 
         void ConstructPlot(const mho_json& plot_data);
         void DirectSavePlot(std::string filename);
@@ -173,23 +158,27 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
          */
         void setup_figure_layout();
 
-
-        double determine_desired_tick_spacing(int n_ticks, double lower_limit, double upper_limit, const std::vector<double>& desired_intervals)
+        double determine_desired_tick_spacing(int n_ticks, double lower_limit, double upper_limit,
+                                              const std::vector< double >& desired_intervals)
         {
-                // Calculate tick marks based on span and desired spacing intervals
-                double span = std::fabs(upper_limit - lower_limit);
-                double target = span/(double)n_ticks;
-                //example target spacing:
-                //std::vector<double> tspace = {0.1, 0.5, 1, 5, 10, 25, 50, 100, 200, 500};
-                int idx = 0;
-                double tmin = 1e3*upper_limit;
-                for(std::size_t i=0; i<desired_intervals.size(); i++)
+            // Calculate tick marks based on span and desired spacing intervals
+            double span = std::fabs(upper_limit - lower_limit);
+            double target = span / (double)n_ticks;
+            //example target spacing:
+            //std::vector<double> tspace = {0.1, 0.5, 1, 5, 10, 25, 50, 100, 200, 500};
+            int idx = 0;
+            double tmin = 1e3 * upper_limit;
+            for(std::size_t i = 0; i < desired_intervals.size(); i++)
+            {
+                double delta = std::fabs(target - desired_intervals[i]);
+                if(delta < tmin)
                 {
-                    double delta = std::fabs( target - desired_intervals[i] );
-                    if(delta < tmin){tmin = delta; idx = i;}
+                    tmin = delta;
+                    idx = i;
                 }
-                double tick_spacing = desired_intervals[idx];
-                return tick_spacing;
+            }
+            double tick_spacing = desired_intervals[idx];
+            return tick_spacing;
         }
 
         /**
@@ -203,7 +192,8 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
         matplot::axes_handle subplot2grid(const std::pair< int, int >& shape, const std::pair< int, int >& loc, int rowspan = 1,
                                           int colspan = 1, float left_margin = 0.0, float right_margin = 0.0);
 
-        matplot::axes_handle subplot2grid_wrapper(const subplot_parameters sp, double left_margin = 0.0, double right_margin = 0.0);
+        matplot::axes_handle subplot2grid_wrapper(const subplot_parameters sp, double left_margin = 0.0,
+                                                  double right_margin = 0.0);
 
         // Member variables for plot state
         matplot::figure_handle fCurrentFigure;
@@ -212,16 +202,15 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
         mho_json fPlotData;
 
         //place to stash all the axes so they stay part of the figure
-        std::vector<matplot::axes_handle> fAxes;
+        std::vector< matplot::axes_handle > fAxes;
         matplot::axes_handle fLastAxis;
-        
+
         int fPageWidth;
         int fPageHeight;
         float fLeftMargin;
         float fRightMargin;
         int fNRows;
         int fNCols;
-        
 };
 
 } // namespace hops

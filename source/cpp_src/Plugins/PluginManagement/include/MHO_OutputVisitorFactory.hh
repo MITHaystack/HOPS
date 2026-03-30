@@ -3,9 +3,8 @@
 
 #include <map>
 
-#include "MHO_Message.hh"
 #include "MHO_FringeFitter.hh"
-
+#include "MHO_Message.hh"
 
 namespace hops
 {
@@ -34,7 +33,6 @@ class MHO_OutputVisitorFactory
         MHO_FringeFitterVisitor* GetOutputVisitor(std::string format = "");
 
     protected:
-
         std::map< std::string, MHO_FringeFitterVisitor* > fOutputVisitors;
 };
 

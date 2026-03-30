@@ -3,23 +3,22 @@
 
 #include <vector>
 
-#include "MHO_Message.hh"
 #include "MHO_FringeFitter.hh"
 #include "MHO_FringePlotVisitor.hh"
 #include "MHO_FringePlotVisitorFactory.hh"
+#include "MHO_Message.hh"
 #include "MHO_OutputVisitorFactory.hh"
 
 namespace hops
 {
-
 
 class MHO_PluginVisitorFactory
 {
     public:
         MHO_PluginVisitorFactory();
         virtual ~MHO_PluginVisitorFactory();
-        
-        void SetParameterStore(MHO_ParameterStore* params){fParameterStore = params;}
+
+        void SetParameterStore(MHO_ParameterStore* params) { fParameterStore = params; }
 
         //plugin visitors
         void GetPluginVisitors(std::vector< MHO_FringeFitterVisitor* >& visitors);
@@ -31,7 +30,6 @@ class MHO_PluginVisitorFactory
         void GetOutputVisitors(std::vector< MHO_FringeFitterVisitor* >& visitors);
 
     protected:
-        
         void ConstructPlugins();
         void ConstructPlotters();
         void ConstructOutputVisitors();
@@ -45,12 +43,10 @@ class MHO_PluginVisitorFactory
 
         std::vector< MHO_FringeFitterVisitor* > fOutputVisitors;
         MHO_OutputVisitorFactory fOutputFactory;
-        
+
         std::vector< MHO_FringePlotVisitor* > fPlotVisitors;
         MHO_FringePlotVisitorFactory fPlotterFactory;
-    
 };
-
 
 } // namespace hops
 

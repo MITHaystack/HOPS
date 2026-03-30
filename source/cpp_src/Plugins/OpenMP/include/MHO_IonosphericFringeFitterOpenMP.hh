@@ -17,8 +17,8 @@ namespace hops
 
 struct IonLoopResult
 {
-    double famp     = 0.0;
-    double ion_diff = 0.0;
+        double famp = 0.0;
+        double ion_diff = 0.0;
 };
 
 /*!
@@ -105,13 +105,13 @@ class MHO_IonosphericFringeFitterOpenMP: public MHO_BasicFringeFitter
         int fNIonThreads;
         visibility_type fVisRef; //clean reference copy of vis_data (before any ion correction)
 
-        std::vector< visibility_type > fPerThreadVis; //per-thread working vis copies
-        std::vector< visibility_type > fPerThreadSBD; //per-thread SBD output buffers
+        std::vector< visibility_type > fPerThreadVis;                  //per-thread working vis copies
+        std::vector< visibility_type > fPerThreadSBD;                  //per-thread SBD output buffers
         std::vector< std::unique_ptr< MHO_NormFX > > fPerThreadNormFX; //per-thread norm fx operator
 
-        std::vector< std::unique_ptr< MHO_MBDelaySearch > >                    fPerThreadMBDSearch;
-        std::vector< std::unique_ptr< MHO_InterpolateFringePeakOptimized > >   fPerThreadPeakInterp;
-        std::vector< std::unique_ptr< MHO_IonosphericPhaseCorrection > >       fPerThreadIono;
+        std::vector< std::unique_ptr< MHO_MBDelaySearch > > fPerThreadMBDSearch;
+        std::vector< std::unique_ptr< MHO_InterpolateFringePeakOptimized > > fPerThreadPeakInterp;
+        std::vector< std::unique_ptr< MHO_IonosphericPhaseCorrection > > fPerThreadIono;
 
         std::vector< IonLoopResult > fIonLoopResults; //one slot per ionloop index
 

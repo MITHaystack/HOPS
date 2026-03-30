@@ -11,10 +11,8 @@
 #include <string>
 #include <vector>
 
-
-namespace hops 
+namespace hops
 {
-
 
 /**
  * @brief Utility class for extracting and processing plot data from JSON
@@ -76,10 +74,6 @@ class MHO_PlotDataExtractor
         static double extract_double(const mho_json& plot_dict, const std::string& key, double default_value = 0.0);
 };
 
-
-}
-
+} // namespace hops
 
 #endif /* end of include guard: MHO_PlotDataExtractor_HH__ */
-
-

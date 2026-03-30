@@ -73,7 +73,7 @@ class MHO_ControlConditionEvaluator
          * @return TRUE_STATE if station matches reference/remove/wildcard, FALSE_STATE otherwise.
          */
         int EvaluateStation(token_iter& it);
-        
+
         /**
          * @brief Evaluates baseline condition and returns TRUE_STATE if met.
          *
@@ -81,7 +81,7 @@ class MHO_ControlConditionEvaluator
          * @return TRUE_STATE if baseline condition is met, FALSE_STATE otherwise.
          */
         int EvaluateBaseline(token_iter& it);
-        
+
         /**
          * @brief Evaluates baseline token and returns TRUE_STATE if it's a wildcard or source, FALSE_STATE otherwise.
          *
@@ -89,22 +89,21 @@ class MHO_ControlConditionEvaluator
          * @return TRUE_STATE if token is wildcard or baseline, FALSE_STATE otherwise
          */
         int EvaluateTwoCharacterBaseline(token_iter& it);
-        
+
         /**
-        * @brief Evaluates baseline token and returns TRUE_STATE if it's a wildcard or source, FALSE_STATE otherwise.
-        *
-        * @param it Input iterator to current token
-        * @return TRUE_STATE if token is wildcard or baseline, FALSE_STATE otherwise
-        */
+         * @brief Evaluates baseline token and returns TRUE_STATE if it's a wildcard or source, FALSE_STATE otherwise.
+         *
+         * @param it Input iterator to current token
+         * @return TRUE_STATE if token is wildcard or baseline, FALSE_STATE otherwise
+         */
         int EvaluateMultiCharacterBaseline(token_iter& it);
-        
-        
+
         /**
-        * @brief Evaluates source token and returns TRUE_STATE if it's a wildcard or source, FALSE_STATE otherwise.
-        *
-        * @param it Input iterator to current token
-        * @return TRUE_STATE if token is wildcard or baseline, FALSE_STATE otherwise
-        */
+         * @brief Evaluates source token and returns TRUE_STATE if it's a wildcard or source, FALSE_STATE otherwise.
+         *
+         * @param it Input iterator to current token
+         * @return TRUE_STATE if token is wildcard or baseline, FALSE_STATE otherwise
+         */
         int EvaluateSource(token_iter& it);
         /**
          * @brief Evaluates frequency group and returns TRUE_STATE if it matches fFGroup or fWildcard, otherwise FALSE_STATE.
@@ -160,10 +159,10 @@ class MHO_ControlConditionEvaluator
         std::string fBaselineMk4;
         std::string fRefStationMk4ID;
         std::string fRemStationMk4ID;
-        
+
         std::string fCanonicalRefStation;
         std::string fCanonicalRemStation;
-        
+
         std::string fSource;
         std::string fFGroup;
         std::string fScanTime;

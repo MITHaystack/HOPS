@@ -19,8 +19,6 @@ int main(int /*argc*/, char** /*argv*/)
 
     sleep(4);
 
-    
-
     MHO_Profiler::GetInstance().DumpEvents();
 
     return 0;

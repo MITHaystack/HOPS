@@ -44,7 +44,7 @@ template< typename XArrayType > class MHO_PolarizationProductRelabeler: public M
 
         void SetPolarizationSwapPair(std::string pol1, std::string pol2)
         {
-            //set the polarization labels to swap, all instances of pol1 will be replaced by pol2 
+            //set the polarization labels to swap, all instances of pol1 will be replaced by pol2
             //and all instances of pol2 will be replaced with pol1
             if(pol1.size() == 1 && pol2.size() == 1)
             {
@@ -52,10 +52,12 @@ template< typename XArrayType > class MHO_PolarizationProductRelabeler: public M
                 fPol2 = pol2;
                 fValid = true;
             }
-            else 
+            else
             {
                 fValid = false;
-                msg_error("calibration", "MHO_PolarizationProductRelabeler, only single character polarization labels are supported, ignoring." << eom);
+                msg_error("calibration",
+                          "MHO_PolarizationProductRelabeler, only single character polarization labels are supported, ignoring."
+                              << eom);
             }
         }
 
@@ -106,14 +108,20 @@ template< typename XArrayType > class MHO_PolarizationProductRelabeler: public M
 
                 for(std::size_t st_idx = 0; st_idx < 2; st_idx++)
                 {
-                    if( IsApplicable(st_idx, in) )
+                    if(IsApplicable(st_idx, in))
                     {
-                        for(std::size_t i=0; i<npprods; i++)
+                        for(std::size_t i = 0; i < npprods; i++)
                         {
                             //swap any instances of pol1 <-> pol2
                             std::string pprod = pprod_axis_ptr->at(i);
-                            if(pprod[st_idx] == fPol1[0]){pprod[st_idx] = fPol2[0];}
-                            else if(pprod[st_idx] == fPol2[0]){pprod[st_idx] = fPol1[0];}
+                            if(pprod[st_idx] == fPol1[0])
+                            {
+                                pprod[st_idx] = fPol2[0];
+                            }
+                            else if(pprod[st_idx] == fPol2[0])
+                            {
+                                pprod[st_idx] = fPol1[0];
+                            }
                             pprod_axis_ptr->at(i) = pprod;
                         }
                     }
@@ -137,7 +145,6 @@ template< typename XArrayType > class MHO_PolarizationProductRelabeler: public M
         }
 
     private:
-
         //keys for tag retrieval
         std::string fStationKey;
         std::string fRemStationKey;
@@ -145,7 +152,7 @@ template< typename XArrayType > class MHO_PolarizationProductRelabeler: public M
         std::string fRemStationMk4IDKey;
         std::string fRefStationMk4IDKey;
 
-        //data 
+        //data
         std::string fStationIdentity;
         std::string fPol1;
         std::string fPol2;
@@ -196,8 +203,6 @@ template< typename XArrayType > class MHO_PolarizationProductRelabeler: public M
             }
             return apply_correction;
         }
-
-
 };
 
 } // namespace hops

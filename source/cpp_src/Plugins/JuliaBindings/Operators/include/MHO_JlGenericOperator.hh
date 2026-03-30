@@ -39,22 +39,26 @@ namespace hops
 // Caller must have already checked jl_exception_occurred() != nullptr.
 inline std::string jl_exception_message()
 {
-    jl_value_t* exc        = jl_exception_occurred();
-    jl_value_t* sprint_fn  = jl_get_function(jl_base_module, "sprint");
+    jl_value_t* exc = jl_exception_occurred();
+    jl_value_t* sprint_fn = jl_get_function(jl_base_module, "sprint");
     jl_value_t* showerr_fn = jl_get_function(jl_base_module, "showerror");
-    if(!sprint_fn || !showerr_fn) { return jl_typeof_str(exc); }
+    if(!sprint_fn || !showerr_fn)
+    {
+        return jl_typeof_str(exc);
+    }
     jl_value_t* msg = jl_call2(sprint_fn, showerr_fn, exc);
-    if(!msg || jl_exception_occurred()) { return jl_typeof_str(exc); }
+    if(!msg || jl_exception_occurred())
+    {
+        return jl_typeof_str(exc);
+    }
     return std::string(jl_string_ptr(msg));
 }
 
-
-class MHO_JlGenericOperator : public MHO_Operator
+class MHO_JlGenericOperator: public MHO_Operator
 {
     public:
         MHO_JlGenericOperator()
-            : fInitialized(false), fFringeData(nullptr), fFringeDataInterface(nullptr),
-              fJuliaFunc(nullptr){};
+            : fInitialized(false), fFringeData(nullptr), fFringeDataInterface(nullptr), fJuliaFunc(nullptr){};
 
         virtual ~MHO_JlGenericOperator() { delete fFringeDataInterface; };
 
@@ -69,8 +73,11 @@ class MHO_JlGenericOperator : public MHO_Operator
         // These are used when no explicit Julia function pointer has been set via
         // SetJuliaFunction() - i.e., the normal path when built by MHO_JuliaOperatorBuilder.
         void SetModulePath(const std::string& path) { fModulePath = path; }
+
         void SetFunctionName(const std::string& name) { fFunctionName = name; }
-        std::string GetModulePath()   const { return fModulePath; }
+
+        std::string GetModulePath() const { return fModulePath; }
+
         std::string GetFunctionName() const { return fFunctionName; }
 
         virtual bool Initialize() override
@@ -91,9 +98,8 @@ class MHO_JlGenericOperator : public MHO_Operator
                 jl_eval_string(include_cmd.c_str());
                 if(jl_exception_occurred())
                 {
-                    msg_error("julia_bindings",
-                              "Failed to include Julia file \"" << path << "\": "
-                                  << jl_typeof_str(jl_exception_occurred()) << eom);
+                    msg_error("julia_bindings", "Failed to include Julia file \""
+                                                    << path << "\": " << jl_typeof_str(jl_exception_occurred()) << eom);
                     jl_exception_clear();
                     return false;
                 }
@@ -101,14 +107,16 @@ class MHO_JlGenericOperator : public MHO_Operator
                 fJuliaFunc = jl_get_function(jl_main_module, fFunctionName.c_str());
                 if(!fJuliaFunc)
                 {
-                    msg_error("julia_bindings",
-                              "Julia function \"" << fFunctionName << "\" not found in Main "
-                                  << "after including \"" << path << "\"" << eom);
+                    msg_error("julia_bindings", "Julia function \"" << fFunctionName << "\" not found in Main "
+                                                                    << "after including \"" << path << "\"" << eom);
                     return false;
                 }
             }
 
-            if(!fJuliaFunc) { return false; }
+            if(!fJuliaFunc)
+            {
+                return false;
+            }
             if(fFringeData && !fFringeDataInterface)
             {
                 fFringeDataInterface = new MHO_JlFringeDataInterface(fFringeData);
@@ -119,13 +127,16 @@ class MHO_JlGenericOperator : public MHO_Operator
 
         virtual bool Execute() override
         {
-            if(!fInitialized || !fJuliaFunc || !fFringeDataInterface) { return false; }
+            if(!fInitialized || !fJuliaFunc || !fFringeDataInterface)
+            {
+                return false;
+            }
 
             // Box the C++ interface pointer as a Julia value.
             // jlcxx::box<T*> uses julia_owned=false so the GC will not free
             // the C++ memory when the Julia wrapper is collected.
             jl_value_t* boxed_fd = jlcxx::box< MHO_JlFringeDataInterface* >(fFringeDataInterface).value;
-            jl_value_t* result   = nullptr;
+            jl_value_t* result = nullptr;
             JL_GC_PUSH2(&boxed_fd, &result);
 
             result = jl_call1(fJuliaFunc, boxed_fd);
@@ -134,9 +145,8 @@ class MHO_JlGenericOperator : public MHO_Operator
 
             if(jl_exception_occurred())
             {
-                msg_error("julia_bindings",
-                          "Julia exception in operator (" << fModulePath << ":" << fFunctionName << "): "
-                              << jl_exception_message() << eom);
+                msg_error("julia_bindings", "Julia exception in operator (" << fModulePath << ":" << fFunctionName
+                                                                            << "): " << jl_exception_message() << eom);
                 jl_exception_clear();
                 return false;
             }

@@ -6,9 +6,16 @@
 #ifdef _OPENMP
     #include <omp.h>
 #else
-    //stubs so code compiles without OpenMP; pragmas are silently ignored
-    inline int omp_get_max_threads() { return 1; }
-    inline int omp_get_thread_num()  { return 0; }
+//stubs so code compiles without OpenMP; pragmas are silently ignored
+inline int omp_get_max_threads()
+{
+    return 1;
+}
+
+inline int omp_get_thread_num()
+{
+    return 0;
+}
 #endif
 
 #include "MHO_MBDelaySearch.hh"
@@ -42,20 +49,20 @@ class MHO_MBDelaySearchOpenMP: public MHO_MBDelaySearch
         //per-thread argmax accumulator; alignas(64) + _pad prevents false sharing across cache lines
         struct alignas(64) LocalMax
         {
-            double val      = -0.0;
-            int    mbd_bin  = -1;
-            int    sbd_bin  = -1;
-            int    dr_bin   = -1;
-            double n_points = 0.0;
-            char   _pad[32]; //pad struct to one full 64-byte cache line
+                double val = -0.0;
+                int mbd_bin = -1;
+                int sbd_bin = -1;
+                int dr_bin = -1;
+                double n_points = 0.0;
+                char _pad[32]; //pad struct to one full 64-byte cache line
         };
 
         int fNThreads;
-        std::vector< LocalMax >           fThreadMaxima;
-        std::vector< visibility_type >    fPerThreadSBDWorkspace;
-        std::vector< visibility_type >    fPerThreadSBDDrData;
-        std::vector< MHO_DelayRate >      fPerThreadDelayRateCalc;
-        std::vector< mbd_dr_type >        fPerThreadSearchBuffer;
+        std::vector< LocalMax > fThreadMaxima;
+        std::vector< visibility_type > fPerThreadSBDWorkspace;
+        std::vector< visibility_type > fPerThreadSBDDrData;
+        std::vector< MHO_DelayRate > fPerThreadDelayRateCalc;
+        std::vector< mbd_dr_type > fPerThreadSearchBuffer;
         std::vector< FFT_2D_ENGINE_TYPE > fPerThreadBatchedFFTEngine;
 };
 
