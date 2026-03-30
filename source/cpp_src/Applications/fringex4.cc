@@ -407,7 +407,7 @@ static std::vector< SegmentResult > compute_segments(const phasor_type& phasors,
     }
 
     //OMODE (doubles the number of segments)
-    if(overlap) 
+    if(overlap)
     {
         double half = nsecs / 2.0;
         std::vector< double > extra;
@@ -421,7 +421,7 @@ static std::vector< SegmentResult > compute_segments(const phasor_type& phasors,
         }
         seg_starts.insert(seg_starts.end(), extra.begin(), extra.end());
         std::sort(seg_starts.begin(), seg_starts.end()); //fix up the order
-        //add the last overlap segment if we can 
+        //add the last overlap segment if we can
         double shifted = seg_starts.back() + half;
         if(shifted < scan_duration - 0.5 * ap_period)
         {
@@ -550,7 +550,10 @@ static std::vector< SegmentResult > compute_segments(const phasor_type& phasors,
 
         SegmentResult seg;
         seg.time_tag_sec = seg_center;
-        if(overlap){seg.time_tag_sec -= nsecs/2.0;}
+        if(overlap)
+        {
+            seg.time_tag_sec -= nsecs / 2.0;
+        }
         seg.amp = amp;
         seg.resid_phas = resid_phas;
         seg.total_phas = total_phas;
