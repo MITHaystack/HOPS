@@ -56,6 +56,7 @@ struct SegmentResult
         double eff_total_drate;   // us/s
         double resid_mbdelay;     // us: residual + user offset (for MBDLY column)
         double resid_drate;       // ps/s: residual rate + user offset (for DRATE column)
+        double resid_delay;       // us: N*AMB + resid_mbdelay to match SBD (for RESIDUALDELAY column)
 };
 
 // ---------------------------------------------------------------------------
@@ -343,6 +344,9 @@ static std::vector< SegmentResult > compute_segments(const phasor_type& phasors,
     double total_drate = params.GetAs< double >("/fringe/total_drate");     // us/s (a-priori + residual)
     double full_snr = params.GetAs< double >("/fringe/snr");
     double fourfit_amp = params.GetAs< double >("/fringe/famp");
+    // /fringe/resid_delay = N*AMB + MBD (integer-ambiguity-adjusted MBD to match SBD),
+    // computed by fourfit4 and stored in the frng file.
+    double file_resid_delay = params.GetAs< double >("/fringe/resid_delay"); // us
 
     // total_mbdelay/total_drate already include fit_mbdelay/fit_drate (no double-counting)
     double applied_mbdelay = total_mbdelay; // us
@@ -559,6 +563,7 @@ static std::vector< SegmentResult > compute_segments(const phasor_type& phasors,
         seg.eff_total_drate = eff_total_drate;
         seg.resid_mbdelay = resid_mbdelay;
         seg.resid_drate = resid_drate;
+        seg.resid_delay = file_resid_delay + eff_mbd;
         results.push_back(seg);
     }
 
@@ -704,7 +709,7 @@ int main(int argc, char** argv)
             row["delay_rate"] = seg.resid_drate; // residual rate + user offset (us/s)
             row["total_mbdelay"] = seg.eff_total_mbdelay;
             row["total_rate"] = seg.eff_total_drate;
-            row["resid_delay"] = seg.eff_total_mbdelay; // v6 RESIDUALDELAY column
+            row["resid_delay"] = seg.resid_delay; // v6 RESIDUALDELAY column: N*AMB + resid_mbdelay to match SBD
 
             // datatype: 'C'=coherent, 'O'=overlap mode; always 'f' suffix (mirroring fringex)
             row["datatype"] = overlap ? "Of" : "Cf";
