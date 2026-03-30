@@ -28,6 +28,7 @@ if(BASH_PROGRAM)
             chk_phs_jump
             chk_pythonpcphases
             chk_simplefringex4
+            chk_simplefringex4_v6
         )
     endif(PY_EXE)
 
