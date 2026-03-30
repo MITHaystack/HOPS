@@ -70,8 +70,10 @@ struct AprioriDelayModel
 };
 
 // ---------------------------------------------------------------------------
-// Parse ref/rem .sta file paths from a .frng file path.
-// Convention (from observed files):
+// Parse ref/rem .sta file paths from a .frng file path
+// We could probably also construct these from the parameter info in the .frng file 
+// if that turns out to be more reliable
+// Convention:
 //   frng: <dir>/GE.Gs-Wf.X.YY.<root>.1.frng
 //   ref:  <dir>/G.Gs.<root>.sta
 //   rem:  <dir>/E.Wf.<root>.sta
@@ -81,17 +83,19 @@ static bool parse_sta_paths(const std::string& frng_path,
                               std::string&       rem_sta_path)
 {
     auto slash = frng_path.rfind('/');
-    std::string dir      = (slash != std::string::npos) ? frng_path.substr(0, slash + 1) : "";
+    std::string dir = (slash != std::string::npos) ? frng_path.substr(0, slash + 1) : "";
     std::string basename = (slash != std::string::npos) ? frng_path.substr(slash + 1) : frng_path;
 
     // Split basename on '.' -> ["GE","Gs-Wf","X","YY","47R0AQ","1","frng"]
     std::vector< std::string > parts;
-    std::istringstream         ss(basename);
-    std::string                tok;
+    std::istringstream ss(basename);
+    std::string tok;
     while(std::getline(ss, tok, '.'))
+    {
         parts.push_back(tok);
+    }
 
-    // Need at least 7 fields: baseline, stations, band, pol, root, version, frng
+    // Need at least 7 fields: baseline, stations, band, pol, root, extent_no, frng
     if(parts.size() < 7 || parts[0].size() < 2)
     {
         msg_error("fringex4", "cannot parse station names from filename: " << basename << eom);
@@ -110,7 +114,7 @@ static bool parse_sta_paths(const std::string& frng_path,
     }
     std::string ref_name = parts[1].substr(0, hyphen);
     std::string rem_name = parts[1].substr(hyphen + 1);
-    std::string root     = parts[4];
+    std::string root = parts[4];
 
     ref_sta_path = dir + ref_char + "." + ref_name + "." + root + ".sta";
     rem_sta_path = dir + rem_char + "." + rem_name + "." + root + ".sta";
@@ -122,9 +126,9 @@ static bool parse_sta_paths(const std::string& frng_path,
 // ---------------------------------------------------------------------------
 static bool read_sta_file(const std::string& path, station_coord_type& sta_data)
 {
-    MHO_BinaryFileInterface      inter;
-    std::vector< MHO_FileKey >   keys;
-    std::vector< std::size_t >   offsets;
+    MHO_BinaryFileInterface inter;
+    std::vector< MHO_FileKey > keys;
+    std::vector< std::size_t > offsets;
     if(!inter.ExtractFileObjectKeysAndOffsets(path, keys, offsets))
     {
         msg_error("fringex4", "failed to read object keys from: " << path << eom);
@@ -132,7 +136,7 @@ static bool read_sta_file(const std::string& path, station_coord_type& sta_data)
     }
 
     MHO_ContainerDictionary cdict;
-    MHO_UUID                sta_uuid = cdict.GetUUIDFor< station_coord_type >();
+    MHO_UUID sta_uuid = cdict.GetUUIDFor< station_coord_type >();
 
     for(std::size_t i = 0; i < keys.size(); i++)
     {
@@ -140,10 +144,9 @@ static bool read_sta_file(const std::string& path, station_coord_type& sta_data)
         {
             inter.OpenToReadAtOffset(path, offsets[i]);
             MHO_FileKey key;
-            bool        ok = inter.Read(sta_data, key);
+            bool ok = inter.Read(sta_data, key);
             inter.Close();
-            if(!ok)
-                msg_error("fringex4", "failed to read station_coord_type from: " << path << eom);
+            if(!ok){  msg_error("fringex4", "failed to read station_coord_type from: " << path << eom); }
             return ok;
         }
     }
@@ -154,17 +157,17 @@ static bool read_sta_file(const std::string& path, station_coord_type& sta_data)
 
 // ---------------------------------------------------------------------------
 // Load station spline data and evaluate the a-priori delay model at the FRT.
-// Returns false (valid=false) if the .sta files cannot be found or loaded;
-// callers should then fall back to the linear (total_mbdelay/total_drate) model.
+// Returns false (valid=false) if the .sta files cannot be found or loaded.
+// In that case, callers should fall back to the linear (total_mbdelay/total_drate) model.
 // ---------------------------------------------------------------------------
-static AprioriDelayModel compute_apriori_delay_model(const std::string&       frng_path,
+static AprioriDelayModel compute_apriori_delay_model(const std::string& frng_path,
                                                       const MHO_ParameterStore& params)
 {
     AprioriDelayModel result;
+    result.valid = false;
 
     std::string ref_sta_path, rem_sta_path;
-    if(!parse_sta_paths(frng_path, ref_sta_path, rem_sta_path))
-        return result;
+    if(!parse_sta_paths(frng_path, ref_sta_path, rem_sta_path)){ return result; }
 
     station_coord_type ref_data, rem_data;
     if(!read_sta_file(ref_sta_path, ref_data))
@@ -180,9 +183,9 @@ static AprioriDelayModel compute_apriori_delay_model(const std::string&       fr
         return result;
     }
 
-    std::string frt_vex      = params.GetAs< std::string >("/vex/scan/fourfit_reftime");
-    double      ref_clockoff  = params.GetAs< double >("/ref_station/clock_early_offset"); // usec
-    double      ref_clockrate = params.GetAs< double >("/ref_station/clock_rate");
+    std::string frt_vex  = params.GetAs< std::string >("/vex/scan/fourfit_reftime");
+    double ref_clockoff  = params.GetAs< double >("/ref_station/clock_early_offset"); // usec
+    double ref_clockrate = params.GetAs< double >("/ref_station/clock_rate");
 
     MHO_DelayModel delay_model;
     delay_model.SetFourfitReferenceTimeVexString(frt_vex);
@@ -194,9 +197,10 @@ static AprioriDelayModel compute_apriori_delay_model(const std::string&       fr
 
     // GetDelay/GetRate/GetAcceleration return in sec, sec/sec, sec/sec^2 (spline native units).
     // Convert to us, us/s, us/s^2 to be consistent with /fringe/total_mbdelay and total_drate.
-    result.delay = delay_model.GetDelay()         * 1e6; // sec -> us
-    result.rate  = delay_model.GetRate()          * 1e6; // sec/sec -> us/s
-    result.accel = delay_model.GetAcceleration()  * 1e6; // sec/sec^2 -> us/s^2
+    // TODO formalize units!
+    result.delay = delay_model.GetDelay() * 1e6; // sec -> us
+    result.rate  = delay_model.GetRate() * 1e6; // sec/sec -> us/s
+    result.accel = delay_model.GetAcceleration() * 1e6; // sec/sec^2 -> us/s^2
     result.valid = true;
 
     msg_info("fringex4", "a-priori delay model: delay=" << result.delay
@@ -205,12 +209,12 @@ static AprioriDelayModel compute_apriori_delay_model(const std::string&       fr
 }
 
 // ---------------------------------------------------------------------------
-// Read phasor data and parameters from a .frng binary file
+// Read the phasor data and parameters from a .frng binary file
 // Returns false on failure.
 // ---------------------------------------------------------------------------
 static bool read_frng_file(const std::string& filename,
-                            mho_json&           base_fsum,
-                            phasor_type&        phasors,
+                            mho_json&  base_fsum,
+                            phasor_type& phasors,
                             MHO_ParameterStore& params)
 {
     // --- Use AFileInfoExtractor to get the standard summary fields ---
@@ -223,8 +227,8 @@ static bool read_frng_file(const std::string& filename,
 
     // --- Scan the binary file for named objects ---
     MHO_BinaryFileInterface inter;
-    std::vector< MHO_FileKey >   keys;
-    std::vector< std::size_t >   offsets;
+    std::vector< MHO_FileKey > keys;
+    std::vector< std::size_t > offsets;
     if(!inter.ExtractFileObjectKeysAndOffsets(filename, keys, offsets))
     {
         msg_error("fringex4", "failed to read object keys from: " << filename << eom);
@@ -241,8 +245,8 @@ static bool read_frng_file(const std::string& filename,
     {
         if(keys[i].fTypeId == tag_uuid)
         {
-            tags_offset   = offsets[i];
-            found_tags    = true;
+            tags_offset = offsets[i];
+            found_tags = true;
             break;
         }
     }
