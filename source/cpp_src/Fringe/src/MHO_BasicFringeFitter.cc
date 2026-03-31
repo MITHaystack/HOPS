@@ -32,6 +32,7 @@
 #endif
 
 //#define DUMP_PARAMS_ON_ERROR
+//#define DUMP_PARAMS_DEV_DEBUG
 
 namespace hops
 {
@@ -208,8 +209,8 @@ void MHO_BasicFringeFitter::Configure()
         fOperatorBuildManager->BuildOperatorCategory("finalize");
 
         //if we have any additional prefit and postfit operators there is a possibility
-        //that more than one fitting loop is run, in that case we will
-        //cache the configured visibilities and weights
+        //that more than one fitting loop may be run, in that case we will want
+        //cache the originally configured visibilities and weights so they can be refreshed
         if(fOperatorToolbox.GetNOperatorsInCategory("prefit") > 0 && fOperatorToolbox.GetNOperatorsInCategory("postfit") > 0)
         {
             msg_debug("fringe", "enabling visibility/weight caching due to presence of prefit/postfit operators ("
@@ -221,8 +222,10 @@ void MHO_BasicFringeFitter::Configure()
     }
 
     //fOperatorToolbox.PrintOperatorNames();
-    // std::cout<<"PARAMETERS = "<<std::endl;
-    // fParameterStore->Dump();
+    #ifdef DUMP_PARAMS_DEV_DEBUG
+    std::cout<<"PARAMETER DUMP: "<<std::endl;
+    fParameterStore->Dump();
+    #endif
 }
 
 void MHO_BasicFringeFitter::Cache()
