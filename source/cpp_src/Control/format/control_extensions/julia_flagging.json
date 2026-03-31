@@ -1,5 +1,5 @@
 {
-    "name": "python_flagging",
+    "name": "julia_flagging",
     "statement_type": "operator",
     "operator_category" : "flagging",
     "type": "compound",
