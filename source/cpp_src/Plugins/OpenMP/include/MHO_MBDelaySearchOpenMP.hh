@@ -39,6 +39,21 @@ class MHO_MBDelaySearchOpenMP: public MHO_MBDelaySearch
     public:
         MHO_MBDelaySearchOpenMP();
         virtual ~MHO_MBDelaySearchOpenMP();
+        
+        //only available for this class 
+        void SetNThreadsOpenMP(int n_threads)
+        {
+            int max_threads = omp_get_max_threads();
+            if(n_threads <= 0)
+            {
+                //default value of -1 triggers max threads
+                fNThreads = max_threads;
+            }
+            else 
+            {
+                fNThreads = std::min(max_threads, n_threads);
+            } 
+        };
 
     protected:
         using XArgType = visibility_type;

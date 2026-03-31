@@ -20,19 +20,14 @@
 #include "MHO_InitialFringeInfo.hh"
 #include "MHO_InterpolateFringePeakOptimized.hh"
 #include "MHO_VexInfoExtractor.hh"
+#include "MHO_MBDelaySearch.hh"
 
-//TODO FIXME -- remove this
 #include "MHO_EstimatePCManual.hh"
-
 #ifdef HOPS_USE_CUDA
     #include "MHO_MBDelaySearchCUDA.hh"
-    #define MBD_SEARCH_TYPE MHO_MBDelaySearchCUDA
 #else
     #ifdef HOPS_USE_OPENMP
         #include "MHO_MBDelaySearchOpenMP.hh"
-        #define MBD_SEARCH_TYPE MHO_MBDelaySearchOpenMP
-    #else
-        #define MBD_SEARCH_TYPE MHO_MBDelaySearch
     #endif
 #endif
 
@@ -48,7 +43,18 @@ MHO_BasicFringeFitter::MHO_BasicFringeFitter(MHO_FringeData* data): MHO_FringeFi
     wt_data = nullptr;
     sbd_data = nullptr;
     fNormFXOp = nullptr; //does not need to be deleted
-    fMBDSearch = new MBD_SEARCH_TYPE();
+
+    //switch MBD search backend based on compile-time (plugin) selection
+    //probably we should replace this with a factory method, but good enough for now
+    #ifdef HOPS_USE_CUDA
+        fMBDSearch = new MHO_MBDelaySearchCUDA();
+    #else
+        #ifdef HOPS_USE_OPENMP
+            fMBDSearch = new MHO_MBDelaySearchOpenMP();
+        #else
+            fMBDSearch = new MHO_MBDelaySearch(); //plain vanilla
+        #endif
+    #endif
 
     //must build the operator build manager
     fOperatorBuildManager = new MHO_OperatorBuilderManager(&fOperatorToolbox, fFringeData, fFringeData->GetControlFormat());
@@ -326,6 +332,19 @@ void MHO_BasicFringeFitter::PreRun()
         fNormFXOp->SetWeights(wt_data);
         bool ok = fNormFXOp->Initialize(); //initialize takes care of properly re-sizing SBD data
         check_step_fatal(ok, "fringe", "normfx initialization." << eom);
+
+        //if we are using OpenMP, set the number of threads 
+        //the ifdef is a bit crude, but currently this is the only 
+        //MBD search backend that needs special treatment
+        #ifdef HOPS_USE_OPENMP
+            auto mbd_omp_search = dynamic_cast< MHO_MBDelaySearchOpenMP* >(fMBDSearch);
+            if(mbd_omp_search)
+            {
+                int n_threads = -1;
+                fFringeData->GetParameterStore()->Get("/cmdline/omp_threads", n_threads);
+                mbd_omp_search->SetNThreadsOpenMP(n_threads);
+            }
+        #endif
 
         //configure the coarse SBD/DR/MBD search
         double ref_freq = fParameterStore->GetAs< double >("/control/config/ref_freq");

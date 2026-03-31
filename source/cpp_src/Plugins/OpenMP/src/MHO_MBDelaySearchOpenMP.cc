@@ -5,6 +5,7 @@ namespace hops
 
 MHO_MBDelaySearchOpenMP::MHO_MBDelaySearchOpenMP(): MHO_MBDelaySearch()
 {
+     //default to sane value if SetNThreadsOpenMP is never called
     fNThreads = 1;
 }
 
@@ -105,7 +106,6 @@ bool MHO_MBDelaySearchOpenMP::InitializeImpl(const XArgType* in)
 
         //allocate and initialize per-thread workspaces for the OpenMP SBD loop.
         //all reserves happen before SetArgs so that element addresses are stable.
-        fNThreads = omp_get_max_threads();
         msg_debug("calibration",
                   "MHO_MBDelaySearchOpenMP will use: " << fNThreads << " OpenMP threads for the coarse search" << eom);
         fThreadMaxima.resize(fNThreads);
@@ -213,14 +213,12 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
             fThreadMaxima[t].n_points = 0.0;
         }
 
-// Parallel loop over single-band delay lags
-//#pragma omp parallel for schedule(dynamic) num_threads(fNThreads)
-//#pragma omp parallel for num_threads(fNThreads)
-#pragma omp parallel num_threads(fNThreads)
+        // Parallel loop over single-band delay lags
+        #pragma omp parallel num_threads(fNThreads)
         {
             int tid = omp_get_thread_num();
 
-#pragma omp for schedule(static)
+            #pragma omp for schedule(static)
             for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
             {
                 double sbd = fSBDAxis(sbd_idx);
