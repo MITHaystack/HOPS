@@ -9,6 +9,7 @@ set (INITIALIZATION_HEADERFILES
     #selection operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DataSelectionBuilder.hh
     #calibration operators
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AdhocPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelQuantity.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelDelayCorrectionBuilder.hh
@@ -41,6 +42,7 @@ set( INITIALIZATION_SOURCEFILES
     #selection operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DataSelectionBuilder.cc
     #calibration operators
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AdhocPhaseCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelQuantity.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelDelayCorrectionBuilder.cc
