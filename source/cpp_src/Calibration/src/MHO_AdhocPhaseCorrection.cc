@@ -307,7 +307,8 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
 
         case AdhocPhaseMode::POLYNOMIAL:
         {
-            // Evaluate using Horner's method: zeta = c0 + c1*t + c2*t^2 + ...
+            //evaluate zeta = c0 + c1*t + c2*t^2 + ...
+            //nothing fancy, we are not using Horner's method
             double thyme_n = 1.0;
             for(int i = 0; i < 6; i++)
             {
