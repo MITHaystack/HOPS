@@ -1,5 +1,5 @@
 {
-    "name": "python_calibration",
+    "name": "julia_calibration",
     "statement_type": "operator",
     "operator_category" : "calibration",
     "type": "compound",

@@ -1,5 +1,5 @@
 {
-    "name": "python_labeling",
+    "name": "julia_labeling",
     "statement_type": "operator",
     "operator_category" : "labeling",
     "type": "compound",

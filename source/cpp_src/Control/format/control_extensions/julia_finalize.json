@@ -1,5 +1,5 @@
 {
-    "name": "python_finalize",
+    "name": "julia_finalize",
     "statement_type": "operator",
     "operator_category" : "finalize",
     "type": "compound",
