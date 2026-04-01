@@ -24,20 +24,26 @@ def set_pc_phase_offset_y(fringe_data_interface):
     for name in toolbox.get_operator_names():
         print(f"  {name}")
 
-    # Retrieve the operator by name.  Because pyMHO_Calibration is imported,
+    # Retrieve the all the operator which share a name.  Because pyMHO_Calibration is imported,
     # pybind11 downcasts the returned MHO_Operator* to MHO_ManualPolPhaseCorrection.
-    op = toolbox.get_operator("pc_phase_offset_y")
-
-    if op is None:
+    # However, multiple copies may have been created by the control file machinery, so we need to inspect 
+    # these for the one which matches the station we are interested in 
+    station_mk4_id = "E" #westford
+    station_id = "Wf" #westford
+    ops = toolbox.get_all_operators_by_name("pc_phase_offset_y")
+    
+    if len(ops) == 0:
         print("example4: 'pc_phase_offset_y' operator not found in toolbox "
               "(check that the control file contains a pc_phase_offset_y statement)")
         return
 
-    print(f"example4: found operator '{op.get_name()}', setting phase offset to 90 degrees")
-
-    op.set_pc_phase_offset(90.0)
-
-    # Re-initialize so the new offset is picked up before Execute() is called.
-    ok = op.initialize()
-    if not ok:
-        print("example4: warning — initialize() returned False after reconfiguration")
+    ph_off = 35.0
+    for op in ops:
+        stid = op.get_station_identifier()
+        if stid == station_mk4_id or stid == station_id:
+            print(f"example4: found operator '{op.get_name()}', for station: '{stid}', setting phase offset to '{ph_off}'")
+            op.set_pc_phase_offset(ph_off)
+            # Re-initialize so the new offset is picked up before Execute() is called.
+            ok = op.initialize()
+            if not ok:
+                print("example4: warning — initialize() returned False after reconfiguration")
