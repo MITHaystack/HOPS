@@ -26,18 +26,18 @@ def set_pc_phase_offset_y(fringe_data_interface):
 
     # Retrieve the all the operator which share a name.  Because pyMHO_Calibration is imported,
     # pybind11 downcasts the returned MHO_Operator* to MHO_ManualPolPhaseCorrection.
-    # However, multiple copies may have been created by the control file machinery, so we need to inspect 
-    # these for the one which matches the station we are interested in 
+    # However, multiple copies may have been created by the control file machinery, so we need to inspect
+    # these for the one which matches the station we are interested in
     station_mk4_id = "E" #westford
     station_id = "Wf" #westford
     ops = toolbox.get_all_operators_by_name("pc_phase_offset_y")
-    
+
     if len(ops) == 0:
         print("example4: 'pc_phase_offset_y' operator not found in toolbox "
               "(check that the control file contains a pc_phase_offset_y statement)")
         return
 
-    ph_off = 35.0
+    ph_off = 140.0
     for op in ops:
         stid = op.get_station_identifier()
         if stid == station_mk4_id or stid == station_id:

@@ -55,9 +55,15 @@ static void configure_pypath()
             pyss << "sys.path.append(\"" << user_specified_path << "\") \n";
         }
 
+        //this ensures that python 'print' statements get flushed roughly in sync with when they are called
+        //instead of (strangely) at the end of the program
+        pyss << "sys.stdout.reconfigure(line_buffering=True)\n";
+
+
         //now lets make sure pyMHO_Containers and pyMHO_Operators are always present
         pyss << "import pyMHO_Containers\n";
         pyss << "import pyMHO_Operators\n";
+        pyss << "import pyMHO_Calibration\n";
 
         //IMPORTANT...if we create additional bindings libraries, we should import them here,
         //otherwise if a use tries to write a plugin but fails to import what they need, they
