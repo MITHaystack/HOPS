@@ -31,6 +31,7 @@ if(BASH_PROGRAM)
             chk_simplefringex4
             chk_simplefringex4_v6
             chk_adhoc_phase_fringex4
+            chk_adhoc_phase_fringex4_part2
         )
     endif(PY_EXE)
 
