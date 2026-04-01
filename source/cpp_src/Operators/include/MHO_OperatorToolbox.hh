@@ -84,6 +84,28 @@ class MHO_OperatorToolbox
         }
 
         /**
+         * @brief Getter for all operators with the given name - returns all operators whose name matches,
+         * sorted by priority. Use this when multiple operators may share the same name.
+         *
+         * @param name Operator name to search for
+         * @return Vector of MHO_Operator pointers sorted by priority
+         */
+        std::vector< MHO_Operator* > GetAllOperatorsByName(const std::string& name)
+        {
+            std::vector< MHO_Operator* > ops;
+            for(auto it = fOperators.begin(); it != fOperators.end(); ++it)
+            {
+                if((*it)->GetName() == name)
+                {
+                    ops.push_back(*it);
+                }
+            }
+            operator_predicate op_pred;
+            std::sort(ops.begin(), ops.end(), op_pred);
+            return ops;
+        }
+
+        /**
          * @brief Getter for operator, retrieval by name, with cast to specified type (XOperatorType), if missing returns nullptr
          *
          * @param name Operator name to retrieve

@@ -25,11 +25,12 @@ PYBIND11_MODULE(pyMHO_Operators, m)
         .def("get_name", &MHO_Operator::GetName);
 
     py::class_< MHO_OperatorToolbox >(m, "MHO_OperatorToolbox")
-        .def("get_operator",
-             (MHO_Operator* (MHO_OperatorToolbox::*)(const std::string&))&MHO_OperatorToolbox::GetOperator,
+        .def("get_all_operators_by_name",
+             &MHO_OperatorToolbox::GetAllOperatorsByName,
              py::return_value_policy::reference,
-             "Retrieve an operator by name. Import pyMHO_Calibration first so that "
-             "pybind11 can downcast to the correct derived type.")
+             "Retrieve all operators with the given name as a list, sorted by priority. "
+             "Import pyMHO_Calibration first so that pybind11 can downcast each element "
+             "to the correct derived type.")
         .def("get_n_operators", &MHO_OperatorToolbox::GetNOperators)
         .def("get_operators_by_category", &MHO_OperatorToolbox::GetOperatorsByCategory,
              py::return_value_policy::reference)
