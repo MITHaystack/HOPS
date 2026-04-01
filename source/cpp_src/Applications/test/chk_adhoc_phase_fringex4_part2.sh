@@ -79,25 +79,18 @@ echo "fourfit3 result ok (121 < SNR < 125)? $result"  # prints 1 if true, 0 if f
 
 #now run fourfit4 with the adhoc file 
 echo "Running: fourfit4 -m 4 -c ./test_adhoc.cf -b AS -P RR ./${SCAN_DIR}"
-outfile=$(time fourfit4 -m 4 -c ./test_adhoc.cf -b AS -P RR ./${SCAN_DIR})
-
-#again, parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
-echo "$outfile"
-old_IFS=$IFS
-IFS=" "
-set -- $outfile
-IFS=$old_IFS
-cmdname=$1
-output_file=$2
-echo "fourfit4 output file: $output_file"
+output_file2=$(fourfit4 -m 4 -c ./test_adhoc.cf -b AS -P RR ./${SCAN_DIR} 2>&1 | awk '{print $NF}')
+echo "fourfit4 output file: $output_file2"
 
 #convert the fringe file to json
-hops2json ${output_file}
+hops2json ${output_file2}
 
 #use jq (json query) to extract the plot_data element and pipe to file
-echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > tee ./fdump_adhoc.json"
-jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump_adhoc.json
+echo "jq '.[].tags.plot_data | select( . != null )' "${output_file2}.json" > tee ./fdump_adhoc.json"
+jq '.[].tags.plot_data | select( . != null )' "${output_file2}.json" > ./fdump_adhoc.json
 
-#now compare the results between fourfit3 and fourfit4
-compjsonpdd.py ./fdump_adhoc.json ./chk_adhoc/104-1228-AS-B-RR.*
+#now compare the results between fourfit3 and fourfit4, tolerance 0.5%
+compjsonpdd.py -r 0.003 ./fdump_adhoc.json ./chk_adhoc/104-1228-AS-B-RR.*
 RET_VAL=$?
+
+exit $RET_VAL
