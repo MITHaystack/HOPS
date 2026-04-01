@@ -84,6 +84,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def(py::init<>())
         .def("set_station_identifier", &MHO_LSBOffset::SetStationIdentifier,
              "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier", &MHO_LSBOffset::GetStationIdentifier)
         .def("set_lsb_phase_offset", &MHO_LSBOffset::SetLSBPhaseOffset,
              "set LSB phase offset in degrees");
 
@@ -94,6 +95,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def(py::init<>())
         .def("set_station_identifier", &MHO_StationDelayCorrection::SetStationIdentifier,
              "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier", &MHO_StationDelayCorrection::GetStationIdentifier)
         .def("set_reference_frequency", &MHO_StationDelayCorrection::SetReferenceFrequency,
              "set reference frequency in MHz")
         .def("set_pc_delay_offset", &MHO_StationDelayCorrection::SetPCDelayOffset,
@@ -106,6 +108,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def(py::init<>())
         .def("set_station_identifier", &MHO_ManualPolPhaseCorrection::SetStationIdentifier,
              "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier", &MHO_ManualPolPhaseCorrection::GetStationIdentifier)
         .def("set_polarization", &MHO_ManualPolPhaseCorrection::SetPolarization,
              "set polarization string (e.g. 'X', 'Y', 'R', 'L')")
         .def("set_pc_phase_offset", &MHO_ManualPolPhaseCorrection::SetPCPhaseOffset,
@@ -118,6 +121,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def(py::init<>())
         .def("set_station_identifier", &MHO_ManualPolDelayCorrection::SetStationIdentifier,
              "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier", &MHO_ManualPolDelayCorrection::GetStationIdentifier)
         .def("set_polarization", &MHO_ManualPolDelayCorrection::SetPolarization,
              "set polarization string (e.g. 'X', 'Y', 'R', 'L')")
         .def("set_reference_frequency", &MHO_ManualPolDelayCorrection::SetReferenceFrequency,
@@ -132,6 +136,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def(py::init<>())
         .def("set_station_identifier", &MHO_ManualChannelPhaseCorrection::SetStationIdentifier,
              "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier", &MHO_ManualChannelPhaseCorrection::GetStationIdentifier)
         .def("set_polarization", &MHO_ManualChannelPhaseCorrection::SetPolarization,
              "set polarization string (e.g. 'X', 'Y', 'R', 'L')")
         .def("set_channel_to_pc_phase_map", &MHO_ManualChannelPhaseCorrection::SetChannelToPCPhaseMap,
@@ -144,6 +149,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def(py::init<>())
         .def("set_station_identifier", &MHO_ManualChannelDelayCorrection::SetStationIdentifier,
              "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier", &MHO_ManualChannelDelayCorrection::GetStationIdentifier)
         .def("set_polarization", &MHO_ManualChannelDelayCorrection::SetPolarization,
              "set polarization string (e.g. 'X', 'Y', 'R', 'L')")
         .def("set_channel_to_pc_delay_map", &MHO_ManualChannelDelayCorrection::SetChannelToPCDelayMap,
@@ -339,7 +345,9 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
              "set the two single-character polarization labels to swap (e.g. 'X','Y')")
         .def("set_station_identifier",
              &MHO_PolarizationProductRelabeler< visibility_type >::SetStationIdentifier,
-             "set station id: 1-char => mk4 id, 2-char => 2-char station code");
+             "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier",
+             &MHO_PolarizationProductRelabeler< visibility_type >::GetStationIdentifier);
 
     // MHO_PolarizationProductRelabeler<weight_type>
     py::class_< MHO_PolarizationProductRelabeler< weight_type >, MHO_Operator >(
@@ -351,7 +359,9 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
              "set the two single-character polarization labels to swap (e.g. 'X','Y')")
         .def("set_station_identifier",
              &MHO_PolarizationProductRelabeler< weight_type >::SetStationIdentifier,
-             "set station id: 1-char => mk4 id, 2-char => 2-char station code");
+             "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier",
+             &MHO_PolarizationProductRelabeler< weight_type >::GetStationIdentifier);
 
     // MHO_PolarizationRelabeler<multitone_pcal_type>
     // Swaps polarization labels of the pcal pol axis
@@ -364,7 +374,9 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
              "set the two single-character polarization labels to swap (e.g. 'X','Y')")
         .def("set_station_identifier",
              &MHO_PolarizationRelabeler< multitone_pcal_type >::SetStationIdentifier,
-             "set station id: 1-char => mk4 id, 2-char => 2-char station code");
+             "set station id: 1-char => mk4 id, 2-char => 2-char station code")
+        .def("get_station_identifier",
+             &MHO_PolarizationRelabeler< multitone_pcal_type >::GetStationIdentifier);
 
     // MHO_DoubleSidebandChannelLabeler<visibility_type>
     // Labels paired LSB/USB channels as double-sideband
