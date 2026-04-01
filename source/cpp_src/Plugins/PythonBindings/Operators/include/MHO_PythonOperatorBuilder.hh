@@ -36,6 +36,7 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
                 // op->SetParameterStore(this->fParameterStore);
                 // op->SetContainerStore(this->fContainerStore);
                 op->SetFringeData(this->fFringeData);
+                op->SetOperatorToolbox(this->fOperatorToolbox);
 
                 //retrieve pass the module/function name info from the control file
                 std::string op_name = this->fFormat["name"].get< std::string >();

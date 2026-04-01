@@ -22,6 +22,9 @@ using namespace pybind11::literals;
 namespace hops
 {
 
+// Forward declaration - full definition is only required by modules that link MHO_Operators
+class MHO_OperatorToolbox;
+
 /*!
  *@file  MHO_PyFringeDataInterface.hh
  *@class  MHO_PyFringeDataInterface
@@ -35,11 +38,15 @@ class MHO_PyFringeDataInterface
     public:
         MHO_PyFringeDataInterface(MHO_FringeData* fdata)
             : fFringeData(fdata), fScanInterface(fdata->GetScanDataStore()), fContainerInterface(fdata->GetContainerStore()),
-              fParameterInterface(fdata->GetParameterStore()){
+              fParameterInterface(fdata->GetParameterStore()), fOperatorToolbox(nullptr){
 
               };
 
         virtual ~MHO_PyFringeDataInterface(){};
+
+        void SetOperatorToolbox(MHO_OperatorToolbox* toolbox) { fOperatorToolbox = toolbox; }
+
+        MHO_OperatorToolbox* GetOperatorToolbox() { return fOperatorToolbox; }
 
         MHO_PyParameterStoreInterface& GetParameterStore() { return fParameterInterface; }
 
@@ -59,6 +66,10 @@ class MHO_PyFringeDataInterface
 
     private:
         MHO_FringeData* fFringeData;
+
+        // Pointer to the operator toolbox - injected by pyMHO_Operators after construction.
+        // Only a pointer is stored here; the full type is forward-declared above.
+        MHO_OperatorToolbox* fOperatorToolbox;
 
         //pointer to the parameter store
         MHO_PyScanStoreInterface fScanInterface;

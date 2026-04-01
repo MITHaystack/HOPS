@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+#include "MHO_Message.hh"
 #include "MHO_Operator.hh"
 
 namespace hops
