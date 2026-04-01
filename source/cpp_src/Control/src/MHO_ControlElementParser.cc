@@ -123,6 +123,14 @@ mho_json MHO_ControlElementParser::ProcessCompound(const std::string& element_na
             else
             {
                 std::string field_name = it->get< std::string >();
+                if( !field_name.empty() && field_name[0] == '!')
+                {
+                    //the '!' declares this as an optional element, 
+                    //but we need to strip the '!' from the start of field_name
+                    //so the value gets assigned to the correct parameter
+                    field_name = field_name.substr(1);
+                }
+                
                 mho_json next_format = format["parameters"][field_name];
                 std::string type_name = next_format["type"].get< std::string >();
                 std::vector< MHO_Token > tmp_tokens;
