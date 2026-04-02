@@ -1,6 +1,6 @@
 {
     "name": "adhoc_poly",
     "statement_type": "parameter",
-    "parameter_type": "station",
+    "parameter_type": "config",
     "type": "list_real"
 }

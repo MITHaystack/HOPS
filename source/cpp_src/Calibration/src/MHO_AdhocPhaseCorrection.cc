@@ -14,8 +14,8 @@ MHO_AdhocPhaseCorrection::MHO_AdhocPhaseCorrection()
     fTRef      = 0.0;
     fPeriod    = 1.0;
     fAmplitude = 0.0;
-    for(int i = 0; i < 6; i++)
-        fPolyCoeffs[i] = 0.0;
+    for(int i = 0; i < 6; i++){fPolyCoeffs[i] = 0.0;}
+        
 
     for(std::size_t stn = 0; stn < 2; stn++)
     {
@@ -26,6 +26,7 @@ MHO_AdhocPhaseCorrection::MHO_AdhocPhaseCorrection()
     }
 
     fScanStartFpDay = 0.0;
+    fScanStartSecPastHour = 0.0;
     fScanYear       = 0;
     fAccPeriod      = 0.0;
 
@@ -42,11 +43,14 @@ MHO_AdhocPhaseCorrection::~MHO_AdhocPhaseCorrection() {}
 
 void MHO_AdhocPhaseCorrection::SetPolynomialCoeffs(const std::vector< double >& coeffs)
 {
-    for(int i = 0; i < 6; i++)
-        fPolyCoeffs[i] = 0.0;
-    std::size_t n = (coeffs.size() < 6) ? coeffs.size() : 6;
+    std::cout<<"setting polys"<<std::endl;
+    for(int i = 0; i < 6; i++){fPolyCoeffs[i] = 0.0;}
+    std::size_t n = std::min(coeffs.size(), (size_t)6);
     for(std::size_t i = 0; i < n; i++)
+    {
         fPolyCoeffs[i] = coeffs[i];
+        std::cout<<"poly coeff @ "<<i<<" = "<<fPolyCoeffs[i]<<std::endl;
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -77,21 +81,23 @@ void MHO_AdhocPhaseCorrection::GetRemAdhocFile(std::string& filename, std::strin
     chans    = fAhFileChans[1];
 }
 
-// ---------------------------------------------------------------------------
-// Initialize
-// ---------------------------------------------------------------------------
-
 bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
 {
     if(fMode == AdhocPhaseMode::NONE)
+    {
+        //do nothing
+        msg_debug("calibration", "no adhoc_phase mode selected, will not modify visibilities" << eom);
         return true;
+    }
 
-    // -- Extract scan start time from visibility metadata ------------------
+    // extract scan start time from visibility metadata,
+    // and convert it to floating-point days since the start of the year 
+    // to match the legacy time convention used for adhoc_phase application
     std::string vis_start;
     bool ok = in->Retrieve(fStartKey, vis_start);
     if(!ok)
     {
-        msg_error("calibration", "MHO_AdhocPhaseCorrection: could not retrieve \"start\" tag from visibility object." << eom);
+        msg_error("calibration", "MHO_AdhocPhaseCorrection: could not retrieve <start> tag from visibility object." << eom);
         return false;
     }
 
@@ -99,18 +105,27 @@ bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
     hops_clock::to_year_fpday(scan_start_tp, fScanYear, fScanStartFpDay);
 
     msg_debug("calibration", "MHO_AdhocPhaseCorrection: scan start = " << vis_start
-                             << "  year=" << fScanYear
-                             << "  fpday=" << fScanStartFpDay << eom);
+                             << "  year =" << fScanYear
+                             << "  floating point day =" << fScanStartFpDay << eom);
 
-    // -- Derive accumulation-period duration from the time axis ------------
+    //now we need to calculate the scan start as seconds past the hour 
+    //this is needed for poly and sinewave models
+    auto last_hour = hops_clock::to_legacy_hops_date(scan_start_tp);
+    //zero out the mins/secs, then convert back and compute the difference
+    last_hour.minute = 0;
+    last_hour.second = 0;
+    auto last_hour_tp =  hops_clock::from_legacy_hops_date(last_hour);
+    auto tdiff_duration = scan_start_tp - last_hour_tp;
+    fScanStartSecPastHour = std::chrono::duration< double >(tdiff_duration).count();
+
+    //derive accumulation-period duration from the time axis 
     auto* time_ax = &(std::get< TIME_AXIS >(*in));
     std::size_t nap = time_ax->GetSize();
     if(nap < 2)
     {
-        // Single AP: cannot infer duration from spacing; fall back to zero.
-        // The AP centre will be treated as exactly the AP start time.
-        fAccPeriod = 0.0;
-        msg_warn("calibration", "MHO_AdhocPhaseCorrection: only one AP in data; acc period set to 0." << eom);
+        //single AP, can't determin AP, this is nonsense, so abort
+        msg_warn("calibration", "MHO_AdhocPhaseCorrection: can't determine AP size" << eom);
+        return false;
     }
     else
     {
@@ -123,7 +138,11 @@ bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
         bool ref_ok = LoadAdhocFile(0);
         bool rem_ok = LoadAdhocFile(1);
         if(!ref_ok || !rem_ok)
+        {
+            if(!ref_ok){msg_error("calibration", "MHO_AdhocPhaseCorrection: failed to load reference station adhoc phase file" << eom);}
+            if(!rem_ok){msg_error("calibration", "MHO_AdhocPhaseCorrection: failed to load remote station adhoc phase file" << eom);}
             return false;
+        }
     }
 
     return true;
@@ -135,10 +154,6 @@ bool MHO_AdhocPhaseCorrection::InitializeOutOfPlace(const visibility_type* in, v
     return InitializeInPlace(out);
 }
 
-// ---------------------------------------------------------------------------
-// LoadAdhocFile
-// ---------------------------------------------------------------------------
-
 bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
 {
     fFileData[stn_idx].clear();
@@ -146,8 +161,7 @@ bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
     fNFileCols[stn_idx] = 0;
 
     // An empty filename means "not used" , that is legal.
-    if(fAhFile[stn_idx].empty())
-        return true;
+    if(fAhFile[stn_idx].empty()){return true;}
 
     std::size_t nchan = fAhFileChans[stn_idx].size();
     if(nchan == 0)
@@ -177,11 +191,9 @@ bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
     {
         // Skip blank lines and lines whose first non-space character is not a digit or '.'
         std::size_t first_nonspace = line.find_first_not_of(" \t\r\n");
-        if(first_nonspace == std::string::npos)
-            continue;
+        if(first_nonspace == std::string::npos){continue;}
         char first_char = line[first_nonspace];
-        if(!std::isdigit(static_cast< unsigned char >(first_char)) && first_char != '.')
-            continue;
+        if(!std::isdigit(static_cast< unsigned char >(first_char)) && first_char != '.'){continue;}
 
         std::istringstream iss(line);
         std::vector< double > row(ncols);
@@ -196,19 +208,19 @@ bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
                 break;
             }
         }
-        if(!parse_ok)
-            continue;
+        if(!parse_ok){continue;}
 
         // Append row values to flat storage
         for(std::size_t col = 0; col < ncols; col++)
+        {
             fFileData[stn_idx].push_back(row[col]);
+        }
         fNFileRows[stn_idx]++;
     }
 
     if(fNFileRows[stn_idx] == 0)
     {
-        msg_warn("calibration", "MHO_AdhocPhaseCorrection: no data rows found in "
-                 << fAhFile[stn_idx] << eom);
+        msg_warn("calibration", "MHO_AdhocPhaseCorrection: no data rows found in " << fAhFile[stn_idx] << eom);
         return true; // non-fatal; InterpolateFilePhase returns 0
     }
 
@@ -217,20 +229,16 @@ bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
     if(fNFileRows[stn_idx] == 1)
     {
         for(std::size_t col = 0; col < ncols; col++)
+        {
             fFileData[stn_idx].push_back(fFileData[stn_idx][col]);
+        }
         fNFileRows[stn_idx] = 2;
     }
-
     fNFileCols[stn_idx] = ncols;
 
-    msg_debug("calibration", "MHO_AdhocPhaseCorrection: loaded " << fNFileRows[stn_idx]
-              << " rows from " << fAhFile[stn_idx] << eom);
+    msg_debug("calibration", "MHO_AdhocPhaseCorrection: loaded " << fNFileRows[stn_idx] << " rows from " << fAhFile[stn_idx] << eom);
     return true;
 }
-
-// ---------------------------------------------------------------------------
-// Execute
-// ---------------------------------------------------------------------------
 
 bool MHO_AdhocPhaseCorrection::ExecuteInPlace(visibility_type* in)
 {
@@ -260,14 +268,12 @@ bool MHO_AdhocPhaseCorrection::ExecuteInPlace(visibility_type* in)
 
         for(std::size_t t = 0; t < nap; t++)
         {
-            // AP centre time in seconds from scan start
+            //AP centre time in seconds from scan start
             double ap_center_sec = time_ax->at(t) + 0.5 * fAccPeriod;
-
+            //compute the phase correction to be applied
             double zeta = ComputeZeta(chan_label, ap_center_sec);
-
-            // Apply exp(-i*zeta) to all pol-products and spectral points at (ch, t)
+            //Apply exp(-i*zeta) to all pol-products and spectral points at (ch, t)
             std::complex< double > phasor = std::exp(-fImagUnit * zeta);
-
             for(std::size_t pp = 0; pp < npp; pp++)
             {
                 for(std::size_t f = 0; f < nfreq; f++)
@@ -294,7 +300,10 @@ bool MHO_AdhocPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visi
 double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, double ap_center_sec) const
 {
     double zeta = 0.0;
-    double thyme = ap_center_sec - fTRef; // time relative to reference (seconds from scan start)
+    
+    //legacy time calculation:
+    //thyme = (ap + 0.5) * param.acc_period + param.start - param.ah_tref;
+    double thyme = ap_center_sec + (fScanStartSecPastHour - fTRef);
 
     switch(fMode)
     {
@@ -315,6 +324,7 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
                 zeta += fPolyCoeffs[i] * thyme_n;
                 thyme_n *= thyme;
             }
+            //std::cout<<"zeta = "<<zeta<<std::endl;
             break;
         }
 
@@ -339,15 +349,10 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
     return zeta;
 }
 
-// ---------------------------------------------------------------------------
-// InterpolateFilePhase
-// ---------------------------------------------------------------------------
-
 double MHO_AdhocPhaseCorrection::InterpolateFilePhase(std::size_t stn_idx, char fcode, double t_fpday) const
 {
     // No file for this station , no correction.
-    if(fAhFile[stn_idx].empty() || fNFileRows[stn_idx] == 0)
-        return 0.0;
+    if(fAhFile[stn_idx].empty() || fNFileRows[stn_idx] == 0){return 0.0;}
 
     // Find the column index for this freq-code in the channel string.
     std::size_t nch_col = fAhFileChans[stn_idx].find(fcode);
@@ -374,14 +379,17 @@ double MHO_AdhocPhaseCorrection::InterpolateFilePhase(std::size_t stn_idx, char 
     double t_last  = row_time(nrows - 1);
     double t_bound = t_fpday;
     if(t_bound < t_first)
+    {
         t_bound = t_first;
+    }
     else if(t_bound > t_last)
+    {
         t_bound = t_last;
+    }
 
     // Find the bounding interval [n-1, n] by linear scan (file sizes are small).
     std::size_t n = 1;
-    while(n < nrows - 1 && row_time(n) < t_bound)
-        n++;
+    while(n < nrows - 1 && row_time(n) < t_bound){n++;}
 
     // Linear interpolation between rows n-1 and n.
     double t_a   = row_time(n - 1);
@@ -392,7 +400,7 @@ double MHO_AdhocPhaseCorrection::InterpolateFilePhase(std::size_t stn_idx, char 
     double phase_deg = (t_bound * (phi_b - phi_a) - t_a * phi_b + t_b * phi_a) / (t_b - t_a);
 
     // Convert degrees to radians before returning.
-    return phase_deg * M_PI / 180.0;
+    return phase_deg * MHO_Constants::deg_to_rad; // M_PI / 180.0;
 }
 
 } // namespace hops

@@ -1,6 +1,6 @@
 {
     "name": "adhoc_amp",
     "statement_type": "parameter",
-    "parameter_type": "station",
+    "parameter_type": "config",
     "type": "real"
 }
