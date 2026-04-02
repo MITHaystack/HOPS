@@ -22,7 +22,8 @@ cd $EXP_DIR
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
 echo "Running: fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/"
-outfile=$(time fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/  2>&1)
+output_file=$(time fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/  2>&1 | awk '{print $NF}')
+echo "fourfit4 output file: $output_file"
 
 #basic procedure to generate adhoc_phase file for consumption by fourfit3 (note: 3!)
 #fringex4 -i 1 -v 6 ./104-1228a/AS.Aa-Sw.X.RR.2GAB6T.1.frng -O ./out.alist
@@ -36,16 +37,6 @@ outfile=$(time fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/  2>&1)
 #just for this test, we also have the silly step of reversing the channel labels
 #in the control file test...because the control files in this
 #directory are also testing the freq <-> channel labelling feature
-
-#parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
-echo "$outfile"
-old_IFS=$IFS
-IFS=" "
-set -- $outfile
-IFS=$old_IFS
-cmdname=$1
-output_file=$2
-echo "output file: $output_file"
 
 #call fringex4 with 1 second bins on the new fringe file to generate an alist file
 echo "fringex4 -i 1 -v 6 ${output_file} -O ./out.alist"

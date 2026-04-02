@@ -22,17 +22,8 @@ cd $EXP_DIR
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
 echo "Running: fourfit4 -m 4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/"
-outfile=$(time fourfit4 -m 4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/  2>&1)
-
-#parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
-echo "$outfile"
-old_IFS=$IFS
-IFS=" "
-set -- $outfile
-IFS=$old_IFS
-cmdname=$1
-output_file=$2
-echo "output file: $output_file"
+output_file=$(fourfit4 -m 4 -c ./test0.cf -b AS -P RR ./${SCAN_DIR}/ 2>&1 | awk '{print $NF}')
+echo "fourfit4 output file: $output_file"
 
 #convert the fringe file to json
 hops2json ${output_file}
@@ -40,7 +31,6 @@ hops2json ${output_file}
 #use jq (json query) to extract the plot_data element and pipe to file
 echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > tee ./fdump.json"
 jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump.json
-
 
 echo "Running: fourfit3 -m 4 -c ./test0.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk3 "
 time fourfit3 -m 1 -c ./test0.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk3 2>&1  | tee ./ff.out

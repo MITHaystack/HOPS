@@ -22,17 +22,8 @@ if [ ! -d "./${D2H_EXP_NUM}" ]; then
 fi
 
 echo "Running: fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${HOPS4_DIR}/"
-outfile=$(fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${HOPS4_DIR}/ 2>&1)
-
-#parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
-echo "$outfile"
-old_IFS=$IFS
-IFS=" "
-set -- $outfile
-IFS=$old_IFS
-cmdname=$1
-output_file=$2
-echo "output file: $output_file"
+output_file=$(fourfit4 -m 4 -c ./cf_test4 -b GE -P XX ./${D2H_EXP_NUM}/${HOPS4_DIR}/   2>&1 | awk '{print $NF}')
+echo "fourfit4 output file: $output_file"
 
 #convert the fringe file to json
 hops2json ${output_file}
