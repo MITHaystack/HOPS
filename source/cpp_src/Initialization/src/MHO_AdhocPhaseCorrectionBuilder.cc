@@ -87,7 +87,7 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
     // POLYNOMIAL: coefficients (degrees/s^n -> radians/s^n)...we hope...
     if(mode == AdhocPhaseMode::POLYNOMIAL)
     {
-        std::cout<<"going to set polynomial coeff for adhoc"<<std::endl;
+        //std::cout<<"going to set polynomial coeff for adhoc"<<std::endl;
         std::vector< double > poly_coeffs;
         if(fParameterStore->IsPresent("/control/config/adhoc_poly"))
         {
@@ -95,7 +95,7 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
         }
         for(double& coeff : poly_coeffs)
         {
-            std::cout<<"coeff = "<<coeff<<std::endl;
+            //std::cout<<"coeff = "<<coeff<<std::endl;
             coeff *= MHO_Constants::deg_to_rad;
         }
         op->SetPolynomialCoeffs(poly_coeffs);

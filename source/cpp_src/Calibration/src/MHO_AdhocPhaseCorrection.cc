@@ -43,13 +43,13 @@ MHO_AdhocPhaseCorrection::~MHO_AdhocPhaseCorrection() {}
 
 void MHO_AdhocPhaseCorrection::SetPolynomialCoeffs(const std::vector< double >& coeffs)
 {
-    std::cout<<"setting polys"<<std::endl;
+    //std::cout<<"setting polys"<<std::endl;
     for(int i = 0; i < 6; i++){fPolyCoeffs[i] = 0.0;}
     std::size_t n = std::min(coeffs.size(), (size_t)6);
     for(std::size_t i = 0; i < n; i++)
     {
         fPolyCoeffs[i] = coeffs[i];
-        std::cout<<"poly coeff @ "<<i<<" = "<<fPolyCoeffs[i]<<std::endl;
+        //std::cout<<"poly coeff @ "<<i<<" = "<<fPolyCoeffs[i]<<std::endl;
     }
 }
 
