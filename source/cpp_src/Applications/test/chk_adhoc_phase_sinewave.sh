@@ -20,15 +20,15 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-SET_STRING="adhoc_phase polynomial adhoc_poly 10.0 0.0 0.0 adhoc_tref 0."
+SET_STRING="adhoc_phase sinewave adhoc_amp 90.0 adhoc_period 15. adhoc_tref 0."
 
 echo "Running: fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/ set ${SET_STRING}"
 output_file=$(time fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR} set ${SET_STRING} 2>&1 | awk '{print $NF}')
 echo "fourfit4 output file: $output_file"
 
 #now run fourfit3 with the adhoc file
-echo "Running: fourfit3 -m 4 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set ${SET_STRING} plot_data_dir ./chk_adhoc_poly"
-time fourfit3 -m 4 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set ${SET_STRING} plot_data_dir ./chk_adhoc_poly 2>&1  | tee ./ff.out
+echo "Running: fourfit3 -m 4 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set ${SET_STRING} plot_data_dir ./chk_adhoc_sine"
+time fourfit3 -m 4 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set ${SET_STRING} plot_data_dir ./chk_adhoc_sine 2>&1  | tee ./ff.out
 
 #convert the fringe file to json
 hops2json ${output_file}
@@ -38,7 +38,7 @@ echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > tee 
 jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump_adhoc.json
 
 #now compare the results between fourfit3 and fourfit4, tolerance 0.5%
-compjsonpdd.py -r 0.003 ./fdump_adhoc.json ./chk_adhoc_poly/104-1228-AS-B-RR.*
+compjsonpdd.py -r 0.006 ./fdump_adhoc.json ./chk_adhoc_sine/104-1228-AS-B-RR.*
 RET_VAL=$?
 
 exit $RET_VAL

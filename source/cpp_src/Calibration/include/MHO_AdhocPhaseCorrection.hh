@@ -32,6 +32,7 @@ namespace hops
 *
 * //DIRECTLY FROM <vhelp fourfit> 
 *
+*    adhoc_phase        'sinewave', 'polynomial', or 'file'
 *    adhoc_period  For ad hoc sinewave model; the period in integer seconds.
 *    adhoc_amp      "   "  "     "       "    amplitude in degrees of phase.
 *    adhoc_tref    For both ad hoc phase models; the reference time in seconds

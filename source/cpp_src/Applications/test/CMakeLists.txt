@@ -33,6 +33,7 @@ if(BASH_PROGRAM)
             chk_adhoc_phase_fringex4
             chk_adhoc_phase_fringex4_part2
             chk_adhoc_phase_poly
+            chk_adhoc_phase_sinewave
         )
     endif(PY_EXE)
 
