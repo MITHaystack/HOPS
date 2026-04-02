@@ -272,6 +272,7 @@ bool MHO_AdhocPhaseCorrection::ExecuteInPlace(visibility_type* in)
             double ap_center_sec = time_ax->at(t) + 0.5 * fAccPeriod;
             //compute the phase correction to be applied
             double zeta = ComputeZeta(chan_label, ap_center_sec);
+            //printf("zeta @ ap %d == %f \n",t, zeta);
             //Apply exp(-i*zeta) to all pol-products and spectral points at (ch, t)
             std::complex< double > phasor = std::exp(-fImagUnit * zeta);
             for(std::size_t pp = 0; pp < npp; pp++)
@@ -303,12 +304,16 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
     
     //legacy time calculation:
     //thyme = (ap + 0.5) * param.acc_period + param.start - param.ah_tref;
-    double thyme = ap_center_sec + (fScanStartSecPastHour - fTRef);
+
 
     switch(fMode)
     {
         case AdhocPhaseMode::SINEWAVE:
         {
+            //for the sinewave model, the 'thyme' is measured in seconds 
+            //since the refrence time 
+            //(the reference time is measured in seconds since the last hour)
+            double thyme = ap_center_sec + (fScanStartSecPastHour - fTRef);
             double phase_arg = 2.0 * M_PI * thyme / fPeriod;
             zeta = fAmplitude * std::sin(phase_arg);
             break;
@@ -317,10 +322,19 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
         case AdhocPhaseMode::POLYNOMIAL:
         {
             //evaluate zeta = c0 + c1*t + c2*t^2 + ...
-            //nothing fancy, we are not using Horner's method
+            //this follows the legacy convention...for the adhoc polynomial,
+            //time is measured in seconds since the start of the year (minus seconds past the hour)
+            //this seems like a bad convention...since round off errors will 
+            //tend to make the high-order terms unreliable, but...
+
+            //this definition of "thyme" makes no sense at all (but matches the legacy behavior)
+            double thyme = ap_center_sec + fScanStartFpDay * 86400.0 - fTRef;
+
             double thyme_n = 1.0;
             for(int i = 0; i < 6; i++)
             {
+                // printf("thyme_ %d == %f \n",i, thyme_n);
+                // printf("poly coeff %d == %f \n",i, fPolyCoeffs[i]);
                 zeta += fPolyCoeffs[i] * thyme_n;
                 thyme_n *= thyme;
             }
@@ -330,7 +344,7 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
 
         case AdhocPhaseMode::PHYLE:
         {
-            // Convert AP centre time (seconds from scan start) to
+            // Convert the AP center time (seconds from scan start) to
             // fractional days since beginning of year, then interpolate the files.
             double ap_center_fpday = fScanStartFpDay + ap_center_sec / 86400.0;
             char fcode = chan_label.empty() ? '\0' : chan_label[0];

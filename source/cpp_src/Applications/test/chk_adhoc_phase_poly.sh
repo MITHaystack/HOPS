@@ -20,7 +20,7 @@ cd $EXP_DIR
 
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
-SET_STRING="adhoc_phase polynomial adhoc_poly 10.0 0.0 0.0 adhoc_tref 0."
+SET_STRING="adhoc_phase polynomial adhoc_poly 10.0 0.0 0.0 adhoc_tref 500."
 
 echo "Running: fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/ set ${SET_STRING}"
 output_file=$(time fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR} set ${SET_STRING} 2>&1 | awk '{print $NF}')
