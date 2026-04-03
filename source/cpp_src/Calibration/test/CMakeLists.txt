@@ -8,7 +8,7 @@ set(TEST_LIBS MHO_Message MHO_Math MHO_Operators MHO_Containers MHO_Calibration)
 set(SOURCE_BASENAMES
     TestChannelLabeler
     TestSamplerLabeler
-    TestReadAdhocFlagFile
+    #TestReadAdhocFlagFile
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )

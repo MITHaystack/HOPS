@@ -290,15 +290,14 @@ void MHO_BasicFringeFitter::Initialize()
         //until some convergence criteria is met
         Refresh();
 
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
-
         //compute the sum of all weights and stash in the parameter store
-        //(after time-domain flagging operators (e.g. adhoc_flagging) have run, so that
-        // flagged APs are excluded from the integration time count, matching legacy behaviour)
+        //(before any other operations (e.g. passband, notches) modify them)
+        //Note: adhoc_flagging (in "flagging") explicitly updates total_summed_weights after it zeroes APs.
         MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
         //figure out the number of channels which have data with weights >0 in at least 1 AP
         MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
 
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
     }
 }

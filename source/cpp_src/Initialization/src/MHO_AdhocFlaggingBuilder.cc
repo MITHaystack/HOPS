@@ -66,6 +66,7 @@ bool MHO_AdhocFlaggingBuilder::Build()
         flag_op->SetArgs(wt_data);
         flag_op->SetName(op_name);
         flag_op->SetPriority(priority);
+        flag_op->SetParameterStore(fParameterStore);
     }
 
     // Set the file path for whichever station(s) this statement covers.

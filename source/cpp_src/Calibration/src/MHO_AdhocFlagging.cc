@@ -35,6 +35,7 @@ MHO_AdhocFlagging::MHO_AdhocFlagging()
     fAccPeriod = 1.0;
     fStartKey = "start";
     fSidebandKey = "net_sideband";
+    fParameterStore = nullptr;
 }
 
 MHO_AdhocFlagging::~MHO_AdhocFlagging()
@@ -341,6 +342,21 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
     if(n_zeroed > 0)
     {
         msg_debug("calibration", "MHO_AdhocFlagging: zeroed " << n_zeroed << " (channel, AP) weight entries." << eom);
+
+        // Recompute and propagate total_summed_weights to reflect the flagged APs.
+        // This must happen *before* passband/notches rescale weights, so the integration
+        // time counts only unflagged AP time slots (matching legacy fourfit behaviour).
+        double new_total = 0.0;
+        for(auto it = in->begin(); it != in->end(); ++it)
+        {
+            new_total += *it;
+        }
+        in->Insert("total_summed_weights", new_total);
+        if(fParameterStore != nullptr)
+        {
+            fParameterStore->Set("/fringe/total_summed_weights", new_total);
+        }
+        msg_debug("calibration", "MHO_AdhocFlagging: updated total_summed_weights = " << new_total << eom);
     }
 
     return true;

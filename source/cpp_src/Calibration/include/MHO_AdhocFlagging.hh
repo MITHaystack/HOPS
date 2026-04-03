@@ -10,6 +10,7 @@
 #include "MHO_Message.hh"
 
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_ParameterStore.hh"
 #include "MHO_TableContainer.hh"
 #include "MHO_UnaryOperator.hh"
 
@@ -76,6 +77,12 @@ class MHO_AdhocFlagging: public MHO_UnaryOperator< weight_type >
          * @brief Get the flag file path for the remote station.
          */
         const std::string& GetRemFlagFile() const { return fFlagFile[1]; }
+
+        /**
+         * @brief Provide a parameter store so the operator can update
+         *        /fringe/total_summed_weights after zeroing flagged APs.
+         */
+        void SetParameterStore(MHO_ParameterStore* pstore) { fParameterStore = pstore; }
 
     protected:
         virtual bool InitializeInPlace(weight_type* in) override;
@@ -146,6 +153,9 @@ class MHO_AdhocFlagging: public MHO_UnaryOperator< weight_type >
          * @return Pointer to MAX_FLAG_FREQS bytes (valid until the next call).
          */
         const uint8_t* LookupFlagBytes(std::size_t stn_idx, double ap_center_fpday) const;
+
+        // Optional parameter store for updating /fringe/total_summed_weights
+        MHO_ParameterStore* fParameterStore;
 
         // Flag file paths: [0] = ref, [1] = rem
         std::string fFlagFile[2];
