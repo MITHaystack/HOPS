@@ -21,13 +21,13 @@ bool MHO_ManualPolDelayCorrectionBuilder::Build()
 
         std::string pol = ParsePolFromName(op_name);
         std::string station_id = ExtractStationIdentifier();
-        
+
         //TODO FIXME...this is up for debate, should we:
         //(1) Make each operator name station specific (so toolbox retrieval can grab them individually by station)
-        //or (2) Leave the operator name purely as a 'type' specifier, and have the toolbox return a list of ops 
+        //or (2) Leave the operator name purely as a 'type' specifier, and have the toolbox return a list of ops
         //of the same time. The user/caller then needs to query each operator to find the specific one.
         //Note that (1) doesn't necessarily guarantee operator name uniqueness
-        // uncomment the following for (1): 
+        // uncomment the following for (1):
         // op_name += ".";
         // op_name += station_id;
 

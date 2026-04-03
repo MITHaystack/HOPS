@@ -1,6 +1,7 @@
 #include "MHO_OperatorBuilderManager.hh"
 
 //builders
+#include "MHO_AdhocFlaggingBuilder.hh"
 #include "MHO_AdhocPhaseCorrectionBuilder.hh"
 #include "MHO_ChannelLabelerBuilder.hh"
 #include "MHO_CircularFieldRotationBuilder.hh"
@@ -75,6 +76,9 @@ void MHO_OperatorBuilderManager::CreateDefaultBuilders()
 
     //ad hoc (time-dependent) phase correction
     AddBuilderType< MHO_AdhocPhaseCorrectionBuilder >("adhoc_phase", "adhoc_phase");
+
+    //ad hoc data flagging via per-station flag files
+    AddBuilderType< MHO_AdhocFlaggingBuilder >("adhoc_flag_file", "adhoc_flag_file");
 
     //double-sideband specific operators
     AddBuilderType< MHO_LSBOffsetBuilder >("lsb_offset", "lsb_offset");

@@ -29,8 +29,8 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
         mode = AdhocPhaseMode::PHYLE;
     else
     {
-        msg_error("initialization", "adhoc_phase: unrecognized algorithm_type '" << algorithm_type
-                                    << "'. Expected 'sinewave', 'polynomial', or 'file'." << eom);
+        msg_error("initialization", "adhoc_phase: unrecognized algorithm_type '"
+                                        << algorithm_type << "'. Expected 'sinewave', 'polynomial', or 'file'." << eom);
         return false;
     }
 
@@ -51,9 +51,8 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
     op->SetArgs(vis_data);
     op->SetMode(mode);
 
-
     //SINEWAVE and POLYNOMIAL: both use a common reference time (seconds from scan start??)
-    //TODO -- figure out what the hops3 implementation convention uses 
+    //TODO -- figure out what the hops3 implementation convention uses
     if(mode == AdhocPhaseMode::SINEWAVE || mode == AdhocPhaseMode::POLYNOMIAL)
     {
         double tref = 0.0;
@@ -63,7 +62,6 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
         }
         op->SetTRef(tref);
     }
-
 
     //SINEWAVE style phase correction: amplitude (degrees -> radians?) and period (seconds?)
     if(mode == AdhocPhaseMode::SINEWAVE)
@@ -83,7 +81,6 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
         op->SetPeriod(period);
     }
 
-    
     // POLYNOMIAL: coefficients (degrees/s^n -> radians/s^n)...we hope...
     if(mode == AdhocPhaseMode::POLYNOMIAL)
     {
@@ -101,9 +98,8 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
         op->SetPolynomialCoeffs(poly_coeffs);
     }
 
-    
     // PHYLE: per-station adhoc files and channel strings.
-    // Don't bother looking up the generic paths first, a generic phase-correction file makes no sense 
+    // Don't bother looking up the generic paths first, a generic phase-correction file makes no sense
     // just look up station-specific paths to the file parametersr
     if(mode == AdhocPhaseMode::PHYLE)
     {
@@ -123,8 +119,8 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
         }
 
         // --- adhoc_file_chans ---
-        std::string ref_chans_path       = std::string("/control/station/") + ref_id + "/adhoc_file_chans";
-        std::string rem_chans_path       = std::string("/control/station/") + rem_id + "/adhoc_file_chans";
+        std::string ref_chans_path = std::string("/control/station/") + ref_id + "/adhoc_file_chans";
+        std::string rem_chans_path = std::string("/control/station/") + rem_id + "/adhoc_file_chans";
         std::string ref_chans = "";
         std::string rem_chans = "";
 
@@ -140,17 +136,16 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
         op->SetRefAdhocFile(ref_file, ref_chans);
         op->SetRemAdhocFile(rem_file, rem_chans);
 
-        msg_debug("initialization", "adhoc_phase (file mode): ref_file='" << ref_file
-                  << "' chans='" << ref_chans << "'  rem_file='" << rem_file
-                  << "' chans='" << rem_chans << "'" << eom);
+        msg_debug("initialization", "adhoc_phase (file mode): ref_file='" << ref_file << "' chans='" << ref_chans
+                                                                          << "'  rem_file='" << rem_file << "' chans='"
+                                                                          << rem_chans << "'" << eom);
     }
 
     // stash our adhoc phase operator in the toolbox
     op->SetName(op_name);
     op->SetPriority(priority);
 
-    msg_debug("initialization", "creating adhoc_phase operator: " << op_name
-              << " mode = " << algorithm_type << eom);
+    msg_debug("initialization", "creating adhoc_phase operator: " << op_name << " mode = " << algorithm_type << eom);
 
     bool replace_duplicates = true;
     this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);

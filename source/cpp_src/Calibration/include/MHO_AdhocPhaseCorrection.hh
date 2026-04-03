@@ -17,42 +17,42 @@ namespace hops
 {
 
 /*!
-*@file MHO_AdhocPhaseCorrection.hh
-*@class MHO_AdhocPhaseCorrection
-*@author J. Barrett - barrettj@mit.edu
-*@date
-*@brief Port of the legacy fourfit 'adhoc_phase' feature. Applies a
-* time- and (for file mode) channel-dependent phase correction
-* exp(-i*zeta) to the visibility data. Three modes are supported,
-* mirroring the legacy SINEWAVE, POLYNOMIAL, and PHYLE constants.
-*
-* Reference time (fTRef) and polynomial/sinewave time arguments are
-* measured in seconds relative to most recent hour, which is read
-* from the "start" tag of the visibility object during Initialize.
-*
-* //DIRECTLY FROM <vhelp fourfit> 
-*
-*    adhoc_phase        'sinewave', 'polynomial', or 'file'
-*    adhoc_period  For ad hoc sinewave model; the period in integer seconds.
-*    adhoc_amp      "   "  "     "       "    amplitude in degrees of phase.
-*    adhoc_tref    For both ad hoc phase models; the reference time in seconds
-*              past the most recent hour.
-*    adhoc_poly For the ad hoc phase polynomial model; From 1-6 coefficients
-*              describing a power-series model in time. (deg/sec^n)
-*    adhoc_file Name of the file containing phases in the ad hoc file mode.
-*    adhoc_file_chans String of channel labels for phases (columns) in the
-*              ad hoc file.
-*
-* File (PHYLE) mode: two optional ASCII files, one per station
-* (reference and remote). Each data line contains:
-*   <t_fpday>  <phase_ch0_deg>  <phase_ch1_deg>  ...
-* where t_fpday is fractional days since beginning of year and phases
-* are in degrees. The column order is defined by the corresponding
-* fAhFileChans string (one character per column matching the fourfit
-* channel-label / freq-code, e.g. "abcdef"). The applied correction
-* is the differential phase: phase_ref - phase_rem (same sign
-* convention as the legacy diff_file_phase function).
-*/
+ *@file MHO_AdhocPhaseCorrection.hh
+ *@class MHO_AdhocPhaseCorrection
+ *@author J. Barrett - barrettj@mit.edu
+ *@date
+ *@brief Port of the legacy fourfit 'adhoc_phase' feature. Applies a
+ * time- and (for file mode) channel-dependent phase correction
+ * exp(-i*zeta) to the visibility data. Three modes are supported,
+ * mirroring the legacy SINEWAVE, POLYNOMIAL, and PHYLE constants.
+ *
+ * Reference time (fTRef) and polynomial/sinewave time arguments are
+ * measured in seconds relative to most recent hour, which is read
+ * from the "start" tag of the visibility object during Initialize.
+ *
+ * //DIRECTLY FROM <vhelp fourfit>
+ *
+ *    adhoc_phase        'sinewave', 'polynomial', or 'file'
+ *    adhoc_period  For ad hoc sinewave model; the period in integer seconds.
+ *    adhoc_amp      "   "  "     "       "    amplitude in degrees of phase.
+ *    adhoc_tref    For both ad hoc phase models; the reference time in seconds
+ *              past the most recent hour.
+ *    adhoc_poly For the ad hoc phase polynomial model; From 1-6 coefficients
+ *              describing a power-series model in time. (deg/sec^n)
+ *    adhoc_file Name of the file containing phases in the ad hoc file mode.
+ *    adhoc_file_chans String of channel labels for phases (columns) in the
+ *              ad hoc file.
+ *
+ * File (PHYLE) mode: two optional ASCII files, one per station
+ * (reference and remote). Each data line contains:
+ *   <t_fpday>  <phase_ch0_deg>  <phase_ch1_deg>  ...
+ * where t_fpday is fractional days since beginning of year and phases
+ * are in degrees. The column order is defined by the corresponding
+ * fAhFileChans string (one character per column matching the fourfit
+ * channel-label / freq-code, e.g. "abcdef"). The applied correction
+ * is the differential phase: phase_ref - phase_rem (same sign
+ * convention as the legacy diff_file_phase function).
+ */
 
 /**
  * @brief Ad hoc phase correction mode, mirrors legacy SINEWAVE/POLYNOMIAL/PHYLE constants.
@@ -238,16 +238,16 @@ class MHO_AdhocPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         //   row k occupies indices [k*(nchan+1) .. (k+1)*(nchan+1))
         //   column 0 is the time (fpday); columns 1..nchan are phases (degrees).
         std::vector< double > fFileData[2];
-        std::size_t fNFileRows[2];  // number of data rows read per station
-        std::size_t fNFileCols[2];  // number of columns per row (= nchan + 1)
+        std::size_t fNFileRows[2]; // number of data rows read per station
+        std::size_t fNFileCols[2]; // number of columns per row (= nchan + 1)
 
         // ---------------------------------------------------------------
         // Scan timing (filled during Initialize)
         // ---------------------------------------------------------------
-        double fScanStartFpDay;    // scan start as fractional days since BOY
+        double fScanStartFpDay;       // scan start as fractional days since BOY
         double fScanStartSecPastHour; //scan start in seconds past the most recent hour
-        int    fScanYear;          // year of scan start
-        double fAccPeriod;         // accumulation period duration in seconds
+        int fScanYear;                // year of scan start
+        double fAccPeriod;            // accumulation period duration in seconds
 
         // ---------------------------------------------------------------
         // Constants / key strings

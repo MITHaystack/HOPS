@@ -12,8 +12,8 @@ namespace py = pybind11;
 #include "MHO_DCBlock.hh"
 #include "MHO_DoubleSidebandChannelLabeler.hh"
 #include "MHO_IonosphericPhaseCorrection.hh"
-#include "MHO_LinearDParCorrection.hh"
 #include "MHO_LSBOffset.hh"
+#include "MHO_LinearDParCorrection.hh"
 #include "MHO_ManualChannelDelayCorrection.hh"
 #include "MHO_ManualChannelPhaseCorrection.hh"
 #include "MHO_ManualPolDelayCorrection.hh"
@@ -78,8 +78,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def("set_station_identifier", &MHO_LSBOffset::SetStationIdentifier,
              "set station id: 1-char => mk4 id, 2-char => 2-char station code")
         .def("get_station_identifier", &MHO_LSBOffset::GetStationIdentifier)
-        .def("set_lsb_phase_offset", &MHO_LSBOffset::SetLSBPhaseOffset,
-             "set LSB phase offset in degrees");
+        .def("set_lsb_phase_offset", &MHO_LSBOffset::SetLSBPhaseOffset, "set LSB phase offset in degrees");
 
     // -------------------------------------------------------------------------
     // MHO_StationDelayCorrection - per-station cable/clock delay correction
@@ -91,8 +90,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def("get_station_identifier", &MHO_StationDelayCorrection::GetStationIdentifier)
         // .def("set_reference_frequency", &MHO_StationDelayCorrection::SetReferenceFrequency,
         //      "set reference frequency in MHz") // do no expose ref_freq to user!
-        .def("set_pc_delay_offset", &MHO_StationDelayCorrection::SetPCDelayOffset,
-             "set delay offset in nanoseconds");
+        .def("set_pc_delay_offset", &MHO_StationDelayCorrection::SetPCDelayOffset, "set delay offset in nanoseconds");
 
     // -------------------------------------------------------------------------
     // MHO_ManualPolPhaseCorrection - manual polarization phase offset
@@ -153,8 +151,7 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
     // -------------------------------------------------------------------------
     py::class_< MHO_Notches, MHO_Operator >(m, "MHO_Notches")
         .def(py::init<>())
-        .def("set_notch_boundaries",
-             &MHO_Notches::SetNotchBoundaries,
+        .def("set_notch_boundaries", &MHO_Notches::SetNotchBoundaries,
              "set notch boundaries as a flat list of (lower, upper) pairs in MHz");
 
     // -------------------------------------------------------------------------
@@ -177,62 +174,58 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def("set_tref", &MHO_AdhocPhaseCorrection::SetTRef,
              "set reference time in seconds from scan start (used by SINEWAVE and POLYNOMIAL)")
         .def("get_tref", &MHO_AdhocPhaseCorrection::GetTRef)
-        .def("set_period", &MHO_AdhocPhaseCorrection::SetPeriod,
-             "set sinewave period in seconds (SINEWAVE mode)")
+        .def("set_period", &MHO_AdhocPhaseCorrection::SetPeriod, "set sinewave period in seconds (SINEWAVE mode)")
         .def("get_period", &MHO_AdhocPhaseCorrection::GetPeriod)
-        .def("set_amplitude", &MHO_AdhocPhaseCorrection::SetAmplitude,
-             "set sinewave amplitude in radians (SINEWAVE mode)")
+        .def("set_amplitude", &MHO_AdhocPhaseCorrection::SetAmplitude, "set sinewave amplitude in radians (SINEWAVE mode)")
         .def("get_amplitude", &MHO_AdhocPhaseCorrection::GetAmplitude)
         .def("set_polynomial_coeffs", &MHO_AdhocPhaseCorrection::SetPolynomialCoeffs,
              "set polynomial coefficients c0..c5 (up to 6; zeta = c0 + c1*t + c2*t^2 + ..., t in seconds from tref)")
-        .def("get_polynomial_coeffs",
-             [](const MHO_AdhocPhaseCorrection& self) {
-                 const double* c = self.GetPolynomialCoeffs();
-                 return std::vector< double >(c, c + 6);
-             },
-             "get polynomial coefficients as a list of 6 values")
-        .def("set_ref_adhoc_file", &MHO_AdhocPhaseCorrection::SetRefAdhocFile,
-             py::arg("filename"), py::arg("chans"),
+        .def(
+            "get_polynomial_coeffs",
+            [](const MHO_AdhocPhaseCorrection& self) {
+                const double* c = self.GetPolynomialCoeffs();
+                return std::vector< double >(c, c + 6);
+            },
+            "get polynomial coefficients as a list of 6 values")
+        .def("set_ref_adhoc_file", &MHO_AdhocPhaseCorrection::SetRefAdhocFile, py::arg("filename"), py::arg("chans"),
              "set reference station adhoc phase file and channel string (PHYLE mode)")
-        .def("get_ref_adhoc_file",
-             [](const MHO_AdhocPhaseCorrection& self) {
-                 std::string fname, chans;
-                 self.GetRefAdhocFile(fname, chans);
-                 return std::make_pair(fname, chans);
-             },
-             "get reference station adhoc phase file info as (filename, chans) tuple")
-        .def("set_rem_adhoc_file", &MHO_AdhocPhaseCorrection::SetRemAdhocFile,
-             py::arg("filename"), py::arg("chans"),
+        .def(
+            "get_ref_adhoc_file",
+            [](const MHO_AdhocPhaseCorrection& self) {
+                std::string fname, chans;
+                self.GetRefAdhocFile(fname, chans);
+                return std::make_pair(fname, chans);
+            },
+            "get reference station adhoc phase file info as (filename, chans) tuple")
+        .def("set_rem_adhoc_file", &MHO_AdhocPhaseCorrection::SetRemAdhocFile, py::arg("filename"), py::arg("chans"),
              "set remote station adhoc phase file and channel string (PHYLE mode)")
-        .def("get_rem_adhoc_file",
-             [](const MHO_AdhocPhaseCorrection& self) {
-                 std::string fname, chans;
-                 self.GetRemAdhocFile(fname, chans);
-                 return std::make_pair(fname, chans);
-             },
-             "get remote station adhoc phase file info as (filename, chans) tuple");
+        .def(
+            "get_rem_adhoc_file",
+            [](const MHO_AdhocPhaseCorrection& self) {
+                std::string fname, chans;
+                self.GetRemAdhocFile(fname, chans);
+                return std::make_pair(fname, chans);
+            },
+            "get remote station adhoc phase file info as (filename, chans) tuple");
 
     // -------------------------------------------------------------------------
     // MHO_MixedPolYShift - 90-degree Y-polarization phase shift for mixed-pol
     // -------------------------------------------------------------------------
     py::class_< MHO_MixedPolYShift, MHO_Operator >(m, "MHO_MixedPolYShift")
         .def(py::init<>())
-        .def("set_phase_offset", &MHO_MixedPolYShift::SetPhaseOffset,
-             "set Y-pol phase offset in degrees (default 90 deg)");
+        .def("set_phase_offset", &MHO_MixedPolYShift::SetPhaseOffset, "set Y-pol phase offset in degrees (default 90 deg)");
 
     // -------------------------------------------------------------------------
     // MHO_LinearDParCorrection - linear delta-parallactic angle correction
     // -------------------------------------------------------------------------
     py::class_< MHO_LinearDParCorrection, MHO_Operator >(m, "MHO_LinearDParCorrection")
         .def(py::init<>())
-        .def("set_pol_product_set",
-             [](MHO_LinearDParCorrection& self, std::vector< std::string > pp) {
-                 self.SetPolProductSet(pp);
-             },
-             "set the list of pol-product strings present in the data (e.g. ['XX','XY','YX','YY'])")
+        .def(
+            "set_pol_product_set",
+            [](MHO_LinearDParCorrection& self, std::vector< std::string > pp) { self.SetPolProductSet(pp); },
+            "set the list of pol-product strings present in the data (e.g. ['XX','XY','YX','YY'])")
         .def("set_reference_parallactic_angle", &MHO_LinearDParCorrection::SetReferenceParallacticAngle,
              "set reference station parallactic angle in degrees")
         .def("set_remote_parallactic_angle", &MHO_LinearDParCorrection::SetRemoteParallacticAngle,
              "set remote station parallactic angle in degrees");
-
 }

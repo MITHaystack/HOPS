@@ -11,31 +11,34 @@ MHO_AdhocPhaseCorrection::MHO_AdhocPhaseCorrection()
 {
     fMode = AdhocPhaseMode::NONE;
 
-    fTRef      = 0.0;
-    fPeriod    = 1.0;
+    fTRef = 0.0;
+    fPeriod = 1.0;
     fAmplitude = 0.0;
-    for(int i = 0; i < 6; i++){fPolyCoeffs[i] = 0.0;}
-
+    for(int i = 0; i < 6; i++)
+    {
+        fPolyCoeffs[i] = 0.0;
+    }
 
     for(std::size_t stn = 0; stn < 2; stn++)
     {
-        fAhFile[stn]      = "";
+        fAhFile[stn] = "";
         fAhFileChans[stn] = "";
-        fNFileRows[stn]   = 0;
-        fNFileCols[stn]   = 0;
+        fNFileRows[stn] = 0;
+        fNFileCols[stn] = 0;
     }
 
     fScanStartFpDay = 0.0;
     fScanStartSecPastHour = 0.0;
-    fScanYear       = 0;
-    fAccPeriod      = 0.0;
+    fScanYear = 0;
+    fAccPeriod = 0.0;
 
-    fImagUnit       = MHO_Constants::imag_unit;
+    fImagUnit = MHO_Constants::imag_unit;
     fChannelLabelKey = "channel_label";
-    fStartKey        = "start";
+    fStartKey = "start";
 }
 
-MHO_AdhocPhaseCorrection::~MHO_AdhocPhaseCorrection() {}
+MHO_AdhocPhaseCorrection::~MHO_AdhocPhaseCorrection()
+{}
 
 // ---------------------------------------------------------------------------
 // Setters for polynomial coefficients
@@ -44,7 +47,10 @@ MHO_AdhocPhaseCorrection::~MHO_AdhocPhaseCorrection() {}
 void MHO_AdhocPhaseCorrection::SetPolynomialCoeffs(const std::vector< double >& coeffs)
 {
     //std::cout<<"setting polys"<<std::endl;
-    for(int i = 0; i < 6; i++){fPolyCoeffs[i] = 0.0;}
+    for(int i = 0; i < 6; i++)
+    {
+        fPolyCoeffs[i] = 0.0;
+    }
     std::size_t n = std::min(coeffs.size(), (size_t)6);
     for(std::size_t i = 0; i < n; i++)
     {
@@ -59,26 +65,26 @@ void MHO_AdhocPhaseCorrection::SetPolynomialCoeffs(const std::vector< double >& 
 
 void MHO_AdhocPhaseCorrection::SetRefAdhocFile(const std::string& filename, const std::string& chans)
 {
-    fAhFile[0]      = filename;
+    fAhFile[0] = filename;
     fAhFileChans[0] = chans;
 }
 
 void MHO_AdhocPhaseCorrection::GetRefAdhocFile(std::string& filename, std::string& chans) const
 {
     filename = fAhFile[0];
-    chans    = fAhFileChans[0];
+    chans = fAhFileChans[0];
 }
 
 void MHO_AdhocPhaseCorrection::SetRemAdhocFile(const std::string& filename, const std::string& chans)
 {
-    fAhFile[1]      = filename;
+    fAhFile[1] = filename;
     fAhFileChans[1] = chans;
 }
 
 void MHO_AdhocPhaseCorrection::GetRemAdhocFile(std::string& filename, std::string& chans) const
 {
     filename = fAhFile[1];
-    chans    = fAhFileChans[1];
+    chans = fAhFileChans[1];
 }
 
 bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
@@ -104,9 +110,8 @@ bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
     hops_clock::time_point scan_start_tp = hops_clock::from_vex_format(vis_start);
     hops_clock::to_year_fpday(scan_start_tp, fScanYear, fScanStartFpDay);
 
-    msg_debug("calibration", "MHO_AdhocPhaseCorrection: scan start = " << vis_start
-                             << "  year =" << fScanYear
-                             << "  floating point day =" << fScanStartFpDay << eom);
+    msg_debug("calibration", "MHO_AdhocPhaseCorrection: scan start = " << vis_start << "  year =" << fScanYear
+                                                                       << "  floating point day =" << fScanStartFpDay << eom);
 
     //now we need to calculate the scan start as seconds past the hour
     //this is needed for poly and sinewave models
@@ -114,7 +119,7 @@ bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
     //zero out the mins/secs, then convert back and compute the difference
     last_hour.minute = 0;
     last_hour.second = 0;
-    auto last_hour_tp =  hops_clock::from_legacy_hops_date(last_hour);
+    auto last_hour_tp = hops_clock::from_legacy_hops_date(last_hour);
     auto tdiff_duration = scan_start_tp - last_hour_tp;
     fScanStartSecPastHour = std::chrono::duration< double >(tdiff_duration).count();
 
@@ -139,8 +144,14 @@ bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
         bool rem_ok = LoadAdhocFile(1);
         if(!ref_ok || !rem_ok)
         {
-            if(!ref_ok){msg_error("calibration", "MHO_AdhocPhaseCorrection: failed to load reference station adhoc phase file" << eom);}
-            if(!rem_ok){msg_error("calibration", "MHO_AdhocPhaseCorrection: failed to load remote station adhoc phase file" << eom);}
+            if(!ref_ok)
+            {
+                msg_error("calibration", "MHO_AdhocPhaseCorrection: failed to load reference station adhoc phase file" << eom);
+            }
+            if(!rem_ok)
+            {
+                msg_error("calibration", "MHO_AdhocPhaseCorrection: failed to load remote station adhoc phase file" << eom);
+            }
             return false;
         }
     }
@@ -161,27 +172,28 @@ bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
     fNFileCols[stn_idx] = 0;
 
     // An empty filename means "not used" , that is legal.
-    if(fAhFile[stn_idx].empty()){return true;}
+    if(fAhFile[stn_idx].empty())
+    {
+        return true;
+    }
 
     std::size_t nchan = fAhFileChans[stn_idx].size();
     if(nchan == 0)
     {
-        msg_error("calibration", "MHO_AdhocPhaseCorrection: adhoc file set for station "
-                  << stn_idx << " but channel string is empty." << eom);
+        msg_error("calibration",
+                  "MHO_AdhocPhaseCorrection: adhoc file set for station " << stn_idx << " but channel string is empty." << eom);
         return false;
     }
 
     std::ifstream fs(fAhFile[stn_idx]);
     if(!fs.is_open())
     {
-        msg_error("calibration", "MHO_AdhocPhaseCorrection: cannot open adhoc file: "
-                  << fAhFile[stn_idx] << eom);
+        msg_error("calibration", "MHO_AdhocPhaseCorrection: cannot open adhoc file: " << fAhFile[stn_idx] << eom);
         return false;
     }
 
     msg_debug("calibration", "MHO_AdhocPhaseCorrection: reading adhoc file for station "
-              << stn_idx << ": " << fAhFile[stn_idx]
-              << "  channels: " << fAhFileChans[stn_idx] << eom);
+                                 << stn_idx << ": " << fAhFile[stn_idx] << "  channels: " << fAhFileChans[stn_idx] << eom);
 
     // Each data row has (nchan + 1) doubles: [t_fpday, phase_0, ..., phase_N].
     // Comment lines (starting with '#' or any non-digit first token) are skipped.
@@ -191,9 +203,15 @@ bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
     {
         // Skip blank lines and lines whose first non-space character is not a digit or '.'
         std::size_t first_nonspace = line.find_first_not_of(" \t\r\n");
-        if(first_nonspace == std::string::npos){continue;}
+        if(first_nonspace == std::string::npos)
+        {
+            continue;
+        }
         char first_char = line[first_nonspace];
-        if(!std::isdigit(static_cast< unsigned char >(first_char)) && first_char != '.'){continue;}
+        if(!std::isdigit(static_cast< unsigned char >(first_char)) && first_char != '.')
+        {
+            continue;
+        }
 
         std::istringstream iss(line);
         std::vector< double > row(ncols);
@@ -202,13 +220,16 @@ bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
         {
             if(!(iss >> row[col]))
             {
-                msg_warn("calibration", "MHO_AdhocPhaseCorrection: short or malformed line in "
-                         << fAhFile[stn_idx] << "; line skipped." << eom);
+                msg_warn("calibration", "MHO_AdhocPhaseCorrection: short or malformed line in " << fAhFile[stn_idx]
+                                                                                                << "; line skipped." << eom);
                 parse_ok = false;
                 break;
             }
         }
-        if(!parse_ok){continue;}
+        if(!parse_ok)
+        {
+            continue;
+        }
 
         // Append row values to flat storage
         for(std::size_t col = 0; col < ncols; col++)
@@ -236,7 +257,8 @@ bool MHO_AdhocPhaseCorrection::LoadAdhocFile(std::size_t stn_idx)
     }
     fNFileCols[stn_idx] = ncols;
 
-    msg_debug("calibration", "MHO_AdhocPhaseCorrection: loaded " << fNFileRows[stn_idx] << " rows from " << fAhFile[stn_idx] << eom);
+    msg_debug("calibration",
+              "MHO_AdhocPhaseCorrection: loaded " << fNFileRows[stn_idx] << " rows from " << fAhFile[stn_idx] << eom);
     return true;
 }
 
@@ -245,13 +267,13 @@ bool MHO_AdhocPhaseCorrection::ExecuteInPlace(visibility_type* in)
     if(fMode == AdhocPhaseMode::NONE)
         return true;
 
-    auto* pp_ax   = &(std::get< POLPROD_AXIS >(*in));
-    auto* chan_ax  = &(std::get< CHANNEL_AXIS >(*in));
-    auto* time_ax  = &(std::get< TIME_AXIS >(*in));
+    auto* pp_ax = &(std::get< POLPROD_AXIS >(*in));
+    auto* chan_ax = &(std::get< CHANNEL_AXIS >(*in));
+    auto* time_ax = &(std::get< TIME_AXIS >(*in));
 
-    std::size_t npp   = pp_ax->GetSize();
-    std::size_t nch   = chan_ax->GetSize();
-    std::size_t nap   = time_ax->GetSize();
+    std::size_t npp = pp_ax->GetSize();
+    std::size_t nch = chan_ax->GetSize();
+    std::size_t nap = time_ax->GetSize();
     std::size_t nfreq = in->GetDimension(FREQ_AXIS);
 
     for(std::size_t ch = 0; ch < nch; ch++)
@@ -261,8 +283,7 @@ bool MHO_AdhocPhaseCorrection::ExecuteInPlace(visibility_type* in)
         bool has_label = chan_ax->RetrieveIndexLabelKeyValue(ch, fChannelLabelKey, chan_label);
         if(!has_label)
         {
-            msg_warn("calibration", "MHO_AdhocPhaseCorrection: channel " << ch
-                     << " has no channel_label; skipping." << eom);
+            msg_warn("calibration", "MHO_AdhocPhaseCorrection: channel " << ch << " has no channel_label; skipping." << eom);
             continue;
         }
 
@@ -314,38 +335,38 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
     switch(fMode)
     {
         case AdhocPhaseMode::SINEWAVE:
-        {
-            //for the sinewave model, the 'thyme' is measured in seconds
-            double thyme = ap_center_sec + fScanStartFpDay * 86400.0 - fTRef;
-            double phase_arg = 2.0 * M_PI * thyme / fPeriod;
-            zeta = fAmplitude * std::sin(phase_arg);
-            break;
-        }
+            {
+                //for the sinewave model, the 'thyme' is measured in seconds
+                double thyme = ap_center_sec + fScanStartFpDay * 86400.0 - fTRef;
+                double phase_arg = 2.0 * M_PI * thyme / fPeriod;
+                zeta = fAmplitude * std::sin(phase_arg);
+                break;
+            }
 
         case AdhocPhaseMode::POLYNOMIAL:
-        {
-            //evaluate zeta = c0 + c1*t + c2*t^2 + ...
-            double thyme_n = 1.0;
-            for(int i = 0; i < 6; i++)
             {
-                zeta += fPolyCoeffs[i] * thyme_n;
-                thyme_n *= thyme;
+                //evaluate zeta = c0 + c1*t + c2*t^2 + ...
+                double thyme_n = 1.0;
+                for(int i = 0; i < 6; i++)
+                {
+                    zeta += fPolyCoeffs[i] * thyme_n;
+                    thyme_n *= thyme;
+                }
+                break;
             }
-            break;
-        }
 
         case AdhocPhaseMode::PHYLE:
-        {
-            // Convert the AP center time (seconds from scan start) to
-            // fractional days since beginning of year, then interpolate the files.
-            double ap_center_fpday = fScanStartFpDay + ap_center_sec / 86400.0;
-            char fcode = chan_label.empty() ? '\0' : chan_label[0];
-            double phase_ref = InterpolateFilePhase(0, fcode, ap_center_fpday);
-            double phase_rem = InterpolateFilePhase(1, fcode, ap_center_fpday);
-            // Differential correction (ref - rem), already in radians
-            zeta = phase_ref - phase_rem;
-            break;
-        }
+            {
+                // Convert the AP center time (seconds from scan start) to
+                // fractional days since beginning of year, then interpolate the files.
+                double ap_center_fpday = fScanStartFpDay + ap_center_sec / 86400.0;
+                char fcode = chan_label.empty() ? '\0' : chan_label[0];
+                double phase_ref = InterpolateFilePhase(0, fcode, ap_center_fpday);
+                double phase_rem = InterpolateFilePhase(1, fcode, ap_center_fpday);
+                // Differential correction (ref - rem), already in radians
+                zeta = phase_ref - phase_rem;
+                break;
+            }
 
         default:
             zeta = 0.0;
@@ -358,16 +379,18 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
 double MHO_AdhocPhaseCorrection::InterpolateFilePhase(std::size_t stn_idx, char fcode, double t_fpday) const
 {
     // No file for this station , no correction.
-    if(fAhFile[stn_idx].empty() || fNFileRows[stn_idx] == 0){return 0.0;}
+    if(fAhFile[stn_idx].empty() || fNFileRows[stn_idx] == 0)
+    {
+        return 0.0;
+    }
 
     // Find the column index for this freq-code in the channel string.
     std::size_t nch_col = fAhFileChans[stn_idx].find(fcode);
     if(nch_col == std::string::npos)
     {
-        msg_warn("calibration", "MHO_AdhocPhaseCorrection: freq code '"
-                 << fcode << "' not found in channel string '"
-                 << fAhFileChans[stn_idx] << "' for station " << stn_idx
-                 << "; returning 0." << eom);
+        msg_warn("calibration", "MHO_AdhocPhaseCorrection: freq code '" << fcode << "' not found in channel string '"
+                                                                        << fAhFileChans[stn_idx] << "' for station " << stn_idx
+                                                                        << "; returning 0." << eom);
         return 0.0;
     }
 
@@ -382,7 +405,7 @@ double MHO_AdhocPhaseCorrection::InterpolateFilePhase(std::size_t stn_idx, char 
 
     // Clamp the requested time to the span covered by the file data.
     double t_first = row_time(0);
-    double t_last  = row_time(nrows - 1);
+    double t_last = row_time(nrows - 1);
     double t_bound = t_fpday;
     if(t_bound < t_first)
     {
@@ -395,11 +418,14 @@ double MHO_AdhocPhaseCorrection::InterpolateFilePhase(std::size_t stn_idx, char 
 
     // Find the bounding interval [n-1, n] by linear scan (file sizes are small).
     std::size_t n = 1;
-    while(n < nrows - 1 && row_time(n) < t_bound){n++;}
+    while(n < nrows - 1 && row_time(n) < t_bound)
+    {
+        n++;
+    }
 
     // Linear interpolation between rows n-1 and n.
-    double t_a   = row_time(n - 1);
-    double t_b   = row_time(n);
+    double t_a = row_time(n - 1);
+    double t_b = row_time(n);
     double phi_a = row_phase(n - 1);
     double phi_b = row_phase(n);
 

@@ -25,15 +25,12 @@ PYBIND11_MODULE(pyMHO_Operators, m)
         .def("get_name", &MHO_Operator::GetName);
 
     py::class_< MHO_OperatorToolbox >(m, "MHO_OperatorToolbox")
-        .def("get_all_operators_by_name",
-             &MHO_OperatorToolbox::GetAllOperatorsByName,
-             py::return_value_policy::reference,
+        .def("get_all_operators_by_name", &MHO_OperatorToolbox::GetAllOperatorsByName, py::return_value_policy::reference,
              "Retrieve all operators with the given name as a list, sorted by priority. "
              "Import pyMHO_Calibration first so that pybind11 can downcast each element "
              "to the correct derived type.")
         .def("get_n_operators", &MHO_OperatorToolbox::GetNOperators)
-        .def("get_operators_by_category", &MHO_OperatorToolbox::GetOperatorsByCategory,
-             py::return_value_policy::reference)
+        .def("get_operators_by_category", &MHO_OperatorToolbox::GetOperatorsByCategory, py::return_value_policy::reference)
         .def("get_operator_names", [](MHO_OperatorToolbox& self) {
             // Return all operator names as a Python list
             std::vector< std::string > names;
@@ -51,12 +48,8 @@ PYBIND11_MODULE(pyMHO_Operators, m)
     // We add the method dynamically so that pyMHO_Containers does not need to know about
     // MHO_OperatorToolbox or MHO_Operators.
     auto fringe_data_cls = containers.attr("MHO_PyFringeDataInterface");
-    fringe_data_cls.attr("get_operator_toolbox") = py::cpp_function(
-        [](MHO_PyFringeDataInterface& self) -> MHO_OperatorToolbox* {
-            return self.GetOperatorToolbox();
-        },
-        py::return_value_policy::reference,
-        py::name("get_operator_toolbox"),
-        py::is_method(fringe_data_cls),
-        "get the operator toolbox so C++ calibration operators can be retrieved and reconfigured");
+    fringe_data_cls.attr("get_operator_toolbox") =
+        py::cpp_function([](MHO_PyFringeDataInterface& self) -> MHO_OperatorToolbox* { return self.GetOperatorToolbox(); },
+                         py::return_value_policy::reference, py::name("get_operator_toolbox"), py::is_method(fringe_data_cls),
+                         "get the operator toolbox so C++ calibration operators can be retrieved and reconfigured");
 }

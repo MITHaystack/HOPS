@@ -59,7 +59,6 @@ static void configure_pypath()
         //instead of (strangely) at the end of the program
         pyss << "sys.stdout.reconfigure(line_buffering=True)\n";
 
-
         //now lets make sure pyMHO_Containers and pyMHO_Operators are always present
         pyss << "import pyMHO_Containers\n";
         pyss << "import pyMHO_Operators\n";

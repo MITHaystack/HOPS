@@ -34,7 +34,8 @@ namespace hops
 class MHO_PyGenericOperator: public MHO_Operator
 {
     public:
-        MHO_PyGenericOperator(): fInitialized(false), fFringeData(nullptr), fFringeDataInterface(nullptr), fOperatorToolbox(nullptr)
+        MHO_PyGenericOperator()
+            : fInitialized(false), fFringeData(nullptr), fFringeDataInterface(nullptr), fOperatorToolbox(nullptr)
         {
             fModulePath = "";
             fFunctionName = "";

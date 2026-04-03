@@ -43,7 +43,8 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
          * 2-char => 2char station code
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
-        std::string GetStationIdentifier() const {return fStationIdentity;}
+
+        std::string GetStationIdentifier() const { return fStationIdentity; }
 
         /**
          * @brief Setter for polarization (associated with these delay corrections)

@@ -68,7 +68,8 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
          * 2-char => 2char station code
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
-        std::string GetStationIdentifier() const {return fStationIdentity;}
+
+        std::string GetStationIdentifier() const { return fStationIdentity; }
 
     protected:
         /**

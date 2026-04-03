@@ -255,7 +255,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-n,--nplot-channels", nplot_chans,
                    "specifies the number of channels to display in the fringe plot (ignored, not yet implemented)");
-    app.add_option("-o,--openmp-threads", omp_threads,"set the number of threads used by OpenMP (if enabled, default=max)");
+    app.add_option("-o,--openmp-threads", omp_threads, "set the number of threads used by OpenMP (if enabled, default=max)");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
@@ -364,7 +364,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
     paramStore->Set("/cmdline/message_level", message_level);
     paramStore->Set("/cmdline/nplot_channels", nplot_chans); //TODO
-    paramStore->Set("/cmdline/omp_threads", omp_threads); //does nothing if OpenMP has not been enabled
+    paramStore->Set("/cmdline/omp_threads", omp_threads);    //does nothing if OpenMP has not been enabled
     paramStore->Set("/cmdline/show_plot", show_plot);        //TODO
     //refringe_alist_file = ""; //not implemented
     paramStore->Set("/cmdline/ap_per_seg", ap_per_seg);

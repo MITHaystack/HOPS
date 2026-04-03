@@ -40,7 +40,7 @@ class MHO_PyFringeDataInterface
             : fFringeData(fdata), fScanInterface(fdata->GetScanDataStore()), fContainerInterface(fdata->GetContainerStore()),
               fParameterInterface(fdata->GetParameterStore()), fOperatorToolbox(nullptr){
 
-              };
+                                                               };
 
         virtual ~MHO_PyFringeDataInterface(){};
 

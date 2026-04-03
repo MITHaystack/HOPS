@@ -50,7 +50,8 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
          * 2-char => 2char station code
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
-        std::string GetStationIdentifier() const {return fStationIdentity;}
+
+        std::string GetStationIdentifier() const { return fStationIdentity; }
 
         /**
          * @brief Setter for polarization

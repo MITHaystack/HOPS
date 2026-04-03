@@ -5,7 +5,7 @@ namespace hops
 
 MHO_MBDelaySearchOpenMP::MHO_MBDelaySearchOpenMP(): MHO_MBDelaySearch()
 {
-     //default to sane value if SetNThreadsOpenMP is never called
+    //default to sane value if SetNThreadsOpenMP is never called
     fNThreads = 1;
 }
 
@@ -213,12 +213,12 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
             fThreadMaxima[t].n_points = 0.0;
         }
 
-        // Parallel loop over single-band delay lags
-        #pragma omp parallel num_threads(fNThreads)
+// Parallel loop over single-band delay lags
+#pragma omp parallel num_threads(fNThreads)
         {
             int tid = omp_get_thread_num();
 
-            #pragma omp for schedule(static)
+#pragma omp for schedule(static)
             for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
             {
                 double sbd = fSBDAxis(sbd_idx);
