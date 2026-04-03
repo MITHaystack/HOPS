@@ -15,7 +15,7 @@ MHO_AdhocPhaseCorrection::MHO_AdhocPhaseCorrection()
     fPeriod    = 1.0;
     fAmplitude = 0.0;
     for(int i = 0; i < 6; i++){fPolyCoeffs[i] = 0.0;}
-        
+
 
     for(std::size_t stn = 0; stn < 2; stn++)
     {
@@ -91,7 +91,7 @@ bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
     }
 
     // extract scan start time from visibility metadata,
-    // and convert it to floating-point days since the start of the year 
+    // and convert it to floating-point days since the start of the year
     // to match the legacy time convention used for adhoc_phase application
     std::string vis_start;
     bool ok = in->Retrieve(fStartKey, vis_start);
@@ -108,7 +108,7 @@ bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
                              << "  year =" << fScanYear
                              << "  floating point day =" << fScanStartFpDay << eom);
 
-    //now we need to calculate the scan start as seconds past the hour 
+    //now we need to calculate the scan start as seconds past the hour
     //this is needed for poly and sinewave models
     auto last_hour = hops_clock::to_legacy_hops_date(scan_start_tp);
     //zero out the mins/secs, then convert back and compute the difference
@@ -118,7 +118,7 @@ bool MHO_AdhocPhaseCorrection::InitializeInPlace(visibility_type* in)
     auto tdiff_duration = scan_start_tp - last_hour_tp;
     fScanStartSecPastHour = std::chrono::duration< double >(tdiff_duration).count();
 
-    //derive accumulation-period duration from the time axis 
+    //derive accumulation-period duration from the time axis
     auto* time_ax = &(std::get< TIME_AXIS >(*in));
     std::size_t nap = time_ax->GetSize();
     if(nap < 2)
@@ -301,19 +301,22 @@ bool MHO_AdhocPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visi
 double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, double ap_center_sec) const
 {
     double zeta = 0.0;
-    
+
     //legacy time calculation:
     //thyme = (ap + 0.5) * param.acc_period + param.start - param.ah_tref;
 
+    //the following applies the legacy convention...for the adhoc polynomial and sinewave models
+    //time is measured in seconds since the start of the year (minus the seconds-past-the-hour tref)
+    //this seems like a bad convention...since round off errors (especially for the polynomial)
+    //will tend to make the high-order terms unreliable, but this has been verified against rotate_pcal.c
+    double thyme = ap_center_sec + fScanStartFpDay * 86400.0 - fTRef;
 
     switch(fMode)
     {
         case AdhocPhaseMode::SINEWAVE:
         {
-            //for the sinewave model, the 'thyme' is measured in seconds 
-            //since the refrence time 
-            //(the reference time is measured in seconds since the last hour)
-            double thyme = ap_center_sec + (fScanStartSecPastHour - fTRef);
+            //for the sinewave model, the 'thyme' is measured in seconds
+            double thyme = ap_center_sec + fScanStartFpDay * 86400.0 - fTRef;
             double phase_arg = 2.0 * M_PI * thyme / fPeriod;
             zeta = fAmplitude * std::sin(phase_arg);
             break;
@@ -322,23 +325,12 @@ double MHO_AdhocPhaseCorrection::ComputeZeta(const std::string& chan_label, doub
         case AdhocPhaseMode::POLYNOMIAL:
         {
             //evaluate zeta = c0 + c1*t + c2*t^2 + ...
-            //this follows the legacy convention...for the adhoc polynomial,
-            //time is measured in seconds since the start of the year (minus seconds past the hour)
-            //this seems like a bad convention...since round off errors will 
-            //tend to make the high-order terms unreliable, but...
-
-            //this definition of "thyme" makes no sense at all (but matches the legacy behavior)
-            double thyme = ap_center_sec + fScanStartFpDay * 86400.0 - fTRef;
-
             double thyme_n = 1.0;
             for(int i = 0; i < 6; i++)
             {
-                // printf("thyme_ %d == %f \n",i, thyme_n);
-                // printf("poly coeff %d == %f \n",i, fPolyCoeffs[i]);
                 zeta += fPolyCoeffs[i] * thyme_n;
                 thyme_n *= thyme;
             }
-            //std::cout<<"zeta = "<<zeta<<std::endl;
             break;
         }
 
