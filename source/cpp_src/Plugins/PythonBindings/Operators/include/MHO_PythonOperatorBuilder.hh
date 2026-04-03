@@ -36,6 +36,7 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
                 // op->SetParameterStore(this->fParameterStore);
                 // op->SetContainerStore(this->fContainerStore);
                 op->SetFringeData(this->fFringeData);
+                op->SetOperatorToolbox(this->fOperatorToolbox);
 
                 //retrieve pass the module/function name info from the control file
                 std::string op_name = this->fFormat["name"].get< std::string >();
@@ -43,6 +44,13 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
                 std::string module_path = fAttributes["value"]["module_path"].get< std::string >();
                 std::string function_name = fAttributes["value"]["function_name"].get< std::string >();
                 double priority = this->fFormat["priority"].get< double >();
+                if(fAttributes["value"].contains("override_priority"))
+                {
+                    double override_priority = fAttributes["value"]["override_priority"].get< double >();
+                    msg_debug("initialization", "python operator: "<< op_name <<
+                              " priority overridden from " << priority <<" to "<< override_priority << eom);
+                    priority = override_priority;
+                }
 
                 op->SetPriority(priority);
                 op->SetName(module_path + ":" + function_name);
@@ -60,6 +68,44 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
                 return false;
             }
         }
+
+
+        virtual bool IsConfigurationOk() override
+        {
+            TODO_FIXME_MSG("TODO FIXME -- improve checks on operator attributes in IsConfigurationOk)")
+            bool ok = true;
+            //for compound statements, check that the fields are present
+            if(fFormat["statement_type"] == "operator")
+            {
+                if(fFormat.contains("type") && fFormat["type"].get< std::string >() == "compound")
+                {
+                    for(auto it = fFormat["fields"].begin(); it != fFormat["fields"].end(); it++)
+                    {
+                        //check if the field is optional 
+                        //for python operators, 'override_priority' is optional, 
+                        //and the default value is provided by the format
+                        //if it is option, the field name will be preceeded by a '!'
+                        //control file example: 
+                        //      python_calibration example4 set_pc_phase_offset_y 3.1
+
+                        bool is_required = true;
+                        std::string field_name = (*it).get<std::string>();
+                        //std::cout<<"py op builder, field name = "<<field_name<<std::endl;
+                        if( !field_name.empty() && field_name[0] == '!'){is_required = false;}
+                        if( !fAttributes["value"].contains(*it) && is_required )
+                        {
+                            msg_error("initialization", "missing attribute called " << *it << " in parameters of operator: "
+                                                                                    << fFormat["name"].get< std::string >()
+                                                                                    << ", will not build " << eom);
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return ok;
+        }
+
 
     private:
 };

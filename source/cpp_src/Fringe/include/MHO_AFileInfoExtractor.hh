@@ -73,7 +73,7 @@ class MHO_AFileInfoExtractor
          * @param comment_char Comment character used in the header
          * @return Alist header as a string
          */
-        std::string GetAlistHeader(int version, int type, char comment_char);
+        std::string GetAlistHeader(int version, int type, char comment_char, std::string app_name = "alist4");
 
     protected:
         /**

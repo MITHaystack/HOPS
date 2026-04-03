@@ -1,6 +1,7 @@
 #include "MHO_OperatorBuilderManager.hh"
 
 //builders
+#include "MHO_AdhocPhaseCorrectionBuilder.hh"
 #include "MHO_ChannelLabelerBuilder.hh"
 #include "MHO_CircularFieldRotationBuilder.hh"
 #include "MHO_DCBlockBuilder.hh"
@@ -71,6 +72,9 @@ void MHO_OperatorBuilderManager::CreateDefaultBuilders()
 
     //station delay correction
     AddBuilderType< MHO_StationDelayCorrectionBuilder >("station_delay", "station_delay");
+
+    //ad hoc (time-dependent) phase correction
+    AddBuilderType< MHO_AdhocPhaseCorrectionBuilder >("adhoc_phase", "adhoc_phase");
 
     //double-sideband specific operators
     AddBuilderType< MHO_LSBOffsetBuilder >("lsb_offset", "lsb_offset");

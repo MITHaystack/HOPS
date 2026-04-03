@@ -2,6 +2,7 @@
 #define MHO_PyGenericOperator_HH__
 
 #include "MHO_Operator.hh"
+#include "MHO_OperatorToolbox.hh"
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_FringeData.hh"
@@ -33,7 +34,7 @@ namespace hops
 class MHO_PyGenericOperator: public MHO_Operator
 {
     public:
-        MHO_PyGenericOperator(): fInitialized(false), fFringeData(nullptr), fFringeDataInterface(nullptr)
+        MHO_PyGenericOperator(): fInitialized(false), fFringeData(nullptr), fFringeDataInterface(nullptr), fOperatorToolbox(nullptr)
         {
             fModulePath = "";
             fFunctionName = "";
@@ -42,6 +43,8 @@ class MHO_PyGenericOperator: public MHO_Operator
         virtual ~MHO_PyGenericOperator() { delete fFringeDataInterface; };
 
         void SetFringeData(MHO_FringeData* fdata) { fFringeData = fdata; }
+
+        void SetOperatorToolbox(MHO_OperatorToolbox* toolbox) { fOperatorToolbox = toolbox; }
 
         // void SetParameterStore(MHO_ParameterStore* pstore) { fParameterStore = pstore; };
         //
@@ -69,6 +72,10 @@ class MHO_PyGenericOperator: public MHO_Operator
                 if(fFringeDataInterface == nullptr)
                 {
                     fFringeDataInterface = new MHO_PyFringeDataInterface(fFringeData);
+                }
+                if(fOperatorToolbox != nullptr)
+                {
+                    fFringeDataInterface->SetOperatorToolbox(fOperatorToolbox);
                 }
                 fInitialized = true;
             }
@@ -125,6 +132,7 @@ class MHO_PyGenericOperator: public MHO_Operator
         std::string fFunctionName;
 
         MHO_FringeData* fFringeData;
+        MHO_OperatorToolbox* fOperatorToolbox;
         MHO_PyFringeDataInterface* fFringeDataInterface;
 
         // MHO_ContainerStore* fContainerStore;

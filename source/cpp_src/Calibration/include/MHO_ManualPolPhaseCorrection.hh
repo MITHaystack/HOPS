@@ -43,6 +43,7 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
          * @param station_id Two-character MK4 station code as std::string
          */
         void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
+        std::string GetStationIdentifier() const {return fStationIdentity;}
 
         /**
          * @brief Setter for associated polarization

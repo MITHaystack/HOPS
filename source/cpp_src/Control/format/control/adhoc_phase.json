@@ -1,5 +1,15 @@
 {
-    "name": "unknown",
-    "statement_type": "unknown",
-    "type": "unknown"
+    "name": "adhoc_phase",
+    "statement_type": "operator",
+    "operator_category" : "calibration",
+    "type" : "compound",
+    "priority": 3.5,
+    "parameters":
+    {
+        "algorithm_type": {"type": "string"}
+    },
+    "fields":
+    [
+        "algorithm_type"
+    ]
 }

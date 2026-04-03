@@ -7,11 +7,13 @@
     "parameters":
     {
         "module_path": {"type": "string"},
-        "function_name": {"type": "string"}
+        "function_name": {"type": "string"}, 
+        "override_priority": {"type": "real"}
     },
     "fields":
     [
         "module_path",
-        "function_name"
+        "function_name",
+        "!override_priority"
     ]
 }

@@ -14,6 +14,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LinearDParCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CircularFieldRotationCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_IonosphericPhaseCorrection.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AdhocPhaseCorrection.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EstimatePCManual.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Passband.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Notches.hh
@@ -53,6 +54,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LinearDParCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_CircularFieldRotationCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_IonosphericPhaseCorrection.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AdhocPhaseCorrection.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_EstimatePCManual.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Passband.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Notches.cc

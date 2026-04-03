@@ -152,7 +152,7 @@ void reset_buffer(char* buf)
 /*
  * Writes the 3-line header of the requested version and type
  */
-std::string afile_header(int version, int type, char afile_com_char)
+std::string afile_header(int version, int type, char afile_com_char, std::string app_name)
 {
     std::string header_lines;
     std::stringstream ss;
@@ -162,7 +162,7 @@ std::string afile_header(int version, int type, char afile_com_char)
     time_t now;
     /* Start with a time-stamp */
     now = time(NULL);
-    sprintf(buf, "%c This file processed by %s, %s", afile_com_char, "alist4", ctime(&now));
+    sprintf(buf, "%c This file processed by %s, %s", afile_com_char, app_name.c_str(), ctime(&now));
     ss << buf;
     reset_buffer(buf);
 
@@ -191,9 +191,9 @@ std::string afile_header(int version, int type, char afile_com_char)
     return ss.str();
 }
 
-std::string MHO_AFileInfoExtractor::GetAlistHeader(int version, int type, char comment_char)
+std::string MHO_AFileInfoExtractor::GetAlistHeader(int version, int type, char comment_char, std::string app_name)
 {
-    return afile_header(version, type, comment_char);
+    return afile_header(version, type, comment_char, app_name);
 }
 
 bool MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename, mho_json& fsum)

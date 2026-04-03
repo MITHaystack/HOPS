@@ -24,31 +24,14 @@ rm ${EXP_DIR}/fringex3*.alist
 
 #run fourfit4
 echo "Running: fourfit4 -m 4 -c ./cf_3686_GEHSVY_pstokes2 -b GE -P YY ./${D2H_EXP_NUM}/${HOPS4_DIR}/"
-outfile4=$(fourfit4 -m 4 -c ./cf_3686_GEHSVY_pstokes2 -b GE -P YY ./${D2H_EXP_NUM}/${HOPS4_DIR}/ 2>&1)
-
-#parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
-echo "$outfile4"
-old_IFS=$IFS
-IFS=" "
-set -- $outfile4
-IFS=$old_IFS
-cmdname=$1
-output_file4=$2
+output_file4=$(fourfit4 -m 4 -c ./cf_3686_GEHSVY_pstokes2 -b GE -P YY ./${D2H_EXP_NUM}/${HOPS4_DIR}/ 2>&1 | awk '{print $NF}')
 echo "fourfit4 output file: $output_file4"
 
 #run fourfit and dump its data to a 'plot_data_dir' file
 echo "Running: fourfit3 -m 4 -c ./cf_3686_GEHSVY_pstokes2 -b GE -P YY ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-outfile3=$(fourfit3 -m 4 -c ./cf_3686_GEHSVY_pstokes2 -b GE -P YY ./${D2M4_EXP_NUM}/${SCAN_DIR} 2>&1)
-
-#parse the print out (fourfit4: <fringe_filename>) into just the fringe_filename
-echo "$outfile3"
-old_IFS=$IFS
-IFS=" "
-set -- $outfile3
-IFS=$old_IFS
-cmdname=$1
-output_file3=$2
+output_file3=$(fourfit3 -m 4 -c ./cf_3686_GEHSVY_pstokes2 -b GE -P YY ./${D2M4_EXP_NUM}/${SCAN_DIR} 2>&1 | awk '{print $NF}')
 echo "fourfit3 output file: $output_file3"
+
 
 #run fringex4 on the fourfit4 ouput
 fringex4 -v 6 -i 3 ${output_file4} > ${EXP_DIR}/fringex4_v6.alist
@@ -59,7 +42,6 @@ fringex -v 6 -i 3 ${output_file3} > ${EXP_DIR}/fringex3_v6.alist
 # fringex4 -v 5 -i 10 ${output_file4} > ${EXP_DIR}/fringex4.alist
 # #run fringex (original) on the fourfit3 output
 # fringex -v 5 -i 10 ${output_file3} > ${EXP_DIR}/fringex3.alist
-
 
 #compare the two alist outputs
 @PY_EXE@ @CMAKE_CURRENT_BINARY_DIR@/compare_alist_v6.py \

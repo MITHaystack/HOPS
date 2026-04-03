@@ -636,7 +636,7 @@ int main(int argc, char** argv)
 
     // --- A-file header ---
     MHO_AFileInfoExtractor extractor;
-    *out << extractor.GetAlistHeader(alist_version, 2, '*');
+    *out << extractor.GetAlistHeader(alist_version, 2, '*', "fringex4");
 
     // --- Current time for procdate ---
     std::string procdate_vex = hops_clock::to_vex_format(hops_clock::now(), true);
