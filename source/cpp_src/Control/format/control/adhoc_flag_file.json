@@ -1,7 +1,7 @@
 {
     "name": "adhoc_flag_file",
     "statement_type": "operator",
-    "operator_category" : "calibration",
+    "operator_category" : "flagging",
     "type" : "compound",
     "priority": 3.5,
     "parameters":

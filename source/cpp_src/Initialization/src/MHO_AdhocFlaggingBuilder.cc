@@ -16,7 +16,7 @@ bool MHO_AdhocFlaggingBuilder::Build()
     // The toolbox name for the single unified flagging operator.
     // Using a distinct name avoids collision with the control statement name.
     const std::string op_name = "adhoc_flagging";
-    const std::string op_category = "calibration";
+    const std::string op_category = fFormat["operator_category"].get< std::string >();
     double priority = fFormat["priority"].get< double >();
 
     // Extract the flag file path from the compound statement value.

@@ -87,15 +87,25 @@ class MHO_AdhocFlagging: public MHO_UnaryOperator< weight_type >
         // Maximum number of frequency channels encoded per flag file row.
         static constexpr std::size_t MAX_FLAG_FREQS = 64;
 
-        // Bit mask selecting USB bits (1,3,5,7) within a flag byte.
-        // Per the flag file specification:
-        //   bit 7=USB-RL, bit 5=USB-LR, bit 3=USB-RR, bit 1=USB-LL
-        static constexpr uint8_t USB_MASK = 0xAAu;
-
-        // Bit mask selecting LSB bits (0,2,4,6) within a flag byte.
-        // Per the flag file specification:
-        //   bit 6=LSB-RL, bit 4=LSB-LR, bit 2=LSB-RR, bit 0=LSB-LL
-        static constexpr uint8_t LSB_MASK = 0x55u;
+        // Bit masks for USB/LSB channel retention checks.
+        //
+        // NOTE: These follow the *legacy fourfit (adhoc_flag.c) convention*,
+        // where the C variable names are inverted relative to the flag-file
+        // bit-assignment documentation:
+        //   doc bit layout (msb->lsb): USB-RL,LSB-RL,USB-LR,LSB-LR,USB-RR,LSB-RR,USB-LL,LSB-LL
+        //   doc USB bits: 0xAA (bits 7,5,3,1),  doc LSB bits: 0x55 (bits 6,4,2,0)
+        //
+        // However in the legacy code:
+        //   usb_flag = ref & rem & 0x55  (tests the doc-LSB bits to gate USB data)
+        //   lsb_flag = ref & rem & 0xAA  (tests the doc-USB bits to gate LSB data)
+        //
+        // We preserve this inversion so that existing flag files, which were
+        // written to match the legacy tool's behavior, continue to work correctly.
+        //
+        // Practical effect: a flag byte of 0x80 zeros USB channels and retains LSB,
+        // even though bit 7 is labelled "USB-RL" in the documentation.
+        static constexpr uint8_t USB_MASK = 0x55u; // legacy "usb_flag" mask
+        static constexpr uint8_t LSB_MASK = 0xAAu; // legacy "lsb_flag" mask
 
         struct FlagTableRow
         {

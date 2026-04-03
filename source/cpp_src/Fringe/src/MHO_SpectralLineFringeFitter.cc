@@ -225,9 +225,12 @@ void MHO_SpectralLineFringeFitter::Initialize()
     if(!skipped)
     {
         Refresh();
+        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
+
+        //compute the sum of all weights after time-domain flagging (e.g. adhoc_flagging),
+        //so flagged APs are excluded from the integration time count
         MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
         MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
         MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
     }
 }
