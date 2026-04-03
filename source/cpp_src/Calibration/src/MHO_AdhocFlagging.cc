@@ -189,9 +189,9 @@ const uint8_t* MHO_AdhocFlagging::LookupFlagBytes(std::size_t stn_idx, double ap
         --it;
     }
 
-    std::cout << "found bytes: ";
-    for (auto b : it->bytes) std::cout << std::hex << (int)b << " ";
-    std::cout << std::dec << std::endl;
+    //std::cout << "found bytes: ";
+    //for (auto b : it->bytes) //std::cout << std::hex << (int)b << " ";
+    //std::cout << std::dec << std::endl;
 
     return it->bytes.data();
 }
@@ -300,7 +300,7 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
             double ap_center_sec = time_ax->at(t) + 0.5 * fAccPeriod;
             double ap_center_fpday = fScanStartFpDay + ap_center_sec / 86400.0;
 
-            std::cout<<std::setprecision(15)<<"ap_center_fpday: "<<ap_center_fpday<<std::endl;
+            //std::cout<<std::setprecision(15)<<"ap_center_fpday: "<<ap_center_fpday<<std::endl;
 
             const uint8_t* ref_bytes = LookupFlagBytes(0, ap_center_fpday);
             const uint8_t* rem_bytes = LookupFlagBytes(1, ap_center_fpday);
@@ -324,7 +324,7 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
                 retain = true;
             }
 
-            std::cout<<"retained? = "<<retain<<std::endl;
+            //std::cout<<"retained? = "<<retain<<std::endl;
 
             if(!retain)
             {
