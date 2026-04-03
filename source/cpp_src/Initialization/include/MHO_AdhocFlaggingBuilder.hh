@@ -14,7 +14,7 @@ namespace hops
  *
  * Triggered by an 'adhoc_flag_file <path>' compound statement in
  * the control file.  The statement may appear inside a station-conditional
- * block ('if station X { ... }') to set the flag file for a specific station,
+ * block ('if station X ...') to set the flag file for a specific station,
  * or outside any condition to apply the same file to both stations.
  *
  * Because a baseline has two stations (reference and remote), the builder
@@ -38,10 +38,11 @@ namespace hops
 class MHO_AdhocFlaggingBuilder: public MHO_OperatorBuilder
 {
     public:
-        MHO_AdhocFlaggingBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_AdhocFlaggingBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
+            : MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_AdhocFlaggingBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
-                                 MHO_ParameterStore* pstore = nullptr)
+                                  MHO_ParameterStore* pstore = nullptr)
             : MHO_OperatorBuilder(toolbox, cstore, pstore){};
 
         virtual ~MHO_AdhocFlaggingBuilder(){};

@@ -189,6 +189,10 @@ const uint8_t* MHO_AdhocFlagging::LookupFlagBytes(std::size_t stn_idx, double ap
         --it;
     }
 
+    std::cout << "found bytes: ";
+    for (auto b : it->bytes) std::cout << std::hex << (int)b << " ";
+    std::cout << std::dec << std::endl;
+
     return it->bytes.data();
 }
 
@@ -286,6 +290,8 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
         // Channel index ch directly maps to byte index fr in the flag file,
         // matching the legacy convention where 'fr' is the frequency channel ordinal.
         // If ch >= MAX_FLAG_FREQS the byte index wraps (flag files rarely reach 64 channels).
+        // eventually we need to eliminate this restriction (and allow more than 64 channels), but for now,
+        // that is the legacy format we support
         std::size_t fr = ch % MAX_FLAG_FREQS;
 
         for(std::size_t t = 0; t < nap; t++)
@@ -293,6 +299,8 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
             // AP centre time in fractional days since beginning of year.
             double ap_center_sec = time_ax->at(t) + 0.5 * fAccPeriod;
             double ap_center_fpday = fScanStartFpDay + ap_center_sec / 86400.0;
+
+            std::cout<<std::setprecision(15)<<"ap_center_fpday: "<<ap_center_fpday<<std::endl;
 
             const uint8_t* ref_bytes = LookupFlagBytes(0, ap_center_fpday);
             const uint8_t* rem_bytes = LookupFlagBytes(1, ap_center_fpday);
@@ -315,6 +323,8 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
                 // Unknown sideband label - do not flag.
                 retain = true;
             }
+
+            std::cout<<"retained? = "<<retain<<std::endl;
 
             if(!retain)
             {
