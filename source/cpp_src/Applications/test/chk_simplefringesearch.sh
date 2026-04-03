@@ -34,7 +34,7 @@ jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump.js
 
 #run fourfit and dump its data to a 'plot_data_dir' file
 echo "Running: fourfit3 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR}"
-time fourfit3 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1
+fourfit3 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1
 
 #finally compare the outputs
 compjsonpdd.py ./fdump.json ./chk1/105-1800-GE-X-XX*

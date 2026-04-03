@@ -17,13 +17,13 @@ if(BASH_PROGRAM)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/hopsobjdata.py" "${CMAKE_CURRENT_BINARY_DIR}/hopsobjdata.py" @ONLY)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compare_alist_v5.py" "${CMAKE_CURRENT_BINARY_DIR}/compare_alist_v5.py" @ONLY)
         configure_file("${CMAKE_CURRENT_SOURCE_DIR}/compare_alist_v6.py" "${CMAKE_CURRENT_BINARY_DIR}/compare_alist_v6.py" @ONLY)
-        list(APPEND TEST_SCRIPT_BASENAMES 
-            chk_convertvex2json 
-            chk_converthops2json 
-            chk_simplefringesearch3 
-            chk_simplefringesearch4 
+        list(APPEND TEST_SCRIPT_BASENAMES
+            chk_convertvex2json
+            chk_converthops2json
+            chk_simplefringesearch3
+            chk_simplefringesearch4
             chk_2charstationcodes
-            chk_passband 
+            chk_passband
             chk_dsb1
             chk_geomixedmode
             chk_phs_jump
@@ -34,6 +34,7 @@ if(BASH_PROGRAM)
             chk_adhoc_phase_fringex4_part2
             chk_adhoc_phase_poly
             chk_adhoc_phase_sinewave
+            chk_adhoc_flagging
         )
     endif(PY_EXE)
 

@@ -22,7 +22,7 @@ cd $EXP_DIR
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
 echo "Running: fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/"
-output_file=$(time fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/  2>&1 | awk '{print $NF}')
+output_file=$(fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/  2>&1 | awk '{print $NF}')
 echo "fourfit4 output file: $output_file"
 
 #basic procedure to generate adhoc_phase file for consumption by fourfit3 (note: 3!)
@@ -60,7 +60,7 @@ cat test2.cf adhoc_lines.txt > test_adhoc.cf
 
 #now run fourfit3 with the adhoc file
 echo "Running: fourfit3 -m 4 -c ./test_adhoc.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk_adhoc "
-time fourfit3 -m 1 -c ./test_adhoc.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk_adhoc 2>&1  | tee ./ff.out
+fourfit3 -m 1 -c ./test_adhoc.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk_adhoc 2>&1  | tee ./ff.out
 
 #grab the SNR value
 SNR=$(grep "fourfit: SNR" ./ff.out | awk '{print $NF}')

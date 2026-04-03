@@ -22,7 +22,7 @@ cd $EXP_DIR
 export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 
 echo "Running: fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/"
-output_file=$(time fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR} 2>&1 | awk '{print $NF}')
+output_file=$(fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR} 2>&1 | awk '{print $NF}')
 echo "fourfit4 output file: $output_file"
 
 #basic procedure to generate adhoc_phase file for consumption by fourfit3 (note: 3!)
@@ -60,7 +60,7 @@ cat test2.cf adhoc_lines.txt > test_adhoc.cf
 
 #now run fourfit3 with the adhoc file
 echo "Running: fourfit3 -m 4 -c ./test_adhoc.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk_adhoc "
-time fourfit3 -m 1 -c ./test_adhoc.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk_adhoc 2>&1  | tee ./ff.out
+fourfit3 -m 1 -c ./test_adhoc.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk_adhoc 2>&1  | tee ./ff.out
 
 #grab the SNR value
 SNR=$(grep "fourfit3: SNR" ./ff.out | awk '{print $NF}')
@@ -77,7 +77,7 @@ echo "fourfit4 output file: $output_file2"
 hops2json ${output_file2}
 
 #use jq (json query) to extract the plot_data element and pipe to file
-echo "jq '.[].tags.plot_data | select( . != null )' "${output_file2}.json" > tee ./fdump_adhoc.json"
+echo "jq '.[].tags.plot_data | select( . != null )' "${output_file2}.json" > ./fdump_adhoc.json"
 jq '.[].tags.plot_data | select( . != null )' "${output_file2}.json" > ./fdump_adhoc.json
 
 #now compare the results between fourfit3 and fourfit4, tolerance 0.5%

@@ -23,18 +23,18 @@ export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 SET_STRING="adhoc_phase sinewave adhoc_amp 120.0 adhoc_period 5. adhoc_tref 1200."
 
 echo "Running: fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR}/ set ${SET_STRING}"
-output_file=$(time fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR} set ${SET_STRING} 2>&1 | awk '{print $NF}')
+output_file=$(fourfit4 -m 4 -c ./test2.cf -b AS -P RR ./${SCAN_DIR} set ${SET_STRING} 2>&1 | awk '{print $NF}')
 echo "fourfit4 output file: $output_file"
 
 #now run fourfit3 with the adhoc file
 echo "Running: fourfit3 -m 4 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set ${SET_STRING} plot_data_dir ./chk_adhoc_sine"
-time fourfit3 -m 4 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set ${SET_STRING} plot_data_dir ./chk_adhoc_sine 2>&1  | tee ./ff.out
+fourfit3 -m 4 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set ${SET_STRING} plot_data_dir ./chk_adhoc_sine 2>&1  | tee ./ff.out
 
 #convert the fringe file to json
 hops2json ${output_file}
 
 #use jq (json query) to extract the plot_data element and pipe to file
-echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > tee ./fdump_adhoc.json"
+echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump_adhoc.json"
 jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump_adhoc.json
 
 #now compare the results between fourfit3 and fourfit4, tolerance 1.1%
