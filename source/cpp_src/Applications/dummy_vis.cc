@@ -12,6 +12,9 @@
 #include "MHO_GaussianWhiteNoiseSignal.hh"
 #include "MHO_FringeRotation.hh"
 
+#include "MHO_BinaryFileInterface.hh"
+#include "MHO_ObjectTags.hh"
+
 
 #include <cmath>
 #include <complex>
@@ -230,30 +233,34 @@ int main(int argc, char** argv)
 
     double fringe_amplitude = 1.0;
     std::string output_file = "simulated_vis.dat";
-    double residual_delay = 0.0;  // microseconds
-    double residual_delay_rate = 0.0;  // microseconds/second
-    double residual_phase = 0.0;  // degrees
+    double residual_delay = 0.0;
+    double residual_delay_rate = 0.0;
+    double residual_phase = 0.0;
     int num_channels = 16;
-    double channel_width = 32.0;  // MHz
-    std::vector<double> channel_frequencies;  // MHz
+    double channel_width = 32.0;
+    std::vector<double> channel_frequencies;
     double ref_freq_mhz = 10000.0;
-    double start_freq = 8000.0;  // MHz
+    double start_freq = 8000.0;
     int num_subchannels = 32;
     int num_aps = 120;
-    double ap_length = 2.0;  // seconds
-    double start_time = 0.0;  // seconds
+    double ap_length = 2.0;
+    double start_time = 0.0;
     double snr = 10.0;
-    double system_noise_rms = -1.0;  // if negative, will be computed from SNR
-    int random_seed = -1;  // -1 means use time-based seed
+    double system_noise_rms = -1.0;
+    int random_seed = -1;
     std::string polprod = "XX";
-    bool binary_output = false;
     int message_level = 0;
     std::vector< std::string > message_categories;
+    std::string source_name = "SIMULATED";
+    std::string baseline_name = "AA";
+    std::string baseline_shortname = "AA";
+    std::string ref_station = "A";
+    std::string rem_station = "A";
+    std::string root_code = "abcdef";
 
     // Remove help flag because it shortcuts all processing
     app.set_help_flag();
     auto* help = app.add_flag("-h,--help", "print this help message and exit");
-
 
     app.add_option("-o,--output", output_file, "name of output file for simulated visibilities");
     app.add_option("-A,--amplitude", fringe_amplitude, "fringe amplitude (correlated flux density)")->default_val(1.0);
@@ -272,9 +279,12 @@ int main(int argc, char** argv)
     app.add_option("-t,--ap-length", ap_length, "accumulation period length in seconds")->default_val(2.0);
     app.add_option("-T,--start-time", start_time, "start time in seconds")->default_val(0.0);
     app.add_option("--snr", snr, "signal-to-noise ratio")->default_val(10.0);
-    app.add_option("--noise-rms", system_noise_rms,"system noise RMS (if specified, overrides SNR parameter)");
+    app.add_option("--noise-rms", system_noise_rms, "system noise RMS (if specified, overrides SNR parameter)");
     app.add_option("--seed", random_seed, "random number generator seed (-1 for time-based)")->default_val(-1);
     app.add_option("-P,--polprod", polprod, "polarization product (e.g., XX, YY, XY, RR, LL)")->default_val("XX");
+    app.add_option("--source", source_name, "source name")->default_val("SIMULATED");
+    app.add_option("--baseline", baseline_name, "baseline name (e.g. GE)")->default_val("AA");
+    app.add_option("--root-code", root_code, "root code string")->default_val("abcdef");
 
     app.add_option("-M,--message-categories", message_categories,
         "message categories to enable (comma-separated)")
@@ -297,20 +307,12 @@ int main(int argc, char** argv)
         std::exit(1);
     }
 
-    //clamp message level
-    if(message_level > 5)
-    {
-        message_level = 5;
-    }
-    if(message_level < -2)
-    {
-        message_level = -2;
-    }
+    // Clamp message level
+    if(message_level > 5) { message_level = 5; }
+    if(message_level < -2) { message_level = -2; }
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
-    //check if any message categories were passed, if so, we limit the messages
-    //to only those categories
     if(message_categories.size() != 0)
     {
         for(std::size_t m = 0; m < message_categories.size(); m++)
@@ -319,7 +321,6 @@ int main(int argc, char** argv)
         }
         MHO_Message::GetInstance().LimitToKeySet();
     }
-    //set the message level
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
     // Auto-generate channel frequencies if not provided
@@ -332,7 +333,6 @@ int main(int argc, char** argv)
     }
     else
     {
-        // Validate that we have the right number
         if(channel_frequencies.size() != static_cast<size_t>(num_channels))
         {
             std::cerr << "Warning: " << channel_frequencies.size()
@@ -349,53 +349,243 @@ int main(int argc, char** argv)
         system_noise_rms = fringe_amplitude / snr;
         std::cout << "System noise RMS calculated from SNR: "
                   << system_noise_rms << std::endl;
-
     }
 
-    // Convert phase from degrees to radians for internal use
+    // Handle random seed
+    if(random_seed < 0)
+    {
+        random_seed = static_cast<int>(std::time(nullptr));
+        std::cout << "Using time-based random seed: " << random_seed << std::endl;
+    }
+
     double residual_phase_rad = residual_phase * M_PI / 180.0;
+
+    // Derive station names from baseline
+    if(baseline_name.size() >= 2)
+    {
+        ref_station = std::string(1, baseline_name[0]);
+        rem_station = std::string(1, baseline_name[1]);
+        baseline_shortname = baseline_name;
+    }
 
     std::cout << "\n=== Simulation Parameters ===" << std::endl;
     std::cout << "Fringe amplitude: " << fringe_amplitude << std::endl;
-    std::cout << "Residual delay: " << residual_delay << " μs" << std::endl;
-    std::cout << "Residual delay-rate: " << residual_delay_rate << " μs/s" << std::endl;
+    std::cout << "Residual delay: " << residual_delay << " us" << std::endl;
+    std::cout << "Residual delay-rate: " << residual_delay_rate << " us/s" << std::endl;
     std::cout << "Residual phase: " << residual_phase << " deg" << std::endl;
+    std::cout << "Reference frequency: " << ref_freq_mhz << " MHz" << std::endl;
     std::cout << "Channels: " << num_channels << std::endl;
     std::cout << "Sub-channels: " << num_subchannels << std::endl;
     std::cout << "Channel width: " << channel_width << " MHz" << std::endl;
-    std::cout << "APs: " << num_aps << " × " << ap_length << " s" << std::endl;
+    std::cout << "APs: " << num_aps << " x " << ap_length << " s" << std::endl;
     std::cout << "SNR: " << snr << std::endl;
     std::cout << "System noise RMS: " << system_noise_rms << std::endl;
     std::cout << "Polarization: " << polprod << std::endl;
+    std::cout << "Baseline: " << baseline_name << std::endl;
+    std::cout << "Source: " << source_name << std::endl;
+    std::cout << "Random seed: " << random_seed << std::endl;
     std::cout << "Output file: " << output_file << std::endl;
     std::cout << "============================\n" << std::endl;
 
-    // generate_visibilities(fringe_amplitude, residual_delay, residual_delay_rate,
-    //                       residual_phase_rad, channel_frequencies, channel_width,
-    //                       num_subchannels, num_aps, ap_length, start_time,
-    //                       system_noise_rms, random_seed, polprod, output_file);
+    // =========================================================
+    // Generate visibility data
+    // =========================================================
+    visibility_type vis;
 
+    GenerateSimulatedVisibilities(
+        vis,
+        fringe_amplitude,
+        residual_delay,
+        residual_delay_rate,
+        residual_phase_rad,
+        channel_frequencies,
+        channel_width,
+        num_subchannels,
+        num_aps,
+        ap_length,
+        start_time,
+        system_noise_rms,
+        random_seed,
+        ref_freq_mhz
+    );
 
+    // =========================================================
+    // Construct weight container
+    // =========================================================
+    // Weights have the same shape as visibilities except the
+    // sub-channel (FREQ) axis dimension is 1.
+    // All weight entries are 1.0 (scalar, not complex).
 
+    weight_type wt;
+    std::size_t wdims[VIS_NDIM];
+    wdims[POLPROD_AXIS] = 1;           // single pol product
+    wdims[CHANNEL_AXIS] = num_channels;
+    wdims[TIME_AXIS]    = num_aps;
+    wdims[FREQ_AXIS]    = 1;           // single weight per AP per channel
+    wt.Resize(wdims);
+    wt.ZeroArray();
 
+    // Fill all weights to 1.0
+    for(int pp = 0; pp < 1; ++pp)
+    {
+        for(int ch = 0; ch < num_channels; ++ch)
+        {
+            for(int ap = 0; ap < num_aps; ++ap)
+            {
+                wt(pp, ch, ap, 0) = 1.0;
+            }
+        }
+    }
 
+    // =========================================================
+    // Fill weight axis values to match visibility axes
+    // =========================================================
+    auto* wpolprod_axis = &(std::get< POLPROD_AXIS >(wt));
+    wpolprod_axis->at(0) = polprod;
 
+    auto* wch_axis = &(std::get< CHANNEL_AXIS >(wt));
+    for(int ch = 0; ch < num_channels; ++ch)
+    {
+        wch_axis->at(ch) = channel_frequencies[ch];
+    }
 
+    auto* wap_axis = &(std::get< TIME_AXIS >(wt));
+    for(int ap = 0; ap < num_aps; ++ap)
+    {
+        wap_axis->at(ap) = ap * ap_length;
+    }
 
+    auto* wsp_axis = &(std::get< FREQ_AXIS >(wt));
+    wsp_axis->at(0) = 0.0;
 
+    // =========================================================
+    // Tag the visibility container
+    // =========================================================
+    vis.Insert(std::string("name"), std::string("visibilities"));
+    vis.Insert(std::string("baseline"), baseline_name);
+    vis.Insert(std::string("baseline_shortname"), baseline_shortname);
+    vis.Insert(std::string("reference_station"), ref_station);
+    vis.Insert(std::string("remote_station"), rem_station);
+    vis.Insert(std::string("reference_station_name"), ref_station);
+    vis.Insert(std::string("remote_station_name"), rem_station);
+    vis.Insert(std::string("reference_station_mk4id"), ref_station);
+    vis.Insert(std::string("remote_station_mk4id"), rem_station);
+    vis.Insert(std::string("correlation_date"), std::string("2025-01-01T00:00:00"));
+    vis.Insert(std::string("root_code"), root_code);
+    vis.Insert(std::string("origin"), std::string("simulated"));
+    vis.Insert(std::string("start"), start_time);
+    vis.Insert(std::string("stop"), start_time + num_aps * ap_length);
+    vis.Insert(std::string("source"), source_name);
 
+    // Tag visibility axes
+    auto* vpolprod_axis = &(std::get< POLPROD_AXIS >(vis));
+    vpolprod_axis->Insert(std::string("name"), std::string("polarization_product"));
 
+    auto* vch_axis = &(std::get< CHANNEL_AXIS >(vis));
+    vch_axis->Insert(std::string("name"), std::string("channel"));
+    vch_axis->Insert(std::string("units"), std::string("MHz"));
 
+    // Add per-channel label objects
+    for(int ch = 0; ch < num_channels; ++ch)
+    {
+        mho_json ch_label;
+        ch_label["sky_freq"] = channel_frequencies[ch];
+        ch_label["bandwidth"] = channel_width;
+        ch_label["net_sideband"] = std::string("U");    // upper sideband
+        ch_label["difx_freqindex"] = ch;
+        ch_label["channel"] = ch;
+        ch_label["frequency_band"] = std::string("X");  // dummy band label
+        ch_label["mk4_channel_id"] = std::string("sim") + std::to_string(ch);
+        vch_axis->SetLabelObject(ch_label, ch);
 
+        // Same labels on the weight channel axis
+        wch_axis->SetLabelObject(ch_label, ch);
+    }
 
+    auto* vap_axis = &(std::get< TIME_AXIS >(vis));
+    vap_axis->Insert(std::string("name"), std::string("time"));
+    vap_axis->Insert(std::string("units"), std::string("s"));
 
+    auto* vsp_axis = &(std::get< FREQ_AXIS >(vis));
+    vsp_axis->Insert(std::string("name"), std::string("frequency"));
+    vsp_axis->Insert(std::string("units"), std::string("MHz"));
 
+    // =========================================================
+    // Tag the weight container
+    // =========================================================
+    wt.Insert(std::string("name"), std::string("weights"));
+    wt.Insert(std::string("baseline"), baseline_name);
+    wt.Insert(std::string("baseline_shortname"), baseline_shortname);
+    wt.Insert(std::string("reference_station"), ref_station);
+    wt.Insert(std::string("remote_station"), rem_station);
+    wt.Insert(std::string("reference_station_name"), ref_station);
+    wt.Insert(std::string("remote_station_name"), rem_station);
+    wt.Insert(std::string("reference_station_mk4id"), ref_station);
+    wt.Insert(std::string("remote_station_mk4id"), rem_station);
+    wt.Insert(std::string("correlation_date"), std::string("2025-01-01T00:00:00"));
+    wt.Insert(std::string("root_code"), root_code);
+    wt.Insert(std::string("origin"), std::string("simulated"));
+    wt.Insert(std::string("start"), start_time);
+    wt.Insert(std::string("stop"), start_time + num_aps * ap_length);
+    wt.Insert(std::string("source"), source_name);
 
+    // Tag weight axes
+    wpolprod_axis->Insert(std::string("name"), std::string("polarization_product"));
+    wch_axis->Insert(std::string("name"), std::string("channel"));
+    wch_axis->Insert(std::string("units"), std::string("MHz"));
+    wap_axis->Insert(std::string("name"), std::string("time"));
+    wap_axis->Insert(std::string("units"), std::string("s"));
+    wsp_axis->Insert(std::string("name"), std::string("frequency"));
+    wsp_axis->Insert(std::string("units"), std::string("MHz"));
 
+    // =========================================================
+    // Construct the tags object
+    // =========================================================
+    MHO_ObjectTags tags;
+    tags.Insert(std::string("root_code"), root_code);
+    tags.Insert(std::string("baseline"), baseline_name);
+    tags.Insert(std::string("baseline_shortname"), baseline_shortname);
+    tags.Insert(std::string("reference_station"), ref_station);
+    tags.Insert(std::string("remote_station"), rem_station);
+    tags.Insert(std::string("reference_station_name"), ref_station);
+    tags.Insert(std::string("remote_station_name"), rem_station);
+    tags.Insert(std::string("reference_station_mk4id"), ref_station);
+    tags.Insert(std::string("remote_station_mk4id"), rem_station);
+    tags.Insert(std::string("correlation_date"), std::string("2025-01-01T00:00:00"));
+    tags.Insert(std::string("origin"), std::string("simulated"));
+    tags.Insert(std::string("name"), std::string("object_tags"));
+    tags.Insert(std::string("start"), start_time);
+    tags.Insert(std::string("stop"), start_time + num_aps * ap_length);
+    tags.Insert(std::string("source"), source_name);
 
+    // Attach UUIDs of the vis and weight objects to the tags
+    tags.AddObjectUUID(vis.GetObjectUUID());
+    tags.AddObjectUUID(wt.GetObjectUUID());
 
+    // Attach frequency band set and polarization product set
+    std::vector<std::string> fband_vec = {"X"};  // dummy band label
+    std::vector<std::string> pprod_vec = {polprod};
+    tags.Insert("frequency_band_set", fband_vec);
+    tags.Insert("polarization_product_set", pprod_vec);
 
-
+    // =========================================================
+    // Write to file
+    // =========================================================
+    MHO_BinaryFileInterface inter;
+    bool status = inter.OpenToWrite(output_file);
+    if(status)
+    {
+        inter.Write(tags, "tags");
+        inter.Write(vis, "vis");
+        inter.Write(wt, "weight");
+        inter.Close();
+        std::cout << "Wrote simulated data to: " << output_file << std::endl;
+    }
+    else
+    {
+        std::cerr << "Error: could not open output file: " << output_file << std::endl;
+        return 1;
+    }
 
     return 0;
 }
