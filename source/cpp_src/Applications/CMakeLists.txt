@@ -29,6 +29,7 @@ set(SOURCE_BASENAMES
     alist4
     fourfit4
     fringex4
+    dummy_vis
     #blingfit
 )
 
@@ -40,7 +41,7 @@ set(TEST_BASENAMES
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
-    if( "${BASENAME}" STREQUAL "fourfit4") 
+    if( "${BASENAME}" STREQUAL "fourfit4")
         target_compile_options( ${BASENAME} PUBLIC -DHOPS_BUILD_TIME=${BUILD_TIME})
     endif()
     target_link_libraries( ${BASENAME} ${HOPS_APP_LIBS})
