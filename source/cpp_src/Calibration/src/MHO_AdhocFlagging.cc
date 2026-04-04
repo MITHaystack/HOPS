@@ -368,9 +368,8 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
             fParameterStore->Set("/fringe/total_summed_weights", new_total);
             fParameterStore->Set("/config/total_naps", effective_naps);
         }
-        msg_debug("calibration",
-                  "MHO_AdhocFlagging: updated total_summed_weights = " << new_total
-                      << "  effective_naps = " << effective_naps << eom);
+        msg_debug("calibration", "MHO_AdhocFlagging: updated total_summed_weights = " << new_total << "  effective_naps = "
+                                                                                      << effective_naps << eom);
     }
 
     return true;
