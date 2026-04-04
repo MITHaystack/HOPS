@@ -252,10 +252,10 @@ int main(int argc, char** argv)
     int message_level = 0;
     std::vector< std::string > message_categories;
     std::string source_name = "SIMULATED";
-    std::string baseline_name = "AA";
-    std::string baseline_shortname = "AA";
+    std::string baseline_name = "Aa-Bb";
+    std::string baseline_shortname = "AB";
     std::string ref_station = "A";
-    std::string rem_station = "A";
+    std::string rem_station = "B";
     std::string root_code = "abcdef";
 
     // Remove help flag because it shortcuts all processing
@@ -283,7 +283,7 @@ int main(int argc, char** argv)
     app.add_option("--seed", random_seed, "random number generator seed (-1 for time-based)")->default_val(-1);
     app.add_option("-P,--polprod", polprod, "polarization product (e.g., XX, YY, XY, RR, LL)")->default_val("XX");
     app.add_option("--source", source_name, "source name")->default_val("SIMULATED");
-    app.add_option("--baseline", baseline_name, "baseline name (e.g. GE)")->default_val("AA");
+    //app.add_option("--baseline", baseline_shortname, "baseline baseline_shortname (e.g. GE)")->default_val("AB");
     app.add_option("--root-code", root_code, "root code string")->default_val("abcdef");
 
     app.add_option("-M,--message-categories", message_categories,
@@ -361,11 +361,10 @@ int main(int argc, char** argv)
     double residual_phase_rad = residual_phase * M_PI / 180.0;
 
     // Derive station names from baseline
-    if(baseline_name.size() >= 2)
+    if(baseline_shortname.size() == 2)
     {
-        ref_station = std::string(1, baseline_name[0]);
-        rem_station = std::string(1, baseline_name[1]);
-        baseline_shortname = baseline_name;
+        ref_station = std::string(1, baseline_shortname[0]);
+        rem_station = std::string(1, baseline_shortname[1]);
     }
 
     std::cout << "\n=== Simulation Parameters ===" << std::endl;
@@ -461,6 +460,11 @@ int main(int argc, char** argv)
     // =========================================================
     // Tag the visibility container
     // =========================================================
+
+    std::cout<<"baseline_name"<<baseline_name<<std::endl;
+    std::cout<<"ref station"<<ref_station<<std::endl;
+    std::cout<<"rem station"<<rem_station<<std::endl;
+
     vis.Insert(std::string("name"), std::string("visibilities"));
     vis.Insert(std::string("baseline"), baseline_name);
     vis.Insert(std::string("baseline_shortname"), baseline_shortname);
