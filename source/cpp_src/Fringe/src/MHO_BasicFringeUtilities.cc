@@ -266,9 +266,10 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     double sbavg = calculate_sbavg(conStore, paramStore);
     double sbd_error = MHO_BasicFringeInfo::calculate_sbd_error(sbd_sep, snr, sbavg);
 
-    // Use integration_time (effective time of non-flagged APs) to match legacy fourfit behaviour,
-    // where rate error scales with the actual data used, not the total scan length.
-    double drate_error = MHO_BasicFringeInfo::calculate_drate_error_v2(snr, ref_freq, integration_time);
+    // Use integer effective-AP count (updated by adhoc_flagging when active) to match the
+    // legacy fourfit rate-error formula: temp = total_ap * acc_period / channels.
+    int total_naps = paramStore->GetAs< int >("/config/total_naps");
+    double drate_error = MHO_BasicFringeInfo::calculate_drate_error_v1(snr, ref_freq, total_naps, ap_delta);
 
     paramStore->Set("/fringe/mbd_error", mbd_error);
     paramStore->Set("/fringe/mbd_no_ion_error", mbd_no_ion_error);

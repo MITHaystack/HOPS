@@ -343,20 +343,34 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
     {
         msg_debug("calibration", "MHO_AdhocFlagging: zeroed " << n_zeroed << " (channel, AP) weight entries." << eom);
 
-        // Recompute and propagate total_summed_weights to reflect the flagged APs.
-        // This must happen *before* passband/notches rescale weights, so the integration
-        // time counts only unflagged AP time slots (matching legacy fourfit behaviour).
+        // Recompute total_summed_weights and the effective AP count after zeroing flagged APs.
+        // Both must happen *before* passband/notches rescale weights, so that integration
+        // time and rate-error count only unflagged AP time slots (matching legacy fourfit).
         double new_total = 0.0;
-        for(auto it = in->begin(); it != in->end(); ++it)
+        int effective_naps = 0;
+        for(std::size_t t = 0; t < nap; t++)
         {
-            new_total += *it;
+            double ap_sum = 0.0;
+            for(std::size_t pp2 = 0; pp2 < npp; pp2++)
+                for(std::size_t ch2 = 0; ch2 < nch; ch2++)
+                {
+                    auto freq_view = in->SubView(pp2, ch2, t);
+                    for(auto it = freq_view.begin(); it != freq_view.end(); ++it)
+                        ap_sum += *it;
+                }
+            new_total += ap_sum;
+            if(ap_sum > 0.0)
+                effective_naps++;
         }
         in->Insert("total_summed_weights", new_total);
         if(fParameterStore != nullptr)
         {
             fParameterStore->Set("/fringe/total_summed_weights", new_total);
+            fParameterStore->Set("/config/total_naps", effective_naps);
         }
-        msg_debug("calibration", "MHO_AdhocFlagging: updated total_summed_weights = " << new_total << eom);
+        msg_debug("calibration",
+                  "MHO_AdhocFlagging: updated total_summed_weights = " << new_total
+                      << "  effective_naps = " << effective_naps << eom);
     }
 
     return true;
