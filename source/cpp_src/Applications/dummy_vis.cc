@@ -27,7 +27,7 @@ using namespace hops;
 // using visibility_element_type = std::complex<double>;
 // using visibility_type = MHO_TableContainer< visibility_element_type, baseline_axis_pack >;
 
-
+//canned vex string, we need to re-vamp this
 std::string GetVexString()
 {
     std::string dummy_vex =
@@ -719,10 +719,15 @@ int main(int argc, char** argv)
     }
 
 
+    std::string vex_string = GetVexString();
+    mho_json vex_obj = mho_json::parse(vex_string);
 
-
-
-
+    //write out the 'ovex'/'vex' json object as a json file
+    std::string root_file = "./dummy.";
+    root_file += root_code + "." + "root.json";
+    std::ofstream outFile(root_file.c_str(), std::ofstream::out);
+    outFile << vex_obj.dump(2);
+    outFile.close();
 
 
     return 0;
