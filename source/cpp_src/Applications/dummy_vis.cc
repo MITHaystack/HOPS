@@ -707,7 +707,7 @@ int main(int argc, char** argv)
         if(status2)
         {
             inter2.Write(sta, "sta");
-            inter2.Write(tags, "tags");
+            //inter2.Write(tags, "tags");
             inter2.Close();
             std::cout << "Wrote station data to: " << station_file << std::endl;
         }
