@@ -15,6 +15,8 @@
 #include "MHO_BinaryFileInterface.hh"
 #include "MHO_ObjectTags.hh"
 
+#include "MHO_Clock.hh"
+
 
 #include <cmath>
 #include <complex>
@@ -40,7 +42,6 @@ void GenerateSimulatedVisibilities(
     // Time setup
     int num_aps,
     double ap_length_sec,  // seconds
-    double start_time_sec, // seconds
     // Noise
     double system_noise_rms,
     int random_seed,
@@ -227,6 +228,64 @@ void GenerateSimulatedVisibilities(
 }
 
 
+void GenerateStationData(station_coord_type& st_coord, double duration, std::string model_start)
+{
+    std::size_t n_order = 6;
+    std::size_t n_coord = 7; //note we do not manufacture a phase-spline (e.g. type_302)
+    std::size_t n_poly = 1; //nspline intervals in d2m4
+
+    st_coord.Resize(n_coord, n_poly, n_order + 1); //p = n_order is included!
+
+    //label the coordinate axis
+    std::get< COORD_AXIS >(st_coord)[0] = "delay";
+    std::get< COORD_AXIS >(st_coord)[1] = "azimuth";
+    std::get< COORD_AXIS >(st_coord)[2] = "elevation";
+    std::get< COORD_AXIS >(st_coord)[3] = "parallactic_angle";
+    std::get< COORD_AXIS >(st_coord)[4] = "u";
+    std::get< COORD_AXIS >(st_coord)[5] = "v";
+    std::get< COORD_AXIS >(st_coord)[6] = "w";
+
+    //label the spline interval axis
+    for(std::size_t i = 0; i < n_poly; i++)
+    {
+        //duration should be scan duration for this
+        std::get< INTERVAL_AXIS >(st_coord)[i] = i * duration;
+    }
+
+    //label polynomial order axis
+    for(std::size_t i = 0; i <= n_order; i++)
+    {
+        std::get< COEFF_AXIS >(st_coord)[i] = i;
+    }
+
+    for(std::size_t i = 0; i < n_poly; i++)
+    {
+        for(std::size_t p = 0; p <= n_order; p++)
+        {
+            st_coord.at(0, i, p) = 0.0; //delay;
+            st_coord.at(1, i, p) = 0.0; //az;
+            st_coord.at(2, i, p) = 0.0; // el;
+            st_coord.at(3, i, p) = 0.0; //par;
+            st_coord.at(4, i, p) = 0.0; //u;
+            st_coord.at(5, i, p) = 0.0; //v;
+            st_coord.at(6, i, p) = 0.0; //w;
+        }
+    }
+
+    st_coord.Insert(std::string("model_interval"), duration);
+    st_coord.Insert(std::string("model_start"), model_start);
+    st_coord.Insert(std::string("mount"), "dummy");
+    st_coord.Insert(std::string("X"), 0.0);
+    st_coord.Insert(std::string("Y"), 0.0);
+    st_coord.Insert(std::string("Z"), 0.0);
+
+    //store n_poly as int
+    int nsplines = n_poly;
+    st_coord.Insert(std::string("nsplines"), nsplines);
+}
+
+
+
 int main(int argc, char** argv)
 {
     CLI::App app{"dummy_vis"};
@@ -244,11 +303,10 @@ int main(int argc, char** argv)
     int num_subchannels = 32;
     int num_aps = 120;
     double ap_length = 2.0;
-    double start_time = 0.0;
     double snr = 10.0;
     double system_noise_rms = -1.0;
     int random_seed = -1;
-    std::string polprod = "XX";
+    std::string polprod = "RR";
     int message_level = 0;
     std::vector< std::string > message_categories;
     std::string source_name = "SIMULATED";
@@ -256,7 +314,11 @@ int main(int argc, char** argv)
     std::string baseline_shortname = "AB";
     std::string ref_station = "A";
     std::string rem_station = "B";
+    std::string ref_station_name = "DUMMY_A";
+    std::string rem_station_name = "DUMMY_B";
     std::string root_code = "abcdef";
+    std::string start_time = "2025y001d00h00m00s";
+
 
     // Remove help flag because it shortcuts all processing
     app.set_help_flag();
@@ -277,7 +339,7 @@ int main(int argc, char** argv)
     app.add_option("-s,--subchannels", num_subchannels, "number of sub-channels (lags) per channel")->default_val(32);
     app.add_option("-n,--num-aps", num_aps, "total number of accumulation periods")->default_val(120);
     app.add_option("-t,--ap-length", ap_length, "accumulation period length in seconds")->default_val(2.0);
-    app.add_option("-T,--start-time", start_time, "start time in seconds")->default_val(0.0);
+    // app.add_option("-T,--start-time", start_time, "start time in seconds")->default_val(0.0);
     app.add_option("--snr", snr, "signal-to-noise ratio")->default_val(10.0);
     app.add_option("--noise-rms", system_noise_rms, "system noise RMS (if specified, overrides SNR parameter)");
     app.add_option("--seed", random_seed, "random number generator seed (-1 for time-based)")->default_val(-1);
@@ -322,6 +384,13 @@ int main(int argc, char** argv)
         MHO_Message::GetInstance().LimitToKeySet();
     }
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
+
+    //start, stop, duration
+    int64_t duration_ns = ap_length * num_aps * SEC_TO_NANOSEC;
+    double duration = duration_ns/SEC_TO_NANOSEC;
+    auto start_tp = hops_clock::from_vex_format(start_time);
+    auto stop_tp = start_tp + hops_clock::duration(duration_ns);
+    std::string stop_time = hops_clock::to_vex_format(stop_tp);
 
     // Auto-generate channel frequencies if not provided
     if(channel_frequencies.empty())
@@ -402,7 +471,6 @@ int main(int argc, char** argv)
         num_subchannels,
         num_aps,
         ap_length,
-        start_time,
         system_noise_rms,
         random_seed,
         ref_freq_mhz
@@ -461,6 +529,7 @@ int main(int argc, char** argv)
     // Tag the visibility container
     // =========================================================
 
+
     std::cout<<"baseline_name"<<baseline_name<<std::endl;
     std::cout<<"ref station"<<ref_station<<std::endl;
     std::cout<<"rem station"<<rem_station<<std::endl;
@@ -474,11 +543,11 @@ int main(int argc, char** argv)
     vis.Insert(std::string("remote_station_name"), rem_station);
     vis.Insert(std::string("reference_station_mk4id"), ref_station);
     vis.Insert(std::string("remote_station_mk4id"), rem_station);
-    vis.Insert(std::string("correlation_date"), std::string("2025-01-01T00:00:00"));
+    vis.Insert(std::string("correlation_date"), start_time);
     vis.Insert(std::string("root_code"), root_code);
     vis.Insert(std::string("origin"), std::string("simulated"));
     vis.Insert(std::string("start"), start_time);
-    vis.Insert(std::string("stop"), start_time + num_aps * ap_length);
+    vis.Insert(std::string("stop"), stop_time);
     vis.Insert(std::string("source"), source_name);
 
     // Tag visibility axes
@@ -530,7 +599,7 @@ int main(int argc, char** argv)
     wt.Insert(std::string("root_code"), root_code);
     wt.Insert(std::string("origin"), std::string("simulated"));
     wt.Insert(std::string("start"), start_time);
-    wt.Insert(std::string("stop"), start_time + num_aps * ap_length);
+    wt.Insert(std::string("stop"), stop_time);
     wt.Insert(std::string("source"), source_name);
 
     // Tag weight axes
@@ -551,15 +620,15 @@ int main(int argc, char** argv)
     tags.Insert(std::string("baseline_shortname"), baseline_shortname);
     tags.Insert(std::string("reference_station"), ref_station);
     tags.Insert(std::string("remote_station"), rem_station);
-    tags.Insert(std::string("reference_station_name"), ref_station);
+    tags.Insert(std::string("reference_station_name"), ref_station_name);
     tags.Insert(std::string("remote_station_name"), rem_station);
-    tags.Insert(std::string("reference_station_mk4id"), ref_station);
+    tags.Insert(std::string("reference_station_mk4id"), ref_station_name);
     tags.Insert(std::string("remote_station_mk4id"), rem_station);
     tags.Insert(std::string("correlation_date"), std::string("2025-01-01T00:00:00"));
     tags.Insert(std::string("origin"), std::string("simulated"));
     tags.Insert(std::string("name"), std::string("object_tags"));
     tags.Insert(std::string("start"), start_time);
-    tags.Insert(std::string("stop"), start_time + num_aps * ap_length);
+    tags.Insert(std::string("stop"), stop_time);
     tags.Insert(std::string("source"), source_name);
 
     // Attach UUIDs of the vis and weight objects to the tags
@@ -590,6 +659,39 @@ int main(int argc, char** argv)
         std::cerr << "Error: could not open output file: " << output_file << std::endl;
         return 1;
     }
+
+    //reference and remote station data
+    for(int stid = 0; stid < 2; stid++)
+    {
+        std::string station_file;
+        if(stid == 0){station_file = "A.sta";}
+        if(stid == 1){station_file = "B.sta";}
+
+        station_coord_type sta;
+        GenerateStationData(sta, duration, start_time);
+
+        MHO_BinaryFileInterface inter2;
+        bool status2 = inter2.OpenToWrite(station_file);
+        if(status2)
+        {
+            inter2.Write(sta, "sta");
+            inter2.Write(tags, "tags");
+            inter2.Close();
+            std::cout << "Wrote station data to: " << station_file << std::endl;
+        }
+        else
+        {
+            std::cerr << "Error: could not open output file: " << station_file << std::endl;
+            return 1;
+        }
+    }
+
+
+
+
+
+
+
 
     return 0;
 }
