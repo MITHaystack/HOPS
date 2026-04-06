@@ -188,6 +188,7 @@ void GenerateSimulatedVisibilities(
                     source_noise_re.GetSample(dummy_time, samp_re);
                     source_noise_im.GetSample(dummy_time, samp_im);
                     std::complex<double> source_signal(samp_re, samp_im);
+                    source_signal *= 1.0/std::abs(source_signal);//normalize
 
                     // -------------------------------------------------
                     // Step B: Get fringe rotation phasor and conjugate
@@ -291,8 +292,8 @@ int main(int argc, char** argv)
     CLI::App app{"dummy_vis"};
 
     double fringe_amplitude = 1.0;
-    std::string output_file = "simulated_vis.dat";
-    double residual_delay = 0.0;
+    std::string output_file = "AB.Aa-Bb.abcdef.cor";
+    double residual_delay = 1e-5;
     double residual_delay_rate = 0.0;
     double residual_phase = 0.0;
     int num_channels = 16;
@@ -301,12 +302,12 @@ int main(int argc, char** argv)
     double ref_freq_mhz = 10000.0;
     double start_freq = 8000.0;
     int num_subchannels = 32;
-    int num_aps = 120;
-    double ap_length = 2.0;
-    double snr = 10.0;
+    int num_aps = 30;
+    double ap_length = 1.0;
+    double snr = 100.0;
     double system_noise_rms = -1.0;
     int random_seed = -1;
-    std::string polprod = "RR";
+    std::string polprod = "XX";
     int message_level = 0;
     std::vector< std::string > message_categories;
     std::string source_name = "SIMULATED";
@@ -326,10 +327,10 @@ int main(int argc, char** argv)
 
     app.add_option("-o,--output", output_file, "name of output file for simulated visibilities");
     app.add_option("-A,--amplitude", fringe_amplitude, "fringe amplitude (correlated flux density)")->default_val(1.0);
-    app.add_option("-d,--delay", residual_delay, "residual delay in microseconds")->default_val(0.0);
+    app.add_option("-d,--delay", residual_delay, "residual delay in microseconds")->default_val(1e-5);
     app.add_option("-r,--delay-rate", residual_delay_rate, "residual delay-rate in microseconds/second")->default_val(0.0);
     app.add_option("-p,--phase", residual_phase, "residual phase offset in degrees")->default_val(0.0);
-    app.add_option("-c,--channels", num_channels, "total number of frequency channels")->default_val(16);
+    app.add_option("-c,--channels", num_channels, "total number of frequency channels")->default_val(32);
     app.add_option("-w,--channel-width", channel_width, "channel width in MHz")->default_val(32.0);
     app.add_option("-R,--reference-frequency", ref_freq_mhz, "reference frequency in MHz")->default_val(10000.0);
     app.add_option("-f,--frequencies", channel_frequencies,
@@ -337,10 +338,10 @@ int main(int argc, char** argv)
     app.add_option("-F,--start-freq", start_freq, "starting frequency in MHz (if frequencies not explicitly given)")
         ->default_val(8000.0);
     app.add_option("-s,--subchannels", num_subchannels, "number of sub-channels (lags) per channel")->default_val(32);
-    app.add_option("-n,--num-aps", num_aps, "total number of accumulation periods")->default_val(120);
-    app.add_option("-t,--ap-length", ap_length, "accumulation period length in seconds")->default_val(2.0);
+    app.add_option("-n,--num-aps", num_aps, "total number of accumulation periods")->default_val(30);
+    app.add_option("-t,--ap-length", ap_length, "accumulation period length in seconds")->default_val(1.0);
     // app.add_option("-T,--start-time", start_time, "start time in seconds")->default_val(0.0);
-    app.add_option("--snr", snr, "signal-to-noise ratio")->default_val(10.0);
+    app.add_option("--snr", snr, "signal-to-noise ratio")->default_val(100.0);
     app.add_option("--noise-rms", system_noise_rms, "system noise RMS (if specified, overrides SNR parameter)");
     app.add_option("--seed", random_seed, "random number generator seed (-1 for time-based)")->default_val(-1);
     app.add_option("-P,--polprod", polprod, "polarization product (e.g., XX, YY, XY, RR, LL)")->default_val("XX");
@@ -664,11 +665,32 @@ int main(int argc, char** argv)
     for(int stid = 0; stid < 2; stid++)
     {
         std::string station_file;
-        if(stid == 0){station_file = "A.sta";}
-        if(stid == 1){station_file = "B.sta";}
+
 
         station_coord_type sta;
         GenerateStationData(sta, duration, start_time);
+
+        if(stid == 0)
+        {
+            station_file = "A.Aa.abcdef.sta";
+            //add some tags to the station coord data
+            sta.Insert(std::string("station_code"), "Aa");
+            sta.Insert(std::string("station_mk4id"), "A");
+            sta.Insert(std::string("station_name"), "DUMMY_A");
+            sta.Insert(std::string("root_code"), root_code);
+            sta.Insert(std::string("name"), std::string("station_data"));
+        }
+
+        if(stid == 1)
+        {
+            station_file = "B.Ba.abcdef.sta";
+            //add some tags to the station coord data
+            sta.Insert(std::string("station_code"), "Bb");
+            sta.Insert(std::string("station_mk4id"), "B");
+            sta.Insert(std::string("station_name"), "DUMMY_B");
+            sta.Insert(std::string("root_code"), root_code);
+            sta.Insert(std::string("name"), std::string("station_data"));
+        }
 
         MHO_BinaryFileInterface inter2;
         bool status2 = inter2.OpenToWrite(station_file);

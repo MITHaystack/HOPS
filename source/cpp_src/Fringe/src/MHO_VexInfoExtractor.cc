@@ -63,6 +63,7 @@ void MHO_VexInfoExtractor::extract_clock_model(const mho_json& vexInfo, MHO_Para
     //get the clock sections for the reference and remote stations
     std::string ref_clock_key = "/$CLOCK/" + paramStore->GetAs< std::string >("/ref_station/clock_ref");
 
+    std::cout<<"ref_clock key = "<<ref_clock_key<<std::endl;
     mho_json::json_pointer ref_clock_pointer(ref_clock_key);
     auto ref_clock = vexInfo.at(ref_clock_pointer);
     if(!ref_clock.contains("clock_early"))
@@ -301,6 +302,9 @@ void MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_Paramet
             std::string site_name = site->at("site_name").get< std::string >();
             std::string site_type = site->at("site_type").get< std::string >();
 
+            std::cout<<"mk4_id "<<mk4id<<std::endl;
+            std::cout<<"site_id = "<<site_id<<std::endl;
+
             double x = site->at("site_position")["x"]["value"].get< double >();
             double y = site->at("site_position")["y"]["value"].get< double >();
             double z = site->at("site_position")["z"]["value"].get< double >();
@@ -361,6 +365,12 @@ void MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_Paramet
         std::string site_ref = code;
         std::string clock_ref = code;
         std::string antenna_ref = code;
+        std::cout<<"antenna code = "<<code<<std::endl;
+        std::cout<<"clock ref = "<<clock_ref<<std::endl;
+
+        std::cout<<"ref_id = "<<ref_id<<std::endl;
+        std::cout<<"rem_id = "<<rem_id<<std::endl;
+
         if(code == ref_id)
         {
             if(station->contains("$SITE"))
