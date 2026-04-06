@@ -230,7 +230,7 @@ void GenerateSimulatedVisibilities(
                     // -------------------------------------------------
                     // Step D: Store in container
                     // -------------------------------------------------
-                    vis(pp, ch, ap, sc) = correlated_vis + 50.0*noise;
+                    vis(pp, ch, ap, sc) = correlated_vis + noise;
                 }
             }
         }
@@ -339,7 +339,7 @@ int main(int argc, char** argv)
     app.add_option("-A,--amplitude", fringe_amplitude, "fringe amplitude (correlated flux density)")->default_val(1.0);
     app.add_option("-d,--delay", residual_delay, "residual delay in microseconds")->default_val(1e-5);
     app.add_option("-r,--delay-rate", residual_delay_rate, "residual delay-rate in microseconds/second")->default_val(0.0);
-    app.add_option("-p,--phase", residual_phase, "residual phase offset in degrees")->default_val(0.0);
+    app.add_option("-p,--phase", residual_phase, "residual phase offset in degrees")->default_val(45.0);
     app.add_option("-c,--channels", num_channels, "total number of frequency channels")->default_val(32);
     app.add_option("-w,--channel-width", channel_width, "channel width in MHz")->default_val(32.0);
     app.add_option("-R,--reference-frequency", ref_freq_mhz, "reference frequency in MHz")->default_val(10000.0);
