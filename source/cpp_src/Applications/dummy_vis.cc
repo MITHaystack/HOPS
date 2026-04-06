@@ -194,10 +194,11 @@ void GenerateSimulatedVisibilities(
                     // -------------------------------------------------
                     // Step A: Generate correlated source signal sample
                     // -------------------------------------------------
-                    source_noise_re.GetSample(dummy_time, samp_re);
-                    source_noise_im.GetSample(dummy_time, samp_im);
-                    std::complex<double> source_signal(samp_re, samp_im);
-                    source_signal *= 1.0/std::abs(source_signal);//normalize
+                    // source_noise_re.GetSample(dummy_time, samp_re);
+                    // source_noise_im.GetSample(dummy_time, samp_im);
+                    // std::complex<double> source_signal(samp_re, samp_im);
+                    // source_signal *= 1.0/std::abs(source_signal);//normalize
+                    std::complex<double> source_signal(1.0, 0.0);
 
                     // -------------------------------------------------
                     // Step B: Get fringe rotation phasor and conjugate
