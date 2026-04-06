@@ -230,7 +230,7 @@ void GenerateSimulatedVisibilities(
                     // -------------------------------------------------
                     // Step D: Store in container
                     // -------------------------------------------------
-                    vis(pp, ch, ap, sc) = correlated_vis + noise;
+                    vis(pp, ch, ap, sc) = correlated_vis + 50.0*noise;
                 }
             }
         }
