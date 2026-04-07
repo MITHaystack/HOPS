@@ -211,14 +211,27 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
     // Read the baseline filter; "??" means all baselines
     std::string baseline = paramStore->GetAs< std::string >("/cmdline/baseline");
 
-    // Create a unique temp directory under /tmp
-    char tmp_buf[] = "/tmp/hops_mk4_XXXXXX";
-    if(mkdtemp(tmp_buf) == nullptr)
+    // Create a unique temp directory, preferring RAM-backed /dev/shm (tmpfs) to avoid disk I/O,
+    // falling back to /tmp if /dev/shm is not available.
+    std::string temp_root;
     {
-        msg_fatal("fringe", "convert_mk4_input: could not create temporary directory under /tmp" << eom);
-        return "";
+        char shm_buf[] = "/dev/shm/hops_mk4_XXXXXX";
+        if(mkdtemp(shm_buf) != nullptr)
+        {
+            temp_root = shm_buf;
+        }
+        else
+        {
+            char tmp_buf[] = "/tmp/hops_mk4_XXXXXX";
+            if(mkdtemp(tmp_buf) == nullptr)
+            {
+                msg_fatal("fringe", "convert_mk4_input: could not create a temporary directory" << eom);
+                return "";
+            }
+            msg_warn("fringe", "convert_mk4_input: /dev/shm unavailable, using /tmp for mark4 conversion" << eom);
+            temp_root = tmp_buf;
+        }
     }
-    std::string temp_root(tmp_buf);
 
     int dir_type = MHO_MK4ScanConverter::DetermineDirectoryType(input_dir);
 

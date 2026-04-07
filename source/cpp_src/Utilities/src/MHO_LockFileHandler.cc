@@ -28,8 +28,9 @@ MHO_LockFileHandler* MHO_LockFileHandler::fInstance = nullptr;
 void MHO_LockFileHandler::HandleSignal(int signal_value)
 {
     MHO_LockFileHandler::GetInstance().RemoveWriteLock();
-    signal(signal_value, SIG_DFL); //reset the handler for this particular signal to default
-    kill(getpid(), signal_value);  //re-send the signal to this process
+    // Call exit() so that static-duration destructors (e.g. temp-dir cleanup) run.
+    // Use 128 + signal_value to preserve the conventional shell exit code for signal termination.
+    exit(128 + signal_value);
 }
 
 //set the write directory
