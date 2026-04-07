@@ -240,7 +240,8 @@ void MHO_MK4ScanConverter::ConvertStation(const std::string& root_file, const st
     delete st_data;
 }
 
-void MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& out_dir)
+void MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::string& out_dir,
+                                       const std::string& baseline_filter)
 {
     //directory interface
     MHO_DirectoryInterface dirInterface;
@@ -318,12 +319,59 @@ void MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::str
         msg_error("mk4interface", "could not convert root file: " << root_file << eom);
     }
 
+    // Determine the 2-char mk4 ID pair to filter on (e.g. "GE").
+    // baseline_filter may be:
+    //   "??"    -> convert all baselines
+    //   "GE"    -> 2-char mk4 ID pair, match directly
+    //   "Gs-Wf" -> '-'-separated station codes, reverse-map to mk4 IDs
+    std::string mk4_pair_filter = baseline_filter;
+    if(baseline_filter.find('-') != std::string::npos)
+    {
+        // Split "Gs-Wf" into ref and rem station codes, then reverse-map to mk4 IDs
+        std::size_t dash = baseline_filter.find('-');
+        std::string ref_code = baseline_filter.substr(0, dash);
+        std::string rem_code = baseline_filter.substr(dash + 1);
+        std::string ref_mk4id = "";
+        std::string rem_mk4id = "";
+        for(auto& kv : mk4id2station)
+        {
+            if(kv.second == ref_code) { ref_mk4id = kv.first; }
+            if(kv.second == rem_code) { rem_mk4id = kv.first; }
+        }
+        if(ref_mk4id.empty() || rem_mk4id.empty())
+        {
+            msg_warn("mk4interface",
+                     "could not resolve station codes '" << ref_code << "', '" << rem_code
+                                                         << "' to mk4 IDs; converting all baselines." << eom);
+            mk4_pair_filter = "??";
+        }
+        else
+        {
+            mk4_pair_filter = ref_mk4id + rem_mk4id;
+        }
+    }
+
+    // Derive the set of single-char mk4 IDs needed for station file filtering
+    std::set< std::string > station_id_filter;
+    if(mk4_pair_filter != "??" && mk4_pair_filter.size() == 2)
+    {
+        station_id_filter.insert(std::string(1, mk4_pair_filter[0]));
+        station_id_filter.insert(std::string(1, mk4_pair_filter[1]));
+    }
+
     dirInterface.GetCorelFiles(allFiles, corelFiles);
     for(auto it = corelFiles.begin(); it != corelFiles.end(); it++)
     {
         std::string st_pair, root_code;
         std::string input_basename = dirInterface.GetBasename(*it);
         dirInterface.SplitCorelFileBasename(input_basename, st_pair, root_code);
+
+        // Skip if this corel file doesn't match the requested baseline
+        if(mk4_pair_filter != "??" && st_pair != mk4_pair_filter)
+        {
+            msg_debug("mk4interface", "skipping corel file (baseline filter): " << *it << eom);
+            continue;
+        }
 
         //figure out the 2 char station codes
         std::string ref_mk4id = std::string(1, st_pair[0]);
@@ -349,6 +397,13 @@ void MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::str
         std::string st, root_code;
         std::string input_basename = dirInterface.GetBasename(*it);
         dirInterface.SplitStationFileBasename(input_basename, st, root_code);
+
+        // Skip if this station is not part of the requested baseline
+        if(!station_id_filter.empty() && station_id_filter.find(st) == station_id_filter.end())
+        {
+            msg_debug("mk4interface", "skipping station file (baseline filter): " << *it << eom);
+            continue;
+        }
 
         //figure out the 2 char station code
         std::string sta_code = st;

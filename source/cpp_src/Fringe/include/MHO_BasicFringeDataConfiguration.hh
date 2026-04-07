@@ -232,6 +232,24 @@ class MHO_BasicFringeDataConfiguration
          * @note This is a static function.
          */
         static mho_json ConvertProfileEvents(std::vector< MHO_ProfileEvent >& events);
+
+        /**
+         * @brief Converts a mark4 scan or experiment directory to HOPS format in a temporary directory,
+         *        then updates '/cmdline/directory' in paramStore to point at the converted output.
+         *
+         * @param paramStore Pointer to MHO_ParameterStore containing '/cmdline/directory'
+         * @return Path of the created temp directory (caller is responsible for cleanup), or empty string on failure.
+         * @note This is a static function. Uses POSIX mkdtemp; requires a Linux/POSIX system.
+         */
+        static std::string convert_mk4_input(MHO_ParameterStore* paramStore);
+
+        /**
+         * @brief Recursively removes the temporary directory created by convert_mk4_input.
+         *
+         * @param temp_dir Path returned by convert_mk4_input. No-op if empty.
+         * @note This is a static function. Uses POSIX nftw; requires a Linux/POSIX system.
+         */
+        static void cleanup_mk4_temp_dir(const std::string& temp_dir);
 };
 
 } // namespace hops

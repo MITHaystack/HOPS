@@ -42,14 +42,15 @@ set( FRINGE_SOURCEFILES
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #list of c++ libraries
-set(FRINGE_LIBS 
-    MHO_Message 
-    MHO_Math 
-    MHO_Utilities 
-    MHO_Operators 
-    MHO_Containers 
-    MHO_Calibration 
-    MHO_Control 
+set(FRINGE_LIBS
+    MHO_Message
+    MHO_Math
+    MHO_Utilities
+    MHO_Operators
+    MHO_Containers
+    MHO_Calibration
+    MHO_MK4Interface
+    MHO_Control
     MHO_Initialization
 )
 

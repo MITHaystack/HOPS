@@ -79,8 +79,33 @@ int main(int argc, char** argv)
     //flattened pass-info parameters (these are flattened into a single string primarily for MPI)
     std::string cscans, croots, cbaselines, cfgroups, cpolprods;
 
+    //RAII guard for the temp directory created by -K conversion.
+    //Declared static so its destructor is called even when std::exit() is used.
+    //makes sure the tmp files are cleaned up if they exist
+    struct MK4TempDirGuard
+    {
+        std::string path;
+        ~MK4TempDirGuard() { MHO_BasicFringeDataConfiguration::cleanup_mk4_temp_dir(path); }
+    };
+    static MK4TempDirGuard mk4_guard;
+
     MPI_SINGLE_PROCESS
     {
+        bool mk4_input = cmdline_params.GetAs< bool >("/cmdline/mk4format_input");
+        if(mk4_input)
+        {
+            //this is going to be slow, especially if we are trying to run on a whole experiment
+            //the obvious solution/alternative is for the user to first run mark42hops
+            //and then run on the hops4 files, not to convert mark4's on-the-fly in a temp directory
+            //but we provide this for convenience
+            mk4_guard.path = MHO_BasicFringeDataConfiguration::convert_mk4_input(&cmdline_params);
+            if(mk4_guard.path.empty())
+            {
+                msg_fatal("main", "mark4 input conversion failed, exiting." << eom);
+                std::exit(1);
+            }
+        }
+
         msg_debug("main", "determining the data passes" << eom);
         MHO_BasicFringeDataConfiguration::determine_passes(&cmdline_params, cscans, croots, cbaselines, cfgroups, cpolprods);
         msg_debug("main", "done determining the data passes" << eom);

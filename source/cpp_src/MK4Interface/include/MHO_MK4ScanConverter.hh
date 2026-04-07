@@ -76,7 +76,18 @@ class MHO_MK4ScanConverter
          * @param output_dir Output directory for processed files
          * @note This is a static function.
          */
-        static void ProcessScan(const std::string& input_dir, const std::string& output_dir);
+        /**
+         * @brief Processes scan data from input directory (MK4 format) to output directory (HOPS4 format),
+         *        optionally filtering to only the files needed for a specific baseline.
+         *
+         * @param input_dir Input directory containing scan files
+         * @param output_dir Output directory for processed files
+         * @param baseline_filter Baseline to convert (e.g. "GE" for mk4 IDs, "Gs-Wf" for station codes,
+         *                        or "??" to convert all baselines). Default is "??" (convert all).
+         * @note This is a static function.
+         */
+        static void ProcessScan(const std::string& input_dir, const std::string& output_dir,
+                                const std::string& baseline_filter = "??");
 
         static void SetMark4MessageLevel(int msg_level);
 
