@@ -98,7 +98,8 @@ void GenerateSimulatedVisibilities(
     double subchan_width_mhz = channel_width_mhz / static_cast<double>(num_subchannels);
     for(int sc = 0; sc < num_subchannels; ++sc)
     {
-        freq_axis->at(sc) = -channel_width_mhz / 2.0 + (sc + 0.5) * subchan_width_mhz;
+        // freq_axis->at(sc) = -channel_width_mhz / 2.0 + (sc + 0.5) * subchan_width_mhz;
+        freq_axis->at(sc) = sc * subchan_width_mhz;
     }
 
     // =========================================================
@@ -426,7 +427,11 @@ int main(int argc, char** argv)
     // Calculate system noise RMS if not specified
     if(system_noise_rms < 0.0)
     {
-        system_noise_rms = fringe_amplitude / snr;
+        //calculate total number of 'samples'
+        double n_total = static_cast<double>(num_channels)
+                       * static_cast<double>(num_subchannels)
+                       * static_cast<double>(num_aps);
+        system_noise_rms = fringe_amplitude * std::sqrt(n_total) / snr;
         std::cout << "System noise RMS calculated from SNR: "
                   << system_noise_rms << std::endl;
     }
