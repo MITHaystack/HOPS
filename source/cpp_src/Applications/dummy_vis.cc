@@ -326,6 +326,8 @@ int main(int argc, char** argv)
     std::string baseline_shortname = "AB";
     std::string ref_station = "A";
     std::string rem_station = "B";
+    std::string ref_station_code = "Aa";
+    std::string rem_station_code = "Bb";
     std::string ref_station_name = "DUMMY_A";
     std::string rem_station_name = "DUMMY_B";
     std::string root_code = "abcdef";
@@ -563,17 +565,17 @@ int main(int argc, char** argv)
     // =========================================================
 
 
-    std::cout<<"baseline_name"<<baseline_name<<std::endl;
-    std::cout<<"ref station"<<ref_station<<std::endl;
-    std::cout<<"rem station"<<rem_station<<std::endl;
+    std::cout<<"baseline_name: "<<baseline_name<<std::endl;
+    std::cout<<"ref station: "<<ref_station<<std::endl;
+    std::cout<<"rem station: "<<rem_station<<std::endl;
 
     vis.Insert(std::string("name"), std::string("visibilities"));
     vis.Insert(std::string("baseline"), baseline_name);
     vis.Insert(std::string("baseline_shortname"), baseline_shortname);
-    vis.Insert(std::string("reference_station"), ref_station);
-    vis.Insert(std::string("remote_station"), rem_station);
-    vis.Insert(std::string("reference_station_name"), ref_station);
-    vis.Insert(std::string("remote_station_name"), rem_station);
+    vis.Insert(std::string("reference_station"), ref_station_code);
+    vis.Insert(std::string("remote_station"), rem_station_code);
+    vis.Insert(std::string("reference_station_name"), ref_station_name);
+    vis.Insert(std::string("remote_station_name"), rem_station_name);
     vis.Insert(std::string("reference_station_mk4id"), ref_station);
     vis.Insert(std::string("remote_station_mk4id"), rem_station);
     vis.Insert(std::string("correlation_date"), start_time);
@@ -622,10 +624,10 @@ int main(int argc, char** argv)
     wt.Insert(std::string("name"), std::string("weights"));
     wt.Insert(std::string("baseline"), baseline_name);
     wt.Insert(std::string("baseline_shortname"), baseline_shortname);
-    wt.Insert(std::string("reference_station"), ref_station);
-    wt.Insert(std::string("remote_station"), rem_station);
-    wt.Insert(std::string("reference_station_name"), ref_station);
-    wt.Insert(std::string("remote_station_name"), rem_station);
+    wt.Insert(std::string("reference_station"), ref_station_code);
+    wt.Insert(std::string("remote_station"), rem_station_code);
+    wt.Insert(std::string("reference_station_name"), ref_station_name);
+    wt.Insert(std::string("remote_station_name"), rem_station_name);
     wt.Insert(std::string("reference_station_mk4id"), ref_station);
     wt.Insert(std::string("remote_station_mk4id"), rem_station);
     wt.Insert(std::string("correlation_date"), std::string("2025-01-01T00:00:00"));
@@ -651,11 +653,11 @@ int main(int argc, char** argv)
     tags.Insert(std::string("root_code"), root_code);
     tags.Insert(std::string("baseline"), baseline_name);
     tags.Insert(std::string("baseline_shortname"), baseline_shortname);
-    tags.Insert(std::string("reference_station"), ref_station);
-    tags.Insert(std::string("remote_station"), rem_station);
+    tags.Insert(std::string("reference_station"), ref_station_code);
+    tags.Insert(std::string("remote_station"), rem_station_code);
     tags.Insert(std::string("reference_station_name"), ref_station_name);
-    tags.Insert(std::string("remote_station_name"), rem_station);
-    tags.Insert(std::string("reference_station_mk4id"), ref_station_name);
+    tags.Insert(std::string("remote_station_name"), rem_station_name);
+    tags.Insert(std::string("reference_station_mk4id"), ref_station);
     tags.Insert(std::string("remote_station_mk4id"), rem_station);
     tags.Insert(std::string("correlation_date"), std::string("2025-01-01T00:00:00"));
     tags.Insert(std::string("origin"), std::string("simulated"));
@@ -743,6 +745,8 @@ int main(int argc, char** argv)
 
     std::string vex_string = GetVexString();
     mho_json vex_obj = mho_json::parse(vex_string);
+
+
 
     //write out the 'ovex'/'vex' json object as a json file
     std::string root_file = "./dummy.";
