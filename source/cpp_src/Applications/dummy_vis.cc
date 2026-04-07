@@ -302,7 +302,7 @@ int main(int argc, char** argv)
 {
     CLI::App app{"dummy_vis"};
 
-    double fringe_amplitude = 1.0;
+    double fringe_amplitude = 1.0; //computed from snr below
     std::string output_file = "AB.Aa-Bb.abcdef.cor";
     double residual_delay = 1e-5;
     double residual_delay_rate = 0.0;
@@ -337,7 +337,6 @@ int main(int argc, char** argv)
     auto* help = app.add_flag("-h,--help", "print this help message and exit");
 
     app.add_option("-o,--output", output_file, "name of output file for simulated visibilities");
-    app.add_option("-A,--amplitude", fringe_amplitude, "fringe amplitude (correlated flux density)")->default_val(1.0);
     app.add_option("-d,--delay", residual_delay, "residual delay in microseconds")->default_val(1e-5);
     app.add_option("-r,--delay-rate", residual_delay_rate, "residual delay-rate in microseconds/second")->default_val(0.0);
     app.add_option("-p,--phase", residual_phase, "residual phase offset in degrees")->default_val(45.0);
@@ -424,10 +423,28 @@ int main(int argc, char** argv)
         }
     }
 
-    // Calculate system noise RMS if not specified
+    // Compute fringe_amplitude from the target SNR using the same constants as calculate_snr() (not super critical)
+    // in MHO_BasicFringeInfo.cc:
+    //   SNR = famp * fact * sqrt(ap_period / samp_period) * sqrt(N_ch * N_ap) / whitneys
+    // where famp ~= fringe_amplitude, samp_period = 1/(2*BW), whitneys = 1e4,
+    // fact = fact1*fact2*fact3 = 1.0 * 0.881 * 0.970 ~= 0.855.
+    // Solving for fringe_amplitude:
+    //   fringe_amplitude = SNR * whitneys / (fact * sqrt(2*BW*T_ap * N_ch * N_ap))
+    {
+        const double whitneys = 1e4;
+        const double fact     = 1.0 * 0.881 * 0.970;  // fact1 * fact2 * fact3
+        double sample_rate    = 2.0 * channel_width * 1e6; // Nyquist (Hz)
+        double n_nyquist_total = sample_rate * ap_length
+                               * static_cast<double>(num_channels)
+                               * static_cast<double>(num_aps);
+        fringe_amplitude = snr * whitneys / (fact * std::sqrt(n_nyquist_total));
+        std::cout << "Fringe amplitude calculated from SNR: " << fringe_amplitude << std::endl;
+    }
+
+    // Calculate system noise RMS from the computed fringe_amplitude
     if(system_noise_rms < 0.0)
     {
-        //calculate total number of 'samples'
+        //calculate total number of array samples
         double n_total = static_cast<double>(num_channels)
                        * static_cast<double>(num_subchannels)
                        * static_cast<double>(num_aps);
@@ -453,7 +470,8 @@ int main(int argc, char** argv)
     }
 
     std::cout << "\n=== Simulation Parameters ===" << std::endl;
-    std::cout << "Fringe amplitude: " << fringe_amplitude << std::endl;
+    std::cout << "Target SNR: " << snr << std::endl;
+    std::cout << "Fringe amplitude (computed from SNR): " << fringe_amplitude << std::endl;
     std::cout << "Residual delay: " << residual_delay << " us" << std::endl;
     std::cout << "Residual delay-rate: " << residual_delay_rate << " us/s" << std::endl;
     std::cout << "Residual phase: " << residual_phase << " deg" << std::endl;
@@ -462,7 +480,6 @@ int main(int argc, char** argv)
     std::cout << "Sub-channels: " << num_subchannels << std::endl;
     std::cout << "Channel width: " << channel_width << " MHz" << std::endl;
     std::cout << "APs: " << num_aps << " x " << ap_length << " s" << std::endl;
-    std::cout << "SNR: " << snr << std::endl;
     std::cout << "System noise RMS: " << system_noise_rms << std::endl;
     std::cout << "Polarization: " << polprod << std::endl;
     std::cout << "Baseline: " << baseline_name << std::endl;
