@@ -20,7 +20,7 @@ NAPS=30
 NSPECPTS=128
 
 #run dummy_vis to generate fake visibilty data to test if we can process n_channels > 128 (here we test 256)
-dummy_vis --snr ${SNR_VAL} -c ${NCHAN} -w ${CHANW} -n ${NAPS} -s ${NSPECPTS}
+dummy_vis --seed 99 --snr ${SNR_VAL} -c ${NCHAN} -w ${CHANW} -n ${NAPS} -s ${NSPECPTS}
 
 echo "Running: fourfit4 -m 4 -b AB -P XX ./"
 output_file=$(fourfit4 -m 4 -b AB -P XX ./ 2>&1 | awk '{print $NF}')
