@@ -272,13 +272,30 @@ std::string MHO_DirectoryInterface::GetPrefix(const std::string& filename)
 
 std::string MHO_DirectoryInterface::GetTrailingDirectory(const std::string& filename)
 {
-    std::string dir_prefix = GetPrefix(filename);
-
-    std::string trailing_dir = "";
-    std::size_t index = dir_prefix.find_last_of("/\\");
-    if(index != std::string::npos)
+    std::string dir_prefix = filename;
+    if(IsFile(filename))
     {
-        trailing_dir = dir_prefix.substr(index);
+        dir_prefix = GetPrefix(filename);
+    }
+
+    MHO_Tokenizer tokenizer;
+    tokenizer.SetDelimiter("/");
+    std::vector< std::string > tokens;
+    tokenizer.SetString(&dir_prefix);
+    tokenizer.GetTokens(&tokens);
+    std::string trailing_dir = "";
+
+    std::cout<<"filename? "<<filename<<std::endl;
+    std::cout<<"dir prefix?  = "<<dir_prefix<<std::endl;
+    if(tokens.size() != 0)
+    {
+        std::cout<<"dir tokens"<<std::endl;
+        for(std::size_t i=0; i<tokens.size(); i++)
+        {
+            std::cout<<tokens[i]<<std::endl;
+        }
+
+        trailing_dir = tokens[ tokens.size()-1 ];
     }
     else
     {

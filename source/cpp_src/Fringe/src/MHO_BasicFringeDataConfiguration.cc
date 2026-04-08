@@ -836,16 +836,16 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
             MHO_DirectoryInterface::CreateDirectory(output_directory);
         }
 
-        //now check if the output directory incorporates the scan name, if not (it is an experiment directory)
-        //we will need to construct a more specific output directory
-        // std::string trailing_directory = MHO_DirectoryInterface::GetTrailingDirectory(output_directory);
-        // std::cout<<"trailing directory = "<<trailing_directory<<std::endl;
-        // if(trailing_directory != scan)
-        // {
+        // now check if the output directory incorporates the scan name, if not (it is an experiment directory)
+        // we will need to construct a more specific output directory
+        std::string trailing_directory = MHO_DirectoryInterface::GetTrailingDirectory(output_directory);
+        std::cout<<"trailing directory = "<<trailing_directory<<std::endl;
+        if(trailing_directory != scan)
+        {
             //now we have to form the scan-specific output_directory with the scan name prefix
-            std::string pass_output_directory = output_directory + scan + "/";
+            std::string pass_output_directory = output_directory + "/" + scan + "/";
             paramStore->Set("/files/output_directory", pass_output_directory);
-        //}
+        }
     }
 
     std::cout<<"output_directory = "<<paramStore->GetAs< std::string >("/files/output_directory")<<std::endl;
