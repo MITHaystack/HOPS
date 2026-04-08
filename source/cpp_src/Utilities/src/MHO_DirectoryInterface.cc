@@ -285,16 +285,8 @@ std::string MHO_DirectoryInterface::GetTrailingDirectory(const std::string& file
     tokenizer.GetTokens(&tokens);
     std::string trailing_dir = "";
 
-    std::cout<<"filename? "<<filename<<std::endl;
-    std::cout<<"dir prefix?  = "<<dir_prefix<<std::endl;
     if(tokens.size() != 0)
     {
-        std::cout<<"dir tokens"<<std::endl;
-        for(std::size_t i=0; i<tokens.size(); i++)
-        {
-            std::cout<<tokens[i]<<std::endl;
-        }
-
         trailing_dir = tokens[ tokens.size()-1 ];
     }
     else

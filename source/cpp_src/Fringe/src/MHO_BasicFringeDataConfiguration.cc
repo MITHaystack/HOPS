@@ -256,8 +256,8 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-n,--nplot-channels", nplot_chans,
                    "specifies the number of channels to display in the fringe plot (ignored, not yet implemented)");
-    app.add_option("-O,--output-directory", output_directory, "set the directory under which to write output files (default is input)");
-    app.add_option("-o,--openmp-threads", omp_threads, "set the number of threads used by OpenMP (if enabled, default=max)");
+    app.add_option("-o,--output-directory", output_directory, "set the directory under which to write output files (default is input)");
+    app.add_option("-O,--openmp-threads", omp_threads, "set the number of threads used by OpenMP (if enabled, default=max)");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
@@ -751,16 +751,14 @@ void MHO_BasicFringeDataConfiguration::split_passes(std::vector< mho_json >& pas
     for(std::size_t i = 0; i < npass; i++)
     {
         mho_json pass;
-
         std::string scan = MHO_DirectoryInterface::GetTrailingDirectory(rts[i]);
-        pass["scan"] = scan;
+        pass["scan"] = scan; //needed if output dir != input dir
         pass["input_directory"] = sdirs[i];
         pass["root_file"] = rts[i];
         pass["baseline"] = blines[i];
         pass["polprod"] = ppds[i];
         pass["frequency_group"] = fgrps[i];
         pass_vector.push_back(pass);
-        std::cout<<"dump pass: "<<pass.dump(2)<<std::endl;
     }
 }
 
@@ -807,7 +805,6 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
 
     //we will need the scan name to construct the output_directory, if it is different from the input directory
     std::string scan =  paramStore->GetAs< std::string >("/pass/scan");
-    std::cout<<"scan = "<<scan<<std::endl;
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS
@@ -816,9 +813,6 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     //set up the file section of the parameter store to record the directory, root file, and control file
     paramStore->Set("/files/control_file", control_file);
     paramStore->Set("/files/input_directory", input_directory);
-
-    std::cout<<"cmdline input directory = "<< paramStore->GetAs< std::string >("/cmdline/input_directory") <<std::endl;
-    std::cout<<"pass input_directory = "<<input_directory<<std::endl;
     paramStore->Set("/files/output_directory", input_directory);
 
     //get the output directory (if set on command line)
@@ -839,7 +833,6 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
         // now check if the output directory incorporates the scan name, if not (it is an experiment directory)
         // we will need to construct a more specific output directory
         std::string trailing_directory = MHO_DirectoryInterface::GetTrailingDirectory(output_directory);
-        std::cout<<"trailing directory = "<<trailing_directory<<std::endl;
         if(trailing_directory != scan)
         {
             //now we have to form the scan-specific output_directory with the scan name prefix
@@ -847,9 +840,6 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
             paramStore->Set("/files/output_directory", pass_output_directory);
         }
     }
-
-    std::cout<<"output_directory = "<<paramStore->GetAs< std::string >("/files/output_directory")<<std::endl;
-    //paramStore->Set("/files/output_file", paramStore->GetAs<std::string>("/cmdline/output_file"));
 
     //set the software version info
     paramStore->Set("/config/software_version", std::string(HOPS_VERSION) + "-" + std::string(HOPS_GIT_REV));
