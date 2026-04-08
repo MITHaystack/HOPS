@@ -122,7 +122,7 @@ std::string MHO_DirectoryInterface::GetFileModifcationTime(const std::string& na
     return time_stamp;
 }
 
-bool MHO_DirectoryInterface::CreateDirectory(const std::string& dirname) const
+bool MHO_DirectoryInterface::CreateDirectory(const std::string& dirname)
 {
     std::string fullpath = GetDirectoryFullPath(dirname);
     //use mkdir to create the directory with owner permissions
@@ -269,6 +269,24 @@ std::string MHO_DirectoryInterface::GetPrefix(const std::string& filename)
     }
     return prefix;
 }
+
+std::string MHO_DirectoryInterface::GetTrailingDirectory(const std::string& filename)
+{
+    std::string dir_prefix = GetPrefix(filename);
+
+    std::string trailing_dir = "";
+    std::size_t index = dir_prefix.find_last_of("/\\");
+    if(index != std::string::npos)
+    {
+        trailing_dir = dir_prefix.substr(index);
+    }
+    else
+    {
+        msg_warn("utility", "No directory could be determined from path: " << filename << eom);
+    }
+    return trailing_dir;
+}
+
 
 std::string MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basename)
 {

@@ -751,12 +751,16 @@ void MHO_BasicFringeDataConfiguration::split_passes(std::vector< mho_json >& pas
     for(std::size_t i = 0; i < npass; i++)
     {
         mho_json pass;
+
+        std::string scan = MHO_DirectoryInterface::GetTrailingDirectory(rts[i]);
+        pass["scan"] = scan;
         pass["input_directory"] = sdirs[i];
         pass["root_file"] = rts[i];
         pass["baseline"] = blines[i];
         pass["polprod"] = ppds[i];
         pass["frequency_group"] = fgrps[i];
         pass_vector.push_back(pass);
+        std::cout<<"dump pass: "<<pass.dump(2)<<std::endl;
     }
 }
 
@@ -801,6 +805,10 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     std::string polprod = paramStore->GetAs< std::string >("/pass/polprod");
     std::string fgroup = paramStore->GetAs< std::string >("/pass/frequency_group");
 
+    //we will need the scan name to construct the output_directory, if it is different from the input directory
+    std::string scan =  paramStore->GetAs< std::string >("/pass/scan");
+    std::cout<<"scan = "<<scan<<std::endl;
+
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS
     ////////////////////////////////////////////////////////////////////////////
@@ -809,8 +817,38 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     paramStore->Set("/files/control_file", control_file);
     paramStore->Set("/files/input_directory", input_directory);
 
-    //TODO FIXME
+    std::cout<<"cmdline input directory = "<< paramStore->GetAs< std::string >("/cmdline/input_directory") <<std::endl;
+    std::cout<<"pass input_directory = "<<input_directory<<std::endl;
     paramStore->Set("/files/output_directory", input_directory);
+
+    //get the output directory (if set on command line)
+    std::string output_directory = paramStore->GetAs< std::string >("/cmdline/output_directory");
+
+    //default is just to set the output directory (if it is the same as the input, nothing special needed)
+    paramStore->Set("/files/output_directory", output_directory);
+
+    if(output_directory != input_directory)
+    {
+        //input and output directory are different
+        //so we need to construct the top-level output directory if it doesn't exist
+        if(!MHO_DirectoryInterface::DoesDirectoryExist(output_directory))
+        {
+            MHO_DirectoryInterface::CreateDirectory(output_directory);
+        }
+
+        //now check if the output directory incorporates the scan name, if not (it is an experiment directory)
+        //we will need to construct a more specific output directory
+        // std::string trailing_directory = MHO_DirectoryInterface::GetTrailingDirectory(output_directory);
+        // std::cout<<"trailing directory = "<<trailing_directory<<std::endl;
+        // if(trailing_directory != scan)
+        // {
+            //now we have to form the scan-specific output_directory with the scan name prefix
+            std::string pass_output_directory = output_directory + scan + "/";
+            paramStore->Set("/files/output_directory", pass_output_directory);
+        //}
+    }
+
+    std::cout<<"output_directory = "<<paramStore->GetAs< std::string >("/files/output_directory")<<std::endl;
     //paramStore->Set("/files/output_file", paramStore->GetAs<std::string>("/cmdline/output_file"));
 
     //set the software version info
