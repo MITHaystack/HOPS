@@ -245,6 +245,7 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
     }
     else if(dir_type == MK4_EXPDIR)
     {
+        msg_warn("fringe", "on-the-fly mark4-to-hops conversion of mark4 experiment directories is not recommended, use mark42hops first" << eom);
         msg_status("fringe", "converting mark4 experiment directory: " << input_dir
                                                                        << " (baseline filter: " << baseline << ")" << eom);
         MHO_DirectoryInterface dirInterface;
@@ -252,17 +253,28 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
         dirInterface.ReadCurrentDirectory();
         std::vector< std::string > subDirs;
         dirInterface.GetSubDirectoryList(subDirs);
+
         for(std::size_t i = 0; i < subDirs.size(); i++)
         {
-            std::string scan_name = MHO_DirectoryInterface::GetBasename(subDirs[i]);
-            // Strip trailing '/' if present
-            if(!scan_name.empty() && scan_name.back() == '/')
+            //strip out any sub-directories that are not mark4 scan directories
+            dirInterface.SetCurrentDirectory(subDirs[i]);
+            std::vector< std::string > subDirFiles;
+            dirInterface.ReadCurrentDirectory();
+            dirInterface.GetFileList(subDirFiles);
+            std::string root_file_name = "";
+            dirInterface.GetRootFile(subDirFiles, root_file_name);
+            if(root_file_name != "")
             {
-                scan_name.erase(scan_name.size() - 1);
+                std::string scan_name = MHO_DirectoryInterface::GetBasename(subDirs[i]);
+                // Strip trailing '/' if present
+                if(!scan_name.empty() && scan_name.back() == '/')
+                {
+                    scan_name.erase(scan_name.size() - 1);
+                }
+                std::string temp_scan = temp_root + "/" + scan_name;
+                msg_status("fringe", "converting mark4 scan: " << subDirs[i] << " -> " << temp_scan << eom);
+                MHO_MK4ScanConverter::ProcessScan(subDirs[i], temp_scan, baseline);
             }
-            std::string temp_scan = temp_root + "/" + scan_name;
-            msg_status("fringe", "converting mark4 scan: " << subDirs[i] << " -> " << temp_scan << eom);
-            MHO_MK4ScanConverter::ProcessScan(subDirs[i], temp_scan, baseline);
         }
         paramStore->Set("/cmdline/directory", temp_root + "/");
     }
