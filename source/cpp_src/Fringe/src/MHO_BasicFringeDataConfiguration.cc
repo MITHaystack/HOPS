@@ -175,7 +175,7 @@ int MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStor
     std::string baseline = paramStore->GetAs< std::string >("/cmdline/baseline");
     std::string freqgrp = paramStore->GetAs< std::string >("/cmdline/frequency_group");
     std::string control_file = paramStore->GetAs< std::string >("/cmdline/control_file");
-    std::string directory = paramStore->GetAs< std::string >("/cmdline/directory");
+    std::string input_directory = paramStore->GetAs< std::string >("/cmdline/input_directory");
     //bool estimate_time = false; //'-e' estimate run time
     int first_plot_chan = paramStore->GetAs< int >("/cmdline/first_plot_channel");
     int message_level = paramStore->GetAs< int >("/cmdline/message_level");
@@ -190,7 +190,7 @@ int MHO_BasicFringeDataConfiguration::sanity_check(MHO_ParameterStore* paramStor
     //std::string output_file = paramStore->GetAs<std::string>("/cmdline/output_file");
 
     TODO_FIXME_MSG("TODO FIXME - fill out the sanity_check function for command line arguments")
-    if(directory == "" || control_file == "")
+    if(input_directory == "")
     {
         return 1;
     }
@@ -321,11 +321,11 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     std::string disk_file = "";                    //'-d' specifies the name of the plot file
     bool exclude_autos = false;                    //'-e' exclude auto-corrs
     int first_plot_chan = 0;                       //'-n' specifies the first channel displayed in the fringe plot
-    int omp_threads = -1;                          //'-o' set the number of threads used by OpenMP (if enabled at compile time)
+    std::string output_directory = "";             //'-o' specify the output directory
+    int omp_threads = -1;                          //'-O' set the number of threads used by OpenMP (if enabled at compile time)
     int message_level = -1;                        //'-m' specifies the message verbosity level
     std::vector< std::string > message_categories; // -'M' limits the allowed message categories to those the user specifies
     int nplot_chans = 0;                           //'-n' specifies the number of channels to display in the fringe plot
-    std::string output_directory = "";             //'-O' directory to write the results to, default is input dir
     bool show_plot = false;                        //'-p' generates and shows fringe plot
     std::string refringe_alist_file = "";          // '-r' alist file for refringing - not yet enabled
     int ap_per_seg = 0;                            //'-s' specify the APs to be averaged per plot-segment
@@ -369,8 +369,8 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-n,--nplot-channels", nplot_chans,
                    "specifies the number of channels to display in the fringe plot (ignored, not yet implemented)");
-    app.add_option("-o,--openmp-threads", omp_threads, "set the number of threads used by OpenMP (if enabled, default=max)");
-    app.add_option("-O,--output-directory", output_directory, "set the under which to write out the .frng file results");
+    app.add_option("-o,--output-directory", output_directory, "set the directory under which to write output files (default is input)");
+    app.add_option("-O,--openmp-threads", omp_threads, "set the number of threads used by OpenMP (if enabled, default=max)");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
@@ -462,7 +462,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
     //clean the directory string
-    std::string directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
+    std::string input_directory = MHO_BasicFringeDataConfiguration::sanitize_directory(input);
     //if there is no root file (i.e. we were passed and experiment directory, we return an empty string)
     std::string root_file = MHO_BasicFringeDataConfiguration::find_associated_root_file(input);
 
@@ -473,18 +473,11 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 
     paramStore->Set("/cmdline/control_file", control_file);
     paramStore->Set("/cmdline/disk_file", disk_file); //default is empty string -> no plot file
-    paramStore->Set("/cmdline/directory", directory); //sanitized directory path
+    paramStore->Set("/cmdline/input_directory", input_directory); //sanitized input directory path
 
-    //deal with the output directory situation
-    //if we were not passed anything, then the output directory is just the input
-    if(output_directory == "")
-    {
-        paramStore->Set("/cmdline/output_directory", directory);
-    }
-    else
-    {
-        paramStore->Set("/cmdline/output_directory", output_directory);
-    }
+    if(output_directory == ""){output_directory = input_directory;}
+    paramStore->Set("/cmdline/output_directory", output_directory); //output_directory path
+    paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
 
     paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
     paramStore->Set("/cmdline/exclude_autos", exclude_autos);
@@ -767,7 +760,7 @@ void MHO_BasicFringeDataConfiguration::determine_passes(MHO_ParameterStore* cmdl
     cpolprods = "";
 
     //determine which directories contain scans to process
-    std::string initial_dir = cmdline_params->GetAs< std::string >("/cmdline/directory");
+    std::string initial_dir = cmdline_params->GetAs< std::string >("/cmdline/input_directory");
     std::string cmd_bl = cmdline_params->GetAs< std::string >("/cmdline/baseline");        //if not passed, will be "??"
     std::string cmd_fg = cmdline_params->GetAs< std::string >("/cmdline/frequency_group"); //if not passed, this will be "?"
     std::string cmd_pp = cmdline_params->GetAs< std::string >("/cmdline/polprod");         //if not passed, this will be "??"
@@ -874,7 +867,9 @@ void MHO_BasicFringeDataConfiguration::split_passes(std::vector< mho_json >& pas
     for(std::size_t i = 0; i < npass; i++)
     {
         mho_json pass;
-        pass["directory"] = sdirs[i];
+        std::string scan = MHO_DirectoryInterface::GetTrailingDirectory(rts[i]);
+        pass["scan"] = scan; //needed if output dir != input dir
+        pass["input_directory"] = sdirs[i];
         pass["root_file"] = rts[i];
         pass["baseline"] = blines[i];
         pass["polprod"] = ppds[i];
@@ -886,18 +881,18 @@ void MHO_BasicFringeDataConfiguration::split_passes(std::vector< mho_json >& pas
 bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* paramStore, MHO_ScanDataStore* scanStore)
 {
     //this should all be present and ok at this point
-    std::string directory = paramStore->GetAs< std::string >("/pass/directory");
+    std::string input_directory = paramStore->GetAs< std::string >("/pass/input_directory");
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE SCAN DIRECTORY
     ////////////////////////////////////////////////////////////////////////////
 
     //initialize the scan store from this directory
-    scanStore->SetDirectory(directory);
+    scanStore->SetDirectory(input_directory);
     scanStore->Initialize();
     if(!scanStore->IsValid())
     {
-        msg_error("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
+        msg_error("fringe", "cannot initialize a valid scan store from this directory: " << input_directory << eom);
         return false;
     }
 
@@ -905,7 +900,7 @@ bool MHO_BasicFringeDataConfiguration::initialize_scan_data(MHO_ParameterStore* 
     std::string pp = paramStore->GetAs< std::string >("/pass/polprod");
     std::string fg = paramStore->GetAs< std::string >("/pass/frequency_group");
     msg_info("fringe", "fringing data for baseline: " << bl << ", pol-product: " << pp << ", freq-group: " << fg
-                                                      << ", in directory: " << directory << eom);
+                                                      << ", in directory: " << input_directory << eom);
 
     return true;
 }
@@ -918,12 +913,14 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     paramStore->Set("/status/skipped", false);
 
     //these should all be present and ok at this point
-    std::string directory = paramStore->GetAs< std::string >("/pass/directory");
-    std::string output_directory = paramStore->GetAs< std::string >("/cmdline/output_directory");
+    std::string input_directory = paramStore->GetAs< std::string >("/pass/input_directory");
     std::string control_file = paramStore->GetAs< std::string >("/cmdline/control_file");
     std::string baseline = paramStore->GetAs< std::string >("/pass/baseline");
     std::string polprod = paramStore->GetAs< std::string >("/pass/polprod");
     std::string fgroup = paramStore->GetAs< std::string >("/pass/frequency_group");
+
+    //we will need the scan name to construct the output_directory, if it is different from the input directory
+    std::string scan =  paramStore->GetAs< std::string >("/pass/scan");
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS
@@ -931,9 +928,34 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
 
     //set up the file section of the parameter store to record the directory, root file, and control file
     paramStore->Set("/files/control_file", control_file);
-    paramStore->Set("/files/directory", directory);
+    paramStore->Set("/files/input_directory", input_directory);
+    paramStore->Set("/files/output_directory", input_directory);
+
+    //get the output directory (if set on command line)
+    std::string output_directory = paramStore->GetAs< std::string >("/cmdline/output_directory");
+
+    //default is just to set the output directory (if it is the same as the input, nothing special needed)
     paramStore->Set("/files/output_directory", output_directory);
-    //paramStore->Set("/files/output_file", paramStore->GetAs<std::string>("/cmdline/output_file"));
+
+    if(output_directory != input_directory)
+    {
+        //input and output directory are different
+        //so we need to construct the top-level output directory if it doesn't exist
+        if(!MHO_DirectoryInterface::DoesDirectoryExist(output_directory))
+        {
+            MHO_DirectoryInterface::CreateDirectory(output_directory);
+        }
+
+        // now check if the output directory incorporates the scan name, if not (it is an experiment directory)
+        // we will need to construct a more specific output directory
+        std::string trailing_directory = MHO_DirectoryInterface::GetTrailingDirectory(output_directory);
+        if(trailing_directory != scan)
+        {
+            //now we have to form the scan-specific output_directory with the scan name prefix
+            std::string pass_output_directory = output_directory + "/" + scan + "/";
+            paramStore->Set("/files/output_directory", pass_output_directory);
+        }
+    }
 
     //set the software version info
     paramStore->Set("/config/software_version", std::string(HOPS_VERSION) + "-" + std::string(HOPS_GIT_REV));
@@ -952,17 +974,17 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     ////////////////////////////////////////////////////////////////////////////
 
     //initialize the scan store from this directory
-    scanStore->SetDirectory(directory);
+    scanStore->SetDirectory(input_directory);
     scanStore->Initialize();
     if(!scanStore->IsValid())
     {
-        msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << directory << eom);
+        msg_fatal("fringe", "cannot initialize a valid scan store from this directory: " << input_directory << eom);
         paramStore->Set("/status/skipped", true);
     }
 
     if(!scanStore->IsBaselinePresent(baseline))
     {
-        msg_fatal("fringe", "cannot find the specified baseline: " << baseline << " in " << directory << eom);
+        msg_fatal("fringe", "cannot find the specified baseline: " << baseline << " in " << input_directory << eom);
         paramStore->Set("/status/skipped", true);
     }
 

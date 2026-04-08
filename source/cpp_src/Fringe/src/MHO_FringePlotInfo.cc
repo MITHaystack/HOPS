@@ -22,7 +22,7 @@ mho_json MHO_FringePlotInfo::construct_plot_data(MHO_ContainerStore* conStore, M
     //test grab the reference freq
     double ref_freq = paramStore->GetAs< double >(std::string("/control/config/ref_freq"));
 
-    std::string directory = paramStore->GetAs< std::string >("/files/directory");
+    //std::string input_directory = paramStore->GetAs< std::string >("/files/input_directory");
     std::string control_file = paramStore->GetAs< std::string >("/files/control_file");
     std::string baseline = paramStore->GetAs< std::string >("/config/baseline");
     std::string polprod = paramStore->GetAs< std::string >("/config/polprod");

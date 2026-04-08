@@ -109,6 +109,7 @@ void MHO_PluginVisitorFactory::ConstructPlugins()
 
 #endif
     }
+    fPluginsInitialized = true;
 }
 
 void MHO_PluginVisitorFactory::ConstructPlotters()
@@ -125,6 +126,7 @@ void MHO_PluginVisitorFactory::ConstructPlotters()
             fPlotVisitors.push_back(plotter);
         }
     }
+    fPlotInitialized = true;
 }
 
 void MHO_PluginVisitorFactory::ConstructOutputVisitors()
@@ -151,6 +153,7 @@ void MHO_PluginVisitorFactory::ConstructOutputVisitors()
             fOutputVisitors.push_back(output_visitor);
         }
     }
+    fOutputInitialized = true;
 }
 
 } // namespace hops

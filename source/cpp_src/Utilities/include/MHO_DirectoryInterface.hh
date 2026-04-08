@@ -94,7 +94,7 @@ class MHO_DirectoryInterface
          * @param dirname The name of the directory to create.
          * @return True if directory creation was successful, false otherwise.
          */
-        bool CreateDirectory(const std::string& dirname) const;
+        static bool CreateDirectory(const std::string& dirname);
 
         /**
          * @brief Setter for current directory
@@ -221,6 +221,11 @@ class MHO_DirectoryInterface
          * @brief gets the directory prefix from a full path to a file
          */
         static std::string GetPrefix(const std::string& filename);
+
+        /**
+         * @brief gets the name of the directory immediately containing the specified file
+         */
+        static std::string GetTrailingDirectory(const std::string& filename);
 
         /**
          * @brief removes the extention (anything after last '.') from a file (base) name
