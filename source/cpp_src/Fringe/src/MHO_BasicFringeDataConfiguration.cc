@@ -207,7 +207,7 @@ static int remove_entry(const char* path, const struct stat* /*sb*/, int /*typef
 std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterStore* paramStore)
 {
     //the input directory
-    std::string input_dir = paramStore->GetAs< std::string >("/cmdline/directory");
+    std::string input_dir = paramStore->GetAs< std::string >("/cmdline/input_directory");
 
     // Read the baseline filter; "??" means all baselines
     std::string baseline = paramStore->GetAs< std::string >("/cmdline/baseline");
@@ -277,7 +277,7 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
                 MHO_MK4ScanConverter::ProcessScan(subDirs[i], temp_scan, baseline);
             }
         }
-        paramStore->Set("/cmdline/directory", temp_root + "/");
+        paramStore->Set("/cmdline/input_directory", temp_root + "/");
     }
     else
     {
