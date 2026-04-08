@@ -25,7 +25,7 @@ void MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
         return;
     }
 
-    std::string directory = fringeData->GetParameterStore()->GetAs< std::string >("/files/directory");
+    std::string directory = fringeData->GetParameterStore()->GetAs< std::string >("/files/output_directory");
     directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
 
     MHO_UUIDGenerator gen;

@@ -98,7 +98,7 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     paramStore->Set("/status/skipped", false);
 
     //these should all be present and ok at this point (handled by command line parse functions)
-    std::string directory = paramStore->GetAs< std::string >("/files/directory");
+    //std::string input_directory = paramStore->GetAs< std::string >("/files/input_directory");
     std::string control_file = paramStore->GetAs< std::string >("/files/control_file");
     std::string baseline = paramStore->GetAs< std::string >("/config/baseline");
     std::string polprod = paramStore->GetAs< std::string >("/config/polprod");
