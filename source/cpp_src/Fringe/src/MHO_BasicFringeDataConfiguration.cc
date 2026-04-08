@@ -206,6 +206,7 @@ static int remove_entry(const char* path, const struct stat* /*sb*/, int /*typef
 
 std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterStore* paramStore)
 {
+    //the input directory
     std::string input_dir = paramStore->GetAs< std::string >("/cmdline/directory");
 
     // Read the baseline filter; "??" means all baselines
@@ -324,6 +325,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     int message_level = -1;                        //'-m' specifies the message verbosity level
     std::vector< std::string > message_categories; // -'M' limits the allowed message categories to those the user specifies
     int nplot_chans = 0;                           //'-n' specifies the number of channels to display in the fringe plot
+    std::string output_directory = "";             //'-O' directory to write the results to, default is input dir
     bool show_plot = false;                        //'-p' generates and shows fringe plot
     std::string refringe_alist_file = "";          // '-r' alist file for refringing - not yet enabled
     int ap_per_seg = 0;                            //'-s' specify the APs to be averaged per plot-segment
@@ -368,6 +370,7 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     app.add_option("-n,--nplot-channels", nplot_chans,
                    "specifies the number of channels to display in the fringe plot (ignored, not yet implemented)");
     app.add_option("-o,--openmp-threads", omp_threads, "set the number of threads used by OpenMP (if enabled, default=max)");
+    app.add_option("-O,--output-directory", output_directory, "set the under which to write out the .frng file results");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
@@ -471,8 +474,19 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
     paramStore->Set("/cmdline/control_file", control_file);
     paramStore->Set("/cmdline/disk_file", disk_file); //default is empty string -> no plot file
     paramStore->Set("/cmdline/directory", directory); //sanitized directory path
-    paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
 
+    //deal with the output directory situation
+    //if we were not passed anything, then the output directory is just the input
+    if(output_directory == "")
+    {
+        paramStore->Set("/cmdline/output_directory", directory);
+    }
+    else
+    {
+        paramStore->Set("/cmdline/output_directory", output_directory);
+    }
+
+    paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
     paramStore->Set("/cmdline/exclude_autos", exclude_autos);
     paramStore->Set("/cmdline/first_plot_channel", first_plot_chan); //TODO
     paramStore->Set("/cmdline/message_level", message_level);
@@ -905,6 +919,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
 
     //these should all be present and ok at this point
     std::string directory = paramStore->GetAs< std::string >("/pass/directory");
+    std::string output_directory = paramStore->GetAs< std::string >("/cmdline/output_directory");
     std::string control_file = paramStore->GetAs< std::string >("/cmdline/control_file");
     std::string baseline = paramStore->GetAs< std::string >("/pass/baseline");
     std::string polprod = paramStore->GetAs< std::string >("/pass/polprod");
@@ -917,6 +932,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     //set up the file section of the parameter store to record the directory, root file, and control file
     paramStore->Set("/files/control_file", control_file);
     paramStore->Set("/files/directory", directory);
+    paramStore->Set("/files/output_directory", output_directory);
     //paramStore->Set("/files/output_file", paramStore->GetAs<std::string>("/cmdline/output_file"));
 
     //set the software version info

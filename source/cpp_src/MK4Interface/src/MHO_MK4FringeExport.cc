@@ -841,7 +841,7 @@ int MHO_MK4FringeExport::output()
 {
     //set up the write lock mechanism
     //TODO -- allow for a different directory for output than the input directory
-    std::string directory = fPStore->GetAs< std::string >("/files/directory");
+    std::string directory = fPStore->GetAs< std::string >("/files/output_directory");
     directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
 
     // for locking
