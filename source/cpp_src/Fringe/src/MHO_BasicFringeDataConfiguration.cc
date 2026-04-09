@@ -209,15 +209,18 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
     //the input directory
     std::string input_dir = paramStore->GetAs< std::string >("/cmdline/input_directory");
 
+    int dir_type = MHO_MK4ScanConverter::DetermineDirectoryType(input_dir);
+
     // Read the baseline filter; "??" means all baselines
     std::string baseline = paramStore->GetAs< std::string >("/cmdline/baseline");
 
-    // Create a unique temp directory, preferring RAM-backed /dev/shm (tmpfs) to avoid disk I/O,
-    // falling back to /tmp if /dev/shm is not available.
+    // Create a unique temp directory, 
+    // we prefer RAM-backed /dev/shm (tmpfs) to avoid disk I/O, but only for single-scans!
+    // falling back to /tmp if /dev/shm is not available, or if we were passed a full experiment
     std::string temp_root;
     {
         char shm_buf[] = "/dev/shm/hops_mk4_XXXXXX";
-        if(mkdtemp(shm_buf) != nullptr)
+        if(mkdtemp(shm_buf) != nullptr && dir_type == MK4_SCANDIR )
         {
             temp_root = shm_buf;
         }
@@ -229,12 +232,9 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
                 msg_fatal("fringe", "convert_mk4_input: could not create a temporary directory" << eom);
                 return "";
             }
-            msg_warn("fringe", "convert_mk4_input: /dev/shm unavailable, using /tmp for mark4 conversion" << eom);
             temp_root = tmp_buf;
         }
     }
-
-    int dir_type = MHO_MK4ScanConverter::DetermineDirectoryType(input_dir);
 
     if(dir_type == MK4_SCANDIR)
     {
@@ -242,7 +242,8 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
         msg_status("fringe", "converting mark4 scan directory: " << input_dir << " -> " << temp_scan
                                                                   << " (baseline filter: " << baseline << ")" << eom);
         MHO_MK4ScanConverter::ProcessScan(input_dir, temp_scan, baseline);
-        paramStore->Set("/cmdline/directory", temp_scan + "/");
+        msg_info("fringe", "redirecting input directory to : "<<  temp_scan + "/" << eom);
+        paramStore->Set("/cmdline/input_directory", temp_scan + "/");
     }
     else if(dir_type == MK4_EXPDIR)
     {
@@ -278,6 +279,7 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
             }
         }
         paramStore->Set("/cmdline/input_directory", temp_root + "/");
+        msg_info("fringe", "redirecting input directory to : "<<  temp_root + "/" << eom);
     }
     else
     {
@@ -551,10 +553,9 @@ void MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initia
         dirInterface.GetRootFile(all_files, legacy_root_file);
         if(legacy_root_file != "")
         {
-
             msg_warn("fringe", "no hops4 data (.cor) files found, but legacy mark4 root file ("
                                    << dirInterface.GetBasename(legacy_root_file)
-                                   << ") detected, you first need to run mark42hops or difx2hops" << eom);
+                                   << ") detected, either pass '-K' option, or run mark42hops/difx2hops" << eom);
         }
     }
 }
