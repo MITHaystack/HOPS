@@ -27,6 +27,7 @@ void MHO_HopsOutputVisitor::Visit(MHO_FringeFitter* fitter)
 
     //check if the output directory exists, and create it if it does not
     std::string directory = fringeData->GetParameterStore()->GetAs< std::string >("/files/output_directory");
+
     directory = MHO_DirectoryInterface::GetDirectoryFullPath(directory);
     if(!MHO_DirectoryInterface::DoesDirectoryExist(directory))
     {

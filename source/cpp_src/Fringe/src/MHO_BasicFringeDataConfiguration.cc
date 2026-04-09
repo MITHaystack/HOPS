@@ -238,7 +238,8 @@ std::string MHO_BasicFringeDataConfiguration::convert_mk4_input(MHO_ParameterSto
 
     if(dir_type == MK4_SCANDIR)
     {
-        std::string temp_scan = temp_root + "/scan";
+        std::string scan_name = MHO_DirectoryInterface::GetTrailingDirectory(input_dir);
+        std::string temp_scan = temp_root + "/" + scan_name;
         msg_status("fringe", "converting mark4 scan directory: " << input_dir << " -> " << temp_scan
                                                                   << " (baseline filter: " << baseline << ")" << eom);
         MHO_MK4ScanConverter::ProcessScan(input_dir, temp_scan, baseline);
@@ -479,7 +480,6 @@ int MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(int argc, char*
 
     if(output_directory == ""){output_directory = input_directory;}
     paramStore->Set("/cmdline/output_directory", output_directory); //output_directory path
-    paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
 
     paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
     paramStore->Set("/cmdline/exclude_autos", exclude_autos);
@@ -920,7 +920,8 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     std::string polprod = paramStore->GetAs< std::string >("/pass/polprod");
     std::string fgroup = paramStore->GetAs< std::string >("/pass/frequency_group");
 
-    //we will need the scan name to construct the output_directory, if it is different from the input directory
+    //we will need the scan name to construct the output_directory,
+    //if it is different from the input directory
     std::string scan =  paramStore->GetAs< std::string >("/pass/scan");
 
     ////////////////////////////////////////////////////////////////////////////
@@ -930,12 +931,7 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
     //set up the file section of the parameter store to record the directory, root file, and control file
     paramStore->Set("/files/control_file", control_file);
     paramStore->Set("/files/input_directory", input_directory);
-    paramStore->Set("/files/output_directory", input_directory);
-
-    //get the output directory (if set on command line)
     std::string output_directory = paramStore->GetAs< std::string >("/cmdline/output_directory");
-
-    //default is just to set the output directory (if it is the same as the input, nothing special needed)
     paramStore->Set("/files/output_directory", output_directory);
 
     if(output_directory != input_directory)
@@ -947,8 +943,9 @@ void MHO_BasicFringeDataConfiguration::populate_initial_parameters(MHO_Parameter
             MHO_DirectoryInterface::CreateDirectory(output_directory);
         }
 
-        // now check if the output directory incorporates the scan name, if not (it is an experiment directory)
-        // we will need to construct a more specific output directory
+        //now check if the output directory incorporates the scan name, 
+        //if not, (it is being treated as an experiment directory)
+        //we will need to construct a more specific output directory
         std::string trailing_directory = MHO_DirectoryInterface::GetTrailingDirectory(output_directory);
         if(trailing_directory != scan)
         {
