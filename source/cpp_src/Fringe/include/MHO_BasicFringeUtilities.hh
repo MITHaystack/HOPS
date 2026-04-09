@@ -97,17 +97,6 @@ class MHO_BasicFringeUtilities
          * @note This is a static function.
          */
         static void calculate_ion_covariance(MHO_ContainerStore* conStore, MHO_ParameterStore* paramStore);
-
-
-        /**
-         * @brief Converts a vector of profile events into a JSON object.
-         *
-         * @param events Input vector of MHO_ProfileEvent objects
-         * @return JSON object containing event details
-         * @note This is a static function.
-         */
-        static mho_json convert_profile_events(std::vector< MHO_ProfileEvent >& events);
-
 };
 
 } // namespace hops

@@ -56,6 +56,16 @@ class MHO_Mk4InputConverter
 
 };
 
+
+//RAII guard for the temp directory created by -K conversion.
+//to be declared static so its destructor is called even when std::exit() is used.
+//makes sure the tmp files are cleaned up if they exist
+struct MK4TempDirGuard
+{
+    std::string path;
+    ~MK4TempDirGuard() { MHO_Mk4InputConverter::cleanup_mk4_temp_dir(path); }
+};
+
 } // namespace hops
 
 #endif /*! end of include guard: MHO_Mk4InputConverter_HH__ */

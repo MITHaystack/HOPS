@@ -45,12 +45,30 @@
 
 using namespace hops;
 
+mho_json convert_profile_events(std::vector< MHO_ProfileEvent >& events)
+{
+    mho_json event_list;
+    for(std::size_t i = 0; i < events.size(); i++)
+    {
+        mho_json obj;
+        obj["event_id"] = i;
+        obj["flag"] = events[i].fFlag;
+        obj["line"] = events[i].fLineNumber;
+        obj["thread_id"] = events[i].fThreadID;
+        obj["filename"] = std::string(events[i].fFilename);
+        obj["funcname"] = std::string(events[i].fFuncname);
+        obj["time"] = events[i].fTime;
+        event_list.push_back(obj);
+    }
+    return event_list;
+}
+
 void flush_profile_events(MHO_ParameterStore* paramStore)
 {
     std::vector< MHO_ProfileEvent > events;
     MHO_Profiler::GetInstance().GetEvents(events);
     //convert and dump the events into the parameter store for now (will be empty unless enabled)
-    mho_json event_list = MHO_BasicFringeUtilities::convert_profile_events(events);
+    mho_json event_list = convert_profile_events(events);
     paramStore->Set("/profile/events", event_list);
 }
 
@@ -85,16 +103,7 @@ int main(int argc, char** argv)
     //flattened pass-info parameters (these are flattened into a single string primarily for MPI)
     std::string cscans, croots, cbaselines, cfgroups, cpolprods;
 
-    //RAII guard for the temp directory created by -K conversion.
-    //Declared static so its destructor is called even when std::exit() is used.
-    //makes sure the tmp files are cleaned up if they exist
-    struct MK4TempDirGuard
-    {
-        std::string path;
-        ~MK4TempDirGuard() { MHO_Mk4InputConverter::cleanup_mk4_temp_dir(path); }
-    };
     static MK4TempDirGuard mk4_guard;
-
     MPI_SINGLE_PROCESS
     {
         bool mk4_input = cmdline_params.GetAs< bool >("/cmdline/mk4format_input");
@@ -102,8 +111,8 @@ int main(int argc, char** argv)
         {
             //this is going to be slow, especially if we are trying to run on a whole experiment
             //the obvious solution/alternative is for the user to first run mark42hops
-            //and then run on the hops4 files, not to convert mark4's on-the-fly in a temp directory
-            //but we provide this for convenience
+            //and then work with the hops4 files, not to convert mark4's on-the-fly in a temp directory
+            //but we provide this ability for convenience
             mk4_guard.path = MHO_Mk4InputConverter::convert_mk4_input(&cmdline_params);
             if(mk4_guard.path.empty())
             {
