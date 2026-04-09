@@ -13,7 +13,7 @@
 #include "MHO_ParameterManager.hh"
 
 //fringe finding library helper functions
-#include "MHO_BasicFringeDataConfiguration.hh"
+#include "MHO_FringeDataInitializer.hh"
 #include "MHO_BasicFringeInfo.hh"
 #include "MHO_BasicFringeUtilities.hh"
 #include "MHO_FringePlotInfo.hh"
@@ -120,7 +120,7 @@ void MHO_IonosphericFringeFitter::Finalize()
         plot_data = MHO_FringePlotInfo::construct_plot_data(fContainerStore, fParameterStore, &fOperatorToolbox, fVexInfo);
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
 
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
+        MHO_FringeDataInitializer::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
 }
 

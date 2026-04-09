@@ -14,8 +14,14 @@
 #include "MHO_Snapshot.hh"
 #include "MHO_Timer.hh"
 
-//for control and intialization
-#include "MHO_BasicFringeDataConfiguration.hh"
+//for data discovery/intialization
+#include "MHO_FringeCommandLineParser.hh"
+#include "MHO_FringeDataDiscovery.hh"
+#include "MHO_FringeDataInitializer.hh"
+#include "MHO_Mk4InputConverter.hh"
+#include "MHO_BasicFringeUtilities.hh"
+
+//for control
 #include "MHO_FringeControlInitialization.hh"
 
 //fringe finding
@@ -44,7 +50,7 @@ void flush_profile_events(MHO_ParameterStore* paramStore)
     std::vector< MHO_ProfileEvent > events;
     MHO_Profiler::GetInstance().GetEvents(events);
     //convert and dump the events into the parameter store for now (will be empty unless enabled)
-    mho_json event_list = MHO_BasicFringeDataConfiguration::ConvertProfileEvents(events);
+    mho_json event_list = MHO_BasicFringeUtilities::convert_profile_events(events);
     paramStore->Set("/profile/events", event_list);
 }
 
@@ -69,7 +75,7 @@ int main(int argc, char** argv)
     MHO_Snapshot::GetInstance().SetExecutableName(std::string("fourfit"));
 
     MHO_ParameterStore cmdline_params;
-    int parse_status = MHO_BasicFringeDataConfiguration::parse_fourfit_command_line(argc, argv, &cmdline_params);
+    int parse_status = MHO_FringeCommandLineParser::parse_fourfit_command_line(argc, argv, &cmdline_params);
     if(parse_status != 0)
     {
         msg_fatal("main", "could not parse command line options." << eom);
@@ -85,7 +91,7 @@ int main(int argc, char** argv)
     struct MK4TempDirGuard
     {
         std::string path;
-        ~MK4TempDirGuard() { MHO_BasicFringeDataConfiguration::cleanup_mk4_temp_dir(path); }
+        ~MK4TempDirGuard() { MHO_Mk4InputConverter::cleanup_mk4_temp_dir(path); }
     };
     static MK4TempDirGuard mk4_guard;
 
@@ -98,7 +104,7 @@ int main(int argc, char** argv)
             //the obvious solution/alternative is for the user to first run mark42hops
             //and then run on the hops4 files, not to convert mark4's on-the-fly in a temp directory
             //but we provide this for convenience
-            mk4_guard.path = MHO_BasicFringeDataConfiguration::convert_mk4_input(&cmdline_params);
+            mk4_guard.path = MHO_Mk4InputConverter::convert_mk4_input(&cmdline_params);
             if(mk4_guard.path.empty())
             {
                 msg_fatal("main", "mark4 input conversion failed, exiting." << eom);
@@ -107,7 +113,7 @@ int main(int argc, char** argv)
         }
 
         msg_debug("main", "determining the data passes" << eom);
-        MHO_BasicFringeDataConfiguration::determine_passes(&cmdline_params, cscans, croots, cbaselines, cfgroups, cpolprods);
+        MHO_FringeDataDiscovery::determine_passes(&cmdline_params, cscans, croots, cbaselines, cfgroups, cpolprods);
         msg_debug("main", "done determining the data passes" << eom);
     }
 
@@ -121,7 +127,7 @@ int main(int argc, char** argv)
 #endif
 
     std::vector< mho_json > pass_vector;
-    MHO_BasicFringeDataConfiguration::split_passes(pass_vector, cscans, croots, cbaselines, cfgroups, cpolprods);
+    MHO_FringeDataDiscovery::split_passes(pass_vector, cscans, croots, cbaselines, cfgroups, cpolprods);
 
     std::size_t n_pass = pass_vector.size();
     MPI_SINGLE_PROCESS
@@ -152,14 +158,14 @@ int main(int argc, char** argv)
         fringeData.GetParameterStore()->Set("/pass", pass);
 
         //initializes the scan data store, reads the ovex file and sets the value of '/pass/source'
-        bool scan_dir_ok = MHO_BasicFringeDataConfiguration::initialize_scan_data(fringeData.GetParameterStore(),
+        bool scan_dir_ok = MHO_FringeDataInitializer::initialize_scan_data(fringeData.GetParameterStore(),
                                                                                   fringeData.GetScanDataStore());
         if(!scan_dir_ok)
         {
             continue;
         }
 
-        MHO_BasicFringeDataConfiguration::populate_initial_parameters(fringeData.GetParameterStore(),
+        MHO_FringeDataInitializer::populate_initial_parameters(fringeData.GetParameterStore(),
                                                                       fringeData.GetScanDataStore());
 
         //parse the control file and form the control statements

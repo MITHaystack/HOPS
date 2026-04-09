@@ -18,6 +18,9 @@
 //construct_plot_data
 #include "MHO_ComputePlotData.hh"
 
+//profiler events
+#include "MHO_Profiler.hh"
+
 namespace hops
 {
 
@@ -651,6 +654,25 @@ double MHO_BasicFringeUtilities::calculate_sbavg(MHO_ContainerStore* conStore, M
         sbavg /= (double)nchan;
     }
     return sbavg;
+}
+
+
+mho_json MHO_BasicFringeUtilities::convert_profile_events(std::vector< MHO_ProfileEvent >& events)
+{
+    mho_json event_list;
+    for(std::size_t i = 0; i < events.size(); i++)
+    {
+        mho_json obj;
+        obj["event_id"] = i;
+        obj["flag"] = events[i].fFlag;
+        obj["line"] = events[i].fLineNumber;
+        obj["thread_id"] = events[i].fThreadID;
+        obj["filename"] = std::string(events[i].fFilename);
+        obj["funcname"] = std::string(events[i].fFuncname);
+        obj["time"] = events[i].fTime;
+        event_list.push_back(obj);
+    }
+    return event_list;
 }
 
 } // namespace hops

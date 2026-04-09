@@ -26,7 +26,7 @@
 #include "MHO_MathUtilities.hh"
 #include "MHO_VexInfoExtractor.hh"
 
-#include "MHO_BasicFringeDataConfiguration.hh"
+#include "MHO_FringeDataInitializer.hh"
 #include "MHO_MultitonePhaseCorrection.hh"
 
 #ifdef HOPS_USE_FFTW3
@@ -174,7 +174,7 @@ int main(int argc, char** argv)
 
     //load baseline data
     scanStore.LoadBaseline(baseline, &containerStore);
-    MHO_BasicFringeDataConfiguration::configure_visibility_data(&containerStore);
+    MHO_FringeDataInitializer::configure_visibility_data(&containerStore);
 
     //load station data
     scanStore.LoadStation(station, &containerStore);

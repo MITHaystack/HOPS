@@ -13,7 +13,7 @@
 #include "MHO_ParameterManager.hh"
 
 //fringe finding library helper functions
-#include "MHO_BasicFringeDataConfiguration.hh"
+#include "MHO_FringeDataInitializer.hh"
 #include "MHO_BasicFringeInfo.hh"
 #include "MHO_BasicFringeUtilities.hh"
 #include "MHO_FringeData.hh"
@@ -64,7 +64,7 @@ void MHO_SpectralLineFringeFitter::Configure()
         fScanStore->LoadBaseline(baseline, fContainerStore);
         fParameterStore->Set("/files/baseline_input_file", fScanStore->GetBaselineFilename(baseline));
 
-        MHO_BasicFringeDataConfiguration::configure_visibility_data(fContainerStore);
+        MHO_FringeDataInitializer::configure_visibility_data(fContainerStore);
 
         vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
         wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
@@ -93,7 +93,7 @@ void MHO_SpectralLineFringeFitter::Configure()
 
         std::string ref_station_mk4id = std::string(1, baseline[0]);
         std::string rem_station_mk4id = std::string(1, baseline[1]);
-        MHO_BasicFringeDataConfiguration::configure_station_data(fScanStore, fContainerStore, ref_station_mk4id,
+        MHO_FringeDataInitializer::configure_station_data(fScanStore, fContainerStore, ref_station_mk4id,
                                                                  rem_station_mk4id);
         fParameterStore->Set("/files/ref_station_input_file", fScanStore->GetStationFilename(ref_station_mk4id));
         fParameterStore->Set("/files/rem_station_input_file", fScanStore->GetStationFilename(rem_station_mk4id));
@@ -136,9 +136,9 @@ void MHO_SpectralLineFringeFitter::Configure()
         take_snapshot_here("test", "weights", __FILE__, __LINE__, wt_data);
 
         fOperatorBuildManager->BuildOperatorCategory("labeling");
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
+        MHO_FringeDataInitializer::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "labeling");
         fOperatorBuildManager->BuildOperatorCategory("selection");
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
+        MHO_FringeDataInitializer::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "selection");
 
         if(vis_data->GetSize() == 0)
         {
@@ -227,8 +227,8 @@ void MHO_SpectralLineFringeFitter::Initialize()
         Refresh();
         MHO_InitialFringeInfo::compute_total_summed_weights(fContainerStore, fParameterStore);
         MHO_InitialFringeInfo::determine_n_active_channels(fContainerStore, fParameterStore);
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
+        MHO_FringeDataInitializer::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "flagging");
+        MHO_FringeDataInitializer::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "calibration");
     }
 }
 
@@ -242,7 +242,7 @@ void MHO_SpectralLineFringeFitter::PreRun()
     if(!skipped)
     {
         // User-specified prefit operators (pol-product summation, passband, etc.).
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "prefit");
+        MHO_FringeDataInitializer::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "prefit");
 
         // Re-fetch pointers in case prefit operators modified the containers.
         vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
@@ -341,7 +341,7 @@ void MHO_SpectralLineFringeFitter::PostRun()
     bool skipped = fParameterStore->GetAs< bool >("/status/skipped");
     if(!skipped)
     {
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "postfit");
+        MHO_FringeDataInitializer::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "postfit");
     }
 }
 
@@ -407,7 +407,7 @@ void MHO_SpectralLineFringeFitter::Finalize()
         MHO_FringePlotInfo::fill_plot_data(fParameterStore, plot_data);
 
         // Run finalize-category operators (e.g. output writers).
-        MHO_BasicFringeDataConfiguration::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
+        MHO_FringeDataInitializer::init_and_exec_operators(fOperatorBuildManager, &fOperatorToolbox, "finalize");
     }
 }
 

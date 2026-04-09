@@ -5,7 +5,12 @@ hops_internal_include_directories(../../../extern/cli11)
 #list header files #############################################################
 set (FRINGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ComputePlotData.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeDataConfiguration.hh
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeCommandLineParser.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeDataDiscovery.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeDataInitializer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Mk4InputConverter.hh
+
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringeControlInitialization.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BasicFringeInfo.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexInfoExtractor.hh
@@ -23,7 +28,12 @@ set (FRINGE_HEADERFILES
 #list source files #############################################################
 set( FRINGE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ComputePlotData.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeDataConfiguration.cc
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeCommandLineParser.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeDataDiscovery.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeDataInitializer.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Mk4InputConverter.cc
+
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringeControlInitialization.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BasicFringeInfo.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_VexInfoExtractor.cc

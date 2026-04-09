@@ -8,7 +8,7 @@
 //option parsing and help text library
 #include "CLI11.hpp"
 
-#include "MHO_BasicFringeDataConfiguration.hh"
+#include "MHO_FringeCommandLineParser.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_FringePlotVisitorFactory.hh"
@@ -230,7 +230,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
     }
 
     //for now we require these options to be set (may relax this once we allow mult-pass fringe fitting)
-    MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
+    MHO_FringeCommandLineParser::parse_baseline_freqgrp(baseline_opt, baseline, freqgrp);
 
     //pass the extracted command line info back in the parameter store
     bool show_plot = !no_plot;
