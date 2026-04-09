@@ -36,6 +36,7 @@ if(BASH_PROGRAM)
             chk_adhoc_phase_sinewave
             chk_adhoc_flagging
             chk_highnchannels
+            chk_separate_outdir
         )
     endif(PY_EXE)
 
