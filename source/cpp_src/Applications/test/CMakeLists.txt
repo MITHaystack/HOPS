@@ -37,6 +37,7 @@ if(BASH_PROGRAM)
             chk_adhoc_flagging
             chk_highnchannels
             chk_separate_outdir
+            chk_fourfit4mk4io
         )
     endif(PY_EXE)
 
