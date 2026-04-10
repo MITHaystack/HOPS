@@ -79,6 +79,7 @@ class MHO_MBDelaySearchOpenMP: public MHO_MBDelaySearch
         std::vector< MHO_DelayRate > fPerThreadDelayRateCalc;
         std::vector< mbd_dr_type > fPerThreadSearchBuffer;
         std::vector< FFT_2D_ENGINE_TYPE > fPerThreadBatchedFFTEngine;
+        std::vector< std::vector< double > > fPerThreadSmoothScratch; //per-thread scratch for apply_dr_boxcar_smooth
 };
 
 } // namespace hops

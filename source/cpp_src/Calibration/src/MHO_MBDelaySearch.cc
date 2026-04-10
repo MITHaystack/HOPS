@@ -221,7 +221,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 check_step_fatal(ok, "fringe", "MBD search batched fft engine execution." << eom);
 
                 //apply incoherent DR averaging if t_cohere is set (no-op otherwise)
-                SmoothSearchBuffer();
+                apply_dr_boxcar_smooth(fSearchBuffer, fSmoothedAmpBuffer);
 
                 //search the 2D result for the global maximum
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
@@ -359,31 +359,34 @@ void MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
     GetWindow(fDRAxis, fDRWinSet, fDRWin, fDRBinSep, low, high);
 }
 
-void MHO_MBDelaySearch::SmoothSearchBuffer()
+void MHO_MBDelaySearch::apply_dr_boxcar_smooth(mbd_dr_type& buffer, std::vector< double >& scratch)
 {
     if(!fTCohereEnabled)
         return;
 
+    std::size_t ndrsp = buffer.GetDimension(0);
+    std::size_t ngrid = buffer.GetDimension(1);
+
     //number of adjacent DR bins to include on each side of the box-car
-    int n = (int)(fNDRSP * fAccPeriod / (2.0 * fTCohere) + 0.5);
+    int n = (int)(ndrsp * fAccPeriod / (2.0 * fTCohere) + 0.5);
     msg_debug("calibration", "incoherent averaging: box-car half-width = " << n << " DR bins" << eom);
 
-    for(std::size_t mbd = 0; mbd < fNGridPoints; mbd++)
+    for(std::size_t mbd = 0; mbd < ngrid; mbd++)
     {
         //copy the amplitude of this MBD bin's DR row into the scratch buffer
-        for(std::size_t dr = 0; dr < fNDRSP; dr++)
-            fSmoothedAmpBuffer[dr] = std::abs(fSearchBuffer(dr, mbd));
+        for(std::size_t dr = 0; dr < ndrsp; dr++)
+            scratch[dr] = std::abs(buffer(dr, mbd));
 
         //box-car smooth (boundary-clamped, not wrap-around) and write result back
-        for(std::size_t dr = 0; dr < fNDRSP; dr++)
+        for(std::size_t dr = 0; dr < ndrsp; dr++)
         {
             int jlo = std::max((int)dr - n, 0);
-            int jhi = std::min((int)dr + n, (int)fNDRSP - 1);
+            int jhi = std::min((int)dr + n, (int)ndrsp - 1);
             double sum = 0.0;
             for(int j = jlo; j <= jhi; j++)
-                sum += fSmoothedAmpBuffer[j];
+                sum += scratch[j];
             //store as real value; max-search uses std::norm which remains monotonic
-            fSearchBuffer(dr, mbd) = sum / (jhi - jlo + 1.0);
+            buffer(dr, mbd) = sum / (jhi - jlo + 1.0);
         }
     }
 }

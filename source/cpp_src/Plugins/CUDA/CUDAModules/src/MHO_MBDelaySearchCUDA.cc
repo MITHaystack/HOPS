@@ -90,6 +90,7 @@ bool MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
         std::size_t nch = std::get< CHANNEL_AXIS >(*in).GetSize();
         fHostBuffer.Resize(fNDRSP, fNGridPoints);
         fHostBuffer.ZeroArray(); //TODO MOVE ME
+        fSmoothedAmpBuffer.resize(fNDRSP, 0.0);
 
         // Create a cuFFT fCUFFTPlan
         msg_debug("cuda", "creating cuda FFT plan of size: (" << fNGridPoints << ", " << fNDRSP << ")" << eom);
@@ -200,6 +201,9 @@ bool MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
                 // Copy the result back to host
                 cudaMemcpy(fHostBuffer.GetData(), fDeviceBuffer, sizeof(visibility_element_type) * fHostBuffer.GetSize(),
                            cudaMemcpyDeviceToHost);
+
+                //apply incoherent DR averaging if t_cohere is set (no-op otherwise)
+                apply_dr_boxcar_smooth(fHostBuffer, fSmoothedAmpBuffer);
 
                 //search for the maximum TODO FIXME
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)

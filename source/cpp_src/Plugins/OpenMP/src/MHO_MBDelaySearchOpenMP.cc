@@ -97,6 +97,7 @@ bool MHO_MBDelaySearchOpenMP::InitializeImpl(const XArgType* in)
 
         fNDRSP = fDelayRateCalc.GetDelayRateSearchSpaceSize();
         fSearchBuffer.Resize(fNDRSP, fNGridPoints);
+        fPerThreadSmoothScratch.assign(fNThreads, std::vector< double >(fNDRSP, 0.0));
         fBatchedFFTEngine.SetArgs(&fSearchBuffer);
         fBatchedFFTEngine.DeselectAllAxes();
         fBatchedFFTEngine.SelectAxis(1); //FFT along MBD axis (axis 1); axis 0 is DR - runs as a batch
@@ -260,6 +261,9 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
 
                 //batched FFT over all DR slices at once
                 local_fft.Execute();
+
+                //apply incoherent DR averaging if t_cohere is set (no-op otherwise)
+                apply_dr_boxcar_smooth(local_sb, fPerThreadSmoothScratch[tid]);
 
                 //search the 2D result - write only to thread-local lm, no synchronization needed
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)

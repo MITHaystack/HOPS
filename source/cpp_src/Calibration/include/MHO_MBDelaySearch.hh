@@ -206,13 +206,15 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         virtual bool ExecuteImpl(const XArgType* in) override;
 
         /**
-         * @brief Applies incoherent box-car smoothing over the delay-rate dimension of fSearchBuffer.
-         * Called after fBatchedFFTEngine.Execute() and before the amplitude max-search.
-         * When fTCohereEnabled is false this is a no-op.  Derived classes (OpenMP, CUDA) should
-         * call this at the same position in their own SBD loops.
-         * All scratch space (fSmoothedAmpBuffer) is confined to this function.
+         * @brief Applies incoherent box-car smoothing over the delay-rate dimension of the given
+         * search buffer, using scratch as a temporary per-MBD amplitude row.
+         * When fTCohereEnabled is false this is a no-op.
+         * Each backend calls this directly with its own buffer and scratch space:
+         *   base:   apply_dr_boxcar_smooth(fSearchBuffer, fSmoothedAmpBuffer)
+         *   OpenMP: apply_dr_boxcar_smooth(local_sb,      fPerThreadSmoothScratch[tid])
+         *   CUDA:   apply_dr_boxcar_smooth(fHostBuffer,   fSmoothedAmpBuffer)
          */
-        virtual void SmoothSearchBuffer();
+        void apply_dr_boxcar_smooth(mbd_dr_type& buffer, std::vector< double >& scratch);
 
         // std::vector< double > DetermineFrequencyPoints(const XArgType* in);
 
@@ -251,7 +253,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fTCohere;   //coherence time (s)
         double fAccPeriod; //accumulation period (s), derived from time axis spacing
 
-        //scratch space used only within SmoothSearchBuffer()
+        //scratch space for apply_dr_boxcar_smooth (base + CUDA); OpenMP uses fPerThreadSmoothScratch instead
         std::vector< double > fSmoothedAmpBuffer; //one DR amplitude row, size fNDRSP
 
         //the bin width in each dimension

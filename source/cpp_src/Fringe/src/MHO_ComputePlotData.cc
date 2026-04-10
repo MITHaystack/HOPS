@@ -529,6 +529,8 @@ xpower_amp_type MHO_ComputePlotData::calc_dr()
         std::get< 0 >(fDRAmpWorkspace).at(i) = (std::get< 0 >(fDRWorkspace).at(i)) / (fRefFreq / 1000.0);
     }
 
+    smooth_dr_spectrum_tcohere(drsp_size, ap_delta);
+
     return fDRAmpWorkspace;
 }
 
@@ -1184,7 +1186,41 @@ xpower_amp_type MHO_ComputePlotData::calc_dr_segs_phase(double& coh_avg_phase, p
         std::get< 0 >(fDRAmpWorkspace).at(i) = (std::get< 0 >(fDRWorkspace).at(i)) / (fRefFreq / 1000.0);
     }
 
+    smooth_dr_spectrum_tcohere(drsp_size, ap_delta);
+
     return fDRAmpWorkspace;
+}
+
+void MHO_ComputePlotData::smooth_dr_spectrum_tcohere(std::size_t drsp_size, double ap_delta)
+{
+    double t_cohere = -1.0;
+    if(!fParamStore->Get(std::string("/control/fit/t_cohere"), t_cohere) || t_cohere <= 0.0)
+        return;
+
+    //replicate make_plotdata.c lines 114-138:
+    //n is the total box-car window width; force it to be odd for symmetry (no bias)
+    int n = (int)(drsp_size * ap_delta / t_cohere);
+    if(n % 2 == 0)
+        n++;
+    msg_debug("fringe", "t_cohere plot DR smoothing: box-car window = " << n << " bins" << eom);
+
+    std::vector< double > temp(drsp_size);
+    for(std::size_t i = 0; i < drsp_size; i++)
+        temp[i] = fDRAmpWorkspace[i] / n; //pre-scale so the sum gives the average
+
+    for(std::size_t i = 0; i < drsp_size; i++)
+    {
+        fDRAmpWorkspace[i] = 0.0;
+        for(int j = -(n / 2); j <= n / 2; j++)
+        {
+            int ij = (int)i + j;
+            if(ij < 0)
+                ij += (int)drsp_size;
+            if(ij >= (int)drsp_size)
+                ij -= (int)drsp_size;
+            fDRAmpWorkspace[i] += temp[ij];
+        }
+    }
 }
 
 void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)

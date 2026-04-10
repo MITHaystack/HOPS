@@ -259,6 +259,16 @@ class MHO_ComputePlotData
          */
         std::string calc_error_code(const mho_json& plot_dict);
 
+        /**
+         * @brief Applies the t_cohere box-car smoothing to fDRAmpWorkspace in-place,
+         *        replicating the make_plotdata.c behavior (wrapping, odd window).
+         *        No-op when t_cohere is not set or <= 0.
+         *
+         * @param drsp_size Number of points in the delay-rate spectrum
+         * @param ap_delta  Accumulation period (s), i.e. time-axis bin width
+         */
+        void smooth_dr_spectrum_tcohere(std::size_t drsp_size, double ap_delta);
+
         double fRefFreq;
         double fTotalSummedWeights;
         double fMBDelay;
