@@ -147,6 +147,17 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double GetCoarseDR() const { return fCoarseDR; }
 
         /**
+         * @brief Setter for coherence time (enables incoherent averaging over delay rate)
+         *
+         * @param t_cohere Coherence time in seconds; values <= 0 disable incoherent averaging
+         */
+        void SetCoherenceTime(double t_cohere)
+        {
+            fTCohere = t_cohere;
+            fTCohereEnabled = (t_cohere > 0.0);
+        }
+
+        /**
          * @brief Getter for sbd bin separation
          *
          * @return Current SBDBin separation as a double.
@@ -194,6 +205,15 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         virtual bool InitializeImpl(const XArgType* in) override;
         virtual bool ExecuteImpl(const XArgType* in) override;
 
+        /**
+         * @brief Applies incoherent box-car smoothing over the delay-rate dimension of fSearchBuffer.
+         * Called after fBatchedFFTEngine.Execute() and before the amplitude max-search.
+         * When fTCohereEnabled is false this is a no-op.  Derived classes (OpenMP, CUDA) should
+         * call this at the same position in their own SBD loops.
+         * All scratch space (fSmoothedAmpBuffer) is confined to this function.
+         */
+        virtual void SmoothSearchBuffer();
+
         // std::vector< double > DetermineFrequencyPoints(const XArgType* in);
 
     protected:
@@ -225,6 +245,14 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         double fRefFreq;
         int fSBDStart;
         int fSBDStop;
+
+        //incoherent averaging parameters
+        bool fTCohereEnabled;
+        double fTCohere;   //coherence time (s)
+        double fAccPeriod; //accumulation period (s), derived from time axis spacing
+
+        //scratch space used only within SmoothSearchBuffer()
+        std::vector< double > fSmoothedAmpBuffer; //one DR amplitude row, size fNDRSP
 
         //the bin width in each dimension
         double fSBDBinSep;

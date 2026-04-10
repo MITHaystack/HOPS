@@ -358,6 +358,14 @@ void MHO_BasicFringeFitter::PreRun()
         ok = fMBDSearch->Initialize();
         check_step_fatal(ok, "fringe", "mbd initialization." << eom);
 
+        //enable incoherent delay-rate averaging if t_cohere is set
+        double t_cohere = -1.0;
+        if(fParameterStore->Get(std::string("/control/fit/t_cohere"), t_cohere) && t_cohere > 0.0)
+        {
+            msg_info("fringe", "incoherent averaging enabled: t_cohere = " << t_cohere << " s" << eom);
+            fMBDSearch->SetCoherenceTime(t_cohere);
+        }
+
         //configure the fringe-peak interpolator
         bool optimize_closure_flag = false;
         bool is_oc_set = fParameterStore->Get(std::string("/control/fit/optimize_closure"), optimize_closure_flag);

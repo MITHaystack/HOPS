@@ -32,6 +32,10 @@ MHO_MBDelaySearch::MHO_MBDelaySearch()
     fMBDBinSep = 0;
 
     fNPointsSearched = 0;
+
+    fTCohereEnabled = false;
+    fTCohere = 0.0;
+    fAccPeriod = 0.0;
 }
 
 MHO_MBDelaySearch::~MHO_MBDelaySearch(){};
@@ -71,6 +75,13 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
 
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
+
+        //extract accumulation period from the time axis spacing
+        auto& time_ax = std::get< TIME_AXIS >(*in);
+        if(time_ax.GetSize() >= 2)
+            fAccPeriod = time_ax(1) - time_ax(0);
+        else
+            fAccPeriod = 1.0;
 
         if(fSBDStart == -1)
         {
@@ -122,6 +133,7 @@ bool MHO_MBDelaySearch::InitializeImpl(const XArgType* in)
 
         fNDRSP = fDelayRateCalc.GetDelayRateSearchSpaceSize();
         fSearchBuffer.Resize(fNDRSP, fNGridPoints);
+        fSmoothedAmpBuffer.resize(fNDRSP, 0.0);
         fBatchedFFTEngine.SetArgs(&fSearchBuffer);
         fBatchedFFTEngine.DeselectAllAxes();
         fBatchedFFTEngine.SelectAxis(1); //FFT along MBD axis (axis 1); axis 0 is DR - runs as a batch
@@ -207,6 +219,9 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 //run a batched FFT along the MBD axis (axis 1) over all DR slices at once
                 ok = fBatchedFFTEngine.Execute();
                 check_step_fatal(ok, "fringe", "MBD search batched fft engine execution." << eom);
+
+                //apply incoherent DR averaging if t_cohere is set (no-op otherwise)
+                SmoothSearchBuffer();
 
                 //search the 2D result for the global maximum
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
@@ -342,6 +357,35 @@ void MHO_MBDelaySearch::GetMBDWindow(double& low, double& high) const
 void MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
 {
     GetWindow(fDRAxis, fDRWinSet, fDRWin, fDRBinSep, low, high);
+}
+
+void MHO_MBDelaySearch::SmoothSearchBuffer()
+{
+    if(!fTCohereEnabled)
+        return;
+
+    //number of adjacent DR bins to include on each side of the box-car
+    int n = (int)(fNDRSP * fAccPeriod / (2.0 * fTCohere) + 0.5);
+    msg_debug("calibration", "incoherent averaging: box-car half-width = " << n << " DR bins" << eom);
+
+    for(std::size_t mbd = 0; mbd < fNGridPoints; mbd++)
+    {
+        //copy the amplitude of this MBD bin's DR row into the scratch buffer
+        for(std::size_t dr = 0; dr < fNDRSP; dr++)
+            fSmoothedAmpBuffer[dr] = std::abs(fSearchBuffer(dr, mbd));
+
+        //box-car smooth (boundary-clamped, not wrap-around) and write result back
+        for(std::size_t dr = 0; dr < fNDRSP; dr++)
+        {
+            int jlo = std::max((int)dr - n, 0);
+            int jhi = std::min((int)dr + n, (int)fNDRSP - 1);
+            double sum = 0.0;
+            for(int j = jlo; j <= jhi; j++)
+                sum += fSmoothedAmpBuffer[j];
+            //store as real value; max-search uses std::norm which remains monotonic
+            fSearchBuffer(dr, mbd) = sum / (jhi - jlo + 1.0);
+        }
+    }
 }
 
 } // namespace hops
