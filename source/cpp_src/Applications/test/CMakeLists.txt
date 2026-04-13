@@ -38,6 +38,7 @@ if(BASH_PROGRAM)
             chk_highnchannels
             chk_separate_outdir
             chk_fourfit4mk4io
+            chk_tcohere
         )
     endif(PY_EXE)
 
