@@ -47,6 +47,13 @@ bool MHO_MBDelaySearchOpenMP::InitializeImpl(const XArgType* in)
         fNSBD = in->GetDimension(FREQ_AXIS);
         fNDR = in->GetDimension(TIME_AXIS);
 
+        //extract accumulation period from the time axis spacing (needed by apply_dr_boxcar_smooth)
+        auto& time_ax = std::get< TIME_AXIS >(*in);
+        if(time_ax.GetSize() >= 2)
+            fAccPeriod = time_ax(1) - time_ax(0); //fAccPeriod is a base class parameter
+        else
+            fAccPeriod = 1.0;
+
         if(fSBDStart == -1)
         {
             fSBDStart = 0;

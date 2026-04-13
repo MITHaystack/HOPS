@@ -38,6 +38,13 @@ bool MHO_MBDelaySearchCUDA::InitializeImpl(const XArgType* in)
         fNDR = in->GetDimension(TIME_AXIS);
         fNDRSP = fDelayRateCalc.CalculateSearchSpaceSize(fNDR);
 
+        //extract accumulation period from the time axis spacing (needed by apply_dr_boxcar_smooth)
+        auto& time_ax = std::get< TIME_AXIS >(*in);
+        if(time_ax.GetSize() >= 2)
+            fAccPeriod = time_ax(1) - time_ax(0); //fAccPeriod is a base class parameter
+        else
+            fAccPeriod = 1.0;
+
         if(fSBDStart == -1)
         {
             fSBDStart = 0;
