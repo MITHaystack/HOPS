@@ -71,7 +71,7 @@ mho_json MHO_VexBlockParser::ParseBlockLines(std::string block_name, const std::
             if(fBlockFormat["block_type"].get< std::string >() == "unsupported")
             {
                 std::string version = fBlockFormat["version"].get< std::string >();
-                msg_info("vex", "block type: " << block_name << " is not supported in format: " << fFormatDirectory
+                msg_debug("vex", "block type: " << block_name << " is not supported in format: " << fFormatDirectory
                                                << ", skipping." << eom);
                 mho_json empty;
                 return empty;
@@ -307,7 +307,7 @@ bool MHO_VexBlockParser::ProcessLine(const MHO_VexLine& line, std::stack< std::s
         {
             if(element_name != "exper_num")
             {
-                msg_info("vex", "could not locate element with name: " << element_name << " under " << fBlockName
+                msg_debug("vex", "could not locate element with name: " << element_name << " under " << fBlockName
                                                                        << " block format." << eom);
             }
             return false;
@@ -391,7 +391,7 @@ bool MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line, std::stack< s
                 element_block_name = ref_tokens[1];
                 if(!(format_node.contains(element_block_name)))
                 {
-                    msg_info("vex", "could not locate element with name: " << element_block_name << " under " << fBlockName
+                    msg_debug("vex", "could not locate element with name: " << element_block_name << " under " << fBlockName
                                                                            << " block format." << eom);
                     return false;
                 }
