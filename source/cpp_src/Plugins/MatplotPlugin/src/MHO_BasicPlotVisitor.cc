@@ -421,8 +421,19 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Capture the proper y-limits before any auto-expansion occurs
+    // Compute y-limits from the full data range (both DR and MBD) so that neither curve is clipped.
+    // When t_cohere is active the DR peak is lowered by box-car smoothing but the MBD peak is
+    // unchanged; reading ylim() after only the DR plot would produce limits that clip the MBD curve.
     std::array< double, 2 > proper_y_limits;
+    {
+        double scaled_min = ymin / scale;
+        double scaled_max = ymax / scale;
+        // Add a small upward margin (5 %) so the peak never touches the top border
+        double margin = 0.1 * (scaled_max - scaled_min);
+        if(margin == 0.0) margin = 0.1 * std::max(std::abs(scaled_max), 1.0);
+        proper_y_limits = {scaled_min - margin, scaled_max + margin};
+        msg_debug("plot", "Pre-computed Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
+    }
 
     // Plot delay rate data (red) - use original x-axis
     if(!dlyrate.empty() && !dly_x.empty())
@@ -439,9 +450,6 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         // Configure axis properties - enable minor grid and rotate y-tick labels
         auto ax_handle = matplot::gca();
         ax_handle->minor_grid(true); // Enable minor grid lines as substitute for minor ticks
-        // Capture y-limits immediately after first plot, before auto-expansion
-        proper_y_limits = matplot::ylim();
-        msg_debug("plot", "Captured original Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
     }
 
     // Plot MBD data (blue) - rescale x-axis to match delay rate range
