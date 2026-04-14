@@ -2,11 +2,13 @@
 set (PYVISITOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DefaultPythonPlotVisitor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PythonPluginInterface.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PyControlEvaluator.hh
 )
 
 set( PYVISITOR_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DefaultPythonPlotVisitor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PythonPluginInterface.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PyControlEvaluator.cc
     )
 
 #declare header paths ##########################################################

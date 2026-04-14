@@ -22,7 +22,14 @@
 #include "MHO_BasicFringeUtilities.hh"
 
 //for control
+#include "MHO_ControlDefinitions.hh"
 #include "MHO_FringeControlInitialization.hh"
+
+//Python control-file support (only when pybind11 is available)
+#ifdef USE_PYBIND11
+    #include "MHO_PyControlEvaluator.hh"
+    #include "MHO_PythonPluginInterface.hh"
+#endif
 
 //fringe finding
 #include "MHO_FringeFitter.hh"
@@ -183,8 +190,61 @@ int main(int argc, char** argv)
                                                                       fringeData.GetScanDataStore());
 
         //parse the control file and form the control statements
-        MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(),
-                                                              fringeData.GetControlStatements());
+        //detect whether the control file is a python script (.py extension)
+        bool is_python_cf = false;
+        std::string ctrl_file = fringeData.GetParameterStore()->GetAs< std::string >("/files/control_file");
+        std::string ctrl_file_ext = MHO_DirectoryInterface::GetFileExtension(ctrl_file);
+        if(ctrl_file_ext == "py"){is_python_cf = true;}
+
+        if(is_python_cf)
+        {
+            #ifndef USE_PYBIND11
+            if(is_python_cf) //bail out, pybind11 is not in use
+            {
+                msg_fatal("main", "a python control file was specified but HOPS was built without pybind11 support." << eom);
+                std::exit(1);
+            }
+            #else
+
+            fringeData.GetParameterStore()->Set("/status/is_finished", false);
+            fringeData.GetParameterStore()->Set("/status/skipped", false);
+
+            //ensure the Python interpreter is running before we call into it
+            MHO_PythonPluginInterface::EnsureInitialized();
+
+            //populate the control format (same setup as the DSL path)
+            fringeData.GetControlFormat() = MHO_ControlDefinitions::GetControlFormat();
+            MHO_FringeControlInitialization::add_default_operator_format_def(fringeData.GetControlFormat());
+
+            //evaluate the Python control script -> control_statements
+            bool py_ok = MHO_PyControlEvaluator::Evaluate(fringeData.GetParameterStore(),
+                                                          fringeData.GetControlFormat(),
+                                                          fringeData.GetControlStatements());
+            if(!py_ok)
+            {
+                msg_error("main", "Python control file evaluation failed, skipping pass." << eom);
+                fringeData.GetParameterStore()->Set("/status/skipped", true);
+                fringeData.GetParameterStore()->Set("/status/is_finished", true);
+                continue;
+            }
+
+            //consume the statements (add default operators, run ParameterManager, etc.)
+            MHO_FringeControlInitialization::apply_control_statements(fringeData.GetParameterStore(),
+                                                                      fringeData.GetControlFormat(),
+                                                                      fringeData.GetControlStatements());
+
+            //a python control file implicitly activates the Python plugin
+            fringeData.GetParameterStore()->Set("/config/plugins/activate_python", true);
+
+            #endif //USE_PYBIND11
+        }
+        else
+        {
+            //traditional control file processing
+            MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(),
+                                                                  fringeData.GetControlFormat(),
+                                                                  fringeData.GetControlStatements());
+        }
 
         //build the fringe fitter based on the input/control
         MHO_FringeFitterFactory ff_factory(&fringeData);

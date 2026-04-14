@@ -26,6 +26,17 @@ void MHO_PythonPluginInterface::Initialize()
     }
 }
 
+void MHO_PythonPluginInterface::EnsureInitialized()
+{
+    if(!fInitialized)
+    {
+        msg_debug("python_bindings", "initializing python interpreter for Python control file" << eom);
+        py::initialize_interpreter();
+        configure_pypath();
+        fInitialized = true;
+    }
+}
+
 void MHO_PythonPluginInterface::Finalize()
 {
     if(fInitialized)

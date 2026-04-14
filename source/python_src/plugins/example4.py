@@ -46,4 +46,4 @@ def set_pc_phase_offset_y(fringe_data_interface):
             # Re-initialize so the new offset is picked up before Execute() is called.
             ok = op.initialize()
             if not ok:
-                print("example4: warning — initialize() returned False after reconfiguration")
+                print("example4: warning - initialize() returned False after reconfiguration")

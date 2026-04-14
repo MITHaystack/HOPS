@@ -32,6 +32,14 @@ class MHO_PythonPluginInterface: public MHO_FringeFitterVisitor
 
         virtual void Visit(MHO_FringeFitter* fitter) override;
 
+        /**
+         * @brief Ensure the embedded Python interpreter is running.
+         * Safe to call multiple times; only initialises once.
+         * Used by MHO_PyControlEvaluator when a Python control file is
+         * encountered before the plugin visitors have been constructed.
+         */
+        static void EnsureInitialized();
+
     protected:
         void Initialize();
         void Finalize();

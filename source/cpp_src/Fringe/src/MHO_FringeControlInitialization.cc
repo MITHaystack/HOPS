@@ -97,16 +97,12 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     paramStore->Set("/status/is_finished", false);
     paramStore->Set("/status/skipped", false);
 
-    //these should all be present and ok at this point (handled by command line parse functions)
-    //std::string input_directory = paramStore->GetAs< std::string >("/files/input_directory");
     std::string control_file = paramStore->GetAs< std::string >("/files/control_file");
     std::string baseline = paramStore->GetAs< std::string >("/config/baseline");
-    std::string polprod = paramStore->GetAs< std::string >("/config/polprod");
     std::string fgroup = paramStore->GetAs< std::string >("/config/fgroup");
-    std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
 
     ////////////////////////////////////////////////////////////////////////////
-    //CONTROL CONSTRUCTION
+    //CONTROL CONSTRUCTION (DSL path)
     ////////////////////////////////////////////////////////////////////////////
     MHO_ControlFileParser cparser;
     MHO_ControlConditionEvaluator ceval;
@@ -128,15 +124,10 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     cparser.SetControlFile(control_file);
     auto control_contents = cparser.ParseControl();
 
-    //std::cout<<"dumping parsed control contents: "<<control_contents.dump(2)<<std::endl;
-
     //stash the processed text in the parameter store
-    //TODO FIXME -- we may want to make this optional (control file parameter - gen_cf_record)
-    //TODO FIXME -- also, we should probably compute the hash/checksum of this string and insert it for tracking
     std::string parsed_control = cparser.GetLegacyProcessedControlFileText();
     paramStore->Set("/control/control_file_contents", parsed_control);
 
-    //TODO -- where should frequency group information get stashed/retrieved?
     std::string srcName = paramStore->GetAs< std::string >("/vex/scan/source/name");
     std::string scnName = paramStore->GetAs< std::string >("/vex/scan/name");
 
@@ -147,6 +138,16 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     }
     ceval.SetPassInformation(baseline, srcName, fgroup_code, scnName); //baseline, source, fgroup, scan
     control_statements = ceval.GetApplicableStatements(control_contents);
+
+    apply_control_statements(paramStore, control_format, control_statements);
+}
+
+void MHO_FringeControlInitialization::apply_control_statements(MHO_ParameterStore* paramStore, mho_json& control_format,
+                                                                mho_json& control_statements)
+{
+    std::cout<< "DUMP = "<<control_statements.dump() << std::endl;;
+
+    std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
 
     //tack on default-operations to the control statements, so we can trigger
     //the build of these operators at the proper step (e.g. coarse selection, multitone pcal etc.)

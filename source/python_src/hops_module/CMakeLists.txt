@@ -14,9 +14,15 @@ if (PY_EXE)
             PATTERN "*.py"
             PATTERN "__pycache__" EXCLUDE)
             
-    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/hops_visualization" 
+    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/hops_visualization"
             DESTINATION "${PYTHON_MODULE_INSTALL_DIR}"
-            FILES_MATCHING 
+            FILES_MATCHING
+            PATTERN "*.py"
+            PATTERN "__pycache__" EXCLUDE)
+
+    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/hops_control"
+            DESTINATION "${PYTHON_MODULE_INSTALL_DIR}"
+            FILES_MATCHING
             PATTERN "*.py"
             PATTERN "__pycache__" EXCLUDE)
 
