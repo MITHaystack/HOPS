@@ -73,6 +73,24 @@ bool MHO_PyControlEvaluator::Evaluate(MHO_ParameterStore* paramStore, const mho_
         return false;
     }
 
+    //filter blocks to only those applicable to the current pass,
+    //mirroring what MHO_ControlFileParser does on the DSL path
+    std::string baseline = paramStore->GetAs< std::string >("/config/baseline");
+    std::string source   = "?";
+    paramStore->Get("/vex/scan/source/name", source);
+    std::string fgroup   = "?";
+    paramStore->Get("/config/fgroup", fgroup);
+    std::string scan_name = "?";
+    paramStore->Get("/vex/scan/name", scan_name);
+
+    //GetApplicableStatements expects {"conditions": [...]} not a bare array
+    mho_json wrapped;
+    wrapped["conditions"] = control_statements;
+
+    MHO_ControlConditionEvaluator condition_eval;
+    condition_eval.SetPassInformation(baseline, source, fgroup, scan_name);
+    control_statements = condition_eval.GetApplicableStatements(wrapped);
+
     return true;
 }
 

@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "MHO_ControlConditionEvaluator.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 #include "MHO_ParameterStore.hh"
