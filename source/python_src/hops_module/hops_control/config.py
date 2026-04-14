@@ -99,14 +99,80 @@ def _compound_caller(keyword, stmt_type, fields, config_ref):
 
 class _ConditionalBlock:
     """
-    Context manager that opens a new conditional block on entry and closes it
-    on exit, restoring the previously active block.
+    Context manager for a conditional block.
+
+    Returned by ``cfg.if_station()``, ``cfg.if_baseline()``, etc.  Chain
+    ``.and_*()`` / ``.or_*()`` calls before the ``with`` statement to build
+    compound conditions that mirror the DSL ``and`` / ``or`` syntax::
+
+        # DSL: if station E and scan > 100-1200
+        with cfg.if_station("E").and_scan_after("100-1200"):
+            cfg.pc_amp_hcode(0.0001)
+
+        # DSL: if station E or station G
+        with cfg.if_station("E").or_station("G"):
+            cfg.sampler_delay_x([...])
+
+    The ``value`` token list produced by chaining is fed directly to
+    ``MHO_ControlConditionEvaluator``, so all DSL boolean operators
+    (``and``, ``or``, ``not``, parentheses) are supported.
     """
 
     def __init__(self, config, condition: list):
         self._config = config
         self._condition = condition
         self._block = None
+
+    # ------------------------------------------------------------------
+    # Chaining helpers — each returns a new _ConditionalBlock with the
+    # condition list extended by the appropriate DSL tokens.
+    # ------------------------------------------------------------------
+
+    def and_station(self, s: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["and", "station", s])
+
+    def or_station(self, s: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["or", "station", s])
+
+    def and_baseline(self, b: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["and", "baseline", b])
+
+    def or_baseline(self, b: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["or", "baseline", b])
+
+    def and_source(self, s: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["and", "source", s])
+
+    def or_source(self, s: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["or", "source", s])
+
+    def and_fgroup(self, fg: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["and", "f_group", fg])
+
+    def or_fgroup(self, fg: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["or", "f_group", fg])
+
+    def and_scan_before(self, scan: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["and", "scan", "<", scan])
+
+    def or_scan_before(self, scan: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["or", "scan", "<", scan])
+
+    def and_scan_after(self, scan: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["and", "scan", ">", scan])
+
+    def or_scan_after(self, scan: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["or", "scan", ">", scan])
+
+    def and_scan_between(self, lo: str, hi: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["and", "scan", lo, "to", hi])
+
+    def or_scan_between(self, lo: str, hi: str) -> '_ConditionalBlock':
+        return _ConditionalBlock(self._config, self._condition + ["or", "scan", lo, "to", hi])
+
+    # ------------------------------------------------------------------
+    # Context manager protocol
+    # ------------------------------------------------------------------
 
     def __enter__(self):
         self._block = {"value": self._condition, "statements": []}
@@ -191,16 +257,16 @@ class Config:
         return _ConditionalBlock(self, ["f_group", fg])
 
     def if_scan_before(self, scan: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if scan_before <scan>``."""
-        return _ConditionalBlock(self, ["scan_before", scan])
+        """Open a conditional block for ``if scan < <scan>``."""
+        return _ConditionalBlock(self, ["scan", "<", scan])
 
     def if_scan_after(self, scan: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if scan_after <scan>``."""
-        return _ConditionalBlock(self, ["scan_after", scan])
+        """Open a conditional block for ``if scan > <scan>``."""
+        return _ConditionalBlock(self, ["scan", ">", scan])
 
     def if_scan_between(self, lo: str, hi: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if scan_between <lo> <hi>``."""
-        return _ConditionalBlock(self, ["scan_between", lo, hi])
+        """Open a conditional block for ``if scan <lo> to <hi>``."""
+        return _ConditionalBlock(self, ["scan", lo, "to", hi])
 
     # ------------------------------------------------------------------
     # Dynamic dispatch via __getattr__
