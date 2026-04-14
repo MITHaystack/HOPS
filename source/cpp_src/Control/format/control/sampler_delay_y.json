@@ -1,5 +1,5 @@
 {
-    "name": "sampler_delay_l",
+    "name": "sampler_delay_y",
     "statement_type": "parameter",
     "parameter_type": "station",
     "type": "list_real"

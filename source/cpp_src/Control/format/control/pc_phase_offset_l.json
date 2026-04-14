@@ -1,5 +1,5 @@
 {
-    "name": "pc_phases_offset_l",
+    "name": "pc_phase_offset_l",
     "statement_type": "operator",
     "operator_category" : "calibration",
     "type" : "real",
