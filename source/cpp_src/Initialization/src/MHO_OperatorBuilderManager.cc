@@ -17,6 +17,7 @@
 #include "MHO_MixedPolYShiftBuilder.hh"
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
 #include "MHO_NotchesBuilder.hh"
+#include "MHO_NotchCombBuilder.hh"
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_PolarizationRelabelerBuilder.hh"
@@ -89,6 +90,7 @@ void MHO_OperatorBuilderManager::CreateDefaultBuilders()
     //flagging operators
     AddBuilderType< MHO_PassbandBuilder >("passband", "passband");
     AddBuilderType< MHO_NotchesBuilder >("notches", "notches");
+    AddBuilderType< MHO_NotchCombBuilder >("notch_comb", "notch_comb");
     AddBuilderType< MHO_DCBlockBuilder >("dc_block", "dc_block");
     AddBuilderType< MHO_MinWeightBuilder >("min_weight", "min_weight");
 

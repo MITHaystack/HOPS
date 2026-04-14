@@ -1,0 +1,19 @@
+{
+    "name": "notch_comb",
+    "statement_type": "operator",
+    "operator_category" : "flagging",
+    "type" : "compound",
+    "priority": 4.5,
+    "parameters":
+    {
+        "offset": {"type": "real"},
+        "period": {"type": "real"},
+        "width":  {"type": "real"}
+    },
+    "fields":
+    [
+        "offset",
+        "period",
+        "width"
+    ]
+}

@@ -22,6 +22,7 @@ set (INITIALIZATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_CircularFieldRotationBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PassbandBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NotchesBuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NotchCombBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlockBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeightBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LSBOffsetBuilder.hh
@@ -56,6 +57,7 @@ set( INITIALIZATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_CircularFieldRotationBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PassbandBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NotchesBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NotchCombBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlockBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeightBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LSBOffsetBuilder.cc

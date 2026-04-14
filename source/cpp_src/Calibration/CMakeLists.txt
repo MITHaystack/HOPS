@@ -19,6 +19,7 @@ set (CALIBRATION_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EstimatePCManual.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Passband.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Notches.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NotchComb.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DCBlock.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MinWeight.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SingleSidebandNormFX.hh
@@ -60,6 +61,7 @@ set( CALIBRATION_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_EstimatePCManual.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Passband.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_Notches.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NotchComb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DCBlock.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_MinWeight.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SingleSidebandNormFX.cc
