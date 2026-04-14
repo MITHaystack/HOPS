@@ -21,8 +21,6 @@ MHO_NotchComb::~MHO_NotchComb(){};
 
 bool MHO_NotchComb::ExecuteInPlace(visibility_type* in)
 {
-    std::cout<<"executing notch comb filter"<<std::endl;
-    
     if(fNotchPeriod <= 0.0 || fNotchWidth <= 0.0)
     {
         //no op
@@ -78,13 +76,6 @@ bool MHO_NotchComb::ExecuteInPlace(visibility_type* in)
         
         //determine how many notches should be applied in this channel 
         int n_notches = n_upper - n_lower;
-        
-        std::cout<<"n_upper = "<<n_upper<<std::endl;
-        std::cout<<"n_lower ="<<n_lower<<std::endl;
-        std::cout<<"lower_freq = "<<lower_freq<<std::endl;
-        std::cout<<"upper_freq = "<<upper_freq<<std::endl;
-    
-        std::cout<<"n_notches = "<<n_notches<<std::endl;
 
         for(int m = 0; m < n_notches; m++)
         {
@@ -95,8 +86,6 @@ bool MHO_NotchComb::ExecuteInPlace(visibility_type* in)
             //check if the notch that is to be excluded is within/overlaps this channel
             double overlap[2];
             int n_inter = MHO_MathUtilities::FindIntersection< double >(lower_freq, upper_freq, notch_low, notch_high, overlap);
-            
-            std::cout<<"n_inter = "<<n_inter<<std::endl;
 
             if(n_inter)
             {
