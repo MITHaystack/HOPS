@@ -92,14 +92,6 @@ class MHO_FringeDataInitializer
         static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox,
                                             const char* category);
 
-        /**
-         * @brief Converts a vector of profile events into a JSON object.
-         *
-         * @param events Input vector of MHO_ProfileEvent objects
-         * @return JSON object containing event details
-         * @note This is a static function.
-         */
-        static mho_json ConvertProfileEvents(std::vector< MHO_ProfileEvent >& events);
 };
 
 } // namespace hops

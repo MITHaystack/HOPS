@@ -142,12 +142,12 @@ void MHO_FringeControlInitialization::process_control_file(MHO_ParameterStore* p
     apply_control_statements(paramStore, control_format, control_statements);
 }
 
-void MHO_FringeControlInitialization::apply_control_statements(MHO_ParameterStore* paramStore, mho_json& control_format,
-                                                                mho_json& control_statements)
+void MHO_FringeControlInitialization::apply_control_statements(MHO_ParameterStore* paramStore,
+                                                               mho_json& control_format,
+                                                               mho_json& control_statements)
 {
-    std::cout<< "DUMP = "<<control_statements.dump() << std::endl;;
-
-    std::vector< std::string > pp_vec = paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
+    std::vector< std::string > pp_vec =
+        paramStore->GetAs< std::vector< std::string > >("/config/polprod_set");
 
     //tack on default-operations to the control statements, so we can trigger
     //the build of these operators at the proper step (e.g. coarse selection, multitone pcal etc.)

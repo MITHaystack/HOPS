@@ -53,14 +53,13 @@ class MHO_FringeControlInitialization
          * @brief Consume already-evaluated control statements.
          *
          * Called by process_control_file() after DSL parsing, and also by
-         * fourfit4.cc directly when using a Python control file.  Adds default
-         * operators, configures the parameter store via MHO_ParameterManager,
-         * and sets the ion/plugin/skip status flags.
+         * MHO_FringePass::Configure() when using an external evaluator (e.g.
+         * Python).  Adds default operators, configures the parameter store via
+         * MHO_ParameterManager, and sets the ion/plugin/skip status flags.
          *
-         * @param paramStore        Pointer to MHO_ParameterStore object.
-         * @param control_format    Control-format dict (must already contain default defs).
-         * @param control_statements Applicable statements produced by either the DSL
-         *                           evaluator or MHO_PyControlEvaluator.
+         * @param paramStore         Pointer to MHO_ParameterStore object.
+         * @param control_format     Control-format dict (must already contain default defs).
+         * @param control_statements Applicable statements produced by any evaluator (typical control-file or  MHO_PyControlEvaluator)
          * @note This is a static function.
          */
         static void apply_control_statements(MHO_ParameterStore* paramStore, mho_json& control_format,
