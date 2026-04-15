@@ -4,6 +4,8 @@
 #include <iterator>
 #include <sstream>
 
+#include "MHO_ControlFileParser.hh"
+
 //pybind11 + JSON bridge
 #include "pybind11_json/pybind11_json.hpp"
 #include <pybind11/embed.h>
@@ -90,6 +92,27 @@ bool MHO_PyControlEvaluator::Evaluate(MHO_ParameterStore* paramStore, const mho_
     MHO_ControlConditionEvaluator condition_eval;
     condition_eval.SetPassInformation(baseline, source, fgroup, scan_name);
     control_statements = condition_eval.GetApplicableStatements(wrapped);
+
+    //append any command-line 'set' overrides, mirroring what process_control_file does on the DSL path.
+    //the set-string blocks are placed after the Python-generated ones so they take effect last (i.e. they override).
+    std::string set_string = paramStore->GetAs< std::string >("/cmdline/set_string");
+    if(set_string != "")
+    {
+        msg_info("python_control", "Applying command-line 'set' overrides to Python control file output." << eom);
+        MHO_ControlFileParser set_parser;
+        set_parser.SetControlFile("/dev/null");
+        set_parser.PassSetString(set_string);
+        auto set_contents = set_parser.ParseControl();
+
+        MHO_ControlConditionEvaluator set_eval;
+        set_eval.SetPassInformation(baseline, source, fgroup, scan_name);
+        mho_json set_statements = set_eval.GetApplicableStatements(set_contents);
+
+        for(auto& block : set_statements)
+        {
+            control_statements.push_back(block);
+        }
+    }
 
     return true;
 }

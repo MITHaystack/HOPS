@@ -6,23 +6,41 @@ format dictionary supplied by ``MHO_PyControlEvaluator`` (the C++ side passes
 the canonical ``control_format`` dict loaded from the installed ``.json`` files).
 
 Statements are grouped into *conditional blocks* that mirror the DSL structure.
-Calls made outside any ``with cfg.if_*()`` block go into an implicit
-``if true`` block.  Calls inside a ``with`` block go into a conditional block
-whose ``value`` array matches the DSL token sequence (e.g. ``["station", "G"]``).
-This preserves the condition so that downstream operator builders (e.g.
-``MHO_StationDelayCorrectionBuilder``) can extract the station identifier from
-``fConditions["value"]``, exactly as they do for the traditional DSL path.
+Calls made outside any ``with cfg.if_()`` block go into an implicit ``if true``
+block.  Calls inside a ``with`` block go into a conditional block whose
+``value`` array matches the DSL token sequence (e.g. ``["station", "G"]``).
 
-Example::
+Conditions are built with a fluent builder returned by ``cfg.if_()``.  The
+builder mirrors the DSL token grammar directly -- ``and_()``, ``or_()``, and
+``not_()`` inject boolean operators, and the predicate methods (``station()``,
+``baseline()``, etc.) inject the corresponding operand tokens::
 
     def configure(p, cfg):
         cfg.ref_freq(215000.0)          # goes into the implicit if-true block
 
-        with cfg.if_station("G"):
+        # DSL: if station G
+        with cfg.if_().station("G"):
             cfg.sampler_delay_x([-140, 180, 180, 180])
 
-        with cfg.if_baseline("GE"):
+        # DSL: if baseline GE
+        with cfg.if_().baseline("GE"):
             cfg.ion_npts(11)
+
+        # DSL: if source 3C279 and f_group X
+        with cfg.if_().source("3C279").and_().fgroup("X"):
+            cfg.ref_freq(86000.0)
+
+        # DSL: if station E and scan > 100-1200
+        with cfg.if_().station("E").and_().scan_after("100-1200"):
+            cfg.pc_amp_hcode(0.0001)
+
+        # DSL: if station E or station G
+        with cfg.if_().station("E").or_().station("G"):
+            cfg.weak_channel(0.05)
+
+Convenience shortcuts (``cfg.if_station()``, ``cfg.if_baseline()``, etc.) are
+provided for the common single-predicate case and are equivalent to the fluent
+form.
 """
 
 _SCALAR_TYPES = frozenset({
@@ -94,88 +112,106 @@ def _compound_caller(keyword, stmt_type, fields, config_ref):
 
 
 # ---------------------------------------------------------------------------
-# Context manager for conditional blocks
+# Condition builder
 # ---------------------------------------------------------------------------
 
-class _ConditionalBlock:
+class _ConditionBuilder:
     """
-    Context manager for a conditional block.
+    Fluent builder for a DSL condition token list.
 
-    Returned by ``cfg.if_station()``, ``cfg.if_baseline()``, etc.  Chain
-    ``.and_*()`` / ``.or_*()`` calls before the ``with`` statement to build
-    compound conditions that mirror the DSL ``and`` / ``or`` syntax::
+    Returned by ``cfg.if_()``.  Each method appends tokens to an internal list
+    and returns ``self``, so calls can be chained before the ``with`` statement.
 
-        # DSL: if station E and scan > 100-1200
-        with cfg.if_station("E").and_scan_after("100-1200"):
-            cfg.pc_amp_hcode(0.0001)
+    Boolean operators (matching DSL ``and`` / ``or`` / ``not``)::
 
-        # DSL: if station E or station G
-        with cfg.if_station("E").or_station("G"):
-            cfg.sampler_delay_x([...])
+        .and_()   -- appends "and"
+        .or_()    -- appends "or"
+        .not_()   -- appends "not"
 
-    The ``value`` token list produced by chaining is fed directly to
-    ``MHO_ControlConditionEvaluator``, so all DSL boolean operators
-    (``and``, ``or``, ``not``, parentheses) are supported.
+    Predicate methods (each appends its keyword plus argument tokens)::
+
+        .station(s)              -- "station" s
+        .baseline(b)             -- "baseline" b
+        .source(s)               -- "source" s
+        .fgroup(fg)              -- "f_group" fg
+        .scan_before(scan)       -- "scan" "<" scan
+        .scan_after(scan)        -- "scan" ">" scan
+        .scan_between(lo, hi)    -- "scan" lo "to" hi
+
+    The token list is passed verbatim to ``MHO_ControlConditionEvaluator``, so
+    the full DSL grammar (including ``not`` and parentheses via raw token
+    injection) is available.
     """
 
-    def __init__(self, config, condition: list):
+    def __init__(self, config):
         self._config = config
-        self._condition = condition
+        self._tokens: list = []
         self._block = None
 
     # ------------------------------------------------------------------
-    # Chaining helpers — each returns a new _ConditionalBlock with the
-    # condition list extended by the appropriate DSL tokens.
+    # Boolean operator tokens
     # ------------------------------------------------------------------
 
-    def and_station(self, s: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["and", "station", s])
+    def and_(self) -> '_ConditionBuilder':
+        """Append "and" to the condition token list."""
+        self._tokens.append("and")
+        return self
 
-    def or_station(self, s: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["or", "station", s])
+    def or_(self) -> '_ConditionBuilder':
+        """Append "or" to the condition token list."""
+        self._tokens.append("or")
+        return self
 
-    def and_baseline(self, b: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["and", "baseline", b])
+    def not_(self) -> '_ConditionBuilder':
+        """Append "not" to the condition token list."""
+        self._tokens.append("not")
+        return self
 
-    def or_baseline(self, b: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["or", "baseline", b])
+    # ------------------------------------------------------------------
+    # Predicate tokens
+    # ------------------------------------------------------------------
 
-    def and_source(self, s: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["and", "source", s])
+    def station(self, s: str) -> '_ConditionBuilder':
+        """Append ``station <s>`` tokens."""
+        self._tokens += ["station", s]
+        return self
 
-    def or_source(self, s: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["or", "source", s])
+    def baseline(self, b: str) -> '_ConditionBuilder':
+        """Append ``baseline <b>`` tokens."""
+        self._tokens += ["baseline", b]
+        return self
 
-    def and_fgroup(self, fg: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["and", "f_group", fg])
+    def source(self, s: str) -> '_ConditionBuilder':
+        """Append ``source <s>`` tokens."""
+        self._tokens += ["source", s]
+        return self
 
-    def or_fgroup(self, fg: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["or", "f_group", fg])
+    def fgroup(self, fg: str) -> '_ConditionBuilder':
+        """Append ``f_group <fg>`` tokens."""
+        self._tokens += ["f_group", fg]
+        return self
 
-    def and_scan_before(self, scan: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["and", "scan", "<", scan])
+    def scan_before(self, scan: str) -> '_ConditionBuilder':
+        """Append ``scan < <scan>`` tokens."""
+        self._tokens += ["scan", "<", scan]
+        return self
 
-    def or_scan_before(self, scan: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["or", "scan", "<", scan])
+    def scan_after(self, scan: str) -> '_ConditionBuilder':
+        """Append ``scan > <scan>`` tokens."""
+        self._tokens += ["scan", ">", scan]
+        return self
 
-    def and_scan_after(self, scan: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["and", "scan", ">", scan])
-
-    def or_scan_after(self, scan: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["or", "scan", ">", scan])
-
-    def and_scan_between(self, lo: str, hi: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["and", "scan", lo, "to", hi])
-
-    def or_scan_between(self, lo: str, hi: str) -> '_ConditionalBlock':
-        return _ConditionalBlock(self._config, self._condition + ["or", "scan", lo, "to", hi])
+    def scan_between(self, lo: str, hi: str) -> '_ConditionBuilder':
+        """Append ``scan <lo> to <hi>`` tokens."""
+        self._tokens += ["scan", lo, "to", hi]
+        return self
 
     # ------------------------------------------------------------------
     # Context manager protocol
     # ------------------------------------------------------------------
 
-    def __enter__(self):
-        self._block = {"value": self._condition, "statements": []}
+    def __enter__(self) -> '_ConditionBuilder':
+        self._block = {"value": list(self._tokens), "statements": []}
         self._config._blocks.append(self._block)
         self._config._block_stack.append(self._block)
         return self
@@ -203,14 +239,18 @@ class Config:
         cfg.pc_mode("manual")
         cfg.pc_phases_l("abcde", [1.0, -2.0, 3.0, -4.0, 5.0])
 
-    Use the ``with cfg.if_*()`` context managers to group statements under a
-    conditional block whose condition is preserved in the output::
+    Use ``cfg.if_()`` to open a conditional block::
 
-        with cfg.if_station("G"):
+        with cfg.if_().station("G"):
             cfg.sampler_delay_x([-140, 180, 180, 180])
 
-        with cfg.if_baseline("GE"):
-            cfg.ion_npts(11)
+        with cfg.if_().source("3C279").and_().fgroup("X"):
+            cfg.ref_freq(86000.0)
+
+    Convenience shortcuts are provided for the common single-predicate case::
+
+        with cfg.if_station("G"):       # same as cfg.if_().station("G")
+            cfg.sampler_delay_x(...)
 
     Calling an unknown keyword raises :exc:`AttributeError`.
     Call :meth:`available_keywords` to see the full list.
@@ -237,36 +277,44 @@ class Config:
         return self._block_stack[-1]["statements"]
 
     # ------------------------------------------------------------------
-    # Conditional-block context managers
+    # Primary condition builder
     # ------------------------------------------------------------------
 
-    def if_station(self, s: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if station <s>``."""
-        return _ConditionalBlock(self, ["station", s])
+    def if_(self) -> _ConditionBuilder:
+        """Return a fresh :class:`_ConditionBuilder` for this config."""
+        return _ConditionBuilder(self)
 
-    def if_baseline(self, b: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if baseline <b>``."""
-        return _ConditionalBlock(self, ["baseline", b])
+    # ------------------------------------------------------------------
+    # Convenience shortcuts (single-predicate common case)
+    # ------------------------------------------------------------------
 
-    def if_source(self, s: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if source <s>``."""
-        return _ConditionalBlock(self, ["source", s])
+    def if_station(self, s: str) -> _ConditionBuilder:
+        """Shortcut for ``cfg.if_().station(s)``."""
+        return _ConditionBuilder(self).station(s)
 
-    def if_fgroup(self, fg: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if f_group <fg>``."""
-        return _ConditionalBlock(self, ["f_group", fg])
+    def if_baseline(self, b: str) -> _ConditionBuilder:
+        """Shortcut for ``cfg.if_().baseline(b)``."""
+        return _ConditionBuilder(self).baseline(b)
 
-    def if_scan_before(self, scan: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if scan < <scan>``."""
-        return _ConditionalBlock(self, ["scan", "<", scan])
+    def if_source(self, s: str) -> _ConditionBuilder:
+        """Shortcut for ``cfg.if_().source(s)``."""
+        return _ConditionBuilder(self).source(s)
 
-    def if_scan_after(self, scan: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if scan > <scan>``."""
-        return _ConditionalBlock(self, ["scan", ">", scan])
+    def if_fgroup(self, fg: str) -> _ConditionBuilder:
+        """Shortcut for ``cfg.if_().fgroup(fg)``."""
+        return _ConditionBuilder(self).fgroup(fg)
 
-    def if_scan_between(self, lo: str, hi: str) -> _ConditionalBlock:
-        """Open a conditional block for ``if scan <lo> to <hi>``."""
-        return _ConditionalBlock(self, ["scan", lo, "to", hi])
+    def if_scan_before(self, scan: str) -> _ConditionBuilder:
+        """Shortcut for ``cfg.if_().scan_before(scan)``."""
+        return _ConditionBuilder(self).scan_before(scan)
+
+    def if_scan_after(self, scan: str) -> _ConditionBuilder:
+        """Shortcut for ``cfg.if_().scan_after(scan)``."""
+        return _ConditionBuilder(self).scan_after(scan)
+
+    def if_scan_between(self, lo: str, hi: str) -> _ConditionBuilder:
+        """Shortcut for ``cfg.if_().scan_between(lo, hi)``."""
+        return _ConditionBuilder(self).scan_between(lo, hi)
 
     # ------------------------------------------------------------------
     # Dynamic dispatch via __getattr__
