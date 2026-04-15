@@ -19,15 +19,9 @@
 #include "MHO_FringeDataDiscovery.hh"
 #include "MHO_FringeDataInitializer.hh"
 #include "MHO_Mk4InputConverter.hh"
-#include "MHO_BasicFringeUtilities.hh"
 
-//for control
-#include "MHO_FringeControlInitialization.hh"
-
-//fringe finding
-#include "MHO_FringeFitter.hh"
-#include "MHO_FringeFitterFactory.hh"
-#include "MHO_FringePlotVisitor.hh"
+//single-pass encapsulation
+#include "MHO_FringePass.hh"
 
 //interface with plugin libraries, plot and output visitors
 #include "MHO_PluginVisitorFactory.hh"
@@ -45,32 +39,6 @@
 
 using namespace hops;
 
-mho_json convert_profile_events(std::vector< MHO_ProfileEvent >& events)
-{
-    mho_json event_list;
-    for(std::size_t i = 0; i < events.size(); i++)
-    {
-        mho_json obj;
-        obj["event_id"] = i;
-        obj["flag"] = events[i].fFlag;
-        obj["line"] = events[i].fLineNumber;
-        obj["thread_id"] = events[i].fThreadID;
-        obj["filename"] = std::string(events[i].fFilename);
-        obj["funcname"] = std::string(events[i].fFuncname);
-        obj["time"] = events[i].fTime;
-        event_list.push_back(obj);
-    }
-    return event_list;
-}
-
-void flush_profile_events(MHO_ParameterStore* paramStore)
-{
-    std::vector< MHO_ProfileEvent > events;
-    MHO_Profiler::GetInstance().GetEvents(events);
-    //convert and dump the events into the parameter store for now (will be empty unless enabled)
-    mho_json event_list = convert_profile_events(events);
-    paramStore->Set("/profile/events", event_list);
-}
 
 
 
@@ -162,86 +130,49 @@ int main(int argc, char** argv)
     {
         profiler_start();
 
-        //populate a few necessary parameters and  initialize the fringe/scan data
-        MHO_FringeData fringeData;
-        fringeData.GetParameterStore()->CopyFrom(cmdline_params); //copy in command line info
+        mho_json pass_spec = pass_vector[pass_index];
 
-        //set the current pass info (directory, root_file, source, baseline, pol-product, frequency-group)
-        mho_json pass = pass_vector[pass_index];
-        pass["build_time"] = HOPS_BUILD_TIMESTAMP; //set the build time stamp in the pass info
-        fringeData.GetParameterStore()->Set("/pass", pass);
+        MHO_FringePass fpass;
+        fpass.CopyCommandLineParams(cmdline_params);
+        fpass.SetScanDirectory(pass_spec["input_directory"]);
+        fpass.SetBaseline(pass_spec["baseline"]);
+        fpass.SetPolProduct(pass_spec["polprod"]);
+        fpass.SetFrequencyGroup(pass_spec["frequency_group"]);
+        fpass.SetScanName(pass_spec["scan"]);
+        fpass.SetRootFile(pass_spec["root_file"]);
+        fpass.SetBuildTimestamp(HOPS_BUILD_TIMESTAMP);
 
-        //initializes the scan data store, reads the ovex file and sets the value of '/pass/source'
-        bool scan_dir_ok = MHO_FringeDataInitializer::initialize_scan_data(fringeData.GetParameterStore(),
-                                                                                  fringeData.GetScanDataStore());
-        if(!scan_dir_ok)
+        if(!fpass.Initialize())
+        {
+            continue;
+        }
+        if(!fpass.Configure())
         {
             continue;
         }
 
-        MHO_FringeDataInitializer::populate_initial_parameters(fringeData.GetParameterStore(),
-                                                                      fringeData.GetScanDataStore());
-
-        //parse the control file and form the control statements
-        MHO_FringeControlInitialization::process_control_file(fringeData.GetParameterStore(), fringeData.GetControlFormat(),
-                                                              fringeData.GetControlStatements());
-
-        //build the fringe fitter based on the input/control
-        MHO_FringeFitterFactory ff_factory(&fringeData);
-        MHO_FringeFitter* ffit = ff_factory.ConstructFringeFitter();
-
-        //////////////////////////////////////////////////////////////
-        // Plugin library (operator builder) registration (if any modules were built)
-        plugin_factory.SetParameterStore(fringeData.GetParameterStore());
+        // Collect visitors: plugin visitors are registered on the fitter before
+        // Configure(); output and plot visitors are dispatched after Finalize().
+        plugin_factory.SetParameterStore(fpass.GetFringeData()->GetParameterStore());
         plugin_factory.GetPluginVisitors(plugin_visitors);
-        for(std::size_t np = 0; np < plugin_visitors.size(); np++)
+
+        bool test_mode = fpass.GetFringeData()->GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
+        if(!test_mode)
         {
-            ffit->Accept(plugin_visitors[np]);
+            plugin_factory.GetOutputVisitors(output_visitors);
         }
+        plugin_factory.GetPlotVisitors(plot_visitors);
 
-        //now (after plugin registration) we can configure the fringe fitter
-        ffit->Configure();
+        fpass.Run(plugin_visitors, output_visitors, plot_visitors);
 
-        //initialize and perform run loop
-        while(!ffit->IsFinished())
-        {
-            ffit->Initialize();
-            ffit->PreRun();
-            ffit->Run();
-            ffit->PostRun();
-        }
-        ffit->Finalize();
-
-        //determine if this pass was skipped or is in test-mode
-        bool is_skipped = fringeData.GetParameterStore()->GetAs< bool >("/status/skipped");
-        if(is_skipped)
+        if(fpass.IsSkipped())
         {
             continue;
         }
 
         //flush profile events
         profiler_stop();
-        flush_profile_events(fringeData.GetParameterStore());
-
-        //output visitors, write fringe data to file with variouis formats (as needed)
-        bool test_mode = fringeData.GetParameterStore()->GetAs< bool >("/cmdline/test_mode");
-        if(!test_mode)
-        {
-            plugin_factory.GetOutputVisitors(output_visitors);
-            for(std::size_t np = 0; np < output_visitors.size(); np++)
-            {
-                ffit->Accept(output_visitors[np]);
-            }
-        }
-
-        //use the plotter factory to construct one of the available plotting backends
-        //whether or not the plot is displayed depends on the value of '/cmdline/show_plot'
-        //but this logic is handled by the plot visitors themselves
-        plugin_factory.GetPlotVisitors(plot_visitors);
-        for(std::size_t np = 0; np < plot_visitors.size(); np++)
-        {
-            ffit->Accept(plot_visitors[np]);
-        }
+        fpass.FlushProfileEvents();
     } //end of pass loop
 
 #ifdef HOPS_USE_MPI
