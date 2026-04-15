@@ -23,6 +23,7 @@ namespace py = pybind11;
 #include "MHO_MixedSidebandNormFX.hh"
 #include "MHO_MultitonePhaseCorrection.hh"
 #include "MHO_Notches.hh"
+#include "MHO_NotchComb.hh"
 #include "MHO_Passband.hh"
 #include "MHO_PhaseCalibrationTrim.hh"
 #include "MHO_PolarizationProductRelabeler.hh"
@@ -153,6 +154,22 @@ PYBIND11_MODULE(pyMHO_Calibration, m)
         .def(py::init<>())
         .def("set_notch_boundaries", &MHO_Notches::SetNotchBoundaries,
              "set notch boundaries as a flat list of (lower, upper) pairs in MHz");
+             
+     // -------------------------------------------------------------------------
+     // MHO_NotchComb - zeroes visibilities and weights within periodic frequency notches
+     // -------------------------------------------------------------------------
+     py::class_< MHO_NotchComb, MHO_Operator >(m, "MHO_NotchComb")
+         .def(py::init<>())
+         .def("set_notch_offset", &MHO_NotchComb::SetNotchOffset,
+              "set notch frequency starting offset from DC in MHz")
+         .def("get_notch_offset", &MHO_NotchComb::GetNotchOffset)
+         .def("set_notch_period", &MHO_NotchComb::SetNotchPeriod,
+              "set notch periodic spacing in MHz")
+         .def("get_notch_period", &MHO_NotchComb::GetNotchPeriod)
+         .def("set_notch_width", &MHO_NotchComb::SetNotchWidth,
+              "set notch width in MHz")
+         .def("get_notch_width", &MHO_NotchComb::GetNotchWidth);
+         
 
     // -------------------------------------------------------------------------
     // MHO_Passband - selects (or excludes) a frequency range

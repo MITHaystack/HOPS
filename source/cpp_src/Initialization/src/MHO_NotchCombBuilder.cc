@@ -50,7 +50,7 @@ bool MHO_NotchCombBuilder::Build()
         //set the arguments
         op->SetArgs(vis_data);
         op->SetWeights(wt_data);
-        op->SetOffset(offset);
+        op->SetNotchOffset(offset);
         op->SetNotchPeriod(period);
         op->SetNotchWidth(width);
         op->SetName(op_name);

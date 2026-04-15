@@ -44,13 +44,16 @@ class MHO_NotchComb: public MHO_UnaryOperator< visibility_type >
         void SetWeights(weight_type* weights) { fWeights = weights; };
         
         //starting frequency offset (assumed to be zero by default)
-        void SetOffset(double offset){fNotchOffset = offset;}
+        void SetNotchOffset(double offset){fNotchOffset = offset;}
+        double GetNotchOffset() const {return fNotchOffset;} 
         
         //spacing between the notches
         void SetNotchPeriod(double period){fNotchPeriod = period;}
+        double GetNotchPeriod() const {return fNotchPeriod;} 
         
         //notch width must be less than the notch period!
         void SetNotchWidth(double width){fNotchWidth = width;}
+        double GetNotchWidth() const {return fNotchWidth;} 
 
         // /**
         //  * @brief Setter for notch (locations along frequency axis where visibilities are zeroed out) boundaries
