@@ -40,11 +40,6 @@
 using namespace hops;
 
 
-
-
-
-
-
 int main(int argc, char** argv)
 {
     //initialize the lock-file/signal-handler
