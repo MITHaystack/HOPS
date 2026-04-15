@@ -129,23 +129,25 @@ mho_json MHO_PyControlEvaluator::BuildPassInfoDict(MHO_ParameterStore* paramStor
     {
         d["ref_mk4id"] = std::string(1, baseline[0]);
         d["rem_mk4id"] = std::string(1, baseline[1]);
-        d["ref_name"] = std::string(1, baseline[0]);
-        d["rem_name"] = std::string(1, baseline[1]);
+        d["ref_code"] = std::string(1, baseline[0]);
+        d["rem_code"] = std::string(1, baseline[1]);
     }
     else if(baseline.find('-') != std::string::npos)
     {
+        //extract 2-char station codes from baseline string if passed like "Gs-Wf"
         std::size_t delim = baseline.find('-');
         d["ref_mk4id"] = baseline.substr(0, delim);
         d["rem_mk4id"] = baseline.substr(delim + 1);
-        d["ref_name"] = baseline.substr(0, delim);
-        d["rem_name"] = baseline.substr(delim + 1);
+        d["ref_code"] = baseline.substr(0, delim);
+        d["rem_code"] = baseline.substr(delim + 1);
     }
     else
     {
+        //wildcard
         d["ref_mk4id"]  = "?";
         d["rem_mk4id"]  = "?";
-        d["ref_name"] = "?";
-        d["rem_name"] = "?";
+        d["ref_code"] = "??";
+        d["rem_code"] = "??";
     }
 
     std::string source = "?";

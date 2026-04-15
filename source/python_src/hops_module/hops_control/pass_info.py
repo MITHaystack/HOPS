@@ -9,7 +9,7 @@ source / f_group / scan`` guard that the DSL supports.
 
 class PassInfo:
     """
-    Immutable description of the fringe pass being processed.
+    Immutable description of the fringe pass (single-baseline, single-polproduct) being processed.
 
     Constructed by ``MHO_PyControlEvaluator`` from the C++ parameter store and
     passed as the first argument to the user's ``configure()`` function.
@@ -19,8 +19,8 @@ class PassInfo:
     * ``baseline``   - full baseline string, e.g. ``"EG"`` or ``"Gs-Wf"``
     * ``ref_mk4id``    - single-character Mk4 ref-station code, e.g. ``"E"``
     * ``rem_mk4id``    - single-character Mk4 rem-station code, e.g. ``"G"``
-    * ``ref_name``   - canonical ref-station name (may equal ``ref_mk4id``)
-    * ``rem_name``   - canonical rem-station name (may equal ``rem_mk4id``)
+    * ``ref_code``   - canonical ref-station code (e.g. ``Gs``)
+    * ``rem_code``   - canonical rem-station code (e.g. ``Wf``)
     * ``source``     - source name, e.g. ``"3C279"``
     * ``fgroup``     - frequency-group character, e.g. ``"X"``
     * ``scan_name``  - scan name / time string used for ordering comparisons
@@ -33,8 +33,8 @@ class PassInfo:
         self._baseline  = pass_dict.get("baseline",  "??")
         self._ref_mk4id   = pass_dict.get("ref_mk4id",   "?")
         self._rem_mk4id   = pass_dict.get("rem_mk4id",   "?")
-        self._ref_name  = pass_dict.get("ref_name",  "?")
-        self._rem_name  = pass_dict.get("rem_name",  "?")
+        self._ref_code  = pass_dict.get("ref_code",  "?")
+        self._rem_code  = pass_dict.get("rem_code",  "?")
         self._source    = pass_dict.get("source",    "?")
         self._fgroup    = pass_dict.get("fgroup",    "?")
         self._scan_name = pass_dict.get("scan_name", "?")
@@ -96,7 +96,7 @@ class PassInfo:
         if len(s) == 1:
             return s == self._ref_mk4id or s == self._rem_mk4id
         else:
-            return s == self._ref_name or s == self._rem_name
+            return s == self._ref_code or s == self._rem_code
 
     def baseline_match(self, b: str) -> bool:
         """
@@ -155,8 +155,8 @@ class PassInfo:
         if len(parts) != 2:
             return False
         ref, rem = parts[0], parts[1]
-        ref_match = (ref == self.WILDCARD or ref == self._ref_name or ref == self._ref_mk4id)
-        rem_match = (rem == self.WILDCARD or rem == self._rem_name or rem == self._rem_mk4id)
+        ref_match = (ref == self.WILDCARD or ref == self._ref_code or ref == self._ref_mk4id)
+        rem_match = (rem == self.WILDCARD or rem == self._rem_code or rem == self._rem_mk4id)
         return ref_match and rem_match
 
     def __repr__(self) -> str:
