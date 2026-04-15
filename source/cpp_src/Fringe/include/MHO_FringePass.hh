@@ -24,14 +24,14 @@ namespace hops
  *@class MHO_FringePass
  *@author J. Barrett - barrettj@mit.edu
  *@date
- *@brief Encapsulates a single-baseline, single-pol-product fringe-fitting run.
+ *@brief Encapsulates a single-baseline, single-pol-product fringe-fitting pass/run.
  *
- * MHO_FringePass owns an MHO_FringeData and drives the full per-pass
- * lifecycle: data initialisation, control-file evaluation, fringe-fitter
+ * MHO_FringePass owns a MHO_FringeData and drives the full per-pass
+ * lifecycle: data initialization, control-file evaluation, fringe-fitter
  * construction, run loop, and visitor dispatch.  It is the reusable core
  * shared between fourfit4 (command-line driver) and the Python library API.
  *
- * Typical usage:
+ * Typical usage (from fourfit4)
  * @code
  *   MHO_FringePass pass;
  *   pass.CopyCommandLineParams(cmdline_params);
@@ -48,10 +48,9 @@ namespace hops
  *   if (pass.IsSkipped())   continue;
  * @endcode
  *
- * @note MHO_FringePass does not depend on pybind11.  To support Python
- * control files (.py extension), inject an evaluator via
- * SetPythonControlEvaluator() before calling Configure().  fourfit4.cc does
- * this via MHO_PyControlEvaluator::Evaluate when built with USE_PYBIND11.
+ * @note MHO_FringePass does not depend on pybind11 (and we do not want this dependency here)!
+ * Python control files (.py extension) have to be injected as a functor via
+ * SetPythonControlEvaluator() before calling Configure().
  */
 
 class MHO_FringePass
@@ -76,7 +75,7 @@ class MHO_FringePass
         /**
          * @brief Bulk-copy a command-line parameter store.  Populates the
          * /cmdline/* keys consumed by downstream helpers.  Call this first,
-         * then use the per-pass setters below to supply pass-specific fields.
+         * then use the per-pass setters below to supply any pass-specific fields.
          */
         void CopyCommandLineParams(const MHO_ParameterStore& cmdline_params);
 
@@ -131,7 +130,7 @@ class MHO_FringePass
          *                         Pass an empty vector to suppress file output.
          * @param plot_visitors    Plot visitors accepted after output visitors.
          * @return false only on hard errors (fitter construction failure); a
-         * skipped pass returns true - check IsSkipped() afterwards.
+         * skipped pass returns true, will check IsSkipped() afterwards.
          */
         bool Run(const std::vector< MHO_FringeFitterVisitor* >& plugin_visitors = {},
                  const std::vector< MHO_FringeFitterVisitor* >& output_visitors = {},
