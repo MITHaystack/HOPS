@@ -260,12 +260,6 @@ class _ConditionBuilder:
     # Context manager protocol
     # ------------------------------------------------------------------
 
-    # def __enter__(self) -> '_ConditionBuilder':
-    #     self._block = {"value": list(self._tokens), "statements": []}
-    #     self._config._blocks.append(self._block)
-    #     self._config._block_stack.append(self._block)
-    #     return self
-
     def _raise_nested_block_error(self, new_predicate: str) -> None:
         active = None
         if len(self._config._block_stack) > 1: #this should always be true
