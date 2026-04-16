@@ -4,32 +4,27 @@ Python equivalent of:
     fourfit4 -p -c ./control_example.py -b GE -P XX ./1111/105-1800
 
 Demonstrates using pyMHO_Fringe.FringePass to configure and run a single
-fringe-fitting pass entirely from Python, without spawning a subprocess.
+fringe-fiting pass (single-baseline, single-polproduct)entirely from 
+Python, without spawning a subprocess call to 'fourfit'.
 
-Run from ~/work/projects/hops-git/build/test_data/vt9105/, or adjust the
-path variables below.
 """
 
 import sys
+from hops_control import PassInfo, Config
 
-# ---------------------------------------------------------------------------
-# Paths -- adjust to match your environment
-# ---------------------------------------------------------------------------
+
+#hard-coded defaults for test configuration
 SCAN_DIR    = "./1111/105-1800"
 BASELINE    = "GE"
 POL_PRODUCT = "XX"
 FREQ_GROUP  = "X"
 
-# ---------------------------------------------------------------------------
-# Control configuration -- inlined from control_example.py
-# ---------------------------------------------------------------------------
-from hops_control import PassInfo, Config
-
-
 def local_configure(p: PassInfo, cfg: Config) -> None:
 
+
     # ==========================================================
-    # basic setup
+    # basic setup (see vt9105 test data)
+    # control file cf_3686_GEHSVY_pstokes2)
     # ==========================================================
 
     cfg.dr_win([-5.e-6, 5.e-6])
@@ -50,8 +45,12 @@ def local_configure(p: PassInfo, cfg: Config) -> None:
     # ==========================================================
 
     with cfg.IF().baseline("GE"):
-        cfg.ion_npts(11)
-        cfg.ion_win([-20.0, 20.0])
+        cfg.ion_npts(1)
+        #cfg.ion_win([-20.0, 20.0])
+        with cfg.IF().station("G"):
+            cfg.ionosphere(10.0)
+        with cfg.IF().station("E"):
+            cfg.ionosphere(-10.0)
 
     # ==========================================================
     # compensating for low pcal amp for station Yj and Oe
@@ -263,8 +262,11 @@ print(f"rate     : {rate:.6f} Hz")
 plot_data = data.get_plot_data()
 if plot_data:
     try:
+        #import and set TkAgg backend here
         import matplotlib
-        matplotlib.use('TkAgg')  # TkAgg avoids GTK4/PyGObject conflict with pybind11
+        #using TkAgg avoids GTK4/PyGObject conflict with pybind11 
+        #which triggers a crash due to object lifetime issues
+        matplotlib.use('TkAgg') 
         from hops_visualization.fourfit_plot import make_fourfit_plot
         make_fourfit_plot(plot_data, True, "./fringe_plot.png")
     except ImportError:
