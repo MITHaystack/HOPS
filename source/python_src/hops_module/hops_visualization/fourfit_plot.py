@@ -1076,8 +1076,8 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
         fig.canvas.mpl_connect('key_press_event', press_event_handler)
         pylab.show() #blocking
 
-    plt.close('all')
     fig.canvas.flush_events()
+    plt.close('all')
 
 
 def make_fourfit_plot_wrapper(fringe_data_interface):
