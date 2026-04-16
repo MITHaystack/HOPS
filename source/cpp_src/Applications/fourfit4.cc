@@ -15,6 +15,7 @@
 #include "MHO_Timer.hh"
 
 //for data discovery/intialization
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_FringeCommandLineParser.hh"
 #include "MHO_FringeDataDiscovery.hh"
 #include "MHO_Mk4InputConverter.hh"
@@ -144,11 +145,18 @@ int main(int argc, char** argv)
             continue;
         }
 
-        // Inject the Python control evaluator before Configure() so that .py
-        // control files are supported when pybind11 is available.
+        // Inject the Python control evaluator only when the resolved control
+        // file has a .py extension; DSL (.cf) files use the normal path.
 #ifdef USE_PYBIND11
-        MHO_PythonPluginInterface::EnsureInitialized();
-        fpass.SetPythonControlEvaluator(MHO_PyControlEvaluator::Evaluate);
+        {
+            std::string ctrl = fpass.GetFringeData()->GetParameterStore()
+                                    ->GetAs<std::string>("/files/control_file");
+            if(MHO_DirectoryInterface::GetFileExtension(ctrl) == "py")
+            {
+                MHO_PythonPluginInterface::EnsureInitialized();
+                fpass.SetPythonControlEvaluator(MHO_PyControlEvaluator::Evaluate);
+            }
+        }
 #endif
 
         if(!fpass.Configure())
