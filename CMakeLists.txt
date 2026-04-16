@@ -43,6 +43,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #includes for package finding
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 include(HopsDefaults)
+include(HopsCoverage)
 include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
