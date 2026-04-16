@@ -6,36 +6,36 @@ format dictionary supplied by ``MHO_PyControlEvaluator`` (the C++ side passes
 the canonical ``control_format`` dict loaded from the installed ``.json`` files).
 
 Statements are grouped into *conditional blocks* that mirror the DSL structure.
-Calls made outside any ``with cfg.if_()`` block go into an implicit ``if true``
+Calls made outside any ``with cfg.IF()`` block go into an implicit ``if true``
 block.  Calls inside a ``with`` block go into a conditional block whose
 ``value`` array matches the DSL token sequence (e.g. ``["station", "G"]``).
 
-Conditions are built with a fluent builder returned by ``cfg.if_()``.  The
-builder mirrors the DSL token grammar directly -- ``and_()``, ``or_()``, and
-``not_()`` inject boolean operators, and the predicate methods (``station()``,
+Conditions are built with a fluent builder returned by ``cfg.IF()``.  The
+builder mirrors the DSL token grammar directly -- ``AND()``, ``OR()``, and
+``NOT()`` inject boolean operators, and the predicate methods (``station()``,
 ``baseline()``, etc.) inject the corresponding operand tokens::
 
     def configure(p, cfg):
         cfg.ref_freq(215000.0)          # goes into the implicit if-true block
 
         # DSL: if station G
-        with cfg.if_().station("G"):
+        with cfg.IF().station("G"):
             cfg.sampler_delay_x([-140, 180, 180, 180])
 
         # DSL: if baseline GE
-        with cfg.if_().baseline("GE"):
+        with cfg.IF().baseline("GE"):
             cfg.ion_npts(11)
 
         # DSL: if source 3C279 and f_group X
-        with cfg.if_().source("3C279").and_().fgroup("X"):
+        with cfg.IF().source("3C279").AND().fgroup("X"):
             cfg.ref_freq(86000.0)
 
         # DSL: if station E and scan > 100-1200
-        with cfg.if_().station("E").and_().scan_after("100-1200"):
+        with cfg.IF().station("E").AND().scan_after("100-1200"):
             cfg.pc_amp_hcode(0.0001)
 
         # DSL: if station E or station G
-        with cfg.if_().station("E").or_().station("G"):
+        with cfg.IF().station("E").OR().station("G"):
             cfg.weak_channel(0.05)
 
 Convenience shortcuts (``cfg.if_station()``, ``cfg.if_baseline()``, etc.) are
@@ -119,14 +119,14 @@ class _ConditionBuilder:
     """
     Fluent builder for a DSL condition token list.
 
-    Returned by ``cfg.if_()``.  Each method appends tokens to an internal list
+    Returned by ``cfg.IF()``.  Each method appends tokens to an internal list
     and returns ``self``, so calls can be chained before the ``with`` statement.
 
     Boolean operators (matching DSL ``and`` / ``or`` / ``not``)::
 
-        .and_()   -- appends "and"
-        .or_()    -- appends "or"
-        .not_()   -- appends "not"
+        .AND()   -- appends "and"
+        .OR()    -- appends "or"
+        .NOT()   -- appends "not"
 
     Predicate methods (each appends its keyword plus argument tokens)::
 
@@ -152,17 +152,17 @@ class _ConditionBuilder:
     # Boolean operator tokens
     # ------------------------------------------------------------------
 
-    def and_(self) -> '_ConditionBuilder':
+    def AND(self) -> '_ConditionBuilder':
         """Append "and" to the condition token list."""
         self._tokens.append("and")
         return self
 
-    def or_(self) -> '_ConditionBuilder':
+    def OR(self) -> '_ConditionBuilder':
         """Append "or" to the condition token list."""
         self._tokens.append("or")
         return self
 
-    def not_(self) -> '_ConditionBuilder':
+    def NOT(self) -> '_ConditionBuilder':
         """Append "not" to the condition token list."""
         self._tokens.append("not")
         return self
@@ -239,17 +239,17 @@ class Config:
         cfg.pc_mode("manual")
         cfg.pc_phases_l("abcde", [1.0, -2.0, 3.0, -4.0, 5.0])
 
-    Use ``cfg.if_()`` to open a conditional block::
+    Use ``cfg.IF()`` to open a conditional block::
 
-        with cfg.if_().station("G"):
+        with cfg.IF().station("G"):
             cfg.sampler_delay_x([-140, 180, 180, 180])
 
-        with cfg.if_().source("3C279").and_().fgroup("X"):
+        with cfg.IF().source("3C279").AND().fgroup("X"):
             cfg.ref_freq(86000.0)
 
     Convenience shortcuts are provided for the common single-predicate case::
 
-        with cfg.if_station("G"):       # same as cfg.if_().station("G")
+        with cfg.if_station("G"):       # same as cfg.IF().station("G")
             cfg.sampler_delay_x(...)
 
     Calling an unknown keyword raises :exc:`AttributeError`.
@@ -280,7 +280,7 @@ class Config:
     # Primary condition builder
     # ------------------------------------------------------------------
 
-    def if_(self) -> _ConditionBuilder:
+    def IF(self) -> _ConditionBuilder:
         """Return a fresh :class:`_ConditionBuilder` for this config."""
         return _ConditionBuilder(self)
 
@@ -289,31 +289,31 @@ class Config:
     # ------------------------------------------------------------------
 
     def if_station(self, s: str) -> _ConditionBuilder:
-        """Shortcut for ``cfg.if_().station(s)``."""
+        """Shortcut for ``cfg.IF().station(s)``."""
         return _ConditionBuilder(self).station(s)
 
     def if_baseline(self, b: str) -> _ConditionBuilder:
-        """Shortcut for ``cfg.if_().baseline(b)``."""
+        """Shortcut for ``cfg.IF().baseline(b)``."""
         return _ConditionBuilder(self).baseline(b)
 
     def if_source(self, s: str) -> _ConditionBuilder:
-        """Shortcut for ``cfg.if_().source(s)``."""
+        """Shortcut for ``cfg.IF().source(s)``."""
         return _ConditionBuilder(self).source(s)
 
     def if_fgroup(self, fg: str) -> _ConditionBuilder:
-        """Shortcut for ``cfg.if_().fgroup(fg)``."""
+        """Shortcut for ``cfg.IF().fgroup(fg)``."""
         return _ConditionBuilder(self).fgroup(fg)
 
     def if_scan_before(self, scan: str) -> _ConditionBuilder:
-        """Shortcut for ``cfg.if_().scan_before(scan)``."""
+        """Shortcut for ``cfg.IF().scan_before(scan)``."""
         return _ConditionBuilder(self).scan_before(scan)
 
     def if_scan_after(self, scan: str) -> _ConditionBuilder:
-        """Shortcut for ``cfg.if_().scan_after(scan)``."""
+        """Shortcut for ``cfg.IF().scan_after(scan)``."""
         return _ConditionBuilder(self).scan_after(scan)
 
     def if_scan_between(self, lo: str, hi: str) -> _ConditionBuilder:
-        """Shortcut for ``cfg.if_().scan_between(lo, hi)``."""
+        """Shortcut for ``cfg.IF().scan_between(lo, hi)``."""
         return _ConditionBuilder(self).scan_between(lo, hi)
 
     # ------------------------------------------------------------------

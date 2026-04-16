@@ -17,7 +17,6 @@
 //for data discovery/intialization
 #include "MHO_FringeCommandLineParser.hh"
 #include "MHO_FringeDataDiscovery.hh"
-#include "MHO_FringeDataInitializer.hh"
 #include "MHO_Mk4InputConverter.hh"
 
 //Python control-file support (only when pybind11 is available)
@@ -129,18 +128,15 @@ int main(int argc, char** argv)
     //loop over passes belonging to this process, ensures (pass_index % n_processes == process_id)
     for(std::size_t pass_index = process_id; pass_index < n_pass; pass_index += n_processes)
     {
-        profiler_start();
-
-        mho_json pass_spec = pass_vector[pass_index];
-
+        mho_json pass_info = pass_vector[pass_index];
         MHO_FringePass fpass;
         fpass.CopyCommandLineParams(cmdline_params);
-        fpass.SetScanDirectory(pass_spec["input_directory"]);
-        fpass.SetBaseline(pass_spec["baseline"]);
-        fpass.SetPolProduct(pass_spec["polprod"]);
-        fpass.SetFrequencyGroup(pass_spec["frequency_group"]);
-        fpass.SetScanName(pass_spec["scan"]);
-        fpass.SetRootFile(pass_spec["root_file"]);
+        fpass.SetScanDirectory(pass_info["input_directory"]);
+        fpass.SetBaseline(pass_info["baseline"]);
+        fpass.SetPolProduct(pass_info["polprod"]);
+        fpass.SetFrequencyGroup(pass_info["frequency_group"]);
+        fpass.SetScanName(pass_info["scan"]);
+        fpass.SetRootFile(pass_info["root_file"]);
         fpass.SetBuildTimestamp(HOPS_BUILD_TIMESTAMP);
 
         if(!fpass.Initialize())
@@ -178,10 +174,6 @@ int main(int argc, char** argv)
         {
             continue;
         }
-
-        //flush profile events
-        profiler_stop();
-        fpass.FlushProfileEvents();
     } //end of pass loop
 
 #ifdef HOPS_USE_MPI

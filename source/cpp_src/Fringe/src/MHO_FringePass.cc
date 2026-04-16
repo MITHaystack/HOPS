@@ -76,6 +76,7 @@ void MHO_FringePass::SetPythonControlEvaluator(ControlEvaluatorFn fn)
 
 bool MHO_FringePass::Initialize()
 {
+    profiler_scope();
     bool ok = MHO_FringeDataInitializer::initialize_scan_data(fData.GetParameterStore(),
                                                               fData.GetScanDataStore());
     if(!ok)
@@ -98,8 +99,8 @@ bool MHO_FringePass::Initialize()
 
 bool MHO_FringePass::Configure()
 {
-    std::string ctrl_file =
-        fData.GetParameterStore()->GetAs< std::string >("/files/control_file");
+    profiler_scope();
+    std::string ctrl_file = fData.GetParameterStore()->GetAs< std::string >("/files/control_file");
     std::string ext = MHO_DirectoryInterface::GetFileExtension(ctrl_file);
 
     if(ext == "py")
@@ -108,8 +109,8 @@ bool MHO_FringePass::Configure()
         {
             msg_fatal("fringe_pass",
                       "Python control file '" << ctrl_file
-                          << "' specified but no Python evaluator was injected. "
-                          << "Was the executable built with pybind11 support?" << eom);
+                          << "' specified but no Python evaluator was injected,  "
+                          << " pybind11 is required for this feature" << eom);
             return false;
         }
 
@@ -118,8 +119,7 @@ bool MHO_FringePass::Configure()
 
         // Populate control format - same setup as the DSL path.
         fData.GetControlFormat() = MHO_ControlDefinitions::GetControlFormat();
-        MHO_FringeControlInitialization::add_default_operator_format_def(
-            fData.GetControlFormat());
+        MHO_FringeControlInitialization::add_default_operator_format_def(fData.GetControlFormat());
 
         bool py_ok = fPythonEvaluator(fData.GetParameterStore(),
                                       fData.GetControlFormat(),
@@ -133,8 +133,8 @@ bool MHO_FringePass::Configure()
         }
 
         MHO_FringeControlInitialization::apply_control_statements(fData.GetParameterStore(),
-                                                                    fData.GetControlFormat(),
-                                                                    fData.GetControlStatements());
+                                                                  fData.GetControlFormat(),
+                                                                  fData.GetControlStatements());
 
         // A Python control file implicitly activates the Python plugin.
         fData.GetParameterStore()->Set("/config/plugins/activate_python", true);
@@ -154,6 +154,10 @@ bool MHO_FringePass::Run(const std::vector< MHO_FringeFitterVisitor* >& plugin_v
                          const std::vector< MHO_FringeFitterVisitor* >& output_visitors,
                          const std::vector< MHO_FringePlotVisitor* >&   plot_visitors)
 {
+    //use explicit profiler start/stop for this function, because we need to export events
+    //before the output is written
+    profiler_start();
+
     // Build the appropriate fringe fitter (basic, ionospheric, or spectral-line).
     // fFactory owns the fitter for the lifetime of this MHO_FringePass.
     fFactory.reset(new MHO_FringeFitterFactory(&fData));
@@ -181,6 +185,10 @@ bool MHO_FringePass::Run(const std::vector< MHO_FringeFitterVisitor* >& plugin_v
         ffit->PostRun();
     }
     ffit->Finalize();
+
+    //flush profile events (must be done before output is written)
+    profiler_stop();
+    FlushProfileEvents();
 
     if(IsSkipped())
     {
