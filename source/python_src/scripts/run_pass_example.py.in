@@ -263,7 +263,11 @@ print(f"rate     : {rate:.6f} Hz")
 plot_data = data.get_plot_data()
 if plot_data:
     try:
+        import matplotlib
+        matplotlib.use('Agg')  # non-interactive backend: avoids GTK4 event-loop crash in pybind11 context
         from hops_visualization.fourfit_plot import make_fourfit_plot
-        make_fourfit_plot(plot_data, True, "./tmp.png")
+        plot_file = "./fringe_plot.png"
+        make_fourfit_plot(plot_data, False, plot_file)
+        print(f"plot     : {plot_file}")
     except ImportError:
         print(f"\nplot_data keys: {list(plot_data.keys())}")
