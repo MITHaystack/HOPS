@@ -52,6 +52,7 @@ if (PY_EXE)
             profile_plot
             profile_plot_alt
             profile_report
+            run_pass_example
         )
 
     endif(HOPS3_PYTHON_EXTRAS)

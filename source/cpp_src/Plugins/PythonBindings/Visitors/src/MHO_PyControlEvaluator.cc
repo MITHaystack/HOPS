@@ -37,50 +37,79 @@ bool MHO_PyControlEvaluator::Evaluate(MHO_ParameterStore* paramStore, const mho_
     }
     std::string script_code((std::istreambuf_iterator< char >(ifs)), std::istreambuf_iterator< char >());
 
+    //execute the script and extract the configure() callable
+    py::object configure_fn;
     try
     {
-        //import hops_control so PassInfo and Config are available
-        py::module hops_ctrl = py::module::import("hops_control");
-
-        //build python objects for pass info and config
-        py::object PassInfoClass = hops_ctrl.attr("PassInfo");
-        py::object ConfigClass   = hops_ctrl.attr("Config");
-
-        mho_json pass_dict = BuildPassInfoDict(paramStore);
-        py::object pass_info = PassInfoClass(pass_dict); //PassInfo(pass_dict)
-        py::object config    = ConfigClass(control_format); //Config(format_dict)
-
-        //execute the user's script in a fresh namespace that shares builtins
         py::dict script_ns;
         py::exec(script_code, py::globals(), script_ns);
 
-        //retrieve and call configure(pass_info, config)
         if(!script_ns.contains("configure"))
         {
             msg_error("python_control",
                       "Python control file '" << script_path << "' does not define a 'configure' function." << eom);
             return false;
         }
-        script_ns["configure"](pass_info, config);
-
-        //extract the accumulated statements as mho_json
-        py::object result = config.attr("to_json")();
-        control_statements = result.cast< mho_json >();
+        configure_fn = script_ns["configure"];
     }
     catch(py::error_already_set& exc)
     {
-        msg_error("python_control", "Python exception while evaluating control file '" << script_path << "':" << eom);
+        msg_error("python_control", "Python exception while loading control file '" << script_path << "':" << eom);
         msg_error("python_control", exc.what() << eom);
         PyErr_Clear();
         return false;
     }
 
-    //filter blocks to only those applicable to the current pass,
-    //mirroring what MHO_ControlFileParser does on the DSL path
+    return EvaluateCallable(configure_fn, paramStore, control_format, control_statements);
+}
+
+bool MHO_PyControlEvaluator::EvaluateCallable(py::object fn, MHO_ParameterStore* paramStore,
+                                               const mho_json& control_format, mho_json& control_statements)
+{
+    if(Py_IsInitialized() == 0)
+    {
+        msg_error("python_control", "Python interpreter is not running." << eom);
+        return false;
+    }
+
+    try
+    {
+        py::gil_scoped_acquire gil;
+
+        //import hops_control so PassInfo and Config are available
+        py::module hops_ctrl = py::module::import("hops_control");
+
+        py::object PassInfoClass = hops_ctrl.attr("PassInfo");
+        py::object ConfigClass   = hops_ctrl.attr("Config");
+
+        mho_json pass_dict = BuildPassInfoDict(paramStore);
+        py::object pass_info = PassInfoClass(pass_dict);
+        py::object config    = ConfigClass(control_format);
+
+        fn(pass_info, config);
+
+        py::object result  = config.attr("to_json")();
+        control_statements = result.cast< mho_json >();
+    }
+    catch(py::error_already_set& exc)
+    {
+        msg_error("python_control", "Python exception in configure callable:" << eom);
+        msg_error("python_control", exc.what() << eom);
+        PyErr_Clear();
+        return false;
+    }
+
+    ApplyConditionFilterAndSetString(paramStore, control_statements);
+    return true;
+}
+
+void MHO_PyControlEvaluator::ApplyConditionFilterAndSetString(MHO_ParameterStore* paramStore,
+                                                               mho_json& control_statements)
+{
     std::string baseline = paramStore->GetAs< std::string >("/config/baseline");
     std::string source   = "?";
     paramStore->Get("/vex/scan/source/name", source);
-    std::string fgroup   = "?";
+    std::string fgroup = "?";
     paramStore->Get("/config/fgroup", fgroup);
     std::string scan_name = "?";
     paramStore->Get("/vex/scan/name", scan_name);
@@ -93,8 +122,7 @@ bool MHO_PyControlEvaluator::Evaluate(MHO_ParameterStore* paramStore, const mho_
     condition_eval.SetPassInformation(baseline, source, fgroup, scan_name);
     control_statements = condition_eval.GetApplicableStatements(wrapped);
 
-    //append any command-line 'set' overrides, mirroring what process_control_file does on the DSL path.
-    //the set-string blocks are placed after the Python-generated ones so they take effect last (i.e. they override).
+    //append any command-line 'set' overrides; placed last so they override Python-generated statements
     std::string set_string = paramStore->GetAs< std::string >("/cmdline/set_string");
     if(set_string != "")
     {
@@ -113,8 +141,6 @@ bool MHO_PyControlEvaluator::Evaluate(MHO_ParameterStore* paramStore, const mho_
             control_statements.push_back(block);
         }
     }
-
-    return true;
 }
 
 mho_json MHO_PyControlEvaluator::BuildPassInfoDict(MHO_ParameterStore* paramStore)

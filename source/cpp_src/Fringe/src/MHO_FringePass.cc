@@ -100,24 +100,14 @@ bool MHO_FringePass::Initialize()
 bool MHO_FringePass::Configure()
 {
     profiler_scope();
-    std::string ctrl_file = fData.GetParameterStore()->GetAs< std::string >("/files/control_file");
-    std::string ext = MHO_DirectoryInterface::GetFileExtension(ctrl_file);
 
-    if(ext == "py")
+    if(fPythonEvaluator)
     {
-        if(!fPythonEvaluator)
-        {
-            msg_fatal("fringe_pass",
-                      "Python control file '" << ctrl_file
-                          << "' specified but no Python evaluator was injected,  "
-                          << " pybind11 is required for this feature" << eom);
-            return false;
-        }
-
+        // Callable evaluator injected directly (e.g. from pyMHO_Fringe) --
+        // take the Python path regardless of the control file extension.
         fData.GetParameterStore()->Set("/status/is_finished", false);
         fData.GetParameterStore()->Set("/status/skipped", false);
 
-        // Populate control format - same setup as the DSL path.
         fData.GetControlFormat() = MHO_ControlDefinitions::GetControlFormat();
         MHO_FringeControlInitialization::add_default_operator_format_def(fData.GetControlFormat());
 
@@ -126,21 +116,34 @@ bool MHO_FringePass::Configure()
                                       fData.GetControlStatements());
         if(!py_ok)
         {
-            msg_error("fringe_pass", "Python control file evaluation failed, skipping pass." << eom);
+            msg_error("fringe_pass", "Python control evaluator failed, skipping pass." << eom);
             fData.GetParameterStore()->Set("/status/skipped", true);
             fData.GetParameterStore()->Set("/status/is_finished", true);
             return false;
         }
 
         MHO_FringeControlInitialization::apply_control_statements(fData.GetParameterStore(),
-                                                                  fData.GetControlFormat(),
-                                                                  fData.GetControlStatements());
+                                                                   fData.GetControlFormat(),
+                                                                   fData.GetControlStatements());
 
-        // A Python control file implicitly activates the Python plugin.
         fData.GetParameterStore()->Set("/config/plugins/activate_python", true);
     }
     else
     {
+        // File-based path: detect .py vs DSL by extension.
+        std::string ctrl_file =
+            fData.GetParameterStore()->GetAs< std::string >("/files/control_file");
+        std::string ext = MHO_DirectoryInterface::GetFileExtension(ctrl_file);
+
+        if(ext == "py")
+        {
+            msg_fatal("fringe_pass",
+                      "Python control file '" << ctrl_file
+                          << "' specified but no Python evaluator was injected. "
+                          << "Was the executable built with pybind11 support?" << eom);
+            return false;
+        }
+
         // DSL path
         MHO_FringeControlInitialization::process_control_file(fData.GetParameterStore(),
                                                               fData.GetControlFormat(),

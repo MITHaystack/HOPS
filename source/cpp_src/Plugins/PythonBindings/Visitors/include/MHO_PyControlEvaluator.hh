@@ -1,12 +1,18 @@
 #ifndef MHO_PyControlEvaluator_HH__
 #define MHO_PyControlEvaluator_HH__
 
+#include <functional>
 #include <string>
 
 #include "MHO_ControlConditionEvaluator.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 #include "MHO_ParameterStore.hh"
+
+#include "pybind11_json/pybind11_json.hpp"
+#include <pybind11/embed.h>
+#include <pybind11/pybind11.h>
+namespace py = pybind11;
 
 namespace hops
 {
@@ -54,6 +60,19 @@ class MHO_PyControlEvaluator
     private:
         /// Build the pass-info dict from the parameter store.
         static mho_json BuildPassInfoDict(MHO_ParameterStore* paramStore);
+
+        /**
+         * @brief Core evaluator shared by Evaluate() and the pyMHO_Fringe module.
+         * Given an already-resolved Python callable, builds PassInfo/Config,
+         * calls fn(pass_info, config), extracts statements, then applies
+         * condition filtering and set-string overrides.
+         */
+        static bool EvaluateCallable(py::object fn, MHO_ParameterStore* paramStore,
+                                     const mho_json& control_format, mho_json& control_statements);
+
+        /// Apply condition filtering and command-line set-string overrides in-place.
+        static void ApplyConditionFilterAndSetString(MHO_ParameterStore* paramStore,
+                                                     mho_json& control_statements);
 };
 
 } // namespace hops
