@@ -245,17 +245,17 @@ data   = fp.get_fringe_data()
 params = data.get_parameter_store()
 
 snr  = params.get_by_path("/fringe/snr")
-mbd  = params.get_by_path("/fringe/mbd_delay")
-sbd  = params.get_by_path("/fringe/sbd_delay")
-rate = params.get_by_path("/fringe/fringe_rate")
-amp  = params.get_by_path("/fringe/amplitude")
+amp  = params.get_by_path("/fringe/famp")
+mbd  = params.get_by_path("/fringe/mbdelay")
+sbd  = params.get_by_path("/fringe/sbdelay")
+rate = params.get_by_path("/fringe/frate")
 
 print(f"baseline : {BASELINE}  polprod : {POL_PRODUCT}")
 print(f"SNR      : {snr:.2f}")
 print(f"amplitude: {amp:.4f}")
 print(f"MBD delay: {mbd:.4f} us")
 print(f"SBD delay: {sbd:.4f} us")
-print(f"rate     : {rate:.4f} ps/s")
+print(f"rate     : {rate:.6f} Hz")
 
 # ---------------------------------------------------------------------------
 # Plot  (-p equivalent)
@@ -264,6 +264,6 @@ plot_data = data.get_plot_data()
 if plot_data:
     try:
         from hops_visualization.fourfit_plot import make_fourfit_plot
-        make_fourfit_plot(plot_data)
+        make_fourfit_plot(plot_data, True, "./tmp.png")
     except ImportError:
         print(f"\nplot_data keys: {list(plot_data.keys())}")
