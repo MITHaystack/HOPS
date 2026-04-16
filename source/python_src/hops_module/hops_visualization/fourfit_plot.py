@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib
 #are any of these backends faster? matplotlib is abysmally slow
 # matplotlib.use("Agg")
-matplotlib.use("TkAgg")
+# matplotlib.use("TkAgg")
 # matplotlib.use('Qt5Cairo')
 
 

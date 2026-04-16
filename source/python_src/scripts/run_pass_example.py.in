@@ -264,10 +264,8 @@ plot_data = data.get_plot_data()
 if plot_data:
     try:
         import matplotlib
-        matplotlib.use('Agg')  # non-interactive backend: avoids GTK4 event-loop crash in pybind11 context
+        matplotlib.use('TkAgg')  # TkAgg avoids GTK4/PyGObject conflict with pybind11
         from hops_visualization.fourfit_plot import make_fourfit_plot
-        plot_file = "./fringe_plot.png"
-        make_fourfit_plot(plot_data, True, plot_file)
-        print(f"plot     : {plot_file}")
+        make_fourfit_plot(plot_data, True, "./fringe_plot.png")
     except ImportError:
         print(f"\nplot_data keys: {list(plot_data.keys())}")
