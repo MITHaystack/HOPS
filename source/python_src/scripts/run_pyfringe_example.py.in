@@ -4,23 +4,23 @@ Python equivalent of:
     fourfit4 -p -c ./control_example.py -b GE -P XX ./1111/105-1800
 
 Demonstrates using pyMHO_Fringe.FringePass to configure and run a single
-fringe-fiting pass (single-baseline, single-polproduct)entirely from 
+fringe-fiting pass (single-baseline, single-polproduct) entirely from 
 Python, without spawning a subprocess call to 'fourfit'.
 
 """
 
 import sys
+import argparse
 from hops_control import PassInfo, Config
+import pyMHO_Fringe
 
-
-#hard-coded defaults for test configuration
+#hard-coded defaults for the VT9105 test configuration
 SCAN_DIR    = "./1111/105-1800"
 BASELINE    = "GE"
 POL_PRODUCT = "XX"
 FREQ_GROUP  = "X"
 
 def local_configure(p: PassInfo, cfg: Config) -> None:
-
 
     # ==========================================================
     # basic setup (see vt9105 test data)
@@ -40,17 +40,21 @@ def local_configure(p: PassInfo, cfg: Config) -> None:
     cfg.ion_win([-88.0, 88.0])
     cfg.pc_tonemask("cdejnprwBC", [2, 16, 16, 1, 16, 16, 16, 2, 16, 16])
 
+
+    #example for how nested if-conditions trigger exception
+    # with cfg.IF().baseline("GE"):
+    #     cfg.ion_npts(1)
+    #     with cfg.IF().station("G"):
+    #         cfg.ionosphere(10.0)
+    #     with cfg.IF().station("E"):
+    #         cfg.ionosphere(-10.0)
+    
     # ==========================================================
     # speed up ionosphere search on GE baseline
     # ==========================================================
-
     with cfg.IF().baseline("GE"):
-        cfg.ion_npts(1)
-        #cfg.ion_win([-20.0, 20.0])
-        with cfg.IF().station("G"):
-            cfg.ionosphere(10.0)
-        with cfg.IF().station("E"):
-            cfg.ionosphere(-10.0)
+        cfg.ion_npts(11)
+        cfg.ion_win([-20.0, 20.0])
 
     # ==========================================================
     # compensating for low pcal amp for station Yj and Oe
@@ -210,64 +214,76 @@ def local_configure(p: PassInfo, cfg: Config) -> None:
         cfg.pc_phase_offset_y(58.5)
 
 
-# ---------------------------------------------------------------------------
-# Run the pass
-# ---------------------------------------------------------------------------
-import pyMHO_Fringe
-
-fp = pyMHO_Fringe.FringePass()
-fp.set_scan_directory(SCAN_DIR)
-fp.set_baseline(BASELINE)
-fp.set_pol_product(POL_PRODUCT)
-fp.set_frequency_group(FREQ_GROUP)
-fp.set_configure(local_configure)
-fp.set_test_mode(True)   # suppress writing .frng output files
-
-if not fp.initialize():
-    print("initialize() failed, check scan directory and baseline.")
-    sys.exit(1)
-
-if not fp.configure():
-    print("configure() failed.")
-    sys.exit(1)
-
-fp.run()
-
-if fp.is_skipped():
-    print("pass was skipped by control file.")
-    sys.exit(0)
-
-# ---------------------------------------------------------------------------
-# Results
-# ---------------------------------------------------------------------------
-data   = fp.get_fringe_data()
-params = data.get_parameter_store()
-
-snr  = params.get_by_path("/fringe/snr")
-amp  = params.get_by_path("/fringe/famp")
-mbd  = params.get_by_path("/fringe/mbdelay")
-sbd  = params.get_by_path("/fringe/sbdelay")
-rate = params.get_by_path("/fringe/frate")
-
-print(f"baseline : {BASELINE}  polprod : {POL_PRODUCT}")
-print(f"SNR      : {snr:.2f}")
-print(f"amplitude: {amp:.4f}")
-print(f"MBD delay: {mbd:.4f} us")
-print(f"SBD delay: {sbd:.4f} us")
-print(f"rate     : {rate:.6f} Hz")
-
-# ---------------------------------------------------------------------------
-# Plot  (-p equivalent)
-# ---------------------------------------------------------------------------
-plot_data = data.get_plot_data()
-if plot_data:
+def _maybe_plot(data) -> None:
+    plot_data = data.get_plot_data()
+    if not plot_data:
+        return
     try:
-        #import and set TkAgg backend here
         import matplotlib
+        matplotlib.use("TkAgg")
         #using TkAgg avoids GTK4/PyGObject conflict with pybind11 
         #which triggers a crash due to object lifetime issues
-        matplotlib.use('TkAgg') 
         from hops_visualization.fourfit_plot import make_fourfit_plot
         make_fourfit_plot(plot_data, True, "./fringe_plot.png")
     except ImportError:
         print(f"\nplot_data keys: {list(plot_data.keys())}")
+
+
+def run_pass(scan_dir: str, baseline: str, pol_product: str, freq_group: str) -> int:
+    fp = pyMHO_Fringe.FringePass()
+    fp.set_scan_directory(scan_dir)
+    fp.set_baseline(baseline)
+    fp.set_pol_product(pol_product)
+    fp.set_frequency_group(freq_group)
+    fp.set_configure(local_configure)
+    fp.set_test_mode(True)  # suppress writing .frng output files
+
+    if not fp.initialize():
+        print("initialize() failed, check scan directory and baseline.")
+        return 1
+
+    if not fp.configure():
+        print("configure() failed.")
+        return 1
+
+    fp.run()
+
+    if fp.is_skipped():
+        print("pass was skipped by control file.")
+        return 0
+
+    data = fp.get_fringe_data()
+    params = data.get_parameter_store()
+
+    snr = params.get_by_path("/fringe/snr")
+    amp = params.get_by_path("/fringe/famp")
+    mbd = params.get_by_path("/fringe/mbdelay")
+    sbd = params.get_by_path("/fringe/sbdelay")
+    rate = params.get_by_path("/fringe/frate")
+
+    print(f"baseline : {baseline}  polprod : {pol_product}")
+    print(f"SNR      : {snr:.2f}")
+    print(f"amplitude: {amp:.4f}")
+    print(f"MBD delay: {mbd:.4f} us")
+    print(f"SBD delay: {sbd:.4f} us")
+    print(f"rate     : {rate:.6f} Hz")
+
+    _maybe_plot(data)
+    return 0
+
+
+def build_arg_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(description="Test running one fringe-fitting pass entirely via python config.")
+    p.add_argument("scan_dir", nargs="?", default=SCAN_DIR)
+    p.add_argument("-b", "--baseline", default=BASELINE)
+    p.add_argument("-P", "--pol-product", default=POL_PRODUCT)
+    p.add_argument("-f", "--freq-group", default=FREQ_GROUP)
+    return p
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_arg_parser().parse_args(argv)
+    return run_pass(args.scan_dir, args.baseline, args.pol_product, args.freq_group)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
