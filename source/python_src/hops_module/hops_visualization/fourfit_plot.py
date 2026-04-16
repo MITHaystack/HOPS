@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib
 #are any of these backends faster? matplotlib is abysmally slow
 # matplotlib.use("Agg")
-# matplotlib.use("TkAgg")
+matplotlib.use("TkAgg")
 # matplotlib.use('Qt5Cairo')
 
 
@@ -22,7 +22,7 @@ from matplotlib.ticker import AutoMinorLocator
 # matplotlib.rcParams['path.simplify_threshold'] = 1.0
 
 def get_numpy_version_tuple():
-    np_vers = np.__version__ 
+    np_vers = np.__version__
     parts = np_vers.split('.')[:3]
     version_nums = []
     for part in parts: #convert to integers
@@ -38,7 +38,7 @@ def get_numpy_version_tuple():
 
 def is_version_less_than(version_tuple_check, version_tuple_reference):
     return version_tuple_check < version_tuple_reference
-    
+
 
 def make_sciformat(float_value, nprec, nmd, np_use_min_digits=True):
     if np_use_min_digits:
@@ -204,7 +204,7 @@ def make_channel_segment_plots_alt(fig, plot_dict):
 
     if n_seg_plots == 2:
         n_seg_plots = 1 #do not need 'all' plot if only one channel
-        
+
     # Assuming colw, n_seg_plots, n_seg, and seg_amp_arr1 are defined
     gs = fig.add_gridspec(32, colw * n_seg_plots)
     for ch in range(0,n_seg_plots):
@@ -265,57 +265,57 @@ def make_channel_segment_validity_plots(fig,plot_dict):
     n_seg = int(plot_dict["NSeg"])
     n_seg_plots = int(plot_dict["NPlots"])
     colw = 6
-    
+
     # Extract USB and LSB validity data
     usb_frac = plot_dict.get('SEG_FRAC_USB', [])
     lsb_frac = plot_dict.get('SEG_FRAC_LSB', [])
-    
+
     gs = fig.add_gridspec(256, colw*n_seg_plots)
     #USB/LSB PLOTS - excludes the last "All" channel
     n_channel_plots = n_seg_plots - 1
-    
+
     for ch in range(0, n_channel_plots):
         #make single subplot for both USB and LSB indicators
         ax7 = fig.add_subplot(gs[152:160, colw*ch:colw*(ch+1)])
-        
+
         # Extract validity data for this channel
         usb_validity = []
         lsb_validity = []
-        
+
         for seg in range(n_seg):
             idx = seg * n_channel_plots + ch
-            
+
             #extract USB validity for this segment/channel
             if idx < len(usb_frac):
                 usb_validity.append(usb_frac[idx])
             else:
                 usb_validity.append(0.0)
-                
-            #extract LSB validity for this segment/channel  
+
+            #extract LSB validity for this segment/channel
             if idx < len(lsb_frac):
                 lsb_validity.append(lsb_frac[idx])
             else:
                 lsb_validity.append(0.0)
-        
+
         # draw vertical lines for each time segment
         for seg in range(n_seg):
             x = seg + 0.5  # Center the line in the segment
-            
+
             # USB validity line (upper half: y from 0.5 to 1.0)
             if usb_validity[seg] >= 0.95:
                 ax7.plot([x, x], [0.5, 1.0], 'g-', linewidth=1.0)
             elif usb_validity[seg] > 0.0:
                 ax7.plot([x, x], [0.5, 1.0], 'r-', linewidth=1.0)
-            
+
             # LSB validity line (lower half: y from 0.0 to 0.5)
             if lsb_validity[seg] >= 0.95:
                 ax7.plot([x, x], [0.0, 0.5], 'g-', linewidth=1.0)
             elif lsb_validity[seg] > 0.0:
                 ax7.plot([x, x], [0.0, 0.5], 'r-', linewidth=1.0)
-        
+
         #draw horizontal divider line at y=0.5 to separate USB/LSB
         ax7.plot([0, n_seg], [0.5, 0.5], 'k-', linewidth=1.0)
-        
+
         # Set axis properties
         ax7.set_xlim(0, n_seg)
         ax7.set_ylim(0, 1)
@@ -326,14 +326,14 @@ def make_channel_segment_validity_plots(fig,plot_dict):
         ax7.set_yticklabels(labels=[], visible=False)
         plt.yticks(visible=False)
         plt.tick_params(left=False, bottom=False)
-        
+
         # add U/L labels for the first channel only
         if ch == 0:
-            ax7.text(-0.36, 0.65, 'U', fontsize=7, rotation=0, 
+            ax7.text(-0.36, 0.65, 'U', fontsize=7, rotation=0,
                     transform=ax7.transAxes, verticalalignment='center')
-            ax7.text(-0.33, 0.15, 'L', fontsize=7, rotation=0, 
+            ax7.text(-0.33, 0.15, 'L', fontsize=7, rotation=0,
                     transform=ax7.transAxes, verticalalignment='center')
-            
+
     plt.subplots_adjust(wspace=0, hspace=0)
 
 
@@ -710,7 +710,7 @@ def make_top_info_text(plot_dict):
 def make_model_resid_info_text(plot_dict):
     #adds the wall of text below the p-cal table with:
     #a priori, total, and residual delay model infomation
-    
+
     useMinDigits = True
     np_vers = get_numpy_version_tuple()
     if is_version_less_than( np_vers, (1,21,0) ):
@@ -725,8 +725,8 @@ def make_model_resid_info_text(plot_dict):
     group_delay_key = "GroupDelayModel(usec)"
     if not group_delay_key in plot_dict:
         group_delay_key = "GroupDelaySBD(usec)"
-        
-        
+
+
     btmtextstr2 = make_sciformat(float(plot_dict[group_delay_key]), 11, 11, useMinDigits)  + '\n' + \
         make_sciformat(float(plot_dict["SbandDelay(usec)"]), 11, 11, useMinDigits) + '\n' + \
         make_sciformat(float(plot_dict["PhaseDelay(usec)"]), 11, 11, useMinDigits) + '\n' + \
