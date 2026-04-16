@@ -29,7 +29,7 @@
  * then we need to free any alloc'd names.
  * See prep_fstruct() and wipe_fstruct() in sub/util/check_names.c
  */
-inline void clear_fset(struct fileset *fset)
+static inline void clear_fset(struct fileset *fset)
 {
     int ii;
     fstruct *f_info;

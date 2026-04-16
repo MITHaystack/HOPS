@@ -110,7 +110,7 @@ static void parsing_error (int state_num, int ntok)
          state[state_num], token_string[tokens[ntok].symbol]);
    }
 
-inline int fcode (char c, char *codes)
+static inline int fcode (char c, char *codes)
 	{
 	int i;
 	

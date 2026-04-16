@@ -28,8 +28,12 @@ if(HOPS_ENABLE_COVERAGE)
     set(COVERAGE_FLAGS "--coverage -fprofile-arcs -ftest-coverage")
     set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   ${COVERAGE_FLAGS}")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COVERAGE_FLAGS}")
-    set(CMAKE_EXE_LINKER_FLAGS    "${CMAKE_EXE_LINKER_FLAGS}    --coverage")
-    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
+    # Only executables need --coverage at link time (pulls in the gcov runtime).
+    # Shared libraries must NOT get --coverage here: on many Linux systems libgcov.a
+    # is a linker script, and embedding it into a .so causes "file not recognized"
+    # errors in downstream link steps. Instrumentation of .so code is handled by
+    # the compile flags above; the gcov runtime collects it at load time.
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
 
     set(COVERAGE_OUTPUT_DIR "${CMAKE_BINARY_DIR}/coverage_html")
     set(COVERAGE_INFO_FILE  "${CMAKE_BINARY_DIR}/coverage.info")
@@ -55,12 +59,11 @@ if(HOPS_ENABLE_COVERAGE)
             --output-file "${COVERAGE_INFO_FILE}"
             --rc lcov_branch_coverage=1
 
-        # Strip external and system paths from the report
+        # Keep only files under source/ — this excludes extern/, /usr/, and
+        # everything else outside the project source tree in one step.
         COMMAND ${LCOV_EXECUTABLE}
-            --remove "${COVERAGE_INFO_FILE}"
-            "${CMAKE_SOURCE_DIR}/extern/*"
-            "/usr/*"
-            "*/test/*"
+            --extract "${COVERAGE_INFO_FILE}"
+            "${CMAKE_SOURCE_DIR}/source/*"
             --output-file "${COVERAGE_CLEAN_FILE}"
             --rc lcov_branch_coverage=1
 
@@ -72,8 +75,13 @@ if(HOPS_ENABLE_COVERAGE)
             --legend
             --title "HOPS Coverage"
 
+        # Install the HTML report into the doc directory
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${COVERAGE_OUTPUT_DIR}"
+            "${DOC_INSTALL_DIR}/coverage"
+
         COMMAND ${CMAKE_COMMAND} -E echo
-            "Coverage report written to ${COVERAGE_OUTPUT_DIR}/index.html"
+            "Coverage report installed to ${DOC_INSTALL_DIR}/coverage/index.html"
     )
 
 endif(HOPS_ENABLE_COVERAGE)

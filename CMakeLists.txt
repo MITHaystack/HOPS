@@ -43,7 +43,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #includes for package finding
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 include(HopsDefaults)
+
+#developer coverage testing equires lcov and genhtml (install with apt-get install lcov)
+#generate html report with 'make coverage'
 include(HopsCoverage)
+
 include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)

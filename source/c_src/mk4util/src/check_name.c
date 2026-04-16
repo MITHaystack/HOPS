@@ -35,7 +35,7 @@ void prep_fstruct(fstruct *f_info)
 /* most of the defines come from fstruct.h */
 
 /* a replacement for clear _ fstruct() which is really only used here */
-inline void wipe_fstruct(fstruct *f_info)
+static inline void wipe_fstruct(fstruct *f_info)
 {
     int i;
     /* One presumes the name came from a struct dirent which is [256]
