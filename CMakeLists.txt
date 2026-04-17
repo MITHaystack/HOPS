@@ -44,10 +44,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 include(HopsDefaults)
 
-#developer coverage testing equires lcov and genhtml (install with apt-get install lcov)
-#generate html report with 'make coverage'
-include(HopsCoverage)
-
 include(CMakeDependentOption)
 include(FindGFORTRAN)
 include(FindPGPLOT)
@@ -101,6 +97,10 @@ file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
 file(MAKE_DIRECTORY ${SHARE_VHELP_AEDIT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${PLUGINS_INSTALL_DIR})
+
+#developer coverage testing requires lcov and genhtml (install with: apt-get install lcov)
+#generate html report with 'make coverage'
+include(HopsCoverage)
 
 #convenience variables
 set(CSOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/c_src)
