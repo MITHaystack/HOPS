@@ -157,7 +157,7 @@ void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
         {
             for(auto ctrl_iter = fControl->begin(); ctrl_iter != fControl->end(); ctrl_iter++)
             {
-                if(!(ctrl_iter->is_null() || ctrl_iter->is_null()))
+                if( !(ctrl_iter->is_null()) )
                 {
                     auto statements = &((*ctrl_iter)["statements"]);
                     for(auto stmt_iter = statements->begin(); stmt_iter != statements->end();)
