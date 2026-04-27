@@ -19,6 +19,7 @@ set(SOURCE_BASENAMES
     TestSelectRepack
     TestObjectTags
     TestSnapshot
+    TestNDArrayWrapperStrides
 )
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
