@@ -122,10 +122,10 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
 
     private:
         /**
-         * @brief Determines mount type from given string and returns corresponding code.
+         * @brief Determines mount type from given string and returns the corresponding integer code.
          *
          * @param mount Input mount type as a string {"no_mount", "cassegrain", "nasmythleft", "nasmythright"}.
-         * @return Mount type code (NO_MOUNT_TYPE, CASSEGRAIN, NASMYTHLEFT, NASMYTHRIGHT) or NO_MOUNT_TYPE if unknown.
+         * @return Integer code for the mount type, or 0 (None) if the string is unrecognized.
          */
         int DetermineMountCode(const std::string& mount) const;
 
