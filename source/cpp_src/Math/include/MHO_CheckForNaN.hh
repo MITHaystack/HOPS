@@ -31,7 +31,7 @@ template< typename XNumericalType > class MHO_CheckForNaN
          * @return True if value is NaN, false otherwise.
          * @note This is a static function.
          */
-        static bool isnan(const XNumericalType& value) { return value != value; }
+        static bool isnan(XNumericalType value) { return value != value; }
 
     private:
 };
@@ -66,7 +66,7 @@ template<> inline bool MHO_CheckForNaN< double >::isnan(double value)
  * @param value Input long double value to check for NaN
  * @return Boolean indicating whether the input value is NaN or not
  */
-template<> inline bool MHO_CheckForNaN< long double >::isnan(const long double& value)
+template<> inline bool MHO_CheckForNaN< long double >::isnan(long double value)
 {
     return std::isnan(value);
 }
@@ -77,7 +77,7 @@ template<> inline bool MHO_CheckForNaN< long double >::isnan(const long double& 
  * @param value Input complex float value to check for NaN.
  * @return True if either real or imaginary part is NaN, false otherwise.
  */
-template<> inline bool MHO_CheckForNaN< std::complex< float > >::isnan(const std::complex< float >& value)
+template<> inline bool MHO_CheckForNaN< std::complex< float > >::isnan(std::complex< float > value)
 {
     return std::isnan(value.real()) || std::isnan(value.imag());
 }
@@ -88,7 +88,7 @@ template<> inline bool MHO_CheckForNaN< std::complex< float > >::isnan(const std
  * @param value Input complex double value to check for NaN.
  * @return True if either real or imaginary part is NaN, false otherwise.
  */
-template<> inline bool MHO_CheckForNaN< std::complex< double > >::isnan(const std::complex< double >& value)
+template<> inline bool MHO_CheckForNaN< std::complex< double > >::isnan(std::complex< double > value)
 {
     return std::isnan(value.real()) || std::isnan(value.imag());
 }
@@ -99,7 +99,7 @@ template<> inline bool MHO_CheckForNaN< std::complex< double > >::isnan(const st
  * @param value Input complex number to check for NaN
  * @return True if either real or imaginary part is NaN, false otherwise
  */
-template<> inline bool MHO_CheckForNaN< std::complex< long double > >::isnan(const std::complex< long double >& value)
+template<> inline bool MHO_CheckForNaN< std::complex< long double > >::isnan(std::complex< long double > value)
 {
     return std::isnan(value.real()) || std::isnan(value.imag());
 }
