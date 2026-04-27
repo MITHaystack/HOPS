@@ -1,5 +1,5 @@
-#ifndef MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__
-#define MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__
+#ifndef MHO_ManualChannelDelayCorrectionBuilder_HH__
+#define MHO_ManualChannelDelayCorrectionBuilder_HH__
 
 #include "MHO_ChannelQuantity.hh"
 #include "MHO_OperatorBuilder.hh"
@@ -55,4 +55,4 @@ class MHO_ManualChannelDelayCorrectionBuilder: public MHO_OperatorBuilder, publi
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_ManualChannelDelayCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ManualChannelDelayCorrectionBuilder_HH__ */

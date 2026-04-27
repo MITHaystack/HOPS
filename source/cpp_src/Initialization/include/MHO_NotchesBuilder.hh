@@ -1,5 +1,5 @@
-#ifndef MHO_NotchesBuilderBuilder_HH__
-#define MHO_NotchesBuilderBuilder_HH__
+#ifndef MHO_NotchesBuilder_HH__
+#define MHO_NotchesBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -40,4 +40,4 @@ class MHO_NotchesBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_NotchesBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_NotchesBuilder_HH__ */

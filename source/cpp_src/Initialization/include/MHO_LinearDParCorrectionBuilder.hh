@@ -1,5 +1,5 @@
-#ifndef MHO_LinearDParCorrectionBuilderBuilder_HH__
-#define MHO_LinearDParCorrectionBuilderBuilder_HH__
+#ifndef MHO_LinearDParCorrectionBuilder_HH__
+#define MHO_LinearDParCorrectionBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -43,4 +43,4 @@ class MHO_LinearDParCorrectionBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_LinearDParCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_LinearDParCorrectionBuilder_HH__ */

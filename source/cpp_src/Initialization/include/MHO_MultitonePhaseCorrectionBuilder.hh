@@ -1,5 +1,5 @@
-#ifndef MHO_MultitonePhaseCorrectionBuilderBuilder_HH__
-#define MHO_MultitonePhaseCorrectionBuilderBuilder_HH__
+#ifndef MHO_MultitonePhaseCorrectionBuilder_HH__
+#define MHO_MultitonePhaseCorrectionBuilder_HH__
 
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_OperatorBuilder.hh"
@@ -89,4 +89,4 @@ class MHO_MultitonePhaseCorrectionBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_MultitonePhaseCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_MultitonePhaseCorrectionBuilder_HH__ */

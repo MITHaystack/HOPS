@@ -1,5 +1,5 @@
-#ifndef MHO_NotchCombBuilderBuilder_HH__
-#define MHO_NotchCombBuilderBuilder_HH__
+#ifndef MHO_NotchCombBuilder_HH__
+#define MHO_NotchCombBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -40,4 +40,4 @@ class MHO_NotchCombBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_NotchCombBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_NotchCombBuilder_HH__ */

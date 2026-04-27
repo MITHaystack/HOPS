@@ -1,5 +1,5 @@
-#ifndef MHO_PythonOperatorBuilderBuilder_HH__
-#define MHO_PythonOperatorBuilderBuilder_HH__
+#ifndef MHO_PythonOperatorBuilder_HH__
+#define MHO_PythonOperatorBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 #include "MHO_PyGenericOperator.hh"
@@ -113,4 +113,4 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_PythonOperatorBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_PythonOperatorBuilder_HH__ */

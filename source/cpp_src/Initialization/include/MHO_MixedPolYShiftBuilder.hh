@@ -1,5 +1,5 @@
-#ifndef MHO_MixedPolYShiftBuilderBuilder_HH__
-#define MHO_MixedPolYShiftBuilderBuilder_HH__
+#ifndef MHO_MixedPolYShiftBuilder_HH__
+#define MHO_MixedPolYShiftBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -40,4 +40,4 @@ class MHO_MixedPolYShiftBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_MixedPolYShiftBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_MixedPolYShiftBuilder_HH__ */

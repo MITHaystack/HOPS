@@ -1,5 +1,5 @@
-#ifndef MHO_StationDelayCorrectionBuilderBuilder_HH__
-#define MHO_StationDelayCorrectionBuilderBuilder_HH__
+#ifndef MHO_StationDelayCorrectionBuilder_HH__
+#define MHO_StationDelayCorrectionBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -54,4 +54,4 @@ class MHO_StationDelayCorrectionBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_StationDelayCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_StationDelayCorrectionBuilder_HH__ */

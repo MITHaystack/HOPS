@@ -1,5 +1,5 @@
-#ifndef MHO_CircularFieldRotationBuilderBuilder_HH__
-#define MHO_CircularFieldRotationBuilderBuilder_HH__
+#ifndef MHO_CircularFieldRotationBuilder_HH__
+#define MHO_CircularFieldRotationBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -41,4 +41,4 @@ class MHO_CircularFieldRotationBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_CircularFieldRotationBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_CircularFieldRotationBuilder_HH__ */

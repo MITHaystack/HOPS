@@ -1,5 +1,5 @@
-#ifndef MHO_LSBOffsetBuilderBuilder_HH__
-#define MHO_LSBOffsetBuilderBuilder_HH__
+#ifndef MHO_LSBOffsetBuilder_HH__
+#define MHO_LSBOffsetBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -46,4 +46,4 @@ class MHO_LSBOffsetBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_LSBOffsetBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_LSBOffsetBuilder_HH__ */

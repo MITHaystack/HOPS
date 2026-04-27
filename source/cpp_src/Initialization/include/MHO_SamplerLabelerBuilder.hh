@@ -1,5 +1,5 @@
-#ifndef MHO_SamplerLabelerBuilderBuilder_HH__
-#define MHO_SamplerLabelerBuilderBuilder_HH__
+#ifndef MHO_SamplerLabelerBuilder_HH__
+#define MHO_SamplerLabelerBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -40,4 +40,4 @@ class MHO_SamplerLabelerBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_SamplerLabelerBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_SamplerLabelerBuilder_HH__ */

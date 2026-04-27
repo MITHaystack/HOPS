@@ -1,5 +1,5 @@
-#ifndef MHO_PolProductSummationBuilderBuilder_HH__
-#define MHO_PolProductSummationBuilderBuilder_HH__
+#ifndef MHO_PolProductSummationBuilder_HH__
+#define MHO_PolProductSummationBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -43,4 +43,4 @@ class MHO_PolProductSummationBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_PolProductSummationBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_PolProductSummationBuilder_HH__ */

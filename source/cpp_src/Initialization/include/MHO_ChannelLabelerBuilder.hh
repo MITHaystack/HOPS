@@ -1,5 +1,5 @@
-#ifndef MHO_ChannelLabelerBuilderBuilder_HH__
-#define MHO_ChannelLabelerBuilderBuilder_HH__
+#ifndef MHO_ChannelLabelerBuilder_HH__
+#define MHO_ChannelLabelerBuilder_HH__
 
 #include "MHO_ChannelQuantity.hh"
 #include "MHO_OperatorBuilder.hh"
@@ -42,4 +42,4 @@ class MHO_ChannelLabelerBuilder: public MHO_OperatorBuilder, public MHO_ChannelQ
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_ChannelLabelerBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ChannelLabelerBuilder_HH__ */

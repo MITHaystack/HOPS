@@ -1,5 +1,5 @@
-#ifndef MHO_DataSelectionBuilderBuilder_HH__
-#define MHO_DataSelectionBuilderBuilder_HH__
+#ifndef MHO_DataSelectionBuilder_HH__
+#define MHO_DataSelectionBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -43,4 +43,4 @@ class MHO_DataSelectionBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_DataSelectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_DataSelectionBuilder_HH__ */

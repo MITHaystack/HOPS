@@ -1,5 +1,5 @@
-#ifndef MHO_PassbandBuilderBuilder_HH__
-#define MHO_PassbandBuilderBuilder_HH__
+#ifndef MHO_PassbandBuilder_HH__
+#define MHO_PassbandBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -40,4 +40,4 @@ class MHO_PassbandBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_PassbandBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_PassbandBuilder_HH__ */

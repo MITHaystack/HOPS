@@ -1,5 +1,5 @@
-#ifndef MHO_MinWeightBuilderBuilder_HH__
-#define MHO_MinWeightBuilderBuilder_HH__
+#ifndef MHO_MinWeightBuilder_HH__
+#define MHO_MinWeightBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -40,4 +40,4 @@ class MHO_MinWeightBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_MinWeightBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_MinWeightBuilder_HH__ */

@@ -1,5 +1,5 @@
-#ifndef MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__
-#define MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__
+#ifndef MHO_ManualPolPhaseCorrectionBuilder_HH__
+#define MHO_ManualPolPhaseCorrectionBuilder_HH__
 
 #include "MHO_OperatorBuilder.hh"
 
@@ -54,4 +54,4 @@ class MHO_ManualPolPhaseCorrectionBuilder: public MHO_OperatorBuilder
 
 } // namespace hops
 
-#endif /*! end of include guard: MHO_ManualPolPhaseCorrectionBuilderBuilder_HH__ */
+#endif /*! end of include guard: MHO_ManualPolPhaseCorrectionBuilder_HH__ */
