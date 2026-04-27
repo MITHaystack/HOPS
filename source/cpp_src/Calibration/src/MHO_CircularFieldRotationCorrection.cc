@@ -95,22 +95,8 @@ bool MHO_CircularFieldRotationCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_CircularFieldRotationCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    PreMultiply(out);
-    return true;
-}
 
-bool MHO_CircularFieldRotationCorrection::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_CircularFieldRotationCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 void MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
 {

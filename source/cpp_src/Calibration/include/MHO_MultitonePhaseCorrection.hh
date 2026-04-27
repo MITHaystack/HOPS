@@ -120,15 +120,6 @@ class MHO_MultitonePhaseCorrection: public MHO_UnaryOperator< visibility_type >
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place correction.
-         *
-         * @param in Input visibility data to be copied.
-         * @param out (visibility_type*)
-         * @return Result of ExecuteInPlace operation on the copied data.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         //temporal interpolation of tone phasors
         /**

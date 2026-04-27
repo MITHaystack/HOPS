@@ -185,7 +185,6 @@ class MHO_AdhocPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         virtual bool InitializeInPlace(visibility_type* in) override;
         virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         /**

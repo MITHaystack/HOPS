@@ -45,23 +45,6 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
         void SetPhaseOffset(double offset) { fYPolPhaseOffset = offset; }
 
     protected:
-        /**
-         * @brief Initializes in-place for mixed polarization phase shift.
-         *
-         * @param in Input visibility_type pointer.
-         * @return True if initialization is successful.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place operation for mixed polarization phase shift operation.
-         *
-         * @param in Input visibility_type data pointer
-         * @param out Output visibility_type data pointer
-         * @return True if initialization is successful
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies a phase offset for mixed polarization data in-place (to Y-pol).
@@ -71,15 +54,6 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place operation.
-         *
-         * @param in Const pointer to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean result of ExecuteInPlace operation on copied output data.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         /**

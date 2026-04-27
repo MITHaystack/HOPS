@@ -72,24 +72,7 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
         std::string GetStationIdentifier() const { return fStationIdentity; }
 
     protected:
-        /**
-         * @brief Initializes XArrayType in-place and returns success.
-         *
-         * @param in Pointer to XArrayType object to initialize.
-         * @return True if initialization was successful, false otherwise.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(XArrayType* in) override { return true; }
 
-        /**
-         * @brief Initializes output array out-of-place from input array
-         *
-         * @param !in Const input XArrayType
-         * @param !out Output XArrayType initialized out-of-place
-         * @return True if initialization was successful, false otherwise
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
         /**
          * @brief Function ExecuteInPlace - attaches channel labels based on sky frequency or user specified map
@@ -126,19 +109,6 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
             return false;
         }
 
-        /**
-         * @brief Copies input array to output and executes in-place operation on output.
-         *
-         * @param in Const reference to input XArrayType
-         * @param out Reference to output XArrayType
-         * @return Result of ExecuteInPlace operation on out
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
-        {
-            out->Copy(*in);
-            return ExecuteInPlace(out);
-        }
 
     private:
         //keys for tag retrieval

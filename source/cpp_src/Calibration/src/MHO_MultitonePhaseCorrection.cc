@@ -216,11 +216,6 @@ bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_MultitonePhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp, visibility_type* in)
 {

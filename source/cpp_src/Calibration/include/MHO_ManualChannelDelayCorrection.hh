@@ -65,23 +65,6 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         void SetChannelToPCDelayMap(const std::map< std::string, double >& map) { fPCDelayMap = map; };
 
     protected:
-        /**
-         * @brief Initializes in-place visibility_type pointer.
-         *
-         * @param in Input visibility_type pointer to initialize
-         * @return True if initialization succeeds
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place visibility data from input data.
-         *
-         * @param in Const pointer to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean indicating success (always true).
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies manual channel delay corrections in-place for reference or remote station.
@@ -91,15 +74,6 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place correction.
-         *
-         * @param in Input visibility_type data to be copied.
-         * @param out (visibility_type*)
-         * @return Result of ExecuteInPlace operation on out parameter.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         /**

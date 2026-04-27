@@ -54,23 +54,6 @@ class MHO_LSBOffset: public MHO_UnaryOperator< visibility_type >
         void SetLSBPhaseOffset(double lsb_offset) { fLSBPhaseOffset = lsb_offset; }
 
     protected:
-        /**
-         * @brief Initializes MHO_LSBOffset in-place using provided visibility_type pointer.
-         *
-         * @param in Pointer to visibility_type for initialization.
-         * @return True if initialization is successful.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place visibility data from input data.
-         *
-         * @param in Const pointer to input visibility_type data
-         * @param out Pointer to output visibility_type data
-         * @return True if initialization is successful, false otherwise
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies LSB phase offset to appropriate channels in-place.
@@ -80,15 +63,6 @@ class MHO_LSBOffset: public MHO_UnaryOperator< visibility_type >
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place processing.
-         *
-         * @param in Const reference to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Result of ExecuteInPlace operation on copied output data.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         /**

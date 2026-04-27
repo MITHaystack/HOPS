@@ -375,10 +375,5 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
     return true;
 }
 
-bool MHO_AdhocFlagging::ExecuteOutOfPlace(const weight_type* in, weight_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 } // namespace hops

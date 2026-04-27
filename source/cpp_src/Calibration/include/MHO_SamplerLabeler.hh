@@ -65,24 +65,7 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
         }
 
     protected:
-        /**
-         * @brief Initializes in-place mapping for channel labels to sampler indices.
-         *
-         * @param in Input XArrayType pointer for initializing in-place.
-         * @return True if initialization is successful, false otherwise.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(XArrayType* in) override { return true; }
 
-        /**
-         * @brief Initializes output array in-place from input array.
-         *
-         * @param !in Const reference to input XArrayType
-         * @param !out Reference to output XArrayType
-         * @return Boolean indicating success of initialization
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const XArrayType* /*!in*/, XArrayType* /*!out*/) override { return true; }
 
         /**
          * @brief Function ExecuteInPlace - actual implementation, map channel label (e.g. 'a', 'b', etc.) to sampler
@@ -126,19 +109,6 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
             return false;
         }
 
-        /**
-         * @brief Copies input array and executes in-place operation on output.
-         *
-         * @param in Const reference to input XArrayType
-         * @param out Reference to output XArrayType
-         * @return Result of ExecuteInPlace operation on out
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
-        {
-            out->Copy(*in);
-            return ExecuteInPlace(out);
-        }
 
     private:
         //data maps channels to sampler

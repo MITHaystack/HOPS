@@ -70,23 +70,6 @@ class MHO_Notches: public MHO_UnaryOperator< visibility_type >
         }
 
     protected:
-        /**
-         * @brief Initializes MHO_Notches in-place using provided visibility_type pointer.
-         *
-         * @param in Pointer to visibility_type for initialization.
-         * @return True if initialization is successful.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place visibility data from input pointer.
-         *
-         * @param in Const pointer to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean indicating successful initialization.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies filter to channels and spectral points based on defined notches.
@@ -96,15 +79,6 @@ class MHO_Notches: public MHO_UnaryOperator< visibility_type >
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place processing.
-         *
-         * @param in Const reference to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean result of ExecuteInPlace operation on copied output data.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         std::string fBandwidthKey;

@@ -55,50 +55,7 @@ class MHO_NotchComb: public MHO_UnaryOperator< visibility_type >
         void SetNotchWidth(double width){fNotchWidth = width;}
         double GetNotchWidth() const {return fNotchWidth;} 
 
-        // /**
-        //  * @brief Setter for notch (locations along frequency axis where visibilities are zeroed out) boundaries
-        //  *
-        //  * @param notch_boundary_list Input vector of double values, must come in pairs of (lower, upper) representing notch boundaries.
-        //  */
-        // void SetNotchBoundaries(const std::vector< double >& notch_boundary_list)
-        // {
-        //     fNotchBoundaries = notch_boundary_list;
-        //     std::size_t N = fNotchBoundaries.size();
-        //     if(N % 2 != 0)
-        //     {
-        //         msg_warn("calibration", "the number of notch boundaries passed ("
-        //                                     << N << ") is not a multiple of 2, malformed control input " << eom);
-        //         N = N - 1; //drop the last value, in effort to salvage it
-        //     }
-        // 
-        //     //loop over the notch boundaries pairing them up
-        //     for(std::size_t i = 0; i < N;)
-        //     {
-        //         double low = fNotchBoundaries[i];
-        //         double high = fNotchBoundaries[i + 1];
-        //         fNotches.push_back(std::make_pair(low, high));
-        //         i += 2;
-        //     }
-        // }
-
     protected:
-        /**
-         * @brief Initializes MHO_NotchComb in-place using provided visibility_type pointer.
-         *
-         * @param in Pointer to visibility_type for initialization.
-         * @return True if initialization is successful.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place visibility data from input pointer.
-         *
-         * @param in Const pointer to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean indicating successful initialization.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies filter to channels and spectral points based on defined notches.
@@ -108,15 +65,6 @@ class MHO_NotchComb: public MHO_UnaryOperator< visibility_type >
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place processing.
-         *
-         * @param in Const reference to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean result of ExecuteInPlace operation on copied output data.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         std::string fBandwidthKey;

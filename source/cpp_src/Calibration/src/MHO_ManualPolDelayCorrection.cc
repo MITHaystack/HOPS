@@ -102,11 +102,6 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_ManualPolDelayCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 bool MHO_ManualPolDelayCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
@@ -159,14 +154,6 @@ bool MHO_ManualPolDelayCorrection::PolMatch(std::size_t station_idx, std::string
     return (fPol[0] == polprod[station_idx]);
 }
 
-bool MHO_ManualPolDelayCorrection::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_ManualPolDelayCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

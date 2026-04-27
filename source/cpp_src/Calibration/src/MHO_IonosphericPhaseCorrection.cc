@@ -73,20 +73,7 @@ bool MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_IonosphericPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
-bool MHO_IonosphericPhaseCorrection::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_IonosphericPhaseCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

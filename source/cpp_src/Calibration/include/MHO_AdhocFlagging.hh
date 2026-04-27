@@ -88,7 +88,6 @@ class MHO_AdhocFlagging: public MHO_UnaryOperator< weight_type >
         virtual bool InitializeInPlace(weight_type* in) override;
         virtual bool InitializeOutOfPlace(const weight_type* in, weight_type* out) override;
         virtual bool ExecuteInPlace(weight_type* in) override;
-        virtual bool ExecuteOutOfPlace(const weight_type* in, weight_type* out) override;
 
     private:
         // Maximum number of frequency channels encoded per flag file row.

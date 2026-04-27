@@ -96,41 +96,16 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
         }
 
     protected:
-        /**
-         * @brief Function InitializeInPlace
-         *
-         * @param in (XArgType*)
-         * @return Return value (bool)
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(XArgType* in) = 0;
-        /**
-         * @brief Function InitializeOutOfPlace
-         *
-         * @param in (const XArgType*)
-         * @param out (XArgType*)
-         * @return Return value (bool)
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) = 0;
+        virtual bool InitializeInPlace(XArgType* /*in*/) { return true; }
+        virtual bool InitializeOutOfPlace(const XArgType* /*in*/, XArgType* /*out*/) { return true; }
 
-        /**
-         * @brief Function ExecuteInPlace
-         *
-         * @param in (XArgType*)
-         * @return Return value (bool)
-         * @note This is a virtual function.
-         */
         virtual bool ExecuteInPlace(XArgType* in) = 0;
-        /**
-         * @brief Function ExecuteOutOfPlace
-         *
-         * @param in (const XArgType*)
-         * @param out (XArgType*)
-         * @return Return value (bool)
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) = 0;
+
+        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out)
+        {
+            out->Copy(*in);
+            return ExecuteInPlace(out);
+        }
 
         //place for args to be stored for derived class to pick them up/modify
         bool fInPlace;

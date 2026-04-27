@@ -79,11 +79,6 @@ bool MHO_StationDelayCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_StationDelayCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 bool MHO_StationDelayCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
@@ -132,14 +127,6 @@ bool MHO_StationDelayCorrection::IsApplicable(std::size_t st_idx, const visibili
     return apply_correction;
 }
 
-bool MHO_StationDelayCorrection::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_StationDelayCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

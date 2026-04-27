@@ -123,20 +123,7 @@ bool MHO_NotchComb::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_NotchComb::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
-bool MHO_NotchComb::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_NotchComb::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

@@ -68,23 +68,6 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         // void SetRemoteMountType(std::string mt){fRemMountType = mt;}
 
     protected:
-        /**
-         * @brief Initializes in-place visibility_type pointer.
-         *
-         * @param in Pointer to visibility_type object
-         * @return True if initialization is successful
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place visibility data using input visibility_type pointer.
-         *
-         * @param in Const pointer to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean indicating success of initialization.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies linear delta-parallactic angle correction to visibility data in-place.
@@ -94,15 +77,6 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and applies the pre-multiplication operation.
-         *
-         * @param in Input visibility_type data to be copied.
-         * @param out (visibility_type*)
-         * @return True indicating successful execution.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         //multiplies each pol product by the appropriate scaling pre-factor

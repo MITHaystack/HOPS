@@ -15,22 +15,8 @@ bool MHO_LinearDParCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_LinearDParCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    PreMultiply(out);
-    return true;
-}
 
-bool MHO_LinearDParCorrection::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_LinearDParCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 void MHO_LinearDParCorrection::PreMultiply(visibility_type* in)
 {

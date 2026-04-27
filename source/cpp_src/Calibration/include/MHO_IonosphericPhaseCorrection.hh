@@ -42,23 +42,6 @@ class MHO_IonosphericPhaseCorrection: public MHO_UnaryOperator< visibility_type 
         void SetDifferentialTEC(double dTEC) { fdTEC = dTEC; };
 
     protected:
-        /**
-         * @brief Initializes in-place visibility_type pointer.
-         *
-         * @param in Input visibility_type pointer to initialize.
-         * @return True if initialization is successful.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes OutOfPlace using input visibility_type pointer and output visibility_type pointer.
-         *
-         * @param in Const input visibility_type pointer
-         * @param out Output visibility_type pointer
-         * @return Boolean indicating initialization success
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies differential ionospheric phase correction to visibility data in-place.
@@ -68,15 +51,6 @@ class MHO_IonosphericPhaseCorrection: public MHO_UnaryOperator< visibility_type 
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place correction.
-         *
-         * @param in Const reference to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean result of ExecuteInPlace operation on copied output data.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         double fdTEC;

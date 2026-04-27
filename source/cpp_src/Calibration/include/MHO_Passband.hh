@@ -73,23 +73,6 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         }
 
     protected:
-        /**
-         * @brief Initializes visibility_type pointer in-place and returns true.
-         *
-         * @param in Pointer to visibility_type that will be initialized in-place.
-         * @return Boolean indicating success (always true).
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place visibility data.
-         *
-         * @param in Input visibility_type pointer
-         * @param out Output visibility_type pointer
-         * @return True if initialization is successful.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Checks and excludes specific passbands within each channel of visibility data.
@@ -99,15 +82,6 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place processing.
-         *
-         * @param in Input visibility_type data to be copied.
-         * @param out (visibility_type*)
-         * @return Result of ExecuteInPlace operation on out parameter.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         bool fIsExclusion;

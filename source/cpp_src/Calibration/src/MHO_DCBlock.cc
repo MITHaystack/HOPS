@@ -45,20 +45,7 @@ bool MHO_DCBlock::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_DCBlock::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
-bool MHO_DCBlock::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_DCBlock::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

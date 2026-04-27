@@ -61,11 +61,6 @@ bool MHO_LSBOffset::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_LSBOffset::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 bool MHO_LSBOffset::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
@@ -112,14 +107,6 @@ bool MHO_LSBOffset::IsApplicable(std::size_t st_idx, const visibility_type* in)
     return apply_correction;
 }
 
-bool MHO_LSBOffset::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_LSBOffset::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

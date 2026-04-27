@@ -84,23 +84,6 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
         void SetRemoteMountType(std::string mt) { fRemMountType = mt; }
 
     protected:
-        /**
-         * @brief Initializes in-place visibility_type pointer.
-         *
-         * @param in Input visibility_type pointer to initialize
-         * @return True if initialization is successful
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place visibility data from input data.
-         *
-         * @param in Const pointer to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean indicating success (always true in current implementation).
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies a circular field rotation correction to visibility data in-place.
@@ -110,15 +93,6 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and applies pre-multiplication, returning success.
-         *
-         * @param in Const reference to input visibility_type data
-         * @param out Reference to output visibility_type data
-         * @return Boolean indicating successful execution
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         /**

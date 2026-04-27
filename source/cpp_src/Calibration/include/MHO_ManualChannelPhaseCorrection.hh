@@ -66,23 +66,6 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         void SetChannelToPCPhaseMap(const std::map< std::string, double >& map) { fPCMap = map; };
 
     protected:
-        /**
-         * @brief Initializes in-place visibility_type pointer.
-         *
-         * @param in Pointer to visibility_type that will be initialized.
-         * @return True if initialization is successful.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place data from input visibility_type pointer.
-         *
-         * @param in Const pointer to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Boolean indicating successful initialization.
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies phase correction to visibility data in-place for reference or remote station.
@@ -92,15 +75,6 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place correction.
-         *
-         * @param in Const reference to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Result of ExecuteInPlace operation on copied output data.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         /**

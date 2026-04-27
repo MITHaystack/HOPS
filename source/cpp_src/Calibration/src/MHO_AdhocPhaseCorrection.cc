@@ -309,11 +309,6 @@ bool MHO_AdhocPhaseCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_AdhocPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 // ---------------------------------------------------------------------------
 // ComputeZeta

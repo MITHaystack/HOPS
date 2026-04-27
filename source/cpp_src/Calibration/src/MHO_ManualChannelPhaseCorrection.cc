@@ -95,11 +95,6 @@ bool MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_ManualChannelPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 bool MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
@@ -192,14 +187,6 @@ bool MHO_ManualChannelPhaseCorrection::LabelMatch(std::string expected_chan_labe
     }
 }
 
-bool MHO_ManualChannelPhaseCorrection::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_ManualChannelPhaseCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

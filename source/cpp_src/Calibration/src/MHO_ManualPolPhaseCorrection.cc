@@ -91,11 +91,6 @@ bool MHO_ManualPolPhaseCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_ManualPolPhaseCorrection::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 bool MHO_ManualPolPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
@@ -148,14 +143,6 @@ bool MHO_ManualPolPhaseCorrection::PolMatch(std::size_t station_idx, std::string
     return (fPol[0] == polprod[station_idx]);
 }
 
-bool MHO_ManualPolPhaseCorrection::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_ManualPolPhaseCorrection::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

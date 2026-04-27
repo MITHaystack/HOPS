@@ -79,11 +79,6 @@ bool MHO_MixedPolYShift::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-bool MHO_MixedPolYShift::ExecuteOutOfPlace(const visibility_type* in, visibility_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
 bool MHO_MixedPolYShift::IsApplicable(std::size_t st_idx, std::string polprod)
 {
@@ -106,15 +101,7 @@ bool MHO_MixedPolYShift::IsApplicable(std::size_t st_idx, std::string polprod)
     return false;
 }
 
-bool MHO_MixedPolYShift::InitializeInPlace(visibility_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_MixedPolYShift::InitializeOutOfPlace(const visibility_type* /*in*/, visibility_type* /*out*/)
-{
-    return true;
-}
 
 bool MHO_MixedPolYShift::IsMixedLinCirc(std::string polprod) const
 {

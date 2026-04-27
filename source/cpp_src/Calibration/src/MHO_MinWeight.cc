@@ -24,20 +24,7 @@ bool MHO_MinWeight::ExecuteInPlace(weight_type* in)
     return true;
 }
 
-bool MHO_MinWeight::ExecuteOutOfPlace(const weight_type* in, weight_type* out)
-{
-    out->Copy(*in);
-    return ExecuteInPlace(out);
-}
 
-bool MHO_MinWeight::InitializeInPlace(weight_type* /*in*/)
-{
-    return true;
-}
 
-bool MHO_MinWeight::InitializeOutOfPlace(const weight_type* /*in*/, weight_type* /*out*/)
-{
-    return true;
-}
 
 } // namespace hops

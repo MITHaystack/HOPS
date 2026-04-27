@@ -65,23 +65,6 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         void SetPCPhaseOffset(double pc_phase_offset) { fPhaseOffset = pc_phase_offset; }
 
     protected:
-        /**
-         * @brief Initializes in-place visibility_type pointer.
-         *
-         * @param in Input visibility_type pointer to initialize
-         * @return True if initialization is successful
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeInPlace(visibility_type* in) override;
-        /**
-         * @brief Initializes out-of-place visibility data from input pointer.
-         *
-         * @param in Const pointer to input visibility_type data
-         * @param out (visibility_type*)
-         * @return Boolean indicating success (always true)
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
         /**
          * @brief Applies manual phase correction offsets to visibility data in-place for reference or remote stations.
@@ -91,15 +74,6 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
          * @note This is a virtual function.
          */
         virtual bool ExecuteInPlace(visibility_type* in) override;
-        /**
-         * @brief Copies input visibility data and executes in-place correction.
-         *
-         * @param in Const reference to input visibility_type data.
-         * @param out (visibility_type*)
-         * @return Result of ExecuteInPlace operation on copied output data.
-         * @note This is a virtual function.
-         */
-        virtual bool ExecuteOutOfPlace(const visibility_type* in, visibility_type* out) override;
 
     private:
         /**
