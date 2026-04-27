@@ -44,7 +44,7 @@ template< typename XNumericalType > class MHO_CheckForNaN
  * @param value Input float value to check for NaN.
  * @return Boolean indicating whether the input value is NaN.
  */
-template<> inline bool MHO_CheckForNaN< float >::isnan(const float& value)
+template<> inline bool MHO_CheckForNaN< float >::isnan(float value)
 {
     return std::isnan(value);
 }
