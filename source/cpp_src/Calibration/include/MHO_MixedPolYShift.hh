@@ -42,7 +42,7 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
          *
          * @param offset the phase offset value
          */
-        void SetPhaseOffset(const double& offset) { fYPolPhaseOffset = offset; }
+        void SetPhaseOffset(double offset) { fYPolPhaseOffset = offset; }
 
     protected:
         /**

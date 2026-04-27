@@ -29,7 +29,7 @@ void MHO_GaussianWhiteNoiseSignal::Initialize()
     fDistribution = new std::normal_distribution< double >(fMean, fStandardDeviation);
 }
 
-bool MHO_GaussianWhiteNoiseSignal::GenerateSample(const double& /*sample_time*/, double& sample) const
+bool MHO_GaussianWhiteNoiseSignal::GenerateSample(double /*sample_time*/, double& sample) const
 {
     sample = (*fDistribution)(*fGenerator);
     return true;

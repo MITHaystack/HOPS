@@ -61,7 +61,7 @@ class MHO_Operator
          * @details a higher value for the fPriority field implies this operator should happend after other operators with lower priority values
          * order of execution goes from low to high
          */
-        virtual void SetPriority(const double& priority) { fPriority = priority; }
+        virtual void SetPriority(double priority) { fPriority = priority; }
 
         /**
          * @brief Get the the priority field value

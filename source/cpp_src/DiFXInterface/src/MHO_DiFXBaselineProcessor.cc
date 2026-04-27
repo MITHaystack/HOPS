@@ -714,7 +714,7 @@ std::string MHO_DiFXBaselineProcessor::ConstructMK4ChannelID(std::string fgroup,
     return ss.str();
 }
 
-std::string MHO_DiFXBaselineProcessor::DetermineFreqGroup(const double& freq)
+std::string MHO_DiFXBaselineProcessor::DetermineFreqGroup(double freq)
 {
     //decide based on sky-freq of channel (we ignore bandwidth/sideband for now)
     //so may not be correct for extra-wide channels...but if that is the case,

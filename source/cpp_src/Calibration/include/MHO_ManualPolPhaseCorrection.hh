@@ -62,7 +62,7 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
          *
          * @param pc_phase_offset phase offset value applied to this polarization
          */
-        void SetPCPhaseOffset(const double& pc_phase_offset) { fPhaseOffset = pc_phase_offset; }
+        void SetPCPhaseOffset(double pc_phase_offset) { fPhaseOffset = pc_phase_offset; }
 
     protected:
         /**

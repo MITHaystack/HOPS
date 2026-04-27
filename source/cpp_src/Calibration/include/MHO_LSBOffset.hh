@@ -51,7 +51,7 @@ class MHO_LSBOffset: public MHO_UnaryOperator< visibility_type >
          *
          * @param lsb_offset LSB phase offset value
          */
-        void SetLSBPhaseOffset(const double& lsb_offset) { fLSBPhaseOffset = lsb_offset; }
+        void SetLSBPhaseOffset(double lsb_offset) { fLSBPhaseOffset = lsb_offset; }
 
     protected:
         /**

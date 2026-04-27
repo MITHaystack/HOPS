@@ -51,7 +51,7 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
          * if first < second, then it is an inclusion, and everything outside will be cut
          * (this is the legacy behavior)
          */
-        void SetPassband(const double& first, const double& second)
+        void SetPassband(double first, double second)
         {
             //if second > first then this is an 'exclusion'
             //telling us this is a chunk of spectrum to cut

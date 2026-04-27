@@ -58,7 +58,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
          *
          * @param pc_delay_offset Time offset between two signals being correlated
          */
-        void SetPCDelayOffset(const double& pc_delay_offset) { fDelayOffset = pc_delay_offset; }
+        void SetPCDelayOffset(double pc_delay_offset) { fDelayOffset = pc_delay_offset; }
 
     protected:
         /**

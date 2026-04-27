@@ -59,7 +59,7 @@ class MHO_GaussianWhiteNoiseSignal: public MHO_SimulatedSignalGenerator
          * @return True if sample generation is successful.
          * @note This is a virtual function.
          */
-        virtual bool GenerateSample(const double& /*!sample_time*/, double& sample) const override;
+        virtual bool GenerateSample(double /*!sample_time*/, double& sample) const override;
 
         double fMean;
         double fStandardDeviation;

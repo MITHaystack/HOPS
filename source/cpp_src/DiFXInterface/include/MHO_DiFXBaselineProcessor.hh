@@ -181,7 +181,7 @@ class MHO_DiFXBaselineProcessor
         std::string ConstructCorFileName(const std::string& output_dir, const std::string& root_code,
                                          const std::string& baseline, const std::string& baseline_shortname);
 
-        std::string DetermineFreqGroup(const double& freq);
+        std::string DetermineFreqGroup(double freq);
 
         std::string fRootCode;
         std::string fCorrDate;

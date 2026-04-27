@@ -37,7 +37,7 @@ class MHO_TimeStampConverter
          * @param date reference to a std::string object where the date string is to be stored
          * @returns a boolean indicating if the conversion was successful
          */
-        static bool ConvertEpochSecondToTimeStamp(const uint64_t& epoch_sec, const double& fractional_part,
+        static bool ConvertEpochSecondToTimeStamp(const uint64_t& epoch_sec, double fractional_part,
                                                   std::string& date_string);
 
         /*!* Convert a date string into an epoch second and fractional second.

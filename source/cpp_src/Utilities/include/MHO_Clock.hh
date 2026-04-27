@@ -241,7 +241,7 @@ class hops_clock
          * @return time_point
          * @note This is a static function.
          */
-        static time_point from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd);
+        static time_point from_mjd(const time_point& mjd_epoch, double epoch_offset, double mjd);
 
         /**
          * @brief Converts a hops_clock time_point to a  Modified Julian date (floating point day) timestamp, givent the specified epoch
@@ -252,7 +252,7 @@ class hops_clock
          * @return MJD (double)
          * @note This is a static function.
          */
-        static double to_mjd(const time_point& mjd_epoch, const double& epoch_offset, const time_point& tp);
+        static double to_mjd(const time_point& mjd_epoch, double epoch_offset, const time_point& tp);
 
         /**
          * @brief Converts a VEX-style formatted string (e.g. 2019y106d18h30m15s) to a hops_clock time_point
@@ -757,7 +757,7 @@ inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& yea
     floating_point_days = integer_days + frac_day;
 }
 
-inline hops_clock::time_point hops_clock::from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd)
+inline hops_clock::time_point hops_clock::from_mjd(const time_point& mjd_epoch, double epoch_offset, double mjd)
 {
     double delta = (mjd - epoch_offset);
     delta *= JD_TO_SEC;
@@ -769,7 +769,7 @@ inline hops_clock::time_point hops_clock::from_mjd(const time_point& mjd_epoch, 
     return hops_time_point;
 }
 
-inline double hops_clock::to_mjd(const time_point& mjd_epoch, const double& epoch_offset, const time_point& tp)
+inline double hops_clock::to_mjd(const time_point& mjd_epoch, double epoch_offset, const time_point& tp)
 {
     auto mjd_epoch_utc = to_utc(mjd_epoch);
     auto tp_utc = to_utc(tp);

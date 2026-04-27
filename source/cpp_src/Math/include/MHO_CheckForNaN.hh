@@ -55,7 +55,7 @@ template<> inline bool MHO_CheckForNaN< float >::isnan(const float& value)
  * @param value Input double value to check for NaN.
  * @return True if value is NaN, false otherwise.
  */
-template<> inline bool MHO_CheckForNaN< double >::isnan(const double& value)
+template<> inline bool MHO_CheckForNaN< double >::isnan(double value)
 {
     return std::isnan(value);
 }

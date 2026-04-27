@@ -51,7 +51,7 @@ class MHO_SimulatedSignalGenerator
          * @param sample (double&)
          * @return True if successful, false otherwise
          */
-        bool GetSample(const double& sample_time, double& sample) const { return GenerateSample(sample_time, sample); }
+        bool GetSample(double sample_time, double& sample) const { return GenerateSample(sample_time, sample); }
 
     protected:
         /**
@@ -62,7 +62,7 @@ class MHO_SimulatedSignalGenerator
          * @return True if sample generation is successful, false otherwise.
          * @note This is a virtual function.
          */
-        virtual bool GenerateSample(const double& sample_time, double& sample) const = 0;
+        virtual bool GenerateSample(double sample_time, double& sample) const = 0;
 
         //some specific distributions and their implementations (e.g. colored noise)
         //need to know the expected sampling frequency in advance

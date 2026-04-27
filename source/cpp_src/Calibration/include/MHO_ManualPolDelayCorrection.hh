@@ -69,7 +69,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
          *
          * @param pc_delay_offset Time offset to be applied to associated polarization
          */
-        void SetPCDelayOffset(const double& pc_delay_offset) { fDelayOffset = pc_delay_offset; }
+        void SetPCDelayOffset(double pc_delay_offset) { fDelayOffset = pc_delay_offset; }
 
     protected:
         /**

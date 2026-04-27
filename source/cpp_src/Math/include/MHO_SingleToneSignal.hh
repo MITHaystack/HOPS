@@ -50,7 +50,7 @@ class MHO_SingleToneSignal: public MHO_SimulatedSignalGenerator
          * @return True indicating successful generation of the sample.
          * @note This is a virtual function.
          */
-        virtual bool GenerateSample(const double& /*!sample_time*/, double& sample) const override;
+        virtual bool GenerateSample(double /*!sample_time*/, double& sample) const override;
 
         double fPhaseOffset;
         double fToneFrequency;

@@ -7,7 +7,7 @@
 namespace hops
 {
 
-bool MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(const uint64_t& epoch_sec, const double& fractional_part,
+bool MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(const uint64_t& epoch_sec, double fractional_part,
                                                            std::string& date_string)
 {
     if(fractional_part < 0 || fractional_part >= 1.0)
