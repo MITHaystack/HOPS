@@ -42,7 +42,7 @@ std::vector< MHO_IntervalLabel > MHO_IntervalLabelTree::GetIntervalsWithKey(cons
     return labels;
 }
 
-std::vector< MHO_IntervalLabel > MHO_IntervalLabelTree::GetIntervalsWhichIntersect(const std::size_t& idx) const
+std::vector< MHO_IntervalLabel > MHO_IntervalLabelTree::GetIntervalsWhichIntersect(std::size_t idx) const
 {
     std::vector< MHO_IntervalLabel > labels;
     //dumb brute for search over all intervals O(n)

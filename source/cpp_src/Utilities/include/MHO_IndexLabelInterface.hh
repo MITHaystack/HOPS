@@ -260,7 +260,7 @@ class MHO_IndexLabelInterface
          * @return String representation of the input index
          * @note This is a static function.
          */
-        static std::string index2key(const std::size_t& idx) { return std::to_string(idx); }
+        static std::string index2key(std::size_t idx) { return std::to_string(idx); }
 
         mho_json* fIndexLabelObjectPtr; //array of mho_json objects holding key:value pairs
         mho_json fDummy;
