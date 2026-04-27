@@ -572,7 +572,7 @@ class MHO_NDArrayWrapper
             for(std::size_t i = 0; i < RANK; i++)
             {
                 fDims[i] = 0;
-                fStrides[0] = 0;
+                fStrides[i] = 0;
             }
             if(ptr == nullptr && dim == nullptr)
             {
