@@ -129,24 +129,22 @@ void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
     }
     else
     {
-        for(auto ctrl_iter = fControl->begin(); ctrl_iter != fControl->end(); ctrl_iter++)
+        for(const auto& ctrl_block : *fControl)
         {
-            if( !(ctrl_iter->is_null()) )
+            if(ctrl_block.is_null())
             {
-                auto statements = &((*ctrl_iter)["statements"]);
-                for(auto stmt_iter = statements->begin(); stmt_iter != statements->end();)
-                {
-                    std::string name = (*stmt_iter)["name"];
-                    bool build_op = false;
-                    if(fFormat.contains(name) && fFormat[name].contains("operator_category"))
-                    {
-                        if(cat == fFormat[name]["operator_category"].get< std::string >())
-                        {
-                            build_op = true;
-                        }
-                    }
+                msg_error("initialization", "null control statement encountered " << eom);
+                continue;
+            }
 
-                    if(build_op)
+            const auto& statements = ctrl_block["statements"];
+            for(const auto& stmt : statements)
+            {
+                std::string name = stmt["name"];
+
+                if(fFormat.contains(name) && fFormat[name].contains("operator_category"))
+                {
+                    if(cat == fFormat[name]["operator_category"].get< std::string >())
                     {
                         auto builder_it = fNameToBuilderMap.find(name);
 
@@ -154,35 +152,21 @@ void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
                         {
                             msg_debug("initialization",
                                       "building operator with name: " << name << " in category: " << cat << "." << eom);
-                            builder_it->second->SetConditions(*ctrl_iter);
-                            builder_it->second->SetAttributes(*stmt_iter);
-                            // std::cout<<"name = "<<name<<std::endl;
-                            // std::cout<<"control condition: "<< *ctrl_iter << std::endl;
-                            // std::cout<<"statment attributes = "<< *stmt_iter <<std::endl;
+                            builder_it->second->SetConditions(ctrl_block);
+                            builder_it->second->SetAttributes(stmt);
                             bool build_status_ok = builder_it->second->Build();
                             if(!build_status_ok)
                             {
                                 msg_debug("initialization", "operator with name: " << name << " in category: " << cat
                                                                                    << ", was not built." << eom);
                             }
-                            stmt_iter = statements->erase(stmt_iter);
                         }
                         else //couldn't find a builder for this operator, skip
                         {
-                            stmt_iter++;
                             msg_debug("initialization", "operator: " << name << " not yet supported." << eom);
                         }
                     }
-                    else
-                    {
-                        msg_debug("initialization", "ignoring statement with name: " << name << eom);
-                        stmt_iter++; //statement not in this category, skip
-                    }
                 }
-            }
-            else
-            {
-                msg_error("initialization", "null control statement encountered " << eom);
             }
         }
     }
