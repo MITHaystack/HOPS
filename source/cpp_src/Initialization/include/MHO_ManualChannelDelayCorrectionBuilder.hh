@@ -1,7 +1,7 @@
 #ifndef MHO_ManualChannelDelayCorrectionBuilder_HH__
 #define MHO_ManualChannelDelayCorrectionBuilder_HH__
 
-#include "MHO_ChannelQuantity.hh"
+#include "MHO_ChannelUtilities.hh"
 #include "MHO_OperatorBuilder.hh"
 
 namespace hops
@@ -18,7 +18,7 @@ namespace hops
 /**
  * @brief Class MHO_ManualChannelDelayCorrectionBuilder
  */
-class MHO_ManualChannelDelayCorrectionBuilder: public MHO_OperatorBuilder, public MHO_ChannelQuantity
+class MHO_ManualChannelDelayCorrectionBuilder: public MHO_OperatorBuilder
 {
     public:
         MHO_ManualChannelDelayCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
@@ -26,7 +26,7 @@ class MHO_ManualChannelDelayCorrectionBuilder: public MHO_OperatorBuilder, publi
 
         MHO_ManualChannelDelayCorrectionBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                                 MHO_ParameterStore* pstore = nullptr)
-            : MHO_OperatorBuilder(toolbox, cstore, pstore), MHO_ChannelQuantity(){};
+            : MHO_OperatorBuilder(toolbox, cstore, pstore){};
 
         virtual ~MHO_ManualChannelDelayCorrectionBuilder(){};
 

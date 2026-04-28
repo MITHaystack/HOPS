@@ -11,7 +11,7 @@ set (INITIALIZATION_HEADERFILES
     #calibration operators
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AdhocFlaggingBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_AdhocPhaseCorrectionBuilder.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelQuantity.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ChannelUtilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelPhaseCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualChannelDelayCorrectionBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ManualPolPhaseCorrectionBuilder.hh
@@ -46,7 +46,7 @@ set( INITIALIZATION_SOURCEFILES
     #calibration operators
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AdhocFlaggingBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_AdhocPhaseCorrectionBuilder.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelQuantity.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ChannelUtilities.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelPhaseCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualChannelDelayCorrectionBuilder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ManualPolPhaseCorrectionBuilder.cc

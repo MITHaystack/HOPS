@@ -1,7 +1,7 @@
 #ifndef MHO_ChannelLabelerBuilder_HH__
 #define MHO_ChannelLabelerBuilder_HH__
 
-#include "MHO_ChannelQuantity.hh"
+#include "MHO_ChannelUtilities.hh"
 #include "MHO_OperatorBuilder.hh"
 
 namespace hops
@@ -18,15 +18,15 @@ namespace hops
 /**
  * @brief Class MHO_ChannelLabelerBuilder
  */
-class MHO_ChannelLabelerBuilder: public MHO_OperatorBuilder, public MHO_ChannelQuantity
+class MHO_ChannelLabelerBuilder: public MHO_OperatorBuilder
 {
     public:
         MHO_ChannelLabelerBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata), MHO_ChannelQuantity(){};
+            : MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_ChannelLabelerBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                   MHO_ParameterStore* pstore = nullptr)
-            : MHO_OperatorBuilder(toolbox, cstore, pstore), MHO_ChannelQuantity(){};
+            : MHO_OperatorBuilder(toolbox, cstore, pstore){};
 
         virtual ~MHO_ChannelLabelerBuilder(){};
 
