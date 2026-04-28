@@ -1,6 +1,8 @@
 #include "MHO_AdhocPhaseCorrectionBuilder.hh"
 #include "MHO_AdhocPhaseCorrection.hh"
 
+#include <memory>
+
 #include "MHO_Constants.hh"
 
 namespace hops
@@ -47,7 +49,7 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
     }
 
     //time to build the operator
-    MHO_AdhocPhaseCorrection* op = new MHO_AdhocPhaseCorrection();
+    std::unique_ptr< MHO_AdhocPhaseCorrection > op(new MHO_AdhocPhaseCorrection());
     op->SetArgs(vis_data);
     op->SetMode(mode);
 
@@ -148,7 +150,7 @@ bool MHO_AdhocPhaseCorrectionBuilder::Build()
     msg_debug("initialization", "creating adhoc_phase operator: " << op_name << " mode = " << algorithm_type << eom);
 
     bool replace_duplicates = true;
-    this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+    this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
     return true;
 }
 

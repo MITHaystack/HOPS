@@ -1,6 +1,8 @@
 #include "MHO_LinearDParCorrectionBuilder.hh"
 #include "MHO_LinearDParCorrection.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -51,7 +53,7 @@ bool MHO_LinearDParCorrectionBuilder::Build()
         double ref_pa = this->fParameterStore->GetAs< double >("/ref_station/parallactic_angle");
         double rem_pa = this->fParameterStore->GetAs< double >("/rem_station/parallactic_angle");
 
-        MHO_LinearDParCorrection* op = new MHO_LinearDParCorrection();
+        std::unique_ptr< MHO_LinearDParCorrection > op(new MHO_LinearDParCorrection());
         //set the arguments
         op->SetArgs(vis_data);
         op->SetPolProductSet(pp_set);
@@ -62,7 +64,7 @@ bool MHO_LinearDParCorrectionBuilder::Build()
         op->SetPriority(priority);
 
         bool replace_duplicates = true;
-        this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+        this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;

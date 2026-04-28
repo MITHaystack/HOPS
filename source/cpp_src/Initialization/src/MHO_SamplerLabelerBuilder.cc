@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <map>
+#include <memory>
 #include <vector>
 
 namespace hops
@@ -79,7 +80,7 @@ bool MHO_SamplerLabelerBuilder::Build()
             this->fParameterStore->Get(rem_path, rem_sampler_info);
         }
 
-        MHO_SamplerLabeler< visibility_type >* op = new MHO_SamplerLabeler< visibility_type >();
+        std::unique_ptr< MHO_SamplerLabeler< visibility_type > > op(new MHO_SamplerLabeler< visibility_type >());
         if(ref_sampler_info.size() != 0)
         {
             op->SetReferenceStationSamplerChannelSets(ref_sampler_info);
@@ -92,7 +93,7 @@ bool MHO_SamplerLabelerBuilder::Build()
         op->SetName(op_name);
         op->SetPriority(priority);
 
-        fOperatorToolbox->AddOperator(op, op->GetName(), op_category);
+        fOperatorToolbox->AddOperator(std::move(op), op_name, op_category);
         return true;
     }
     return false;

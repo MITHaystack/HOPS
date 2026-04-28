@@ -1,6 +1,8 @@
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
 #include "MHO_MultitonePhaseCorrection.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -80,7 +82,7 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
             AttachPCToneMask(pcal_data, station_id);
 
             //build the operator
-            MHO_MultitonePhaseCorrection* op = new MHO_MultitonePhaseCorrection();
+            std::unique_ptr< MHO_MultitonePhaseCorrection > op(new MHO_MultitonePhaseCorrection());
             op->SetName(op_name);
             op->SetArgs(vis_data);
             op->SetStation(station_id); //use 2-char station code for identification
@@ -92,7 +94,7 @@ bool MHO_MultitonePhaseCorrectionBuilder::Build()
             msg_debug("initialization", "creating operator: " << op_name << " for station: " << station_id << "." << eom);
 
             bool replace_duplicates = true;
-            this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+            this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
             return true;
         }
 

@@ -1,6 +1,8 @@
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_PolProductSummation.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -75,7 +77,7 @@ bool MHO_PolProductSummationBuilder::Build()
         double ref_pa = this->fParameterStore->GetAs< double >("/ref_station/parallactic_angle");
         double rem_pa = this->fParameterStore->GetAs< double >("/rem_station/parallactic_angle");
 
-        MHO_PolProductSummation* op = new MHO_PolProductSummation();
+        std::unique_ptr< MHO_PolProductSummation > op(new MHO_PolProductSummation());
         //set the arguments
         op->SetArgs(vis_data);
         op->SetWeights(wt_data);
@@ -90,7 +92,7 @@ bool MHO_PolProductSummationBuilder::Build()
         op->SetPriority(priority);
 
         bool replace_duplicates = true;
-        this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+        this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;

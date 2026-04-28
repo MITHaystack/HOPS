@@ -1,6 +1,8 @@
 #ifndef MHO_OperatorBuilderManager_HH__
 #define MHO_OperatorBuilderManager_HH__
 
+#include <memory>
+
 #include "MHO_ContainerStore.hh"
 #include "MHO_FringeData.hh"
 #include "MHO_JSONHeaderWrapper.hh"
@@ -30,16 +32,7 @@ class MHO_OperatorBuilderManager
             fFormat = control_format;
         };
 
-        virtual ~MHO_OperatorBuilderManager()
-        {
-            for(std::size_t i = 0; i < fAllBuilders.size(); i++)
-            {
-                delete fAllBuilders[i];
-            }
-            fAllBuilders.clear();
-            fNameToBuilderMap.clear();
-            fCategoryToBuilderMap.clear();
-        }
+        virtual ~MHO_OperatorBuilderManager() {}
 
         /**
          * @brief pass in parsed control file elements
@@ -94,7 +87,7 @@ class MHO_OperatorBuilderManager
                 auto it = fNameToBuilderMap.find(builder_name);
                 if(it == fNameToBuilderMap.end()) //not found, so make one
                 {
-                    auto builder = new XBuilderType(fOperatorToolbox, fFringeData);
+                    std::unique_ptr< XBuilderType > builder(new XBuilderType(fOperatorToolbox, fFringeData));
                     builder->SetFormat(fFormat[format_key]);
 
                     //the builder's operator category comes from the format specification
@@ -103,9 +96,10 @@ class MHO_OperatorBuilderManager
                     {
                         category = (*format_it)["operator_category"].get< std::string >();
                     }
-                    fAllBuilders.push_back(builder);
-                    fNameToBuilderMap.emplace(builder_name, builder);
-                    fCategoryToBuilderMap.emplace(category, builder);
+                    auto* raw = builder.get();
+                    fAllBuilders.push_back(std::move(builder));
+                    fNameToBuilderMap.emplace(builder_name, raw);
+                    fCategoryToBuilderMap.emplace(category, raw);
                 }
             }
             else
@@ -132,8 +126,7 @@ class MHO_OperatorBuilderManager
             auto it = fNameToBuilderMap.find(builder_name);
             if(it == fNameToBuilderMap.end()) //not found, so make one
             {
-                // auto builder = new XBuilderType(fOperatorToolbox, fContainerStore, fParameterStore);
-                auto builder = new XBuilderType(fOperatorToolbox, fFringeData);
+                std::unique_ptr< XBuilderType > builder(new XBuilderType(fOperatorToolbox, fFringeData));
                 builder->SetFormat(format);
 
                 //the builder's operator category comes from the format specification
@@ -142,9 +135,10 @@ class MHO_OperatorBuilderManager
                 {
                     category = format["operator_category"].get< std::string >();
                 }
-                fAllBuilders.push_back(builder);
-                fNameToBuilderMap.emplace(builder_name, builder);
-                fCategoryToBuilderMap.emplace(category, builder);
+                auto* raw = builder.get();
+                fAllBuilders.push_back(std::move(builder));
+                fNameToBuilderMap.emplace(builder_name, raw);
+                fCategoryToBuilderMap.emplace(category, raw);
             }
         };
 
@@ -160,13 +154,13 @@ class MHO_OperatorBuilderManager
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParameterStore;
 
-        //container to store all of the builders, for memory management
-        std::vector< MHO_OperatorBuilder* > fAllBuilders;
+        // owned storage — unique_ptrs are the sole owners
+        std::vector< std::unique_ptr< MHO_OperatorBuilder > > fAllBuilders;
 
-        //name -> builder map for lookup by name
+        //name -> builder map for lookup by name (non-owning)
         std::map< std::string, MHO_OperatorBuilder* > fNameToBuilderMap;
 
-        //operator category -> builder multimap for lookup by category
+        //operator category -> builder multimap for lookup by category (non-owning)
         std::multimap< std::string, MHO_OperatorBuilder* > fCategoryToBuilderMap;
 };
 

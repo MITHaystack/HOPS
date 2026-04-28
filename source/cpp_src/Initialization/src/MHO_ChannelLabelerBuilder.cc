@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <map>
+#include <memory>
 #include <vector>
 
 namespace hops
@@ -46,8 +47,8 @@ bool MHO_ChannelLabelerBuilder::Build()
             return false;
         }
 
-        MHO_ChannelLabeler< visibility_type >* vis_op = new MHO_ChannelLabeler< visibility_type >();
-        MHO_ChannelLabeler< weight_type >* wt_op = new MHO_ChannelLabeler< weight_type >();
+        std::unique_ptr< MHO_ChannelLabeler< visibility_type > > vis_op(new MHO_ChannelLabeler< visibility_type >());
+        std::unique_ptr< MHO_ChannelLabeler< weight_type > > wt_op(new MHO_ChannelLabeler< weight_type >());
 
         //now set the arguments
         vis_op->SetArgs(vis_data);
@@ -68,8 +69,8 @@ bool MHO_ChannelLabelerBuilder::Build()
         vis_op->SetName(op_name + ":vis");
         wt_op->SetName(op_name + ":weight");
 
-        fOperatorToolbox->AddOperator(vis_op, vis_op->GetName(), op_category, replace_duplicates);
-        fOperatorToolbox->AddOperator(wt_op, wt_op->GetName(), op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(std::move(vis_op), op_name + ":vis", op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(std::move(wt_op), op_name + ":weight", op_category, replace_duplicates);
 
         return true;
     }

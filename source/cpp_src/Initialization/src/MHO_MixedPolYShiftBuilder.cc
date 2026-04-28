@@ -1,6 +1,8 @@
 #include "MHO_MixedPolYShiftBuilder.hh"
 #include "MHO_MixedPolYShift.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -30,7 +32,7 @@ bool MHO_MixedPolYShiftBuilder::Build()
                 return false;
             }
 
-            MHO_MixedPolYShift* op = new MHO_MixedPolYShift();
+            std::unique_ptr< MHO_MixedPolYShift > op(new MHO_MixedPolYShift());
 
             //set the arguments
             op->SetArgs(vis_data);
@@ -38,7 +40,7 @@ bool MHO_MixedPolYShiftBuilder::Build()
             op->SetPriority(priority);
 
             bool replace_duplicates = true; //only one operator of this type is needed
-            this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+            this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         }
         return true;
     }

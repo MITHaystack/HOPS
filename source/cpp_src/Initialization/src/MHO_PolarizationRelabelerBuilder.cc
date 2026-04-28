@@ -3,6 +3,8 @@
 #include "MHO_PolarizationProductRelabeler.hh"
 #include "MHO_PolarizationRelabeler.hh"
 
+#include <memory>
+
 namespace hops
 {
 
@@ -31,8 +33,8 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         }
 
         //need an operator for both vis and weight data
-        MHO_PolarizationProductRelabeler< visibility_type >* vis_op = new MHO_PolarizationProductRelabeler< visibility_type >();
-        MHO_PolarizationProductRelabeler< weight_type >* wt_op = new MHO_PolarizationProductRelabeler< weight_type >();
+        std::unique_ptr< MHO_PolarizationProductRelabeler< visibility_type > > vis_op(new MHO_PolarizationProductRelabeler< visibility_type >());
+        std::unique_ptr< MHO_PolarizationProductRelabeler< weight_type > > wt_op(new MHO_PolarizationProductRelabeler< weight_type >());
 
         vis_op->SetStationIdentifier(station_id);
         vis_op->SetPolarizationSwapPair(pol1, pol2);
@@ -48,14 +50,14 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         wt_op->SetName(op_name + ":weight");
 
         bool replace_duplicates = false;
-        fOperatorToolbox->AddOperator(vis_op, vis_op->GetName(), op_category, replace_duplicates);
-        fOperatorToolbox->AddOperator(wt_op, wt_op->GetName(), op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(std::move(vis_op), op_name + ":vis", op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(std::move(wt_op), op_name + ":weight", op_category, replace_duplicates);
 
         //if there is multitone pcal data available, then we also need to relabel the pols there
         multitone_pcal_type* ref_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("ref_pcal"));
         if(ref_pcal_data != nullptr)
         {
-            auto ref_pcal_relabeler = new MHO_PolarizationRelabeler< multitone_pcal_type >();
+            std::unique_ptr< MHO_PolarizationRelabeler< multitone_pcal_type > > ref_pcal_relabeler(new MHO_PolarizationRelabeler< multitone_pcal_type >());
 
             ref_pcal_relabeler->SetStationIdentifier(station_id);
             ref_pcal_relabeler->SetPolarizationSwapPair(pol1, pol2);
@@ -64,14 +66,13 @@ bool MHO_PolarizationRelabelerBuilder::Build()
             ref_pcal_relabeler->SetPriority(priority);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(ref_pcal_relabeler, ref_pcal_relabeler->GetName(), op_category,
-                                                replace_duplicates);
+            this->fOperatorToolbox->AddOperator(std::move(ref_pcal_relabeler), op_name, op_category, replace_duplicates);
         }
 
         multitone_pcal_type* rem_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("rem_pcal"));
         if(rem_pcal_data != nullptr)
         {
-            auto rem_pcal_relabeler = new MHO_PolarizationRelabeler< multitone_pcal_type >();
+            std::unique_ptr< MHO_PolarizationRelabeler< multitone_pcal_type > > rem_pcal_relabeler(new MHO_PolarizationRelabeler< multitone_pcal_type >());
 
             rem_pcal_relabeler->SetStationIdentifier(station_id);
             rem_pcal_relabeler->SetPolarizationSwapPair(pol1, pol2);
@@ -81,8 +82,7 @@ bool MHO_PolarizationRelabelerBuilder::Build()
             rem_pcal_relabeler->SetPriority(priority);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(rem_pcal_relabeler, rem_pcal_relabeler->GetName(), op_category,
-                                                replace_duplicates);
+            this->fOperatorToolbox->AddOperator(std::move(rem_pcal_relabeler), op_name, op_category, replace_duplicates);
         }
 
         return true;

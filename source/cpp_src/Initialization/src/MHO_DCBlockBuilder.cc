@@ -1,6 +1,8 @@
 #include "MHO_DCBlockBuilder.hh"
 #include "MHO_DCBlock.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -29,14 +31,14 @@ bool MHO_DCBlockBuilder::Build()
 
         if(value)
         {
-            MHO_DCBlock* op = new MHO_DCBlock();
+            std::unique_ptr< MHO_DCBlock > op(new MHO_DCBlock());
             //set the arguments
             op->SetArgs(vis_data);
             op->SetName(op_name);
             op->SetPriority(priority);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+            this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         }
 
         return true;

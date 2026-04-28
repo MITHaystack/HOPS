@@ -1,6 +1,8 @@
 #include "MHO_ManualPolDelayCorrectionBuilder.hh"
 #include "MHO_ManualPolDelayCorrection.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -42,7 +44,7 @@ bool MHO_ManualPolDelayCorrectionBuilder::Build()
             return false;
         }
 
-        MHO_ManualPolDelayCorrection* op = new MHO_ManualPolDelayCorrection();
+        std::unique_ptr< MHO_ManualPolDelayCorrection > op(new MHO_ManualPolDelayCorrection());
 
         //set the arguments
         op->SetArgs(vis_data);
@@ -57,7 +59,7 @@ bool MHO_ManualPolDelayCorrectionBuilder::Build()
                   "creating operator: " << op_name << " for station: " << station_id << " pol: " << pol << "." << eom);
 
         bool replace_duplicates = false;
-        this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+        this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;

@@ -1,6 +1,8 @@
 #include "MHO_DataSelectionBuilder.hh"
 #include "MHO_SelectRepack.hh"
 
+#include <memory>
+
 namespace hops
 {
 
@@ -121,8 +123,8 @@ bool MHO_DataSelectionBuilder::Build()
         //APPLY COARSE DATA SELECTION
         ////////////////////////////////////////////////////////////////////////////
         //select data repack
-        auto spack = new MHO_SelectRepack< visibility_type >();
-        auto wtspack = new MHO_SelectRepack< weight_type >();
+        std::unique_ptr< MHO_SelectRepack< visibility_type > > spack(new MHO_SelectRepack< visibility_type >());
+        std::unique_ptr< MHO_SelectRepack< weight_type > > wtspack(new MHO_SelectRepack< weight_type >());
 
         //first find indexes which corresponds to the specified pol product
         if(do_select_polprods)
@@ -277,8 +279,8 @@ bool MHO_DataSelectionBuilder::Build()
         spack->SetPriority(priority);
         wtspack->SetPriority(priority);
 
-        fOperatorToolbox->AddOperator(spack, spack->GetName(), op_category, replace_duplicates);
-        fOperatorToolbox->AddOperator(wtspack, wtspack->GetName(), op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(std::move(spack), op_name + ":vis", op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(std::move(wtspack), op_name + ":weight", op_category, replace_duplicates);
 
         return true;
     }

@@ -1,6 +1,8 @@
 #include "MHO_AdhocFlaggingBuilder.hh"
 #include "MHO_AdhocFlagging.hh"
 
+#include <memory>
+
 namespace hops
 {
 
@@ -59,10 +61,12 @@ bool MHO_AdhocFlaggingBuilder::Build()
         }
     }
 
+    std::unique_ptr< MHO_AdhocFlagging > owned_op;
     bool first_time = (flag_op == nullptr);
     if(first_time)
     {
-        flag_op = new MHO_AdhocFlagging();
+        owned_op = std::unique_ptr< MHO_AdhocFlagging >(new MHO_AdhocFlagging());
+        flag_op = owned_op.get();
         flag_op->SetArgs(wt_data);
         flag_op->SetName(op_name);
         flag_op->SetPriority(priority);
@@ -83,7 +87,7 @@ bool MHO_AdhocFlaggingBuilder::Build()
     if(first_time)
     {
         bool replace_duplicates = false;
-        fOperatorToolbox->AddOperator(flag_op, op_name, op_category, replace_duplicates);
+        fOperatorToolbox->AddOperator(std::move(owned_op), op_name, op_category, replace_duplicates);
     }
 
     msg_debug("initialization", "adhoc_flag_file: operator '" << op_name << "' " << (first_time ? "created" : "updated")

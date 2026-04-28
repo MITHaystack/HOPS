@@ -1,6 +1,8 @@
 #include "MHO_CircularFieldRotationBuilder.hh"
 #include "MHO_CircularFieldRotationCorrection.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -112,7 +114,7 @@ bool MHO_CircularFieldRotationBuilder::Build()
             return false;
         }
 
-        MHO_CircularFieldRotationCorrection* op = new MHO_CircularFieldRotationCorrection();
+        std::unique_ptr< MHO_CircularFieldRotationCorrection > op(new MHO_CircularFieldRotationCorrection());
 
         //set the arguments
         op->SetArgs(vis_data);
@@ -128,7 +130,7 @@ bool MHO_CircularFieldRotationBuilder::Build()
         op->SetPriority(priority);
 
         bool replace_duplicates = true;
-        this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+        this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;

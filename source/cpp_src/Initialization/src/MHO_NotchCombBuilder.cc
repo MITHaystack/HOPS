@@ -1,6 +1,8 @@
 #include "MHO_NotchCombBuilder.hh"
 #include "MHO_NotchComb.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -45,7 +47,7 @@ bool MHO_NotchCombBuilder::Build()
             return false;
         }
 
-        MHO_NotchComb* op = new MHO_NotchComb();
+        std::unique_ptr< MHO_NotchComb > op(new MHO_NotchComb());
 
         //set the arguments
         op->SetArgs(vis_data);
@@ -60,7 +62,7 @@ bool MHO_NotchCombBuilder::Build()
                   " with notch (offset, period, width) = ("<< offset <<", "<< period<<", "<<width<<")" << eom);
 
         bool replace_duplicates = false;
-        this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+        this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;

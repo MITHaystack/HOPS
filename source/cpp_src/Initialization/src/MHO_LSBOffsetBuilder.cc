@@ -1,6 +1,8 @@
 #include "MHO_LSBOffsetBuilder.hh"
 #include "MHO_LSBOffset.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -29,7 +31,7 @@ bool MHO_LSBOffsetBuilder::Build()
             return false;
         }
 
-        MHO_LSBOffset* op = new MHO_LSBOffset();
+        std::unique_ptr< MHO_LSBOffset > op(new MHO_LSBOffset());
 
         //set the arguments
         op->SetArgs(vis_data);
@@ -41,7 +43,7 @@ bool MHO_LSBOffsetBuilder::Build()
         msg_debug("initialization", "creating operator: " << op_name << " for station: " << station_id << eom);
 
         bool replace_duplicates = false;
-        this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+        this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;

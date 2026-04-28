@@ -1,6 +1,8 @@
 #include "MHO_NotchesBuilder.hh"
 #include "MHO_Notches.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -42,7 +44,7 @@ bool MHO_NotchesBuilder::Build()
             return false;
         }
 
-        MHO_Notches* op = new MHO_Notches();
+        std::unique_ptr< MHO_Notches > op(new MHO_Notches());
 
         //set the arguments
         op->SetArgs(vis_data);
@@ -54,7 +56,7 @@ bool MHO_NotchesBuilder::Build()
         msg_debug("initialization", "creating operator: " << op_name << " with " << values.size() << " notches" << eom);
 
         bool replace_duplicates = false;
-        this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+        this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;

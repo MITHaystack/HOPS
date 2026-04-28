@@ -1,6 +1,8 @@
 #ifndef MHO_PythonOperatorBuilder_HH__
 #define MHO_PythonOperatorBuilder_HH__
 
+#include <memory>
+
 #include "MHO_OperatorBuilder.hh"
 #include "MHO_PyGenericOperator.hh"
 
@@ -30,7 +32,7 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
         {
             if(IsConfigurationOk())
             {
-                MHO_PyGenericOperator* op = new MHO_PyGenericOperator();
+                std::unique_ptr< MHO_PyGenericOperator > op(new MHO_PyGenericOperator());
 
                 //pass the data container and parameter stores to the python operator
                 // op->SetParameterStore(this->fParameterStore);
@@ -53,13 +55,14 @@ class MHO_PythonOperatorBuilder: public MHO_OperatorBuilder
                 }
 
                 op->SetPriority(priority);
-                op->SetName(module_path + ":" + function_name);
+                std::string full_name = module_path + ":" + function_name;
+                op->SetName(full_name);
                 op->SetModulePath(module_path);
                 op->SetFunctionName(function_name);
 
                 //TODO handle naming scheme for multiple python operators (should they have a name parameter?)
                 bool replace_duplicates = false;
-                this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+                this->fOperatorToolbox->AddOperator(std::move(op), full_name, op_category, replace_duplicates);
                 return true;
             }
             else

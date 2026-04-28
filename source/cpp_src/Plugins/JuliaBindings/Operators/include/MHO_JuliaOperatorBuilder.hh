@@ -1,6 +1,8 @@
 #ifndef MHO_JuliaOperatorBuilder_HH__
 #define MHO_JuliaOperatorBuilder_HH__
 
+#include <memory>
+
 #include "MHO_JlGenericOperator.hh"
 #include "MHO_OperatorBuilder.hh"
 
@@ -42,7 +44,7 @@ class MHO_JuliaOperatorBuilder: public MHO_OperatorBuilder
                 return false;
             }
 
-            auto* op = new MHO_JlGenericOperator();
+            std::unique_ptr< MHO_JlGenericOperator > op(new MHO_JlGenericOperator());
             op->SetFringeData(this->fFringeData);
 
             std::string op_name = this->fFormat["name"].get< std::string >();
@@ -54,10 +56,11 @@ class MHO_JuliaOperatorBuilder: public MHO_OperatorBuilder
             op->SetPriority(priority);
             op->SetModulePath(module_path);
             op->SetFunctionName(func_name);
-            op->SetName(module_path + ":" + func_name);
+            std::string full_name = module_path + ":" + func_name;
+            op->SetName(full_name);
 
             bool replace_duplicates = false;
-            this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+            this->fOperatorToolbox->AddOperator(std::move(op), full_name, op_category, replace_duplicates);
             return true;
         }
 };

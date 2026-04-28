@@ -1,6 +1,8 @@
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_Passband.hh"
 
+#include <memory>
+
 #include "MHO_Meta.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -42,7 +44,7 @@ bool MHO_PassbandBuilder::Build()
             return false;
         }
 
-        MHO_Passband* op = new MHO_Passband();
+        std::unique_ptr< MHO_Passband > op(new MHO_Passband());
 
         //set the arguments
         op->SetArgs(vis_data);
@@ -55,7 +57,7 @@ bool MHO_PassbandBuilder::Build()
                   "creating operator: " << op_name << " with limits: (" << values[0] << ", " << values[1] << ")" << eom);
 
         bool replace_duplicates = false;
-        this->fOperatorToolbox->AddOperator(op, op->GetName(), op_category, replace_duplicates);
+        this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;

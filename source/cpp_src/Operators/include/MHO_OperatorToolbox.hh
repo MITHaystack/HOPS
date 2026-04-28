@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -39,7 +40,7 @@ class MHO_OperatorToolbox
          * @param category Category under which the operator will be stored
          * @param replace_duplicate Flag indicating whether to replace duplicate operators by name
          */
-        void AddOperator(MHO_Operator* op, const std::string& name, const std::string& category, bool replace_duplicate = true)
+        void AddOperator(std::unique_ptr<MHO_Operator> op, const std::string& name, const std::string& category, bool replace_duplicate = true)
         {
             msg_debug("operators",
                       "adding an operator to the toolbox with name: " << name << " in category: " << category << eom);
@@ -49,9 +50,10 @@ class MHO_OperatorToolbox
                 RemoveOperator(name);
             }
 
-            fNameToOperatorMap[name] = op;
-            fCategoryToOperatorMap.emplace(category, op);
-            fOperators.insert(op);
+            MHO_Operator* raw = op.get();
+            fNameToOperatorMap[name] = raw;
+            fCategoryToOperatorMap.emplace(category, raw);
+            fOperators.push_back(std::move(op));
         }
 
         /**
@@ -93,11 +95,11 @@ class MHO_OperatorToolbox
         std::vector< MHO_Operator* > GetAllOperatorsByName(const std::string& name)
         {
             std::vector< MHO_Operator* > ops;
-            for(auto it = fOperators.begin(); it != fOperators.end(); ++it)
+            for(const auto& uptr : fOperators)
             {
-                if((*it)->GetName() == name)
+                if(uptr->GetName() == name)
                 {
-                    ops.push_back(*it);
+                    ops.push_back(uptr.get());
                 }
             }
             operator_predicate op_pred;
@@ -138,11 +140,10 @@ class MHO_OperatorToolbox
         std::vector< MHO_Operator* > GetAllOperators()
         {
             std::vector< MHO_Operator* > ops;
-            for(auto it = fOperators.begin(); it != fOperators.end(); it++)
+            for(const auto& uptr : fOperators)
             {
-                ops.push_back(*it);
+                ops.push_back(uptr.get());
             }
-
             operator_predicate op_pred;
             std::sort(ops.begin(), ops.end(), op_pred);
             return ops;
@@ -158,15 +159,14 @@ class MHO_OperatorToolbox
         std::vector< MHO_Operator* > GetOperatorsByPriorityRange(double lower_limit, double upper_limit)
         {
             std::vector< MHO_Operator* > ops;
-            for(auto it = fOperators.begin(); it != fOperators.end(); it++)
+            for(const auto& uptr : fOperators)
             {
-                double priority = (*it)->Priority();
+                double priority = uptr->Priority();
                 if(priority < upper_limit && lower_limit <= priority)
                 {
-                    ops.push_back(*it);
+                    ops.push_back(uptr.get());
                 }
             }
-            //sort in order of priority
             operator_predicate op_pred;
             std::sort(ops.begin(), ops.end(), op_pred);
             return ops;
@@ -198,17 +198,9 @@ class MHO_OperatorToolbox
             return ops;
         }
 
-        std::size_t GetNOperatorsInCategory(std::string cat)
+        std::size_t GetNOperatorsInCategory(const std::string& cat)
         {
-            std::size_t count = 0;
-            for(auto it = fCategoryToOperatorMap.begin(); it != fCategoryToOperatorMap.end(); ++it)
-            {
-                if(it->first == cat)
-                {
-                    count++;
-                }
-            }
-            return count;
+            return fCategoryToOperatorMap.count(cat);
         }
 
         //debugging
@@ -245,16 +237,11 @@ class MHO_OperatorToolbox
             auto it = fNameToOperatorMap.find(name);
             if(it != fNameToOperatorMap.end())
             {
-                auto op_ptr = it->second;
-                //remove from the operator set
-                auto op_iter = fOperators.find(op_ptr);
-                if(op_iter != fOperators.end())
-                {
-                    fOperators.erase(op_iter);
-                }
+                MHO_Operator* op_ptr = it->second;
 
-                //remove from the category map
-                for(auto cat_iter = fCategoryToOperatorMap.begin(); cat_iter != fCategoryToOperatorMap.end(); cat_iter++)
+                fNameToOperatorMap.erase(it);
+
+                for(auto cat_iter = fCategoryToOperatorMap.begin(); cat_iter != fCategoryToOperatorMap.end(); ++cat_iter)
                 {
                     if(cat_iter->second == op_ptr)
                     {
@@ -263,11 +250,13 @@ class MHO_OperatorToolbox
                     }
                 }
 
-                //remove from the named operator map
-                fNameToOperatorMap.erase(it);
-
-                //finally delete the operator
-                delete op_ptr;
+                // erase from owned storage last — unique_ptr destructor deletes the object
+                auto owned_it = std::find_if(fOperators.begin(), fOperators.end(),
+                    [op_ptr](const std::unique_ptr< MHO_Operator >& uptr) { return uptr.get() == op_ptr; });
+                if(owned_it != fOperators.end())
+                {
+                    fOperators.erase(owned_it);
+                }
             }
         }
 
@@ -276,36 +265,26 @@ class MHO_OperatorToolbox
          */
         void Clear()
         {
-            //delete all the operators
-            for(auto it = fOperators.begin(); it != fOperators.end(); it++)
-            {
-                delete *it;
-            }
-            fOperators.clear();
+            fOperators.clear(); // unique_ptrs delete their objects
             fNameToOperatorMap.clear();
             fCategoryToOperatorMap.clear();
-        };
+        }
 
-        //store operator pointers for memory management
-        std::set< MHO_Operator* > fOperators;
+        // owned storage — unique_ptrs are the sole owners
+        std::vector< std::unique_ptr< MHO_Operator > > fOperators;
 
-        //look up operators by name
+        //look up operators by name (non-owning)
         std::map< std::string, MHO_Operator* > fNameToOperatorMap;
 
-        //look up operators by category
+        //look up operators by category (non-owning)
         std::multimap< std::string, MHO_Operator* > fCategoryToOperatorMap;
 
-        //for sorting operator priorites
-        /**
-         * @brief Class operator_predicate
-         */
-        class operator_predicate
+        struct operator_predicate
         {
-            public:
-                operator_predicate(){};
-                virtual ~operator_predicate(){};
-
-                virtual bool operator()(const MHO_Operator* a, const MHO_Operator* b) { return a->Priority() < b->Priority(); }
+            bool operator()(const MHO_Operator* a, const MHO_Operator* b) const
+            {
+                return a->Priority() < b->Priority();
+            }
         };
 };
 
