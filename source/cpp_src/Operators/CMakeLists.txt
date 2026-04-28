@@ -5,6 +5,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set (OPERATOR_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Operator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OperatorToolbox.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ArgumentCarrier.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_UnaryOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_InspectingOperator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TransformingOperator.hh

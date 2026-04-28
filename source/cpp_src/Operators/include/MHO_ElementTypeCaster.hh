@@ -30,16 +30,6 @@ class MHO_ElementTypeCaster: public MHO_TransformingOperator< XArgType1, XArgTyp
 
     protected:
         /**
-         * @brief Initializes implementation using input and output arguments.
-         *
-         * @param !in Pointer to constant input argument of type XArgType1
-         * @param !out Pointer to output argument of type XArgType2
-         * @return Boolean indicating success or failure of initialization
-         * @note This is a virtual function.
-         */
-        virtual bool InitializeImpl(const XArgType1* /*!in*/, XArgType2* /*!out*/) override { return true; }; //no op
-
-        /**
          * @brief Copies input array to output array and resizes it if necessary.
          *
          * @param in Input array to be copied.
