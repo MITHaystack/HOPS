@@ -23,7 +23,7 @@ class MHO_TransformingOperator: public MHO_ArgumentCarrier< const XArgType1*, XA
         MHO_TransformingOperator(){};
         virtual ~MHO_TransformingOperator(){};
 
-        virtual void SetArgs(const XArgType1* in, XArgType2* out)
+        void SetArgs(const XArgType1* in, XArgType2* out)
         {
             this->fArgs = std::make_tuple(in, out);
         }

@@ -41,18 +41,16 @@ class MHO_SBDTableGenerator: public MHO_TransformingOperator< visibility_type, s
          * @param in Input raw visibilities
          * @param out Output single-band-delay table (workspace/output for normfx)
          * @return True if initialization was successful, false otherwise
-         * @note This is a virtual function.
          */
-        virtual bool InitializeImpl(const XArgType1* in, XArgType2* out);
+        virtual bool InitializeImpl(const XArgType1* in, XArgType2* out) override;
         /**
          * @brief Checks if initialized and returns true if so, false otherwise.
          *
          * @param in Input raw visibilities
          * @param out Output single-band-delay table workspace
          * @return Boolean indicating whether the object is initialized
-         * @note This is a virtual function.
          */
-        virtual bool ExecuteImpl(const XArgType1* in, XArgType2* out);
+        virtual bool ExecuteImpl(const XArgType1* in, XArgType2* out) override;
 
     private:
         std::size_t fInDims[VIS_NDIM];

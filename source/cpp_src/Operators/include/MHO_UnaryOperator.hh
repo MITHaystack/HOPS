@@ -37,9 +37,8 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
          * @brief Setter for args
          *
          * @param in Pointer to input array of type XArgType.
-         * @note This is a virtual function.
          */
-        virtual void SetArgs(XArgType* in)
+        void SetArgs(XArgType* in)
         {
             fInPlace = true;
             fInPlaceArgs = std::make_tuple(in);
@@ -51,9 +50,8 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
          *
          * @param in Input array of type XArgType* (const)
          * @param out (XArgType*)
-         * @note This is a virtual function.
          */
-        virtual void SetArgs(const XArgType* in, XArgType* out)
+        void SetArgs(const XArgType* in, XArgType* out)
         {
             fInPlace = false;
             fOutOfPlaceArgs = std::make_tuple(in, out);

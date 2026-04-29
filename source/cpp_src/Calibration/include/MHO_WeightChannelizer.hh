@@ -24,8 +24,8 @@ class MHO_WeightChannelizer: public MHO_TransformingOperator< uch_weight_store_t
         virtual ~MHO_WeightChannelizer();
 
     private:
-        virtual bool InitializeImpl(const uch_weight_store_type* in, weight_store_type* out);
-        virtual bool ExecuteImpl(const uch_weight_store_type* in, weight_store_type* out);
+        virtual bool InitializeImpl(const uch_weight_store_type* in, weight_store_type* out) override;
+        virtual bool ExecuteImpl(const uch_weight_store_type* in, weight_store_type* out) override;
 
         bool fInitialized;
 };

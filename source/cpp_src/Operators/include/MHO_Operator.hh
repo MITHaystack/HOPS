@@ -57,19 +57,17 @@ class MHO_Operator
          * @brief Setter for operator priority (determines order of execution within a operator category)
          *
          * @param priority New priority value to be assigned to fPriority field (double)
-         * @note This is a virtual function.
          * @details a higher value for the fPriority field implies this operator should happend after other operators with lower priority values
          * order of execution goes from low to high
          */
-        virtual void SetPriority(double priority) { fPriority = priority; }
+        void SetPriority(double priority) { fPriority = priority; }
 
         /**
          * @brief Get the the priority field value
          *
          * @return Return value (double)
-         * @note This is a virtual function.
          */
-        virtual double Priority() const { return fPriority; }
+        double Priority() const { return fPriority; }
 
     private:
         std::string fName;

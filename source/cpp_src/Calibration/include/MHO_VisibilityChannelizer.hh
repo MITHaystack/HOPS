@@ -33,18 +33,16 @@ class MHO_VisibilityChannelizer: public MHO_TransformingOperator< uch_visibility
          * @param in Input visibility store data (rank = 3)
          * @param out Output visibility store data (rank = 4)
          * @return True if initialization is successful, false otherwise
-         * @note This is a virtual function.
          */
-        virtual bool InitializeImpl(const uch_visibility_store_type* in, visibility_store_type* out);
+        virtual bool InitializeImpl(const uch_visibility_store_type* in, visibility_store_type* out) override;
         /**
          * @brief Reorganizes visibility data into channelized format and updates channel labels.
          *
          * @param in Input visibility store data (rank = 3)
          * @param out Output channelized visibility store data
          * @return True if execution is successful, false otherwise
-         * @note This is a virtual function.
          */
-        virtual bool ExecuteImpl(const uch_visibility_store_type* in, visibility_store_type* out);
+        virtual bool ExecuteImpl(const uch_visibility_store_type* in, visibility_store_type* out) override;
 
     private:
         bool fInitialized;

@@ -54,7 +54,7 @@ template< typename XFactorType, class XArrayType > class MHO_OpenCLScalarMultipl
         void SetWriteFalse() { fWriteOut = false; };
 
     protected:
-        virtual bool InitializeInPlace(XArrayType* in)
+        virtual bool InitializeInPlace(XArrayType* in) override
         {
             if(in != nullptr)
             {
@@ -88,7 +88,7 @@ template< typename XFactorType, class XArrayType > class MHO_OpenCLScalarMultipl
             return false;
         }
 
-        virtual bool ExecuteInPlace(XArrayType* in)
+        virtual bool ExecuteInPlace(XArrayType* in) override
         {
             if(fInitialized)
             {
@@ -114,13 +114,13 @@ template< typename XFactorType, class XArrayType > class MHO_OpenCLScalarMultipl
             return false;
         }
 
-        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out)
+        virtual bool InitializeOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             ConditionallyResizeOutput(in->GetDimensionArray(), out);
             return InitializeInPlace(out);
         }
 
-        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out)
+        virtual bool ExecuteOutOfPlace(const XArrayType* in, XArrayType* out) override
         {
             //This may not be the most efficient way to do this
             out->Copy(*in);

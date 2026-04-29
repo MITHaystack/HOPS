@@ -29,6 +29,9 @@ class MHO_OperatorToolbox
     public:
         MHO_OperatorToolbox() {}
 
+        MHO_OperatorToolbox(const MHO_OperatorToolbox&) = delete;
+        MHO_OperatorToolbox& operator=(const MHO_OperatorToolbox&) = delete;
+
         virtual ~MHO_OperatorToolbox() { Clear(); }
 
         //insertion

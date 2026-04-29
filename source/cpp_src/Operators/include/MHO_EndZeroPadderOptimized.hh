@@ -183,7 +183,7 @@ template< typename XArgType > class MHO_EndZeroPadderOptimized: public MHO_Unary
          * @return Result of InitializeOutOfPlace function call
          * @note This is a virtual function.
          */
-        virtual bool InitializeInPlace(XArgType* in)
+        virtual bool InitializeInPlace(XArgType* in) override
         {
             if(fTmpWorkspace == nullptr)
             {
@@ -197,9 +197,8 @@ template< typename XArgType > class MHO_EndZeroPadderOptimized: public MHO_Unary
          *
          * @param in Input object of type XArgType* that will be modified in-place.
          * @return Boolean status indicating success or failure of the operation.
-         * @note This is a virtual function.
          */
-        virtual bool ExecuteInPlace(XArgType* in)
+        virtual bool ExecuteInPlace(XArgType* in) override
         {
             bool status = ExecuteOutOfPlace(in, fTmpWorkspace);
             //"in-place" execution requires a copy from the workspace back to the object we are modifying
@@ -221,7 +220,7 @@ template< typename XArgType > class MHO_EndZeroPadderOptimized: public MHO_Unary
          * @return Boolean indicating successful initialization
          * @note This is a virtual function.
          */
-        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out)
+        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(in != nullptr && out != nullptr && in != out)
             {
@@ -246,9 +245,8 @@ template< typename XArgType > class MHO_EndZeroPadderOptimized: public MHO_Unary
          * @param in (const XArgType*)
          * @param out (XArgType*)
          * @return Return value (bool)
-         * @note This is a virtual function.
          */
-        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out)
+        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(fIsValid && fInitialized)
             {

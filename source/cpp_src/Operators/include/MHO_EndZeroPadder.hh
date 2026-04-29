@@ -173,7 +173,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
          * @return Result of InitializeOutOfPlace function call
          * @note This is a virtual function.
          */
-        virtual bool InitializeInPlace(XArgType* in)
+        virtual bool InitializeInPlace(XArgType* in) override
         {
             if(fTmpWorkspace == nullptr)
             {
@@ -189,7 +189,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
          * @return Boolean status indicating success or failure of the operation.
          * @note This is a virtual function.
          */
-        virtual bool ExecuteInPlace(XArgType* in)
+        virtual bool ExecuteInPlace(XArgType* in) override
         {
             bool status = ExecuteOutOfPlace(in, fTmpWorkspace);
             //"in-place" execution requires a copy from the workspace back to the object we are modifying
@@ -209,9 +209,8 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
          * @param in Pointer to constant input array of type XArgType
          * @param out Pointer to output array of type XArgType
          * @return Boolean indicating successful initialization
-         * @note This is a virtual function.
          */
-        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out)
+        virtual bool InitializeOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(in != nullptr && out != nullptr && in != out)
             {
@@ -237,7 +236,7 @@ template< typename XArgType > class MHO_EndZeroPadder: public MHO_UnaryOperator<
          * @return Return value (bool)
          * @note This is a virtual function.
          */
-        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out)
+        virtual bool ExecuteOutOfPlace(const XArgType* in, XArgType* out) override
         {
             if(fIsValid && fInitialized)
             {

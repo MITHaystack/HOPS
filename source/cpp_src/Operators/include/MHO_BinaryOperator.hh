@@ -24,7 +24,7 @@ class MHO_BinaryOperator: public MHO_ArgumentCarrier< const XArgType1*, const XA
         MHO_BinaryOperator(){};
         virtual ~MHO_BinaryOperator(){};
 
-        virtual void SetArgs(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
+        void SetArgs(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
         {
             this->fArgs = std::make_tuple(in1, in2, out);
         }
