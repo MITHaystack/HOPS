@@ -43,9 +43,13 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
          * @param station_id Two-character MK4 station code as std::string
          */
         void SetStationIdentifier(const std::string& id) { fStationIdentities = {id}; }
-        void SetStationIdentifiers(const std::vector<std::string>& ids) { fStationIdentities = ids; }
 
-        std::string GetStationIdentifier() const { return fStationIdentities.empty() ? std::string("") : fStationIdentities[0]; }
+        void SetStationIdentifiers(const std::vector< std::string >& ids) { fStationIdentities = ids; }
+
+        std::string GetStationIdentifier() const
+        {
+            return fStationIdentities.empty() ? std::string("") : fStationIdentities[0];
+        }
 
         /**
          * @brief Setter for associated polarization
@@ -66,7 +70,6 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         void SetPCPhaseOffset(double pc_phase_offset) { fPhaseOffset = pc_phase_offset; }
 
     protected:
-
         /**
          * @brief Applies manual phase correction offsets to visibility data in-place for reference or remote stations.
          *
@@ -99,7 +102,7 @@ class MHO_ManualPolPhaseCorrection: public MHO_UnaryOperator< visibility_type >
         double fDegToRad;
 
         //selection
-        std::vector<std::string> fStationIdentities;
+        std::vector< std::string > fStationIdentities;
         std::string fPol;
 
         //pc rotation

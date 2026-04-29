@@ -10,7 +10,7 @@ namespace hops
 {
 
 void MHO_FringeCommandLineParser::parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline,
-                                                              std::string& freqgrp)
+                                                         std::string& freqgrp)
 {
     MHO_Tokenizer tokenizer;
     if(baseline_freqgrp.find(':') == std::string::npos)
@@ -119,7 +119,6 @@ std::string MHO_FringeCommandLineParser::sanitize_directory(std::string dir)
     return path; //we do not return the full-path in order to preserve symlinks
 }
 
-
 //sanity check of parameters after command line parsing
 int MHO_FringeCommandLineParser::sanity_check(MHO_ParameterStore* paramStore)
 {
@@ -149,9 +148,6 @@ int MHO_FringeCommandLineParser::sanity_check(MHO_ParameterStore* paramStore)
 
     return 0;
 }
-
-
-
 
 int MHO_FringeCommandLineParser::parse_fourfit_command_line(int argc, char** argv, MHO_ParameterStore* paramStore)
 {
@@ -220,7 +216,8 @@ int MHO_FringeCommandLineParser::parse_fourfit_command_line(int argc, char** arg
     app.add_option("-m,--message-level", message_level, "message level to be used, range: -2 (debug) to 5 (silent)");
     app.add_option("-n,--nplot-channels", nplot_chans,
                    "specifies the number of channels to display in the fringe plot (ignored, not yet implemented)");
-    app.add_option("-o,--output-directory", output_directory, "set the directory under which to write output files (default is input)");
+    app.add_option("-o,--output-directory", output_directory,
+                   "set the directory under which to write output files (default is input)");
     app.add_option("-O,--openmp-threads", omp_threads, "set the number of threads used by OpenMP (if enabled, default=max)");
     app.add_flag("-p,--plot", show_plot, "generate and shows fringe plot on completion");
     app.add_option("-r,--refringe-alist", refringe_alist_file, "alist file for refringing (ignored, not yet implemented)");
@@ -234,7 +231,8 @@ int MHO_FringeCommandLineParser::parse_fourfit_command_line(int argc, char** arg
                    "summed (-1=no-export, 0=none, 1=channel, 2=time/AP, 3=sub-channel), default: -1");
     app.add_option("input,-i,--input", input, "name of the input directory (scan) or root file")->required();
     app.add_flag("-k,--mark4-output", use_mk4_output, "write output files in mark4 type_2xx format");
-    app.add_flag("-K,--mark4-input", use_mk4_input, "accept mark4 format input directory (converted to HOPS format via temp dir at runtime)");
+    app.add_flag("-K,--mark4-input", use_mk4_input,
+                 "accept mark4 format input directory (converted to HOPS format via temp dir at runtime)");
 
     //add the 'set' command for control file parameter overrides
     auto* setcom =
@@ -304,10 +302,13 @@ int MHO_FringeCommandLineParser::parse_fourfit_command_line(int argc, char** arg
     paramStore->Set("/cmdline/frequency_group", freqgrp);
 
     paramStore->Set("/cmdline/control_file", control_file);
-    paramStore->Set("/cmdline/disk_file", disk_file); //default is empty string -> no plot file
+    paramStore->Set("/cmdline/disk_file", disk_file);             //default is empty string -> no plot file
     paramStore->Set("/cmdline/input_directory", input_directory); //sanitized input directory path
 
-    if(output_directory == ""){output_directory = input_directory;}
+    if(output_directory == "")
+    {
+        output_directory = input_directory;
+    }
     paramStore->Set("/cmdline/output_directory", output_directory); //output_directory path
 
     paramStore->Set("/cmdline/root_file", root_file); //fully resolved (symlink free path to the root file)...or empty
@@ -332,7 +333,7 @@ int MHO_FringeCommandLineParser::parse_fourfit_command_line(int argc, char** arg
     return status; //0 is ok, anything else is an error
 }
 
-void MHO_FringeCommandLineParser::initialize_messaging(int message_level, const std::vector< std::string>& message_categories)
+void MHO_FringeCommandLineParser::initialize_messaging(int message_level, const std::vector< std::string >& message_categories)
 {
     //clamp message level
     if(message_level > 5)
@@ -358,5 +359,4 @@ void MHO_FringeCommandLineParser::initialize_messaging(int message_level, const 
     }
 }
 
-
-}//end namespace
+} // namespace hops

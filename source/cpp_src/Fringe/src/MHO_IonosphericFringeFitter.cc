@@ -13,9 +13,9 @@
 #include "MHO_ParameterManager.hh"
 
 //fringe finding library helper functions
-#include "MHO_FringeDataInitializer.hh"
 #include "MHO_BasicFringeInfo.hh"
 #include "MHO_BasicFringeUtilities.hh"
+#include "MHO_FringeDataInitializer.hh"
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_InitialFringeInfo.hh"
 #include "MHO_VexInfoExtractor.hh"

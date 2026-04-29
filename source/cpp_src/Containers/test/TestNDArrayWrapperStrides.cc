@@ -11,19 +11,20 @@ using namespace hops;
 
 static int nfail = 0;
 
-#define CHECK_EQ(label, got, expected)                                                                                      \
-    do                                                                                                                      \
-    {                                                                                                                       \
-        if((got) != (expected))                                                                                             \
-        {                                                                                                                   \
-            std::cerr << "FAIL " << label << ": got " << (got) << ", expected " << (expected) << std::endl;                \
-            ++nfail;                                                                                                        \
-        }                                                                                                                   \
-        else                                                                                                                \
-        {                                                                                                                   \
-            std::cout << "PASS " << label << std::endl;                                                                    \
-        }                                                                                                                   \
-    } while(0)
+#define CHECK_EQ(label, got, expected)                                                                                         \
+    do                                                                                                                         \
+    {                                                                                                                          \
+        if((got) != (expected))                                                                                                \
+        {                                                                                                                      \
+            std::cerr << "FAIL " << label << ": got " << (got) << ", expected " << (expected) << std::endl;                    \
+            ++nfail;                                                                                                           \
+        }                                                                                                                      \
+        else                                                                                                                   \
+        {                                                                                                                      \
+            std::cout << "PASS " << label << std::endl;                                                                        \
+        }                                                                                                                      \
+    }                                                                                                                          \
+    while(0)
 
 int main(int /*argc*/, char** /*argv*/)
 {

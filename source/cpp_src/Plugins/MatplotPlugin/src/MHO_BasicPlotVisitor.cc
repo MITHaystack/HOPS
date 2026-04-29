@@ -430,7 +430,8 @@ void MHO_BasicPlotVisitor::make_dr_mbd_plot(const mho_json& plot_dict)
         double scaled_max = ymax / scale;
         // Add a small upward margin (10 %) so the peak never touches the top border
         double margin = 0.1 * (scaled_max - scaled_min);
-        if(margin == 0.0) margin = 0.1 * std::max(std::abs(scaled_max), 1.0);
+        if(margin == 0.0)
+            margin = 0.1 * std::max(std::abs(scaled_max), 1.0);
         proper_y_limits = {scaled_min - margin, scaled_max + margin};
         msg_debug("plot", "Pre-computed Y limits: " << proper_y_limits[0] << " to " << proper_y_limits[1] << eom);
     }

@@ -56,8 +56,6 @@ template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperat
         void SetChannelLabelToFrequencyMap(const std::map< std::string, double >& map) { fChannelLabelToFrequency = map; }
 
     protected:
-
-
         /**
          * @brief Function ExecuteInPlace - attaches channel labels based on sky frequency or user specified map
          *
@@ -155,7 +153,6 @@ template< typename XArrayType > class MHO_ChannelLabeler: public MHO_UnaryOperat
             }
             return false;
         }
-
 
     private:
         /**

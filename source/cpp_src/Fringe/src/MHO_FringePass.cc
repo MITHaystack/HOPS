@@ -14,7 +14,8 @@
 namespace hops
 {
 
-MHO_FringePass::MHO_FringePass() : fFactory(nullptr) {}
+MHO_FringePass::MHO_FringePass(): fFactory(nullptr)
+{}
 
 // ---------------------------------------------------------------------------
 // Input setters
@@ -77,15 +78,13 @@ void MHO_FringePass::SetPythonControlEvaluator(ControlEvaluatorFn fn)
 bool MHO_FringePass::Initialize()
 {
     profiler_scope();
-    bool ok = MHO_FringeDataInitializer::initialize_scan_data(fData.GetParameterStore(),
-                                                              fData.GetScanDataStore());
+    bool ok = MHO_FringeDataInitializer::initialize_scan_data(fData.GetParameterStore(), fData.GetScanDataStore());
     if(!ok)
     {
         return false;
     }
 
-    MHO_FringeDataInitializer::populate_initial_parameters(fData.GetParameterStore(),
-                                                           fData.GetScanDataStore());
+    MHO_FringeDataInitializer::populate_initial_parameters(fData.GetParameterStore(), fData.GetScanDataStore());
 
     // If a control file was set explicitly, override what populate_initial_parameters
     // copied from /cmdline/control_file.
@@ -111,9 +110,7 @@ bool MHO_FringePass::Configure()
         fData.GetControlFormat() = MHO_ControlDefinitions::GetControlFormat();
         MHO_FringeControlInitialization::add_default_operator_format_def(fData.GetControlFormat());
 
-        bool py_ok = fPythonEvaluator(fData.GetParameterStore(),
-                                      fData.GetControlFormat(),
-                                      fData.GetControlStatements());
+        bool py_ok = fPythonEvaluator(fData.GetParameterStore(), fData.GetControlFormat(), fData.GetControlStatements());
         if(!py_ok)
         {
             msg_error("fringe_pass", "Python control evaluator failed, skipping pass." << eom);
@@ -122,31 +119,27 @@ bool MHO_FringePass::Configure()
             return false;
         }
 
-        MHO_FringeControlInitialization::apply_control_statements(fData.GetParameterStore(),
-                                                                   fData.GetControlFormat(),
-                                                                   fData.GetControlStatements());
+        MHO_FringeControlInitialization::apply_control_statements(fData.GetParameterStore(), fData.GetControlFormat(),
+                                                                  fData.GetControlStatements());
 
         fData.GetParameterStore()->Set("/config/plugins/activate_python", true);
     }
     else
     {
         // File-based path: detect .py vs DSL by extension.
-        std::string ctrl_file =
-            fData.GetParameterStore()->GetAs< std::string >("/files/control_file");
+        std::string ctrl_file = fData.GetParameterStore()->GetAs< std::string >("/files/control_file");
         std::string ext = MHO_DirectoryInterface::GetFileExtension(ctrl_file);
 
         if(ext == "py")
         {
-            msg_fatal("fringe_pass",
-                      "Python control file '" << ctrl_file
-                          << "' specified but no Python evaluator was injected. "
-                          << "Was the executable built with pybind11 support?" << eom);
+            msg_fatal("fringe_pass", "Python control file '" << ctrl_file
+                                                             << "' specified but no Python evaluator was injected. "
+                                                             << "Was the executable built with pybind11 support?" << eom);
             return false;
         }
 
         // DSL path
-        MHO_FringeControlInitialization::process_control_file(fData.GetParameterStore(),
-                                                              fData.GetControlFormat(),
+        MHO_FringeControlInitialization::process_control_file(fData.GetParameterStore(), fData.GetControlFormat(),
                                                               fData.GetControlStatements());
     }
 
@@ -155,7 +148,7 @@ bool MHO_FringePass::Configure()
 
 bool MHO_FringePass::Run(const std::vector< MHO_FringeFitterVisitor* >& plugin_visitors,
                          const std::vector< MHO_FringeFitterVisitor* >& output_visitors,
-                         const std::vector< MHO_FringePlotVisitor* >&   plot_visitors)
+                         const std::vector< MHO_FringePlotVisitor* >& plot_visitors)
 {
     //use explicit profiler start/stop for this function, because we need to export events
     //before the output is written
@@ -231,12 +224,12 @@ void MHO_FringePass::FlushProfileEvents()
     {
         mho_json obj;
         obj["event_id"] = i;
-        obj["flag"]      = events[i].fFlag;
-        obj["line"]      = events[i].fLineNumber;
+        obj["flag"] = events[i].fFlag;
+        obj["line"] = events[i].fLineNumber;
         obj["thread_id"] = events[i].fThreadID;
-        obj["filename"]  = std::string(events[i].fFilename);
-        obj["funcname"]  = std::string(events[i].fFuncname);
-        obj["time"]      = events[i].fTime;
+        obj["filename"] = std::string(events[i].fFilename);
+        obj["funcname"] = std::string(events[i].fFuncname);
+        obj["time"] = events[i].fTime;
         event_list.push_back(obj);
     }
     fData.GetParameterStore()->Set("/profile/events", event_list);

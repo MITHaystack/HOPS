@@ -94,7 +94,6 @@ bool MHO_ManualChannelPhaseCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
 bool MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
     std::string mk4id_key;
@@ -119,12 +118,17 @@ bool MHO_ManualChannelPhaseCorrection::IsApplicable(std::size_t st_idx, const vi
     {
         if(id.size() > 2)
         {
-            msg_error("calibration",
-                      "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
+            msg_error("calibration", "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
             continue;
         }
-        if(id.size() == 1 && (id == mk4id_val || id == "?")) { return true; }
-        if(id.size() == 2 && (id == code_val || id == "??")) { return true; }
+        if(id.size() == 1 && (id == mk4id_val || id == "?"))
+        {
+            return true;
+        }
+        if(id.size() == 2 && (id == code_val || id == "??"))
+        {
+            return true;
+        }
     }
     return false;
 }
@@ -174,7 +178,5 @@ bool MHO_ManualChannelPhaseCorrection::LabelMatch(std::string expected_chan_labe
         return (expected_chan_label == given_chan_label);
     }
 }
-
-
 
 } // namespace hops

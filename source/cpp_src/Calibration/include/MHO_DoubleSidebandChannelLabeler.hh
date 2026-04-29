@@ -48,8 +48,6 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
         void SetTolerance(double tol) { fEps = tol; }
 
     protected:
-
-
         /**
          * @brief Function ExecuteInPlace labels LSB/USB channel pairs as "double sideband" channels if they share and edge
          *
@@ -107,7 +105,6 @@ template< typename XArrayType > class MHO_DoubleSidebandChannelLabeler: public M
             }
             return false;
         }
-
 
     private:
         double fEps;

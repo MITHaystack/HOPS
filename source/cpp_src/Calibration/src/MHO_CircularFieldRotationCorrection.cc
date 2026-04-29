@@ -95,9 +95,6 @@ bool MHO_CircularFieldRotationCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
-
-
 void MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
 {
     //evaluate the elevation angles
@@ -128,10 +125,10 @@ void MHO_CircularFieldRotationCorrection::PreMultiply(visibility_type* in)
 int MHO_CircularFieldRotationCorrection::DetermineMountCode(const std::string& mount) const
 {
     static const std::unordered_map< std::string, MountType > kMountMap = {
-        {"", MountType::None},
-        {"no_mount", MountType::None},
-        {"cassegrain", MountType::Cassegrain},
-        {"nasmythleft", MountType::NasmythLeft},
+        {"",             MountType::None        },
+        {"no_mount",     MountType::None        },
+        {"cassegrain",   MountType::Cassegrain  },
+        {"nasmythleft",  MountType::NasmythLeft },
         {"nasmythright", MountType::NasmythRight},
     };
     auto it = kMountMap.find(mount);

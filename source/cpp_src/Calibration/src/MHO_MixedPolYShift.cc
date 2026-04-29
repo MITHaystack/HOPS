@@ -79,7 +79,6 @@ bool MHO_MixedPolYShift::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
 bool MHO_MixedPolYShift::IsApplicable(std::size_t st_idx, std::string polprod)
 {
     //determine if this pol-product is a mixed linear/circular polarization product
@@ -100,8 +99,6 @@ bool MHO_MixedPolYShift::IsApplicable(std::size_t st_idx, std::string polprod)
     }
     return false;
 }
-
-
 
 bool MHO_MixedPolYShift::IsMixedLinCirc(std::string polprod) const
 {

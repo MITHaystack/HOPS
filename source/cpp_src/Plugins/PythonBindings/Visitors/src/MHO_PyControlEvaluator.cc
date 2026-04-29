@@ -63,8 +63,8 @@ bool MHO_PyControlEvaluator::Evaluate(MHO_ParameterStore* paramStore, const mho_
     return EvaluateCallable(configure_fn, paramStore, control_format, control_statements);
 }
 
-bool MHO_PyControlEvaluator::EvaluateCallable(py::object fn, MHO_ParameterStore* paramStore,
-                                               const mho_json& control_format, mho_json& control_statements)
+bool MHO_PyControlEvaluator::EvaluateCallable(py::object fn, MHO_ParameterStore* paramStore, const mho_json& control_format,
+                                              mho_json& control_statements)
 {
     if(Py_IsInitialized() == 0)
     {
@@ -80,15 +80,15 @@ bool MHO_PyControlEvaluator::EvaluateCallable(py::object fn, MHO_ParameterStore*
         py::module hops_ctrl = py::module::import("hops_control");
 
         py::object PassInfoClass = hops_ctrl.attr("PassInfo");
-        py::object ConfigClass   = hops_ctrl.attr("Config");
+        py::object ConfigClass = hops_ctrl.attr("Config");
 
         mho_json pass_dict = BuildPassInfoDict(paramStore);
         py::object pass_info = PassInfoClass(pass_dict);
-        py::object config    = ConfigClass(control_format);
+        py::object config = ConfigClass(control_format);
 
         fn(pass_info, config);
 
-        py::object result  = config.attr("to_json")();
+        py::object result = config.attr("to_json")();
         control_statements = result.cast< mho_json >();
     }
     catch(py::error_already_set& exc)
@@ -103,11 +103,10 @@ bool MHO_PyControlEvaluator::EvaluateCallable(py::object fn, MHO_ParameterStore*
     return true;
 }
 
-void MHO_PyControlEvaluator::ApplyConditionFilterAndSetString(MHO_ParameterStore* paramStore,
-                                                               mho_json& control_statements)
+void MHO_PyControlEvaluator::ApplyConditionFilterAndSetString(MHO_ParameterStore* paramStore, mho_json& control_statements)
 {
     std::string baseline = paramStore->GetAs< std::string >("/config/baseline");
-    std::string source   = "?";
+    std::string source = "?";
     paramStore->Get("/vex/scan/source/name", source);
     std::string fgroup = "?";
     paramStore->Get("/config/fgroup", fgroup);
@@ -170,8 +169,8 @@ mho_json MHO_PyControlEvaluator::BuildPassInfoDict(MHO_ParameterStore* paramStor
     else
     {
         //wildcard
-        d["ref_mk4id"]  = "?";
-        d["rem_mk4id"]  = "?";
+        d["ref_mk4id"] = "?";
+        d["rem_mk4id"] = "?";
         d["ref_code"] = "??";
         d["rem_code"] = "??";
     }

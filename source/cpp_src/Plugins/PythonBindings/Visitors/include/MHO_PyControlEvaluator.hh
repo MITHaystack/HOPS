@@ -54,8 +54,7 @@ class MHO_PyControlEvaluator
          * @param control_statements Output: populated with the applicable statements.
          * @return true on success, false if the Python script raised an exception.
          */
-        static bool Evaluate(MHO_ParameterStore* paramStore, const mho_json& control_format,
-                             mho_json& control_statements);
+        static bool Evaluate(MHO_ParameterStore* paramStore, const mho_json& control_format, mho_json& control_statements);
 
     private:
         /// Build the pass-info dict from the parameter store.
@@ -67,12 +66,11 @@ class MHO_PyControlEvaluator
          * calls fn(pass_info, config), extracts statements, then applies
          * condition filtering and set-string overrides.
          */
-        static bool EvaluateCallable(py::object fn, MHO_ParameterStore* paramStore,
-                                     const mho_json& control_format, mho_json& control_statements);
+        static bool EvaluateCallable(py::object fn, MHO_ParameterStore* paramStore, const mho_json& control_format,
+                                     mho_json& control_statements);
 
         /// Apply condition filtering and command-line set-string overrides in-place.
-        static void ApplyConditionFilterAndSetString(MHO_ParameterStore* paramStore,
-                                                     mho_json& control_statements);
+        static void ApplyConditionFilterAndSetString(MHO_ParameterStore* paramStore, mho_json& control_statements);
 };
 
 } // namespace hops

@@ -15,9 +15,6 @@ bool MHO_LinearDParCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
-
-
 void MHO_LinearDParCorrection::PreMultiply(visibility_type* in)
 {
     //TODO this is an extremely basic implementation (single pre-factor per-pol product)

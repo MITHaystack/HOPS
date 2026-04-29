@@ -23,25 +23,21 @@ class MHO_TransformingOperator: public MHO_ArgumentCarrier< const XArgType1*, XA
         MHO_TransformingOperator(){};
         virtual ~MHO_TransformingOperator(){};
 
-        void SetArgs(const XArgType1* in, XArgType2* out)
-        {
-            this->fArgs = std::make_tuple(in, out);
-        }
+        void SetArgs(const XArgType1* in, XArgType2* out) { this->fArgs = std::make_tuple(in, out); }
 
         virtual bool Initialize() override
         {
-            return this->Apply(
-                [this](const XArgType1* in, XArgType2* out) { return InitializeImpl(in, out); });
+            return this->Apply([this](const XArgType1* in, XArgType2* out) { return InitializeImpl(in, out); });
         }
 
         virtual bool Execute() override
         {
-            return this->Apply(
-                [this](const XArgType1* in, XArgType2* out) { return ExecuteImpl(in, out); });
+            return this->Apply([this](const XArgType1* in, XArgType2* out) { return ExecuteImpl(in, out); });
         }
 
     protected:
         virtual bool InitializeImpl(const XArgType1* /*in*/, XArgType2* /*out*/) { return true; }
+
         virtual bool ExecuteImpl(const XArgType1* in, XArgType2* out) = 0;
 };
 

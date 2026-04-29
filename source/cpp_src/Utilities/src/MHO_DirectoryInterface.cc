@@ -287,7 +287,7 @@ std::string MHO_DirectoryInterface::GetTrailingDirectory(const std::string& file
 
     if(tokens.size() != 0)
     {
-        trailing_dir = tokens[ tokens.size()-1 ];
+        trailing_dir = tokens[tokens.size() - 1];
     }
     else
     {
@@ -295,7 +295,6 @@ std::string MHO_DirectoryInterface::GetTrailingDirectory(const std::string& file
     }
     return trailing_dir;
 }
-
 
 std::string MHO_DirectoryInterface::StripExtensionFromBasename(const std::string& file_basename)
 {

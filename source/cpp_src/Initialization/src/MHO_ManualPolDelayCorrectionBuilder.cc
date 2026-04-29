@@ -45,7 +45,7 @@ bool MHO_ManualPolDelayCorrectionBuilder::Build()
 
         std::unique_ptr< MHO_ManualPolDelayCorrection > op(new MHO_ManualPolDelayCorrection());
 
-      //set the arguments
+        //set the arguments
         op->SetArgs(vis_data);
         op->SetReferenceFrequency(ref_freq);
         op->SetPCDelayOffset(pc_delay_offset);

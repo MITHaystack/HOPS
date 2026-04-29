@@ -335,14 +335,19 @@ void MHO_MK4ScanConverter::ProcessScan(const std::string& in_dir, const std::str
         std::string rem_mk4id = "";
         for(auto& kv : mk4id2station)
         {
-            if(kv.second == ref_code) { ref_mk4id = kv.first; }
-            if(kv.second == rem_code) { rem_mk4id = kv.first; }
+            if(kv.second == ref_code)
+            {
+                ref_mk4id = kv.first;
+            }
+            if(kv.second == rem_code)
+            {
+                rem_mk4id = kv.first;
+            }
         }
         if(ref_mk4id.empty() || rem_mk4id.empty())
         {
-            msg_warn("mk4interface",
-                     "could not resolve station codes '" << ref_code << "', '" << rem_code
-                                                         << "' to mk4 IDs; converting all baselines." << eom);
+            msg_warn("mk4interface", "could not resolve station codes '" << ref_code << "', '" << rem_code
+                                                                         << "' to mk4 IDs; converting all baselines." << eom);
             mk4_pair_filter = "??";
         }
         else

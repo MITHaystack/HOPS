@@ -52,7 +52,7 @@ void MHO_FringeDataInitializer::populate_initial_parameters(MHO_ParameterStore* 
 
     //we will need the scan name to construct the output_directory,
     //if it is different from the input directory
-    std::string scan =  paramStore->GetAs< std::string >("/pass/scan");
+    std::string scan = paramStore->GetAs< std::string >("/pass/scan");
 
     ////////////////////////////////////////////////////////////////////////////
     //INITIALIZE PARAMETERS
@@ -222,7 +222,7 @@ void MHO_FringeDataInitializer::configure_visibility_data(MHO_ContainerStore* st
 }
 
 void MHO_FringeDataInitializer::configure_station_data(MHO_ScanDataStore* scanStore, MHO_ContainerStore* containerStore,
-                                                              std::string ref_station_mk4id, std::string rem_station_mk4id)
+                                                       std::string ref_station_mk4id, std::string rem_station_mk4id)
 {
     //load station data and assign them the names 'ref_sta' or 'rem_sta'
     scanStore->LoadStation(ref_station_mk4id, containerStore);
@@ -244,7 +244,7 @@ void MHO_FringeDataInitializer::configure_station_data(MHO_ScanDataStore* scanSt
 }
 
 void MHO_FringeDataInitializer::init_and_exec_operators(MHO_OperatorBuilderManager* build_manager,
-                                                               MHO_OperatorToolbox* opToolbox, const char* category)
+                                                        MHO_OperatorToolbox* opToolbox, const char* category)
 {
     std::string cat(category);
     if(build_manager == nullptr || opToolbox == nullptr)
@@ -266,5 +266,4 @@ void MHO_FringeDataInitializer::init_and_exec_operators(MHO_OperatorBuilderManag
     }
 }
 
-
-}//end namespace
+} // namespace hops

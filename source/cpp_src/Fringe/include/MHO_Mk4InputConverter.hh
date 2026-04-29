@@ -4,9 +4,9 @@
 #include "hops_version.hh"
 
 //utilities
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_Message.hh"
 #include "MHO_Profiler.hh"
-#include "MHO_DirectoryInterface.hh"
 #include "MHO_Tokenizer.hh"
 
 //data/config passing classes
@@ -53,17 +53,16 @@ class MHO_Mk4InputConverter
          * @note This is a static function. Uses POSIX nftw; requires a Linux/POSIX system.
          */
         static void cleanup_mk4_temp_dir(const std::string& temp_dir);
-
 };
-
 
 //RAII guard for the temp directory created by -K conversion.
 //to be declared static so its destructor is called even when std::exit() is used.
 //makes sure the tmp files are cleaned up if they exist
 struct MK4TempDirGuard
 {
-    std::string path;
-    ~MK4TempDirGuard() { MHO_Mk4InputConverter::cleanup_mk4_temp_dir(path); }
+        std::string path;
+
+        ~MK4TempDirGuard() { MHO_Mk4InputConverter::cleanup_mk4_temp_dir(path); }
 };
 
 } // namespace hops

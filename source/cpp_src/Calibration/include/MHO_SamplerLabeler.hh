@@ -65,8 +65,6 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
         }
 
     protected:
-
-
         /**
          * @brief Function ExecuteInPlace - actual implementation, map channel label (e.g. 'a', 'b', etc.) to sampler
          * index for both reference and remote stations, and attaches label to visibility data
@@ -108,7 +106,6 @@ template< typename XArrayType > class MHO_SamplerLabeler: public MHO_UnaryOperat
             }
             return false;
         }
-
 
     private:
         //data maps channels to sampler

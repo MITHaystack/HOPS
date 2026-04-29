@@ -11,7 +11,7 @@ MHO_NotchComb::MHO_NotchComb()
     fSidebandLabelKey = "net_sideband";
     fUpperSideband = "U";
     fLowerSideband = "L";
-    
+
     fNotchOffset = 0.0;
     fNotchPeriod = 0.0;
     fNotchWidth = 0.0;
@@ -26,7 +26,7 @@ bool MHO_NotchComb::ExecuteInPlace(visibility_type* in)
         //no op
         return true;
     }
-        
+
     auto chan_ax = &(std::get< CHANNEL_AXIS >(*in));
     auto freq_ax = &(std::get< FREQ_AXIS >(*in));
 
@@ -41,14 +41,12 @@ bool MHO_NotchComb::ExecuteInPlace(visibility_type* in)
         bool key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fSidebandLabelKey, net_sideband);
         if(!key_present)
         {
-            msg_error("calibration",
-                      "missing net_sideband label for channel " << ch << ", with sky_freq: " << sky_freq << eom);
+            msg_error("calibration", "missing net_sideband label for channel " << ch << ", with sky_freq: " << sky_freq << eom);
         }
         key_present = chan_ax->RetrieveIndexLabelKeyValue(ch, fBandwidthKey, bandwidth);
         if(!key_present)
         {
-            msg_error("calibration",
-                      "missing bandwidth label for channel " << ch << ", with sky_freq: " << sky_freq << eom);
+            msg_error("calibration", "missing bandwidth label for channel " << ch << ", with sky_freq: " << sky_freq << eom);
         }
 
         //figure out the upper/lower frequency limits for this channel
@@ -65,23 +63,23 @@ bool MHO_NotchComb::ExecuteInPlace(visibility_type* in)
         double npts = freq_ax->GetSize();
 
         //need to determine A <= x+n*P <= B
-        //where A is the channel lower bound, B is the channel upper bound 
-        //x is the the notch offset, P is the notch period 
-        //so look for integers n, where (A-x)/P <= (B-x)/P 
-        //we intentionally have reverse the use of floor/ceil here, so we can catch 
+        //where A is the channel lower bound, B is the channel upper bound
+        //x is the the notch offset, P is the notch period
+        //so look for integers n, where (A-x)/P <= (B-x)/P
+        //we intentionally have reverse the use of floor/ceil here, so we can catch
         //notches which might be outside of the channel, but due to a non-zero notch width
         //might overlap a portion of the channel
-        int n_lower = std::floor( (lower_freq - fNotchOffset)/fNotchPeriod );
-        int n_upper = std::ceil( (upper_freq - fNotchOffset)/fNotchPeriod );
-        
-        //determine how many notches should be applied in this channel 
+        int n_lower = std::floor((lower_freq - fNotchOffset) / fNotchPeriod);
+        int n_upper = std::ceil((upper_freq - fNotchOffset) / fNotchPeriod);
+
+        //determine how many notches should be applied in this channel
         int n_notches = n_upper - n_lower;
 
         for(int m = 0; m < n_notches; m++)
         {
-            double notch_center = fNotchOffset + (n_lower + m)*fNotchPeriod;
-            double notch_low = notch_center - fNotchWidth/2.0;
-            double notch_high = notch_center + fNotchWidth/2.0;
+            double notch_center = fNotchOffset + (n_lower + m) * fNotchPeriod;
+            double notch_low = notch_center - fNotchWidth / 2.0;
+            double notch_high = notch_center + fNotchWidth / 2.0;
 
             //check if the notch that is to be excluded is within/overlaps this channel
             double overlap[2];
@@ -122,8 +120,5 @@ bool MHO_NotchComb::ExecuteInPlace(visibility_type* in)
 
     return true;
 }
-
-
-
 
 } // namespace hops

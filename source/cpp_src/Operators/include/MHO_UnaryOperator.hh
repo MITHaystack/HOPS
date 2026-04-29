@@ -95,6 +95,7 @@ template< class XArgType > class MHO_UnaryOperator: public MHO_Operator
 
     protected:
         virtual bool InitializeInPlace(XArgType* /*in*/) { return true; }
+
         virtual bool InitializeOutOfPlace(const XArgType* /*in*/, XArgType* /*out*/) { return true; }
 
         virtual bool ExecuteInPlace(XArgType* in) = 0;

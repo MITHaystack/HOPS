@@ -68,7 +68,6 @@ class MHO_LinearDParCorrection: public MHO_UnaryOperator< visibility_type >
         // void SetRemoteMountType(std::string mt){fRemMountType = mt;}
 
     protected:
-
         /**
          * @brief Applies linear delta-parallactic angle correction to visibility data in-place.
          *

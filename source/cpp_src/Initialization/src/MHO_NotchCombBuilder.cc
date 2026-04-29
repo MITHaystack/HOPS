@@ -21,9 +21,9 @@ bool MHO_NotchCombBuilder::Build()
         double priority = fFormat["priority"].get< double >();
 
         //positive values only
-        double offset = std::fabs( fAttributes["value"]["offset"].get< double >() ); 
-        double period = std::fabs( fAttributes["value"]["period"].get< double >() );
-        double width = std::fabs( fAttributes["value"]["width"].get< double >() );
+        double offset = std::fabs(fAttributes["value"]["offset"].get< double >());
+        double period = std::fabs(fAttributes["value"]["period"].get< double >());
+        double width = std::fabs(fAttributes["value"]["width"].get< double >());
 
         //retrieve the arguments to operate on from the container store
         visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
@@ -58,8 +58,8 @@ bool MHO_NotchCombBuilder::Build()
         op->SetName(op_name);
         op->SetPriority(priority);
 
-        msg_debug("initialization", "creating operator: " << op_name <<
-                  " with notch (offset, period, width) = ("<< offset <<", "<< period<<", "<<width<<")" << eom);
+        msg_debug("initialization", "creating operator: " << op_name << " with notch (offset, period, width) = (" << offset
+                                                          << ", " << period << ", " << width << ")" << eom);
 
         bool replace_duplicates = false;
         this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);

@@ -183,7 +183,4 @@ bool MHO_Passband::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
-
-
 } // namespace hops

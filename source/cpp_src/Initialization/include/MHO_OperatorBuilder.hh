@@ -144,20 +144,26 @@ class MHO_OperatorBuilder
         // Returns all station identifiers named in the 'if station X' condition tokens.
         // Handles OR/AND compound conditions by collecting every 'station <X>' pair.
         // Returns {"??"} (wildcard) when no station keyword is present.
-        std::vector<std::string> ExtractAllStationIdentifiers() const
+        std::vector< std::string > ExtractAllStationIdentifiers() const
         {
-            std::vector<std::string> ids;
-            if(fConditions.is_null() || !fConditions.contains("value")) { return {"??"}; }
-            auto tokens = fConditions["value"].get<std::vector<std::string>>();
+            std::vector< std::string > ids;
+            if(fConditions.is_null() || !fConditions.contains("value"))
+            {
+                return {"??"};
+            }
+            auto tokens = fConditions["value"].get< std::vector< std::string > >();
             for(auto it = tokens.begin(); it != tokens.end(); ++it)
             {
                 if(*it == "station")
                 {
                     ++it;
-                    if(it != tokens.end()) { ids.push_back(*it); }
+                    if(it != tokens.end())
+                    {
+                        ids.push_back(*it);
+                    }
                 }
             }
-            return ids.empty() ? std::vector<std::string>{"??"} : ids;
+            return ids.empty() ? std::vector< std::string >{"??"} : ids;
         }
 
         // Checks whether a single station identifier (from condition tokens) matches
@@ -166,14 +172,18 @@ class MHO_OperatorBuilder
         // role should be "ref" or "rem".
         bool StationMatchesRole(const std::string& station_id, const std::string& role) const
         {
-            if(fParameterStore == nullptr) { return true; }
+            if(fParameterStore == nullptr)
+            {
+                return true;
+            }
 
-            std::string role_mk4 = fParameterStore->GetAs< std::string >(
-                std::string("/") + role + "_station/mk4id");
-            std::string role_code = fParameterStore->GetAs< std::string >(
-                std::string("/") + role + "_station/site_id");
+            std::string role_mk4 = fParameterStore->GetAs< std::string >(std::string("/") + role + "_station/mk4id");
+            std::string role_code = fParameterStore->GetAs< std::string >(std::string("/") + role + "_station/site_id");
 
-            if(station_id == "??" || station_id == "?") { return true; }
+            if(station_id == "??" || station_id == "?")
+            {
+                return true;
+            }
             if(station_id.size() == 1)
             {
                 return (station_id == role_mk4);
@@ -195,15 +205,18 @@ class MHO_OperatorBuilder
         // a condition like "if station X or station Y" from producing an operator
         // bound to both X and Y when only X is on the current baseline.
         // Returns {"??"} when no station keyword is present (apply to all).
-        std::vector<std::string> GetMatchingStationIdentifiers() const
+        std::vector< std::string > GetMatchingStationIdentifiers() const
         {
             auto all_ids = ExtractAllStationIdentifiers();
-            std::vector<std::string> matching;
+            std::vector< std::string > matching;
             for(const auto& id : all_ids)
             {
-                if(StationMatchesCurrentBaseline(id)) { matching.push_back(id); }
+                if(StationMatchesCurrentBaseline(id))
+                {
+                    matching.push_back(id);
+                }
             }
-            return matching.empty() ? std::vector<std::string>{"??"} : matching;
+            return matching.empty() ? std::vector< std::string >{"??"} : matching;
         }
 
         //provided for the configuration of the operator that is to be built

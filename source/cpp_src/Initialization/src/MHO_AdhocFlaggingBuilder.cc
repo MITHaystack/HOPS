@@ -32,21 +32,26 @@ bool MHO_AdhocFlaggingBuilder::Build()
         return false;
     }
 
-   // Determine which station(s) this statement applies to.
+    // Determine which station(s) this statement applies to.
     std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/site_id");
     std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/site_id");
     auto station_ids = ExtractAllStationIdentifiers();
     bool applies_to_ref = false, applies_to_rem = false;
     for(const auto& id : station_ids)
     {
-        if(StationMatchesRole(id, "ref")) { applies_to_ref = true; }
-        if(StationMatchesRole(id, "rem")) { applies_to_rem = true; }
+        if(StationMatchesRole(id, "ref"))
+        {
+            applies_to_ref = true;
+        }
+        if(StationMatchesRole(id, "rem"))
+        {
+            applies_to_rem = true;
+        }
     }
 
-    msg_debug("initialization", "adhoc_flag_file: ref='" << ref_id << "'  rem='" << rem_id
-                                                         << "'  flag_file='" << flag_file << "'"
-                                                         << "  applies_ref=" << applies_to_ref
-                                                         << "  applies_rem=" << applies_to_rem << eom);
+    msg_debug("initialization", "adhoc_flag_file: ref='"
+                                    << ref_id << "'  rem='" << rem_id << "'  flag_file='" << flag_file << "'"
+                                    << "  applies_ref=" << applies_to_ref << "  applies_rem=" << applies_to_rem << eom);
 
     // look for an already-created operator in the toolbox from a previous call
     // (e.g. the ref station's statement was processed first; now updating rem).

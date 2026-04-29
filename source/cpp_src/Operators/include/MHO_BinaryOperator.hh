@@ -31,23 +31,19 @@ class MHO_BinaryOperator: public MHO_ArgumentCarrier< const XArgType1*, const XA
 
         virtual bool Initialize() override
         {
-            return this->Apply([this](const XArgType1* in1, const XArgType2* in2, XArgType3* out) {
-                return InitializeImpl(in1, in2, out);
-            });
+            return this->Apply(
+                [this](const XArgType1* in1, const XArgType2* in2, XArgType3* out) { return InitializeImpl(in1, in2, out); });
         }
 
         virtual bool Execute() override
         {
-            return this->Apply([this](const XArgType1* in1, const XArgType2* in2, XArgType3* out) {
-                return ExecuteImpl(in1, in2, out);
-            });
+            return this->Apply(
+                [this](const XArgType1* in1, const XArgType2* in2, XArgType3* out) { return ExecuteImpl(in1, in2, out); });
         }
 
     protected:
-        virtual bool InitializeImpl(const XArgType1* /*in1*/, const XArgType2* /*in2*/, XArgType3* /*out*/)
-        {
-            return true;
-        }
+        virtual bool InitializeImpl(const XArgType1* /*in1*/, const XArgType2* /*in2*/, XArgType3* /*out*/) { return true; }
+
         virtual bool ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) = 0;
 };
 

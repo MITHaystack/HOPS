@@ -70,7 +70,6 @@ class MHO_Notches: public MHO_UnaryOperator< visibility_type >
         }
 
     protected:
-
         /**
          * @brief Applies filter to channels and spectral points based on defined notches.
          *

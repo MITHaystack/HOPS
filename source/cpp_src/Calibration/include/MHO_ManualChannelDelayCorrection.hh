@@ -43,9 +43,13 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
          * 2-char => 2char station code
          */
         void SetStationIdentifier(const std::string& id) { fStationIdentities = {id}; }
-        void SetStationIdentifiers(const std::vector<std::string>& ids) { fStationIdentities = ids; }
 
-        std::string GetStationIdentifier() const { return fStationIdentities.empty() ? std::string("") : fStationIdentities[0]; }
+        void SetStationIdentifiers(const std::vector< std::string >& ids) { fStationIdentities = ids; }
+
+        std::string GetStationIdentifier() const
+        {
+            return fStationIdentities.empty() ? std::string("") : fStationIdentities[0];
+        }
 
         /**
          * @brief Setter for polarization (associated with these delay corrections)
@@ -66,7 +70,6 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         void SetChannelToPCDelayMap(const std::map< std::string, double >& map) { fPCDelayMap = map; };
 
     protected:
-
         /**
          * @brief Applies manual channel delay corrections in-place for reference or remote station.
          *
@@ -110,7 +113,7 @@ class MHO_ManualChannelDelayCorrection: public MHO_UnaryOperator< visibility_typ
         double fPi;
 
         //selection
-        std::vector<std::string> fStationIdentities;
+        std::vector< std::string > fStationIdentities;
         std::string fPol;
 
         //channel label -> pc delay

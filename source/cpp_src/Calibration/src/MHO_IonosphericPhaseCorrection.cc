@@ -73,7 +73,4 @@ bool MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
-
-
 } // namespace hops

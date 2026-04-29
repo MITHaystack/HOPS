@@ -43,9 +43,13 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
          * 2-char => 2char station code
          */
         void SetStationIdentifier(const std::string& id) { fStationIdentities = {id}; }
-        void SetStationIdentifiers(const std::vector<std::string>& ids) { fStationIdentities = ids; }
 
-        std::string GetStationIdentifier() const { return fStationIdentities.empty() ? std::string("") : fStationIdentities[0]; }
+        void SetStationIdentifiers(const std::vector< std::string >& ids) { fStationIdentities = ids; }
+
+        std::string GetStationIdentifier() const
+        {
+            return fStationIdentities.empty() ? std::string("") : fStationIdentities[0];
+        }
 
         /**
          * @brief Setter for polarization
@@ -67,7 +71,6 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         void SetChannelToPCPhaseMap(const std::map< std::string, double >& map) { fPCMap = map; };
 
     protected:
-
         /**
          * @brief Applies phase correction to visibility data in-place for reference or remote station.
          *
@@ -108,7 +111,7 @@ class MHO_ManualChannelPhaseCorrection: public MHO_UnaryOperator< visibility_typ
         double fDegToRad;
 
         //selection
-        std::vector<std::string> fStationIdentities;
+        std::vector< std::string > fStationIdentities;
         std::string fPol;
 
         //channel label -> pcal phases

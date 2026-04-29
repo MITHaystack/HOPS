@@ -42,21 +42,23 @@ class MHO_NotchComb: public MHO_UnaryOperator< visibility_type >
          * @param weights Input weight values of type weight_type
          */
         void SetWeights(weight_type* weights) { fWeights = weights; };
-        
+
         //starting frequency offset (assumed to be zero by default)
-        void SetNotchOffset(double offset){fNotchOffset = offset;}
-        double GetNotchOffset() const {return fNotchOffset;} 
-        
+        void SetNotchOffset(double offset) { fNotchOffset = offset; }
+
+        double GetNotchOffset() const { return fNotchOffset; }
+
         //spacing between the notches
-        void SetNotchPeriod(double period){fNotchPeriod = period;}
-        double GetNotchPeriod() const {return fNotchPeriod;} 
-        
+        void SetNotchPeriod(double period) { fNotchPeriod = period; }
+
+        double GetNotchPeriod() const { return fNotchPeriod; }
+
         //notch width must be less than the notch period!
-        void SetNotchWidth(double width){fNotchWidth = width;}
-        double GetNotchWidth() const {return fNotchWidth;} 
+        void SetNotchWidth(double width) { fNotchWidth = width; }
+
+        double GetNotchWidth() const { return fNotchWidth; }
 
     protected:
-
         /**
          * @brief Applies filter to channels and spectral points based on defined notches.
          *
@@ -76,7 +78,7 @@ class MHO_NotchComb: public MHO_UnaryOperator< visibility_type >
 
         double fNotchOffset; //MHz
         double fNotchPeriod; //MHz
-        double fNotchWidth; //MHz
+        double fNotchWidth;  //MHz
 };
 
 } // namespace hops

@@ -50,9 +50,13 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
          * 2-char => 2char station code
          */
         void SetStationIdentifier(const std::string& id) { fStationIdentities = {id}; }
-        void SetStationIdentifiers(const std::vector<std::string>& ids) { fStationIdentities = ids; }
 
-        std::string GetStationIdentifier() const { return fStationIdentities.empty() ? std::string("") : fStationIdentities[0]; }
+        void SetStationIdentifiers(const std::vector< std::string >& ids) { fStationIdentities = ids; }
+
+        std::string GetStationIdentifier() const
+        {
+            return fStationIdentities.empty() ? std::string("") : fStationIdentities[0];
+        }
 
         /**
          * @brief Setter for polarization
@@ -73,7 +77,6 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         void SetPCDelayOffset(double pc_delay_offset) { fDelayOffset = pc_delay_offset; }
 
     protected:
-
         /**
          * @brief Applies manual delay offset and calculates phase correction factors for each channel
          *
@@ -108,7 +111,7 @@ class MHO_ManualPolDelayCorrection: public MHO_UnaryOperator< visibility_type >
         double fPi;
 
         //selection
-        std::vector<std::string> fStationIdentities;
+        std::vector< std::string > fStationIdentities;
         std::string fPol;
 
         //ref freq and pc delay

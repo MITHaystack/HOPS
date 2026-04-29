@@ -4,9 +4,9 @@
 #include "hops_version.hh"
 
 //utilities
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_Message.hh"
 #include "MHO_Profiler.hh"
-#include "MHO_DirectoryInterface.hh"
 #include "MHO_Tokenizer.hh"
 
 //data/config passing classes
@@ -90,8 +90,7 @@ class MHO_FringeCommandLineParser
          */
         static int parse_fourfit_command_line(int argc, char** argv, MHO_ParameterStore* paramStore);
 
-
-        static void initialize_messaging(int message_level, const std::vector< std::string>& message_categories);
+        static void initialize_messaging(int message_level, const std::vector< std::string >& message_categories);
 };
 
 } // namespace hops

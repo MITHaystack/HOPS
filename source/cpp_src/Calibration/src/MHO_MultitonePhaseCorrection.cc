@@ -216,7 +216,6 @@ bool MHO_MultitonePhaseCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
 void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t vis_pp, visibility_type* in)
 {
     auto vis_chan_ax = &(std::get< CHANNEL_AXIS >(*in));

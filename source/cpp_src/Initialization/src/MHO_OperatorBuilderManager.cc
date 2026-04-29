@@ -18,8 +18,8 @@
 #include "MHO_MinWeightBuilder.hh"
 #include "MHO_MixedPolYShiftBuilder.hh"
 #include "MHO_MultitonePhaseCorrectionBuilder.hh"
-#include "MHO_NotchesBuilder.hh"
 #include "MHO_NotchCombBuilder.hh"
+#include "MHO_NotchesBuilder.hh"
 #include "MHO_PassbandBuilder.hh"
 #include "MHO_PolProductSummationBuilder.hh"
 #include "MHO_PolarizationRelabelerBuilder.hh"
@@ -103,7 +103,7 @@ void MHO_OperatorBuilderManager::CreateDefaultBuilders()
 void MHO_OperatorBuilderManager::BuildOperatorCategory(const std::string& cat)
 {
     static const std::unordered_set< std::string > kValidCategories = {"default",     "labeling", "selection", "flagging",
-                                                                        "calibration", "prefit",   "postfit",   "finalize"};
+                                                                       "calibration", "prefit",   "postfit",   "finalize"};
 
     if(kValidCategories.count(cat) == 0)
     {

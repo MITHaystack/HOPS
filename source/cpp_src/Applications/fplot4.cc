@@ -8,9 +8,9 @@
 //option parsing and help text library
 #include "CLI11.hpp"
 
-#include "MHO_FringeCommandLineParser.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_DirectoryInterface.hh"
+#include "MHO_FringeCommandLineParser.hh"
 #include "MHO_FringePlotVisitorFactory.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"

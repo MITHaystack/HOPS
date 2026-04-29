@@ -1334,7 +1334,10 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     if(ap_per_seg == 0)
     {
         nseg = 200 / nplot; //max of 200 points across plot
-        if(nseg < 1){nseg = 1;} //can't have fewer than 1 segment
+        if(nseg < 1)
+        {
+            nseg = 1;
+        } //can't have fewer than 1 segment
         if(nseg > naps)
         {
             nseg = naps;
@@ -1356,7 +1359,10 @@ void MHO_ComputePlotData::DumpInfoToJSON(mho_json& plot_dict)
     // Number of segments, starting at AP 0
     // and using integer apseg per segment
     nseg = naps / apseg;
-    if(nseg < 1){nseg = 1;} //can't have fewer than 1 segment
+    if(nseg < 1)
+    {
+        nseg = 1;
+    } //can't have fewer than 1 segment
     //Remainder goes into last segment (???)
     if((naps % apseg) != 0)
     {

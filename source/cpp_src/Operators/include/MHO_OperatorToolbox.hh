@@ -43,7 +43,8 @@ class MHO_OperatorToolbox
          * @param category Category under which the operator will be stored
          * @param replace_duplicate Flag indicating whether to replace duplicate operators by name
          */
-        void AddOperator(std::unique_ptr<MHO_Operator> op, const std::string& name, const std::string& category, bool replace_duplicate = true)
+        void AddOperator(std::unique_ptr< MHO_Operator > op, const std::string& name, const std::string& category,
+                         bool replace_duplicate = true)
         {
             msg_debug("operators",
                       "adding an operator to the toolbox with name: " << name << " in category: " << category << eom);
@@ -201,10 +202,7 @@ class MHO_OperatorToolbox
             return ops;
         }
 
-        std::size_t GetNOperatorsInCategory(const std::string& cat)
-        {
-            return fCategoryToOperatorMap.count(cat);
-        }
+        std::size_t GetNOperatorsInCategory(const std::string& cat) { return fCategoryToOperatorMap.count(cat); }
 
         //debugging
         void PrintOperatorNames()
@@ -254,8 +252,9 @@ class MHO_OperatorToolbox
                 }
 
                 // erase from owned storage last — unique_ptr destructor deletes the object
-                auto owned_it = std::find_if(fOperators.begin(), fOperators.end(),
-                    [op_ptr](const std::unique_ptr< MHO_Operator >& uptr) { return uptr.get() == op_ptr; });
+                auto owned_it =
+                    std::find_if(fOperators.begin(), fOperators.end(),
+                                 [op_ptr](const std::unique_ptr< MHO_Operator >& uptr) { return uptr.get() == op_ptr; });
                 if(owned_it != fOperators.end())
                 {
                     fOperators.erase(owned_it);
@@ -284,10 +283,7 @@ class MHO_OperatorToolbox
 
         struct operator_predicate
         {
-            bool operator()(const MHO_Operator* a, const MHO_Operator* b) const
-            {
-                return a->Priority() < b->Priority();
-            }
+                bool operator()(const MHO_Operator* a, const MHO_Operator* b) const { return a->Priority() < b->Priority(); }
         };
 };
 

@@ -45,7 +45,6 @@ class MHO_MixedPolYShift: public MHO_UnaryOperator< visibility_type >
         void SetPhaseOffset(double offset) { fYPolPhaseOffset = offset; }
 
     protected:
-
         /**
          * @brief Applies a phase offset for mixed polarization data in-place (to Y-pol).
          *

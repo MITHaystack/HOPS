@@ -146,7 +146,4 @@ bool MHO_PhaseCalibrationTrim::ExecuteInPlace(multitone_pcal_type* in)
     return false;
 }
 
-
-
-
 } // namespace hops

@@ -45,7 +45,6 @@
 
 using namespace hops;
 
-
 int main(int argc, char** argv)
 {
     //initialize the lock-file/signal-handler
@@ -149,8 +148,7 @@ int main(int argc, char** argv)
         // file has a .py extension; DSL (.cf) files use the normal path.
 #ifdef USE_PYBIND11
         {
-            std::string ctrl = fpass.GetFringeData()->GetParameterStore()
-                                    ->GetAs<std::string>("/files/control_file");
+            std::string ctrl = fpass.GetFringeData()->GetParameterStore()->GetAs< std::string >("/files/control_file");
             if(MHO_DirectoryInterface::GetFileExtension(ctrl) == "py")
             {
                 MHO_PythonPluginInterface::EnsureInitialized();

@@ -21,7 +21,6 @@ class MHO_PolarizationRelabelerBuilder: public MHO_OperatorBuilder
         //polarization relabeler builder takes care of visibility, weight and multitone pcal data
         //(it builds multiple operator classes to do this)
         virtual bool Build() override;
-
 };
 
 } // namespace hops

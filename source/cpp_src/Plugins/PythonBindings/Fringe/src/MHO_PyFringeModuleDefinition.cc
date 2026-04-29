@@ -23,9 +23,9 @@ using namespace hops;
 static void apply_condition_filter_and_set_string(MHO_ParameterStore* ps, mho_json& stmts)
 {
     std::string baseline = ps->GetAs< std::string >("/config/baseline");
-    std::string source   = "?";
+    std::string source = "?";
     ps->Get("/vex/scan/source/name", source);
-    std::string fgroup    = "?";
+    std::string fgroup = "?";
     ps->Get("/config/fgroup", fgroup);
     std::string scan_name = "?";
     ps->Get("/vex/scan/name", scan_name);
@@ -64,39 +64,43 @@ static MHO_FringePass::ControlEvaluatorFn make_py_evaluator(py::object fn)
         try
         {
             py::gil_scoped_acquire gil;
-            py::module hops_ctrl  = py::module::import("hops_control");
-            py::object PassInfo   = hops_ctrl.attr("PassInfo");
-            py::object Config     = hops_ctrl.attr("Config");
+            py::module hops_ctrl = py::module::import("hops_control");
+            py::object PassInfo = hops_ctrl.attr("PassInfo");
+            py::object Config = hops_ctrl.attr("Config");
 
             // Build pass-info dict from parameter store
             mho_json pd;
             std::string baseline = ps->GetAs< std::string >("/config/baseline");
-            pd["baseline"]       = baseline;
+            pd["baseline"] = baseline;
             if(baseline.size() == 2)
             {
                 pd["ref_mk4id"] = std::string(1, baseline[0]);
                 pd["rem_mk4id"] = std::string(1, baseline[1]);
-                pd["ref_code"]  = std::string(1, baseline[0]);
-                pd["rem_code"]  = std::string(1, baseline[1]);
+                pd["ref_code"] = std::string(1, baseline[0]);
+                pd["rem_code"] = std::string(1, baseline[1]);
             }
             else
             {
                 pd["ref_mk4id"] = "?";
                 pd["rem_mk4id"] = "?";
-                pd["ref_code"]  = "??";
-                pd["rem_code"]  = "??";
+                pd["ref_code"] = "??";
+                pd["rem_code"] = "??";
             }
-            std::string source = "?"; ps->Get("/vex/scan/source/name", source);
-            std::string fgroup = "?"; ps->Get("/config/fgroup", fgroup);
-            std::string scan   = "?"; ps->Get("/vex/scan/name", scan);
-            std::string pp     = "??"; ps->Get("/config/polprod", pp);
-            pd["source"]    = source;
-            pd["fgroup"]    = fgroup;
+            std::string source = "?";
+            ps->Get("/vex/scan/source/name", source);
+            std::string fgroup = "?";
+            ps->Get("/config/fgroup", fgroup);
+            std::string scan = "?";
+            ps->Get("/vex/scan/name", scan);
+            std::string pp = "??";
+            ps->Get("/config/polprod", pp);
+            pd["source"] = source;
+            pd["fgroup"] = fgroup;
             pd["scan_name"] = scan;
-            pd["polprod"]   = pp;
+            pd["polprod"] = pp;
 
             py::object pass_info = PassInfo(pd);
-            py::object config    = Config(fmt);
+            py::object config = Config(fmt);
 
             fn(pass_info, config);
 
@@ -125,7 +129,7 @@ PYBIND11_MODULE(pyMHO_Fringe, m)
     py::module_::import("pyMHO_Containers");
 
     py::class_< MHO_FringePass >(m, "FringePass",
-        R"doc(
+                                 R"doc(
         Encapsulates a single-baseline, single-pol-product fringe-fitting pass.
 
         Typical usage::
@@ -150,62 +154,61 @@ PYBIND11_MODULE(pyMHO_Fringe, m)
 
         // --- input setters ---
         .def(py::init<>())
-        .def("set_scan_directory",  &MHO_FringePass::SetScanDirectory,
-             py::arg("path"), "Path to the scan directory (contains .cor, .sta, etc.)")
-        .def("set_baseline",        &MHO_FringePass::SetBaseline,
-             py::arg("baseline"), "Two-character baseline code, e.g. 'GE'")
-        .def("set_pol_product",     &MHO_FringePass::SetPolProduct,
-             py::arg("polprod"), "Polarization product string, e.g. 'XX', 'RR', 'I'")
-        .def("set_frequency_group", &MHO_FringePass::SetFrequencyGroup,
-             py::arg("fgroup"), "Single-character frequency group code, e.g. 'X'")
-        .def("set_scan_name",       &MHO_FringePass::SetScanName,
-             py::arg("scan"), "Scan name string, e.g. '105-1800'")
-        .def("set_root_file",       &MHO_FringePass::SetRootFile,
-             py::arg("path"), "Root file basename (optional; discovered automatically if omitted)")
-        .def("set_build_timestamp", &MHO_FringePass::SetBuildTimestamp,
-             py::arg("ts"), "Build timestamp string written into plot output")
-        .def("set_control_file",    &MHO_FringePass::SetControlFile,
-             py::arg("path"), "Override the control file path (DSL .cf or Python .py)")
+        .def("set_scan_directory", &MHO_FringePass::SetScanDirectory, py::arg("path"),
+             "Path to the scan directory (contains .cor, .sta, etc.)")
+        .def("set_baseline", &MHO_FringePass::SetBaseline, py::arg("baseline"), "Two-character baseline code, e.g. 'GE'")
+        .def("set_pol_product", &MHO_FringePass::SetPolProduct, py::arg("polprod"),
+             "Polarization product string, e.g. 'XX', 'RR', 'I'")
+        .def("set_frequency_group", &MHO_FringePass::SetFrequencyGroup, py::arg("fgroup"),
+             "Single-character frequency group code, e.g. 'X'")
+        .def("set_scan_name", &MHO_FringePass::SetScanName, py::arg("scan"), "Scan name string, e.g. '105-1800'")
+        .def("set_root_file", &MHO_FringePass::SetRootFile, py::arg("path"),
+             "Root file basename (optional; discovered automatically if omitted)")
+        .def("set_build_timestamp", &MHO_FringePass::SetBuildTimestamp, py::arg("ts"),
+             "Build timestamp string written into plot output")
+        .def("set_control_file", &MHO_FringePass::SetControlFile, py::arg("path"),
+             "Override the control file path (DSL .cf or Python .py)")
 
         // --- configure: accepts either a callable or a control-file path ---
-        .def("set_configure",
-             [](MHO_FringePass& self, py::object fn) {
-                 if(py::isinstance< py::str >(fn))
-                 {
-                     // treat as a control-file path (DSL or .py); MHO_FringePass::Configure()
-                     // handles both via extension detection
-                     self.SetControlFile(fn.cast< std::string >());
-                 }
-                 else if(py::hasattr(fn, "__call__"))
-                 {
-                     // wrap the callable and inject it as the control evaluator
-                     self.SetPythonControlEvaluator(make_py_evaluator(fn));
-                 }
-                 else
-                 {
-                     throw py::type_error(
-                         "set_configure() requires a control-file path string or a callable configure(p, cfg)");
-                 }
-             },
-             py::arg("configure"),
-             "Set the control configurator: a DSL/Python file path string, or a callable configure(p: PassInfo, cfg: Config)")
+        .def(
+            "set_configure",
+            [](MHO_FringePass& self, py::object fn) {
+                if(py::isinstance< py::str >(fn))
+                {
+                    // treat as a control-file path (DSL or .py); MHO_FringePass::Configure()
+                    // handles both via extension detection
+                    self.SetControlFile(fn.cast< std::string >());
+                }
+                else if(py::hasattr(fn, "__call__"))
+                {
+                    // wrap the callable and inject it as the control evaluator
+                    self.SetPythonControlEvaluator(make_py_evaluator(fn));
+                }
+                else
+                {
+                    throw py::type_error("set_configure() requires a control-file path string or a callable configure(p, cfg)");
+                }
+            },
+            py::arg("configure"),
+            "Set the control configurator: a DSL/Python file path string, or a callable configure(p: PassInfo, cfg: Config)")
 
         // --- convenience setters for command-line-equivalent parameters ---
-        .def("set_output_directory",
-             [](MHO_FringePass& self, const std::string& path) {
-                 self.GetFringeData()->GetParameterStore()->Set("/cmdline/output_directory", path);
-             },
-             py::arg("path"), "Directory for output .frng files (default: same as scan directory)")
-        .def("set_set_string",
-             [](MHO_FringePass& self, const std::string& s) {
-                 self.GetFringeData()->GetParameterStore()->Set("/cmdline/set_string", s);
-             },
-             py::arg("s"), "Command-line 'set' override string (applied after control statements)")
-        .def("set_test_mode",
-             [](MHO_FringePass& self, bool v) {
-                 self.GetFringeData()->GetParameterStore()->Set("/cmdline/test_mode", v);
-             },
-             py::arg("enable") = true, "When true, suppress writing .frng output files")
+        .def(
+            "set_output_directory",
+            [](MHO_FringePass& self, const std::string& path) {
+                self.GetFringeData()->GetParameterStore()->Set("/cmdline/output_directory", path);
+            },
+            py::arg("path"), "Directory for output .frng files (default: same as scan directory)")
+        .def(
+            "set_set_string",
+            [](MHO_FringePass& self, const std::string& s) {
+                self.GetFringeData()->GetParameterStore()->Set("/cmdline/set_string", s);
+            },
+            py::arg("s"), "Command-line 'set' override string (applied after control statements)")
+        .def(
+            "set_test_mode",
+            [](MHO_FringePass& self, bool v) { self.GetFringeData()->GetParameterStore()->Set("/cmdline/test_mode", v); },
+            py::arg("enable") = true, "When true, suppress writing .frng output files")
 
         // --- lifecycle ---
         .def("initialize", &MHO_FringePass::Initialize,
@@ -214,20 +217,19 @@ PYBIND11_MODULE(pyMHO_Fringe, m)
         .def("configure", &MHO_FringePass::Configure,
              "Evaluate the control file/callable and apply statements. "
              "Returns False on evaluation failure or if the pass is marked skipped.")
-        .def("run",
-             [](MHO_FringePass& self) -> bool { return self.Run({}, {}, {}); },
-             "Run the fringe fitter with no plugin/output/plot visitors. "
-             "Access results via get_fringe_data() afterwards.")
+        .def(
+            "run", [](MHO_FringePass& self) -> bool { return self.Run({}, {}, {}); },
+            "Run the fringe fitter with no plugin/output/plot visitors. "
+            "Access results via get_fringe_data() afterwards.")
 
         // --- status and results ---
-        .def("is_skipped", &MHO_FringePass::IsSkipped,
-             "True if a 'skip' control statement suppressed this pass.")
-        .def("get_fringe_data",
-             [](MHO_FringePass& self) -> MHO_PyFringeDataInterface* {
-                 return new MHO_PyFringeDataInterface(self.GetFringeData());
-             },
-             py::return_value_policy::take_ownership,
-             py::keep_alive< 1, 0 >(),
-             "Return a view of the fringe data (parameter store, container store, plot data). "
-             "Valid only for the lifetime of this FringePass.");
+        .def("is_skipped", &MHO_FringePass::IsSkipped, "True if a 'skip' control statement suppressed this pass.")
+        .def(
+            "get_fringe_data",
+            [](MHO_FringePass& self) -> MHO_PyFringeDataInterface* {
+                return new MHO_PyFringeDataInterface(self.GetFringeData());
+            },
+            py::return_value_policy::take_ownership, py::keep_alive< 1, 0 >(),
+            "Return a view of the fringe data (parameter store, container store, plot data). "
+            "Valid only for the lifetime of this FringePass.");
 }

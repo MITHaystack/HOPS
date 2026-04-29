@@ -44,7 +44,6 @@ class MHO_PhaseCalibrationTrim: public MHO_UnaryOperator< multitone_pcal_type >
         void SetVisibilities(const visibility_type* vis) { fVis = vis; }
 
     protected:
-
         /**
          * @brief Trims and aligns multitone phase calibration data in-place based on visibility data.
          *

@@ -33,7 +33,7 @@ std::string MHO_Mk4InputConverter::convert_mk4_input(MHO_ParameterStore* paramSt
     std::string temp_root;
     {
         char shm_buf[] = "/dev/shm/hops_mk4_XXXXXX";
-        if(mkdtemp(shm_buf) != nullptr && dir_type == MK4_SCANDIR )
+        if(mkdtemp(shm_buf) != nullptr && dir_type == MK4_SCANDIR)
         {
             temp_root = shm_buf;
         }
@@ -54,16 +54,18 @@ std::string MHO_Mk4InputConverter::convert_mk4_input(MHO_ParameterStore* paramSt
         std::string scan_name = MHO_DirectoryInterface::GetTrailingDirectory(input_dir);
         std::string temp_scan = temp_root + "/" + scan_name;
         msg_status("fringe", "converting mark4 scan directory: " << input_dir << " -> " << temp_scan
-                                                                  << " (baseline filter: " << baseline << ")" << eom);
+                                                                 << " (baseline filter: " << baseline << ")" << eom);
         MHO_MK4ScanConverter::ProcessScan(input_dir, temp_scan, baseline);
-        msg_info("fringe", "redirecting input directory to : "<<  temp_scan + "/" << eom);
+        msg_info("fringe", "redirecting input directory to : " << temp_scan + "/" << eom);
         paramStore->Set("/cmdline/input_directory", temp_scan + "/");
     }
     else if(dir_type == MK4_EXPDIR)
     {
-        msg_warn("fringe", "on-the-fly mark4-to-hops conversion of mark4 experiment directories is not recommended, use mark42hops first" << eom);
-        msg_status("fringe", "converting mark4 experiment directory: " << input_dir
-                                                                       << " (baseline filter: " << baseline << ")" << eom);
+        msg_warn("fringe",
+                 "on-the-fly mark4-to-hops conversion of mark4 experiment directories is not recommended, use mark42hops first"
+                     << eom);
+        msg_status("fringe",
+                   "converting mark4 experiment directory: " << input_dir << " (baseline filter: " << baseline << ")" << eom);
         MHO_DirectoryInterface dirInterface;
         dirInterface.SetCurrentDirectory(input_dir);
         dirInterface.ReadCurrentDirectory();
@@ -93,13 +95,12 @@ std::string MHO_Mk4InputConverter::convert_mk4_input(MHO_ParameterStore* paramSt
             }
         }
         paramStore->Set("/cmdline/input_directory", temp_root + "/");
-        msg_info("fringe", "redirecting input directory to : "<<  temp_root + "/" << eom);
+        msg_info("fringe", "redirecting input directory to : " << temp_root + "/" << eom);
     }
     else
     {
-        msg_fatal("fringe",
-                  "convert_mk4_input: input directory is not a recognized mark4 scan or experiment directory: "
-                      << input_dir << eom);
+        msg_fatal("fringe", "convert_mk4_input: input directory is not a recognized mark4 scan or experiment directory: "
+                                << input_dir << eom);
         // Clean up the empty temp dir we just created
         nftw(temp_root.c_str(), remove_entry, 64, FTW_DEPTH | FTW_PHYS);
         return "";
@@ -118,4 +119,4 @@ void MHO_Mk4InputConverter::cleanup_mk4_temp_dir(const std::string& temp_dir)
     nftw(temp_dir.c_str(), remove_entry, 64, FTW_DEPTH | FTW_PHYS);
 }
 
-}//end namespace
+} // namespace hops

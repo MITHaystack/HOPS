@@ -84,7 +84,6 @@ class MHO_CircularFieldRotationCorrection: public MHO_UnaryOperator< visibility_
         void SetRemoteMountType(std::string mt) { fRemMountType = mt; }
 
     protected:
-
         /**
          * @brief Applies a circular field rotation correction to visibility data in-place.
          *

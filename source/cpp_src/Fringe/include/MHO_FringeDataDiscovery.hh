@@ -4,9 +4,9 @@
 #include "hops_version.hh"
 
 //utilities
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_Message.hh"
 #include "MHO_Profiler.hh"
-#include "MHO_DirectoryInterface.hh"
 #include "MHO_Tokenizer.hh"
 
 //data/config passing classes

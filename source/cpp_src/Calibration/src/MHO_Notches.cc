@@ -99,7 +99,4 @@ bool MHO_Notches::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
-
-
 } // namespace hops

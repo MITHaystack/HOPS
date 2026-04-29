@@ -50,9 +50,13 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
          * 2-char => 2char station code
          */
         void SetStationIdentifier(const std::string& id) { fStationIdentities = {id}; }
-        void SetStationIdentifiers(const std::vector<std::string>& ids) { fStationIdentities = ids; }
 
-        std::string GetStationIdentifier() const { return fStationIdentities.empty() ? std::string("") : fStationIdentities[0]; }
+        void SetStationIdentifiers(const std::vector< std::string >& ids) { fStationIdentities = ids; }
+
+        std::string GetStationIdentifier() const
+        {
+            return fStationIdentities.empty() ? std::string("") : fStationIdentities[0];
+        }
 
         /**
          * @brief Setter for delay offset
@@ -62,7 +66,6 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
         void SetPCDelayOffset(double pc_delay_offset) { fDelayOffset = pc_delay_offset; }
 
     protected:
-
         /**
          * @brief Applies phase correction to visibility data for reference or remote station.
          *
@@ -89,7 +92,7 @@ class MHO_StationDelayCorrection: public MHO_UnaryOperator< visibility_type >
         double fPi;
 
         //selection
-        std::vector<std::string> fStationIdentities;
+        std::vector< std::string > fStationIdentities;
 
         //ref freq and pc delay
         double fRefFreq;

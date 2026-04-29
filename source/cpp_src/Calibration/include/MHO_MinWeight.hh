@@ -42,7 +42,6 @@ class MHO_MinWeight: public MHO_UnaryOperator< weight_type >
         void SetMinWeight(double min_weight) { fMinWeight = min_weight; }
 
     protected:
-
         /**
          * @brief Zeroes out weights in-place for all values less than a specified minimum.
          *

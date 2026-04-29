@@ -13,9 +13,9 @@
 #include "MHO_ParameterManager.hh"
 
 //fringe finding library helper functions
-#include "MHO_FringeDataInitializer.hh"
 #include "MHO_BasicFringeInfo.hh"
 #include "MHO_BasicFringeUtilities.hh"
+#include "MHO_FringeDataInitializer.hh"
 #include "MHO_FringePlotInfo.hh"
 #include "MHO_InitialFringeInfo.hh"
 #include "MHO_InterpolateFringePeakOptimized.hh"
@@ -128,8 +128,7 @@ void MHO_BasicFringeFitter::Configure()
         //also load pcal data if it is present
         std::string ref_station_mk4id = std::string(1, baseline[0]);
         std::string rem_station_mk4id = std::string(1, baseline[1]);
-        MHO_FringeDataInitializer::configure_station_data(fScanStore, fContainerStore, ref_station_mk4id,
-                                                                 rem_station_mk4id);
+        MHO_FringeDataInitializer::configure_station_data(fScanStore, fContainerStore, ref_station_mk4id, rem_station_mk4id);
         fParameterStore->Set("/files/ref_station_input_file", fScanStore->GetStationFilename(ref_station_mk4id));
         fParameterStore->Set("/files/rem_station_input_file", fScanStore->GetStationFilename(rem_station_mk4id));
 

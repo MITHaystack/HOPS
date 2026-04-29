@@ -45,7 +45,4 @@ bool MHO_DCBlock::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
-
-
 } // namespace hops

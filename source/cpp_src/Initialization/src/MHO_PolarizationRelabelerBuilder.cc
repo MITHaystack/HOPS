@@ -33,8 +33,10 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         }
 
         //need an operator for both vis and weight data
-        std::unique_ptr< MHO_PolarizationProductRelabeler< visibility_type > > vis_op(new MHO_PolarizationProductRelabeler< visibility_type >());
-        std::unique_ptr< MHO_PolarizationProductRelabeler< weight_type > > wt_op(new MHO_PolarizationProductRelabeler< weight_type >());
+        std::unique_ptr< MHO_PolarizationProductRelabeler< visibility_type > > vis_op(
+            new MHO_PolarizationProductRelabeler< visibility_type >());
+        std::unique_ptr< MHO_PolarizationProductRelabeler< weight_type > > wt_op(
+            new MHO_PolarizationProductRelabeler< weight_type >());
 
         vis_op->SetStationIdentifiers(station_ids);
         vis_op->SetPolarizationSwapPair(pol1, pol2);
@@ -57,7 +59,8 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         multitone_pcal_type* ref_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("ref_pcal"));
         if(ref_pcal_data != nullptr)
         {
-            std::unique_ptr< MHO_PolarizationRelabeler< multitone_pcal_type > > ref_pcal_relabeler(new MHO_PolarizationRelabeler< multitone_pcal_type >());
+            std::unique_ptr< MHO_PolarizationRelabeler< multitone_pcal_type > > ref_pcal_relabeler(
+                new MHO_PolarizationRelabeler< multitone_pcal_type >());
 
             ref_pcal_relabeler->SetStationIdentifiers(station_ids);
             ref_pcal_relabeler->SetPolarizationSwapPair(pol1, pol2);
@@ -72,7 +75,8 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         multitone_pcal_type* rem_pcal_data = fContainerStore->GetObject< multitone_pcal_type >(std::string("rem_pcal"));
         if(rem_pcal_data != nullptr)
         {
-            std::unique_ptr< MHO_PolarizationRelabeler< multitone_pcal_type > > rem_pcal_relabeler(new MHO_PolarizationRelabeler< multitone_pcal_type >());
+            std::unique_ptr< MHO_PolarizationRelabeler< multitone_pcal_type > > rem_pcal_relabeler(
+                new MHO_PolarizationRelabeler< multitone_pcal_type >());
 
             rem_pcal_relabeler->SetStationIdentifiers(station_ids);
             rem_pcal_relabeler->SetPolarizationSwapPair(pol1, pol2);

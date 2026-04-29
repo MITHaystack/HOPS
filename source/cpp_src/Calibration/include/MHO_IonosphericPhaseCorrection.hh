@@ -42,7 +42,6 @@ class MHO_IonosphericPhaseCorrection: public MHO_UnaryOperator< visibility_type 
         void SetDifferentialTEC(double dTEC) { fdTEC = dTEC; };
 
     protected:
-
         /**
          * @brief Applies differential ionospheric phase correction to visibility data in-place.
          *

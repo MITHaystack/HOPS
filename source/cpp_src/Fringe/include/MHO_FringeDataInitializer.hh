@@ -4,9 +4,9 @@
 #include "hops_version.hh"
 
 //utilities
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_Message.hh"
 #include "MHO_Profiler.hh"
-#include "MHO_DirectoryInterface.hh"
 #include "MHO_Tokenizer.hh"
 
 //data/config passing classes
@@ -91,7 +91,6 @@ class MHO_FringeDataInitializer
          */
         static void init_and_exec_operators(MHO_OperatorBuilderManager* build_manager, MHO_OperatorToolbox* opToolbox,
                                             const char* category);
-
 };
 
 } // namespace hops

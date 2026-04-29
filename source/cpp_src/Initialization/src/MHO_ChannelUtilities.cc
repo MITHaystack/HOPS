@@ -6,8 +6,7 @@ namespace hops
 {
 
 //if the number of channel names isn't the same as the number of values, returns an empty map
-std::map< std::string, double > MapChannelQuantities(std::string channel_name_str,
-                                                     std::vector< double >& values)
+std::map< std::string, double > MapChannelQuantities(std::string channel_name_str, std::vector< double >& values)
 {
     std::map< std::string, double > chan_quantity_map;
     std::vector< std::string > chan_names;

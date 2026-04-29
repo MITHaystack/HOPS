@@ -101,7 +101,6 @@ bool MHO_ManualPolDelayCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
 bool MHO_ManualPolDelayCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
     std::string mk4id_key;
@@ -126,12 +125,17 @@ bool MHO_ManualPolDelayCorrection::IsApplicable(std::size_t st_idx, const visibi
     {
         if(id.size() > 2)
         {
-            msg_error("calibration",
-                      "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
+            msg_error("calibration", "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
             continue;
         }
-        if(id.size() == 1 && (id == mk4id_val || id == "?")) { return true; }
-        if(id.size() == 2 && (id == code_val || id == "??")) { return true; }
+        if(id.size() == 1 && (id == mk4id_val || id == "?"))
+        {
+            return true;
+        }
+        if(id.size() == 2 && (id == code_val || id == "??"))
+        {
+            return true;
+        }
     }
     return false;
 }
@@ -141,7 +145,5 @@ bool MHO_ManualPolDelayCorrection::PolMatch(std::size_t station_idx, std::string
     make_upper(polprod);
     return (fPol[0] == polprod[station_idx]);
 }
-
-
 
 } // namespace hops

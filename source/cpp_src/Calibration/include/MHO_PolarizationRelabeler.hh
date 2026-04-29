@@ -67,13 +67,15 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
          * 2-char => 2char station code
          */
         void SetStationIdentifier(const std::string& id) { fStationIdentities = {id}; }
-        void SetStationIdentifiers(const std::vector<std::string>& ids) { fStationIdentities = ids; }
 
-        std::string GetStationIdentifier() const { return fStationIdentities.empty() ? std::string("") : fStationIdentities[0]; }
+        void SetStationIdentifiers(const std::vector< std::string >& ids) { fStationIdentities = ids; }
+
+        std::string GetStationIdentifier() const
+        {
+            return fStationIdentities.empty() ? std::string("") : fStationIdentities[0];
+        }
 
     protected:
-
-
         /**
          * @brief Function ExecuteInPlace - attaches channel labels based on sky frequency or user specified map
          *
@@ -109,14 +111,13 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
             return false;
         }
 
-
     private:
         //keys for tag retrieval
         std::string fStationKey;
         std::string fStationMk4IDKey;
 
         //data
-        std::vector<std::string> fStationIdentities;
+        std::vector< std::string > fStationIdentities;
         std::string fPol1;
         std::string fPol2;
         bool fValid;
@@ -136,8 +137,14 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
                               "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
                     continue;
                 }
-                if(id.size() == 1 && (id == mk4id_val || id == "?")) { return true; }
-                if(id.size() == 2 && (id == code_val || id == "??")) { return true; }
+                if(id.size() == 1 && (id == mk4id_val || id == "?"))
+                {
+                    return true;
+                }
+                if(id.size() == 2 && (id == code_val || id == "??"))
+                {
+                    return true;
+                }
             }
             return false;
         }

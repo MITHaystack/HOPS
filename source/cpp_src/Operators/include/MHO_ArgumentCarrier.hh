@@ -18,14 +18,12 @@ namespace hops
  *       All pointer slots are value-initialized to nullptr.
  */
 
-template< typename... Args >
-class MHO_ArgumentCarrier: public MHO_Operator
+template< typename... Args > class MHO_ArgumentCarrier: public MHO_Operator
 {
     protected:
         std::tuple< Args... > fArgs;
 
-        template< typename Func >
-        auto Apply(Func&& func) -> decltype(mho_tuple_apply(std::forward< Func >(func), fArgs))
+        template< typename Func > auto Apply(Func&& func) -> decltype(mho_tuple_apply(std::forward< Func >(func), fArgs))
         {
             return mho_tuple_apply(std::forward< Func >(func), fArgs);
         }

@@ -78,7 +78,6 @@ bool MHO_StationDelayCorrection::ExecuteInPlace(visibility_type* in)
     return true;
 }
 
-
 bool MHO_StationDelayCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
     std::string mk4id_key;
@@ -103,8 +102,7 @@ bool MHO_StationDelayCorrection::IsApplicable(std::size_t st_idx, const visibili
     {
         if(id.size() > 2)
         {
-            msg_error("calibration",
-                      "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
+            msg_error("calibration", "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
             continue;
         }
         if(id.size() == 1 && (id == mk4id_val || id == "?"))
@@ -120,7 +118,5 @@ bool MHO_StationDelayCorrection::IsApplicable(std::size_t st_idx, const visibili
     }
     return false;
 }
-
-
 
 } // namespace hops

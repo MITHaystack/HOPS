@@ -21,8 +21,7 @@ namespace hops
 class MHO_ChannelLabelerBuilder: public MHO_OperatorBuilder
 {
     public:
-        MHO_ChannelLabelerBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata)
-            : MHO_OperatorBuilder(toolbox, fdata){};
+        MHO_ChannelLabelerBuilder(MHO_OperatorToolbox* toolbox, MHO_FringeData* fdata): MHO_OperatorBuilder(toolbox, fdata){};
 
         MHO_ChannelLabelerBuilder(MHO_OperatorToolbox* toolbox, MHO_ContainerStore* cstore = nullptr,
                                   MHO_ParameterStore* pstore = nullptr)

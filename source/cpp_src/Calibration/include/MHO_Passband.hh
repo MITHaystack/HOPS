@@ -73,7 +73,6 @@ class MHO_Passband: public MHO_UnaryOperator< visibility_type >
         }
 
     protected:
-
         /**
          * @brief Checks and excludes specific passbands within each channel of visibility data.
          *

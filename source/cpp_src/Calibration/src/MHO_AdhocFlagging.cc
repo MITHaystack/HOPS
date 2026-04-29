@@ -375,5 +375,4 @@ bool MHO_AdhocFlagging::ExecuteInPlace(weight_type* in)
     return true;
 }
 
-
 } // namespace hops

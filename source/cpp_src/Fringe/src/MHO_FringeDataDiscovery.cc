@@ -35,9 +35,8 @@ std::string MHO_FringeDataDiscovery::find_associated_root_file(std::string dir)
     return root_file;
 }
 
-
 void MHO_FringeDataDiscovery::determine_scans(const std::string& initial_dir, std::vector< std::string >& scans,
-                                                       std::vector< std::string >& roots)
+                                              std::vector< std::string >& roots)
 {
     scans.clear();
     roots.clear();
@@ -94,7 +93,7 @@ void MHO_FringeDataDiscovery::determine_scans(const std::string& initial_dir, st
 }
 
 void MHO_FringeDataDiscovery::determine_baselines(const std::string& dir, const std::string& baseline,
-                                                           std::vector< std::pair< std::string, std::string > >& baseline_files)
+                                                  std::vector< std::pair< std::string, std::string > >& baseline_files)
 {
     baseline_files.clear();
     std::vector< std::string > corFiles;
@@ -161,9 +160,8 @@ void MHO_FringeDataDiscovery::determine_baselines(const std::string& dir, const 
 }
 
 void MHO_FringeDataDiscovery::determine_fgroups_polproducts(const std::string& filename, const std::string& cmd_fgroup,
-                                                                     const std::string& cmd_pprod,
-                                                                     std::vector< std::string >& fgroups,
-                                                                     std::vector< std::string >& pprods)
+                                                            const std::string& cmd_pprod, std::vector< std::string >& fgroups,
+                                                            std::vector< std::string >& pprods)
 {
     fgroups.clear();
     pprods.clear();
@@ -274,9 +272,8 @@ void MHO_FringeDataDiscovery::determine_fgroups_polproducts(const std::string& f
     }
 }
 
-void MHO_FringeDataDiscovery::determine_passes(MHO_ParameterStore* cmdline_params, std::string& cscans,
-                                                        std::string& croots, std::string& cbaselines, std::string& cfgroups,
-                                                        std::string& cpolprods)
+void MHO_FringeDataDiscovery::determine_passes(MHO_ParameterStore* cmdline_params, std::string& cscans, std::string& croots,
+                                               std::string& cbaselines, std::string& cfgroups, std::string& cpolprods)
 {
     //pass search order is: scans, then baselines, then fgroups, then pol-products
     std::vector< std::string > scans; //list of scan directories
@@ -340,8 +337,8 @@ void MHO_FringeDataDiscovery::determine_passes(MHO_ParameterStore* cmdline_param
 }
 
 void MHO_FringeDataDiscovery::split_passes(std::vector< mho_json >& pass_vector, const std::string& cscans,
-                                                    const std::string& croots, const std::string& cbaselines,
-                                                    const std::string& cfgroups, const std::string& cpolprods)
+                                           const std::string& croots, const std::string& cbaselines,
+                                           const std::string& cfgroups, const std::string& cpolprods)
 {
     std::vector< std::string > sdirs;
     std::vector< std::string > rts;
@@ -462,4 +459,4 @@ std::vector< std::string > MHO_FringeDataDiscovery::determine_required_pol_produ
     return pp_vec;
 }
 
-}//end namespace
+} // namespace hops

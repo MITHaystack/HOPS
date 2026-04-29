@@ -35,7 +35,6 @@ class MHO_DCBlock: public MHO_UnaryOperator< visibility_type >
         virtual ~MHO_DCBlock();
 
     protected:
-
         /**
          * @brief Zero out DC spectral points for all channels in-place.
          *

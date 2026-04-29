@@ -61,8 +61,7 @@ class MHO_FringePass
          * MHO_PyControlEvaluator::Evaluate.  Injected from outside so that
          * MHO_Fringe does not link against pybind11.
          */
-        using ControlEvaluatorFn =
-            std::function< bool(MHO_ParameterStore*, const mho_json&, mho_json&) >;
+        using ControlEvaluatorFn = std::function< bool(MHO_ParameterStore*, const mho_json&, mho_json&) >;
 
         MHO_FringePass();
         virtual ~MHO_FringePass() = default;
@@ -134,7 +133,7 @@ class MHO_FringePass
          */
         bool Run(const std::vector< MHO_FringeFitterVisitor* >& plugin_visitors = {},
                  const std::vector< MHO_FringeFitterVisitor* >& output_visitors = {},
-                 const std::vector< MHO_FringePlotVisitor* >&   plot_visitors   = {});
+                 const std::vector< MHO_FringePlotVisitor* >& plot_visitors = {});
 
         // -----------------------------------------------------------------------
         // Status and results

@@ -24,7 +24,4 @@ bool MHO_MinWeight::ExecuteInPlace(weight_type* in)
     return true;
 }
 
-
-
-
 } // namespace hops

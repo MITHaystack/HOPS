@@ -340,14 +340,12 @@ void apply_at2(XTupleType& tup1, XTupleType2& tup2, size_t index, XFunctorType& 
 template< size_t... Is > struct mho_index_sequence
 {};
 
-template< size_t N, size_t... Is >
-struct mho_make_index_sequence: mho_make_index_sequence< N - 1, N - 1, Is... >
+template< size_t N, size_t... Is > struct mho_make_index_sequence: mho_make_index_sequence< N - 1, N - 1, Is... >
 {};
 
-template< size_t... Is >
-struct mho_make_index_sequence< 0, Is... >
+template< size_t... Is > struct mho_make_index_sequence< 0, Is... >
 {
-    using type = mho_index_sequence< Is... >;
+        using type = mho_index_sequence< Is... >;
 };
 
 template< typename Func, typename Tuple, size_t... Is >
@@ -358,16 +356,13 @@ auto mho_tuple_apply_impl(Func&& f, Tuple&& t, mho_index_sequence< Is... >)
 }
 
 template< typename Func, typename Tuple >
-auto mho_tuple_apply(Func&& f, Tuple&& t)
-    -> decltype(mho_tuple_apply_impl(
-        std::forward< Func >(f), std::forward< Tuple >(t),
-        typename mho_make_index_sequence<
-            std::tuple_size< typename std::decay< Tuple >::type >::value >::type{}))
+auto mho_tuple_apply(Func&& f, Tuple&& t) -> decltype(mho_tuple_apply_impl(
+    std::forward< Func >(f), std::forward< Tuple >(t),
+    typename mho_make_index_sequence< std::tuple_size< typename std::decay< Tuple >::type >::value >::type{}))
 {
     return mho_tuple_apply_impl(
         std::forward< Func >(f), std::forward< Tuple >(t),
-        typename mho_make_index_sequence<
-            std::tuple_size< typename std::decay< Tuple >::type >::value >::type{});
+        typename mho_make_index_sequence< std::tuple_size< typename std::decay< Tuple >::type >::value >::type{});
 }
 
 ////////////////////////////////////////////////////////////////////////////////
