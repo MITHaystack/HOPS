@@ -27,37 +27,51 @@ EOF
 
 # --- Test Case 1: Baseline GE (both stations in condition) ---
 echo "--- Running fourfit4 for baseline GE (both G and E in condition) ---"
-echo "Executing command: fourfit4 -m 4 -c ./${CONTROL_FILE} -b GE -P XX \"${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/\""
 
-# Capture the output file name directly from fourfit4's output
-output_file_ge=$(fourfit4 -m 4 -c ./${CONTROL_FILE} -b GE -P XX "${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/" 2>&1 | awk '{print $NF}')
-echo "fourfit4 output file for GE: $output_file_ge"
+# Run XX pol-product
+echo "Executing command: fourfit4 -m 4 -c ./${CONTROL_FILE} -b GE -P XX -X 0 \"${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/\""
+output_file_ge_xx=$(fourfit4 -m 4 -c ./${CONTROL_FILE} -b GE -P XX -X 0 "${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/" 2>&1 | awk '{print $NF}')
+echo "fourfit4 output file for GE (XX): $output_file_ge_xx"
 
-# Check if output_file_ge is empty
-if [ -z "$output_file_ge" ]; then
-    echo "FAIL: fourfit4 did not produce a valid output file for GE baseline."
+if [ -z "$output_file_ge_xx" ]; then
+    echo "FAIL: fourfit4 did not produce a valid output file for GE baseline (XX)."
     RET_VAL=1
-    exit $RET_VAL # Exit early if fourfit4 failed
+    exit $RET_VAL
 fi
 
+# Run YY pol-product
+echo "Executing command: fourfit4 -m 4 -c ./${CONTROL_FILE} -b GE -P YY -X 0 \"${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/\""
+output_file_ge_yy=$(fourfit4 -m 4 -c ./${CONTROL_FILE} -b GE -P YY -X 0 "${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/" 2>&1 | awk '{print $NF}')
+echo "fourfit4 output file for GE (YY): $output_file_ge_yy"
 
-# Convert to JSON and extract phase correction for G and E
-hops2json ${output_file_ge}
-PC_PHASE_G_X=$(jq -r '.[].tags.parameters.pc_phase_offset[] | select(.station_id == "G" and .pol == "X") | .pc_phase_offset' "${output_file_ge}.json")
-PC_PHASE_G_Y=$(jq -r '.[].tags.parameters.pc_phase_offset[] | select(.station_id == "G" and .pol == "Y") | .pc_phase_offset' "${output_file_ge}.json")
-PC_PHASE_E_X=$(jq -r '.[].tags.parameters.pc_phase_offset[] | select(.station_id == "E" and .pol == "X") | .pc_phase_offset' "${output_file_ge}.json")
-PC_PHASE_E_Y=$(jq -r '.[].tags.parameters.pc_phase_offset[] | select(.station_id == "E" and .pol == "Y") | .pc_phase_offset' "${output_file_ge}.json")
+if [ -z "$output_file_ge_yy" ]; then
+    echo "FAIL: fourfit4 did not produce a valid output file for GE baseline (YY)."
+    RET_VAL=1
+    exit $RET_VAL
+fi
+
+# Convert to JSON and extract phase corrections from both runs
+hops2json -d 3 ${output_file_ge_xx}
+hops2json -d 3 ${output_file_ge_yy}
+
+# XX run: G(X) is ref, E(X) is rem
+PC_PHASE_G_X=$(jq -r '[.. | objects | select(has("ref_pcphase_offset_X")) | .ref_pcphase_offset_X] | if length > 0 then .[0] * 57.29577951308232 else empty end' "${output_file_ge_xx}.json")
+PC_PHASE_E_X=$(jq -r '[.. | objects | select(has("rem_pcphase_offset_X")) | .rem_pcphase_offset_X] | if length > 0 then .[0] * 57.29577951308232 else empty end' "${output_file_ge_xx}.json")
+
+# YY run: G(Y) is ref, E(Y) is rem
+PC_PHASE_G_Y=$(jq -r '[.. | objects | select(has("ref_pcphase_offset_Y")) | .ref_pcphase_offset_Y] | if length > 0 then .[0] * 57.29577951308232 else empty end' "${output_file_ge_yy}.json")
+PC_PHASE_E_Y=$(jq -r '[.. | objects | select(has("rem_pcphase_offset_Y")) | .rem_pcphase_offset_Y] | if length > 0 then .[0] * 57.29577951308232 else empty end' "${output_file_ge_yy}.json")
 
 echo "PC Phase for G (X-pol): $PC_PHASE_G_X"
 echo "PC Phase for G (Y-pol): $PC_PHASE_G_Y"
 echo "PC Phase for E (X-pol): $PC_PHASE_E_X"
 echo "PC Phase for E (Y-pol): $PC_PHASE_E_Y"
 
-# Verify that both G and E received the 10.0 phase offset for both polarizations
-if [ -z "$PC_PHASE_G_X" ] || [ "$(echo "$PC_PHASE_G_X == 10.0" | bc)" -ne 1 ] || \
-   [ -z "$PC_PHASE_G_Y" ] || [ "$(echo "$PC_PHASE_G_Y == 10.0" | bc)" -ne 1 ] || \
-   [ -z "$PC_PHASE_E_X" ] || [ "$(echo "$PC_PHASE_E_X == 10.0" | bc)" -ne 1 ] || \
-   [ -z "$PC_PHASE_E_Y" ] || [ "$(echo "$PC_PHASE_E_Y == 10.0" | bc)" -ne 1 ]; then
+# Verify that both G and E received the 10.0 phase offset for both polarizations (tolerance 0.1 deg)
+if [ -z "$PC_PHASE_G_X" ] || [ "$(echo "$PC_PHASE_G_X < 9.9 || $PC_PHASE_G_X > 10.1" | bc)" -eq 1 ] || \
+   [ -z "$PC_PHASE_G_Y" ] || [ "$(echo "$PC_PHASE_G_Y < 9.9 || $PC_PHASE_G_Y > 10.1" | bc)" -eq 1 ] || \
+   [ -z "$PC_PHASE_E_X" ] || [ "$(echo "$PC_PHASE_E_X < 9.9 || $PC_PHASE_E_X > 10.1" | bc)" -eq 1 ] || \
+   [ -z "$PC_PHASE_E_Y" ] || [ "$(echo "$PC_PHASE_E_Y < 9.9 || $PC_PHASE_E_Y > 10.1" | bc)" -eq 1 ]; then
     echo "FAIL: Baseline GE - Expected 10.0 phase offset for G(X,Y) and E(X,Y)."
     RET_VAL=1
 else
@@ -66,36 +80,49 @@ fi
 
 # --- Test Case 2: Baseline GV (only G in condition, V is another station) ---
 echo "--- Running fourfit4 for baseline GV (only G in condition) ---"
-echo "Executing command: fourfit4 -m 4 -c ./${CONTROL_FILE} -b GV -P XX "${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/""
-fourfit4_output_log_gv=$(mktemp)
-fourfit4 -m 4 -c ./${CONTROL_FILE} -b GV -P XX "${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/" 2>&1 | tee "${fourfit4_output_log_gv}"
 
-output_file_gv=$(grep "fourfit:" "${fourfit4_output_log_gv}" | awk '{print $NF}')
-echo "fourfit4 output file for GV: $output_file_gv"
+# Run XX pol-product
+echo "Executing command: fourfit4 -m 4 -c ./${CONTROL_FILE} -b GV -P XX -X 0 \"${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/\""
+output_file_gv_xx=$(fourfit4 -m 4 -c ./${CONTROL_FILE} -b GV -P XX -X 0 "${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/" 2>&1 | awk '{print $NF}')
+echo "fourfit4 output file for GV (XX): $output_file_gv_xx"
 
-if [ -z "$output_file_gv" ] || ! grep -q "fourfit:" "${fourfit4_output_log_gv}"; then
-    echo "FAIL: fourfit4 did not produce a valid output file for GV baseline."
+if [ -z "$output_file_gv_xx" ]; then
+    echo "FAIL: fourfit4 did not produce a valid output file for GV baseline (XX)."
     RET_VAL=1
-    rm -f "${fourfit4_output_log_gv}"
-    exit $RET_VAL # Exit early if fourfit4 failed
+    exit $RET_VAL
 fi
-rm -f "${fourfit4_output_log_gv}"
 
-# Convert to JSON and extract phase correction for G and V
-hops2json ${output_file_gv}
-PC_PHASE_G_X_GV=$(jq -r '.[].tags.parameters.pc_phase_offset[] | select(.station_id == "G" and .pol == "X") | .pc_phase_offset' "${output_file_gv}.json")
-PC_PHASE_G_Y_GV=$(jq -r '.[].tags.parameters.pc_phase_offset[] | select(.station_id == "G" and .pol == "Y") | .pc_phase_offset' "${output_file_gv}.json")
-PC_PHASE_V_X_GV=$(jq -r '.[].tags.parameters.pc_phase_offset[] | select(.station_id == "V" and .pol == "X") | .pc_phase_offset' "${output_file_gv}.json")
-PC_PHASE_V_Y_GV=$(jq -r '.[].tags.parameters.pc_phase_offset[] | select(.station_id == "V" and .pol == "Y") | .pc_phase_offset' "${output_file_gv}.json")
+# Run YY pol-product
+echo "Executing command: fourfit4 -m 4 -c ./${CONTROL_FILE} -b GV -P YY -X 0 \"${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/\""
+output_file_gv_yy=$(fourfit4 -m 4 -c ./${CONTROL_FILE} -b GV -P YY -X 0 "${EXP_DIR}/${D2H_EXP_NUM}/${HOPS4_DIR}/" 2>&1 | awk '{print $NF}')
+echo "fourfit4 output file for GV (YY): $output_file_gv_yy"
+
+if [ -z "$output_file_gv_yy" ]; then
+    echo "FAIL: fourfit4 did not produce a valid output file for GV baseline (YY)."
+    RET_VAL=1
+    exit $RET_VAL
+fi
+
+# Convert to JSON and extract phase corrections from both runs
+hops2json -d 3 ${output_file_gv_xx}
+hops2json -d 3 ${output_file_gv_yy}
+
+# XX run: G(X) is ref, V(X) is rem
+PC_PHASE_G_X_GV=$(jq -r '[.. | objects | select(has("ref_pcphase_offset_X")) | .ref_pcphase_offset_X] | if length > 0 then .[0] * 57.29577951308232 else empty end' "${output_file_gv_xx}.json")
+PC_PHASE_V_X_GV=$(jq -r '[.. | objects | select(has("rem_pcphase_offset_X")) | .rem_pcphase_offset_X] | if length > 0 then .[0] * 57.29577951308232 else empty end' "${output_file_gv_xx}.json")
+
+# YY run: G(Y) is ref, V(Y) is rem
+PC_PHASE_G_Y_GV=$(jq -r '[.. | objects | select(has("ref_pcphase_offset_Y")) | .ref_pcphase_offset_Y] | if length > 0 then .[0] * 57.29577951308232 else empty end' "${output_file_gv_yy}.json")
+PC_PHASE_V_Y_GV=$(jq -r '[.. | objects | select(has("rem_pcphase_offset_Y")) | .rem_pcphase_offset_Y] | if length > 0 then .[0] * 57.29577951308232 else empty end' "${output_file_gv_yy}.json")
 
 echo "PC Phase for G (X-pol, GV baseline): $PC_PHASE_G_X_GV"
 echo "PC Phase for G (Y-pol, GV baseline): $PC_PHASE_G_Y_GV"
 echo "PC Phase for V (X-pol, GV baseline): $PC_PHASE_V_X_GV"
 echo "PC Phase for V (Y-pol, GV baseline): $PC_PHASE_V_Y_GV"
 
-# Verify G received 10.0 for both polarizations, and V received nothing
-if [ -z "$PC_PHASE_G_X_GV" ] || [ "$(echo "$PC_PHASE_G_X_GV == 10.0" | bc)" -ne 1 ] || \
-   [ -z "$PC_PHASE_G_Y_GV" ] || [ "$(echo "$PC_PHASE_G_Y_GV == 10.0" | bc)" -ne 1 ]; then
+# Verify G received 10.0 for both polarizations, and V received nothing (tolerance 0.1 deg)
+if [ -z "$PC_PHASE_G_X_GV" ] || [ "$(echo "$PC_PHASE_G_X_GV < 9.9 || $PC_PHASE_G_X_GV > 10.1" | bc)" -eq 1 ] || \
+   [ -z "$PC_PHASE_G_Y_GV" ] || [ "$(echo "$PC_PHASE_G_Y_GV < 9.9 || $PC_PHASE_G_Y_GV > 10.1" | bc)" -eq 1 ]; then
     echo "FAIL: Baseline GV - Expected 10.0 phase offset for G(X,Y)."
     RET_VAL=1
 elif [ -n "$PC_PHASE_V_X_GV" ] && [ "$(echo "$PC_PHASE_V_X_GV != 0.0" | bc)" -eq 1 ]; then
@@ -109,7 +136,10 @@ else
 fi
 
 # Clean up generated files
-rm -f ${CONTROL_FILE} ${output_file_ge} ${output_file_ge}.json \
-      ${output_file_gv} ${output_file_gv}.json
+rm -f ${CONTROL_FILE} \
+      ${output_file_ge_xx} ${output_file_ge_xx}.json \
+      ${output_file_ge_yy} ${output_file_ge_yy}.json \
+      ${output_file_gv_xx} ${output_file_gv_xx}.json \
+      ${output_file_gv_yy} ${output_file_gv_yy}.json
 
 exit $RET_VAL
