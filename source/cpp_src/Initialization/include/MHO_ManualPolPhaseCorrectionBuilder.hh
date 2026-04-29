@@ -44,12 +44,6 @@ class MHO_ManualPolPhaseCorrectionBuilder: public MHO_OperatorBuilder
          * @return Polarization string ('X', 'Y', 'R', 'L' or '?').
          */
         std::string ParsePolFromName(const std::string& name);
-        /**
-         * @brief Extracts and returns the station identifier from the conditions vector.
-         *
-         * @return Station identifier as a string.
-         */
-        std::string ExtractStationIdentifier();
 };
 
 } // namespace hops

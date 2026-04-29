@@ -21,8 +21,6 @@ bool MHO_StationDelayCorrectionBuilder::Build()
         double pc_delay_offset = fAttributes["value"].get< double >(); //assumption is nano seconds
         double priority = fFormat["priority"].get< double >();
 
-        std::string station_id = ExtractStationIdentifier();
-
         //grab the reference frequency from the parameter store
         double ref_freq = fParameterStore->GetAs< double >(std::string("/control/config/ref_freq"));
 
@@ -40,40 +38,17 @@ bool MHO_StationDelayCorrectionBuilder::Build()
         op->SetArgs(vis_data);
         op->SetReferenceFrequency(ref_freq);
         op->SetPCDelayOffset(pc_delay_offset);
-        op->SetStationIdentifier(station_id);
+        op->SetStationIdentifiers(ExtractAllStationIdentifiers());
         op->SetName(op_name);
         op->SetPriority(priority);
 
-        msg_debug("initialization", "creating operator: " << op_name << " for station: " << station_id << eom);
+        msg_debug("initialization", "creating operator: " << op_name << eom);
 
         bool replace_duplicates = false;
         this->fOperatorToolbox->AddOperator(std::move(op), op_name, op_category, replace_duplicates);
         return true;
     }
     return false;
-}
-
-std::string MHO_StationDelayCorrectionBuilder::ExtractStationIdentifier()
-{
-    std::string station_id = "??";
-    std::vector< std::string > condition_values = fConditions["value"].get< std::vector< std::string > >();
-
-    for(auto it = condition_values.begin(); it != condition_values.end(); it++)
-    {
-        //grab the first station ID in the 'if' statement
-        //this is ok 99% of the time, but what about if there is statement like: 'if station X or station X'?
-        //would then need to check that this station is a member of this pass too, and if not use the next
-        if(*it == "station")
-        {
-            it++;
-            if(it != condition_values.end())
-            {
-                station_id = *it;
-                return station_id;
-            }
-        }
-    }
-    return station_id;
 }
 
 } // namespace hops

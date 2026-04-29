@@ -3,6 +3,7 @@
 
 #include <string>
 #include <utility>
+#include <vector>
 
 #include "MHO_ContainerStore.hh"
 #include "MHO_FringeData.hh"
@@ -139,6 +140,25 @@ class MHO_OperatorBuilder
         //data container and parameters stores
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParameterStore;
+
+        // Returns all station identifiers named in the 'if station X' condition tokens.
+        // Handles OR/AND compound conditions by collecting every 'station <X>' pair.
+        // Returns {"??"} (wildcard) when no station keyword is present.
+        std::vector<std::string> ExtractAllStationIdentifiers() const
+        {
+            std::vector<std::string> ids;
+            if(fConditions.is_null() || !fConditions.contains("value")) { return {"??"}; }
+            auto tokens = fConditions["value"].get<std::vector<std::string>>();
+            for(auto it = tokens.begin(); it != tokens.end(); ++it)
+            {
+                if(*it == "station")
+                {
+                    ++it;
+                    if(it != tokens.end()) { ids.push_back(*it); }
+                }
+            }
+            return ids.empty() ? std::vector<std::string>{"??"} : ids;
+        }
 
         //provided for the configuration of the operator that is to be built
         mho_json fFormat;     //optional

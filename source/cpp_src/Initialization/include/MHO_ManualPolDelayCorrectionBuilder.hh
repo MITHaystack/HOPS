@@ -44,12 +44,6 @@ class MHO_ManualPolDelayCorrectionBuilder: public MHO_OperatorBuilder
          * @return Corresponding string for polarisation ('X', 'Y', 'R', 'L' or '?')
          */
         std::string ParsePolFromName(const std::string& name);
-        /**
-         * @brief Extracts and returns the station identifier from the conditions vector.
-         *
-         * @return The extracted station identifier as a string.
-         */
-        std::string ExtractStationIdentifier();
 };
 
 } // namespace hops

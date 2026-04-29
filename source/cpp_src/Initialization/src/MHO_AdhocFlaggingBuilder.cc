@@ -35,15 +35,18 @@ bool MHO_AdhocFlaggingBuilder::Build()
     // Determine which station(s) this statement applies to.
     std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/site_id");
     std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/site_id");
-    std::string station_id = ExtractStationIdentifier();
+    auto station_ids = ExtractAllStationIdentifiers();
+    bool applies_to_ref = false, applies_to_rem = false;
+    for(const auto& id : station_ids)
+    {
+        if(id == "??" || id == ref_id) { applies_to_ref = true; }
+        if(id == "??" || id == rem_id) { applies_to_rem = true; }
+    }
 
-    bool applies_to_ref = (station_id == "??" || station_id == ref_id);
-    bool applies_to_rem = (station_id == "??" || station_id == rem_id);
-
-    msg_debug("initialization", "adhoc_flag_file: station_id='" << station_id << "'  ref='" << ref_id << "'  rem='" << rem_id
-                                                                << "'  flag_file='" << flag_file << "'"
-                                                                << "  applies_ref=" << applies_to_ref
-                                                                << "  applies_rem=" << applies_to_rem << eom);
+    msg_debug("initialization", "adhoc_flag_file: ref='" << ref_id << "'  rem='" << rem_id
+                                                         << "'  flag_file='" << flag_file << "'"
+                                                         << "  applies_ref=" << applies_to_ref
+                                                         << "  applies_rem=" << applies_to_rem << eom);
 
     // look for an already-created operator in the toolbox from a previous call
     // (e.g. the ref station's statement was processed first; now updating rem).
@@ -95,26 +98,6 @@ bool MHO_AdhocFlaggingBuilder::Build()
                                                               << flag_op->GetRemFlagFile() << "')" << eom);
 
     return true;
-}
-
-std::string MHO_AdhocFlaggingBuilder::ExtractStationIdentifier()
-{
-    std::string station_id = "??";
-    std::vector< std::string > condition_values = fConditions["value"].get< std::vector< std::string > >();
-
-    for(auto it = condition_values.begin(); it != condition_values.end(); it++)
-    {
-        if(*it == "station")
-        {
-            ++it;
-            if(it != condition_values.end())
-            {
-                station_id = *it;
-                return station_id;
-            }
-        }
-    }
-    return station_id;
 }
 
 } // namespace hops

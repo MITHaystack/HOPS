@@ -54,13 +54,6 @@ class MHO_AdhocFlaggingBuilder: public MHO_OperatorBuilder
         virtual bool Build() override;
 
     private:
-        /**
-         * @brief Extracts the first station identifier from the 'if station' condition.
-         *
-         * @return The station code string, or "??" if no station condition is found
-         *         (indicating a global / baseline-wide statement).
-         */
-        std::string ExtractStationIdentifier();
 };
 
 } // namespace hops

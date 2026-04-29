@@ -42,9 +42,10 @@ class MHO_LSBOffset: public MHO_UnaryOperator< visibility_type >
          * 1-char => mk4 id
          * 2-char => 2char station code
          */
-        void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
+        void SetStationIdentifier(const std::string& id) { fStationIdentities = {id}; }
+        void SetStationIdentifiers(const std::vector<std::string>& ids) { fStationIdentities = ids; }
 
-        std::string GetStationIdentifier() const { return fStationIdentity; }
+        std::string GetStationIdentifier() const { return fStationIdentities.empty() ? std::string("") : fStationIdentities[0]; }
 
         /**
          * @brief set lsb (phase) offset for double-sideband channels
@@ -87,7 +88,7 @@ class MHO_LSBOffset: public MHO_UnaryOperator< visibility_type >
         double fDegToRad;
 
         //selection
-        std::string fStationIdentity;
+        std::vector<std::string> fStationIdentities;
 
         //pc rotation
         double fLSBPhaseOffset;

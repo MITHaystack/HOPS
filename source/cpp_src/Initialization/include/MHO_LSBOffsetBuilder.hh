@@ -36,12 +36,6 @@ class MHO_LSBOffsetBuilder: public MHO_OperatorBuilder
         virtual bool Build() override;
 
     private:
-        /**
-         * @brief Extracts and returns the station identifier from the conditions vector.
-         *
-         * @return The extracted station identifier as a string.
-         */
-        std::string ExtractStationIdentifier();
 };
 
 } // namespace hops

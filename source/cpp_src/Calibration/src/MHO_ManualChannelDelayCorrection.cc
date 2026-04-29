@@ -16,7 +16,6 @@ MHO_ManualChannelDelayCorrection::MHO_ManualChannelDelayCorrection()
     fSidebandLabelKey = "net_sideband";
     fLowerSideband = "L";
     fUpperSideband = "U";
-    fStationIdentity = "";
 
     fImagUnit = MHO_Constants::imag_unit;
     fDegToRad = MHO_Constants::deg_to_rad;
@@ -146,8 +145,6 @@ bool MHO_ManualChannelDelayCorrection::ExecuteInPlace(visibility_type* in)
 
 bool MHO_ManualChannelDelayCorrection::IsApplicable(std::size_t st_idx, const visibility_type* in)
 {
-    bool apply_correction = false;
-    std::string val;
     std::string mk4id_key;
     std::string station_code_key;
 
@@ -162,31 +159,22 @@ bool MHO_ManualChannelDelayCorrection::IsApplicable(std::size_t st_idx, const vi
         station_code_key = fRemStationKey;
     }
 
-    if(fStationIdentity.size() > 2)
-    {
-        msg_error("calibration",
-                  "station identiy: " << fStationIdentity << " is not a recognizable mark4 or 2-character code" << eom);
-    }
+    std::string mk4id_val, code_val;
+    in->Retrieve(mk4id_key, mk4id_val);
+    in->Retrieve(station_code_key, code_val);
 
-    if(fStationIdentity.size() == 1) //selection by mk4 id
+    for(const auto& id : fStationIdentities)
     {
-        in->Retrieve(mk4id_key, val);
-        if(fStationIdentity == val || fStationIdentity == "?")
+        if(id.size() > 2)
         {
-            apply_correction = true;
+            msg_error("calibration",
+                      "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
+            continue;
         }
+        if(id.size() == 1 && (id == mk4id_val || id == "?")) { return true; }
+        if(id.size() == 2 && (id == code_val || id == "??")) { return true; }
     }
-
-    if(fStationIdentity.size() == 2) //selection by 2-char station code
-    {
-        in->Retrieve(station_code_key, val);
-        if(fStationIdentity == val || fStationIdentity == "??")
-        {
-            apply_correction = true;
-        }
-    }
-
-    return apply_correction;
+    return false;
 }
 
 bool MHO_ManualChannelDelayCorrection::PolMatch(std::size_t station_idx, std::string& polprod)

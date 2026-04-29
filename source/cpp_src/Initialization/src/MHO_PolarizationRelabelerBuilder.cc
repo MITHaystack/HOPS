@@ -18,7 +18,7 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         std::string op_category = "labeling";
         double priority = fFormat["priority"].get< double >();
 
-        std::string station_id = ExtractStationIdentifier();
+        auto station_ids = ExtractAllStationIdentifiers();
         std::string pol1 = fAttributes["value"]["pol1"].get< std::string >();
         std::string pol2 = fAttributes["value"]["pol2"].get< std::string >();
 
@@ -36,12 +36,12 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         std::unique_ptr< MHO_PolarizationProductRelabeler< visibility_type > > vis_op(new MHO_PolarizationProductRelabeler< visibility_type >());
         std::unique_ptr< MHO_PolarizationProductRelabeler< weight_type > > wt_op(new MHO_PolarizationProductRelabeler< weight_type >());
 
-        vis_op->SetStationIdentifier(station_id);
+        vis_op->SetStationIdentifiers(station_ids);
         vis_op->SetPolarizationSwapPair(pol1, pol2);
         vis_op->SetArgs(vis_data);
         vis_op->SetPriority(priority);
 
-        wt_op->SetStationIdentifier(station_id);
+        wt_op->SetStationIdentifiers(station_ids);
         wt_op->SetPolarizationSwapPair(pol1, pol2);
         wt_op->SetArgs(wt_data);
         wt_op->SetPriority(priority);
@@ -59,7 +59,7 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         {
             std::unique_ptr< MHO_PolarizationRelabeler< multitone_pcal_type > > ref_pcal_relabeler(new MHO_PolarizationRelabeler< multitone_pcal_type >());
 
-            ref_pcal_relabeler->SetStationIdentifier(station_id);
+            ref_pcal_relabeler->SetStationIdentifiers(station_ids);
             ref_pcal_relabeler->SetPolarizationSwapPair(pol1, pol2);
             ref_pcal_relabeler->SetArgs(ref_pcal_data);
             ref_pcal_relabeler->SetName(op_name);
@@ -74,7 +74,7 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         {
             std::unique_ptr< MHO_PolarizationRelabeler< multitone_pcal_type > > rem_pcal_relabeler(new MHO_PolarizationRelabeler< multitone_pcal_type >());
 
-            rem_pcal_relabeler->SetStationIdentifier(station_id);
+            rem_pcal_relabeler->SetStationIdentifiers(station_ids);
             rem_pcal_relabeler->SetPolarizationSwapPair(pol1, pol2);
 
             rem_pcal_relabeler->SetArgs(rem_pcal_data);
@@ -88,29 +88,6 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         return true;
     }
     return false;
-}
-
-std::string MHO_PolarizationRelabelerBuilder::ExtractStationIdentifier()
-{
-    std::string station_id = "??";
-    std::vector< std::string > condition_values = fConditions["value"].get< std::vector< std::string > >();
-
-    for(auto it = condition_values.begin(); it != condition_values.end(); it++)
-    {
-        //grab the first station ID in the 'if' statement
-        //this is ok 99% of the time, but what about if there is statement like: 'if station X or station X'?
-        //would then need to check that this station is a member of this pass too, and if not use the next
-        if(*it == "station")
-        {
-            it++;
-            if(it != condition_values.end())
-            {
-                station_id = *it;
-                return station_id;
-            }
-        }
-    }
-    return station_id;
 }
 
 } // namespace hops

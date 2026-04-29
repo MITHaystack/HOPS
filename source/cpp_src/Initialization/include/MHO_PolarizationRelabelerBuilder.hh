@@ -22,8 +22,6 @@ class MHO_PolarizationRelabelerBuilder: public MHO_OperatorBuilder
         //(it builds multiple operator classes to do this)
         virtual bool Build() override;
 
-    private:
-        std::string ExtractStationIdentifier();
 };
 
 } // namespace hops

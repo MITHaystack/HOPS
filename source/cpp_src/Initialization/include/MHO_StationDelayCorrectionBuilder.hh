@@ -44,12 +44,6 @@ class MHO_StationDelayCorrectionBuilder: public MHO_OperatorBuilder
          * @return Return value (std::string)
          */
         std::string ParsePolFromName(const std::string& name);
-        /**
-         * @brief Extracts and returns the first station identifier found in the conditions vector.
-         *
-         * @return The extracted station identifier as a string.
-         */
-        std::string ExtractStationIdentifier();
 };
 
 } // namespace hops

@@ -30,7 +30,6 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
     public:
         MHO_PolarizationRelabeler()
         {
-            fStationIdentity = "";
             fStationKey = "station_code";
             fStationMk4IDKey = "station_mk4id";
             fPol1 = "";
@@ -67,9 +66,10 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
          * 1-char => mk4 id
          * 2-char => 2char station code
          */
-        void SetStationIdentifier(std::string station_id) { fStationIdentity = station_id; }
+        void SetStationIdentifier(const std::string& id) { fStationIdentities = {id}; }
+        void SetStationIdentifiers(const std::vector<std::string>& ids) { fStationIdentities = ids; }
 
-        std::string GetStationIdentifier() const { return fStationIdentity; }
+        std::string GetStationIdentifier() const { return fStationIdentities.empty() ? std::string("") : fStationIdentities[0]; }
 
     protected:
 
@@ -116,42 +116,30 @@ template< typename XArrayType > class MHO_PolarizationRelabeler: public MHO_Unar
         std::string fStationMk4IDKey;
 
         //data
-        std::string fStationIdentity;
+        std::vector<std::string> fStationIdentities;
         std::string fPol1;
         std::string fPol2;
         bool fValid;
 
-        //determines if to apply the pol relabelling, for the station (ref or rem)
+        //determines if to apply the pol relabelling to this pcal data container
         bool IsApplicable(const XArrayType* in)
         {
-            bool apply_correction = false;
-            std::string val;
+            std::string mk4id_val, code_val;
+            in->Retrieve(fStationMk4IDKey, mk4id_val);
+            in->Retrieve(fStationKey, code_val);
 
-            if(fStationIdentity.size() > 2)
+            for(const auto& id : fStationIdentities)
             {
-                msg_error("calibration",
-                          "station identiy: " << fStationIdentity << " is not a recognizable mark4 or 2-character code" << eom);
-                return false;
-            }
-
-            if(fStationIdentity.size() == 1) //selection by mk4 id
-            {
-                in->Retrieve(fStationMk4IDKey, val);
-                if(fStationIdentity == val || fStationIdentity == "?")
+                if(id.size() > 2)
                 {
-                    apply_correction = true;
+                    msg_error("calibration",
+                              "station identity: " << id << " is not a recognizable mark4 or 2-character code" << eom);
+                    continue;
                 }
+                if(id.size() == 1 && (id == mk4id_val || id == "?")) { return true; }
+                if(id.size() == 2 && (id == code_val || id == "??")) { return true; }
             }
-
-            if(fStationIdentity.size() == 2) //selection by 2-char station code
-            {
-                in->Retrieve(fStationKey, val);
-                if(fStationIdentity == val || fStationIdentity == "??")
-                {
-                    apply_correction = true;
-                }
-            }
-            return apply_correction;
+            return false;
         }
 };
 
