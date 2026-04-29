@@ -39,7 +39,8 @@ if(BASH_PROGRAM)
             chk_separate_outdir
             chk_fourfit4mk4io
             chk_tcohere
-        )
+        chk_compound_station_condition
+    )
     endif(PY_EXE)
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
