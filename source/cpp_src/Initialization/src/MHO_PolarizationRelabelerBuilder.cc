@@ -18,7 +18,7 @@ bool MHO_PolarizationRelabelerBuilder::Build()
         std::string op_category = "labeling";
         double priority = fFormat["priority"].get< double >();
 
-        auto station_ids = ExtractAllStationIdentifiers();
+        auto station_ids = GetMatchingStationIdentifiers();
         std::string pol1 = fAttributes["value"]["pol1"].get< std::string >();
         std::string pol2 = fAttributes["value"]["pol2"].get< std::string >();
 

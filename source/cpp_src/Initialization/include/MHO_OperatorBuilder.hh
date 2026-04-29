@@ -160,6 +160,52 @@ class MHO_OperatorBuilder
             return ids.empty() ? std::vector<std::string>{"??"} : ids;
         }
 
+        // Checks whether a single station identifier (from condition tokens) matches
+        // a specific station role (reference or remote).  Handles 1-char mk4 ids,
+        // 2-char station codes, and wildcards (?/??).
+        // role should be "ref" or "rem".
+        bool StationMatchesRole(const std::string& station_id, const std::string& role) const
+        {
+            if(fParameterStore == nullptr) { return true; }
+
+            std::string role_mk4 = fParameterStore->GetAs< std::string >(
+                std::string("/") + role + "_station/mk4id");
+            std::string role_code = fParameterStore->GetAs< std::string >(
+                std::string("/") + role + "_station/site_id");
+
+            if(station_id == "??" || station_id == "?") { return true; }
+            if(station_id.size() == 1)
+            {
+                return (station_id == role_mk4);
+            }
+            // 2-char or longer — compare against 2-char station code
+            return (station_id == role_code);
+        }
+
+        // Checks whether a single station identifier (from condition tokens) matches
+        // either the reference or remote station of the current baseline.
+        // Handles 1-char mk4 ids, 2-char station codes, and wildcards (?/??).
+        bool StationMatchesCurrentBaseline(const std::string& station_id) const
+        {
+            return StationMatchesRole(station_id, "ref") || StationMatchesRole(station_id, "rem");
+        }
+
+        // Filters the station identifiers extracted from the condition to only those
+        // that actually match the current baseline's ref/rem stations.  This prevents
+        // a condition like "if station X or station Y" from producing an operator
+        // bound to both X and Y when only X is on the current baseline.
+        // Returns {"??"} when no station keyword is present (apply to all).
+        std::vector<std::string> GetMatchingStationIdentifiers() const
+        {
+            auto all_ids = ExtractAllStationIdentifiers();
+            std::vector<std::string> matching;
+            for(const auto& id : all_ids)
+            {
+                if(StationMatchesCurrentBaseline(id)) { matching.push_back(id); }
+            }
+            return matching.empty() ? std::vector<std::string>{"??"} : matching;
+        }
+
         //provided for the configuration of the operator that is to be built
         mho_json fFormat;     //optional
         mho_json fConditions; //optional

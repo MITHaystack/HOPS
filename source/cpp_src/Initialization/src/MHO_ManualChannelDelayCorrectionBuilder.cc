@@ -43,7 +43,7 @@ bool MHO_ManualChannelDelayCorrectionBuilder::Build()
             op->SetArgs(vis_data);
             op->SetChannelToPCDelayMap(chan2pcd);
             op->SetPolarization(pol);
-            op->SetStationIdentifiers(ExtractAllStationIdentifiers());
+            op->SetStationIdentifiers(GetMatchingStationIdentifiers());
             op->SetName(op_name);
             op->SetPriority(priority);
 

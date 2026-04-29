@@ -32,15 +32,15 @@ bool MHO_AdhocFlaggingBuilder::Build()
         return false;
     }
 
-    // Determine which station(s) this statement applies to.
+   // Determine which station(s) this statement applies to.
     std::string ref_id = fParameterStore->GetAs< std::string >("/ref_station/site_id");
     std::string rem_id = fParameterStore->GetAs< std::string >("/rem_station/site_id");
     auto station_ids = ExtractAllStationIdentifiers();
     bool applies_to_ref = false, applies_to_rem = false;
     for(const auto& id : station_ids)
     {
-        if(id == "??" || id == ref_id) { applies_to_ref = true; }
-        if(id == "??" || id == rem_id) { applies_to_rem = true; }
+        if(StationMatchesRole(id, "ref")) { applies_to_ref = true; }
+        if(StationMatchesRole(id, "rem")) { applies_to_rem = true; }
     }
 
     msg_debug("initialization", "adhoc_flag_file: ref='" << ref_id << "'  rem='" << rem_id

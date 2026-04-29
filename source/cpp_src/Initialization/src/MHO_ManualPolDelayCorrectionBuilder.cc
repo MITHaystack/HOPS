@@ -45,12 +45,12 @@ bool MHO_ManualPolDelayCorrectionBuilder::Build()
 
         std::unique_ptr< MHO_ManualPolDelayCorrection > op(new MHO_ManualPolDelayCorrection());
 
-        //set the arguments
+      //set the arguments
         op->SetArgs(vis_data);
         op->SetReferenceFrequency(ref_freq);
         op->SetPCDelayOffset(pc_delay_offset);
         op->SetPolarization(pol);
-        op->SetStationIdentifiers(ExtractAllStationIdentifiers());
+        op->SetStationIdentifiers(GetMatchingStationIdentifiers());
         op->SetName(op_name);
         op->SetPriority(priority);
 

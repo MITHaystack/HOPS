@@ -34,7 +34,7 @@ bool MHO_LSBOffsetBuilder::Build()
         //set the arguments
         op->SetArgs(vis_data);
         op->SetLSBPhaseOffset(lsb_phase_offset);
-        op->SetStationIdentifiers(ExtractAllStationIdentifiers());
+        op->SetStationIdentifiers(GetMatchingStationIdentifiers());
         op->SetName(op_name);
         op->SetPriority(priority);
 

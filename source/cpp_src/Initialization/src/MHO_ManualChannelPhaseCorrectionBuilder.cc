@@ -45,7 +45,7 @@ bool MHO_ManualChannelPhaseCorrectionBuilder::Build()
             op->SetArgs(vis_data);
             op->SetChannelToPCPhaseMap(chan2pcp);
             op->SetPolarization(pol);
-            op->SetStationIdentifiers(ExtractAllStationIdentifiers());
+            op->SetStationIdentifiers(GetMatchingStationIdentifiers());
             op->SetName(op_name);
             op->SetPriority(priority);
 

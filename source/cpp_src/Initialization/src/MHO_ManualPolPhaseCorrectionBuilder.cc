@@ -37,7 +37,7 @@ bool MHO_ManualPolPhaseCorrectionBuilder::Build()
         op->SetArgs(vis_data);
         op->SetPCPhaseOffset(pc_phase_offset);
         op->SetPolarization(pol);
-        op->SetStationIdentifiers(ExtractAllStationIdentifiers());
+        op->SetStationIdentifiers(GetMatchingStationIdentifiers());
         op->SetName(op_name);
         op->SetPriority(priority);
 
