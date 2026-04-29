@@ -102,7 +102,7 @@ class MHO_NDArrayWrapper
          * @param ptr Pointer to externally managed XValueType array
          * @param dim Array of dimension sizes
          */
-        void SetExternalData(XValueType* ptr, const std::size_t* dim) { Construct(ptr, dim); }
+        void CopyFromExternalData(XValueType* ptr, const std::size_t* dim) { Construct(ptr, dim); }
 
         /**
          * @brief Getter for the rank (dimensionality) of the array

@@ -66,15 +66,7 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
          * @param ptr Pointer to externally managed XValueType array
          * @param dim Pointer to size_t array representing dimensions of the external data
          */
-        void SetExternalData(XValueType* ptr, const std::size_t* dim) { Construct(ptr, dim); }
-
-        /**
-         * @brief Setter for external data
-         *
-         * @param ptr Pointer to externally managed XValueType array
-         * @param dim Pointer to size_t array representing dimensions of the array
-         */
-        void SetExternalData(XValueType* ptr, std::size_t dim) { Construct(ptr, &dim); }
+        void CopyFromExternalData(XValueType* ptr, const std::size_t* dim) { Construct(ptr, dim); }
 
         //access to underlying raw array pointer
         /**
