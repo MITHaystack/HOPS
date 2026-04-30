@@ -92,7 +92,7 @@ if(HOPS_BUILD_DOCS)
 find_package(Doxygen REQUIRED)
 find_package(Sphinx REQUIRED)
 
-    if(DOXYGEN_FOUND AND SPHINX_FOUND)
+    if(DOXYGEN_FOUND AND Sphinx_FOUND)
 
         set(REF_BUILD_DIR ${DOC_INSTALL_DIR}/reference)
         file(MAKE_DIRECTORY ${REF_BUILD_DIR})
@@ -173,6 +173,6 @@ find_package(Sphinx REQUIRED)
             VERBATIM
         )
 
-    endif(DOXYGEN_FOUND AND SPHINX_FOUND)
+    endif(DOXYGEN_FOUND AND Sphinx_FOUND)
 
 endif(HOPS_BUILD_DOCS)
