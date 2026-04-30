@@ -1,0 +1,63 @@
+name: Deploy Documentation to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  BUILD_TYPE: RelWithDebInfo
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v5
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake doxygen python3-dev python3-pip wget
+
+    - name: Install Python doc dependencies
+      run: |
+        pip3 install --user breathe myst_parser sphinx-rtd-theme sphinxcontrib-doxylink
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build \
+        -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+        -DHOPS_PYPI_MANAGE_DEPS=ON \
+        -DHOPS_BUILD_DOCS=ON \
+        -DHOPS_DEPLOY_DOCS=ON \
+        -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install
+
+    - name: Build documentation
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target reference
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ${{github.workspace}}/install/doc/reference
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-22.04
+    needs: build-docs
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

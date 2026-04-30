@@ -1,4 +1,6 @@
 [![test-ubuntu](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml)
+[![test-ubuntu-latest](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-latest.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-latest.yml)
+[![deploy-docs](https://github.com/MITHaystack/HOPS/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/deploy-docs.yml)
 # HOPS 4 - Haystack Observatory Post-processing System
 
 HOPS (Haystack Observatory Post-processing System) is a software package for fringe-fitting, calibration and other post-correlation 

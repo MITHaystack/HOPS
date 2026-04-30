@@ -6,6 +6,12 @@ HOPS4 Applications and Libraries
 
 .. toctree::
     :maxdepth: 1
+    :caption: Developer Guide
+
+    developer_guide/index.rst
+
+.. toctree::
+    :maxdepth: 1
     :caption: Applications
 
     applications/fourfit4
