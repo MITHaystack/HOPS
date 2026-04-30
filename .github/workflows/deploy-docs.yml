@@ -42,6 +42,10 @@ jobs:
         -DHOPS_PYPI_MANAGE_DEPS=ON \
         -DHOPS_BUILD_DOCS=ON \
         -DHOPS_DEPLOY_DOCS=ON \
+        -DHOPS_USE_FFTW3=OFF \
+        -DHOPS_USE_PYBIND11=OFF \
+        -DHOPS_USE_MATPLOTPP=OFF \
+        -DHOPS_ENABLE_TEST=OFF \
         -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install
 
     - name: Build documentation
