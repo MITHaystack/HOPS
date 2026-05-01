@@ -9,10 +9,6 @@
     #include "MHO_PythonPluginInterface.hh"
 #endif
 
-#ifdef HOPS_USE_JULIA
-    #include "MHO_JuliaPluginInterface.hh"
-#endif
-
 namespace hops
 {
 
@@ -73,18 +69,6 @@ void MHO_PluginVisitorFactory::ConstructPlugins()
 {
     if(fParameterStore != nullptr)
     {
-#ifdef HOPS_USE_JULIA
-        if(fParameterStore->IsPresent("/config/plugins/activate_julia"))
-        {
-            bool need_julia_plugin = fParameterStore->GetAs< bool >("/config/plugins/activate_julia");
-            if(need_julia_plugin)
-            {
-                msg_debug("plugins", "constructing the julia plugin interface" << eom);
-                MHO_FringeFitterVisitor* jl_visitor = new MHO_JuliaPluginInterface();
-                fPluginVisitors.push_back(jl_visitor);
-            }
-        }
-#endif
 
 #ifdef USE_PYBIND11
         bool need_python_plugin = false;

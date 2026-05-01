@@ -141,9 +141,6 @@ option(HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
 option(HOPS_USE_CUDA "Build CUDA support." OFF)
 option(HOPS_USE_HDF5 "Build HDF5 export support." OFF)
 
-#disable for now, not ready yet...
-# option(HOPS_USE_JULIA "Build Julia bindings with CxxWrap.jl" OFF) 
-
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 mark_as_advanced(HOPS3_USE_CXX)
@@ -275,39 +272,6 @@ else()
     set(HOPS_USE_PYBIND11 OFF CACHE BOOL "Build python bindings with pybind11" FORCE)
 
 endif(PY_EXE)
-
-# Julia/CxxWrap bindings ######################################################
-set(JULIA_LIB_DIR "")   # fallback: empty -> no Julia entry in hops.bash LD_LIBRARY_PATH
-set(JLCXX_LIB_DIR "")  # fallback: empty -> no JlCxx entry in hops.bash LD_LIBRARY_PATH
-if(HOPS_USE_JULIA)
-    # Get JlCxx prefix from Julia (user must have CxxWrap.jl installed)
-    execute_process(
-        COMMAND julia -e "using CxxWrap; print(CxxWrap.prefix_path())"
-        OUTPUT_VARIABLE JLCXX_PREFIX
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-        RESULT_VARIABLE JLCXX_RESULT)
-    if(JLCXX_RESULT EQUAL 0 AND JLCXX_PREFIX)
-        message(STATUS "JlCxx prefix: ${JLCXX_PREFIX}")
-        list(PREPEND CMAKE_PREFIX_PATH "${JLCXX_PREFIX}")
-        find_package(JlCxx REQUIRED)
-        set(JULIA_MODULE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/julia_modules"
-            CACHE PATH "Install directory for Julia binding shared libraries")
-        message(STATUS "Julia module install dir: ${JULIA_MODULE_INSTALL_DIR}")
-        hops_add_cxxflag(HOPS_USE_JULIA)
-        # Capture Julia's lib dir so hops.bash can add it to LD_LIBRARY_PATH
-        execute_process(
-            COMMAND julia -e "using Libdl; print(dirname(Libdl.dlpath(\"libjulia\")))"
-            OUTPUT_VARIABLE JULIA_LIB_DIR
-            OUTPUT_STRIP_TRAILING_WHITESPACE)
-        message(STATUS "Julia lib dir: ${JULIA_LIB_DIR}")
-        # CxxWrap (JlCxx) lib dir — contains libcxxwrap_julia.so
-        set(JLCXX_LIB_DIR "${JLCXX_PREFIX}/lib")
-        message(STATUS "JlCxx lib dir: ${JLCXX_LIB_DIR}")
-    else()
-        message(WARNING "Could not determine CxxWrap prefix from Julia; disabling Julia bindings.")
-        set(HOPS_USE_JULIA OFF CACHE BOOL "Build Julia bindings with CxxWrap.jl" FORCE)
-    endif()
-endif(HOPS_USE_JULIA)
 
 ################################################################################
 #call build in the subdirectories

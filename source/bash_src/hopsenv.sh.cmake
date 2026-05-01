@@ -60,13 +60,6 @@ export PATH="$NEW_PATH"
 
 NEW_LD_LIBRARY_PATH=$(printf '%s\n' "$LD_LIBRARY_PATH" | sed "s|$OLD_LD_LIBPATH||g" | sed "s|$OLD_LD_LIB64PATH||g" | sed "s|$OLD_HOPS_SYS_PY||g" )
 NEW_LD_LIBRARY_PATH="$HOPS_INSTALL/lib:$HOPS_INSTALL/lib64:$HOPS_SYS_PY:$NEW_LD_LIBRARY_PATH"
-if [ -n "@JULIA_LIB_DIR@" ]; then
-    NEW_LD_LIBRARY_PATH="@JULIA_LIB_DIR@:@JLCXX_LIB_DIR@:@JULIA_MODULE_INSTALL_DIR@:$NEW_LD_LIBRARY_PATH"
-    # Add julia_modules dir to JULIA_LOAD_PATH so user scripts can `using` HOPS packages
-    export JULIA_LOAD_PATH="@JULIA_MODULE_INSTALL_DIR@:${JULIA_LOAD_PATH}"
-    # Direct path to installed HOPS Julia CxxWrap modules (.so files)
-    export HOPS_JULIA_MODULES_DIR="@JULIA_MODULE_INSTALL_DIR@"
-fi
 export LD_LIBRARY_PATH="$NEW_LD_LIBRARY_PATH"
 
 NEW_CMAKE_PREFIX_PATH=$(printf '%s\n' "$CMAKE_PREFIX_PATH" | sed "s|$OLD_CMAKE_PREF||g")

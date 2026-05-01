@@ -95,10 +95,6 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings)
 endif(HOPS_USE_PYBIND11)
 
-if(HOPS_USE_JULIA)
-    add_subdirectory(${CPPSOURCE}/Plugins/JuliaBindings) #julia bindings
-endif(HOPS_USE_JULIA)
-
 if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
     #Matplot++ (gnuplot) wrapper support (fast default fringe plotting)
     add_subdirectory(${CPPSOURCE}/Plugins/MatplotPlugin)
@@ -125,16 +121,6 @@ if(HOPS_USE_PYBIND11)
         ${CPPSOURCE}/Plugins/PythonBindings/Operators/include
         ${CPPSOURCE}/Plugins/PythonBindings/Visitors/include)
     target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_PYBIND11)
-endif()
-
-if(HOPS_USE_JULIA)
-    target_link_libraries(MHO_OptionalPlugins INTERFACE
-        jlMHO_Containers jlMHO_Operators MHO_jlVisitors
-        JlCxx::cxxwrap_julia JlCxx::cxxwrap_julia_stl)
-    target_include_directories(MHO_OptionalPlugins INTERFACE
-        ${CPPSOURCE}/Plugins/JuliaBindings/Containers/include
-        ${CPPSOURCE}/Plugins/JuliaBindings/Operators/include
-        ${CPPSOURCE}/Plugins/JuliaBindings/Visitors/include)
 endif()
 
 if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
