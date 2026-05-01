@@ -56,6 +56,7 @@ Options
        - ``utilities``
        - ``vex``
        - ``python_bindings``
+       - ``plot``
 
        If not used, all categories are allowed.
    * - ``-m`` INT, ``--message-level`` INT
@@ -70,8 +71,10 @@ Options
      - Specify the APs to be averaged per plot segment
    * - ``-t``, ``--test-mode``
      - If passed, no output is written
-   * - ``-u``, ``--update-mode``
-     - Ignored, not yet implemented
+   * - ``-o`` TEXT, ``--output-directory`` TEXT
+     - Set the directory under which to write output files (default is input directory)
+   * - ``-O`` INT, ``--openmp-threads`` INT
+     - Set the number of threads used by OpenMP (if enabled at compile time, default is max)
    * - ``-P`` TEXT, ``--polprod`` TEXT
      - Polarization product (e.g., ``XX``, ``I``, ``RR+LL``)
    * - ``-T`` TEXT, ``--reftime`` TEXT
@@ -88,6 +91,8 @@ Options
      - Name of the input directory (scan) or root file
    * - ``-k``, ``--mark4-output``
      - Write output files in Mark4 type_2xx format
+   * - ``-K``, ``--mark4-input``
+     - Accept a Mark4 format input directory, converting it to HOPS format via a temporary directory at runtime
 
 Subcommands
 -----------
