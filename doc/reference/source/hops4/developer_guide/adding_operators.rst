@@ -46,7 +46,7 @@ The key library modules involved are:
 2. The Data Flow Pipeline
 =========================
 
-Below is a rough decription of the step-by-step data flow for a single scan/baseline when processed
+Below is a rough description of the step-by-step data flow for a single scan/baseline when processed
 via fourfit4:
 
 1. **MHO_ControlFileParser::ParseControl()**
@@ -165,7 +165,7 @@ Example - list parameter:
 
 No C++ code changes are needed to add simple parameters to the control file syntax, as long as
 they belong to the class of value types that are already allowed (see `5. JSON Format Descriptor Reference`_).
-The MHO_ParameterConfigurator handles all supported types generically, and will insert them in the parameter 
+The MHO_ParameterConfigurator handles all supported types generically, and will insert them in the parameter
 store in the locations specified by the format descriptor.
 
 STEP 3.2 - Storage paths
@@ -192,9 +192,11 @@ Parameters are stored in MHO_ParameterStore at deterministic paths:
    * - ``"station"``
      - ``/control/station/<STATION_CODE>/<name>``
 
-For ``"station"`` parameters: STATION_CODE is the 2-char site code, e.g. "Gs", "Wf".
-If used with "if station X" conditionals, the station code is resolved from the
-condition token. Multiple condition blocks may produce multiple paths.
+For ``"station"`` parameters: STATION_CODE is the 2-char site code (e.g. ``"Gs"``,
+``"Wf"``), retrieved at runtime from ``/ref_station/site_id`` or
+``/rem_station/site_id`` in the parameter store. When combined with an
+"if station X" conditional, the site code is resolved from the condition token;
+multiple condition blocks (one per station) produce separate paths.
 
 STEP 3.3 - Consuming the parameter downstream
 ----------------------------------------------
@@ -216,7 +218,7 @@ In a builder (preferably), retrieve the parameter from the store via:
    double val;
    bool ok = fParameterStore->Get("/control/config/new_param", val);
 
-For per-station parameters the exact path is dictated by the site_id, so the 
+For per-station parameters the exact path is dictated by the site_id, so the
 station 2-char code must be known or retrieved first:
 
 .. code-block:: cpp
@@ -225,9 +227,12 @@ station 2-char code must be known or retrieved first:
    std::string path = "/control/station/" + ref_id + "/mount_type";
    std::string mount = fParameterStore->GetAs<std::string>(path);
    
-Note: Parameter store access should be limited to the operator build classes (not the operators themselves). 
-Individual parameters should be passed to operators indirectly via setter/getters to avoid coupling them to the parameter store
-and making unit testing more difficult.
+.. note::
+
+   Parameter store access should be confined to builder classes, not to
+   operators themselves. Pass extracted values to operators through setter
+   methods. This keeps operators decoupled from the parameter store and
+   makes unit testing easier (see the second test constructor in STEP 4.4).
 
 STEP 3.4 - No CMake changes needed
 -----------------------------------
@@ -249,9 +254,10 @@ An "operator" is a control file keyword that causes a data transformation to
 be constructed, configured, and registered with the MHO_OperatorToolbox.
 
 The operator must be a C++ class inheriting from an operator base class, and
-the builder must be a C++ class inheriting from MHO_OperatorBuilder. You will need both 
-the operator and the operator builder (along with a JSON format descriptor to trigger it from the control file).
-The operator build must be registered with the MHO_OperatorBuilderManager.
+the builder must be a C++ class inheriting from ``MHO_OperatorBuilder``. You
+will need both the operator and the operator builder, plus a JSON format
+descriptor to trigger it from the control file. The builder must be registered
+with ``MHO_OperatorBuilderManager``.
 
 STEP 4.1 - Choose the operator base class
 ------------------------------------------
@@ -282,14 +288,14 @@ The base class depends on how your operator accesses data:
      - Not commonly used. No template helpers. You must manage all arguments via custom setters.
        Must implement: ``Initialize()`` and ``Execute()``
 
-Common data types used be operators (from ``MHO_ContainerDefinitions.hh``):
+Common data types used by operators (from ``MHO_ContainerDefinitions.hh``):
 
 - **visibility_type** : 4D complex [polprod, channel, time, freq]
 - **weight_type** : 4D real [polprod, channel, time, freq] (note: freq axis has size 1)
 - **sbd_type** : 4D complex (single-band-delay workspace)
 - **station_coord_type** : station coordinate data
 
-The large majority of (>90%) of calibration operators, inherit from ``MHO_UnaryOperator<visibility_type>``.
+The large majority (>90%) of calibration operators inherit from ``MHO_UnaryOperator<visibility_type>``.
 
 STEP 4.2 - Write the operator header
 -------------------------------------
@@ -484,24 +490,42 @@ Pattern:
        op->SetName(op_name);
        op->SetPriority(priority);
 
-       bool replace_duplicates = false; // true if operator can be re-added per pass
+       // replace_duplicate=false: allows multiple operators with the same name
+       // to coexist in the pipeline (needed for per-station corrections).
+       // replace_duplicate=true (the default): any existing operator with the
+       // same name is removed first; only one instance can exist at a time.
+       bool replace_duplicate = false;
        this->fOperatorToolbox->AddOperator(
-           std::move(op), op_name, op_category, replace_duplicates);
+           std::move(op), op_name, op_category, replace_duplicate);
 
        return true;
    }
    } // namespace hops
 
-Builder accessible members in the MHO_OperatorBuilder base class that you may use
-when constructing and operators are:
+Builder accessible members in the ``MHO_OperatorBuilder`` base class that you
+may use when constructing operators:
 
-- **fOperatorToolbox** : ``MHO_OperatorToolbox*`` (register operators when complete here)
-- **fContainerStore** : ``MHO_ContainerStore*`` (retrieve data arrays)
-- **fParameterStore** : ``MHO_ParameterStore*`` (retrieve config parameters)
-- **fFormat** : ``mho_json`` (the JSON format descriptor)
-- **fAttributes** : ``mho_json`` (the parsed control statement)
-- **fConditions** : ``mho_json`` (the conditional block tokens)
-- **GetMatchingStationIdentifiers()** : returns matched station IDs for this baseline
+- **fOperatorToolbox** : ``MHO_OperatorToolbox*`` - register completed operators here
+- **fFringeData** : ``MHO_FringeData*`` - the full fringe-data object (may be ``nullptr``
+  in the test constructor; prefer fContainerStore/fParameterStore for data access)
+- **fContainerStore** : ``MHO_ContainerStore*`` - retrieve data arrays (visibility, weight, etc.)
+- **fParameterStore** : ``MHO_ParameterStore*`` - retrieve control-file parameters
+- **fFormat** : ``mho_json`` - the JSON format descriptor for this keyword
+- **fAttributes** : ``mho_json`` - the fully parsed control statement (name, value, conditions)
+- **fConditions** : ``mho_json`` - the raw conditional-block tokens ("if station X …")
+
+Helper methods:
+
+- **GetMatchingStationIdentifiers()** : Extracts the station identifiers from the ``if station X``
+  condition tokens, then filters to only those that match the current baseline's ref or rem
+  station. Returns ``{"??"}`` (wildcard, match all) if no station condition is present.
+  Use this when building per-station operators so the operator is only wired to the
+  stations actually present in this baseline.
+
+- **ExtractAllStationIdentifiers()** : Returns all station identifiers named in the condition
+  tokens, without filtering against the current baseline. Returns ``{"??"}`` if none are present.
+  Use this when you need to know every station mentioned in the condition (e.g. to decide
+  whether to apply an operator to both stations of a baseline).
 
 STEP 4.6 - Create the JSON format descriptor
 ---------------------------------------------
@@ -598,7 +622,7 @@ STEP 4.7 - Register the builder in MHO_OperatorBuilderManager
 File: ``source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc``
 
 The last C++ change needed is to register your new operator builder with the manager,
-so it can be fired by the control statements. 
+so it can be fired by the control statements.
 In ``CreateDefaultBuilders()``, add:
 
 .. code-block:: cpp
@@ -753,8 +777,11 @@ For JSON format descriptors:
 
 No CMake modification needed. Files are auto-discovered via ``GLOB_RECURSE``
 in ``source/cpp_src/Control/format/CMakeLists.txt``. Simply place the ``.json``
-file in ``format/control/`` or ``format/control_extensions/``. The ``format/control_extensions/`` folder 
-is preferred, as the ``format/control/`` directory is reserved for HOPS3 keywords only.
+file in ``format/control/`` or ``format/control_extensions/``. For new keywords,
+``format/control_extensions/`` is preferred: ``format/control/`` is reserved for
+established keywords (those that existed in HOPS3 or that are part of the core
+HOPS4 keyword set), while ``format/control_extensions/`` is the right location for
+new, experimental, or extension keywords.
 
 
 8. Checklist Summary
@@ -780,7 +807,7 @@ Adding a NEW OPERATOR (control-file accessible):
 .. code-block:: text
 
    [ ] 1. Create JSON format descriptor:
-          source/cpp_src/Control/format/control/<name>.json
+          source/cpp_src/Control/format/control_extensions/<name>.json
           - "statement_type": "operator"
           - "operator_category": "calibration"|"flagging"|...
           - "priority": <double>
@@ -849,7 +876,7 @@ EXAMPLE B: Per-station parameter
 Control file::
 
    if station E mount_type zenith_pointing
-   if station G mount_type equitorial_mount
+   if station G mount_type equatorial_mount
 
 JSON (``mount_type.json``):
 
@@ -960,9 +987,11 @@ Builder reads:
    std::vector<double> phases =
        fAttributes["value"]["pc_phases"].get<std::vector<double>>();
        
-Note: Channel may be comma separated (e.g a,b,c ) or concatenated (e.g. abc). However, the legacy HOPS3 
-concatenated syntax is only valid if all channel names are single-character only (limited to 64 channels).
-There is no limit on channel number if multi-character channel names are used, but they must be comma separated.
+Note: Channel names may be comma-separated (e.g. ``a,b,c``) or concatenated
+(e.g. ``abc``). However, the legacy HOPS3 concatenated syntax is only valid
+when all channel names are single characters (limited to 64 channels). There
+is no limit on channel count when multi-character names are used, but they
+must be comma-separated.
 
 EXAMPLE F: Internal operator (no control file access)
 ------------------------------------------------------
@@ -992,13 +1021,22 @@ Common Pitfalls
     last in the "fields" array
 5.  Optional fields must be prefixed with ``"!"`` in the "fields" array, and must come last.
 6.  Builders must always provide both constructors (production + test)
-7.  Operators registered with ``replace_duplicates=true`` will be replaced per pass
-    (useful for per-station corrections); ``false`` means the multiple operators with the same name can be present.
+7.  ``AddOperator()`` takes a ``replace_duplicate`` parameter (default ``true``).
+    When ``true``, any existing operator with the same name is removed from the
+    toolbox before the new one is inserted, only one instance can exist at a time
+    (use this for global, single-instance operators). When ``false``, the new
+    operator is added alongside any existing ones with the same name, allowing
+    multiple instances to coexist in the category pipeline (use this for
+    per-station or per-channel corrections where each instance handles a different
+    station).
 8.  Priority determines execution order within a category (lower = earlier)
 9.  The format descriptor's "operator_category" must match a valid category
     string: ``"labeling"``, ``"selection"``, ``"flagging"``, ``"calibration"``, ``"prefit"``,
     ``"postfit"``, ``"finalize"``, or ``"default"``
 10. Station-specific operators should use ``GetMatchingStationIdentifiers()`` to
-    filter to the current baseline's stations (this is needed when encountering complex conditional statements)
+    filter to the stations actually present in the current baseline. For example,
+    an ``if station E or station G`` condition on an E–Y baseline should only
+    produce an operator for E, not G. ``GetMatchingStationIdentifiers()`` handles
+    this filtering automatically.
 11. Always check for ``nullptr`` after ``ContainerStore::GetObject()`` - missing data
     should be treated as a fatal error in ``Build()``
