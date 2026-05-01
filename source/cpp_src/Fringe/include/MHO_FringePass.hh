@@ -123,7 +123,7 @@ class MHO_FringePass
          * fit loop, finalize, and dispatch output/plot visitors.
          *
          * @param plugin_visitors  Visitors registered on the fitter *before*
-         *                         Configure() - typically the Python/Julia plugin
+         *                         Configure() - typically the Python plugin
          *                         operators.  Accepted before ffit->Configure().
          * @param output_visitors  File-output visitors accepted after Finalize().
          *                         Pass an empty vector to suppress file output.
