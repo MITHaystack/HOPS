@@ -188,7 +188,7 @@ class MHO_OperatorBuilder
             {
                 return (station_id == role_mk4);
             }
-            // 2-char or longer — compare against 2-char station code
+            // 2-char or longer - compare against 2-char station code
             return (station_id == role_code);
         }
 

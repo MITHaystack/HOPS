@@ -1,5 +1,8 @@
 add_subdirectory(json)
 
+# Eigen is header-only - expose include directory
+hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/eigen)
+
 if(HOPS_USE_PYBIND11)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pybind11)
 endif(HOPS_USE_PYBIND11)

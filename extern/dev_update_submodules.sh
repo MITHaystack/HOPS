@@ -28,11 +28,20 @@
 # cd ../../
 # mkdir -p ./matplotplusplus
 # cd ./matplotplusplus
-# tar -xzvf ../matplotplusplus.tar.gz 
+# tar -xzvf ../matplotplusplus.tar.gz
 # cd ../
 # rm ./matplotplusplus.tar.gz
 
+# cd ./submodules/eigen
+# git archive --format=tar.gz HEAD > ../../eigen.tar.gz
+# cd ../../
+# mkdir -p ./eigen
+# cd ./eigen
+# tar -xzvf ../eigen.tar.gz
+# cd ../
+# rm ./eigen.tar.gz
+
 # cp ./submodules/json/single_include/nlohmann/json.hpp ./json/include/nlohmann/json.hpp
-# 
+#
 # cp ./submodules/pybind11_json/include/pybind11_json/pybind11_json.hpp ./json/include/pybind11_json/pybind11_json.hpp
-# 
+#

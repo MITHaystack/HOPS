@@ -251,7 +251,7 @@ class MHO_OperatorToolbox
                     }
                 }
 
-                // erase from owned storage last — unique_ptr destructor deletes the object
+                // erase from owned storage last - unique_ptr destructor deletes the object
                 auto owned_it =
                     std::find_if(fOperators.begin(), fOperators.end(),
                                  [op_ptr](const std::unique_ptr< MHO_Operator >& uptr) { return uptr.get() == op_ptr; });
@@ -272,7 +272,7 @@ class MHO_OperatorToolbox
             fCategoryToOperatorMap.clear();
         }
 
-        // owned storage — unique_ptrs are the sole owners
+        // owned storage - unique_ptrs are the sole owners
         std::vector< std::unique_ptr< MHO_Operator > > fOperators;
 
         //look up operators by name (non-owning)

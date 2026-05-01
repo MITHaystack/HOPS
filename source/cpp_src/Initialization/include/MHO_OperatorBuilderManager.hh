@@ -154,7 +154,7 @@ class MHO_OperatorBuilderManager
         MHO_ContainerStore* fContainerStore;
         MHO_ParameterStore* fParameterStore;
 
-        // owned storage — unique_ptrs are the sole owners
+        // owned storage - unique_ptrs are the sole owners
         std::vector< std::unique_ptr< MHO_OperatorBuilder > > fAllBuilders;
 
         //name -> builder map for lookup by name (non-owning)
