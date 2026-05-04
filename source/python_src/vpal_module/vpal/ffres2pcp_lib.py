@@ -345,7 +345,7 @@ def generate_station_phase_corrections(SingleBaselinePolarizationProductCollecti
                 if sbpp.is_complete() and sbpp.get_dtec_max_deviation() < dtec_tolerance:
                     #first take care of any network reference station pc corrections we can generate from this scan/baseline (only if VGOS mode)
                     if network_reference_station_pol == 'X' and bl[0] == network_reference_station:
-                        ref_st_pc = compute_vgos_network_reference_station_pc_phases(sbpp, network_reference_station,)
+                        ref_st_pc = compute_vgos_network_reference_station_pc_phases(sbpp, network_reference_station, discard_tolerance, nchannel_discard_threshold) #pass discard parameters -- bugfix T. McCarthy 4/23/26
                         stpy = network_reference_station + "_" + "Y"
                         station_pc_phases[stpy].merge(ref_st_pc)
                     #now take care of the remote station corrections for this scan/baseline
