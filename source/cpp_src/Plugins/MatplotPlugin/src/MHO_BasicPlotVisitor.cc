@@ -7,7 +7,21 @@
 #include <cstdlib>
 #include <iomanip>
 #include <sstream>
-#include <termios.h> // for file name capture on command line
+#include <termios.h>
+#include <unistd.h>
+
+// saved terminal state, to be restored on any exit path (including signal-driven exit())
+static termios g_saved_termios;
+static bool g_termios_saved = false;
+
+static void restore_termios_atexit()
+{
+    if(g_termios_saved)
+    {
+        tcsetattr(STDIN_FILENO, TCSANOW, &g_saved_termios);
+        g_termios_saved = false;
+    }
+}
 
 std::string extension_to_terminal_cmd(const std::string& ext)
 {
@@ -237,13 +251,20 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
             fCurrentFigure->draw(); // don't use show();
             bool loop = true;
             msg_info("fringe", "press a key: 's'=save (as .pdf, .eps, or .svg), 'q'=quit, other=continue" << eom);
+            // save the terminal state once before entering raw mode; the atexit handler
+            // makes sure it is restored even if the process exits via exit() (e.g. from
+            // the SIGINT handler or the 'q' branch below)
+            termios oldt;
+            tcgetattr(STDIN_FILENO, &oldt);
+            if(!g_termios_saved)
+            {
+                g_saved_termios = oldt;
+                g_termios_saved = true;
+                std::atexit(restore_termios_atexit);
+            }
             while(loop)
             {
-                // Save old terminal settings
-                termios oldt;
-                tcgetattr(STDIN_FILENO, &oldt);
-
-                // Set new terminal settings
+                // Set new terminal settings (for key-press menu)
                 termios newt = oldt;
                 newt.c_lflag &= ~(ICANON | ECHO); // Turn off canonical mode & echo
                 newt.c_cc[VMIN] = 1;              // Read returns after 1 byte
@@ -253,7 +274,7 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
                 //get 1 character
                 char c = getchar();
 
-                // Restore old settings
+                // Restore inline for the normal (non-exit) path
                 tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
                 switch(c)
