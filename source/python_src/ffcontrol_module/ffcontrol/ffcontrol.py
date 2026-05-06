@@ -170,6 +170,7 @@ c_block._fields_ = [
     ('gen_cf_record', ctypes.c_int ),
     ('nnotches', ctypes.c_int ),
     ('notches', (ctypes.c_double * 2) * MAXNOTCH ),
+    ('chan_notches', ctypes.c_char * (MAXNOTCH+1) ),
     ('t_cohere', ctypes.c_double),
     ('ionosphere', dstats ),
     ('delay_offs', dstats * MAXFREQ), #MAXFREQ
@@ -187,8 +188,11 @@ c_block._fields_ = [
     ('weak_channel', ctypes.c_double),
     ('pc_amp_hcode', ctypes.c_double),
     ('fmatch_bw_pct', ctypes.c_double),
-    ('chid', ctypes.c_char * MAXFREQ),
+    ('chid', ctypes.c_char * (MAXFREQ+1) ),
     ('chid_rf', ctypes.c_double * MAXFREQ),
+    ('clones', (ctypes.c_char * (MAXFREQ//2+1)) * 2 ),
+    ('clone_snr_chk', ctypes.c_int),
+    ('display_chans', ctypes.c_char * (MAXFREQ+5) ),
     ('vbp_correct', ctypes.c_int),
     ('vbp_fit', ctypes.c_int),
     ('vbp_coeffs', dstats * 5),
@@ -197,6 +201,7 @@ c_block._fields_ = [
     ('mixed_mode_rot', ctypes.c_int),
     ('noautofringes', ctypes.c_int),
     ('mod4numbering', ctypes.c_int),
+    ('polfringnames', ctypes.c_int),
     ('mbdrplopt', (ctypes.c_int) * 3),
     ('fringeout_dir', (ctypes.c_char *256) )
 ] #end of c_block._fields_
@@ -255,7 +260,7 @@ def get_control_block(filename, baseline, source, fgroup, time):
     # ffcontrol_lib.set_msglev(-5)
     cb_out = c_block()
     fn_buff = ctypes.create_string_buffer(filename.encode())
-    bl_buff = ctypes.create_string_buffer(baseline.encode(),2)
+    bl_buff = ctypes.create_string_buffer(baseline.encode())
     src_buff = ctypes.create_string_buffer(source.encode(),32)
 
     ffcontrol_lib.for_python_construct_cblock(fn_buff, ctypes.byref(cb_out), bl_buff, src_buff, ctypes.c_char(fgroup.encode()), ctypes.c_int(time) )
