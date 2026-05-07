@@ -13,11 +13,8 @@ if(BASH_PROGRAM)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_pcc_generate.py" "${CMAKE_CURRENT_BINARY_DIR}/test_pcc_generate.py" @ONLY)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/test_ffcontrol_struct.py" "${CMAKE_CURRENT_BINARY_DIR}/test_ffcontrol_struct.py" @ONLY)
 
-    if(PY_EXE)
-        add_test(NAME test_ffcontrol_struct COMMAND ${PY_EXE} ${CMAKE_CURRENT_BINARY_DIR}/test_ffcontrol_struct.py)
-    endif(PY_EXE)
-
     if(HOPS3_PYTHON_EXTRAS)
+        list(APPEND TEST_SCRIPT_BASENAMES "test_ffcontrol")
         list(APPEND TEST_SCRIPT_BASENAMES "vpal_test_harness3")
         list(APPEND TEST_SCRIPT_BASENAMES "vpal_test_harness4")
     endif(HOPS3_PYTHON_EXTRAS)

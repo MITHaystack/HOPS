@@ -1,0 +1,28 @@
+#!/bin/bash
+verb=false
+[ -n "$testverb" ] && verb=true
+
+[ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
+${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
+
+################################################################################
+#run the test
+#the -B option is makes sure that python doesn't produce any __pycache__ (.pyc)
+#files that we have to clean up later
+
+@PY_EXE@ -B @abs_srcdir@/test_ffcontrol_struct.py $EXP_DIR
+
+
+PASS_FAIL=$?
+
+if [ "$PASS_FAIL" -eq 0 ]; then
+  echo "ffcontrol c-struct/c-types size matches."
+  exit 0
+else
+  echo "ffcontrol c-struct/c-types size mis-match!. Failed."
+  exit 1
+fi
+
+#
+# eof
+#
