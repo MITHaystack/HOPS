@@ -46,7 +46,8 @@ def main():
     parser.add_argument('-t', '--toggle-run-info', action='store_false', dest='toggle_dump_info', help='do not append control file with information about how this program was called', default=True)
     parser.add_argument('-y', '--nchannel-discard-threshold', type=int, dest='nchannel_discard_threshold', help='specify number of channels allowed to be flagged before discarding this entire scan', default=5)
     parser.add_argument('-z', '--channel-discard-tolerance', type=float, dest='channel_discard_tolerance', help='allowable channel phase error (deg) before it is flagged', default=15.0)
-
+    parser.add_argument('--force', action='store_true', dest='force_run', help='force fourfit run, even if corel file pol-products not detected', default=False)
+    parser.add_argument('--no-force', action='store_false', dest='force_run', help='check corel file pol-product set before running fourfit (default)')
 
     args = parser.parse_args()
 
@@ -155,6 +156,7 @@ def main():
     ffres2pcp_conf.use_progress_ticker = args.use_progress_ticker
     ffres2pcp_conf.nchannel_discard_threshold = args.nchannel_discard_threshold
     ffres2pcp_conf.channel_discard_tolerance = args.channel_discard_tolerance
+    ffres2pcp_conf.force_run = args.force_run
     ffres2pcp_output_control_filename = os.path.join( os.path.abspath(work_dir), "cf_" + exp_name + "_" + ref_station + rem_stations + "_pcphases" )
     vpal.ffres2pcp_lib.generate_ffres2pcp_control_file(ffres2pcp_conf, ffres2pcp_output_control_filename)
 
@@ -174,6 +176,7 @@ def main():
     fourphase_conf.start_scan_limit = start_scan_limit
     fourphase_conf.stop_scan_limit = stop_scan_limit
     fourphase_conf.use_progress_ticker = args.use_progress_ticker
+    fourphase_conf.force_run = args.force_run
     fourphase_output_control_filename = os.path.join( os.path.abspath(work_dir), "cf_" + exp_name + "_" + ref_station + rem_stations  + "_pstokes" )
     if args.output_filename != '':
         fourphase_output_control_filename = os.path.abspath(args.output_filename)

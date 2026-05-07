@@ -48,6 +48,8 @@ def main():
     parser.add_argument('-r', '--remove-outliers', dest='remove_outlier_nsigma', help='remove scans which are n*sigma away from the mean, default=0 (off)', default=0.0 )
     parser.add_argument('-z', '--z-axis', dest='z_axis', help='select color axis, options are: amp, snr or none, default=none', default='none' )
     parser.add_argument('-f', '--frequency-group', dest='frequency_group', help='select the frequency group (channels) to be used, default=X', default='X')
+    parser.add_argument('--force', action='store_true', dest='force_run', help='force fourfit run, even if corel file pol-products not detected', default=False)
+    parser.add_argument('--no-force', action='store_false', dest='force_run', help='check corel file pol-product set before running fourfit (default)')
 
     args = parser.parse_args()
     print('args: ', args)
@@ -156,7 +158,9 @@ def main():
             ff_list = vpal.processing.load_and_batch_fourfit_mixedmode(abs_exp_dir, legacy_st, vgos_st, \
                                                 control_file_path, set_commands, num_processes=args.num_proc, \
                                                 start_scan_limit=start_scan_limit, stop_scan_limit=stop_scan_limit, \
-                                                pol_products=bline_polprods, frequency_group=args.frequency_group, use_progress_ticker=args.use_progress_ticker, log_fourfit_processes=True \
+                                                pol_products=bline_polprods, frequency_group=args.frequency_group, \
+                                                use_progress_ticker=args.use_progress_ticker, log_fourfit_processes=True, \
+                                                force_run=args.force_run \
             )
 
             #apply cuts

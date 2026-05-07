@@ -431,7 +431,7 @@ def load_and_batch_fourfit_mixedmode(exp_directory, legacy_stations, vgos_statio
                                     control_file_path, set_commands, num_processes=1, \
                                     start_scan_limit="000-0000", stop_scan_limit="999-9999", \
                                     pol_products=None, frequency_group=None, \
-                                    use_progress_ticker=True, log_fourfit_processes=False):
+                                    use_progress_ticker=True, log_fourfit_processes=False, force_run=False):
 
     """loads any pre-existing fringe files which match the criteria and batch fourfits
     any missing items, then returns a list of the fringe-files"""
@@ -515,7 +515,7 @@ def load_and_batch_fourfit_mixedmode(exp_directory, legacy_stations, vgos_statio
                         #construct the expected corel file and check if it is present
                         root_code = ( os.path.basename(root).split('.') )[1]
                         needed_corel_file = os.path.join( os.path.dirname( os.path.abspath(root) ), base + ".." + root_code )
-                        if os.path.isfile(needed_corel_file):
+                        if os.path.isfile(needed_corel_file) or force_run is True :
                             #now we check to make sure this type of pol-product is actually available in the corel file
                             #this is to avoid problems with mixed-mode
                             pp_present_list = ht.get_polarization_products_present(needed_corel_file)
@@ -524,7 +524,7 @@ def load_and_batch_fourfit_mixedmode(exp_directory, legacy_stations, vgos_statio
                             if frequency_group != None:
                                 if len(frequency_group) == 1: #single char only
                                     base_arg = base_arg + ':' + frequency_group
-                            if set(required_pp).issubset( set(pp_present_list) ):
+                            if set(required_pp).issubset( set(pp_present_list) ) or force_run is True:
                                 pol_opt = " -P " + pp + " "
                                 # print([ pol_opt, base_arg, control_file_path, root, False, set_commands, False ] )
                                 arg_list.append( [ pol_opt, base_arg, control_file_path, root, False, set_commands, False ] )
@@ -766,7 +766,7 @@ def load_batch_cut_and_sort(exp_directory, network_reference_station, remote_sta
                             network_reference_baselines_only=True, num_processes=1, \
                             start_scan_limit=None, stop_scan_limit=None, only_complete=True, \
                             pol_products=None, frequency_group=None, use_progress_ticker=True, \
-                            log_fourfit_processes=False):
+                            log_fourfit_processes=False, force_run=False):
 
     """ convenience function to do a load-and-batch fourfit, followed by some filters,
     then join fringe files associated with a single scan-baseline into collections """
@@ -788,7 +788,7 @@ def load_batch_cut_and_sort(exp_directory, network_reference_station, remote_sta
     #load all pre-existing fringe files and compute any missing fringe files
     ff_list = load_and_batch_fourfit(exp_directory, network_reference_station, remote_stations, control_file_path, \
                                      set_commands, network_reference_baselines_only, num_processes, \
-                                     start_scan_limit, stop_scan_limit, pol_products, frequency_group, use_progress_ticker, log_fourfit_processes)
+                                     start_scan_limit, stop_scan_limit, pol_products, frequency_group, use_progress_ticker, log_fourfit_processes, force_run=force_run)
 
     processing_logger.debug("load_batch_cut_and_sort: collected " + str(len(ff_list)) + " matching fringe files before cuts" )
 
@@ -826,7 +826,7 @@ def load_batch_cut_and_sort_mixedmode(exp_directory, network_reference_station, 
                             network_reference_baselines_only=True, num_processes=1, \
                             start_scan_limit="000-0000", stop_scan_limit="999-9999", \
                             only_complete=True, pol_products=None, frequency_group=None, \
-                            use_progress_ticker=True, log_fourfit_processes=False):
+                            use_progress_ticker=True, log_fourfit_processes=False, force_run=False):
 
     """ convenience function to do a load-and-batch fourfit, followed by some filters,
     then join fringe files associated with a single scan-baseline into collections """
@@ -844,7 +844,7 @@ def load_batch_cut_and_sort_mixedmode(exp_directory, network_reference_station, 
     #load all pre-existing fringe files and compute any missing fringe files
     ff_list = load_and_batch_fourfit_mixedmode(exp_directory, network_reference_station, remote_stations, control_file_path, \
                                      set_commands, num_processes, \
-                                     start_scan_limit, stop_scan_limit, pol_products, frequency_group, use_progress_ticker, log_fourfit_processes)
+                                     start_scan_limit, stop_scan_limit, pol_products, frequency_group, use_progress_ticker, log_fourfit_processes, force_run=force_run)
 
     processing_logger.debug("load_batch_cut_and_sort_mixedmode: collected " + str(len(ff_list)) + " matching fringe files before cuts" )
 

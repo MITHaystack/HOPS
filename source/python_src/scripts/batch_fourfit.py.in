@@ -33,7 +33,8 @@ def main():
     parser.add_argument('-d', '--disable-cf-caching', action="store_true", dest='disable_caching', help='disable type_222 control file record caching in fringe files (caching is on by default).', default='False')
     parser.add_argument('-p', '--progress', action='store_true', dest='use_progress_ticker', help='monitor process with progress indicator', default=False)
     parser.add_argument('-t', '--tec-file', dest='tec_file', help='JSON file with per-scan, per-station TEC estimates', default=None)
-    parser.add_argument('-f', '--force', action='store_true', dest='force_flag', help='force the fringe fitter to run without checking for corel files', default=False)
+    parser.add_argument('-f', '--force', action='store_true', dest='force_run', help='force fourfit run, even if corel file pol-products not detected', default=False)
+    parser.add_argument('--no-force', action='store_false', dest='force_run', help='check corel file pol-product set before running fourfit (default)')
 
     args = parser.parse_args()
 
@@ -45,7 +46,7 @@ def main():
     stations = args.stations
     polprodstring = args.pol_products
     exp_dir = args.experiment_directory
-    force_flag = args.force_flag
+    force_flag = args.force_run
 
     polprods = list( set( ( polprodstring.upper() ).split(',') ) )
     for i in list(range(0, len(polprods))):

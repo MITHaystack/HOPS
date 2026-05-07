@@ -50,6 +50,7 @@ class Configuration(report_lib.JsonSerializableObject ):
         self.sigma_cut_factor = 3.0 #cut delay/phase corrections which are further from the mean than sigma*sigma_cut_factor, use 0.0 to disable
         self.use_progress_ticker = True
         self.frequency_group = 'X'
+        self.force_run = False
 
     def export_json(self):
         return self.__dict__
@@ -762,13 +763,13 @@ def generate_station_phase_delay_corrections(config_obj, report_data_obj=None):
         blc_list = processing.load_batch_cut_and_sort( \
             exp_dir, config_obj.network_reference_station, target_stations, control_file_path, set_commands, min_snr, max_snr, \
             valid_qcodes, netref_baselines_only, num_proc, start, stop, only_complete_blc, pol_products, frequency_group=config_obj.frequency_group, \
-            use_progress_ticker=config_obj.use_progress_ticker, log_fourfit_processes=log_fourfit_processes \
+            use_progress_ticker=config_obj.use_progress_ticker, log_fourfit_processes=log_fourfit_processes, force_run=config_obj.force_run \
         )
     elif config_obj.mode == 'MIXED_MODE':
         blc_list = processing.load_batch_cut_and_sort_mixedmode( \
             exp_dir, config_obj.network_reference_station, target_stations, control_file_path, set_commands, min_snr, max_snr, \
             valid_qcodes, netref_baselines_only, num_proc, start, stop, only_complete_blc, pol_products, frequency_group=config_obj.frequency_group, \
-            use_progress_ticker=config_obj.use_progress_ticker, log_fourfit_processes=log_fourfit_processes \
+            use_progress_ticker=config_obj.use_progress_ticker, log_fourfit_processes=log_fourfit_processes, force_run=config_obj.force_run \
         )
 
     #join the baseline-pol-prod collections into scan collections

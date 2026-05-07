@@ -52,6 +52,8 @@ def main():
     parser.add_argument('-e', '--end-scan', dest='end_scan_limit', help='limit the latest scan to be used, e.g. 244-2345', default="999-9999")
     parser.add_argument('-r', '--remove-outliers', dest='remove_outlier_nsigma', help='remove scans which are n*sigma away from the mean, default=0 (off)', default=0.0 )
     parser.add_argument('-z', '--z-axis', dest='z_axis', help='select color axis, options are: amp, dtec, or none, default=none', default='none' )
+    parser.add_argument('--force', action='store_true', dest='force_run', help='force fourfit run, even if corel file pol-products not detected', default=False)
+    parser.add_argument('--no-force', action='store_false', dest='force_run', help='check corel file pol-product set before running fourfit (default)')
 
     args = parser.parse_args()
 
@@ -112,7 +114,8 @@ def main():
         ff_list = vpal.processing.load_and_batch_fourfit( \
             os.path.abspath(exp_dir), bline[0], bline[1], os.path.abspath(control_file), set_commands, \
             num_processes=args.num_proc, start_scan_limit=args.begin_scan_limit, \
-            stop_scan_limit=args.end_scan_limit, pol_products=[polprod], use_progress_ticker=args.use_progress_ticker \
+            stop_scan_limit=args.end_scan_limit, pol_products=[polprod], use_progress_ticker=args.use_progress_ticker, \
+            force_run=args.force_run \
         )
 
         print("n fringe files  =", str(len(ff_list)))

@@ -56,6 +56,7 @@ class Configuration( report_lib.JsonSerializableObject ):
         self.use_progress_ticker = True
         self.nchannel_discard_threshold = 5
         self.channel_discard_tolerance = 15.0
+        self.force_run = False
 
     def export_json(self):
         return self.__dict__
@@ -509,13 +510,13 @@ def generate_pc_phases(config_obj, report_data_obj=None):
         blc_list = processing.load_batch_cut_and_sort( \
             exp_dir, netref_station, target_stations, control_file_path, set_commands, min_snr, max_snr, \
             valid_qcodes, netref_baselines_only, num_proc, start, stop, only_complete_blc, pol_products, frequency_group=config_obj.frequency_group, use_progress_ticker=config_obj.use_progress_ticker, \
-            log_fourfit_processes=log_fourfit_processes \
+            log_fourfit_processes=log_fourfit_processes, force_run=config_obj.force_run \
         )
     elif config_obj.mode == 'MIXED_MODE':
         blc_list = processing.load_batch_cut_and_sort_mixedmode( \
             exp_dir, netref_station, target_stations, control_file_path, set_commands, min_snr, max_snr, \
             valid_qcodes, netref_baselines_only, num_proc, start, stop, only_complete_blc, pol_products, frequency_group=config_obj.frequency_group, use_progress_ticker=config_obj.use_progress_ticker, \
-            log_fourfit_processes=log_fourfit_processes \
+            log_fourfit_processes=log_fourfit_processes, force_run=config_obj.force_run \
         )
 
     if report_data_obj != None:

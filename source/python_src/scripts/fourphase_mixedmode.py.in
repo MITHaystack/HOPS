@@ -39,6 +39,8 @@ def main():
     parser.add_argument('-a', '--averaging-scan-limit', type=int, dest='averaging_scan_limit', help='limit the number of scans used in averaging, use 0 to disable, default=10', default=10)
     parser.add_argument('-t', '--toggle-run-info', action='store_false', dest='toggle_dump_info', help='do not append control file with information about how this program was called', default=True)
     parser.add_argument('-f', '--frequency-group', dest='frequency_group', help='select the frequency group (channels) to be used, default=X', default='X')
+    parser.add_argument('--force', action='store_true', dest='force_run', help='force fourfit run, even if corel file pol-products not detected', default=False)
+    parser.add_argument('--no-force', action='store_false', dest='force_run', help='check corel file pol-product set before running fourfit (default)')
 
     args = parser.parse_args()
 
@@ -158,6 +160,7 @@ def main():
     fourphase_conf.stop_scan_limit = stop_scan_limit
     fourphase_conf.use_progress_ticker = args.use_progress_ticker
     fourphase_conf.frequency_group = args.frequency_group
+    fourphase_conf.force_run = args.force_run
 
     #now generate the new control file name
     fourphase_output_control_filename = ''
