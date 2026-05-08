@@ -2,12 +2,8 @@ import time
 import os, sys
 import numpy as np
 import matplotlib
-#are any of these backends faster? matplotlib is abysmally slow
-# matplotlib.use("Agg")
-# matplotlib.use("TkAgg")
-# matplotlib.use('Qt5Cairo')
-
-
+#MUST USE TkAgg, because GTK4's object model conflicts with pybind11, and crashes
+matplotlib.use("TkAgg")
 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
