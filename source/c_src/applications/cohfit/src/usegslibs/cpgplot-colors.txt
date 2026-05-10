@@ -1,0 +1,22 @@
+https://sites.astro.caltech.edu/~tjp/pgplot/chapter5.html
+olor
+Index    Color                  (H, L, S)        (R, G, B)
+
+ 0   Black (background)       0, 0.00, 0.00   0.00, 0.00, 0.00
+ 1   White (default)          0, 1.00, 0.00   1.00, 1.00, 1.00
+ 2   Red                    120, 0.50, 1.00   1.00, 0.00, 0.00
+ 3   Green                  240, 0.50, 1.00   0.00, 1.00, 0.00
+ 4   Blue                     0, 0.50, 1.00   0.00, 0.00, 1.00
+ 5   Cyan (Green + Blue)    300, 0.50, 1.00   0.00, 1.00, 1.00
+ 6   Magenta (Red + Blue)    60, 0.50, 1.00   1.00, 0.00, 1.00
+ 7   Yellow  (Red + Green)  180, 0.50, 1.00   1.00, 1.00, 0.00
+ 8   Red + Yellow (Orange)  150, 0.50, 1.00   1.00, 0.50, 0.00
+ 9   Green + Yellow         210, 0.50, 1.00   0.50, 1.00, 0.00
+10   Green + Cyan           270, 0.50, 1.00   0.00, 1.00, 0.50
+11   Blue + Cyan            330, 0.50, 1.00   0.00, 0.50, 1.00
+12   Blue + Magenta          30, 0.50, 1.00   0.50, 0.00, 1.00
+13   Red + Magenta           90, 0.50, 1.00   1.00, 0.00, 0.50
+14   Dark Gray                0, 0.33, 0.00   0.33, 0.33, 0.33
+15   Light Gray   	      0, 0.66, 0.00   0.66, 0.66, 0.66
+16--255	Undefined                    	                      
+
