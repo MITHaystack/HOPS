@@ -84,7 +84,7 @@ int create_template(char *optarg, examdata *exdp)
         "#The coherence loss [-s] and maximum coherence time [-c]\n"
         "# can also be set here.  Both are floating point quantities:\n"
         "coherenceloss=%g\n"
-        "maxcoherencetime=%g\n"
+        "maxcoheretime=%g\n"
         "#\n", exdp->closs, exdp->mxcotime);
     fprintf(fpg, "#\n# eoc\n#\n");
     fclose(fpg);
@@ -125,6 +125,30 @@ int edit_parse(char *optarg, examdata *exdp)
         } else if (strncmp(line, "RxC=", 4)) {
             ncs = sscanf(line, "RxC=%dx%d", &exdp->rnc[0], &exdp->rnc[1]);
             if (2 == ncs) continue;
+            return(barf(lno, "Line %d did not parse properly:", line, 202));
+        } else if (strncmp(line, "gnuplot=", 8)) {
+            ncs = sscanf(line, "gnuplot=%d", &exdp->gnuplot);
+            if (1 == ncs) continue;
+            return(barf(lno, "Line %d did not parse properly:", line, 202));
+        } else if (strncmp(line, "montage=", 8)) {
+            ncs = sscanf(line, "montage=%d", &exdp->montage);
+            if (1 == ncs) continue;
+            return(barf(lno, "Line %d did not parse properly:", line, 202));
+        } else if (strncmp(line, "customlimits=", 13)) {
+            ncs = sscanf(line, "customlimits=%d", &exdp->customlimits);
+            if (1 == ncs) continue;
+            return(barf(lno, "Line %d did not parse properly:", line, 202));
+        } else if (strncmp(line, "density=", 8)) {
+            ncs = sscanf(line, "density=%d", &exdp->density);
+            if (1 == ncs) continue;
+            return(barf(lno, "Line %d did not parse properly:", line, 202));
+        } else if (strncmp(line, "coherenceloss=", 14)) {
+            ncs = sscanf(line, "coherenceloss=%d", &exdp->closs);
+            if (1 == ncs) continue;
+            return(barf(lno, "Line %d did not parse properly:", line, 202));
+        } else if (strncmp(line, "maxcoheretime=", 14)) {
+            ncs = sscanf(line, "maxcoheretime=%d", &exdp->mxcotime);
+            if (1 == ncs) continue;
             return(barf(lno, "Line %d did not parse properly:", line, 202));
         } else {
             return(barf(lno, "Line %d is beyond the pale:", line, 254));
