@@ -23,6 +23,7 @@ else()
     add_subdirectory(search)
     add_subdirectory(snratio)
     add_subdirectory(legacy/CorAsc2)
+    add_subdirectory(cohfit)
     
     if(HOPS_USE_DIFXIO)
         if(HOPS3_ENABLE_BUILD_D2M4)
