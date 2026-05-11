@@ -13,7 +13,7 @@ where the options are:
     alist=<file>    input alist (optional)
     cdir=<dir>      correlator experiment directory or part (required)
     wdir=<dir>      directory in which to work (defaults to current directory)
-    expn=<int>      HOPS experiment number (column 8 of alists)
+    expn=<int>      HOPS experiment number (column 8 of alists, required)
     iarg=<...>      the fringex -i argument, see below (defaults to all)
     tag=<string>    some token to put in working filenames (required)
     exam=<string>   tag-exam used for -e argument of cohfit products
@@ -23,6 +23,7 @@ where the options are:
     labs=true|false show the additional plot labels
     nuke=true|false nuke tag/exam names if found (true by default)
     verb=true|false be chatty or not (true by default)
+    very=true|false be even more chatty or not (false by default)
     nmsg=true|false if true, msg output goes to tag.msgs (true by default)
     old=true|false  if true use cofit, not cohfit
 
@@ -31,11 +32,16 @@ results in 1,2,4,8... second accumulation periods, an explicit list
 of up to 50 (integer) durations (in seconds) or a min:max:step construct.
 
 If no alist is provided, one is generated from the 'cdir' which is linked
-to the current directory as 'expn' and the DATADIR set appropriately.
-Then the fringex, average and cohfit are executed in order.
+to the working directory as 'expn' and the DATADIR set appropriately.  Then
+the fringex, average are executed in order with appropriate arguments for the
+eventual cohfit execution.  Note that fringex is very picky about the
+expn/scan/fringes directory organization, so while the top directory (linked as
+'expn') may be named as you like, the lower levels must be canonically named.
+The grep option is useful if you need a subset of fringes.  Otherwise use
+the aedit command and set alist to point to that file.
 
-The cdir must be specified as from the wdir (if relative).
-The expn defaults to 16383 (the ILLEGAL value) and is used only to create
+The 'cdir' must be absolute or relative from the wdir.
+The 'expn' defaults to 16383 (the ILLEGAL value) and is used only to create
 a symbolic link to the correlator experiment directory (or scan therein).
 "
 while [ $# -gt 0 ] ; do case $1 in
@@ -54,6 +60,7 @@ grep=*)     eval "$1" ;;
 labs=*)     eval "$1" ;;
 nuke=*)     eval "$1" ;;
 verb=*)     eval "$1" ;;
+very=*)     eval "$1" ;;
 old=*)      eval "$1" ;;
 nmsg=*)     eval "$1" ;;
 *)          echo Erroneous argument "$1" ; echo "$USAGE" ; exit 1 ;;
@@ -89,6 +96,12 @@ average=`type -p average`
     echo verb must be true or false, not $verb
     exit 2
 }
+[ -z "$very" ] && very=false
+[ "$very" = "true" -o "$very" = "false" ] || {
+    echo very must be true or false, not $very
+    exit 2
+}
+$very && verb=true
 [ -z "$old" ] && old=false
 [ "$old" = "true" -o "$old" = "false" ] || {
     echo old must be true or false, not $old
@@ -113,7 +126,7 @@ min=0 max=0 step=0
     min=`expr "$iarg" : '\([^:]*\):[^:]*:[^:]*'`
     max=`expr "$iarg" : '[^:]*:\([^:]*\):[^:]*'`
     step=`expr "$iarg" : '[^:]*:[^:]*:\([^:]*\)'`
-    # $verb && echo min=$min max=$max step=$step
+    $very && echo min=$min max=$max step=$step
     ii=$min
     iarg=$ii
     ii=$(($ii + $step))
@@ -123,7 +136,7 @@ min=0 max=0 step=0
     done
   }
 }
-# $verb && echo iarg=$iarg
+$very && echo iarg=$iarg
 
 # finally the pedestrian stuff
 [ -z "$expn" ] && expn=16383
@@ -142,8 +155,10 @@ min=0 max=0 step=0
     exit 5
 }
 export DATADIR=`pwd`
+$very && echo DATADIR is $DATADIR
 
 # remove planned outputs
+$very && echo checking for previous products named with $tag
 [ -f $tag.cofit ] && {
     $nuke || { echo have $tag.cofit and nuke is false ; exit 6; }
 }
@@ -165,6 +180,7 @@ export DATADIR=`pwd`
 [ -f $tag.msgs ] && {
     $nuke || { echo have $tag.msgs and nuke is false ; exit 6; }
 }
+$very && $nuke && echo Ensuring previous $tag products are gone
 rm -f $tag.alist $tag.tmp.alist $tag.fringex $tag.coavg $tag.cofit
 rm -f $tag.cofit.txt $tag.cofit.ps $tag.cofit.pdf $tag-$exam.* $tag.msgs
 
@@ -186,6 +202,8 @@ ln -s $cdir $expn && welink=true || {
     echo Unable to link $cdir as $expn ; exit 7
 }
 
+$very && echo working in `pwd` && ls -l $expn
+$very && echo msg output now goes to $tag.msgs
 $nmsg && exec 2>$tag.msgs
 
 # link or create the alist
@@ -209,28 +227,41 @@ $nmsg && exec 2>$tag.msgs
 $verb && echo \
 $fringex -i $iarg -r $tag.alist \> $tag.fringex
 $fringex -i $iarg -r $tag.alist  > $tag.fringex
+status=$?
+$very && fringex exit status $status
 $verb && set -- `wc -l $tag.fringex` && echo $1 lines in $2
+[ $status -eq 0 ] || { echo Return $status from fringex; exit $status; }
 
 # now average
 $verb && echo \
 $average -c -o $tag.coavg \< $tag.fringex
 $average -c -o $tag.coavg  < $tag.fringex
 $verb && set -- `wc -l $tag.coavg` && echo $1 lines in $2
+$very && average exit status $status
+[ $status -eq 0 ] || { echo Return $status from average; exit $status; }
 
 # finally cofit; the old code sprays printf chatter
 $labs && dashl='-l' || dashl=''
 $verb && echo \
-$cohfit $dashg $dashe $dashl $dashm -d $tag.cofit.ps/vcps/pdf -o $tag.cofit \\ &&
+$cohfit $dashg $dashe $dashl $dashm \\ &&
+    -d $tag.cofit.ps/vcps/pdf -o $tag.cofit \\ &&
     echo \< $tag.coavg \> $tag.cofit.txt
-$cohfit $dashg $dashe $dashl $dashm -d $tag.cofit.ps/vcps/pdf -o $tag.cofit \
+$cohfit $dashg $dashe $dashl $dashm \
+    -d $tag.cofit.ps/vcps/pdf -o $tag.cofit \
     < $tag.coavg > $tag.cofit.txt
+status=$?
+$very && cohfit exit status $status
+
 $verb && set -- `wc -l $tag.cofit $tag.cofit.pdf 2>&-`
 $verb && echo $1 lines in $2 && [ $# -ge 4 ] && echo $3 lines in $4
 $verb && echo commentary in $tag.msgs
+$very && echo details in $tag-$exam
+[ $status -eq 0 ] || echo Return $status from cohfit
 
-$welink && rm -f $expn
+$welink && $very || rm -f $expn
 [ -s $tag.cofit.txt ] || rm $tag.cofit.txt
 [ -s $tag.cofit.pdf ] && echo see `pwd`/$tag.cofit.pdf
+exit $status
 #
 # eof vim:nospell
 #
