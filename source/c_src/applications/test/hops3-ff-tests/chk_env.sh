@@ -28,9 +28,8 @@ umask 0002
     rm -rf ./path
     mkdir ./path
     cd ./path
-    for e in adump aedit alist average bispec calamp cofit \
-	     coterp fold fourfit fourmer fplot fringex \
-	     pratio search
+    for e in adump aedit alist average cohfit \
+	     fourfit fourmer fplot fringex search snratio
     do
 	[ -x ../../../postproc/$e/$e ] && ln -s ../../../postproc/$e/$e .
     done
