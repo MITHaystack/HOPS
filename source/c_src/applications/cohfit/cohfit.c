@@ -144,7 +144,8 @@ int main (int argc, char *argv[])
             codata[bno].datum->scan_offset = 0;
             codata[bno].labels = exd.labels;
             codata[bno].fitmask = exd.fitmask;
-            codata[bno].bestfit = FITOPT_NOFITS;
+            codata[bno].bestamp = FITOPT_NOFITS;
+            codata[bno].bestsnr = FITOPT_NOFITS;
             codata[bno].cohereloss = exd.closs;
             codata[bno].maxcotime = exd.mxcotime;
             codata[bno].exampat = NULL;

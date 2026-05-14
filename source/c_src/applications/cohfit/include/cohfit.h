@@ -14,12 +14,19 @@
 #include "adata.h"
 #include "msg.h"
 
+#ifndef HAVEGSL2P8
+#define HAVEGSL2P8 0
+#endif /* HAVEGSL2P8 */
+#ifndef HAVEGSL2P7
+#define HAVEGSL2P7 0
+#endif /* HAVEGSL2P7 */
+
 /* note that in mk4_data.h #define MAXSTATIONS 32 */
 #define MAX_BNO     120                 /* 20 stations */
 #define MAX_NSEGLEN 100                 /* Fringex max -iarg MAXNSECS */
 #define MAX_TXT      80                 /* pgplot labels */
 #define MAX_ITERS   100                 /* max iterations */
-#define NFITOPT       5                 /* number FITOPT bits */
+#define NFITOPT       6                 /* number FITOPT bits */
 #define MAX_COTIME  392.0               /* historical limit */
 #define INIT_AVSP   500                 /* avg data storage, initially */
 #define INCR_AVSP   100                 /* increment for more */
@@ -58,7 +65,8 @@ typedef struct cosummary
     int         navg[MAX_NSEGLEN];      /* num avg'd segments per segment */
     /* outputs or options [-? arg] */
     float       fitsnr[MAX_NSEGLEN];    /* 3pt snr fit */
-    float       fitcbs[MAX_NSEGLEN];    /* cubic spline snr fit */
+    float       fit2p8[MAX_NSEGLEN];    /* cubic spline (GSL2.8) snr fit */
+    float       fit2p7[MAX_NSEGLEN];    /* cubic spline (GSL2.7) snr fit */
     float       fitaps[MAX_NSEGLEN];    /* ps amp fit result */
     float       fitapo[MAX_NSEGLEN];    /* po amp fit result */
     float       fitaso[MAX_NSEGLEN];    /* so amp fit result */
@@ -69,12 +77,14 @@ typedef struct cosummary
     double      maxcotime;              /* [-c] coh. limit option */
     int         nsegtime;               /* how many segments == npt */
     int         fitmask;                /* [-f] allowed fits, see below */
-    int         bestfit;                /* best fits, see below */
+    int         bestamp;                /* best amp fit, see below */
+    int         bestsnr;                /* same for snr */
     int         didfits;                /* fit*[] &c. see below */
     int         iteratio[NFITOPT];      /* iterations on fits */
     float       redchisq[NFITOPT];      /* chisq/dof each fit */
     int         snr_peak[3];            /* seg indices for fit_snr() */
-    int         cbs_peak[3];            /* seg indices for fit_cbs() */
+    int         cbs_p2p8[3];            /* seg indices for fit_cbs() */
+    int         cbs_p2p7[3];            /* seg indices for fit_cbs() */
     double      pspar[3], pserr[3];     /* ps fit parameters, errors */
     double      popar[1], poerr[1];     /* po fit parameters, errors */
     double      sopar[2], soerr[2];     /* so fit parameters, errors */
@@ -98,7 +108,7 @@ typedef struct edatum {
     double      pspar[3], pserr[3];
     double      popar[1], poerr[1];
     double      sopar[2], soerr[2];
-    int         bestndx;
+    int         bestampndx, bestsnrndx;
     char        *examfile;              /* copy of output file */
     int         bno;                    /* ordinal of the file */
 } edatum;
@@ -127,10 +137,11 @@ typedef struct examdata {
     edatum      edata[MAX_BNO];         /* per-file allocations */
 } examdata;
 
-/* values use in cosumary.fitmask and cosumary.bestfit above
+/* values use in cosumary.fitmask and cosumary.bestamp above
  *   fitmask is what fits should be tried (i.e. code exercised)
  *   didfits is what fits were actually done (i.e output populated)
- *   bestfit is what fits was selected as best (i.e. final answer)
+ *   bestamp is what fits was selected as best (i.e. final answer)
+ *   bestsnr is what fits was selected as best (i.e. final answer)
  * these values must be consistent with [-f] option.  Various data
  * about the fits is also captured: model paramters, iterations and
  * reduced chisq.
@@ -144,10 +155,12 @@ typedef struct examdata {
 #define FITOPT_NDX_SO   2       /* < NFITOPT */
 #define FITOPT_SNR_3PT  0x10    /* do 3-point SNR fit at max */
 #define FITOPT_NDX_3PT  3       /* < NFITOPT */
-#define FITOPT_SNR_CBS  0x20    /* do cubic spline fit */
-#define FITOPT_NDX_CBS  4       /* < NFITOPT */
+#define FITOPT_SNR_2P8  0x20    /* do GSL 2.8 cubic spline fit */
+#define FITOPT_NDX_2P8  4       /* < NFITOPT */
+#define FITOPT_SNR_2P7  0x40    /* do GSL 2.7 cubic spline fit */
+#define FITOPT_NDX_2P7  5       /* < NFITOPT */
 #define FITOPT_AMP_ALL  (FITOPT_AMP_PS|FITOPT_AMP_PO|FITOPT_AMP_SO)
-#define FITOPT_SNR_ALL  (FITOPT_SNR_3PT|FITOPT_SNR_CBS)
+#define FITOPT_SNR_ALL  (FITOPT_SNR_3PT|FITOPT_SNR_2P8|FITOPT_SNR_2P7)
 #define FITOPT_ALLFITS  (FITOPT_AMP_ALL|FITOPT_SNR_ALL)
 
 /* Fit conclusions that propagate to cofit output (fit_codata.c):
@@ -180,6 +193,7 @@ extern int exam_edit(char *, examdata *);
 
 /* routines that are support fitting */
 extern char *as_fit_nm_ndx(int, int*);
+extern char *as_fit_ndx_nm(int);
 extern int fit_ampl(cosumary *, int);
 extern int fit_msnr(cosumary *, int);
 extern void fit_codata(cosumary *, examdata *);

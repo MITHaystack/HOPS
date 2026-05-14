@@ -44,7 +44,7 @@ int numptscheck(cosumary *codatum)
 double compute_cotime(cosumary *codatum)
     {
     double noloss_cotime;
-    if (codatum->bestfit & FITOPT_AMP_PS) {
+    if (codatum->bestamp & FITOPT_AMP_PS) {
         /* solve t>break for t of cohfraction of plateau amplitude */
         double exponent =
             - codatum->cohereloss * codatum->plateau / codatum->slope;
@@ -52,11 +52,11 @@ double compute_cotime(cosumary *codatum)
         if (noloss_cotime < 1.0) noloss_cotime = 1.0;
         noloss_cotime = floor(noloss_cotime);
         msg("plateau-slope noloss_cotime = %f", 2, noloss_cotime);
-    } else if (codatum->bestfit & FITOPT_AMP_PO) {
+    } else if (codatum->bestamp & FITOPT_AMP_PO) {
         /* punt: no way to extrapolate past the end */
         noloss_cotime = codatum->seglen[codatum->nsegtime-1];
         msg("plateau-only noloss_cotime = %f", 2, noloss_cotime);
-    } else if (codatum->bestfit & FITOPT_AMP_SO) {
+    } else if (codatum->bestamp & FITOPT_AMP_SO) {
         /* same expression given how we have defined plateau and breakpoint */
         double exponent =
             - codatum->cohereloss * codatum->plateau / codatum->slope;

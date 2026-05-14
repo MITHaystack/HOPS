@@ -91,7 +91,7 @@ double fit_snr(cosumary *codatum, int npt)
         codatum->fitsnr[i] = r*pow(loglen[i],2.0) + s*loglen[i] + t;
     codatum->didfits |= FITOPT_SNR_3PT;
     codatum->iteratio[FITOPT_NDX_3PT] = 1;
-    codatum->redchisq[FITOPT_NDX_3PT] = -1; /* not computed */
+    codatum->redchisq[FITOPT_NDX_3PT] = 47.0;   /* flags this done */
     return(peakslen);
 }      
 

@@ -55,8 +55,14 @@ void plot_codata (cosumary codata[])
             if (snrhigh[i] > snrmax) snrmax = snrhigh[i];
             if (codatum->didfits & FITOPT_SNR_3PT &&
                 codatum->fitsnr[i] > snrmax) snrmax = codatum->fitsnr[i];
-            if (codatum->didfits & FITOPT_NDX_CBS &&
-                codatum->fitcbs[i] > snrmax) snrmax = codatum->fitcbs[i];
+#if HAVEGSL2P8
+            if (codatum->didfits & FITOPT_NDX_2P8 &&
+                codatum->fit2p8[i] > snrmax) snrmax = codatum->fit2p8[i];
+#endif /* HAVEGSL2P8 */
+#if HAVEGSL2P7
+            if (codatum->didfits & FITOPT_NDX_2P7 &&
+                codatum->fit2p7[i] > snrmax) snrmax = codatum->fit2p7[i];
+#endif /* HAVEGSL2P7 */
             if (snrmax <= 0.0) snrmax = 3.0;
             if (amphigh[i] > amplmax) amplmax = amphigh[i];
             }
@@ -81,10 +87,19 @@ void plot_codata (cosumary codata[])
             cpgsci (6);                 /* PLOT the 3PT SNR fit in magenta */
             cpgline (npt, log_seglen, codatum->fitsnr);
         }
-        if (codatum->didfits & FITOPT_SNR_CBS) {
-            cpgsci (12);                /* PLOT the CBS SNR fit in purple */
-            cpgline (npt, log_seglen, codatum->fitcbs);
+#if HAVEGSL2P8
+        if (codatum->didfits & FITOPT_SNR_2P8) {
+            cpgsci (12);                /* PLOT the CBS2.8 SNR fit in purple */
+            cpgline (npt, log_seglen, codatum->fit2p8);
         }
+#endif /* HAVEGSL2P8 */
+#if HAVEGSL2P7
+        if (codatum->didfits & FITOPT_SNR_2P7) {
+            cpgsci (14);                /* PLOT the CBS2.7 SNR fit dark gray */
+            cpgline (npt, log_seglen, codatum->fit2p7);
+        }
+#endif /* HAVEGSL2P7 */
+
         cpgsci (11);                    /* PLOT the SNR data in lt. blue */
         cpgpt (npt, log_seglen, codatum->snr, 3);               /*symbols*/
         cpgerry (npt, log_seglen, snrlow, snrhigh, 0.5);        /*errbars*/
@@ -160,23 +175,23 @@ void plot_codata (cosumary codata[])
 
 
         if (codatum->didfits & FITOPT_AMP_PS) {
-            if (codatum->bestfit & FITOPT_AMP_PS) {cpgqlw(&wid);cpgslw(5*wid);}
+            if (codatum->bestamp & FITOPT_AMP_PS) {cpgqlw(&wid);cpgslw(5*wid);}
             cpgsci(6);                 /* PLOT Amp PS in magenta */
             cpgline (npt, log_seglen, codatum->fitaps);
-            if (codatum->bestfit & FITOPT_AMP_PS) {cpgslw(wid);}
+            if (codatum->bestamp & FITOPT_AMP_PS) {cpgslw(wid);}
         }
         cpgsci (11);                /* PLOT Amp Data in lt blue */
         if (codatum->didfits & FITOPT_AMP_PO) {
-            if (codatum->bestfit & FITOPT_AMP_PO) {cpgqlw(&wid);cpgslw(5*wid);}
+            if (codatum->bestamp & FITOPT_AMP_PO) {cpgqlw(&wid);cpgslw(5*wid);}
             cpgsci (8);                 /* PLOT Amp PO in orange */
             cpgline (npt, log_seglen, codatum->fitapo);
-            if (codatum->bestfit & FITOPT_AMP_PO) {cpgslw(wid);}
+            if (codatum->bestamp & FITOPT_AMP_PO) {cpgslw(wid);}
         }
         if (codatum->didfits & FITOPT_AMP_SO) {
-            if (codatum->bestfit & FITOPT_AMP_SO) {cpgqlw(&wid);cpgslw(5*wid);}
+            if (codatum->bestamp & FITOPT_AMP_SO) {cpgqlw(&wid);cpgslw(5*wid);}
             cpgsci (12);                /* PLOT Amp SO in purple */
             cpgline (npt, log_seglen, codatum->fitaso);
-            if (codatum->bestfit & FITOPT_AMP_SO) {cpgslw(wid);}
+            if (codatum->bestamp & FITOPT_AMP_SO) {cpgslw(wid);}
         }
         cpgsci (11);                /* PLOT Amp Data in lt blue */
         cpgpt (npt, log_seglen, codatum->ampl, 3);              /*symbols*/
@@ -193,7 +208,7 @@ void plot_codata (cosumary codata[])
             if (codatum->labels)
                 {
                 cpgsch (lht);           /* Set label character height */
-                cpgmtxt("LV", -3.0, 0.15, 0.0, "(break)");
+                cpgmtxt("LV", -3.0, 0.15, 0.0, "(br.pnt)");
                 }
 
             log_ncotime = log10 ((double)(codatum->datum->noloss_cotime));

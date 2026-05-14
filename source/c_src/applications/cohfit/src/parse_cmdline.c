@@ -114,10 +114,10 @@ int parse_cmdline (int argc, char **argv, FILE **fpout, examdata *exdp)
 
             case 'f':
                 if (optarg[0] != '0' ||
-                    optarg[1] != 'x' || optarg[1] != 'X' ||
+                    (optarg[1] != 'x' && optarg[1] != 'X') ||
                     (1 != sscanf(optarg, "%x", &exdp->fitmask)))
                     {
-                    msg("The fitmask must be 0x.. or 0X..", 3);
+                    msg("The fitmask %s must be 0x.. or 0X..", 3, optarg);
                     return(203);
                     }
                 break;

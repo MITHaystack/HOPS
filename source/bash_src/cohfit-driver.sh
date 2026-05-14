@@ -18,14 +18,14 @@ where the options are:
     tag=<string>    some token to put in working filenames (required)
     exam=<string>   tag-exam used for -e argument of cohfit products
     grep=<string>   grep -E <string> will be invoked on the alist
-    rnc=RxC         the -g option of cohfit
+    rnc=RxC|<file>  the -g option of cohfit
     msglev=<int>    the -m option of cohfit
-    labs=true|false show the additional plot labels
+    fitmask=<hex>   the -f option of cohfit
+    labs=true|false show the additional plot labels (true by default)
     nuke=true|false nuke tag/exam names if found (true by default)
     verb=true|false be chatty or not (true by default)
     very=true|false be even more chatty or not (false by default)
     nmsg=true|false if true, msg output goes to tag.msgs (true by default)
-    old=true|false  if true use cofit, not cohfit
 
 The fringex segmentation should either be the 'all' argument which
 results in 1,2,4,8... second accumulation periods, an explicit list
@@ -43,7 +43,12 @@ the aedit command and set alist to point to that file.
 The 'cdir' must be absolute or relative from the wdir.
 The 'expn' defaults to 16383 (the ILLEGAL value) and is used only to create
 a symbolic link to the correlator experiment directory (or scan therein).
+
+For other things, a vhelp cohfit might clarify options.
 "
+# this is allowed for testing but not mentioned in help
+#   old=true|false  if true use older cofit, not newer cohfit
+#
 while [ $# -gt 0 ] ; do case $1 in
 --help)     echo "$USAGE" ; exit 0 ;;
 --version)  echo "no version information" ; exit 0 ;;
@@ -55,6 +60,7 @@ iarg=*)     eval "$1" ;;
 tag=*)      eval "$1" ;;
 rnc=*)      eval "$1" ;;
 msglev=*)   eval "$1" ;;
+fitmask=*)  eval "$1" ;;
 exam=*)     eval "$1" ;;
 grep=*)     eval "$1" ;;
 labs=*)     eval "$1" ;;
@@ -81,7 +87,7 @@ average=`type -p average`
 }
 
 # first the booleans
-[ -z "$labs" ] && labs=false
+[ -z "$labs" ] && labs=true
 [ "$labs" = "true" -o "$labs" = "false" ] || {
     echo labs must be true or false, not $labs
     exit 2
@@ -142,6 +148,7 @@ $very && echo iarg=$iarg
 [ -z "$expn" ] && expn=16383
 [ -z "$rnc" ] && dashg="" || dashg="-g $rnc"
 [ -z "$msglev" ] && dashm="" || dashm="-m $msglev"
+[ -z "$fitmask" ] && dashf="" || dashf="-f $fitmask"
 [ -z "$exam" -o $old = true ] && dashe="" || dashe="-e $tag-$exam"
 [ -z "$tag" ] && {
     echo tag not set, this is a problem
@@ -159,11 +166,11 @@ $very && echo DATADIR is $DATADIR
 
 # remove planned outputs
 $very && echo checking for previous products named with $tag
-[ -f $tag.cofit ] && {
-    $nuke || { echo have $tag.cofit and nuke is false ; exit 6; }
+[ -f $tag.cohfit ] && {
+    $nuke || { echo have $tag.cohfit and nuke is false ; exit 6; }
 }
-[ -f $tag.cofit.txt ] && {
-    $nuke || { echo have $tag.cofit.txt and nuke is false ; exit 6; }
+[ -f $tag.cohfit.txt ] && {
+    $nuke || { echo have $tag.cohfit.txt and nuke is false ; exit 6; }
 }
 [ -f $tag.coavg ] && {
     $nuke || { echo have $tag.coavg and nuke is false ; exit 6; }
@@ -181,8 +188,8 @@ $very && echo checking for previous products named with $tag
     $nuke || { echo have $tag.msgs and nuke is false ; exit 6; }
 }
 $very && $nuke && echo Ensuring previous $tag products are gone
-rm -f $tag.alist $tag.tmp.alist $tag.fringex $tag.coavg $tag.cofit
-rm -f $tag.cofit.txt $tag.cofit.ps $tag.cofit.pdf $tag-$exam.* $tag.msgs
+rm -f $tag.alist $tag.tmp.alist $tag.fringex $tag.coavg $tag.cohfit
+rm -f $tag.cohfit.txt $tag.cohfit.ps $tag.cohfit.pdf $tag-$exam.* $tag.msgs
 
 # link the cdir in to cwd
 [ -z "$cdir" ] && {
@@ -225,8 +232,8 @@ $nmsg && exec 2>$tag.msgs
 
 # now fringex
 $verb && echo \
-$fringex -i $iarg -r $tag.alist \> $tag.fringex
-$fringex -i $iarg -r $tag.alist  > $tag.fringex
+$fringex -v6 -i $iarg -r $tag.alist \> $tag.fringex
+$fringex -v6 -i $iarg -r $tag.alist  > $tag.fringex
 status=$?
 $very && fringex exit status $status
 $verb && set -- `wc -l $tag.fringex` && echo $1 lines in $2
@@ -240,27 +247,27 @@ $verb && set -- `wc -l $tag.coavg` && echo $1 lines in $2
 $very && average exit status $status
 [ $status -eq 0 ] || { echo Return $status from average; exit $status; }
 
-# finally cofit; the old code sprays printf chatter
+# finally cohfit; the old code sprays printf chatter
 $labs && dashl='-l' || dashl=''
 $verb && echo \
-$cohfit $dashg $dashe $dashl $dashm \\ &&
-    -d $tag.cofit.ps/vcps/pdf -o $tag.cofit \\ &&
-    echo \< $tag.coavg \> $tag.cofit.txt
-$cohfit $dashg $dashe $dashl $dashm \
-    -d $tag.cofit.ps/vcps/pdf -o $tag.cofit \
-    < $tag.coavg > $tag.cofit.txt
+$cohfit $dashe $dashg $dashl $dashm $dashf \\ && echo \
+    -d $tag.cohfit.ps/vcps/pdf -o $tag.cohfit \\ && echo \
+    echo \< $tag.coavg \> $tag.cohfit.txt
+$cohfit $dashe $dashg $dashl $dashm $dashf \
+    -d $tag.cohfit.ps/vcps/pdf -o $tag.cohfit \
+    < $tag.coavg > $tag.cohfit.txt
 status=$?
 $very && cohfit exit status $status
 
-$verb && set -- `wc -l $tag.cofit $tag.cofit.pdf 2>&-`
+$verb && set -- `wc -l $tag.cohfit $tag.cohfit.pdf 2>&-`
 $verb && echo $1 lines in $2 && [ $# -ge 4 ] && echo $3 lines in $4
 $verb && echo commentary in $tag.msgs
 $very && echo details in $tag-$exam
 [ $status -eq 0 ] || echo Return $status from cohfit
 
 $welink && $very || rm -f $expn
-[ -s $tag.cofit.txt ] || rm $tag.cofit.txt
-[ -s $tag.cofit.pdf ] && echo see `pwd`/$tag.cofit.pdf
+[ -s $tag.cohfit.txt ] || rm $tag.cohfit.txt
+[ -s $tag.cohfit.pdf ] && echo see `pwd`/$tag.cohfit.pdf
 exit $status
 #
 # eof vim:nospell

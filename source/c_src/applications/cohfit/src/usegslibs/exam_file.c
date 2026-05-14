@@ -9,12 +9,15 @@
 
 /* for readability below */
 #define FITHDRSTR "%5s %4s "\
-    "%10s %8s  %10s %7s  %10s %10s %10s %10s %10s\n"
+    "%10s %8s  %10s %7s  %10s %10s %10s %10s %10s %10s\n"
 #define FITDATSTR "%5.0f %4d "\
-    "%10.4e %8.2e  %10.4e %7.1e  %10.4e %10.4e %10.4e %10.4e %10.4e\n"
+    "%10.4e %8.2e  %10.4e %7.1e  %10.4e %10.4e %10.4e %10.4e %10.4e %10.4e\n"
 #define MINMAXGAME(C,S,N,X) do {\
         if(codatum->C[S] < N) N = codatum->C[S];\
         if(codatum->C[S] > X) X = codatum->C[S];\
+    } while (0);
+#define MINTRIMSNR(C,S) do {\
+        if(codatum->C[S] <= 0.0) codatum->C[S] = 0.0;\
     } while (0);
 
 void exam_file(cosumary *codatum, int bno, examdata *exdata)
@@ -51,6 +54,8 @@ void exam_file(cosumary *codatum, int bno, examdata *exdata)
     /* save coherence times and some fit data */
     edp->ampl_cotime = codatum->ampl_cotime;
     edp->snr_cotime = codatum->snr_cotime;
+    fprintf(fpe, "# amp/SNR coherence times  %.1f %.1f\n",
+        edp->ampl_cotime, edp->snr_cotime);
     for (min = 0; min < NFITOPT; min++)
         edp->redchisq[min] = codatum->redchisq[min];
     for (day = 0; day < 3; day++) {
@@ -61,29 +66,38 @@ void exam_file(cosumary *codatum, int bno, examdata *exdata)
         if (day < sizeof(edp->sopar)) edp->sopar[day] = codatum->sopar[day];
         if (day < sizeof(edp->soerr)) edp->soerr[day] = codatum->soerr[day];
     }
-    fitname = as_fit_nm_ndx(codatum->bestfit, &(edp->bestndx));
+    fitname = as_fit_nm_ndx(codatum->bestamp, &(edp->bestampndx));
     fprintf(fpe, "# best ampl fit was: %s (red. chisq %g)\n#\n",
-        fitname, edp->redchisq[edp->bestndx]);
+        fitname, edp->redchisq[edp->bestampndx]);
+    fitname = as_fit_nm_ndx(codatum->bestsnr, &(edp->bestsnrndx));
+    fprintf(fpe, "# best SNR fit was:  %s (red. chisq %g)\n#\n",
+        fitname, edp->redchisq[edp->bestsnrndx]);
 
     /* dump out all the segment array values -- starting with a header */
     fprintf(fpe, FITHDRSTR,
         "#secs", "navg", "ampl", "amperr", "snr", "snrerr",
-        "fitaps", "fitapo", "fitaso", "fitsnr", "fitcbs");
+        "fitaps", "fitapo", "fitaso", "fitsnr", "fit2p8", "fit2p7");
     for (sec = 0; sec < codatum->nsegtime; sec++) {
+        /* no point to min/max, but SNR must be > 0.0 */
+        MINTRIMSNR(fitsnr, sec);
         fprintf(fpe, FITDATSTR,
             codatum->seglen[sec], codatum->navg[sec],
             codatum->ampl[sec], (codatum->snr[sec] > 0)
                 ? codatum->ampl[sec] / codatum->snr[sec] : 0.0,
             codatum->snr[sec], 1.0,     /* one-sigma error bars */
             codatum->fitaps[sec], codatum->fitapo[sec], codatum->fitaso[sec],
-            codatum->fitsnr[sec], codatum->fitcbs[sec]);
+            codatum->fitsnr[sec], codatum->fit2p8[sec], codatum->fit2p7[sec]);
         MINMAXGAME(ampl,   sec, amin, amax);
         MINMAXGAME(fitaps, sec, amin, amax);
         MINMAXGAME(fitapo, sec, amin, amax);
         MINMAXGAME(fitaso, sec, amin, amax);
         MINMAXGAME(snr,    sec, smin, smax);
-        // MINMAXGAME(fitsnr, sec, smin, smax);
-        MINMAXGAME(fitcbs, sec, smin, smax);
+#if HAVEGSL2P8
+        MINMAXGAME(fit2p8, sec, smin, smax);
+#endif /* HAVEGSL2P8 */
+#if HAVEGSL2P7
+        MINMAXGAME(fit2p7, sec, smin, smax);
+#endif /* HAVEGSL2P7 */
     }
     edp->lenmin = (double) codatum->seglen[0] * 0.90;
     if (edp->lenmin < 1) edp->lenmin = 1;

@@ -97,6 +97,11 @@ int fit_ampl (cosumary *codatum, int npt)
         (yy[npt-1] - yy[0])/log10(tt[npt-1]/tt[0]);
     codatum->pspar[2] = cohereguess(codatum);
 
+    /* mark as totally invalid */
+    codatum->redchisq[FITOPT_NDX_PS] =
+    codatum->redchisq[FITOPT_NDX_PO] =
+    codatum->redchisq[FITOPT_NDX_SO] = -17.0;
+
     if (codatum->fitmask & FITOPT_AMP_PS) plateau_slope_fit(codatum, &dd);
     if (codatum->fitmask & FITOPT_AMP_PO) plateau_only_fit(codatum, &dd);
     if (codatum->fitmask & FITOPT_AMP_SO) slope_only_fit(codatum, &dd);

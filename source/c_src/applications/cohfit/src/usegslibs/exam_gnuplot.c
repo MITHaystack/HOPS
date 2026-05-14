@@ -7,7 +7,7 @@
  *   GNUPLOT_PDFILE     -- pdfcairo setup
  *   GNUPLOT_PERBNO     -- per-file choices
  *   GNUPLOT_SETTINGS   -- standard configuration choices
- *   GNUPLOT_TWOPANEL   -- setup for a SNR under AMP 2-panel plot
+ *   GNUPLOT_TWOPANEL*  -- setup for a SNR under AMP 2-panel plot
  *   GNUPLOT_CODA       -- and end of file marker
  * Each has an accompanying *_BASE define with the approximate
  * size of the string, should allocation be needed.  The first
@@ -25,16 +25,84 @@
  * (for some other processing) but no pdf is made.  (Technically,
  * if missing, it will be set to /bin/false, but that is a detail.)
  *
- * montage -tile 2x2 -geometry +2+2 -density 300 fff-dets-*pdf ff-dets.pdf
  * montage -tile 2x2 -geometry +2+2 -density 150 fff-dets-*pdf ff-dets.pdf
- *
- * Should use global max x-y on all plots rather than local ones.
- * Should limit SNR and AMP > 0
+ * An alternative is to use pdflatex includegraphics to do the dance.
  */
+#define _GNU_SOURCE
 #include <stdlib.h>
-#include <string.h>
 #include "cohfit.h"
 #include "exam_gnuplot.h"
+
+/* details for one such file */
+void exam_sum(examdata *exdp, int bb, FILE *fps)
+{
+    edatum *edp = &exdp->edata[bb];
+    fprintf(fps, "%s(file %d):\n"
+        "fringe: %s\n"
+        "plateau = %g breakpoint = %g slope = %g\n"
+        "ampl_cotime = %.3f snr_cotime = %.3f\n",
+        edp->examfile, exdp->pbno + bb,
+        edp->frlabel,
+        edp->plateau, edp->breakpoint, edp->slope,
+        edp->ampl_cotime, edp->snr_cotime);
+    if (edp->redchisq[FITOPT_NDX_PS] > 0)
+      fprintf(fps, "ps plateau-slope reduced chisq = %.3f\n"
+        "ps Amp(t) = A or A + B log10(t/C)\n"
+        "ps A = %.5f +/- %.5f\n"
+        "ps B = %.5f +/- %.5f\n"
+        "ps C = %.5f +/- %.5f\n",
+        edp->redchisq[FITOPT_NDX_PS],
+        edp->pspar[0], edp->pserr[0],
+        edp->pspar[1], edp->pserr[1],
+        edp->pspar[2], edp->pserr[2]);
+    if (edp->redchisq[FITOPT_NDX_PO] > 0)
+      fprintf(fps, "po plateau-only reduced chisq = %.3f\n"
+        "po Amp(t) = A\n"
+        "po A = %.5f +/- %.5f\n",
+        edp->redchisq[FITOPT_NDX_PO],
+        edp->popar[0], edp->poerr[0]);
+    if (edp->redchisq[FITOPT_NDX_SO] > 0)
+      fprintf(fps, "slope-only reduced chisq = %.3f\n"
+        "so Amp(t) = A + B log10(t/t[min]\n"
+        "so A = %.5f +/- %.5f\n"
+        "so B = %.5f +/- %.5f\n",
+        edp->redchisq[FITOPT_NDX_SO],
+        edp->sopar[0], edp->soerr[0],
+        edp->sopar[1], edp->soerr[1]);
+    fprintf(fps, "best amplitude fit %s\n\n", as_fit_ndx_nm(edp->bestampndx));
+}
+
+/* generate a summary file */
+void exam_summary(examdata *exdp)
+{
+    int sumnmlen = exdp->elen + 32, nc, bb;
+    char *sumname = malloc(sumnmlen), *pc, tbbn = exdp->pbno + exdp->nbno;
+    char *pcwd;
+    FILE *fps;
+
+    if (!sumname) { perror("exam_summary:malloc"); return; }
+    pc = strchr(exdp->epat, '%');     /* expect -%<integer>d */
+    *--pc = 0;
+    nc = snprintf(sumname, sumnmlen, "%s-%d.summary.txt", exdp->epat, tbbn);
+    *pc = '-';                  /* restore it to be clean */
+    if (nc >= sumnmlen) {
+        msg("Unable to create summary file, need %d only have %d chars", 3,
+            nc, sumnmlen);
+        return;
+    }
+    fps = fopen(sumname, "w");
+    pcwd = get_current_dir_name();
+    if (pcwd) {
+        if (strlen(pcwd) < 80) fprintf(fps, "workdir: %s\n", pcwd);
+        else fprintf(fps, "workdir: %.80s...\n", pcwd);
+        free(pcwd);
+    }
+    if (exdp->edit) fprintf(fps, "config controlled by %s\n", exdp->edit);
+    fprintf(fps, "coherence loss = %g max coherence time = %g\n\n",
+        exdp->closs, exdp->mxcotime);
+    for (bb = 0; bb < exdp->nbno; bb++) exam_sum(exdp, bb, fps);
+    fclose(fps);
+}
 
 /* another helper */
 void exam_runit(char *cmd)
@@ -55,24 +123,26 @@ void exam_runit(char *cmd)
         msg("CMD so far: %s", 3, S);\
     return;} while(0)
 
-void exam_montage(char *epat, int elen, int bbn, char *pdf[bbn],
-    int density, int rnc[2], int tbbn)
+/* this builds up the montage command, and as a last step, runs it */
+void exam_montage(examdata *exdp, int bbn, char *pdf[bbn])
 {
-    int cmdlen = (bbn+1) * (elen + 8) + strlen(MONTAGE) + 64, nc = 0, bb;
-    char *montyc = malloc(cmdlen), *mtpdfo = malloc(elen + 32), *pc;
+    int tbbn = exdp->pbno + exdp->nbno;
+    int cmdlen = (bbn+1)*(exdp->elen + 8) + strlen(MONTAGE) + 64, nc = 0, bb;
+    char *montyc = malloc(cmdlen), *mtpdfo = malloc(exdp->elen + 32), *pc;
 
     if (!montyc) { perror("exam_montage:malloc:1"); return; }
     if (!mtpdfo) { perror("exam_montage:malloc:2"); return; }
-    pc = strchr(epat, '%');     /* expect -%<integer>d */
+    pc = strchr(exdp->epat, '%');     /* expect -%<integer>d */
     *--pc = 0;
-    nc = snprintf(mtpdfo, elen + 32, " %s-%d.montage.pdf", epat, tbbn);
+    nc = snprintf(mtpdfo, exdp->elen + 32,
+        " %s-%d.montage.pdf", exdp->epat, tbbn);
     *pc = '-';                  /* restore it to be clean */
-    if (nc >= elen + 32) EXAM_RETURN(nc, elen+32, mtpdfo);
+    if (nc >= exdp->elen + 32) EXAM_RETURN(nc, exdp->elen+32, mtpdfo);
 
     /* the basic montage command */
     nc = snprintf(montyc, cmdlen,
         "%s -tile %dx%d -geometry +2+2 -density %d ",
-        MONTAGE, rnc[1], rnc[0], density);
+        MONTAGE, exdp->rnc[1], exdp->rnc[0], exdp->density);
     if (--nc >= cmdlen) EXAM_RETURN(nc, cmdlen, montyc);
 
     /* pile on the file names */
@@ -83,7 +153,7 @@ void exam_montage(char *epat, int elen, int bbn, char *pdf[bbn],
     }
 
     /* and finally add the output file */
-    nc += snprintf(montyc + nc, elen + 16, "%s", mtpdfo);
+    nc += snprintf(montyc + nc, exdp->elen + 16, "%s", mtpdfo);
     if (nc >= cmdlen) EXAM_RETURN(nc, cmdlen, montyc);
     msg("Montage command len %d < limit %d is:", 1, nc, cmdlen);
     exam_runit(montyc);
@@ -99,7 +169,7 @@ void exam_plot(char *cmds)
 }
 
 /* update limits with the per-plot values and set key locations */
-void exam_custom(edatum *edp, double limits[6], char *ksnr, char *kamp)
+void exam_custom(edatum *edp, double limits[6], char **ksnr, char **kamp)
 {
     /* xrange: min and max (%lf) */
     limits[0] = edp->lenmin;
@@ -110,22 +180,26 @@ void exam_custom(edatum *edp, double limits[6], char *ksnr, char *kamp)
     /* snrrange: min and max (%lf) */
     limits[4] = edp->snrmin;
     limits[5] = edp->snrmax;
-    if (ksnr) ksnr = "inside bottom left vertical reverse Left";
-    if (kamp) kamp = "inside bottom left vertical reverse Left";
+    /* force bottom limits to be sensible */
+    if (limits[2] < 0) limits[2] = 0.0;
+    if (limits[4] < 0) limits[4] = 0.0;
+    /* in the custom case it is perhaps unlikely to need KEYTOP */
+    if (ksnr) *ksnr = KEYBOT;
+    if (kamp) *kamp = KEYBOT;
 }
 
 /* helper function to establish global plot limits */
-void exam_setlimits(examdata *exdp, 
-    double limits[6], char *ksnr[], char *kamp[])
+void exam_setlimits(examdata *exdp, double limits[6],
+    const int nbb, char *ksnr[nbb], char *kamp[nbb])
 {
     int bb;
-    char *kybot = "inside bottom left vertical reverse Left";
-    char *kytop = "inside top right vertical Right";
+    char *kybot = KEYBOT;
+    char *kytop = KEYTOP;
     edatum *edp;
     double midamp, midsnr, gmamp, gmsnr;
 
     /* first establish limits */
-    for (bb = 0; bb < exdp->nbno; bb++) {
+    for (bb = 0; bb < nbb; bb++) {
         edp = &exdp->edata[bb];
         if (bb == 0) {              /* first edp establishes values */
             exam_custom(edp, limits, NULL, NULL);
@@ -136,13 +210,15 @@ void exam_setlimits(examdata *exdp,
             if (edp->ampmax > limits[3]) limits[3] = edp->ampmax;
             if (edp->snrmin < limits[4]) limits[4] = edp->snrmin;
             if (edp->snrmax > limits[5]) limits[5] = edp->snrmax;
+            kamp[bb] = KEYBOT;
+            ksnr[bb] = KEYBOT;
         }
     }
     if (exdp->customlimits) return;
 
     gmamp = (limits[2] + limits[3]) / 2.0;
     gmsnr = (limits[4] + limits[5]) / 2.0;
-    for (bb = 0; bb < exdp->nbno; bb++) {
+    for (bb = 0; bb < nbb; bb++) {
         edp = &exdp->edata[bb];
         midamp = (edp->ampmin + edp->ampmax) / 2.0;
         midsnr = (edp->snrmin + edp->snrmax) / 2.0;
@@ -151,40 +227,148 @@ void exam_setlimits(examdata *exdp,
     }
 }
 
-/* swap format to indicate best amp fit */
-void exam_bestamp(char *ltit[], int best)
+/* set the default line color, weight and dashtype */
+void exam_default_styles(const int n, char *rgb[n], int lw[n], char *dt[n])
 {
-    switch (best) {
+    /* default colors */
+    rgb[0] = "ignored";
+    rgb[1] = "medium-blue";     rgb[2] = "dark-violet";
+    rgb[3] = "olive";           rgb[4] = "orange-red";
+    rgb[5] = "navy";            rgb[6] = "light-red";
+    rgb[7] = "forest-green";    rgb[8] = "dark-goldenrod";
+    /* defaults for lw, dt, lt and title that have ps and cbs as winners */
+    lw[0] = 0;
+    lw[1] = lw[5] = lw[6] = lw[8] = 1;
+    lw[2] = lw[3] = lw[4] = 2;  lw[7] = 3;
+    dt[0] = 0;
+    dt[1] = dt[2] = dt[5] = dt[7] = "solid";
+    dt[3] = "'.._'";    dt[4] = "'...'";
+    dt[6] = "'---'";    dt[8] = "'- -'";
+}
+    
+/* swap format to indicate best amp fit */
+char *exam_bestamp(char *ltit[NFITOPT], edatum *edp)
+{
+    static char plot_amp[GNUPLOT_TWOPANEL_PLOT_AMP_BASE];
+    char *ampe = plot_amp;
+    int ns = 0, na = GNUPLOT_TWOPANEL_PLOT_AMP_BASE;
+    switch(edp->bestampndx) {
     case FITOPT_NDX_PS:
         ltit[FITOPT_NDX_PS] = "lt 2 tit '{/:Bold plateau-slope}'";
         ltit[FITOPT_NDX_PO] = "lt 3 tit 'plateau-only'";
         ltit[FITOPT_NDX_SO] = "lt 4 tit 'slope-only'";
-        ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
-        ltit[FITOPT_NDX_CBS] = "lt 7 tit '{/:Bold cubic spline}'";
         break;
     case FITOPT_NDX_PO:
         ltit[FITOPT_NDX_PS] = "lt 3 tit 'plateau-slope'";
         ltit[FITOPT_NDX_PO] = "lt 2 tit '{/:Bold plateau-only}'";
         ltit[FITOPT_NDX_SO] = "lt 4 tit 'slope-only'";
-        ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
-        ltit[FITOPT_NDX_CBS] = "lt 7 tit '{/:Bold cubic spline}'";
         break;
     case FITOPT_NDX_SO:
         ltit[FITOPT_NDX_PS] = "lt 4 tit 'plateau-slope'";
         ltit[FITOPT_NDX_PO] = "lt 3 tit 'plateau-only'";
         ltit[FITOPT_NDX_SO] = "lt 2 tit '{/:Bold slope-only}'";
-        ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
-        ltit[FITOPT_NDX_CBS] = "lt 7 tit '{/:Bold cubic spline}'";
+        break;
+    case NFITOPT:
+        msg("Nothing fit, not model plotted", 3);
         break;
     default:
-        msg("Developer error in exam_bestamp() best = %d", 3, best);
+        msg("Dev. error in exam_bestamp() best = %d", 3, edp->bestampndx);
         exit(1);
     }
+
+    ns = snprintf(ampe, na, "plot \\\n");
+    if (ns >= na) return("plot 0.05\n");
+    ampe = ampe + ns;     na -= ns;
+    if (edp->redchisq[FITOPT_NDX_PS] > 0) {
+        ns = snprintf(ampe, na, "  df u 1:7  w line %s, \\\n",
+            ltit[FITOPT_NDX_PS]);
+        if (ns >= na) return("plot 0.06\n");
+        ampe = ampe + ns;     na -= ns;
+    }
+    if (edp->redchisq[FITOPT_NDX_PO] > 0) {
+        ns = snprintf(ampe, na, "  df u 1:8  w line %s, \\\n",
+            ltit[FITOPT_NDX_PO]);
+        if (ns >= na) return("plot 0.07\n");
+        ampe = ampe + ns;     na -= ns;
+    }
+    if (edp->redchisq[FITOPT_NDX_SO] > 0) {
+        ns = snprintf(ampe, na, "  df u 1:9  w line %s, \\\n",
+            ltit[FITOPT_NDX_SO]);
+        if (ns >= na) return("plot 0.08\n");
+        ampe = ampe + ns;     na -= ns;
+    }
+    ns = snprintf(ampe, na, 
+        "  df u 1:3:4 w yerrorlines lt 1 tit 'Amp data'\n");
+    if (ns >= na) return("plot 0.09\n");
+
+    return(plot_amp);
+}
+
+/* swap format for best snr fit */
+char *exam_bestsnr(char *ltit[NFITOPT], edatum *edp)
+{
+    static char plot_snr[GNUPLOT_TWOPANEL_PLOT_SNR_BASE];
+    char *snre = plot_snr;
+    int ns = 0, na = GNUPLOT_TWOPANEL_PLOT_SNR_BASE;
+    ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
+    switch(edp->bestsnrndx) {
+    case FITOPT_NDX_3PT:
+        ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
+        ltit[FITOPT_NDX_2P8] = "lt 7 tit '{/:Bold cubic spline (GSL2.8)}'";
+        ltit[FITOPT_NDX_2P7] = "lt 8 tit 'cubic spline (GSL2.7)'";
+        break;
+#if HAVEGSL2P8
+    case FITOPT_NDX_2P8:
+        ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
+        ltit[FITOPT_NDX_2P8] = "lt 7 tit '{/:Bold cubic spline (GSL2.8)}'";
+        ltit[FITOPT_NDX_2P7] = "lt 8 tit 'cubic spline (GSL2.7)'";
+        break;
+#endif /* HAVEGSL2P8 */
+#if HAVEGSL2P7
+    case FITOPT_NDX_2P7:
+        ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
+        ltit[FITOPT_NDX_2P8] = "lt 8 tit 'cubic spline (GSL2.8)'";
+        ltit[FITOPT_NDX_2P7] = "lt 7 tit '{/:Bold cubic spline (GSL2.7)}'";
+        break;
+#endif /* HAVEGSL2P7 */
+    case NFITOPT:
+        msg("Nothing fit, not model plotted", 3);
+        break;
+    default:
+        msg("Dev. error in exam_bestsnr() best = %d", 3, edp->bestsnrndx);
+        exit(1);
+    }
+
+    ns = snprintf(snre, na, "plot \\\n");
+    if (ns >= na) return("plot 0.00\n");
+    snre = snre + ns;     na -= ns;
+    if (edp->redchisq[FITOPT_NDX_3PT] > 0) {
+        ns = snprintf(snre, na, "  df u 1:10 w line %s, \\\n",
+            ltit[FITOPT_NDX_3PT]);
+        if (ns >= na) return("plot 0.01\n");
+        snre = snre + ns;     na -= ns;
+    }
+    if (edp->redchisq[FITOPT_NDX_2P8] > 0) {
+        ns = snprintf(snre, na, "  df u 1:11 w line %s, \\\n",
+            ltit[FITOPT_NDX_2P8]);
+        if (ns >= na) return("plot 0.02\n");
+        snre = snre + ns;     na -= ns;
+    }
+    if (edp->redchisq[FITOPT_NDX_2P7] > 0) {
+        ns = snprintf(snre, na, "  df u 1:12 w line %s, \\\n",
+            ltit[FITOPT_NDX_2P7]);
+        if (ns >= na) return("plot 0.03\n");
+        snre = snre + ns;     na -= ns;
+    }
+    ns = snprintf(snre, na,
+        "  df u 1:5:6 w yerrorlines lt 5 tit 'SNR data'\n");
+    if (ns >= na) return("plot 0.04\n");
+    return(plot_snr);
 }
 
 /* populate the label and object details */
 void exam_labobj(edatum *edp, labobj *snr, labobj *abp, labobj *ach,
-    double lim[6])
+    double lim[6], int ampistop, int snristop)
 {
     /* for starters */
     snr->fc = "dark-red";       snr->dens = 0.1;
@@ -212,20 +396,33 @@ void exam_labobj(edatum *edp, labobj *snr, labobj *abp, labobj *ach,
         double pltsnr = (lim[4] + lim[5]) / 2.0;
         double midamp = (edp->ampmin + edp->ampmax) / 2.0;
         double midsnr = (edp->snrmin + edp->snrmax) / 2.0;
+        double fracti;
         snr->x = snr->rgt * 1.05;
-        snr->y = (midsnr < pltsnr) ? snr->top : snr->bot;
+        fracti = (midsnr < pltsnr)
+               ? (snristop ? 0.5 : 0.9)
+               : (snristop ? 0.5 : 0.1);
+        snr->y = fracti * snr->top + (1.0-fracti) * snr->bot;
+
         abp->x = abp->lft / 1.05;
-        abp->y = (midamp < pltamp) ? abp->top : abp->bot;
+        fracti = (midamp < pltamp)
+               ? (ampistop ? 0.5 : 0.9)
+               : (ampistop ? 0.1 : 0.5);
+        abp->y = fracti * abp->top + (1.0-fracti) * abp->bot;
+
         ach->x = ach->rgt * 1.05;
-        ach->y = (midamp < pltamp) ? ach->top : ach->bot;
+        fracti = (midamp < pltamp)
+               ? (ampistop ? 0.5 : 0.9)
+               : (ampistop ? 0.1 : 0.5);
+        ach->y = fracti * ach->top + (1.0-fracti) * ach->bot;
     }
 }
 
 /* this creates .gnu and makes the pdfs */
 void exam_gnuplot(examdata *exdp)
 {
-    int bb, bbn, lw[8];
-    char *pdfbno[exdp->nbno], *gnucmds = NULL, *dt[8], *rgb[8];
+    int bb, bbn, lw[GNUPLOT_LINETYPES], amptop, snrtop;
+    char *dt[GNUPLOT_LINETYPES], *rgb[GNUPLOT_LINETYPES];
+    char *pdfbno[exdp->nbno], *gnucmds = NULL, *pltamp, *pltsnr;
     char *keysnr[exdp->nbno], *keyamp[exdp->nbno], *ltit[NFITOPT];
     double limits[6];
     edatum *edp;
@@ -239,22 +436,9 @@ void exam_gnuplot(examdata *exdp)
         exdp->gnuplot ? GNUPLOT : "disabled",
         exdp->montage ? MONTAGE : "disabled");
 
-    /* default colors */
-    rgb[0] = "ignored";       rgb[1] = "medium-blue";
-    rgb[2] = "dark-violet";   rgb[3] = "olive";
-    rgb[4] = "orange-red";    rgb[5] = "navy";
-    rgb[6] = "light-red";     rgb[7] = "forest-green";
-    /* defaults for lw, dt, lt and title that have ps and cbs as winners */
-    lw[0] = lw[1] = lw[5] = lw[6] = 1;
-    lw[2] = lw[3] = lw[4] = 2;
-    lw[7] = 3;
-    dt[0] = dt[1] = dt[2] = dt[5] = dt[7] = "solid";
-    dt[3] = "'.._'";
-    dt[4] = "'...'";
-    dt[6] = "'---'";
-    
-    /* determine the global limits for this scan group */
-    exam_setlimits(exdp, limits, keysnr, keyamp);
+    /* defaults and the global limits for this scan group */
+    exam_default_styles(GNUPLOT_LINETYPES, rgb, lw, dt);
+    exam_setlimits(exdp, limits, (const int)exdp->nbno, keysnr, keyamp);
 
     /* generate a gnu command file */
     for (bb = 0; bb < exdp->nbno; bb++) {
@@ -269,39 +453,44 @@ void exam_gnuplot(examdata *exdp)
         /* see exam_gnuplot.h for argument dispositions */
         fprintf(fpg, GNUPLOT_PDFILE, 5.0, 6.0, "Sans", 14, pdfbno[bb]);
         if (exdp->customlimits)
-            exam_custom(edp, limits, keysnr[bb], keyamp[bb]);
+            exam_custom(edp, limits, &keysnr[bb], &keyamp[bb]);
         fprintf(fpg, GNUPLOT_PERBNO,
             edp->frlabel, edp->examfile,
             limits[0], limits[1], limits[2], limits[3], limits[4], limits[5],
             edp->ampl_cotime, edp->snr_cotime);
-        exam_labobj(edp, &snr, &abp, &ach, limits);
+        amptop = (keyamp[bb][KEYTBL] == 't') ? 1 : 0;
+        snrtop = (keysnr[bb][KEYTBL] == 't') ? 1 : 0;
+        exam_labobj(edp, &snr, &abp, &ach, limits, amptop, snrtop);
         fprintf(fpg, GNUPLOT_SETTINGS,
             lw[1], dt[1], rgb[1], lw[2], dt[2], rgb[2], lw[3], dt[3], rgb[3],
             lw[4], dt[4], rgb[4], lw[5], dt[5], rgb[5], lw[6], dt[6], rgb[6],
-            lw[7], dt[7], rgb[7]);
-        exam_bestamp(ltit, edp->bestndx);
-        fprintf(fpg, GNUPLOT_TWOPANEL,
-            keysnr[bb],
-            edp->snr_cotime, snr.x, snr.y, snr.fc,
-            snr.lft,snr.bot,snr.rgt,snr.top, snr.fc, snr.dens, snr.fc,
-            ltit[FITOPT_NDX_3PT], ltit[FITOPT_NDX_CBS],
-            keyamp[bb], ((edp->bestndx == FITOPT_NDX_PS) ? 1 : 0),
+            lw[7], dt[7], rgb[7], lw[8], dt[8], rgb[8]);
+        pltsnr = exam_bestsnr(ltit, edp);
+        pltamp = exam_bestamp(ltit, edp);
+        fprintf(fpg, GNUPLOT_TWOPANEL_HEAD_BLK,
+            keysnr[bb], exdp->labels, edp->snr_cotime, snr.x, snr.y, snr.fc,
+            snr.lft,snr.bot,snr.rgt,snr.top, snr.fc, snr.dens, snr.fc);
+        fputs(pltsnr, fpg);     /* output SNR plot command */
+        fprintf(fpg, GNUPLOT_TWOPANEL_MID_BLCK,
+            keyamp[bb],
+            ((edp->bestampndx == FITOPT_NDX_PS) ? exdp->labels : 0),
             edp->breakpoint, abp.x, abp.y, abp.fc,
             abp.lft,abp.bot,abp.rgt,abp.top, abp.fc, abp.dens, abp.fc,
+            exdp->labels,
             edp->ampl_cotime, ach.x, ach.y, ach.fc, 
-            ach.lft,ach.bot,ach.rgt,ach.top, ach.fc, ach.dens, ach.fc,
-            ltit[FITOPT_NDX_PS], ltit[FITOPT_NDX_PO], ltit[FITOPT_NDX_SO]);
+            ach.lft,ach.bot,ach.rgt,ach.top, ach.fc, ach.dens, ach.fc);
+        fputs(pltamp, fpg);     /* output Amplitude plot command */
         fputs(GNUPLOT_CODA, fpg);
         fclose(fpg);
+        /* now make the plot */
         if (exdp->gnuplot) exam_plot(gnucmds);
         free(gnucmds);
     }
-    bbn = bb;
-    if (exdp->gnuplot && exdp->montage)
-        exam_montage(exdp->epat, exdp->elen, bbn, pdfbno,
-            exdp->density, exdp->rnc, exdp->pbno + exdp->nbno);
 
-    // summary output file
+    bbn = bb;
+    /* create the montage and summary if we have permission and gnuplots */
+    if (exdp->gnuplot && exdp->montage) exam_montage(exdp, bbn, pdfbno);
+    exam_summary(exdp);
 
     for (bb = 0; bb < bbn; bb++)
         if (pdfbno[bb]) free(pdfbno[bb]);

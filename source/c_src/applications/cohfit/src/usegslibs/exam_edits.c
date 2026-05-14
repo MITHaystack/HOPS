@@ -15,6 +15,7 @@
  * cohfit should exit without doing work).
  */
 #include <errno.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 #include "cohfit.h"
 
@@ -81,11 +82,13 @@ int create_template(char *optarg, examdata *exdp)
         "density=%d\n"
         "#\n", exdp->density);
     fprintf(fpg,
-        "#The coherence loss [-s] and maximum coherence time [-c]\n"
-        "# can also be set here.  Both are floating point quantities:\n"
+        "#The coherence loss [-s], maximum coherence time [-c], and\n"
+        "# label flag [-l] can also be set here.  The first two are\n"
+        "# floating point quantities, and the zero for false:\n"
         "coherenceloss=%g\n"
         "maxcoheretime=%g\n"
-        "#\n", exdp->closs, exdp->mxcotime);
+        "labels=%d\n"
+        "#\n", exdp->closs, exdp->mxcotime, exdp->labels);
     fprintf(fpg, "#\n# eoc\n#\n");
     fclose(fpg);
     msg("Created graphic edit file '%s'", 2, exdp->edit = optarg);
@@ -96,7 +99,7 @@ int create_template(char *optarg, examdata *exdp)
 int barf(int lno, char *wye, char *line, int errval)
 {
     msg(wye, 3, lno);
-    msg(line, 3);
+    msg("'%s'", 3, line);
     return(errval);
 }
 
@@ -115,46 +118,52 @@ int edit_parse(char *optarg, examdata *exdp)
     while (++lno && fgets(line, MAX_TXT, fpg)) {
         line[strlen(line)-1] = 0;                   /* stomp newline */
         if (1 == lno && strcmp(line,
-            "#cohfit configuration file -- this line is mandatory\n")) {
+            "#cohfit configuration file -- this line is mandatory")) {
             msg("Config file %s missing mandatory first line", 3, optarg);
             return(201);
         } else if (1 == lno) {
             continue;                               /* do nothing */
         } else if (line[0] == '#') {
             continue;                               /* do nothing */
-        } else if (strncmp(line, "RxC=", 4)) {
+        } else if (!strncmp(line, "RxC=", 4)) {
             ncs = sscanf(line, "RxC=%dx%d", &exdp->rnc[0], &exdp->rnc[1]);
             if (2 == ncs) continue;
             return(barf(lno, "Line %d did not parse properly:", line, 202));
-        } else if (strncmp(line, "gnuplot=", 8)) {
+        } else if (!strncmp(line, "gnuplot=", 8)) {
             ncs = sscanf(line, "gnuplot=%d", &exdp->gnuplot);
             if (1 == ncs) continue;
             return(barf(lno, "Line %d did not parse properly:", line, 202));
-        } else if (strncmp(line, "montage=", 8)) {
+        } else if (!strncmp(line, "montage=", 8)) {
             ncs = sscanf(line, "montage=%d", &exdp->montage);
             if (1 == ncs) continue;
             return(barf(lno, "Line %d did not parse properly:", line, 202));
-        } else if (strncmp(line, "customlimits=", 13)) {
+        } else if (!strncmp(line, "customlimits=", 13)) {
             ncs = sscanf(line, "customlimits=%d", &exdp->customlimits);
             if (1 == ncs) continue;
             return(barf(lno, "Line %d did not parse properly:", line, 202));
-        } else if (strncmp(line, "density=", 8)) {
+        } else if (!strncmp(line, "density=", 8)) {
             ncs = sscanf(line, "density=%d", &exdp->density);
             if (1 == ncs) continue;
             return(barf(lno, "Line %d did not parse properly:", line, 202));
-        } else if (strncmp(line, "coherenceloss=", 14)) {
-            ncs = sscanf(line, "coherenceloss=%d", &exdp->closs);
+        } else if (!strncmp(line, "coherenceloss=", 14)) {
+            ncs = sscanf(line, "coherenceloss=%f", &exdp->closs);
             if (1 == ncs) continue;
             return(barf(lno, "Line %d did not parse properly:", line, 202));
-        } else if (strncmp(line, "maxcoheretime=", 14)) {
-            ncs = sscanf(line, "maxcoheretime=%d", &exdp->mxcotime);
+        } else if (!strncmp(line, "maxcoheretime=", 14)) {
+            ncs = sscanf(line, "maxcoheretime=%lg", &exdp->mxcotime);
+            if (1 == ncs) continue;
+            return(barf(lno, "Line %d did not parse properly:", line, 202));
+        } else if (!strncmp(line, "labels=", 7)) {
+            ncs = sscanf(line, "labels=%d", &exdp->labels);
             if (1 == ncs) continue;
             return(barf(lno, "Line %d did not parse properly:", line, 202));
         } else {
             return(barf(lno, "Line %d is beyond the pale:", line, 254));
         }
     }
-    exdp->edit = optarg;
+    /* save a copy of the file name */
+    exdp->edit = malloc(strlen(optarg)+1);
+    strcpy(exdp->edit, optarg);
     return(0);
 }
 
