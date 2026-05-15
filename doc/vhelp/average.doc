@@ -77,17 +77,17 @@ OPTION FLAGS:	-a
 			write to stdout.
 
 		-s snrfactor
-                        Historically this program had the wrong formula
-                        (it used the SNR of A^2, not A) and included an
-                        empirical fudge factor of 0.95 (or 0.925) which
-                        is probably related to Mark4 correlator fudges
-                        (rather than the current unfudged DiFX correlator).
-                        The current implementation uses the correct formula
-                        with no fudge factor.  Use this flag with snrfactor>0
-                        and you have the new formula with a multiplicative
-                        factor of snrfactor.  Use this flag with snrfactor<0
-                        and you will get the old behavior with a fudge
-                        factor of -snrfactor.
+			Historically this program had the wrong formula
+			(it used the SNR of A^2, not A) and included an
+			empirical fudge factor of 0.95 (or 0.925) which
+			is probably related to Mark4 correlator fudges
+			(rather than the current unfudged DiFX correlator).
+			The current implementation uses the correct formula
+			with no fudge factor (i.e. snrfactor == 1).  Use this
+			flag with snrfactor>0 and you have the new formula with
+			a multiplicative factor of snrfactor.  Use this flag
+			with snrfactor<0 and you will get the old behavior
+			with a fudge factor of -snrfactor.
 
 		-x
 			By default, average will not integrate across
