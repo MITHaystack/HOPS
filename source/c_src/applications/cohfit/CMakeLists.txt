@@ -8,11 +8,10 @@ find_package(GFORTRAN)
 
 
 if(NOT GSL_FOUND)
-
     message(STATUS "GSL not found, disabling cohfit")
-
+elseif(GSL_VERSION VERSION_LESS "2.0")
+    message(STATUS "GSL ${GSL_VERSION} is older than 2.0 (no compatible bspline module), disabling cohfit")
 else()
-
 
 
     #declare exe name ############################################################
@@ -88,7 +87,7 @@ else()
             ${PGPLOT_LIBRARIES}
         )
     else()
-        message(WARNING "PGPLOT not found; cohfit will build but plotting will be unavailable.")
+        message(WARNING "PGPLOT not found; cohfit may build but plotting will be unavailable.")
     endif()
 
     #add cflag specifying gnuplot executable path
@@ -124,6 +123,14 @@ else()
 
     add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
     target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
+
+    #deal with different bpsline API between GSL 2.7 and 2.8
+    if(GSL_VERSION VERSION_GREATER_EQUAL "2.8")
+        target_compile_definitions(${EXENAME} PRIVATE HAVEGSL2P8=1 HAVEGSL2P7=0)
+    else()
+        target_compile_definitions(${EXENAME} PRIVATE HAVEGSL2P8=0 HAVEGSL2P7=1)
+    endif()
+    message(STATUS "cohfit: GSL ${GSL_VERSION} detected")
 
     hops_install_headers (${${EXENAME}_HEADERFILES})
     hops_install_executables(${EXENAME})
