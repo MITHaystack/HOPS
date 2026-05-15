@@ -13,6 +13,7 @@
 #include <gsl/gsl_min.h>
 #include "fit_gsl.h"
 
+#if HAVEGSL2P7
 static const double epsabs = 1e-6;
 static const double epsrel = 0.0;
 
@@ -127,6 +128,7 @@ int min_inv_snr_cbs2p7(cosumary *codatum, int npt, gsl_vector *x,
     codatum->iteratio[FITOPT_NDX_2P7] = iter;
     return(status);
 }
+#endif /* HAVEGSL2P7 */
 
 /*
  * eof vim:nospell

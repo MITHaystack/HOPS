@@ -14,6 +14,7 @@
  */
 #include "fit_gsl.h"
 
+#if HAVEGSL2P7
 double fit_cbs2p7(cosumary *codatum, int npt)
 {
     const size_t k = 4, nbp = 2;    /* spline order, num breakpoints */
@@ -118,6 +119,7 @@ double fit_cbs2p7(cosumary *codatum, int npt)
     codatum->redchisq[FITOPT_NDX_2P7] = rchisq;
     return(peakslen);
 }
+#endif /* HAVEGSL2P7 */
 
 /*
  * eof vim:nospell
