@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-# Script to verify GSL fit example
+# Script to verify GSL nonlinear least-squares (expfit) example output.
+#
 [ -f expfitexample.log ] || {
     echo No execution of expfitexample present.  Skipping out.
     exit 77
@@ -9,16 +10,18 @@
     echo no srcdir provided, this is a serious issue
     exit 99
 }
-head -24 expfitexample.log |\
-cmp - $srcdir/gslcheck/gslcheck.out &&
+ref="$srcdir/gslexpfit.output"
+[ -f "$ref" ] || { echo Missing reference $ref ; exit 99; }
+
+head -24 expfitexample.log | cmp - "$ref" &&
     echo compiled output agrees with source output ||
     exit 1
 
-# now make a plot
+# now make a plot (best-effort, skip if no gnuplot)
 gnuplot=`type -p gnuplot`
 [ -x "$gnuplot" ] || {
     echo no gnuplot to plot the data
-    exit 77
+    exit 0
 }
 
 grep '^data:' expfitexample.log | cut -c 6- > efedata.txt

@@ -33,6 +33,8 @@ if(BASH_PROGRAM)
             chk_ff_dump
             chk_hdlinks
             chk_ff_display
+            chk_cohfit
+            chk_cohfit_driver
             #tst_fourfit --this one freezes, not sure why
         )
 
@@ -41,6 +43,10 @@ if(BASH_PROGRAM)
             add_test(NAME ${BASENAME}_test COMMAND ${BASH_PROGRAM} ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.sh )
             set_tests_properties(${BASENAME}_test PROPERTIES DEPENDS TESTDATA_UNPACK)
             set_tests_properties(${BASENAME}_test PROPERTIES ENVIRONMENT "fourfit=fourfit3;testverb=0;srcdir=${HOPS_TEST_DATA_DIR}")
+            # some of these scripts use exit 77 to mean "skip" (e.g. when a
+            # prerequisite executable isn't built); ensure that is treated as a ctest skip
+            # rather than a failure.
+            set_tests_properties(${BASENAME}_test PROPERTIES SKIP_RETURN_CODE 77)
         endforeach( BASENAME )
         
         

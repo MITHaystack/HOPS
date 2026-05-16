@@ -30,13 +30,20 @@ montage=`type -p montage`
     havemonty=false
 }
 
+# The driver cd's into wdir before resolving cdir, so a relative cdir
+# must be prefixed with ../ to compensate. An absolute path works as-is.
+case "$td" in
+    /*) cdir_arg="$td" ;;
+    *)  cdir_arg="../$td" ;;
+esac
+
 # do the work in a sub-directory
 rm -rf cohdrv
 mkdir cohdrv
 $verb && echo \
-$driver expn=3769 cdir=../$td verb=$verb \\ && echo
+$driver expn=3769 cdir=$cdir_arg verb=$verb \\ && echo
     tag=w iarg=2:50:2 wdir=cohdrv exam=dets-%d.data
-$driver expn=3769 cdir=../$td verb=$verb \
+$driver expn=3769 cdir=$cdir_arg verb=$verb \
     tag=w iarg=2:50:2 wdir=cohdrv exam=dets-%d.data
 status=$?
 

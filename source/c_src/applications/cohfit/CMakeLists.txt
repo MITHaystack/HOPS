@@ -135,5 +135,8 @@ else()
     hops_install_headers (${${EXENAME}_HEADERFILES})
     hops_install_executables(${EXENAME})
 
+    if(HOPS_ENABLE_TEST)
+        add_subdirectory(test)
+    endif()
 
 endif()

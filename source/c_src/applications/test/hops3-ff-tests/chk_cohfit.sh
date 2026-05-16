@@ -22,7 +22,7 @@ ls -l alist-aedit.coavg
 che=`type -p cohfit`
 [ -x $che ] || { echo No cohfit executable ; exit 77; }
 echo cohfit is $che
-viable=`cohfit < /dev/null | grep Wrote`
+viable=`cohfit < /dev/null 2>&1 | grep Wrote`
 [ "$viable" = "cohfit: Wrote 0 coherence-analyzed output records" ] || {
     echo This is a you-lose cohfit, so we punt ; exit 77; }
 
