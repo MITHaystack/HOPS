@@ -59,8 +59,12 @@ _cohfit_add_example_tests(exminimizer exminimizer.log exminimizer.sh)
 _cohfit_add_example(expfitexample)
 _cohfit_add_example_tests(expfitexample expfitexample.log expfitcheck.sh)
 
-# test cbsplinelsqex: requires the GSL 2.8 bspline API...skip 2.7 for now, close enough
+# test cbsplinelsqex: two variants share a check script; pick which to build
+# based on the GSL version available.
 if(GSL_VERSION VERSION_GREATER_EQUAL "2.8")
     _cohfit_add_example(cbsplinelsqex)
     _cohfit_add_example_tests(cbsplinelsqex cbsplinelsqex2p8.log cbsplinecheck.sh 2p8)
+else()
+    _cohfit_add_example(cbsplinelsqex2p7)
+    _cohfit_add_example_tests(cbsplinelsqex2p7 cbsplinelsqex2p7.log cbsplinecheck.sh 2p7)
 endif()
