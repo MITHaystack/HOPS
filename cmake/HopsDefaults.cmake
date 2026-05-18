@@ -14,8 +14,11 @@ macro(legacy_hops_install_headers)
 endmacro()
 
 #this installs into a prefixed directory '.../include/hops'
+#NOTE: no EXPORT hopsTargets here -- libraries using this macro are also
+#typically installed via hops_install_libraries() (canonical location), and
+#a target can appear in an export set only once.
 macro(legacy_hops_install_libraries)
-    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${LIB_INSTALL_DIR}/hops)
+    install(TARGETS ${ARGN} DESTINATION ${LIB_INSTALL_DIR}/hops)
     set_property(GLOBAL APPEND PROPERTY MODULE_TARGETS ${ARGN})
     set_target_properties(${ARGN} PROPERTIES INSTALL_NAME_DIR ${LIB_INSTALL_DIR}/hops)
 endmacro()

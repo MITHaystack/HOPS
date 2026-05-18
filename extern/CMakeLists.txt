@@ -7,6 +7,47 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/pybind11)
 endif(HOPS_USE_PYBIND11)
 
+# ----------------------------------------------------------------------------
+# Install vendored header-only dependencies under ${INCLUDE_INSTALL_DIR}/hops_extern
+# so downstream consumers using hops4.pc / HopsConfig.cmake get matching headers.
+# ----------------------------------------------------------------------------
+set(HOPS_EXTERN_INCLUDE_INSTALL_DIR "${INCLUDE_INSTALL_DIR}/hops_extern")
+
+# Eigen: install the "Eigen" header tree (and "unsupported" for completeness)
+# into hops_extern/eigen/, matching the standard Eigen layout.
+install(
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/eigen/Eigen
+    DESTINATION ${HOPS_EXTERN_INCLUDE_INSTALL_DIR}/eigen
+)
+install(
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/eigen/unsupported
+    DESTINATION ${HOPS_EXTERN_INCLUDE_INSTALL_DIR}/eigen
+    FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+)
+
+# nlohmann/json + pybind11_json (single_include layout)
+install(
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/json/include/
+    DESTINATION ${HOPS_EXTERN_INCLUDE_INSTALL_DIR}/json
+    FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
+)
+
+# CLI11: a single header.
+install(
+    FILES ${CMAKE_CURRENT_SOURCE_DIR}/cli11/CLI11.hpp
+    DESTINATION ${HOPS_EXTERN_INCLUDE_INSTALL_DIR}/cli11
+)
+
+# pybind11 headers (only useful for downstream consumers writing their own
+# bindings; harmless otherwise).
+if(HOPS_USE_PYBIND11)
+    install(
+        DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/pybind11/include/pybind11
+        DESTINATION ${HOPS_EXTERN_INCLUDE_INSTALL_DIR}/pybind11
+        FILES_MATCHING PATTERN "*.h"
+    )
+endif()
+
 set_option(USE_SYSTEM_TZ_DB ON)
 set_option(MANUAL_TZ_DB OFF)
 set_option(USE_TZ_DB_IN_DOT OFF)

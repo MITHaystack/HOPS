@@ -316,3 +316,10 @@ endif(PERL_FOUND)
 
 #build docs
 add_subdirectory(doc)
+
+################################################################################
+# Generate pkg-config (.pc) files and CMake package-config (HopsConfig.cmake)
+# so external projects can locate HOPS headers and libraries.
+include(HopsPkgConfig)
+hops_generate_all_pkgconfig()
+hops_generate_cmake_config()

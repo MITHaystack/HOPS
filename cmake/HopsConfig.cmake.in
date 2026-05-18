@@ -1,0 +1,86 @@
+@PACKAGE_INIT@
+
+set_and_check(Hops_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+set_and_check(Hops_LIB_DIR     "@PACKAGE_LIB_INSTALL_DIR@")
+set_and_check(Hops_BIN_DIR     "@PACKAGE_BIN_INSTALL_DIR@")
+
+# Vendored header-only dependencies installed alongside HOPS.
+set(Hops_EXTERN_INCLUDE_DIRS
+    "${Hops_INCLUDE_DIR}/hops_extern/eigen"
+    "${Hops_INCLUDE_DIR}/hops_extern/json"
+    "${Hops_INCLUDE_DIR}/hops_extern/cli11"
+)
+
+set(Hops_INCLUDE_DIRS "${Hops_INCLUDE_DIR}" ${Hops_EXTERN_INCLUDE_DIRS})
+
+# Build-time feature flags (recorded so consumers can branch on them).
+set(Hops_VERSION       "@HOPS_VERSION_NUMBER@")
+set(Hops_CXX_STANDARD  "@HOPS_CXX_STANDARD@")
+set(Hops_USE_FFTW3     "@HOPS_USE_FFTW3@")
+set(Hops_USE_OPENMP    "@HOPS_USE_OPENMP@")
+set(Hops_USE_MATPLOTPP "@HOPS_USE_MATPLOTPP@")
+set(Hops_USE_PYBIND11  "@HOPS_USE_PYBIND11@")
+set(Hops_USE_DIFXIO    "@HOPS_USE_DIFXIO@")
+set(Hops_USE_MPI       "@HOPS_USE_MPI@")
+set(Hops_USE_CUDA      "@HOPS_USE_CUDA@")
+set(Hops_USE_HDF5      "@HOPS_USE_HDF5@")
+
+# Compile definitions to expose to consumers of public headers.
+set(Hops_COMPILE_DEFINITIONS HAVE_CONFIG_H)
+if(Hops_USE_FFTW3)
+    list(APPEND Hops_COMPILE_DEFINITIONS HOPS_USE_FFTW3)
+endif()
+if(Hops_USE_OPENMP)
+    list(APPEND Hops_COMPILE_DEFINITIONS HOPS_USE_OPENMP)
+endif()
+if(Hops_USE_MATPLOTPP)
+    list(APPEND Hops_COMPILE_DEFINITIONS USE_MATPLOTPP)
+endif()
+
+include(CMakeFindDependencyMacro)
+if(Hops_USE_OPENMP)
+    find_dependency(OpenMP)
+endif()
+
+# Library lists supplied by HopsPkgConfig.cmake at configure time.
+set(Hops_HOPS3_LIBRARIES "@HOPS3_LIBS@")
+set(Hops_HOPS4_LIBRARIES "@HOPS4_LIBS@")
+
+# Define an imported target for each installed shared library.
+foreach(_lib IN LISTS Hops_HOPS3_LIBRARIES Hops_HOPS4_LIBRARIES)
+    set(_tgt "Hops::${_lib}")
+    if(NOT TARGET ${_tgt})
+        add_library(${_tgt} SHARED IMPORTED)
+        set_target_properties(${_tgt} PROPERTIES
+            IMPORTED_LOCATION "${Hops_LIB_DIR}/lib${_lib}${CMAKE_SHARED_LIBRARY_SUFFIX}"
+            INTERFACE_INCLUDE_DIRECTORIES "${Hops_INCLUDE_DIRS}"
+            INTERFACE_COMPILE_DEFINITIONS "${Hops_COMPILE_DEFINITIONS}"
+        )
+    endif()
+endforeach()
+
+# Convenience aggregate targets and variable lists.
+set(Hops_LIBRARIES "")
+foreach(_lib IN LISTS Hops_HOPS3_LIBRARIES Hops_HOPS4_LIBRARIES)
+    list(APPEND Hops_LIBRARIES "Hops::${_lib}")
+endforeach()
+
+if(NOT TARGET Hops::hops3)
+    add_library(Hops::hops3 INTERFACE IMPORTED)
+    foreach(_lib IN LISTS Hops_HOPS3_LIBRARIES)
+        set_property(TARGET Hops::hops3 APPEND PROPERTY
+            INTERFACE_LINK_LIBRARIES "Hops::${_lib}")
+    endforeach()
+endif()
+
+if(NOT TARGET Hops::hops4)
+    add_library(Hops::hops4 INTERFACE IMPORTED)
+    set_property(TARGET Hops::hops4 APPEND PROPERTY
+        INTERFACE_LINK_LIBRARIES Hops::hops3)
+    foreach(_lib IN LISTS Hops_HOPS4_LIBRARIES)
+        set_property(TARGET Hops::hops4 APPEND PROPERTY
+            INTERFACE_LINK_LIBRARIES "Hops::${_lib}")
+    endforeach()
+endif()
+
+check_required_components(Hops)
