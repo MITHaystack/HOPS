@@ -36,7 +36,9 @@ set(PLUGIN_MANAGEMENT_LIBS
 
 #compile and install library ###################################################
 add_library(MHO_PluginManagement SHARED ${PLUGIN_MANAGEMENT_SOURCEFILES})
-target_link_libraries(MHO_PluginManagement PUBLIC ${PLUGIN_MANAGEMENT_LIBS} MHO_OptionalPlugins)
+target_link_libraries(MHO_PluginManagement
+    PUBLIC ${PLUGIN_MANAGEMENT_LIBS}
+    PRIVATE MHO_OptionalPlugins)
 
 
 hops_install_headers (${PLUGIN_MANAGEMENT_HEADERFILES})

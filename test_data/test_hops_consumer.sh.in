@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+# -----------------------------------------------------------------------------
+# Drive the consumer_smoke_test/ standalone CMake project against an installed
+# HOPS prefix to smoke-test that hops4.pc and HopsConfig.cmake work for
+# external consumers.
+#
+# Exits:
+#   0   -- at least one consumer path built and the resulting binaries ran
+#   77  -- ctest SKIP code (install hasn't run yet -- neither config file present)
+#   1   -- a path was available but failed
+#
+# @VAR@ tokens are substituted at HOPS configure time.
+# -----------------------------------------------------------------------------
+set -u
+
+INSTALL_PREFIX="@CMAKE_INSTALL_PREFIX@"
+PROJECT_DIR="@CMAKE_CURRENT_SOURCE_DIR@/consumer_smoke_test"
+WORKDIR="@CMAKE_CURRENT_BINARY_DIR@/consumer_smoke_test"
+CMAKE_BIN="@CMAKE_COMMAND@"
+
+PC_FILE="${INSTALL_PREFIX}/lib/pkgconfig/hops4.pc"
+CMAKE_CONFIG="${INSTALL_PREFIX}/lib/cmake/Hops/HopsConfig.cmake"
+
+if [[ ! -f "${PC_FILE}" && ! -f "${CMAKE_CONFIG}" ]]; then
+    echo "SKIP: HOPS install has not been run yet."
+    echo "      Missing both ${PC_FILE} and ${CMAKE_CONFIG}."
+    echo "      Run 'make install' first."
+    exit 77
+fi
+
+# Use a fixed scratch dir under build/test_data/ rather than a tmp dir so
+# the configure/build logs and probe binaries stick around for inspection.
+# Wipe any prior contents so each run is from a clean slate.
+rm -rf "${WORKDIR}"
+mkdir -p "${WORKDIR}"
+echo "Scratch dir : ${WORKDIR}"
+echo "Project dir : ${PROJECT_DIR}"
+echo "Install     : ${INSTALL_PREFIX}"
+
+# Loader path for the test binaries.
+export LD_LIBRARY_PATH="${INSTALL_PREFIX}/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+# pkg-config search path (so pkg_check_modules can find hops4.pc).
+export PKG_CONFIG_PATH="${INSTALL_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+
+# Configure the consumer project. CMAKE_PREFIX_PATH lets find_package(Hops)
+# locate HopsConfig.cmake.
+echo "--- configure ---"
+if ! "${CMAKE_BIN}" \
+        -S "${PROJECT_DIR}" \
+        -B "${WORKDIR}/build" \
+        -DCMAKE_PREFIX_PATH="${INSTALL_PREFIX}" \
+        > "${WORKDIR}/configure.log" 2>&1; then
+    echo "FAIL: configure step failed"
+    cat "${WORKDIR}/configure.log"
+    exit 1
+fi
+grep "consumer_smoke_test:" "${WORKDIR}/configure.log" || true
+
+echo "--- build ---"
+if ! "${CMAKE_BIN}" --build "${WORKDIR}/build" > "${WORKDIR}/build.log" 2>&1; then
+    echo "FAIL: build step failed"
+    cat "${WORKDIR}/build.log"
+    exit 1
+fi
+
+# Run whichever probe binaries got built. Each binary's stdout+stderr is
+# both echoed to this script's stdout (-> the ctest log) and saved to
+# <probe>.log under the scratch dir for later inspection.
+FAILED=0
+RAN_ANY=0
+for probe in probe_cmake probe_pkgconfig; do
+    bin="${WORKDIR}/build/${probe}"
+    if [[ -x "${bin}" ]]; then
+        RAN_ANY=1
+        log="${WORKDIR}/${probe}.log"
+        echo "--- run: ${probe} ---"
+        if "${bin}" 2>&1 | tee "${log}"; then
+            rc=${PIPESTATUS[0]}
+        else
+            rc=${PIPESTATUS[0]}
+        fi
+        if [[ ${rc} -eq 0 ]]; then
+            echo "PASS: ${probe} (log: ${log})"
+        else
+            echo "FAIL: ${probe} returned ${rc} (log: ${log})"
+            FAILED=1
+        fi
+    fi
+done
+
+if [[ ${RAN_ANY} -eq 0 ]]; then
+    echo "FAIL: no probe binaries were built (consumer CMakeLists found neither path)"
+    exit 1
+fi
+
+exit ${FAILED}

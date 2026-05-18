@@ -10,7 +10,6 @@
 #include "MHO_ParameterStore.hh"
 
 #include "pybind11_json/pybind11_json.hpp"
-#include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 namespace py = pybind11;
 

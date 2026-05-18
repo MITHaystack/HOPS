@@ -122,4 +122,25 @@ if(BASH_PROGRAM)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     )
 
+    # ------------------------------------------------------------------
+    # Smoke-test the installed hops4.pc and HopsConfig.cmake files by
+    # configuring + building the standalone CMake project under
+    # consumer_smoke_test/ against the installed HOPS prefix. Skips with
+    # ctest exit code 77 if the user runs `ctest` before `make install`.
+    # ------------------------------------------------------------------
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/test_hops_consumer.sh.in
+        ${CMAKE_CURRENT_BINARY_DIR}/test_hops_consumer.sh
+        @ONLY
+    )
+    file(CHMOD ${CMAKE_CURRENT_BINARY_DIR}/test_hops_consumer.sh
+        PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                    GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+
+    add_test(NAME HOPS_CONSUMER_SMOKE
+        COMMAND ${BASH_PROGRAM} ${CMAKE_CURRENT_BINARY_DIR}/test_hops_consumer.sh
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    )
+    set_tests_properties(HOPS_CONSUMER_SMOKE PROPERTIES SKIP_RETURN_CODE 77)
+
 endif(BASH_PROGRAM)

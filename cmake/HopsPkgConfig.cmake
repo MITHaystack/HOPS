@@ -188,4 +188,16 @@ function(hops_generate_cmake_config)
             "${CMAKE_CURRENT_BINARY_DIR}/HopsConfigVersion.cmake"
         DESTINATION "${_cmake_install_dir}"
     )
+
+    # Install the exported targets. Requires every PUBLIC/INTERFACE link
+    # dependency of an exported target to also be in this export set (or be
+    # an external target like pybind11::embed / OpenMP::OpenMP_CXX). The
+    # PUBLIC/PRIVATE keywords on MHO_PluginManagement and MHO_pyVisitors
+    # were tuned to satisfy this constraint.
+    install(
+        EXPORT hopsTargets
+        FILE HopsTargets.cmake
+        NAMESPACE Hops::
+        DESTINATION "${_cmake_install_dir}"
+    )
 endfunction()

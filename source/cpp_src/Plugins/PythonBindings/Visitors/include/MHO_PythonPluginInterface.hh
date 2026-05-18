@@ -3,7 +3,6 @@
 
 //pybind11 stuff to interface with python
 #include "pybind11_json/pybind11_json.hpp"
-#include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 namespace py = pybind11;
 namespace nl = nlohmann;

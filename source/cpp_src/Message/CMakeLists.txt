@@ -5,6 +5,7 @@
 set (MESSAGE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SelfName.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Timer.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Profiler.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Message.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TestAssertions.hh
 )
