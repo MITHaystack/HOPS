@@ -30,20 +30,13 @@ montage=`type -p montage`
     havemonty=false
 }
 
-# The driver cd's into wdir before resolving cdir, so a relative cdir
-# must be prefixed with ../ to compensate. An absolute path works as-is.
-case "$td" in
-    /*) cdir_arg="$td" ;;
-    *)  cdir_arg="../$td" ;;
-esac
-
 # do the work in a sub-directory
 rm -rf cohdrv
 mkdir cohdrv
 $verb && echo \
-$driver expn=3769 cdir=$cdir_arg verb=$verb \\ && echo
+$driver expn=3769 cdir=../$td verb=$verb \\ && echo
     tag=w iarg=2:50:2 wdir=cohdrv exam=dets-%d.data
-$driver expn=3769 cdir=$cdir_arg verb=$verb \
+$driver expn=3769 cdir=../$td verb=$verb \
     tag=w iarg=2:50:2 wdir=cohdrv exam=dets-%d.data
 status=$?
 
@@ -69,6 +62,16 @@ $havemonty && {
 
 [ -f cohdrv/w-dets-4.summary.txt -a -f cohdrv/w-dets-12.summary.txt ] || {
     echo missing summary text files; exit 8;
+}
+cat cohdrv/w-dets-4.summary.txt cohdrv/w-dets-12.summary.txt |\
+grep -v 'workdir:' > cohdrv/summary-check.txt
+cks=`cksum cohdrv/summary-check.txt`
+echo cksum of cohdrv/summary-check.txt is $cks
+echo cksum of cohdrv/summary-check.txt is 1286553992 6343 is expected
+
+[ "$cks" = '1286553992 6343 cohdrv/summary-check.txt' ] || {
+    echo WARNING: numerical stability issues in summary results
+    exit 77
 }
 
 echo "status 0 from the driver is $status"

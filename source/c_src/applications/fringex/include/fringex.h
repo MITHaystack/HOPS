@@ -82,7 +82,7 @@ struct fxparam
     };
 
                                         /* Structure for looping functions */
-#define MAXNSECS  50
+#define MAXNSECS  100                   /* Cf. MAX_NSEGLEN in cohfit */
 #define MAXRATES  500
 #define MAXDELAYS 500
 
