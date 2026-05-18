@@ -24,8 +24,8 @@ jobs:
     - name: InstallHOPS3Deps
       run: |
         sudo apt-get update
-        sudo apt-get install -y libfftw3-dev pgplot5 libgfortran5 libx11-dev gnuplot binutils libxpm-dev ghostscript ghostscript-x
-      
+        sudo apt-get install -y libfftw3-dev pgplot5 libgfortran5 libx11-dev gnuplot binutils libxpm-dev ghostscript ghostscript-x gsl-bin libgsl-dev libgslcblas0
+
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DHOPS_PYPI_MANAGE_DEPS=ON -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install
 
