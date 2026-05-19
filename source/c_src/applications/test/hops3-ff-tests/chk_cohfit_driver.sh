@@ -34,9 +34,9 @@ montage=`type -p montage`
 rm -rf cohdrv
 mkdir cohdrv
 $verb && echo \
-$driver expn=3769 cdir=../$td verb=$verb \\ && echo
+$driver expn=3769 cdir=$td verb=$verb \\ && echo
     tag=w iarg=2:50:2 wdir=cohdrv exam=dets-%d.data
-$driver expn=3769 cdir=../$td verb=$verb \
+$driver expn=3769 cdir=$td verb=$verb \
     tag=w iarg=2:50:2 wdir=cohdrv exam=dets-%d.data
 status=$?
 
