@@ -24,7 +24,11 @@ jobs:
     - name: InstallHOPS3Deps
       run: |
         sudo apt-get update
-        sudo apt-get install -y libfftw3-dev pgplot5 libgfortran5 libx11-dev gnuplot binutils libxpm-dev ghostscript ghostscript-x gsl-bin libgsl-dev libgslcblas0
+        sudo apt-get install -y libfftw3-dev pgplot5 libgfortran5 libx11-dev gnuplot binutils libxpm-dev ghostscript ghostscript-x gsl-bin libgsl-dev libgslcblas0 imagemagick
+
+    - name: Fix ImageMagick PDF policy (required for cohfit_driver test)
+      run: |
+        sudo sed -i 's/<policy domain="coder" rights="none" pattern="PDF"/<policy domain="coder" rights="read|write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
 
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DHOPS_PYPI_MANAGE_DEPS=ON -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install
