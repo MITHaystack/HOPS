@@ -1,4 +1,4 @@
-[![test-ubuntu](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu.yml)
+[![test-ubuntu](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-22.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-22.yml)
 [![test-ubuntu-latest](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-latest.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-latest.yml)
 [![deploy-docs](https://github.com/MITHaystack/HOPS/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/deploy-docs.yml)
 # HOPS 4 - Haystack Observatory Post-processing System
