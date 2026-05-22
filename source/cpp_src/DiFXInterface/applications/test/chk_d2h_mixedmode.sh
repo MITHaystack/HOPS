@@ -14,7 +14,7 @@ CONTROL_FILE=cf_kt5343_notches
 #NOTE: This test exercises difx2hops on data containing zoom-bands (a Kokee-Ties mixed mode experiment)
 # difx2hops must be run from within the difx directory to use the --localdir (-l) option.
 #This is to override any paths specified in the difx.input files to use relative paths to local files.
-#only DiFX difxio > 2.7 supports --localdir! 
+#only DiFX difxio > 2.8.1 supports --localdir! 
 
 cd $EXP_DIR
 
