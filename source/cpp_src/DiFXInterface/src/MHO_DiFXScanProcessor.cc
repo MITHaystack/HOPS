@@ -1,5 +1,7 @@
 #include "MHO_DiFXScanProcessor.hh"
 #include "MHO_Clock.hh"
+#include "MHO_MK4ChanId.hh"
+#include "MHO_SkyFreqGrid.hh"
 #include "MHO_VexGenerator.hh"
 #include "MHO_VexParser.hh"
 
@@ -36,7 +38,6 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
     fAttachDiFXInput = false;
     fNormalize = false;
     fExportAsMark4 = false;
-    MICROSEC_TO_SEC = 1e-6; //needed to match difx2mark4 convention
     fFreqBands.clear();
     fFreqGroups.clear();
     fSelectByBandwidth = false;
@@ -59,12 +60,25 @@ void MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
         fileSet.PrintSummary();
     }
 
+    //configure the zoom-band rebuilder for this scan. fDiFX2VexStationCodes
+    //gets set later (inside PatchOvexStructures) once $SITE has been parsed.
+    fZoomBandRebuilder.SetDiFXInputData(&fInput);
+    fZoomBandRebuilder.SetFrequencyBands(fFreqBands);
+    if(fSelectByBandwidth)
+        fZoomBandRebuilder.SetSelectionByBandwidth(fOnlyBandwidth);
+    else
+        fZoomBandRebuilder.ClearSelectionByBandwidth();
+
     bool ok = CreateScanOutputDirectory();
     if(ok)
     {
-        CreateRootFileObject(fileSet.fVexFile); //create the equivalent to the Mk4 'ovex' root file
-        ConvertVisibilityFileObjects();         //convert visibilities and data weights
-        ConvertStationFileObjects();            //convert the station splines, and pcal data
+        //prepare fRootJSON (parse VEX, rip non-current scan/source, run structural patches),
+        //but defer channel naming + file emission until after visibilities have been read so
+        //both sides number chan_ids against the same scan-wide global sky-freq grid.
+        CreateRootFileObject(fileSet.fVexFile);
+        ConvertVisibilityFileObjects(); //read+organize, compute global grid, construct, write
+        FinalizeAndWriteRootFile();     //AddChannelNames (using grid) + emit ovex/root.json
+        ConvertStationFileObjects();    //convert the station splines, and pcal data
     }
     else
     {
@@ -127,7 +141,7 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
                 {
                     source_ids.push_back((*it)["source"][n]["source"]);
                 }
-                (*it)["fourfit_reftime"] = get_fourfit_reftime_for_scan(*it); //add the fourfit reference time
+                (*it)["fourfit_reftime"] = MHO_DiFXOvexPatcher::ComputeFourfitReftime(*it);
                 sched[it.key()] = it.value();                                 //add this scan to the schedule section
                 mode_name = it.value()["mode"].get< std::string >();
                 break;
@@ -155,32 +169,24 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
         fRootJSON.erase("$SOURCE");
         fRootJSON["$SOURCE"] = src;
 
-        //patch up the vex info to make it conform to the HOPS3 ovex parser
-        PatchOvexStructures(fRootJSON, mode_name);
+        //patch up the vex info to make it conform to the HOPS3 ovex parser. Note that
+        //AddChannelNames is NOT run here -- it has to wait until visibility records have
+        //been read so the chan_def chidx can be drawn from the same scan-wide global grid
+        //the mark4 t101 chan_ids will use. FinalizeAndWriteRootFile() picks that up after
+        //ConvertVisibilityFileObjects().
+        fOvexPatcher.SetDiFXInputData(&fInput);
+        fOvexPatcher.SetStationCodeMap(fStationCodeMap);
+        fOvexPatcher.SetExperimentNumber(fExperNum);
+        fOvexPatcher.SetZoomBandRebuilder(&fZoomBandRebuilder);
+        fOvexPatcher.Patch(fRootJSON, mode_name);
+        //pull back the station-code maps the patcher populated from $SITE; downstream
+        //(MHO_DiFXBaselineProcessor) needs them.
+        fDiFX2VexStationCodes = fOvexPatcher.GetDiFX2VexStationCodes();
+        fDiFX2VexStationNames = fOvexPatcher.GetDiFX2VexStationNames();
 
-        //grab the difx input file name
-        std::string difx_input_filename = fInput["difx_input_filename"].get< std::string >();
-
-        //generate a traditional 'ovex' file too...for backwards compatibility
-        MHO_VexGenerator gen;
-        std::string ovex_output_file = fOutputDirectory + "/" + src_name + "." + fRootCode;
-        gen.SetFilename(ovex_output_file);
-        gen.GenerateVex(fRootJSON);
-
-        std::ofstream ovex_out(ovex_output_file, std::ios::app);
-        if(ovex_out.is_open())
-        {
-            ovex_out << "*difx_input_filename:" << difx_input_filename << "\n";
-        }
-        ovex_out.close();
-
-        //write out the 'ovex'/'vex' json object as a json file
-        fRootJSON["difx_input_filename"] = difx_input_filename;
-        std::string output_file = ConstructRootFileName(fOutputDirectory, fRootCode, src_name);
-        //open and dump to file
-        std::ofstream outFile(output_file.c_str(), std::ofstream::out);
-        outFile << fRootJSON.dump(2);
-        outFile.close();
+        //cache for FinalizeAndWriteRootFile (which actually emits the ovex/root.json)
+        fSrcName = src_name;
+        fDiFXInputFilename = fInput["difx_input_filename"].get< std::string >();
     }
     else
     {
@@ -217,8 +223,21 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     }
     visProcessor.SetDiFXInputData(&fInput);
     visProcessor.SetFilename(fFileSet->fVisibilityFileList[0]);
+
+    //when zoom-band VEX reconstruction is active (and user has not selected a different native bandwidth),
+    //collect zoom global freq indices so AddRecord can discard native-band records and keep the
+    //visibility data consistent with the reconstructed root file
+    if(fZoomBandRebuilder.HasZoomBands() && fZoomBandRebuilder.WantZoomChannels())
+    {
+        visProcessor.SetZoomFreqIndices(fZoomBandRebuilder.CollectZoomFreqIndices());
+    }
+
     visProcessor.ReadDIFXFile(fAllBaselineVisibilities);
 
+    //Pass 1: configure each baseline and Organize() it. Organize() populates fBaselineFreqs
+    //(the ordered sky_freq list this baseline will export) but does NOT yet build the
+    //channelized visibility container. We need this state before computing the scan-wide
+    //global sky-freq grid that drives mark4 chan_id numbering.
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
     {
         //it->second is a MHO_DiFXBaselineProcessor
@@ -249,6 +268,22 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         it->second.SetDiFXCodes2VexCodes(fDiFX2VexStationCodes);
         it->second.SetDiFXCodes2VexNames(fDiFX2VexStationNames);
         it->second.SetDiFXInputData(&fInput);
+        it->second.Organize();
+    }
+
+    //Pass 2: compute the scan-wide global sky-freq grid and inject it into every consumer
+    //(both the baseline processors that write t101 chan_ids and the channel-name constructor
+    //that writes chan_def.channel_name).
+    std::vector< double > global_grid = ComputeGlobalSkyFreqGrid();
+    fChanNameConstructor.SetGlobalSkyFreqGrid(global_grid);
+    for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
+    {
+        it->second.SetGlobalSkyFreqGrid(global_grid);
+    }
+
+    //Pass 3: build the channelized visibility container (uses the grid for mark4 chan_ids).
+    for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
+    {
         it->second.ConstructVisibilityFileObjects();
     }
 
@@ -270,6 +305,58 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         it->second.Clear();
     }
     fAllBaselineVisibilities.clear();
+}
+
+std::vector< double > MHO_DiFXScanProcessor::ComputeGlobalSkyFreqGrid(double tol) const
+{
+    //collect every sky_freq that any baseline in fAllBaselineVisibilities will export.
+    //Each baseline's fBaselineFreqs entry is (difx_freqidx, fInput["freq"][...]); the
+    //sky_freq lives under "freq" (MHz) in that json object.
+    MHO_SkyFreqGrid grid;
+    grid.SetTolerance(tol);
+    for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
+    {
+        for(const auto& pr : it->second.GetBaselineFreqs())
+        {
+            grid.Add(pr.second["freq"].get< double >());
+        }
+    }
+    grid.Finalize();
+    return grid.Frequencies();
+}
+
+void MHO_DiFXScanProcessor::FinalizeAndWriteRootFile()
+{
+    //emits the ovex + root.json that fourfit3 / fourfit4 will read. Channel naming runs
+    //here (not in CreateRootFileObject / PatchOvexStructures) so chan_def.channel_name
+    //chidx comes from the same scan-wide global sky-freq grid the mark4 t101 chan_ids
+    //use; otherwise the two would disagree whenever stations export different channel
+    //subsets (e.g. K2's 25-of-32 DBE channels in the mixed-mode VGOS autocorr test).
+    if(fSrcName.empty())
+    {
+        //CreateRootFileObject failed to parse a vex file; nothing to write
+        return;
+    }
+
+    fChanNameConstructor.AddChannelNames(fRootJSON);
+
+    MHO_VexGenerator gen;
+    std::string ovex_output_file = fOutputDirectory + "/" + fSrcName + "." + fRootCode;
+    gen.SetFilename(ovex_output_file);
+    gen.GenerateVex(fRootJSON);
+
+    std::ofstream ovex_out(ovex_output_file, std::ios::app);
+    if(ovex_out.is_open())
+    {
+        ovex_out << "*difx_input_filename:" << fDiFXInputFilename << "\n";
+    }
+    ovex_out.close();
+
+    fRootJSON["difx_input_filename"] = fDiFXInputFilename;
+    std::string output_file = ConstructRootFileName(fOutputDirectory, fRootCode, fSrcName);
+    std::ofstream outFile(output_file.c_str(), std::ofstream::out);
+    outFile << fRootJSON.dump(2);
+    outFile.close();
 }
 
 void MHO_DiFXScanProcessor::NormalizeVisibilities()
@@ -540,6 +627,8 @@ void MHO_DiFXScanProcessor::CleanUp()
     }
     fStationCode2Coords.clear();
     fOutputDirectory = "";
+    fSrcName = "";
+    fDiFXInputFilename = "";
 }
 
 void MHO_DiFXScanProcessor::LoadInputFile()
@@ -595,531 +684,21 @@ void MHO_DiFXScanProcessor::ExtractPCalData()
 
 void MHO_DiFXScanProcessor::ExtractStationCoords()
 {
-
-    //populate fStationCode2Coords with each station present in fInput
-    //(e.g. the station name/codes, coordinates, and delay spline info, etc. for each station)
-    //first thing we have to do is figure out the data dimensions
-    //the items we what to store here are equivalent to what is stored in the following type_3XXs
-    //(1) delay spline polynomial coeff (type_301)
-    //(2) phase spline polynomial coeff (type_302) --- This doesn't appear to get used anywhere, so leave off for now
-    //(3) parallatic angle spline coeff (type_303)
-    //(4) uvw-coords spline coeff (type_303)
-    //(5) phase-cal data (type_309)
-    //Note: with the exception of the phase-spline polynomial (type_302), all of these other quantities
-    //do not depend on the channel/frequency.
-
-    std::size_t scan_index = fFileSet->fLocalIndex;
-    std::size_t nAntenna = fInput["scan"][scan_index]["nAntenna"];
-
-    std::size_t nPhaseCenters = fInput["scan"][scan_index]["nPhaseCentres"];
-    std::size_t phase_center = 0; // currently only one phase-center supported
-    if(nPhaseCenters > 1)
-    {
-        msg_warn("difx_interface", "more than one phase center is not supported, using the first. " << eom);
-    }
-
-    std::size_t phaseCenterSrcId = fInput["scan"][scan_index]["phsCentreSrcs"][phase_center];
-    mho_json src = fInput["source"][phaseCenterSrcId];
-    double src_dec = src["dec"]; //needed for parallatic angle calculation
-
-    for(std::size_t n = 0; n < nAntenna; n++)
-    {
-        //first get antenna name for an ID (later we need to map this to the 2 char code)
-        std::string difx_station_code = fInput["antenna"][n]["name"];
-        station_coord_type* st_coord = new station_coord_type();
-        fStationCode2Coords[difx_station_code] = st_coord;
-
-        //get the spline model for the stations quantities
-        mho_json antenna_poly = fInput["scan"][scan_index]["DifxPolyModel"][n][phase_center];
-
-        //get the antenna info
-        mho_json ant = fInput["antenna"][n];
-        std::string station_name = ant["name"];
-        std::string station_mount = ant["mount"];
-        std::vector< double > position = ant["position"];
-        double clockrefmjd = ant["clockrefmjd"];
-
-        //figure out the start time of this polynomial
-        //and convert this date information to a cannonical date/time-stamp class
-        int mjd = antenna_poly[0]["mjd"]; //start mjd
-        int sec = antenna_poly[0]["sec"]; //start second
-
-        std::string model_start = get_vexdate_from_mjd_sec(mjd, sec);
-
-        //length of time each spline is valid
-        double duration = antenna_poly[0]["validDuration"];
-
-        //figure out the data dimensions
-        std::size_t n_order = antenna_poly[0]["order"];
-        std::size_t n_coord = NCOORD;             //note we do not manufacture a phase-spline (e.g. type_302)
-        std::size_t n_poly = antenna_poly.size(); //aka nspline intervals in d2m4
-
-        st_coord->Resize(n_coord, n_poly, n_order + 1); //p = n_order is included!
-
-        //label the coordinate axis
-        std::get< COORD_AXIS >(*st_coord)[0] = "delay";
-        std::get< COORD_AXIS >(*st_coord)[1] = "azimuth";
-        std::get< COORD_AXIS >(*st_coord)[2] = "elevation";
-        std::get< COORD_AXIS >(*st_coord)[3] = "parallactic_angle";
-        std::get< COORD_AXIS >(*st_coord)[4] = "u";
-        std::get< COORD_AXIS >(*st_coord)[5] = "v";
-        std::get< COORD_AXIS >(*st_coord)[6] = "w";
-
-        //label the spline interval axis
-        for(std::size_t i = 0; i < n_poly; i++)
-        {
-            std::get< INTERVAL_AXIS >(*st_coord)[i] = i * duration;
-        }
-
-        //label polynomial order axis
-        for(std::size_t i = 0; i <= n_order; i++)
-        {
-            std::get< COEFF_AXIS >(*st_coord)[i] = i;
-        }
-
-        for(std::size_t i = 0; i < n_poly; i++)
-        {
-            mho_json poly_interval = antenna_poly[i];
-            for(std::size_t p = 0; p <= n_order; p++)
-            {
-                double delay, az, el, par, u, v, w;
-                delay = poly_interval["delay"][p];
-                az = poly_interval["az"][p];
-                el = poly_interval["elgeom"][p];
-#ifdef CALC_SUPPORTS_PARANGLE //not defined! CALC does not yet support par. angle spline
-                par = poly_interval["parangle"][p];
-#else
-                //just fill in dummy values for now
-                par = 0.0;
-#endif
-                u = poly_interval["u"][p];
-                v = poly_interval["v"][p];
-                w = poly_interval["w"][p];
-
-                st_coord->at(0, i, p) = -1.0 * MICROSEC_TO_SEC * delay; //negative sign needed to match difx2mar4 convention
-                st_coord->at(1, i, p) = az;
-                st_coord->at(2, i, p) = el;
-                st_coord->at(3, i, p) = par;
-                st_coord->at(4, i, p) = u;
-                st_coord->at(5, i, p) = v;
-                st_coord->at(6, i, p) = w;
-            }
-        }
-
-        //correct delay mode with antenna clock model
-        apply_delay_model_clock_correction(ant, antenna_poly, st_coord);
-
-        //tag the station data structure with all the meta data from the type_300
-        // st_coord->Insert(std::string("difx_station_code"), station_code);
-        // st_coord->Insert(std::string("difx_station_name"), station_name);
-        st_coord->Insert(std::string("model_interval"), duration);
-        st_coord->Insert(std::string("model_start"), model_start);
-
-        //do we really need to add these parameters here (available from vex)
-        st_coord->Insert(std::string("mount"), station_mount);
-        st_coord->Insert(std::string("X"), position[0]);
-        st_coord->Insert(std::string("Y"), position[1]);
-        st_coord->Insert(std::string("Z"), position[2]);
-
-        //calculate zero-th order parallactic_angle values
-        calculateZerothOrderParallacticAngle(st_coord, position[0], position[1], position[2], src_dec, duration);
-
-        //store n_poly as int
-        int nsplines = n_poly;
-        st_coord->Insert(std::string("nsplines"), nsplines);
-    }
-}
-
-std::string MHO_DiFXScanProcessor::get_fourfit_reftime_for_scan(mho_json scan_obj)
-{
-    //this function tries to follow d2m4 method of computing fourfit reference
-    //time, but rather than using the DiFX MJD value, uses the vex-file
-    //specified epoch along with hops_clock for the converion.
-
-    //loop over all the stations in this scan and determine the latest start
-    //and earliest stop times
-    double latest_start = -1.0;
-    double earliest_stop = 1e30;
-    for(std::size_t n = 0; n < scan_obj["station"].size(); n++)
-    {
-        //assuming for the time being the units are seconds
-        double start = scan_obj["station"][n]["data_good"]["value"].get< double >();
-        double stop = scan_obj["station"][n]["data_stop"]["value"].get< double >();
-        if(start > latest_start)
-        {
-            latest_start = start;
-        };
-        if(stop < earliest_stop)
-        {
-            earliest_stop = stop;
-        }
-    }
-
-    //truncate midpoint to integer second -- this is how difx2mark4 does it
-    int itime = itime = (latest_start + earliest_stop) / 2;
-    std::string start_epoch = scan_obj["start"].get< std::string >();
-    auto start_tp = hops_clock::from_vex_format(start_epoch);
-    auto frt_tp = start_tp + std::chrono::seconds(itime);
-    std::string frt = hops_clock::to_vex_format(frt_tp);
-
-    return frt;
-}
-
-void MHO_DiFXScanProcessor::apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly,
-                                                               station_coord_type* st_coord)
-{
-    //see difx2mar4 createType3s.c line 269
-    double clock[MAX_MODEL_ORDER + 1];
-    // units of difx are usec, ff uses sec
-    // shift clock polynomial to start of model interval
-
-    double clockrefmjd = ant["clockrefmjd"];
-    ;
-    double modelrefmjd = ant_poly[0]["mjd"]; //start mjd
-    double modelrefsec = ant_poly[0]["sec"]; //start second
-    double deltat = 86400.0 * (modelrefmjd - clockrefmjd) + modelrefsec;
-    //loop over each interval
-    for(std::size_t i = 0; i < std::get< INTERVAL_AXIS >(*st_coord).GetSize(); i++)
-    {
-        double sec_offset = std::get< INTERVAL_AXIS >(*st_coord)[i];
-        double dt = deltat + sec_offset;
-        int nclock = local_getDifxAntennaShiftedClock(ant, dt, 6, clock);
-
-        // difx delay doesn't have clock added in, so we must do it here
-        //loop over poly coeff
-        for(int p = 0; p < MAX_MODEL_ORDER + 1; p++)
-        {
-            if(p < nclock) // add in those clock coefficients that are valid
-            {
-                //negative sign to match difx2mar4 convention
-                st_coord->at(0, i, p) -= MICROSEC_TO_SEC * clock[p];
-            }
-        }
-    }
-}
-
-//lifted from difx_antenna.c line 288 with minor changes
-//(copied here so we can avoid introducing additional dependencies to difxio lib)
-int MHO_DiFXScanProcessor::local_getDifxAntennaShiftedClock(const mho_json& da, double dt, int outputClockSize,
-                                                            double* clockOut)
-{
-    if(!(da.contains("clockorder")) || !(da.contains("clockcoeff")))
-    {
-        return -1;
-    }
-    int clockorder = da["clockorder"];
-
-    if(outputClockSize < clockorder + 1)
-    {
-        return -2;
-    }
-
-    double a[MAX_MODEL_ORDER + 1];               //MAX_MODEL_ORDER defined in difx_input.h
-    for(int i = 0; i < MAX_MODEL_ORDER + 1; ++i) // pad out input array to full order with 0's
-    {
-        a[i] = 0.0;
-        if(i <= clockorder)
-        {
-            double value = da["clockcoeff"][i];
-            a[i] = value;
-        }
-    }
-
-    double t2, t3, t4, t5; /* units: sec^n, n = 2, 3, 4, 5 */
-    t2 = dt * dt;
-    t3 = t2 * dt;
-    t4 = t2 * t2;
-    t5 = t3 * t2;
-
-    switch(clockorder)
-    {
-        case 5:
-            clockOut[5] = a[5];
-        case 4:
-            clockOut[4] = a[4] + 5 * a[5] * dt;
-        case 3:
-            clockOut[3] = a[3] + 4 * a[4] * dt + 10 * a[5] * t2;
-        case 2:
-            clockOut[2] = a[2] + 3 * a[3] * dt + 6 * a[4] * t2 + 10 * a[5] * t3;
-        case 1:
-            clockOut[1] = a[1] + 2 * a[2] * dt + 3 * a[3] * t2 + 4 * a[4] * t3 + 5 * a[5] * t4;
-        case 0:
-            clockOut[0] = a[0] + a[1] * dt + a[2] * t2 + a[3] * t3 + a[4] * t4 + a[5] * t5;
-    }
-
-    return clockorder + 1;
-}
-
-//adapted from difx2mark createType3s.c
-void MHO_DiFXScanProcessor::calculateZerothOrderParallacticAngle(station_coord_type* st_coord, double X, double Y, double Z,
-                                                                 double dec, double dt)
-{
-    //station coordinates: X, Y, Z;
-    //source declination: dec;
-    //poly model interval: dt;
-
-    std::size_t n_poly = std::get< INTERVAL_AXIS >(*st_coord).GetSize();
-    for(std::size_t i = 0; i < n_poly; i++)
-    {
-        // par. angle from calc program is NYI, so add zeroth order approx here
-        for(std::size_t p = 0; p < 6; p++)
-        {
-            if(p == 0) // for now, only constant term is non-zero
-            {
-                double az0 = st_coord->at(1, i, 0); //1 is az
-                double az1 = st_coord->at(1, i, 1);
-                double el0 = st_coord->at(2, i, 0); //2 is el
-                double el1 = st_coord->at(2, i, 1);
-                // calculate geocentric latitude (rad)
-                double geoc_lat = std::atan2(Z, std::sqrt(X * X + Y * Y));
-                // evaluate az & el at midpoint of spline interval
-                double el = (M_PI / 180.0) * (el0 + 0.5 * dt * el1);
-                double az = (M_PI / 180.0) * (az0 + 0.5 * dt * az1);
-                // evaluate sin and cos of the local hour angle
-                double sha = -1.0 * std::cos(el) * std::sin(az) / std::cos(dec);
-                double cha = (std::sin(el) - std::sin(geoc_lat) * std::sin(dec)) / (std::cos(geoc_lat) * std::cos(dec));
-                // approximate (first order in f) conversion (where does the magic number 1.00674 come from?)
-                double geod_lat = std::atan(1.00674 * std::tan(geoc_lat));
-                // finally ready for par. angle
-                double par_angle = (180.0 / M_PI) * std::atan2(sha, (std::cos(dec) * std::tan(geod_lat) - std::sin(dec) * cha));
-                st_coord->at(3, i, p) = par_angle; //3 is par. angle
-            }
-            else
-            {
-                st_coord->at(3, i, p) = 0.0; //all other coeff are set to zero
-            }
-        }
-    }
+    fStationCoordBuilder.SetDiFXInputData(&fInput);
+    fStationCoordBuilder.SetScanIndex(fFileSet->fLocalIndex);
+    fStationCoordBuilder.Extract(fStationCode2Coords);
 }
 
 std::string MHO_DiFXScanProcessor::ConstructRootFileName(const std::string& output_dir, const std::string& root_code,
                                                          const std::string& src_name)
 {
-    std::string output_file = output_dir + "/" + src_name + "." + root_code + ".root.json";
-    return output_file;
+    return output_dir + "/" + src_name + "." + root_code + ".root.json";
 }
 
 std::string MHO_DiFXScanProcessor::ConstructStaFileName(const std::string& output_dir, const std::string& root_code,
                                                         const std::string& station_code, const std::string& station_mk4id)
 {
-    std::string output_file = output_dir + "/" + station_mk4id + "." + station_code + "." + root_code + ".sta";
-    return output_file;
-}
-
-void MHO_DiFXScanProcessor::PatchOvexStructures(mho_json& vex_root, std::string mode_name)
-{
-    //all the OVEX/EVEX/IVEX/LVEX version info is handled explicity in the vex generator
-
-    //add the experiment number
-    (*(vex_root["$EXPER"].begin()))["exper_num"] = fExperNum;
-
-    //always replace the target correlator with difx
-    //(so we are compatible with HOP3 vex parser)
-    (*(vex_root["$EXPER"].begin()))["target_correlator"] = "difx";
-
-    //clear the $DAS section because HOPS3 ovex parser can't handle it
-    for(auto it = vex_root["$DAS"].begin(); it != vex_root["$DAS"].end(); ++it)
-    {
-        it->clear();
-    }
-    //clear station links to the $DAS section as well
-    for(auto it = vex_root["$STATION"].begin(); it != vex_root["$STATION"].end(); ++it)
-    {
-        if(it->contains("$DAS"))
-        {
-            it->erase("$DAS");
-        }
-    }
-
-    //make sure the mk4_site_id single-character codes are specified for each site
-    //also create a map of DiFX input file station codes (all upper-case) to vex station codes (any-case)
-    fDiFX2VexStationCodes.clear(); //station code map
-    fDiFX2VexStationNames.clear(); //station name map
-    for(auto it = vex_root["$SITE"].begin(); it != vex_root["$SITE"].end(); ++it)
-    {
-        std::string vex_station_code = (*it)["site_ID"];
-        std::string vex_station_name = (*it)["site_name"];
-        (*it)["mk4_site_ID"] = fStationCodeMap->GetMk4IdFromStationCode(vex_station_code);
-        //Careful!! this will break if there are two stations that only differ by case
-        //needed because while the DiFX input-file makes all station codes upper-case
-        //the vex file does not (and we want to preserve the vex codes) - jpb 02/15/24
-        std::string difx_station_code = vex_station_code;
-        std::transform(difx_station_code.begin(), difx_station_code.end(), difx_station_code.begin(), ::toupper);
-        fDiFX2VexStationCodes[difx_station_code] = vex_station_code;
-        fDiFX2VexStationNames[difx_station_code] = vex_station_name;
-    }
-
-    //loop over the antenna's inserting the additional 'axis_type' parameter
-    //in the axis_offset quantity, default to 'el'
-    //once again...needed only to satisfy the pedantic HOPS3 ovex parser
-    for(auto it = vex_root["$ANTENNA"].begin(); it != vex_root["$ANTENNA"].end(); ++it)
-    {
-        //first grab the existing value (just a quantity in vex)
-        mho_json offset = (*it)["axis_offset"];
-        mho_json aoff_obj;
-        aoff_obj["axis_type"] = "el";
-        aoff_obj["offset"] = offset;
-        it->erase("axis_offset");
-        (*it)["axis_offset"] = aoff_obj;
-    }
-
-    //next we need to link the $STATION's with the $CLOCKS assigned to each one
-    //if they haven't already been linked (again..HOPS3 ovex parser)
-    for(auto& element : vex_root["$CLOCK"].items())
-    {
-        std::string key = element.key();
-        if(vex_root["$STATION"].contains(key))
-        {
-            mho_json clock_ref;
-            clock_ref["keyword"] = key;
-            vex_root["$STATION"][key]["$CLOCK"].push_back(clock_ref);
-        }
-    }
-
-    //This assumes all datastreams at an antenna are all sampled with the same bit depth
-    //this is probably relatively safe,
-    //but otherwise we would need to track this on a per-channel or per-band basis
-    std::map< std::string, int > code2bits;
-    std::map< int, std::string > id2code;
-    std::set< int > bits_present;
-    if(fInput.contains("datastream") && fInput.contains("antenna"))
-    {
-        for(auto it : fInput["datastream"].items())
-        {
-            if(it.value().contains("antennaId") && it.value().contains("quantBits"))
-            {
-                int antennaId = it.value()["antennaId"].get< int >();
-                int bits = it.value()["quantBits"].get< int >();
-                int antId = 0;
-                for(auto it = fInput["antenna"].begin(); it != fInput["antenna"].end(); it++)
-                {
-                    if(antId == antennaId && it.value().contains("name"))
-                    {
-                        std::string antCode = it.value()["name"].get< std::string >();
-                        code2bits[antCode] = bits;
-                        id2code[antennaId] = antCode;
-                        break;
-                    }
-                    antId++;
-                }
-            }
-        }
-    }
-
-    //fake it 'til we make it (just like difx2mark4)
-    //add an OVEX $TRACKS section for each site just to keep track of # bits/sample
-    //we'll create a tracks "trax" entry for each possible bits/sample that we've encountered
-    //we will then re-link the stations to this OVEX tracks section in the MODE section
-    mho_json tracks_section;
-    std::set< int > added_trax;
-    std::map< std::string, std::vector< std::string > > trax2codes;
-    for(auto it = code2bits.begin(); it != code2bits.end(); it++)
-    {
-        std::stringstream ss;
-        ss << "trax_" << it->second << "bits";
-        std::string trax_name = ss.str();
-
-        auto iter_bool_pair = added_trax.insert(it->second);
-        if(iter_bool_pair.second)
-        {
-            //first time we are seeing this #bits/sample
-            mho_json trax;
-            trax["bits/sample"] = it->second;
-            tracks_section[trax_name] = trax;
-        }
-        //add the (vex) station code to the list of stations attached to this trax specification
-        trax2codes[trax_name].push_back(fDiFX2VexStationCodes[it->first]);
-    }
-
-    //insert our new trax info
-    if(vex_root.contains("$TRACKS"))
-    {
-        vex_root["$TRACKS"].update(tracks_section);
-    }
-    else
-    {
-        vex_root["$TRACKS"] = tracks_section;
-    }
-
-    //clear all existing tracks in the $MODE section, and re-link to only our 'trax'
-    if(vex_root["$MODE"][mode_name].contains("$TRACKS"))
-    {
-        vex_root["$MODE"][mode_name]["$TRACKS"].clear();
-    }
-
-    for(auto it = trax2codes.begin(); it != trax2codes.end(); it++)
-    {
-        mho_json trax_obj;
-        trax_obj["keyword"] = it->first;
-        trax_obj["qualifiers"] = it->second;
-        vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
-    }
-
-    //clear all existing PHASE_CAL_DETECT objects from "$MODE" section
-    if(vex_root["$MODE"][mode_name].contains("$PHASE_CAL_DETECT"))
-    {
-        vex_root["$MODE"][mode_name]["$PHASE_CAL_DETECT"].clear();
-    }
-
-    //make sure we link to an $EOP object...use the 1st if it exists,
-    //otherwise create a fake one
-    //this is only necessary for pedantic HOPS3 ovex parser
-    vex_root["$GLOBAL"]["$EOP"].clear();
-    if(vex_root["$EOP"].size() > 0)
-    {
-        std::string eop_key = vex_root["$EOP"].begin().key();
-        mho_json eop_obj;
-        eop_obj["keyword"] = eop_key;
-        //eop_obj["qualifiers"] = "";
-        vex_root["$GLOBAL"]["$EOP"].push_back(eop_obj);
-    }
-    else
-    {
-        //add a dummy EOP reference
-        mho_json eop_obj;
-        eop_obj["keyword"] = "EOP_DIFX_INPUT";
-        //eop_obj["qualifiers"] = "";
-        vex_root["$GLOBAL"]["$EOP"].push_back(eop_obj);
-    }
-
-    //lastly we need to insert the traditional mk4 channel names for each frequency
-    //TODO FIXME -- need to support zoom bands (requires difx .input data)
-    //and/or adapt the channel defintions to deal with zoom bands and output bands
-    fChanNameConstructor.AddChannelNames(vex_root);
-
-    //insert the boiler plate useless junk
-    mho_json evex_obj;
-    evex_obj["corr_exp#"] = fExperNum;
-    evex_obj["ovex_file"] = "dummy";
-    evex_obj["cvex_file"] = "dummy";
-    evex_obj["svex_file"] = "dummy";
-    evex_obj["AP_length"]["value"] = 1.0; //TODO FIXME...although this isn't even used
-    evex_obj["AP_length"]["units"] = "sec";
-    evex_obj["speedup_factor"]["value"] = 1.0;
-    evex_obj["speedup_factor"]["units"] = "";
-    //add dummy references
-    mho_json dummy_obj1;
-    mho_json dummy_obj2;
-    dummy_obj1["keyword"] = "CDUM";
-    dummy_obj2["keyword"] = "SDUM";
-    evex_obj["$CORR_CONFIG"].push_back(dummy_obj1);
-    evex_obj["$SU_CONFIG"].push_back(dummy_obj2);
-    vex_root["$EVEX"]["evex_std"] = evex_obj;
-
-    mho_json corr_obj;
-    corr_obj["system_tempo"] = 1.00;
-    ;
-    corr_obj["bocf_period"] = 160000;
-    mho_json pbs_obj;
-    pbs_obj["keyword"] = "PBS_DUMMY";
-    corr_obj["$PBS_INIT"].push_back(pbs_obj);
-    vex_root["$CORR_INIT"]["corr_init_std"] = corr_obj;
-
-    mho_json log_obj;
-    vex_root["$LOG"]["log_std"] = log_obj;
-
-    mho_json pbs_obj2;
-    vex_root["$PBS_INIT"]["PBS_DUMMY"] = pbs_obj2;
+    return output_dir + "/" + station_mk4id + "." + station_code + "." + root_code + ".sta";
 }
 
 } // namespace hops

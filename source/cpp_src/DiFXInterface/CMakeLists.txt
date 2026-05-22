@@ -11,7 +11,13 @@ set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXBaselineProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXPCalProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXChannelNameConstructor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXOvexPatcher.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXStationCoordBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXTimeUtilities.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXZoomBandRebuilder.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MK4ChanId.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SkyFreqGrid.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_VexHelpers.hh
 )
 
 #list source files #############################################################
@@ -23,6 +29,9 @@ set( DIFXINTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXBaselineProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXPCalProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXChannelNameConstructor.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXOvexPatcher.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXStationCoordBuilder.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXZoomBandRebuilder.cc
 )
 
 #declare header paths ##########################################################

@@ -1,4 +1,6 @@
 #include "MHO_DiFXChannelNameConstructor.hh"
+#include "MHO_MK4ChanId.hh"
+#include "MHO_VexHelpers.hh"
 
 #include <algorithm>
 
@@ -8,7 +10,7 @@ namespace hops
 MHO_DiFXChannelNameConstructor::MHO_DiFXChannelNameConstructor()
 {
     fScanID = "";
-    fChanTol = 0.001;
+    fHasGlobalGrid = false;
 };
 
 MHO_DiFXChannelNameConstructor::~MHO_DiFXChannelNameConstructor(){};
@@ -57,135 +59,131 @@ void MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
     //TODO FIXME --for complicated schedules and/or zoom bands,
     //different stations may have different modes
     std::string mode_key = scan["mode"].get< std::string >();
-    int nst = scan["station"].size(); // number of stations;
 
-    //maps to resolve links
-    std::map< std::string, std::string > stationCodeToSiteID;
-    std::map< std::string, std::string > stationCodeToMk4ID;
-    std::map< std::string, std::string > stationCodeToFreqTableName;
-    std::map< std::string, std::string > mk4IDToFreqTableName;
+    //per-section station_code -> table_name maps. Section entries with no station
+    //qualifiers fall back to the first entry in the section (handled by TableForStation).
+    auto stationCodeToFreqTableName = MHO_VexHelpers::StationToKeywordMap(vex_root, mode_key, "$FREQ");
+    auto stationCodeToBBCTableName = MHO_VexHelpers::StationToKeywordMap(vex_root, mode_key, "$BBC");
+    auto stationCodeToIFTableName = MHO_VexHelpers::StationToKeywordMap(vex_root, mode_key, "$IF");
 
-    auto mode = vex_root["$MODE"][mode_key];
-    //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
-    std::string bbc_name =
-        vex_root["$MODE"][mode_key]["$BBC"][0]["keyword"].get< std::string >(); //TODO FIXME if stations have different bbcs
-    std::string if_name =
-        vex_root["$MODE"][mode_key]["$IF"][0]["keyword"].get< std::string >(); //TODO FIXME if stations have different ifs
-
-    for(int ist = 0; ist < nst; ist++)
+    //order stations by their mk4 site id for stable iteration (mirrors the legacy behavior)
+    std::map< std::string, std::string > mk4IDToStationCode;
+    for(const auto& kv : stationCodeToFreqTableName)
     {
-        //find the frequency table for this station
-        //first locate the mode info
-        std::string freq_key;
-        for(auto it = mode["$FREQ"].begin(); it != mode["$FREQ"].end(); ++it)
-        {
-            std::string keyword = (*it)["keyword"].get< std::string >();
-            std::size_t n_qual = (*it)["qualifiers"].size();
-            for(std::size_t q = 0; q < n_qual; q++)
-            {
-                std::string station_code = (*it)["qualifiers"][q].get< std::string >();
-                if(vex_root["$STATION"].contains(station_code))
-                {
-                    //std::cout<<"station code = "<<station_code<<std::endl;
-                    //std::string site_key =
-                    stationCodeToFreqTableName[station_code] = keyword;
-                    std::string site_key = vex_root["$STATION"][station_code]["$SITE"][0]["keyword"].get< std::string >();
-                    std::string mk4_id = vex_root["$SITE"][site_key]["mk4_site_ID"].get< std::string >();
-                    mk4IDToFreqTableName[mk4_id] = keyword;
-                }
-            }
-        }
+        std::string mk4_id = MHO_VexHelpers::StationMk4SiteId(vex_root, kv.first);
+        if(!mk4_id.empty())
+            mk4IDToStationCode[mk4_id] = kv.first;
     }
 
-    for(auto it = mk4IDToFreqTableName.begin(); it != mk4IDToFreqTableName.end(); it++)
+    for(auto it = mk4IDToStationCode.begin(); it != mk4IDToStationCode.end(); it++)
     {
-        //now loop over all stations, filling in the channel names
         std::string st = it->first;
-        std::string freq_table = it->second;
-
-        //first we figure out the unique channel sky_frequencies, so we can assign
-        //them ordered indices
-        fOrderedSkyFrequencies.clear();
-
-        //get the channel information of the reference station
-        std::vector< double > all_freqs;
-        for(std::size_t nch = 0; nch < vex_root["$FREQ"][freq_table]["chan_def"].size(); nch++)
+        std::string station_code = it->second;
+        std::string freq_table = stationCodeToFreqTableName[station_code];
+        std::string bbc_name =
+            MHO_VexHelpers::TableForStation(vex_root, mode_key, "$BBC", station_code, &stationCodeToBBCTableName);
+        std::string if_name =
+            MHO_VexHelpers::TableForStation(vex_root, mode_key, "$IF", station_code, &stationCodeToIFTableName);
+        if(bbc_name.empty() || if_name.empty())
         {
-            double sky_freq = vex_root["$FREQ"][freq_table]["chan_def"][nch]["sky_frequency"]["value"].get< double >();
-            all_freqs.push_back(sky_freq);
-        }
-        std::sort(all_freqs.begin(), all_freqs.end());
-
-        //eliminate duplicates within some tolerance (stupid brute force N^2 comparison)
-        std::size_t nfreqs = all_freqs.size();
-        for(std::size_t i = 0; i < nfreqs; i++)
-        {
-            bool ok_to_add = true;
-            for(std::size_t j = 0; j < fOrderedSkyFrequencies.size(); j++)
-            {
-                double delta = all_freqs[i] - fOrderedSkyFrequencies[j];
-                if(std::fabs(delta) < fChanTol)
-                {
-                    ok_to_add = false;
-                }
-            }
-            if(ok_to_add)
-            {
-                fOrderedSkyFrequencies.push_back(all_freqs[i]);
-            }
+            msg_warn("mk4interface", "could not resolve BBC or IF table for station: "
+                                         << st << ", channel polarization may be unknown." << eom);
         }
 
-        std::sort(fOrderedSkyFrequencies.begin(), fOrderedSkyFrequencies.end());
+        //figure out the ordered (ascending) unique sky frequencies. When a global
+        //grid has been set we use it directly so chan_def chidx matches the chidx
+        //that MHO_DiFXBaselineProcessor writes into mark4 t101 chan_ids across every
+        //station in the scan. But: if NONE of this freq_table's chan_defs are on the
+        //global grid (e.g. a station whose channels are all filtered out of this scan
+        //by -w/--bandwidth or zoom-vs-native selection), fall back to per-station
+        //numbering so the table still gets sensible (if scan-unused) channel_names
+        //instead of having every chan_def stripped -- fourfit3 trips over freq_tables
+        //with zero chan_defs even when it's not asked to process that station's baselines.
+        const auto& chan_defs = vex_root["$FREQ"][freq_table]["chan_def"];
 
-        //get the channel information of the reference station
-        for(std::size_t nch = 0; nch < vex_root["$FREQ"][freq_table]["chan_def"].size(); nch++)
+        bool use_global_for_this_table = fHasGlobalGrid;
+        if(use_global_for_this_table)
         {
-            double sky_freq = vex_root["$FREQ"][freq_table]["chan_def"][nch]["sky_frequency"]["value"].get< double >();
-            double bw = vex_root["$FREQ"][freq_table]["chan_def"][nch]["bandwidth"]["value"].get< double >();
-            std::string net_sb = vex_root["$FREQ"][freq_table]["chan_def"][nch]["net_sideband"].get< std::string >();
-            std::string bbc_id = vex_root["$FREQ"][freq_table]["chan_def"][nch]["bbc_id"].get< std::string >();
-            std::string pol = "-";
-            for(std::size_t nbbc = 0; nbbc < vex_root["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
+            bool any_on_grid = false;
+            for(std::size_t nch = 0; nch < chan_defs.size(); nch++)
             {
-                if(vex_root["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get< std::string >() == bbc_id)
+                double sky_freq = chan_defs[nch]["sky_frequency"]["value"].get< double >();
+                if(fGlobalGrid.Contains(sky_freq))
                 {
-                    std::string if_id = vex_root["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get< std::string >();
-                    //finally retrieve the polarization
-                    for(std::size_t nif = 0; nif < vex_root["$IF"][if_name]["if_def"].size(); nif++)
-                    {
-                        if(vex_root["$IF"][if_name]["if_def"][nif]["if_id"].get< std::string >() == if_id)
-                        {
-                            pol = vex_root["$IF"][if_name]["if_def"][nif]["polarization"].get< std::string >();
-                            break;
-                        }
-                    }
+                    any_on_grid = true;
                     break;
                 }
             }
+            if(!any_on_grid)
+                use_global_for_this_table = false;
+        }
+
+        //grid we'll actually use for this station's freq table. Either the scan-wide
+        //grid (preferred) or a per-station grid rebuilt from this table's chan_defs.
+        MHO_SkyFreqGrid local_grid;
+        const MHO_SkyFreqGrid* active_grid = nullptr;
+        if(use_global_for_this_table)
+        {
+            active_grid = &fGlobalGrid;
+        }
+        else
+        {
+            for(std::size_t nch = 0; nch < chan_defs.size(); nch++)
+            {
+                local_grid.Add(chan_defs[nch]["sky_frequency"]["value"].get< double >());
+            }
+            local_grid.Finalize();
+            active_grid = &local_grid;
+        }
+
+        //when running on the global grid for this table, drop chan_defs whose sky_freq
+        //isn't on the grid (i.e., declared in VEX but never exported). fourfit3 looks
+        //chan_defs up by chan_name from t101; an unreferenced chan_def at best wastes
+        //space and at worst collides with a real chan_name elsewhere in the table.
+        //Skip when use_global_for_this_table is false -- we're already in the legacy
+        //per-station path and dropping would zero out a table fourfit3 still expects.
+        if(use_global_for_this_table)
+        {
+            mho_json keep = mho_json::array();
+            for(std::size_t nch = 0; nch < chan_defs.size(); nch++)
+            {
+                double sky_freq = chan_defs[nch]["sky_frequency"]["value"].get< double >();
+                if(active_grid->Contains(sky_freq))
+                {
+                    keep.push_back(chan_defs[nch]);
+                }
+            }
+            vex_root["$FREQ"][freq_table]["chan_def"] = keep;
+        }
+
+        //assign chan_name = band + chidx + sb + pol for each (surviving) chan_def
+        for(std::size_t nch = 0; nch < vex_root["$FREQ"][freq_table]["chan_def"].size(); nch++)
+        {
+            const auto& cd = vex_root["$FREQ"][freq_table]["chan_def"][nch];
+            double sky_freq = cd["sky_frequency"]["value"].get< double >();
+            std::string net_sb = cd["net_sideband"].get< std::string >();
+            std::string bbc_id = cd["bbc_id"].get< std::string >();
+            std::string pol = MHO_VexHelpers::ResolvePolarization(vex_root, bbc_name, if_name, bbc_id);
 
             //determine the band
             std::string band = BandLabelFromSkyFreq(sky_freq);
 
-            //channel number
-            std::size_t channel_index = FindChannelIndex(sky_freq);
-            std::stringstream ss;
-            ss << std::setfill('0') << std::setw(2) << channel_index;
-            std::string chan_no = ss.str();
+            //channel number from the active grid (global scan-wide, or per-table fallback)
+            std::size_t channel_index = 0;
+            active_grid->FindIndex(sky_freq, channel_index);
 
-            //now construct the channel name
-            std::string chan_name;
-            chan_name = band + chan_no + net_sb + pol;
-            vex_root["$FREQ"][freq_table]["chan_def"][nch]["channel_name"] = chan_name;
+            vex_root["$FREQ"][freq_table]["chan_def"][nch]["channel_name"] =
+                MHO_MK4ChanId::Make(band, (int)channel_index, net_sb, pol);
         }
     }
 }
 
 std::string MHO_DiFXChannelNameConstructor::BandLabelFromSkyFreq(double sky_freq)
 {
-    std::string label = "X"; //defaults to X
+    std::string label = ""; //no match, then band label is empty
     for(auto it = fBandRangeLabels.begin(); it != fBandRangeLabels.end(); it++)
     {
-        //assume no over lapping band assignments
+        //assume no overlapping band assignments
         if(sky_freq < it->fHigh && sky_freq > it->fLow)
         {
             label = it->fLabel;
@@ -193,20 +191,6 @@ std::string MHO_DiFXChannelNameConstructor::BandLabelFromSkyFreq(double sky_freq
         }
     }
     return label;
-}
-
-std::size_t MHO_DiFXChannelNameConstructor::FindChannelIndex(double sky_freq)
-{
-    //brute force search
-    for(std::size_t i = 0; i < fOrderedSkyFrequencies.size(); i++)
-    {
-        double delta = sky_freq - fOrderedSkyFrequencies[i];
-        if(std::fabs(delta) < fChanTol)
-        {
-            return i;
-        }
-    }
-    return 0;
 }
 
 } // namespace hops

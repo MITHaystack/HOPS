@@ -4,6 +4,7 @@
 #include "MHO_DiFXTimeUtilities.hh"
 #include "MHO_DoubleSidebandChannelLabeler.hh"
 #include "MHO_ElementTypeCaster.hh"
+#include "MHO_MK4ChanId.hh"
 
 #include "MHO_MK4CorelInterfaceReversed.hh"
 
@@ -49,6 +50,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor(): fInput(nullptr), fV(null
     fOnlyFreqGroups.clear();
     fSelectByBandwidth = false;
     fOnlyBandwidth = 0;
+    fHasGlobalGrid = false;
 };
 
 MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
@@ -114,6 +116,15 @@ void MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
         keep_record = false;
     }
 
+    //when zoom-band VEX reconstruction is active, discard native-band records to keep root/visibility consistent
+    if(keep_record && !fZoomFreqIndices.empty())
+    {
+        if(fZoomFreqIndices.find(record->freqindex) == fZoomFreqIndices.end())
+        {
+            keep_record = false;
+        }
+    }
+
     if(keep_record)
     {
         std::string pp(record->polpair, 2);
@@ -142,6 +153,13 @@ void MHO_DiFXBaselineProcessor::Organize()
 {
     fHaveBaselineData = true;
 
+    //Organize() is idempotent -- MHO_DiFXScanProcessor calls it once up-front (to harvest
+    //fBaselineFreqs so the scan-wide global sky-freq grid can be computed) and a second
+    //time from ConstructVisibilityFileObjects, we have to clear the per-call accumulators so the
+    //second invocation rebuilds them rather than appending dumplicates.
+    fBaselineFreqs.clear();
+    fFreqBandLabelSet.clear();
+
     if(fRecords.size() == 0)
     {
         msg_warn("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
@@ -156,58 +174,36 @@ void MHO_DiFXBaselineProcessor::Organize()
         return;
     }
 
-    //first figure out the baseline name (CHECK THIS)
+    //first figure out the baseline name
     /* The baseline number (256*A1 + A2, 1 indexed) */
     int ant1 = (fBaselineID / DIFX_BASE2ANT) - 1;
     int ant2 = (fBaselineID % DIFX_BASE2ANT) - 1;
     std::string difx_ref_station = (*fInput)["antenna"][ant1]["name"];
     std::string difx_rem_station = (*fInput)["antenna"][ant2]["name"];
 
-    //convert the 2-char codes from all-caps to mk4-convention of 1-cap, 1-lower case
-    if(fDiFX2VexStationCodes.find(difx_ref_station) != fDiFX2VexStationCodes.end())
-    {
-        fRefStation = fDiFX2VexStationCodes[difx_ref_station];
-    }
-    else
-    {
-        fRefStation = std::string() + (char)std::toupper(difx_ref_station[0]) + (char)std::tolower(difx_ref_station[1]);
+    //resolve the (vex) 2-char station code from the DiFX (all-caps) code, with a mk4-style
+    //capitalization fallback when the VEX file didn't provide a mapping.
+    auto resolve_code = [&](const std::string& difx_code) -> std::string {
+        auto it = fDiFX2VexStationCodes.find(difx_code);
+        if(it != fDiFX2VexStationCodes.end())
+            return it->second;
+        std::string fallback = std::string() + (char)std::toupper(difx_code[0]) + (char)std::tolower(difx_code[1]);
         msg_warn("difx_interface", "could not locate vex 2-char ID associated with difx station: "
-                                       << difx_ref_station << ", assigning mk4 convention: " << fRefStation << eom);
-    }
-
-    if(fDiFX2VexStationCodes.find(difx_rem_station) != fDiFX2VexStationCodes.end())
-    {
-        fRemStation = fDiFX2VexStationCodes[difx_rem_station];
-    }
-    else
-    {
-        fRemStation = std::string() + (char)std::toupper(difx_rem_station[0]) + (char)std::tolower(difx_rem_station[1]);
-        msg_warn("difx_interface", "could not locate vex 2-char ID associated with difx station: "
-                                       << difx_rem_station << ", assigning mk4 convention: " << fRefStation << eom);
-    }
-
-    //figure out the station names
-    if(fDiFX2VexStationNames.find(difx_ref_station) != fDiFX2VexStationNames.end())
-    {
-        fRefStationName = fDiFX2VexStationNames[difx_ref_station];
-    }
-    else
-    {
-        fRefStationName = difx_ref_station;
+                                       << difx_code << ", assigning mk4 convention: " << fallback << eom);
+        return fallback;
+    };
+    auto resolve_name = [&](const std::string& difx_code) -> std::string {
+        auto it = fDiFX2VexStationNames.find(difx_code);
+        if(it != fDiFX2VexStationNames.end())
+            return it->second;
         msg_warn("difx_interface", "could not locate vex station name associated with difx station: "
-                                       << difx_ref_station << ", using: " << fRefStationName << eom);
-    }
-
-    if(fDiFX2VexStationNames.find(difx_rem_station) != fDiFX2VexStationNames.end())
-    {
-        fRemStationName = fDiFX2VexStationNames[difx_rem_station];
-    }
-    else
-    {
-        fRemStationName = difx_rem_station;
-        msg_warn("difx_interface", "could not locate vex station name associated with difx station: "
-                                       << difx_rem_station << ", using: " << fRemStationName << eom);
-    }
+                                       << difx_code << ", using: " << difx_code << eom);
+        return difx_code;
+    };
+    fRefStation = resolve_code(difx_ref_station);
+    fRemStation = resolve_code(difx_rem_station);
+    fRefStationName = resolve_name(difx_ref_station);
+    fRemStationName = resolve_name(difx_rem_station);
 
     fBaselineName = fRefStation + fBaselineDelim + fRemStation;
     fRefStationMk4Id = fStationCodeMap->GetMk4IdFromStationCode(fRefStation);
@@ -237,10 +233,30 @@ void MHO_DiFXBaselineProcessor::Organize()
     if(fSpecPointSet.size() > 1)
     {
         fCanChannelize = false;
-        msg_error("difx_interface",
-                  "channels do not have same number of spectral points on baseline: " << fBaselineName << eom);
-        msg_fatal("difx_interface", "un-channelized data not yet supported" << eom);
-        std::exit(1);
+        //collect the bandwidths corresponding to each distinct spectral point count
+        //so the user can be informed if they need to pass to -w option
+        std::string bw_list;
+        for(auto freqit = fFreqIndexSet.begin(); freqit != fFreqIndexSet.end(); freqit++)
+        {
+            if(fInput && *freqit < (int)(*fInput)["freq"].size())
+            {
+                double bw = (*fInput)["freq"][*freqit]["bw"].get< double >();
+                std::string bw_str = std::to_string(bw);
+                if(bw_list.find(bw_str) == std::string::npos)
+                {
+                    if(!bw_list.empty())
+                        bw_list += ", ";
+                    bw_list += bw_str;
+                }
+            }
+        }
+        msg_warn("difx_interface",
+                 "channels on baseline "
+                     << fBaselineName << " have mixed channel bandwidths (" << bw_list
+                     << " MHz). Only a single bandwidth is supported. Use -w <bandwidth> to select the desired channel "
+                        "bandwidth and re-run. Skipping this baseline."
+                     << eom);
+        return;
     }
 
     //sort the individual visiblity records in time order
@@ -323,31 +339,19 @@ void MHO_DiFXBaselineProcessor::Organize()
         }
     }
 
-    if(ant1 != ant2) // cross-correlation
+    fScaleFactor = SCALE;
+    if(ant1 != ant2) //cross-correlation: apply Van Vleck per station's quantization bits
     {
-        fScaleFactor = SCALE;
-        if(fNBitsToFactor.find(fRefStationBits) != fNBitsToFactor.end())
-        {
-            fScaleFactor *= fNBitsToFactor[fRefStationBits];
-        }
-        else
-        {
-            msg_warn("difx_interface", "reference station quantization bits: " << fRefStationBits
-                                                                               << ", not in Van Vleck correction table" << eom);
-        }
-        if(fNBitsToFactor.find(fRemStationBits) != fNBitsToFactor.end())
-        {
-            fScaleFactor *= fNBitsToFactor[fRemStationBits];
-        }
-        else
-        {
-            msg_warn("difx_interface",
-                     "remote station quantization bits: " << fRemStationBits << ", not in Van Vleck correction table" << eom);
-        }
-    }
-    else // auto-correlation
-    {
-        fScaleFactor = SCALE;
+        auto apply_vv = [&](int bits, const char* which) {
+            auto it = fNBitsToFactor.find(bits);
+            if(it != fNBitsToFactor.end())
+                fScaleFactor *= it->second;
+            else
+                msg_warn("difx_interface",
+                         which << " station quantization bits: " << bits << ", not in Van Vleck correction table" << eom);
+        };
+        apply_vv(fRefStationBits, "reference");
+        apply_vv(fRemStationBits, "remote");
     }
 }
 
@@ -382,68 +386,40 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
             fTags.SetTagValue("difx_input_json", *fInput);
         }
 
-        fTags.SetTagValue("root_code", fRootCode);
-        //add a bunch of tags from the visib/weight objects for ease of retrieval
-        fTags.SetTagValue("difx_baseline_index", fBaselineID);
-        fTags.SetTagValue("baseline", fBaselineName);
-        fTags.SetTagValue("baseline_shortname", fBaselineShortName);
-        fTags.SetTagValue("reference_station", fRefStation);
-        fTags.SetTagValue("remote_station", fRemStation);
-        fTags.SetTagValue("reference_station_name", fRefStationName);
-        fTags.SetTagValue("remote_station_name", fRemStationName);
-        fTags.SetTagValue("reference_station_mk4id", fRefStationMk4Id);
-        fTags.SetTagValue("remote_station_mk4id", fRemStationMk4Id);
-        fTags.SetTagValue("correlation_date", fCorrDate);
-        fTags.SetTagValue("root_code", fRootCode);
-        fTags.SetTagValue("origin", "difx");
-        fTags.SetTagValue("name", "object_tags");
-        fTags.SetTagValue("start", fStartTime);
-        fTags.SetTagValue("stop", fStopTime);
-        fTags.SetTagValue("source", fSourceName);
-
         fV = new visibility_store_type();
         fW = new weight_store_type();
-
-        //tags for the visibilities
         fV->Resize(fNPolPairs, fNChannels, fNAPs, fNSpectralPoints);
         fV->ZeroArray();
-        fV->Insert(std::string("name"), std::string("visibilities"));
-        fV->Insert(std::string("difx_baseline_index"), fBaselineID);
-        fV->Insert(std::string("baseline"), fBaselineName);
-        fV->Insert(std::string("baseline_shortname"), fBaselineShortName);
-        fV->Insert(std::string("reference_station"), fRefStation);
-        fV->Insert(std::string("remote_station"), fRemStation);
-        fV->Insert(std::string("reference_station_name"), fRefStationName);
-        fV->Insert(std::string("remote_station_name"), fRemStationName);
-        fV->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
-        fV->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
-        fV->Insert(std::string("correlation_date"), fCorrDate);
-        fV->Insert(std::string("root_code"), fRootCode);
-        fV->Insert(std::string("origin"), "difx");
-        fV->Insert(std::string("start"), fStartTime);
-        fV->Insert(std::string("stop"), fStopTime);
-        fV->Insert(std::string("source"), fSourceName);
-
-        //tags for the weights
-        //fNSpectralPoints -- we only have 1 weight value for each AP, so set dimension along the spectral point axis to 1
+        //fW: one weight value per AP, so the spectral-point axis has dimension 1
         fW->Resize(fNPolPairs, fNChannels, fNAPs, 1);
         fW->ZeroArray();
-        fW->Insert(std::string("name"), std::string("weights"));
+
+        //stamp the common baseline-identification keys on fTags, fV, and fW.
+        const std::vector< std::pair< std::string, std::string > > string_kvs = {
+            {"baseline", fBaselineName},
+            {"baseline_shortname", fBaselineShortName},
+            {"reference_station", fRefStation},
+            {"remote_station", fRemStation},
+            {"reference_station_name", fRefStationName},
+            {"remote_station_name", fRemStationName},
+            {"reference_station_mk4id", fRefStationMk4Id},
+            {"remote_station_mk4id", fRemStationMk4Id},
+            {"correlation_date", fCorrDate},
+            {"root_code", fRootCode},
+            {"origin", "difx"},
+            {"start", fStartTime},
+            {"stop", fStopTime},
+            {"source", fSourceName},
+        };
+        fTags.SetTagValue("difx_baseline_index", fBaselineID);
+        fTags.SetTagValue("name", std::string("object_tags"));
+        for(const auto& kv : string_kvs){fTags.SetTagValue(kv.first, kv.second); }
+        fV->Insert(std::string("difx_baseline_index"), fBaselineID);
+        fV->Insert(std::string("name"), std::string("visibilities"));
+        for(const auto& kv : string_kvs){fV->Insert(kv.first, kv.second);}
         fW->Insert(std::string("difx_baseline_index"), fBaselineID);
-        fW->Insert(std::string("baseline"), fBaselineName);
-        fW->Insert(std::string("baseline_shortname"), fBaselineShortName);
-        fW->Insert(std::string("reference_station"), fRefStation);
-        fW->Insert(std::string("remote_station"), fRemStation);
-        fW->Insert(std::string("reference_station_name"), fRefStationName);
-        fW->Insert(std::string("remote_station_name"), fRemStationName);
-        fW->Insert(std::string("reference_station_mk4id"), fRefStationMk4Id);
-        fW->Insert(std::string("remote_station_mk4id"), fRemStationMk4Id);
-        fW->Insert(std::string("correlation_date"), fCorrDate);
-        fW->Insert(std::string("root_code"), fRootCode);
-        fW->Insert(std::string("origin"), "difx");
-        fW->Insert(std::string("start"), fStartTime);
-        fW->Insert(std::string("stop"), fStopTime);
-        fW->Insert(std::string("source"), fSourceName);
+        fW->Insert(std::string("name"), std::string("weights"));
+        for(const auto& kv : string_kvs){fW->Insert(kv.first, kv.second);}
 
         //polarization product axis
         auto* polprod_axis = &(std::get< POLPROD_AXIS >(*fV));
@@ -507,35 +483,29 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
                     fFreqBandLabelSet.insert(fband);    //keep track of all the freq-band labels we've inserted
                     ch_label["frequency_band"] = fband; //will be empty string if assignment can't be made
 
-                    //TODO FIXME need to construct difx2mark4-style chan_id --
-                    //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
-                    //this also needs to be able to support zoom bands
-
-                    std::string ref_chan_id = ConstructMK4ChannelID(fband, chidx, sideband, pp[0]);
-                    std::string rem_chan_id = ConstructMK4ChannelID(fband, chidx, sideband, pp[1]);
+                    //chidx (above) is the dense position of this channel in fBaselineFreqs and is what
+                    //drives indexing into fV/fW. The chidx that goes into the mark4 chan_id string,
+                    //however, must match the chidx MHO_DiFXChannelNameConstructor stamps into
+                    //chan_def.channel_name; when a scan-wide global sky-freq grid has been provided
+                    //we use position-in-grid for the mark4 chan_id, otherwise fall back to chidx.
+                    int mk4_chidx = chidx;
+                    if(fHasGlobalGrid)
+                    {
+                        std::size_t gi = 0;
+                        if(fGlobalGrid.FindIndex(sky_freq, gi))
+                        {
+                            mk4_chidx = (int)gi;
+                        }
+                    }
+                    std::string ref_chan_id = MHO_MK4ChanId::Make(fband, mk4_chidx, sideband, pp[0]);
+                    std::string rem_chan_id = MHO_MK4ChanId::Make(fband, mk4_chidx, sideband, pp[1]);
 
                     ch_label["mk4_channel_id"] = ref_chan_id + ":" + rem_chan_id;
 
-                    ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency not chidx;
+                    ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency, not chidx
                     wch_axis->at(chidx) = sky_freq;
                     ch_axis->SetLabelObject(ch_label, chidx);
                     wch_axis->SetLabelObject(ch_label, chidx);
-
-                    // MHO_IntervalLabel ch_label(chidx,chidx);
-                    // ch_label.Insert(std::string("sky_freq"), sky_freq);
-                    // ch_label.Insert(std::string("bandwidth"), bw);
-                    // ch_label.Insert(std::string("net_sideband"), sideband);
-                    // ch_label.Insert(std::string("difx_freqindex"), freqidx); //probably ought to be more systematic about creating channel names
-                    // ch_label.Insert(std::string("channel"), chidx); //channel position index
-                    //  //TODO FIXME need to construct difx2mark4-style chan_id --
-                    // //or rather need to construct the chan_id which corresponds to the reference and remote station for this chunk
-                    // //this also needs to be able to support zoom bands
-                    // ch_label.Insert(std::string("chan_id"), std::string("placeholder"));
-                    //
-                    // ch_axis->at(chidx) = sky_freq; //channel axis is now sky frequency not chidx;
-                    // wch_axis->at(chidx) = sky_freq; // chidx;
-                    // ch_axis->InsertLabel(ch_label);
-                    // wch_axis->InsertLabel(ch_label);
                 }
 
                 for(std::size_t ap = 0; ap < fNAPs; ap++)
@@ -698,20 +668,6 @@ void MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
     }
     fRecords.clear();
     malloc_trim(0); //for lots of small objects this may be helpful to flush pages back to OS
-}
-
-std::string MHO_DiFXBaselineProcessor::ConstructMK4ChannelID(std::string fgroup, int index, std::string sideband, char pol)
-{
-    std::stringstream ss;
-    ss << fgroup;
-    if(index < 10)
-    {
-        ss << "0";
-    } //pad with leading zero if less than 10
-    ss << index;
-    ss << sideband;
-    ss << pol;
-    return ss.str();
 }
 
 std::string MHO_DiFXBaselineProcessor::DetermineFreqGroup(double freq)

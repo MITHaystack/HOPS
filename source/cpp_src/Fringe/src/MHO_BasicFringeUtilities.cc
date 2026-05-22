@@ -62,13 +62,13 @@ void MHO_BasicFringeUtilities::calculate_fringe_solution_info(MHO_ContainerStore
     std::string start_vex_string = paramStore->GetAs< std::string >("/vex/scan/start");
     auto start_time = hops_clock::from_vex_format(start_vex_string);
     double start_offset = paramStore->GetAs< double >("start_offset");
-    int64_t start_offset_as_nanosec = (int64_t)start_offset * SEC_TO_NANOSEC; //KLUDGE;
+    int64_t start_offset_as_nanosec = (int64_t)(start_offset * SEC_TO_NANOSEC);
 
     start_time = start_time + hops_clock::duration(start_offset_as_nanosec);
     legacy_hops_date start_ldate = hops_clock::to_legacy_hops_date(start_time);
 
     double stop_offset = paramStore->GetAs< double >("stop_offset");
-    int64_t stop_offset_as_nanosec = (int64_t)stop_offset * SEC_TO_NANOSEC; //KLUDGE;
+    int64_t stop_offset_as_nanosec = (int64_t)(stop_offset * SEC_TO_NANOSEC);
 
     auto stop_time = hops_clock::from_vex_format(start_vex_string);
     stop_time = stop_time + hops_clock::duration(stop_offset_as_nanosec);

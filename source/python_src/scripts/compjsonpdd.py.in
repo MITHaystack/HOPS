@@ -16,12 +16,14 @@ def main():
          )
 
     parser.add_argument('-r', '--rel-tolerance', type=float, dest='reltol', help='the relative tolerance to use when comparing floating point numbers, default = 3e-4.', default=3e-4)
+    parser.add_argument('-x', '--exclude', type=str, dest='exclude', help='comma-separated list of field names to skip during comparison (e.g. "FringeRate(Hz),ResidRate(us/s)")', default='')
     parser.add_argument('fileA', help='the HOPS4 json fringe data dump')
     parser.add_argument('fileB', help='the HOPS3 (plot_data_dir) dump file')
 
     args = parser.parse_args()
 
     reltol = abs(args.reltol)
+    excluded = set(s.strip() for s in args.exclude.split(',') if s.strip())
     f1_name = os.path.abspath(args.fileA)
     f2_name = os.path.abspath(args.fileB)
 
@@ -92,8 +94,12 @@ def main():
     rel_percent_error = reltol*100;
 
     print("tolerance is: ", rel_percent_error, " percent.")
+    if excluded:
+        print("excluding fields:", sorted(excluded))
 
     for k,t in key_type_dict.items():
+        if k in excluded:
+            continue
         if t == 'string':
             if(k in j1 and k in j2):
                 val1 = str(j1[k])
@@ -115,8 +121,13 @@ def main():
                 val1 = float(j1[k])
                 val2 = float(j2[k])
                 delta = val1 - val2
-                print(k, t, " : percent difference: ", (delta/val2)*100 )
-                if math.fabs(delta/val2)*100 > rel_percent_error:
+                denom = max(math.fabs(val1), math.fabs(val2))
+                if denom == 0.0:
+                    pct = 0.0
+                else:
+                    pct = (delta/denom)*100
+                print(k, t, " : percent difference: ", pct )
+                if math.fabs(pct) > rel_percent_error:
                     print(k, ": ", val1, " not close enough to: ", val2)
                     bad_count += 1
                     bad_keys.append(k)
@@ -147,6 +158,8 @@ def main():
                 bad_keys.append(k)
 
     for k,t in optional_key_type_dict.items():
+        if k in excluded:
+            continue
         if t == 'string':
             if(k in j1 and k in j2):
                 val1 = str(j1[k])
@@ -161,8 +174,13 @@ def main():
                 val1 = float(j1[k])
                 val2 = float(j2[k])
                 delta = val1 - val2
-                print(k, t, " : percent difference: ", (delta/val2)*100 )
-                if math.fabs(delta/val2)*100 > rel_percent_error:
+                denom = max(math.fabs(val1), math.fabs(val2))
+                if denom == 0.0:
+                    pct = 0.0
+                else:
+                    pct = (delta/denom)*100
+                print(k, t, " : percent difference: ", pct )
+                if math.fabs(pct) > rel_percent_error:
                     print(k, ": ", val1, " not close enough to: ", val2)
                     bad_count += 1
                     bad_keys.append(k)
