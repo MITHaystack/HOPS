@@ -13,6 +13,7 @@ MHO_DiFXVisibilityProcessor::MHO_DiFXVisibilityProcessor()
     fSelectByBandwidth = false;
     fOnlyBandwidth = 0;
     fInput = nullptr;
+    fZoomFreqIndices.clear();
 }
 
 void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities)
@@ -128,8 +129,11 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
                     {
                         allBaselineVisibilities[visRecord.baseline].SetOnlyBandwidth(fOnlyBandwidth);
                     }
+                    if(!fZoomFreqIndices.empty())
+                    {
+                        allBaselineVisibilities[visRecord.baseline].SetZoomFreqIndices(fZoomFreqIndices);
+                    }
                 }
-
                 //add the record to the appropriate baseline
                 allBaselineVisibilities[visRecord.baseline].AddRecord(new MHO_DiFXVisibilityRecord(visRecord));
             }

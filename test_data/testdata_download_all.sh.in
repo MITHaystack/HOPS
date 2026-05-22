@@ -20,6 +20,7 @@ E3593_DB_LINK="https://www.dropbox.com/scl/fi/0726rhxlsyd7c1s3ga2vi/3593.tar.gz?
 E3741_DB_LINK="https://www.dropbox.com/scl/fi/bt4rtgqkxyjxrq3gcowgr/3741.tar.gz?rlkey=0cw0ekqsh9vg0hloime3w007i&st=1p02ua5f&dl=0"
 E3764_DB_LINK="https://www.dropbox.com/scl/fi/uy553dx4fwm7e28rghfg0/3764.tar.gz?rlkey=80pinp2eais2mocobfh4z4ysf&st=jzsa0lc1&dl=0"
 E3768_DB_LINK="https://www.dropbox.com/scl/fi/csksqh09p49122swzjqha/3768.tar.gz?rlkey=8jrriqwwohfjnczel6w38qtz9&st=q61cb2cs&dl=0"
+MMODE_DB_LINK="https://www.dropbox.com/scl/fi/h6f3j6kj2mx9ppos7a0kq/mixed_mode_kt5343.tar.gz?rlkey=n71qp2x4fm1dex7ldhqfpyuvl&st=qxtgkuad&dl=0"
 
 if [ -d "$DATA_DIR" ]; then
     echo "$DATA_DIR exists."
@@ -92,6 +93,15 @@ if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
     echo "Downloading ${DATA_TARBALL} (127MB) to ${DATA_DIR}"
+    wget -q "${DATA_LINK}" -O $DATA_TARBALL
+fi
+
+DATA_TARBALL=mixed_mode_kt5343.tar.gz
+DATA_LINK="${MMODE_DB_LINK}"
+if [ -f "$DATA_TARBALL" ]; then
+    echo "$DATA_TARBALL exists."
+else
+    echo "Downloading ${DATA_TARBALL} (13MB) to ${DATA_DIR}"
     wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 

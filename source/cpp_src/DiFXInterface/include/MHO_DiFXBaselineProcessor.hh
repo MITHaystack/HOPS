@@ -10,6 +10,7 @@
 #include "MHO_DiFXVisibilityRecord.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_ObjectTags.hh"
+#include "MHO_SkyFreqGrid.hh"
 #include "MHO_StationCodeMap.hh"
 
 namespace hops
@@ -174,8 +175,41 @@ class MHO_DiFXBaselineProcessor
             fSelectByBandwidth = true;
         }
 
-    private:
+        void SetZoomFreqIndices(const std::set< int >& zoom_indices) { fZoomFreqIndices = zoom_indices; }
+
+        /**
+         * @brief Provides a precomputed global sky-frequency grid (MHz, sorted ascending,
+         * deduplicated over freq) used to number channel ids for mark4 t101 chan_id strings. When set,
+         * the chidx embedded in ref_chan_id / rem_chan_id (and the mk4_channel_id label)
+         * is the position of the channel's sky_freq in this grid, instead of its dense
+         * position within this baseline's fBaselineFreqs. This keeps the mark4 chan_ids
+         * aligned with MHO_DiFXChannelNameConstructor's chan_def.channel_name across
+         * heterogeneous-bandwidth station combinations.
+         *
+         * @param grid_MHz Sorted, deduped sky frequencies in MHz
+         * @param tol Match tolerance in MHz (default 0.001)
+         */
+        void SetGlobalSkyFreqGrid(const std::vector< double >& grid_MHz, double tol = MHO_SkyFreqGrid::DEFAULT_TOL_MHZ)
+        {
+            fGlobalGrid = MHO_SkyFreqGrid(grid_MHz, tol);
+            fHasGlobalGrid = true;
+        }
+
+        /**
+         * @brief Read-only access to the ordered (ascending sky_freq) list of channels this
+         * baseline will export. Populated by Organize(). Each element is (difx_freq_idx, fInput["freq"][...]).
+         */
+        const std::vector< std::pair< int, mho_json > >& GetBaselineFreqs() const { return fBaselineFreqs; }
+
+        /**
+         * @brief Build the per-baseline derived state (fFreqIndexSet -> fBaselineFreqs, AP counts,
+         * scan times, source name, etc). Idempotent. Exposed publicly so MHO_DiFXScanProcessor can
+         * collect each baseline's sky_freq list before computing the scan-wide global grid that
+         * has to be injected back into both this processor and the channel-name constructor.
+         */
         void Organize();
+
+    private:
         void DeleteDiFXVisRecords();
 
         std::string ConstructCorFileName(const std::string& output_dir, const std::string& root_code,
@@ -214,6 +248,8 @@ class MHO_DiFXBaselineProcessor
         //needed to recorganized the visibilities into tables
         std::map< std::string, std::map< int, std::vector< MHO_DiFXVisibilityRecord* > > > fVisibilities;
 
+        std::set< int > fZoomFreqIndices; //when non-empty, discard native-band records keeping root/vis consistent
+
         std::set< std::string > fPolPairSet;
         std::set< int > fFreqIndexSet;
         std::set< int > fAPSet;
@@ -240,6 +276,12 @@ class MHO_DiFXBaselineProcessor
         //list of channel frequencies for this baseline, sorted in ascending order (freq)
         std::vector< std::pair< int, mho_json > > fBaselineFreqs;
         std::set< std::string > fFreqBandLabelSet;
+
+        //scan-wide ordered sky-freq grid used to number mark4 chan_ids consistently across
+        //all baselines and stations. set by MHO_DiFXScanProcessor once visibility records
+        //have been read and each baseline organized (so the union of sky_freqs is known).
+        MHO_SkyFreqGrid fGlobalGrid;
+        bool fHasGlobalGrid;
 
         //the baseline data in hops data containers
         weight_store_type* fW;
@@ -312,7 +354,6 @@ class MHO_DiFXBaselineProcessor
 
         FreqIndexPairLess fFreqPredicate;
 
-        std::string ConstructMK4ChannelID(std::string fgroup, int index, std::string sideband, char pol);
 };
 
 } // namespace hops

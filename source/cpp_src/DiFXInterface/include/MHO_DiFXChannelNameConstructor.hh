@@ -8,6 +8,7 @@
 
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
+#include "MHO_SkyFreqGrid.hh"
 
 namespace hops
 {
@@ -47,6 +48,22 @@ class MHO_DiFXChannelNameConstructor
         void AddChannelNames(mho_json& vex_root);
 
         /**
+         * @brief Provide a precomputed global sky-frequency grid (MHz, sorted ascending,
+         * deduped). When set, AddChannelNames uses this grid for chidx assignment
+         * (instead of building one per-station from chan_defs) and drops any chan_def
+         * whose sky_freq isn't in the grid. This is what keeps chan_def.channel_name in
+         * lockstep with the chan_ids MHO_DiFXBaselineProcessor writes into mark4 t101 records.
+         *
+         * @param grid_MHz Sorted, deduped sky frequencies in MHz
+         * @param tol Match tolerance in MHz (default 0.001)
+         */
+        void SetGlobalSkyFreqGrid(const std::vector< double >& grid_MHz, double tol = MHO_SkyFreqGrid::DEFAULT_TOL_MHZ)
+        {
+            fGlobalGrid = MHO_SkyFreqGrid(grid_MHz, tol);
+            fHasGlobalGrid = true;
+        }
+
+        /**
          * @brief Setter for scan name
          * if the (o)vex file has more than one scan, we may want to specify
          * a specific one in order to construct the channel names,
@@ -64,13 +81,6 @@ class MHO_DiFXChannelNameConstructor
          * @return Band label as string
          */
         std::string BandLabelFromSkyFreq(double sky_freq);
-        /**
-         * @brief Finds channel index by brute force search within fChanTol (0.001MHz) tolerance.
-         *
-         * @param sky_freq Input sky frequency in Hz.
-         * @return Channel index if found within tolerance, else 0.
-         */
-        std::size_t FindChannelIndex(double sky_freq);
 
         /**
          * @brief Class band_range
@@ -85,8 +95,11 @@ class MHO_DiFXChannelNameConstructor
         std::vector< band_range > fBandRangeLabels;
         std::string fScanID;
 
-        double fChanTol; //tolerance for labeling disinct frequencies
-        std::vector< double > fOrderedSkyFrequencies;
+        //scan-wide canonical grid (set by SetGlobalSkyFreqGrid); used by AddChannelNames
+        //when fHasGlobalGrid is true. When a per-station table has no chan_def on the
+        //global grid we temporarily swap in a per-table grid (see AddChannelNames).
+        MHO_SkyFreqGrid fGlobalGrid;
+        bool fHasGlobalGrid; //true if SetGlobalSkyFreqGrid has been called for this scan
 };
 
 } // namespace hops

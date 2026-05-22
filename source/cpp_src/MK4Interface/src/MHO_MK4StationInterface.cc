@@ -674,11 +674,36 @@ std::map< std::string, std::vector< mho_json > > MHO_MK4StationInterface::Constr
     std::map< std::string, std::string > mk4IDToFreqTableName;
 
     auto mode = fVex["$MODE"][mode_key];
-    // //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
-    std::string bbc_name =
-        fVex["$MODE"][mode_key]["$BBC"][0]["keyword"].get< std::string >(); //TODO FIXME if stations have different bbcs
-    std::string if_name =
-        fVex["$MODE"][mode_key]["$IF"][0]["keyword"].get< std::string >(); //TODO FIXME if stations have different ifs
+
+    // Resolve per-station BBC and IF table names by matching fStationCode in the
+    // mode qualifiers
+    std::string bbc_name;
+    std::string if_name;
+    auto find_table_for_station = [&](const std::string& section_key) -> std::string {
+        if(!fVex["$MODE"][mode_key].contains(section_key))
+            return "";
+        for(auto it = fVex["$MODE"][mode_key][section_key].begin(); it != fVex["$MODE"][mode_key][section_key].end(); ++it)
+        {
+            for(auto& qual : (*it)["qualifiers"])
+            {
+                if(qual.get< std::string >() == fStationCode)
+                    return (*it)["keyword"].get< std::string >();
+            }
+        }
+        return "";
+    };
+    bbc_name = find_table_for_station("$BBC");
+    if_name = find_table_for_station("$IF");
+    // Fall back to [0] when there is a single shared table with no station qualifiers.
+    if(bbc_name.empty() && fVex["$MODE"][mode_key].contains("$BBC") && !fVex["$MODE"][mode_key]["$BBC"].empty())
+        bbc_name = fVex["$MODE"][mode_key]["$BBC"][0]["keyword"].get< std::string >();
+    if(if_name.empty() && fVex["$MODE"][mode_key].contains("$IF") && !fVex["$MODE"][mode_key]["$IF"].empty())
+        if_name = fVex["$MODE"][mode_key]["$IF"][0]["keyword"].get< std::string >();
+    if(bbc_name.empty() || if_name.empty())
+    {
+        msg_warn("mk4interface", "could not resolve BBC or IF table for station: "
+                                     << fStationCode << ", channel polarization may be unknown." << eom);
+    }
 
     //find the frequency table for this station
     //first locate the mode info
@@ -706,13 +731,13 @@ std::map< std::string, std::vector< mho_json > > MHO_MK4StationInterface::Constr
                     std::string bbc_id = fVex["$FREQ"][freq_table]["chan_def"][nch]["bbc_id"].get< std::string >();
                     std::string pol = "-";
                     double pcal_interval_MHz = 0;
-                    for(std::size_t nbbc = 0; nbbc < fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
+                    for(std::size_t nbbc = 0; !bbc_name.empty() && nbbc < fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
                     {
                         if(fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get< std::string >() == bbc_id)
                         {
                             std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get< std::string >();
                             //finally retrieve the polarization and the pcal interval!
-                            for(std::size_t nif = 0; nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
+                            for(std::size_t nif = 0; !if_name.empty() && nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
                             {
                                 if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get< std::string >() == if_id)
                                 {

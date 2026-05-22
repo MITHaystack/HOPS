@@ -17,10 +17,13 @@
 
 #include "MHO_DiFXChannelNameConstructor.hh"
 #include "MHO_DiFXInputProcessor.hh"
+#include "MHO_DiFXOvexPatcher.hh"
 #include "MHO_DiFXPCalProcessor.hh"
 #include "MHO_DiFXScanFileSet.hh"
+#include "MHO_DiFXStationCoordBuilder.hh"
 #include "MHO_DiFXVisibilityProcessor.hh"
 #include "MHO_DiFXVisibilityRecord.hh"
+#include "MHO_DiFXZoomBandRebuilder.hh"
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_StationCodeMap.hh"
@@ -141,18 +144,6 @@ class MHO_DiFXScanProcessor
             fSelectByBandwidth = true;
         }
 
-        //use json representation of vex-scan information to return epoch string of frt
-        /**
-         * @brief Calculates and returns the fourfit reference time epoch string for a given scan object.
-         *
-         * @param scan_obj Input mho_json scan object containing station data
-         * @return std::string representing the fourfit reference time in VEX format
-         */
-        std::string get_fourfit_reftime_for_scan(mho_json scan_obj);
-
-        // //given a mjd date and number of seconds, compute the vex string representation
-        // static std::string get_vexdate_from_mjd_sec(double mjd, double sec);
-
         /**
          * @brief Retrieves the correlation date as a string.
          *
@@ -161,39 +152,6 @@ class MHO_DiFXScanProcessor
         std::string get_correlation_vexdate() const { return fCorrDate; };
 
     private:
-        /**
-         * @brief Applies delay model clock correction to station coordinates using antenna and polynomial data.
-         *
-         * @param ant Antenna information as mho_json object.
-         * @param ant_poly Antenna polynomial data as mho_json object.
-         * @param st_coord Station coordinate type pointer, modified in-place.
-         */
-        void apply_delay_model_clock_correction(const mho_json& ant, const mho_json& ant_poly, station_coord_type* st_coord);
-
-        /**
-         * @brief Calculates shifted clock values for a given antenna using polynomial coefficients and time difference.
-         *
-         * @param da Input JSON object containing clock order and coefficients.
-         * @param dt Time difference in seconds.
-         * @param outputClockSize Size of the output clock array.
-         * @param clockOut Output array to store shifted clock values.
-         * @return Number of valid clock orders plus one, or an error code (-1 if 'clockorder' or 'clockcoeff' is missing, -2 if outputClockSize is insufficient).
-         */
-        int local_getDifxAntennaShiftedClock(const mho_json& da, double dt, int outputClockSize, double* clockOut);
-
-        /**
-         * @brief Calculates zeroth order parallactic angle using station coordinates and source declination.
-         *
-         * @param st_coord Input: Station coordinate structure
-         * @param X Input: X-coordinate of station
-         * @param Y Input: Y-coordinate of station
-         * @param Z Input: Z-coordinate of station
-         * @param src_dec Input: Source declination in degrees
-         * @param dt Input: Time interval for polynomial model
-         */
-        void calculateZerothOrderParallacticAngle(station_coord_type* st_coord, double X, double Y, double Z, double src_dec,
-                                                  double dt);
-
         //the station 2-char to 1-char code map (user specified)
         MHO_StationCodeMap* fStationCodeMap;
 
@@ -204,9 +162,22 @@ class MHO_DiFXScanProcessor
         bool CreateScanOutputDirectory();
         void LoadInputFile();
         void CreateRootFileObject(std::string vexfile);
+
+        //finalize the OVEX/root.json after visibilities have been processed: assigns
+        //chan_def.channel_name using the scan-wide global sky-freq grid and writes the
+        //ovex + root.json files. Split out of CreateRootFileObject so channel naming can
+        //see the union of actually-exported sky_freqs (only known after visibility records
+        //have been read and each baseline organized).
+        void FinalizeAndWriteRootFile();
+
         void ConvertVisibilityFileObjects();
         void NormalizeVisibilities();
         void ConvertStationFileObjects();
+
+        //compute the union (deduped, sorted ascending) of sky_freqs across every channel
+        //that any baseline in fAllBaselineVisibilities will export. Each baseline must have
+        //been Organize()'d first so its fBaselineFreqs is populated.
+        std::vector< double > ComputeGlobalSkyFreqGrid(double tol = 0.001) const;
 
         void ExtractPCalData();
         void ExtractStationCoords();
@@ -217,8 +188,6 @@ class MHO_DiFXScanProcessor
 
         std::string ConstructStaFileName(const std::string& output_dir, const std::string& root_code,
                                          const std::string& station_code, const std::string& station_mk4id);
-
-        void PatchOvexStructures(mho_json& vex_root, std::string mode_name);
 
         //the DiFX input file structure
         mho_json fInput;
@@ -239,6 +208,11 @@ class MHO_DiFXScanProcessor
         //the output directory for this scan
         std::string fOutputDirectory;
 
+        //cached so FinalizeAndWriteRootFile can emit the ovex/root.json after visibilities
+        //have been processed. Populated by CreateRootFileObject.
+        std::string fSrcName;
+        std::string fDiFXInputFilename;
+
         std::map< int, MHO_DiFXBaselineProcessor > fAllBaselineVisibilities;
         MHO_DiFXPCalProcessor fPCalProcessor;
 
@@ -255,10 +229,17 @@ class MHO_DiFXScanProcessor
         //TODO -- allow band <-> freq range to be set externally
         MHO_DiFXChannelNameConstructor fChanNameConstructor;
 
+        //builds station_coord_type entries from the DiFX .input json
+        MHO_DiFXStationCoordBuilder fStationCoordBuilder;
+
+        //synthesizes $FREQ/$BBC/$IF for zoom-band stations
+        MHO_DiFXZoomBandRebuilder fZoomBandRebuilder;
+
+        //in-place OVEX structural fix-ups (run inside CreateRootFileObject)
+        MHO_DiFXOvexPatcher fOvexPatcher;
+
         bool fPreserveDiFXScanNames;
         bool fAttachDiFXInput;
-
-        double MICROSEC_TO_SEC; //needed to match difx2mark4 convention
 
         //frequency band labelling/selection
         std::vector< std::tuple< std::string, double, double > > fFreqBands; //frequency band/group labels and ranges

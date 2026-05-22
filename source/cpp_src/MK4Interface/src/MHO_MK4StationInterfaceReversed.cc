@@ -479,6 +479,9 @@ void MHO_MK4StationInterfaceReversed::GenerateType309Records()
                 //the tone frequency offsets are stored in chan[ch].freq)
                 //this is because the tone accumulator index and channel index are
                 //inexplicably mixed up for no particular reason
+                //multiple channels writing the same acc_idx is safe because
+                //ExtractPCalChannelInfoFromVex allocates acc slots in contiguous blocks,
+                //so every writer to a given slot agrees on freq_delta by construction.
                 t309->chan[acc_idx].freq = freq_delta;
 
                 uint32_t real_count, imag_count;
@@ -635,37 +638,50 @@ void MHO_MK4StationInterfaceReversed::ExtractPCalChannelInfoFromVex()
             ch_info.tone_start = start_idx;
             ch_info.ntones = ntones;
 
-            //figure out the accumulator index (need to compute the tone offset frequencies for each tone in this channel
+            //figure out the accumulator index. The mk4 t309 format stores the tone
+            //freq offset per slot in chan[acc_idx].freq, shared across channels, so all
+            //channels that use a given acc slot must agree on the offset stored there.
+            //Allocate slots per-channel as a contiguous block: reuse an existing run
+            //that matches this channel's full delta tuple, otherwise append all of
+            //this channel's deltas as a fresh block.
+            std::vector< double > deltas;
+            deltas.reserve(ntones);
             for(std::size_t j = 0; j < ntones; j++)
             {
-                std::size_t idx = start_idx + j;
-                double tone_freq = tone_freq_ax->at(idx);
-                double freq_delta = tone_freq - ch_info.sky_freq;
-                freq_delta *= MHZ_TO_HZ; //offsets are calculated/stored as Hz
+                double tone_freq = tone_freq_ax->at(start_idx + j);
+                deltas.push_back((tone_freq - ch_info.sky_freq) * MHZ_TO_HZ);
+            }
 
-                //dumb brute force search
-                double tol = 1e-3;
-                bool found = false;
-                for(std::size_t i = 0; i < tone_freq_offsets.size(); i++)
+            const double tol = 1e-3;
+            bool found = false;
+            if(tone_freq_offsets.size() >= deltas.size())
+            {
+                for(std::size_t i = 0; i + deltas.size() <= tone_freq_offsets.size(); i++)
                 {
-                    if(std::fabs(freq_delta - tone_freq_offsets[i]) < tol)
+                    bool all_match = true;
+                    for(std::size_t k = 0; k < deltas.size(); k++)
                     {
-                        if(j == 0)
+                        if(std::fabs(deltas[k] - tone_freq_offsets[i + k]) >= tol)
                         {
-                            ch_info.accumulator_start_index = i;
+                            all_match = false;
+                            break;
                         }
+                    }
+                    if(all_match)
+                    {
+                        ch_info.accumulator_start_index = i;
                         found = true;
                         break;
                     }
                 }
-                if(!found)
+            }
+
+            if(!found)
+            {
+                ch_info.accumulator_start_index = tone_freq_offsets.size();
+                for(double d : deltas)
                 {
-                    //store the index of this offset if we are on the first tone
-                    if(j == 0)
-                    {
-                        ch_info.accumulator_start_index = tone_freq_offsets.size();
-                    }
-                    tone_freq_offsets.push_back(freq_delta);
+                    tone_freq_offsets.push_back(d);
                 }
             }
 

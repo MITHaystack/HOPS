@@ -1053,9 +1053,12 @@ inline std::string hops_clock::vex_date_to_iso8601_string(hops_clock::vex_date v
     ss << std::setfill('0') << std::setw(2) << integer_sec;
 
     //now convert the fraction part into integer nano seconds
+    //zero-pad to 9 digits so leading zeros (e.g. 256 ns -> "000000256") are
+    //preserved; without this the round-trip through to_vex_format/ISO8601
+    //rescales sub-second precision by powers of 10
     int integer_nanosec = frac * SEC_TO_NANOSEC;
     std::stringstream nss;
-    nss << integer_nanosec;
+    nss << std::setfill('0') << std::setw(9) << integer_nanosec;
     std::string nanoseconds_value = nss.str();
     std::string trimmed_int_nanosec = remove_trailing_zeros(nanoseconds_value);
     if(trimmed_int_nanosec.size() != 0)

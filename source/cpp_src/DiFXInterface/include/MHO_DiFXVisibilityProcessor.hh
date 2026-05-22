@@ -82,6 +82,8 @@ class MHO_DiFXVisibilityProcessor
             fSelectByBandwidth = true;
         }
 
+        void SetZoomFreqIndices(const std::set< int >& zoom_indices) { fZoomFreqIndices = zoom_indices; }
+
     private:
         const mho_json* fInput;
 
@@ -93,7 +95,8 @@ class MHO_DiFXVisibilityProcessor
             fFreqBands;                             //frequency band/group labels and ranges (code, flow, fhigh)
         std::vector< std::string > fOnlyFreqGroups; //limit output to matching frequency groups
         bool fSelectByBandwidth;
-        double fOnlyBandwidth; //limit output to only channels of this bandwidth
+        double fOnlyBandwidth;            //limit output to only channels of this bandwidth
+        std::set< int > fZoomFreqIndices; //when non-empty, discard records not in this set (keeps root/vis consistent)
 };
 
 } // namespace hops

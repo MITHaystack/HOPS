@@ -242,17 +242,13 @@ bool MHO_DirectoryInterface::ReadCurrentDirectory()
 
 std::string MHO_DirectoryInterface::GetBasename(const std::string& filename)
 {
-    std::string base_filename = "";
     std::size_t index = filename.find_last_of("/\\");
     if(index != std::string::npos)
     {
-        base_filename = filename.substr(index + 1);
+        return filename.substr(index + 1);
     }
-    else
-    {
-        msg_warn("utility", "No file basename associated with path:" << filename << eom);
-    }
-    return base_filename;
+    //no directory prefix, assume the input is already a bare basename
+    return filename;
 }
 
 std::string MHO_DirectoryInterface::GetPrefix(const std::string& filename)
@@ -265,7 +261,7 @@ std::string MHO_DirectoryInterface::GetPrefix(const std::string& filename)
     }
     else
     {
-        msg_warn("utility", "No directory prefix associated with path: " << filename << eom);
+        msg_warn("utility", "no directory prefix associated with path: " << filename << eom);
     }
     return prefix;
 }
