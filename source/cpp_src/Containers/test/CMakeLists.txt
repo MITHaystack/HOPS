@@ -13,6 +13,7 @@ set(SOURCE_BASENAMES
     TestAxisPack
     TestTableContainer
     TestContainerNames
+    TestDumpRegisteredTypeNames
     TestContainerStore
     TestTableContainerAccess
     #TestTableContainerMultiplication
