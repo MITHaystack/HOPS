@@ -12,10 +12,16 @@ namespace hops
 
 bool MHO_DiFXZoomBandRebuilder::HasZoomBands() const
 {
-    if(fInput == nullptr || !fInput->contains("datastream")){return false;}
+    if(fInput == nullptr || !fInput->contains("datastream"))
+    {
+        return false;
+    }
     for(const auto& ds : (*fInput)["datastream"])
     {
-        if(ds.contains("nZoomFreq") && ds["nZoomFreq"].get< int >() > 0){ return true; }
+        if(ds.contains("nZoomFreq") && ds["nZoomFreq"].get< int >() > 0)
+        {
+            return true;
+        }
     }
     return false;
 }
@@ -74,11 +80,17 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
     for(const auto& ds : input["datastream"])
     {
         int nZoomFreq = ds.value("nZoomFreq", 0);
-        if(nZoomFreq == 0){ continue; }
+        if(nZoomFreq == 0)
+        {
+            continue;
+        }
 
         //resolve station code
         int antennaId = ds["antennaId"].get< int >();
-        if(antennaId >= (int)input["antenna"].size()){ continue; }
+        if(antennaId >= (int)input["antenna"].size())
+        {
+            continue;
+        }
         std::string difx_code = input["antenna"][antennaId]["name"].get< std::string >();
         //DiFX names are uppercase; strip trailing nulls/spaces
         difx_code.erase(
@@ -93,7 +105,10 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
 
         //skip if we already built tables for this station (multiple datastreams per antenna)
         std::string freq_table_name = "difx_zoom_freq_" + vex_code;
-        if(vex_root["$FREQ"].contains(freq_table_name)){continue;}
+        if(vex_root["$FREQ"].contains(freq_table_name))
+        {
+            continue;
+        }
 
         std::string bbc_table_name = "difx_zoom_bbc_" + vex_code;
         std::string if_table_name = "difx_zoom_if_" + vex_code;
@@ -163,7 +178,10 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
         for(int j = 0; j < nZoomFreq; j++)
         {
             int gidx = ds["zoomFreqId"][j].get< int >();
-            if(gidx >= (int)input["freq"].size()){continue;}
+            if(gidx >= (int)input["freq"].size())
+            {
+                continue;
+            }
             double f = input["freq"][gidx]["freq"].get< double >();
             j_by_freq.emplace_back(f, j);
         }
@@ -177,7 +195,10 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
         for(int j = 0; j < nZoomFreq; j++)
         {
             int global_idx = ds["zoomFreqId"][j].get< int >();
-            if(global_idx >= (int)input["freq"].size()){continue;}
+            if(global_idx >= (int)input["freq"].size())
+            {
+                continue;
+            }
 
             double sky_freq_MHz = input["freq"][global_idx]["freq"].get< double >();
             double bw_MHz = input["freq"][global_idx]["bw"].get< double >();

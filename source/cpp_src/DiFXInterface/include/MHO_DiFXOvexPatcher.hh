@@ -53,6 +53,7 @@ class MHO_DiFXOvexPatcher
         //populated by Patch() from $SITE iteration; consumed by MHO_DiFXScanProcessor
         //and MHO_DiFXBaselineProcessor...we need these for later
         const std::map< std::string, std::string >& GetDiFX2VexStationCodes() const { return fDiFX2VexStationCodes; }
+
         const std::map< std::string, std::string >& GetDiFX2VexStationNames() const { return fDiFX2VexStationNames; }
 
         //d2m4-style fourfit reference time for a scan: midpoint of latest start /

@@ -142,7 +142,7 @@ void MHO_DiFXScanProcessor::CreateRootFileObject(std::string vexfile)
                     source_ids.push_back((*it)["source"][n]["source"]);
                 }
                 (*it)["fourfit_reftime"] = MHO_DiFXOvexPatcher::ComputeFourfitReftime(*it);
-                sched[it.key()] = it.value();                                 //add this scan to the schedule section
+                sched[it.key()] = it.value(); //add this scan to the schedule section
                 mode_name = it.value()["mode"].get< std::string >();
                 break;
             }

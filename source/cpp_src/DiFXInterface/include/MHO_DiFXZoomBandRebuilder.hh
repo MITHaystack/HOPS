@@ -22,7 +22,7 @@ namespace hops
  * tables). The source VEX describes the *recorded* channels, but the
  * visibilities DiFX emits are from the zoom freqs. Without this rebuild,
  * chan_def lookups during channel naming would fail to match the visibility
- * data (not a big deal for fourfit4, but it is for fourfit3). 
+ * data (not a big deal for fourfit4, but it is for fourfit3).
  * One synthetic freq/bbc/if triple is created per station per scan and
  * the station's $MODE links are repointed to the new tables.
  *

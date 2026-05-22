@@ -396,30 +396,39 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
         //stamp the common baseline-identification keys on fTags, fV, and fW.
         const std::vector< std::pair< std::string, std::string > > string_kvs = {
-            {"baseline", fBaselineName},
-            {"baseline_shortname", fBaselineShortName},
-            {"reference_station", fRefStation},
-            {"remote_station", fRemStation},
-            {"reference_station_name", fRefStationName},
-            {"remote_station_name", fRemStationName},
-            {"reference_station_mk4id", fRefStationMk4Id},
-            {"remote_station_mk4id", fRemStationMk4Id},
-            {"correlation_date", fCorrDate},
-            {"root_code", fRootCode},
-            {"origin", "difx"},
-            {"start", fStartTime},
-            {"stop", fStopTime},
-            {"source", fSourceName},
+            {"baseline",                fBaselineName     },
+            {"baseline_shortname",      fBaselineShortName},
+            {"reference_station",       fRefStation       },
+            {"remote_station",          fRemStation       },
+            {"reference_station_name",  fRefStationName   },
+            {"remote_station_name",     fRemStationName   },
+            {"reference_station_mk4id", fRefStationMk4Id  },
+            {"remote_station_mk4id",    fRemStationMk4Id  },
+            {"correlation_date",        fCorrDate         },
+            {"root_code",               fRootCode         },
+            {"origin",                  "difx"            },
+            {"start",                   fStartTime        },
+            {"stop",                    fStopTime         },
+            {"source",                  fSourceName       },
         };
         fTags.SetTagValue("difx_baseline_index", fBaselineID);
         fTags.SetTagValue("name", std::string("object_tags"));
-        for(const auto& kv : string_kvs){fTags.SetTagValue(kv.first, kv.second); }
+        for(const auto& kv : string_kvs)
+        {
+            fTags.SetTagValue(kv.first, kv.second);
+        }
         fV->Insert(std::string("difx_baseline_index"), fBaselineID);
         fV->Insert(std::string("name"), std::string("visibilities"));
-        for(const auto& kv : string_kvs){fV->Insert(kv.first, kv.second);}
+        for(const auto& kv : string_kvs)
+        {
+            fV->Insert(kv.first, kv.second);
+        }
         fW->Insert(std::string("difx_baseline_index"), fBaselineID);
         fW->Insert(std::string("name"), std::string("weights"));
-        for(const auto& kv : string_kvs){fW->Insert(kv.first, kv.second);}
+        for(const auto& kv : string_kvs)
+        {
+            fW->Insert(kv.first, kv.second);
+        }
 
         //polarization product axis
         auto* polprod_axis = &(std::get< POLPROD_AXIS >(*fV));

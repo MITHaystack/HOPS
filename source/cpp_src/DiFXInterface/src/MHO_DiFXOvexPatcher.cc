@@ -313,9 +313,8 @@ void MHO_DiFXOvexPatcher::NormalizePhaseCalIds(mho_json& vex_root, const std::st
         rewritten.insert(freq_name);
         if(rewrites > 0)
         {
-            msg_debug("difx_interface",
-                      "normalized phase_cal_id to " << preferred_pcal_id << " for " << rewrites
-                                                    << " chan_defs in $FREQ." << freq_name << eom);
+            msg_debug("difx_interface", "normalized phase_cal_id to " << preferred_pcal_id << " for " << rewrites
+                                                                      << " chan_defs in $FREQ." << freq_name << eom);
         }
     }
 }
