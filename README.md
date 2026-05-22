@@ -135,8 +135,14 @@ while on RHEL/Fedora based systems these can be installed using:
 ```
 sudo dnf install python3-devel python3-pip gcc-gfortran fftw-devel libX11-devel gnuplot binutils libXpm-devel ghostscript
 ```
-However, RHEL/Fedora disributions lack a package for the PGPLOT library needed by HOPS3, so this will have to be installed manually 
-from source on these distributions, see the note in `<hops-source>/doc/notes/pgplot.txt` for more information regarding PGPLOT.
+RHEL/Fedora distributions do not ship a PGPLOT package in their default repositories, but it is available from
+[RPM Fusion](https://rpmfusion.org/) (the nonfree repository, which hosts packages that cannot be included in EPEL/Fedora
+proper due to licensing). After enabling the RPM Fusion nonfree repository for your distribution, PGPLOT can be installed with:
+```
+sudo dnf install pgplot pgplot-devel
+```
+If RPM Fusion is not available for your system, PGPLOT will have to be built manually from source — see the note in
+`<hops-source>/doc/notes/pgplot.txt` for more information.
 
 ## Testing
 If you wish to check the functionality of the installation, you can run `make test` from the build directory after successfully building the software.
