@@ -24,4 +24,7 @@
 //declare the container types for fringe output
 #include "MHO_FringeContainers.hh"
 
+//register frozen UUID tags for every container type written to disk
+#include "MHO_ContainerTypeTags.hh"
+
 #endif /*! end of include guard: MHO_ContainerDefinitions */

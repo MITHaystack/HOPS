@@ -22,6 +22,21 @@ namespace hops
 typedef uint32_t MHO_ClassVersion;
 
 /**
+ * @brief Compiler-independent type tag used as the input to UUID generation.
+ *
+ * The primary template falls back to MHO_ClassName< T >(), for any type that
+ * is not explicitly registered. Types whose UUID must be stable across 
+ * compilers/stdlibs (e.g. anything serialized to disk!)
+ * should specialize this trait via the HOPS_REGISTER_TYPE_TAG macro so that
+ * their tag string is a fixed literal independent of __PRETTY_FUNCTION__.
+ * See: MHO_ContainerTypeTags.hh
+ */
+template< typename XClassType > struct MHO_TypeTag
+{
+    static std::string Value() { return MHO_ClassName< XClassType >(); }
+};
+
+/**
  * @brief Class MHO_ClassIdentity
  */
 struct MHO_ClassIdentity
@@ -56,8 +71,7 @@ struct MHO_ClassIdentity
          */
         template< typename XClassType > static MHO_UUID GetUUIDFromClass()
         {
-            std::string name = ClassName< XClassType >();
-            return GetUUIDFromClassName(ClassName< XClassType >());
+            return GetUUIDFromClassName(MHO_TypeTag< XClassType >::Value());
         }
 
         /**
@@ -69,8 +83,7 @@ struct MHO_ClassIdentity
          */
         template< typename XClassType > static MHO_UUID GetUUIDFromClass(const XClassType&)
         {
-            std::string name = ClassName< XClassType >();
-            return GetUUIDFromClassName(ClassName< XClassType >());
+            return GetUUIDFromClassName(MHO_TypeTag< XClassType >::Value());
         }
 
         /**
@@ -104,5 +117,20 @@ struct MHO_ClassIdentity
 };
 
 } // namespace hops
+
+/**
+ * Register a stable, compiler-independent tag string for a type. The tag is
+ * the MD5 input used to compute the type's UUID, so once a type is committed
+ * to on-disk format this string must never change. Use at file scope; T may be
+ * a hops:: typedef written unqualified because the macro re-opens namespace hops.
+ */
+#define HOPS_REGISTER_TYPE_TAG(T, NAME)                                  \
+    namespace hops                                                       \
+    {                                                                    \
+        template<> struct MHO_TypeTag< T >                               \
+        {                                                                \
+                static std::string Value() { return std::string(NAME); } \
+        };                                                               \
+    }
 
 #endif /*! end of include guard:MHO_ClassIdentity */
