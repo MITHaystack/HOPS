@@ -15,8 +15,8 @@ namespace hops
  *@author  J. Barrett - barrettj@mit.edu
  *@date Fri May 22 03:56:07 PM EDT 2026
  *@brief Creates a sorted, tolerance-deduplicated list of sky frequencies (MHz) with
- * indexed lookup. Used by both MHO_DiFXBaselineProcessor (for mark4 t101 chan_id chidx) 
- * and MHO_DiFXChannelNameConstructor (for chan_def.channel_name chidx) so the two 
+ * indexed lookup. Used by both MHO_DiFXBaselineProcessor (for mark4 t101 chan_id chidx)
+ * and MHO_DiFXChannelNameConstructor (for chan_def.channel_name chidx) so the two
  * stay in inline with each other across all stations in a scan.
  */
 class MHO_SkyFreqGrid
@@ -26,7 +26,8 @@ class MHO_SkyFreqGrid
 
         MHO_SkyFreqGrid(): fTol(DEFAULT_TOL_MHZ) {}
 
-        explicit MHO_SkyFreqGrid(std::vector< double > grid_MHz, double tol = DEFAULT_TOL_MHZ): fGrid(std::move(grid_MHz)), fTol(tol)
+        explicit MHO_SkyFreqGrid(std::vector< double > grid_MHz, double tol = DEFAULT_TOL_MHZ)
+            : fGrid(std::move(grid_MHz)), fTol(tol)
         {
             std::sort(fGrid.begin(), fGrid.end());
         }

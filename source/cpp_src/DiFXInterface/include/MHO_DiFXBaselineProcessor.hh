@@ -353,7 +353,6 @@ class MHO_DiFXBaselineProcessor
         };
 
         FreqIndexPairLess fFreqPredicate;
-
 };
 
 } // namespace hops

@@ -56,10 +56,9 @@ inline std::map< std::string, std::string > StationToKeywordMap(const mho_json& 
 }
 
 //return the first entry's keyword in $MODE.<section> (the conventional shared-table
-//fallback when no station-qualified entry exists). 
+//fallback when no station-qualified entry exists).
 //Returns "" if missing/empty.
-inline std::string FirstKeywordInModeSection(const mho_json& vex_root, const std::string& mode_name,
-                                             const std::string& section)
+inline std::string FirstKeywordInModeSection(const mho_json& vex_root, const std::string& mode_name, const std::string& section)
 {
     if(!vex_root.contains("$MODE") || !vex_root["$MODE"].contains(mode_name))
     {
@@ -117,7 +116,10 @@ inline std::string ResolvePolarization(const mho_json& vex_root, const std::stri
     const auto& bbc_assigns = vex_root["$BBC"][bbc_table]["BBC_assign"];
     for(const auto& ba : bbc_assigns)
     {
-        if(ba["logical_bbc_id"].get< std::string >() != bbc_id){continue;}
+        if(ba["logical_bbc_id"].get< std::string >() != bbc_id)
+        {
+            continue;
+        }
         std::string if_id = ba["logical_if"].get< std::string >();
         const auto& if_defs = vex_root["$IF"][if_table]["if_def"];
         for(const auto& ifd : if_defs)
@@ -132,7 +134,7 @@ inline std::string ResolvePolarization(const mho_json& vex_root, const std::stri
     return "-";
 }
 
-//resolve the mk4 1-char site_ID for a given 2-char vex station code (via $STATION -> $SITE link) 
+//resolve the mk4 1-char site_ID for a given 2-char vex station code (via $STATION -> $SITE link)
 //returns "" when any link is missing.
 inline std::string StationMk4SiteId(const mho_json& vex_root, const std::string& station_code)
 {

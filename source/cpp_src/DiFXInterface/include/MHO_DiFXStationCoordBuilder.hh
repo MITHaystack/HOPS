@@ -30,6 +30,7 @@ class MHO_DiFXStationCoordBuilder
 {
     public:
         MHO_DiFXStationCoordBuilder(): fInput(nullptr), fScanIndex(0) {}
+
         ~MHO_DiFXStationCoordBuilder() = default;
 
         void SetDiFXInputData(const mho_json* input) { fInput = input; }
