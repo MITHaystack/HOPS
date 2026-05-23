@@ -52,7 +52,8 @@ static examdata exd = {
     /* default closs = 0.05 is 5% loss or 95% of amplitude */
     .closs = 0.05, .mxcotime = MAX_COTIME,
     .pdfile = NULL, .epat = NULL, .elen = 0, .edit = NULL,
-    .labels = 0, .fitmask = FITOPT_ALLFITS
+    .labels = 0, .fitmask = FITOPT_ALLFITS, .gslegacy = 0,
+    .gpdashtype = 1, .gpboldface = 1
 };
 /* holder for afile averaged data as read and then sorted */
 static avgspace avg = {
@@ -72,7 +73,10 @@ int main (int argc, char *argv[])
     set_msglev(2);
     environment();
 
+                                        /* Preliminary setups */
     (void)gsl_set_error_handler(&err_handler);
+    set_gnuplot_opts(&exd);
+    if ((exd.gslegacy = get_gslegacy_default()) < 0) exit(1);
     for (i = 0; i < MAX_BNO; i++) codata[i].examlen = 0;
 
                                         /* Allocate avg space to start */

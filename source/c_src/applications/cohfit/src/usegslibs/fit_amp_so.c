@@ -4,15 +4,9 @@
  *
  * Created Apr 26 1995 by GBC based on predecessor cofit sources
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <gsl/gsl_matrix.h>
-#include <gsl/gsl_vector.h>
-#include <gsl/gsl_blas.h>
-#include <gsl/gsl_multifit_nlinear.h>
-#include <math.h>
 #include "fit_gsl.h"
 
+#if HAVE_GSL_GSL_MULTIFIT_NLINEAR_H
 /* the slope-only fitting function */
 int so_f(const gsl_vector * x, void *data, gsl_vector * f)
 {
@@ -117,7 +111,7 @@ int so_driver(Data *dp, double soini[2], double soerr[2], double chisq[2],
     /* capture final parameter values for amp plots */
     msg("so A = %.5f +/- %.5f", 1, soini[0] = FIT(0), soerr[0] = efac*ERR(0));
     msg("so B = %.5f +/- %.5f", 1, soini[1] = FIT(1), soerr[1] = efac*ERR(1));
-    msg("so status = %s", 1, gsl_strerror(*status));
+    msg("so status (modern) = %s", 1, gsl_strerror(*status));
     gsl_multifit_nlinear_free (wrk);
     gsl_matrix_free (covar);
     return(GSL_SUCCESS);
@@ -129,7 +123,7 @@ void slope_only_fit(cosumary *codatum, Data *dp)
     int sodof, rcso, stso, inso, soiter;
     double sochi[2], rchiso = -1;
     codatum->didfits |= FITOPT_AMP_SO;
-    msg("", 1); msg("slope-only amplitude fit", 2);
+    msg("", 1); msg("slope-only amplitude fit (modern)", 2);
     msg("init so: A = %.4f, B = %.4f", 1,
         codatum->sopar[0], codatum->sopar[1]);
     rcso = so_driver(dp, codatum->sopar, codatum->soerr, sochi,
@@ -141,6 +135,7 @@ void slope_only_fit(cosumary *codatum, Data *dp)
     populate_fitamp_so(codatum);
 }
 
+#endif /* HAVE_GSL_GSL_MULTIFIT_NLINEAR_H */
 /*
  * eof: vim:nospell
  */

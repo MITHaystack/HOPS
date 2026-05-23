@@ -2,6 +2,7 @@ find_package(GSL)
 find_package(Gnuplot)
 find_package(ImageMagick COMPONENTS montage)
 find_program(PS2PDF_EXECUTABLE NAMES ps2pdf)
+find_program(BASH_EXECUTABLE NAMES bash)
 find_package(PGPLOT)
 find_package(X11)
 find_package(GFORTRAN)
@@ -108,6 +109,15 @@ else()
         set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPS2PDF=\\\"/bin/false\\\"")
     endif()
 
+    #add cflag specifying bash executable path
+    if(BASH_EXECUTABLE)
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DBASH=\\\"${BASH_EXECUTABLE}\\\"")
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBASH=\\\"${BASH_EXECUTABLE}\\\"")
+    else()
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DBASH=\\\"/bin/false\\\"")
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBASH=\\\"/bin/false\\\"")
+    endif()
+
     #add cflag specifying montage (ImageMagick) executable path
     if(ImageMagick_montage_FOUND)
         set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMONTAGE=\\\"${ImageMagick_montage_EXECUTABLE}\\\"")
@@ -124,11 +134,17 @@ else()
     add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
     target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
 
-    #deal with different bpsline API between GSL 2.7 and 2.8
+    #deal with different bpsline API between GSL 2.7 and 2.8 and different gsl/gsl_multifit_nlin*h
     if(GSL_VERSION VERSION_GREATER_EQUAL "2.8")
         target_compile_definitions(${EXENAME} PRIVATE HAVEGSL2P8=1 HAVEGSL2P7=0)
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DHAVE_GSL_GSL_MULTIFIT_NLINEAR_H=1")
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHAVE_GSL_GSL_MULTIFIT_NLINEAR_H=1")
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DHAVE_GSL_GSL_MULTIFIT_NLIN_H=1")
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHAVE_GSL_GSL_MULTIFIT_NLIN_H=1")
     else()
         target_compile_definitions(${EXENAME} PRIVATE HAVEGSL2P8=0 HAVEGSL2P7=1)
+        set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DHAVE_GSL_GSL_MULTIFIT_NLIN_H=1")
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHAVE_GSL_GSL_MULTIFIT_NLIN_H=1")
     endif()
     message(STATUS "cohfit: GSL ${GSL_VERSION} detected")
 

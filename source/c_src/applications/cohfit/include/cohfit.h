@@ -131,6 +131,9 @@ typedef struct examdata {
     char        *epat;                  /* [-e] file base without pattern */
     int         elen;                   /* and its length is computed */
     char        *edit;                  /* [-g] plot edit file */
+    int         gslegacy;               /* use legacy gsl_multifit_nlin.h */
+    int         gpdashtype;             /* gnuplot supports dashtype */
+    int         gpboldface;             /* gnuplot supports {:/Bold} */
     /* scan-boundary group data, cleared each scan-boundary */
     int         nbno;                   /* number of base-pols */
     int         pbno;                   /* previous total of such */
@@ -190,11 +193,13 @@ extern void clear_codata(cosumary *);
 extern void exam_file(cosumary *, int, examdata *);
 extern void exam_gnuplot(examdata *);
 extern int exam_edit(char *, examdata *);
+extern int get_gslegacy_default(void);
+extern void set_gnuplot_opts(examdata *);
 
 /* routines that are support fitting */
 extern char *as_fit_nm_ndx(int, int*);
 extern char *as_fit_ndx_nm(int);
-extern int fit_ampl(cosumary *, int);
+extern int fit_ampl(cosumary *, int, int);
 extern int fit_msnr(cosumary *, int);
 extern void fit_codata(cosumary *, examdata *);
 

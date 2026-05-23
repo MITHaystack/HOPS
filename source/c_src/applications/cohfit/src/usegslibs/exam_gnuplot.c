@@ -33,6 +33,46 @@
 #include "cohfit.h"
 #include "exam_gnuplot.h"
 
+/* We have only tested on gnuplot 4.6 and 6.0; the only significant
+ * differences (for us) are dashtype and bold-enhancing.  This function
+ * does quick tests to revise the defaults.  This could be an autoconf
+ * test, but it won't be in HOPS4, so for the moment we internalize the
+ * checks here.  The commands are constructed so that the grep result
+ * answers the questions.  We have written the test in bash syntax and
+ * that may not be the system default shell, so we have to be anal here,
+ * presuming that both BASH and GNUPLOT have been defined. */
+void set_gnuplot_opts(examdata *exdp)
+{
+#if defined(BASH) && defined(GNUPLOT)
+    static char dashtype[] = "%s -c \"%s -e 'help dashtype'"
+        " </dev/null |& grep 'dashtype.*pattern' >/dev/null 2>&1\"";
+    static char boldface[] = "%s -c \"%s -e 'help enhanced'"
+        " </dev/null |& grep '{/:Bold' >/dev/null 2>&1\"";
+    char *cmd = malloc(MAX_TXT*10);
+    int rc;
+    if (!cmd) { perror("set_gnuplot_opts:malloc"); return; }
+    rc = snprintf(cmd, MAX_TXT*10, dashtype, BASH, GNUPLOT);
+    if (rc < MAX_TXT*10) {
+        msg(cmd, 0);
+        rc = system(cmd);
+        exdp->gpdashtype = (rc == 0) ? 1 : 0;
+        msg("Setting gpdashtype = %d", 0, exdp->gpdashtype);
+    }
+    rc = snprintf(cmd, MAX_TXT*10, boldface, BASH, GNUPLOT);
+    if (rc < MAX_TXT*10) {
+        msg(cmd, 0);
+        rc = system(cmd);
+        exdp->gpboldface = (rc == 0) ? 1 : 0;
+        msg("Setting gpboldface = %d", 0, exdp->gpboldface);
+    }
+    memset(cmd, 0, MAX_TXT*10);
+    free(cmd);
+#else /* defined(BASH) && defined(GNUPLOT) */
+#warning "Unable to configure for GNUPLOT options"
+    msg("Unable to configure for GNUPLOT options", 3);
+#endif /* defined(BASH) && defined(GNUPLOT) */
+}
+
 /* details for one such file */
 void exam_sum(examdata *exdp, int bb, FILE *fps)
 {
@@ -228,7 +268,8 @@ void exam_setlimits(examdata *exdp, double limits[6],
 }
 
 /* set the default line color, weight and dashtype */
-void exam_default_styles(const int n, char *rgb[n], int lw[n], char *dt[n])
+void exam_default_styles(
+    const int hdt, const int n, char *rgb[n], int lw[n], char *dt[n])
 {
     /* default colors */
     rgb[0] = "ignored";
@@ -240,33 +281,44 @@ void exam_default_styles(const int n, char *rgb[n], int lw[n], char *dt[n])
     lw[0] = 0;
     lw[1] = lw[5] = lw[6] = lw[8] = 1;
     lw[2] = lw[3] = lw[4] = 2;  lw[7] = 3;
-    dt[0] = 0;
-    dt[1] = dt[2] = dt[5] = dt[7] = "solid";
-    dt[3] = "'.._'";    dt[4] = "'...'";
-    dt[6] = "'---'";    dt[8] = "'- -'";
+    if (hdt) {
+        dt[0] = 0;
+        dt[1] = dt[2] = dt[5] = dt[7] = "dt solid";
+        dt[3] = "dt '.._'";     dt[4] = "dt '...'";
+        dt[6] = "dt '---'";     dt[8] = "dt '- -'";
+    } else {
+        dt[0] = dt[1] = dt[2] = dt[3] =
+        dt[4] = dt[5] = dt[6] = dt[7] = dt[8] = " ";
+    }
 }
     
 /* swap format to indicate best amp fit */
-char *exam_bestamp(char *ltit[NFITOPT], edatum *edp)
+char *exam_bestamp(const int hbf, char *ltit[NFITOPT], edatum *edp)
 {
     static char plot_amp[GNUPLOT_TWOPANEL_PLOT_AMP_BASE];
     char *ampe = plot_amp;
     int ns = 0, na = GNUPLOT_TWOPANEL_PLOT_AMP_BASE;
     switch(edp->bestampndx) {
     case FITOPT_NDX_PS:
-        ltit[FITOPT_NDX_PS] = "lt 2 tit '{/:Bold plateau-slope}'";
+        ltit[FITOPT_NDX_PS] = (hbf)
+            ? "lt 2 tit '{/:Bold plateau-slope}'"
+            : "lt 2 tit 'plateau-slope -- best'";
         ltit[FITOPT_NDX_PO] = "lt 3 tit 'plateau-only'";
         ltit[FITOPT_NDX_SO] = "lt 4 tit 'slope-only'";
         break;
     case FITOPT_NDX_PO:
         ltit[FITOPT_NDX_PS] = "lt 3 tit 'plateau-slope'";
-        ltit[FITOPT_NDX_PO] = "lt 2 tit '{/:Bold plateau-only}'";
+        ltit[FITOPT_NDX_PO] = (hbf)
+            ? "lt 2 tit '{/:Bold plateau-only}'"
+            : "lt 2 tit 'plateau-only -- best'";
         ltit[FITOPT_NDX_SO] = "lt 4 tit 'slope-only'";
         break;
     case FITOPT_NDX_SO:
         ltit[FITOPT_NDX_PS] = "lt 4 tit 'plateau-slope'";
         ltit[FITOPT_NDX_PO] = "lt 3 tit 'plateau-only'";
-        ltit[FITOPT_NDX_SO] = "lt 2 tit '{/:Bold slope-only}'";
+        ltit[FITOPT_NDX_SO] = (hbf)
+            ? "lt 2 tit '{/:Bold slope-only}'"
+            : "lt 2 tit 'slope-only -- best'";
         break;
     case NFITOPT:
         msg("Nothing fit, not model plotted", 3);
@@ -305,7 +357,7 @@ char *exam_bestamp(char *ltit[NFITOPT], edatum *edp)
 }
 
 /* swap format for best snr fit */
-char *exam_bestsnr(char *ltit[NFITOPT], edatum *edp)
+char *exam_bestsnr(const int hbf, char *ltit[NFITOPT], edatum *edp)
 {
     static char plot_snr[GNUPLOT_TWOPANEL_PLOT_SNR_BASE];
     char *snre = plot_snr;
@@ -314,13 +366,17 @@ char *exam_bestsnr(char *ltit[NFITOPT], edatum *edp)
     switch(edp->bestsnrndx) {
     case FITOPT_NDX_3PT:
         ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
-        ltit[FITOPT_NDX_2P8] = "lt 7 tit '{/:Bold cubic spline (GSL2.8)}'";
+        ltit[FITOPT_NDX_2P8] = (hbf)
+            ? "lt 7 tit '{/:Bold cubic spline (GSL2.8)}'"
+            : "lt 7 tit 'cubic spline (GSL2.8) -- best'";
         ltit[FITOPT_NDX_2P7] = "lt 8 tit 'cubic spline (GSL2.7)'";
         break;
 #if HAVEGSL2P8
     case FITOPT_NDX_2P8:
         ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
-        ltit[FITOPT_NDX_2P8] = "lt 7 tit '{/:Bold cubic spline (GSL2.8)}'";
+        ltit[FITOPT_NDX_2P8] = (hbf)
+            ? "lt 7 tit '{/:Bold cubic spline (GSL2.8)}'"
+            : "lt 7 tit 'cubic spline (GSL2.8) -- best'";
         ltit[FITOPT_NDX_2P7] = "lt 8 tit 'cubic spline (GSL2.7)'";
         break;
 #endif /* HAVEGSL2P8 */
@@ -328,7 +384,9 @@ char *exam_bestsnr(char *ltit[NFITOPT], edatum *edp)
     case FITOPT_NDX_2P7:
         ltit[FITOPT_NDX_3PT] = "lt 6 tit 'parabolic'";
         ltit[FITOPT_NDX_2P8] = "lt 8 tit 'cubic spline (GSL2.8)'";
-        ltit[FITOPT_NDX_2P7] = "lt 7 tit '{/:Bold cubic spline (GSL2.7)}'";
+        ltit[FITOPT_NDX_2P7] = (hbf)
+            ? "lt 7 tit '{/:Bold cubic spline (GSL2.7)}'"
+            : "lt 7 tit 'cubic spline (GSL2.7) -- best'";
         break;
 #endif /* HAVEGSL2P7 */
     case NFITOPT:
@@ -437,7 +495,7 @@ void exam_gnuplot(examdata *exdp)
         exdp->montage ? MONTAGE : "disabled");
 
     /* defaults and the global limits for this scan group */
-    exam_default_styles(GNUPLOT_LINETYPES, rgb, lw, dt);
+    exam_default_styles(exdp->gpdashtype, GNUPLOT_LINETYPES, rgb, lw, dt);
     exam_setlimits(exdp, limits, (const int)exdp->nbno, keysnr, keyamp);
 
     /* generate a gnu command file */
@@ -455,7 +513,7 @@ void exam_gnuplot(examdata *exdp)
         if (exdp->customlimits)
             exam_custom(edp, limits, &keysnr[bb], &keyamp[bb]);
         fprintf(fpg, GNUPLOT_PERBNO,
-            edp->frlabel, edp->examfile,
+            exdp->gpboldface, edp->frlabel, edp->frlabel, edp->examfile,
             limits[0], limits[1], limits[2], limits[3], limits[4], limits[5],
             edp->ampl_cotime, edp->snr_cotime);
         amptop = (keyamp[bb][KEYTBL] == 't') ? 1 : 0;
@@ -465,8 +523,8 @@ void exam_gnuplot(examdata *exdp)
             lw[1], dt[1], rgb[1], lw[2], dt[2], rgb[2], lw[3], dt[3], rgb[3],
             lw[4], dt[4], rgb[4], lw[5], dt[5], rgb[5], lw[6], dt[6], rgb[6],
             lw[7], dt[7], rgb[7], lw[8], dt[8], rgb[8]);
-        pltsnr = exam_bestsnr(ltit, edp);
-        pltamp = exam_bestamp(ltit, edp);
+        pltsnr = exam_bestsnr(exdp->gpboldface, ltit, edp);
+        pltamp = exam_bestamp(exdp->gpboldface, ltit, edp);
         fprintf(fpg, GNUPLOT_TWOPANEL_HEAD_BLK,
             keysnr[bb], exdp->labels, edp->snr_cotime, snr.x, snr.y, snr.fc,
             snr.lft,snr.bot,snr.rgt,snr.top, snr.fc, snr.dens, snr.fc);

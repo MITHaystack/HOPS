@@ -89,6 +89,13 @@ int create_template(char *optarg, examdata *exdp)
         "maxcoheretime=%g\n"
         "labels=%d\n"
         "#\n", exdp->closs, exdp->mxcotime, exdp->labels);
+    fprintf(fpg,
+        "#For testing on systems that support the older GSL nonlinear\n"
+        "# fitting library of <gsl/gsl_multifit_nlin.h> you may set\n"
+        "# this option to 1 from its 0 default to use the older\n"
+        "# framework for the amplitude fits (PS, PO or SO):\n"
+        "gslegacy=%d\n"
+        "#\n", exdp->gslegacy);
     fprintf(fpg, "#\n# eoc\n#\n");
     fclose(fpg);
     msg("Created graphic edit file '%s'", 2, exdp->edit = optarg);
