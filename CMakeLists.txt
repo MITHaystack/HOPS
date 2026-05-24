@@ -131,6 +131,7 @@ message(STATUS "The build timestamp is ${BUILD_TIME}")
 ################################################################################
 #options for triggering additional dependencies
 option(HOPS_ENABLE_TEST "Build developer tests." ON)
+option(HOPS_ENABLE_UNIT_TESTS "Build developer unit tests" OFF)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but highly recommended)" ON)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
