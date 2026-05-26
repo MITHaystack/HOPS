@@ -174,8 +174,9 @@ void MHO_ControlFileParser::FixSymbols()
     //so that they are treated as a separate token
     std::string bare_open_paren("(");
     std::string bare_close_paren(")");
-    std::string open_paren("\\(");
-    std::string close_paren("\\)");
+    //we have to use plain parentheses here (not be regex-escaped): string_pattern_replace does literal (not regex) matching
+    std::string open_paren("(");
+    std::string close_paren(")");
     std::string lt("<");
     std::string gt(">");
 
