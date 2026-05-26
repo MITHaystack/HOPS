@@ -35,7 +35,6 @@ if(BASH_PROGRAM)
             chk_ff_display
             chk_cohfit
             chk_cohfit_driver
-            #tst_fourfit --this one freezes, not sure why
         )
 
         foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )
