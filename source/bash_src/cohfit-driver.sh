@@ -214,7 +214,7 @@ $very && echo msg output now goes to $tag.msgs
 $nmsg && exec 2>$tag.msgs
 
 # link or create the alist
-[ -n "$alist" -a -f $alist ] && ln -s $alist $tag.alist || {
+[ -n "$alist" -a -f "$alist" ] && ln -s $alist $tag.alist || {
     $verb && echo \
     $alistexec -v6 -o $tag.alist $expn
     $alistexec -v6 -o $tag.alist $expn
