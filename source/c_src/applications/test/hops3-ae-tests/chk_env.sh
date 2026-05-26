@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 #
-# $Id: chk_env.sh 4389 2025-07-22 18:19:19Z gbc $
+# $Id: chk_env.sh 4575 2026-05-21 21:31:28Z gbc $
 #
 # environment setup -- HOPS_SETUP is not set or false
 # This script is really only needed for distcheck where
