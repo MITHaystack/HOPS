@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 #
-# $Id: chk_fourmer.sh 4383 2025-07-20 21:38:08Z gbc $
+# $Id: chk_fourmer.sh 4574 2026-05-21 21:30:09Z gbc $
 #
 # a test for fourmer
 #

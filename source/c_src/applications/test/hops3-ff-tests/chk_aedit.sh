@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 #
-# $Id: chk_aedit.sh 4319 2025-02-12 15:59:59Z barrettj $
+# $Id: chk_aedit.sh 4573 2026-05-21 21:28:02Z gbc $
 #
 # check that aedit runs
 #

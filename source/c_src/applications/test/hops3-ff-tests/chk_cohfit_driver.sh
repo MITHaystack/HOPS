@@ -4,18 +4,25 @@
 #
 verb=false
 [ -n "$testverb" ] && verb=true
-[ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
+[ -d "$abs_srcdir" ] || { echo abs_srcdir not set; exit 1; }
 ${HOPS_SETUP-'false'} || {
     echo sourcing chk_env.sh && . $srcdir/chk_env.sh ; }
 echo PATH is $PATH
 # export DATADIR=`pwd`
 
 rdir="3769"
-[ -d $srcdir/testdata/$rdir ] || {
+[ -d $abs_srcdir/testdata/$rdir ] || {
     echo Missing $rdir data; exit 2;
 }
-td=$srcdir/testdata/$rdir
+td=$abs_srcdir/testdata/$rdir
 $verb && echo Using data in $td
+
+che=`type -p cohfit`
+[ -x "$che" ] || { echo No cohfit executable ; exit 77; }
+echo cohfit is $che
+viable=`cohfit < /dev/null 2>&1 | grep Wrote`
+[ "$viable" = "cohfit: Wrote 0 coherence-analyzed output records" ] || {
+    echo This is a you-lose cohfit, so we punt ; exit 77; }
 
 driver=`type -p cohfit-driver.sh`
 [ -n "$driver" -a -x "$driver" ] || {
@@ -29,14 +36,27 @@ montage=`type -p montage`
     expectprods=44
     havemonty=false
 }
+gnuplot=`type -p gnuplot`
+[ -n "$gnuplot" -a -x "$gnuplot" ] && havegplot=true || {
+    echo have no gnuplot program, will have many fewer products
+    expectprods=32
+    havegplot=false
+}
+
+case "$testverb" in
+0)  msglv="" ;;
+1)  msglv="msglev=1"  ;;
+2)  msglv="msglev=0"  ;;
+3)  msglv="msglev=-1" ;;
+esac
 
 # do the work in a sub-directory
 rm -rf cohdrv
 mkdir cohdrv
 $verb && echo \
-$driver expn=3769 cdir=$td verb=$verb \\ && echo
+$driver expn=3769 cdir=$td verb=$verb $msglv \\ && echo
     tag=w iarg=2:50:2 wdir=cohdrv exam=dets-%d.data
-$driver expn=3769 cdir=$td verb=$verb \
+$driver expn=3769 cdir=$td verb=$verb $msglv \
     tag=w iarg=2:50:2 wdir=cohdrv exam=dets-%d.data
 status=$?
 
@@ -52,6 +72,14 @@ lines=`wc -l $data | grep total | tr -s ' ' | cut -f2 -d' '`
 [ "$lines" -eq 6061 ] || {
     echo missing alines, have $lines, want 6061 ; exit 6;
 }
+
+# no pdfs if cannot run gnuplot and fewer without montage
+pdfcnt=`ls cohdrv/*pdf | wc -l`
+pdfexp=1        # the PGPLOT result
+$havegplot && {
+    $havemonty && pdfexp=15 || pdfexp=13
+}
+echo have $pdfcnt PDF files, expected $pdfexp
 
 # only if have montage
 $havemonty && {
@@ -71,8 +99,10 @@ echo cksum of cohdrv/summary-check.txt is 1286553992 6343 is expected
 
 [ "$cks" = '1286553992 6343 cohdrv/summary-check.txt' ] || {
     echo WARNING: numerical stability issues in summary results
-    exit 77
 }
+set -- `wc -l cohdrv/summary-check.txt`
+echo expect at least 200 lines
+[ "$1" -ge 200 ] || { echo only have $1 lines ; exit 9 ; }
 
 echo "status 0 from the driver is $status"
 exit $?
