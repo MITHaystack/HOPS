@@ -98,7 +98,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
             using fp_value_type = typename XArgType::value_type;
             fMaxLocation = 0;
             fMinLocation = 0;
-            fMax = std::numeric_limits< fp_value_type >::min();
+            fMax = std::numeric_limits< fp_value_type >::lowest();
             fMin = std::numeric_limits< fp_value_type >::max();
             fp_value_type value;
             auto bit = in->cbegin();
@@ -135,7 +135,7 @@ template< class XArgType > class MHO_ExtremaSearch: public MHO_InspectingOperato
             using fp_value_type = typename XArgType::value_type::value_type;
             fMaxLocation = 0;
             fMinLocation = 0;
-            fMax = std::numeric_limits< fp_value_type >::min();
+            fMax = std::numeric_limits< fp_value_type >::lowest();
             fMin = std::numeric_limits< fp_value_type >::max();
             fp_value_type value;
             auto bit = in->cbegin();
