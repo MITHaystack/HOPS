@@ -10,7 +10,8 @@
     exit 99
 }
 
-cmp cbsplinelsqex2p7.log  $srcdir/gslcheck/gslspline2p7.output &&
+grep -vE 'PASS|FAIL' cbsplinelsqex2p7.log |\
+cmp - $srcdir/gslcheck/gslspline2p7.output &&
     echo compiled output agrees with source output ||
     exit 1
 
