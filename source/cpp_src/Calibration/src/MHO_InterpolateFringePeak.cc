@@ -266,6 +266,7 @@ void MHO_InterpolateFringePeak::max555(MHO_NDArrayWrapper< double, 3 >& drf, // 
     for(l = 0; l < 3; l++)
     {
         center[l] = 0.0;
+        xbest[l] = 0.0;
     }
     dx0 = dx1 = dx2 = 0.4;
 
