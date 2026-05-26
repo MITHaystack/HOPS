@@ -268,16 +268,22 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
             {
                 not_count++;
                 it = states.erase(it);
-                if(it != states.end())
+                if(it == states.end())
                 {
-                    if(*it == TRUE_STATE)
-                    {
-                        *it = FALSE_STATE;
-                    }
-                    if(*it == FALSE_STATE)
-                    {
-                        *it = TRUE_STATE;
-                    }
+                    //a 'not' with no following operand is a syntax error
+                    msg_fatal("control",
+                              "cannot parse 'not' condition with missing argument for if statement starting on line "
+                                  << fStartLineNumber << "." << eom);
+                    std::exit(1);
+                }
+                //invert the operand; use else-if since these are mutually exclusive
+                if(*it == TRUE_STATE)
+                {
+                    *it = FALSE_STATE;
+                }
+                else if(*it == FALSE_STATE)
+                {
+                    *it = TRUE_STATE;
                 }
             }
         }
