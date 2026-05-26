@@ -60,14 +60,14 @@ STATIC struct month calndr[] = {
 
 /*################ FUNCTIONS LOCAL TO THIS FILE ################*/
 
-SC void cpy0p();	/* strncpy() with leading 0 padding */
-SC int leapyr();	/* returns 1 if arg is leap year */
+/* strncpy() with leading 0 padding */
+SC void cpy0p(char *dest, char *src, int n);
+/* returns 1 if arg is leap year */
+SC int leapyr(int y);
 
 /*############################## CODE ##############################*/
 
-HTLdbl
-atomin(string)
-char *string;
+HTLdbl atomin(char *string)
 /* Returns value (in minutes) of string of form "hhmm:ss.s...".  Leading
 minus sign permitted. */
 {
@@ -100,10 +100,7 @@ minus sign permitted. */
 }
 
 
-STATIC void
-cpy0p(dest, src, n)
-char *dest, *src;
-int n;
+STATIC void cpy0p(char *dest, char *src, int n)
 /* Copy n-1 chars from src[] to dest[].  If src[] is too short, pad dest[]
 with leading '0's.  If src[] is too long, not all of src[] will be copied. 
 dest[] will always receive n-1 chars followed by null terminator. */
@@ -117,10 +114,7 @@ dest[] will always receive n-1 chars followed by null terminator. */
 }
 
 
-char **
-degdms(pre, x)
-int pre;		/* precision */
-HTLdbl x;
+char **degdms(int pre, HTLdbl x)
 /* Converts x degrees to 3 strings holding degrees, minutes, seconds.  "pre"
 specifies rounding and may be 0 - 4:  0 = nearest deg, 1 = nearest 10 min, 2
 = 1 min, 3 = 10 sec, 4 = 1 sec.  Domain of x (after rounding):  -1000 < x <
@@ -156,8 +150,7 @@ s[] & m[] are garbage if pre was 0. */
 	return dms;
 }
 
-char *jdstr(jd)
-long int jd;	/* Julian Date, unit = days */
+char *jdstr(long int jd)
 /* Converts jd to Gregorian calendar date.  Good for both BC & AD for
 practically any date one might want.  More precisely, domain of jd is limited
 by largest/smallest year an int can hold, as well as size of buffer[].
@@ -416,9 +409,7 @@ is legal for d. */
 }
 
 
-STATIC int
-leapyr(y)
-int y;
+STATIC int leapyr(int y)
 /* Returns 1 if y is leap year in Gregorian calendar, 0 otherwise.  To
 signify BC year use a negative number, e.g., -1 for 1 BC. */
 {
@@ -430,9 +421,7 @@ signify BC year use a negative number, e.g., -1 for 1 BC. */
 }
 
 
-char *
-stoup(string)
-char *string;
+char *stoup(char *string)
 /* Converts "string" to all upper case, returns "string". */
 {
 	char *cp;
@@ -445,9 +434,7 @@ char *string;
 }
 
 
-char *
-timstr(m)
-HTLdbl m;	/* minutes */
+char *timstr(HTLdbl m)
 /* Turns m into a string of format "hhmm:ss" (or "-hhmm:ss" if m is
 negative), rounded to nearest second.  Be sure that hours will not require
 more than two digits.  String will be padded with zeros to fill out all six

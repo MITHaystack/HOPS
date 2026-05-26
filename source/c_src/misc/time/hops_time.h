@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: hops_time.h 2911 2019-12-23 17:24:02Z gbc $
  *
  * Declarations for hops_time
  */
