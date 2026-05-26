@@ -28,7 +28,8 @@ set output '%s'\n\
 /* variable stuff that changes per data file */
 #define GNUPLOT_PERBNO "\
 # begin with the variable stuff that changes per data file\n\
-fringe='{/:Bold %s}'\n\
+if (%d) { fringe='{/:Bold %s}'; }\n\
+else { fringe='%s'; }\n\
 df='%s'\n\
 set xrange [%lf:%lf]\n\
 ampn=%lf; ampx=%lf; snrn=%lf; snrx=%lf\n\
@@ -52,14 +53,14 @@ set grid xtics ytics nomxtics nomytic\n\
 # override linetypes for clarity below\n\
 # 1:amp 2:fitaps 3:fitapo 4:fitaso\n\
 # 5:snr 6:fitsnr 7:fit2p8 8:fit2p7\n\
-set lt 1 lw %d dt %s ps 1 pt 22 lc rgb '%s'\n\
-set lt 2 lw %d dt %s ps 1 pt  0 lc rgb '%s'\n\
-set lt 3 lw %d dt %s ps 1 pt 22 lc rgb '%s'\n\
-set lt 4 lw %d dt %s ps 1 pt  0 lc rgb '%s'\n\
-set lt 5 lw %d dt %s ps 1 pt 22 lc rgb '%s'\n\
-set lt 6 lw %d dt %s ps 1 pt  0 lc rgb '%s'\n\
-set lt 7 lw %d dt %s ps 1 pt  0 lc rgb '%s'\n\
-set lt 8 lw %d dt %s ps 1 pt  0 lc rgb '%s'\n\
+set lt 1 lw %d %s ps 1 pt 22 lc rgb '%s'\n\
+set lt 2 lw %d %s ps 1 pt  0 lc rgb '%s'\n\
+set lt 3 lw %d %s ps 1 pt 22 lc rgb '%s'\n\
+set lt 4 lw %d %s ps 1 pt  0 lc rgb '%s'\n\
+set lt 5 lw %d %s ps 1 pt 22 lc rgb '%s'\n\
+set lt 6 lw %d %s ps 1 pt  0 lc rgb '%s'\n\
+set lt 7 lw %d %s ps 1 pt  0 lc rgb '%s'\n\
+set lt 8 lw %d %s ps 1 pt  0 lc rgb '%s'\n\
 #\n\
 "
 #define GNUPLOT_SETTINGS_BASE 900

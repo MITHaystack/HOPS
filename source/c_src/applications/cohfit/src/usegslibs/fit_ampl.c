@@ -12,12 +12,16 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <gsl/gsl_matrix.h>
-#include <gsl/gsl_vector.h>
-#include <gsl/gsl_blas.h>
-#include <gsl/gsl_multifit_nlinear.h>
 #include <math.h>
 #include "fit_gsl.h"
+
+/* set a legal value for the gslegacy bits */
+int get_gslegacy_default(void)
+{
+    if (GSLEGACY_DEFAULT < 0)
+        msg("No gsl/gsl_multifit_nlin*.h support--cannot proceed.", 3);
+    return(GSLEGACY_DEFAULT);
+}
 
 /*
  * We follow the GSL code example using Y(t) for the amplitude model,
@@ -78,19 +82,18 @@ double cohereguess(cosumary *codatum)
  * see what happens with initial chisq/dof (..chi[0]/dof) and the final
  * chisq/dof (..chi[1]/dof), where dof is npt - #params and also other
  * fit information, and make a choice and return results. */
-int fit_ampl (cosumary *codatum, int npt)
+int fit_ampl (cosumary *codatum, int npt, int gslegacy)
 {
     int fitflag, ii;
-    double tt[npt], yy[npt], weights[npt];
-    Data dd = { (size_t)npt, tt, yy, weights };
+    double tt[npt], yy[npt], weights[npt], sigma[npt];
+    Data dd = { (size_t)npt, tt, yy, weights, sigma };
 
     /* create the incoming data, time vectors and parameter guesses */
     for (ii = 0; ii < npt; ii++) {
-        double sigma;
         tt[ii] = codatum->seglen[ii];
         yy[ii] = codatum->ampl[ii];
-        sigma = codatum->ampl[ii]/codatum->snr[ii];
-        weights[ii] = 1.0 / ( sigma * sigma );
+        sigma[ii] = codatum->ampl[ii]/codatum->snr[ii];
+        weights[ii] = 1.0 / ( sigma[ii] * sigma[ii] );
     }
     codatum->pspar[0] = codatum->popar[0] = codatum->sopar[0] = yy[0];
     codatum->pspar[1] = codatum->sopar[1] =
@@ -102,9 +105,24 @@ int fit_ampl (cosumary *codatum, int npt)
     codatum->redchisq[FITOPT_NDX_PO] =
     codatum->redchisq[FITOPT_NDX_SO] = -17.0;
 
-    if (codatum->fitmask & FITOPT_AMP_PS) plateau_slope_fit(codatum, &dd);
-    if (codatum->fitmask & FITOPT_AMP_PO) plateau_only_fit(codatum, &dd);
-    if (codatum->fitmask & FITOPT_AMP_SO) slope_only_fit(codatum, &dd);
+    if (gslegacy == 1) {
+#if HAVE_GSL_GSL_MULTIFIT_NLIN_H
+        msg("Using GSL legacy code for ps, po and so fits", 2);
+        if (codatum->fitmask & FITOPT_AMP_PS) plateau_slope_gcy(codatum, &dd);
+        if (codatum->fitmask & FITOPT_AMP_PO) plateau_only_gcy(codatum, &dd);
+        if (codatum->fitmask & FITOPT_AMP_SO) slope_only_gcy(codatum, &dd);
+#endif /* HAVE_GSL_GSL_MULTIFIT_NLIN_H */ 
+    } else if (gslegacy == 0) {
+#if HAVE_GSL_GSL_MULTIFIT_NLINEAR_H
+        msg("Using GSL modern code for ps, po and so fits", 2);
+        if (codatum->fitmask & FITOPT_AMP_PS) plateau_slope_fit(codatum, &dd);
+        if (codatum->fitmask & FITOPT_AMP_PO) plateau_only_fit(codatum, &dd);
+        if (codatum->fitmask & FITOPT_AMP_SO) slope_only_fit(codatum, &dd);
+#endif /* HAVE_GSL_GSL_MULTIFIT_NLINEAR_H */
+    } else {
+        msg("Developer error--should not ever get here.", 3);
+        return(-1);
+    }
 
     fitflag = choose_best_amp_fit(codatum);
     return(fitflag);

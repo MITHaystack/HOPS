@@ -56,15 +56,34 @@ _cohfit_add_example(exminimizer)
 _cohfit_add_example_tests(exminimizer exminimizer.log exminimizer.sh)
 
 # test expfitexample 
-_cohfit_add_example(expfitexample)
-_cohfit_add_example_tests(expfitexample expfitexample.log expfitcheck.sh)
+#_cohfit_add_example(expfitexample)
+#_cohfit_add_example_tests(expfitexample expfitexample.log expfitcheck.sh)
+
+# test multi_nlinear.h and multi_nlin.h based on putative change with GSL 2.2
+# the 2p0 and 2p1 exercise the same library but with a different example
+if(GSL_VERSION VERSION_GREATER_EQUAL "2.2")
+    _cohfit_add_example(expfitexample)
+    _cohfit_add_example_tests(expfitexample expfitexample.log expfitcheck.sh)
+    _cohfit_add_example(expfitexam2p1)
+    _cohfit_add_example_tests(expfitexam2p1 expfitexam2p1.log expfit2p1chk.sh)
+    _cohfit_add_example(expfitexam2p0)
+    _cohfit_add_example_tests(expfitexam2p0 expfitexam2p0.log expfit2p0chk.sh)
+else()
+    _cohfit_add_example(expfitexam2p1)
+    _cohfit_add_example_tests(expfitexam2p1 expfitexam2p1.log expfit2p1chk.sh)
+    _cohfit_add_example(expfitexam2p0)
+    _cohfit_add_example_tests(expfitexam2p0 expfitexam2p0.log expfit2p0chk.sh)
+endif()
 
 # test cbsplinelsqex: two variants share a check script; pick which to build
-# based on the GSL version available.
+# based on the GSL version available; note that the older code is preserved in 2.7
 if(GSL_VERSION VERSION_GREATER_EQUAL "2.8")
-    _cohfit_add_example(cbsplinelsqex)
-    _cohfit_add_example_tests(cbsplinelsqex cbsplinelsqex2p8.log cbsplinecheck.sh 2p8)
+    _cohfit_add_example(cbsplinelsqex2p8)
+    _cohfit_add_example_tests(cbsplinelsqex2p8 cbsplinelsqex2p8.log cbspline2p8chk.sh 2p8)
+    _cohfit_add_example(cbsplinelsqex2p7)
+    _cohfit_add_example_tests(cbsplinelsqex2p7 cbsplinelsqex2p7.log cbspline2p7chk.sh 2p7)
 else()
     _cohfit_add_example(cbsplinelsqex2p7)
-    _cohfit_add_example_tests(cbsplinelsqex2p7 cbsplinelsqex2p7.log cbsplinecheck.sh 2p7)
+    _cohfit_add_example_tests(cbsplinelsqex2p7 cbsplinelsqex2p7.log cbspline2p7chk.sh 2p7)
 endif()
+

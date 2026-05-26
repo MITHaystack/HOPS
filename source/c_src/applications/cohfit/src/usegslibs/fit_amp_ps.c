@@ -4,15 +4,9 @@
  *
  * Created Apr 26 1995 by GBC based on predecessor cofit sources
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <gsl/gsl_matrix.h>
-#include <gsl/gsl_vector.h>
-#include <gsl/gsl_blas.h>
-#include <gsl/gsl_multifit_nlinear.h>
-#include <math.h>
 #include "fit_gsl.h"
 
+#if HAVE_GSL_GSL_MULTIFIT_NLINEAR_H
 /* the plateau-slope fitting function */
 int ps_f(const gsl_vector * x, void *data, gsl_vector * f)
 {
@@ -127,7 +121,7 @@ int ps_driver(Data *dp, double psini[3], double pserr[3], double chisq[2],
     msg("ps A = %.5f +/- %.5f", 1, psini[0] = FIT(0), pserr[0] = efac*ERR(0));
     msg("ps B = %.5f +/- %.5f", 1, psini[1] = FIT(1), pserr[1] = efac*ERR(1));
     msg("ps C = %.5f +/- %.5f", 1, psini[2] = FIT(2), pserr[2] = efac*ERR(2));
-    msg("ps status = %s", 1, gsl_strerror(*status));
+    msg("ps status (modern) = %s", 1, gsl_strerror(*status));
     gsl_multifit_nlinear_free (wrk);
     gsl_matrix_free (covar);
     return(GSL_SUCCESS);
@@ -139,7 +133,7 @@ void plateau_slope_fit(cosumary *codatum, Data *dp)
     int psdof, rcps, stps, inps, psiter;
     double pschi[2], rchips = -1;
     codatum->didfits |= FITOPT_AMP_PS;
-    msg("", 1); msg("plateau-slope amplitude fit", 2);
+    msg("", 1); msg("plateau-slope amplitude fit (modern)", 2);
     msg("init ps: A = %.4f, B = %.4f, C = %.4f, ", 1,
         codatum->pspar[0], codatum->pspar[1], codatum->pspar[2]);
     rcps = ps_driver(dp, codatum->pspar, codatum->pserr, pschi,
@@ -151,6 +145,7 @@ void plateau_slope_fit(cosumary *codatum, Data *dp)
     populate_fitamp_ps(codatum);
 }
 
+#endif /* HAVE_GSL_GSL_MULTIFIT_NLINEAR_H */
 /*
  * eof: vim:nospell
  */

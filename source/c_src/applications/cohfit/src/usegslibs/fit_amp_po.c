@@ -4,15 +4,9 @@
  *
  * Created Apr 26 1995 by GBC based on predecessor cofit sources
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <gsl/gsl_matrix.h>
-#include <gsl/gsl_vector.h>
-#include <gsl/gsl_blas.h>
-#include <gsl/gsl_multifit_nlinear.h>
-#include <math.h>
 #include "fit_gsl.h"
 
+#if HAVE_GSL_GSL_MULTIFIT_NLINEAR_H
 /* the plateau-only fitting function */
 int po_f(const gsl_vector * x, void *data, gsl_vector * f)
 {
@@ -109,7 +103,7 @@ int po_driver(Data *dp, double poini[1], double poerr[1], double chisq[2],
     msg("po chisq/dof = %g (%g)", 1, *rchisq, efac * efac);
     /* capture final parameter values for amp plots */
     msg("po A = %.5f +/- %.5f", 1, poini[0] = FIT(0), poerr[0] = efac*ERR(0));
-    msg("po status = %s", 1, gsl_strerror(*status));
+    msg("po status (modern) = %s", 1, gsl_strerror(*status));
     gsl_multifit_nlinear_free (wrk);
     gsl_matrix_free (covar);
     return(GSL_SUCCESS);
@@ -121,7 +115,7 @@ void plateau_only_fit(cosumary *codatum, Data *dp)
     int podof, rcpo, stpo, inpo, poiter;
     double pochi[2], rchipo = -1;
     codatum->didfits |= FITOPT_AMP_PO;
-    msg("", 1); msg("plateau-only amplitude fit", 2);
+    msg("", 1); msg("plateau-only amplitude fit (modern)", 2);
     msg("init po: A = %.4f", 1,
         codatum->popar[0]);
     rcpo = po_driver(dp, codatum->popar, codatum->poerr, pochi,
@@ -133,6 +127,7 @@ void plateau_only_fit(cosumary *codatum, Data *dp)
     populate_fitamp_po(codatum);
 }
 
+#endif /* HAVE_GSL_GSL_MULTIFIT_NLINEAR_H */
 /*
  * eof: vim:nospell
  */

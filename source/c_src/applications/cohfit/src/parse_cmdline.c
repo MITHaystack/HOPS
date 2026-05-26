@@ -29,22 +29,25 @@
 
 /* this routine modifies the -d argument if /pdf is found
  * so that pgplot only sees the part it understands */
-char *pdfixer(char *optarg)
+char *pdfixer(char *optarg, char **display)
     {
-        char *df = NULL, *slash;
-        msg("Convert optarg %s", 0, optarg);
-        slash = strrchr(optarg, '/');
+        char *df = NULL, *slash, *co;
+        co = malloc(strlen(optarg) + MAX_TXT);
+        if (!co) { perror("pdfixer:malloc1"); return(NULL); }
+        strcpy(co, optarg);
+        msg("Convert optarg '%s' to '%s'", 0, optarg, (*display = co));
+        slash = strrchr(co, '/');
         /* are we dealing with .../something/pdf */
         if (slash[1] == 'p' && slash[2] == 'd' && slash[3] == 'f')
             {
             *slash = 0; /* optarg name/ps/pdf -> name/ps */
-            msg("into an optarg %s", 0, optarg);
-            df = malloc(strlen(optarg) + 4);
-            if (!df) { perror("pdfixer:malloc"); return(NULL); }
-            strcpy(df, optarg);
+            msg("into an optarg %s", 0, co);
+            df = malloc(strlen(co) + MAX_TXT);
+            if (!df) { perror("pdfixer:malloc2"); free(co); return(NULL); }
+            strcpy(df, co);
             slash = strrchr(df, '/');
             msg("slash is %s", 0, slash);
-            if (!slash) { free(df); return(NULL); }
+            if (!slash) { free(df); free(co); return(NULL); }
             *slash = 0;
             msg("Output converts to %s", 0, df);
             return(df);
@@ -84,20 +87,20 @@ int parse_cmdline (int argc, char **argv, FILE **fpout, examdata *exdp)
                          * by the caller to do the ps to pdf conversion, any
                          * /pdf construct is deleted from optarg */
                 if (display) XD_BARFAGE;
-                msg("-d option with %s", 0, display = optarg);
-                exdp->pdfile = pdfixer(optarg);
+                msg("-d option with %s", 0, optarg);
+                exdp->pdfile = pdfixer(optarg, &display);
                 if (exdp->pdfile) msg("PDFile is %s", 0, exdp->pdfile);
             case 'x':
                 if (c == 'x' && display) XD_BARFAGE;
                 else if (!display) display = "/XW";
-                exdp->devp = malloc((ii = strlen(display))+1);
+                exdp->devp = malloc((ii = strlen(display)) + MAX_TXT);
                 if (!exdp->devp) { perror("parse-d:malloc"); return(ENOMEM); }
                 strncpy(exdp->devp, display, ii);
                 msg("Device is %s, plot = %d", 0, exdp->devp, exdp->pdfile);
                 break;
 
             case 'e':
-                examp = malloc((ii = strlen(optarg)) + 32);
+                examp = malloc((ii = strlen(optarg)) + MAX_TXT);
                 if (!examp) { perror("parse-e:malloc"); return(ENOMEM); }
                 strncpy(examp, optarg, ii);
                 if (!strchr(examp, '%')) strcat(examp, "-%d.data");

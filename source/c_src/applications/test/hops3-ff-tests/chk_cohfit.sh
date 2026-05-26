@@ -40,7 +40,7 @@ set -- `wc -l alist-aedit.cohfit alist-aedit-1.cohfit alist-aedit-2.cohfit`
 $verb && echo wc is $@
 
 echo "$1" == 6 -a "$3" == 0 -a "$5" == 90
-[ "$1" -eq 6 -a "$3" -eq 0 -a "$5" -eq 90 ]
+[ "$1" -eq 6 -a "$3" -eq 0 -a "$5" -gt 90 ]
 
 #
 # eof

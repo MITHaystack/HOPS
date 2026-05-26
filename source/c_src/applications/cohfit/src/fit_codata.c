@@ -91,7 +91,7 @@ void fit_codata (cosumary codata[], examdata *epatdatap)
         msg("", 2);
         msg("Amplitude fit for '%s' pol '%s'", 2,
             fringename(codatum->datum), codatum->datum->polarization);
-        if ((rv = fit_ampl (codatum, npt)) != 0)
+        if ((rv = fit_ampl (codatum, npt, epatdatap->gslegacy)) != 0)
             {
             codatum->datum->noloss_cotime = -1;
             msg("Error %d: ps=%g|po=%g|so=%g fitting noloss cotime for '%s'",
