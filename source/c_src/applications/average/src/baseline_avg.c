@@ -26,15 +26,15 @@ baseline_avg (seg_data *data,
               struct config conf,
               FILE *fpout)
     {
-    int nout, recno, nadded, timesum, timeoff, timeoff_sum, end, omode;
+    int nout, recno, nadded, nskips, timesum, timeoff, timeoff_sum, end, omode;
     int scan_start, start_time, end_time, index, make_avg, int_time, new_intg, tdiff;
-    int earliest, latest;
-    double usum, vsum, ampsqsum, sumimag, sumreal, ave_timeoff;
+    int earliest, latest, negamps;
+    double usum, vsum, ampsqsum, deltampsq, sumimag, sumreal, ave_timeoff;
     double sigma, inc_sigma, coh_sigma, true_snr;
     double inc_sigma_sum, inc_sigma_sum1, inc_sigma_sum2;
     double coh_sigma_sum, weight, weightsum;
     double refazsum, remazsum, refelsum, remelsum;
-    char current_root[7], afcom;
+    char current_root[7], afcom, omodesrc[2];
     fringesum *datum;
     static fringesum outdatum;
     static int first = TRUE;
@@ -47,7 +47,8 @@ baseline_avg (seg_data *data,
     strcpy (current_root, data[data[recno].order].u.fdata.root_id);
     end = tbsum->end_index;
     new_intg = TRUE;
-    nout = 0;
+    negamps = nout = 0;
+    msg("BL avg of records %d .. %d", 0, recno, end);
                                         /* loop over data segments */
     while (TRUE)
         {
@@ -57,6 +58,7 @@ baseline_avg (seg_data *data,
                                         /* Check for omode (assumes it doesn't change) */
         if (datum->datatype[0] == 'O') omode = TRUE;
         else omode = FALSE;
+        snprintf(omodesrc, 2, "%c", datum->datatype[0]);
                                         /* Is it time to compute an average? */
                                         /* End of integration time or a scan */
                                         /* change will do it.  Also, end of this */
@@ -80,7 +82,11 @@ baseline_avg (seg_data *data,
             else
                 outdatum.resid_phas = ((float) atan2 (sumimag, sumreal)) * 57.2958;
                                         /* Incoherent average amp and SNR */
-            if (ampsqsum < 0.0) ampsqsum = 0.0;
+            if (ampsqsum < 0.0)
+                {
+                ampsqsum = 0.0;
+                negamps++;
+                }
             outdatum.amp = sqrt (ampsqsum / weightsum);
                                         /* Eqn 17 in appendix of Shep's thesis */
             inc_sigma_sum = outdatum.amp * outdatum.amp * inc_sigma_sum1 + inc_sigma_sum2;
@@ -156,13 +162,15 @@ baseline_avg (seg_data *data,
                     afile_header (outdatum.version, 2, fpout);
                     afcom = get_afile_com_char();
                     fprintf(fpout, "%c written with SNR-corrected version"
-                        " using -s %g\n", afcom, conf.snrfact);
+                        " using -s %g, omode was %s (test '%s' == 'O')\n",
+                        afcom, conf.snrfact,
+                        omode == TRUE ? "TRUE" : "FALSE", omodesrc);
                     }
                 first = FALSE;
                 }
             write_fsumm (&outdatum, fpout);
-	    //printf("%.4f   %.4f   %.4f   %.4f\n",outdatum.amp,outdatum.snr,outdatum.mbdelay,outdatum.delay_rate);
-	    nout++;
+            //printf("%.4f   %.4f   %.4f   %.4f\n",outdatum.amp,outdatum.snr,outdatum.mbdelay,outdatum.delay_rate);
+            nout++;
                                         /* Flag to set up for next intg. */
             new_intg = TRUE;
                                         /* If we are at the end, exit */
@@ -172,7 +180,7 @@ baseline_avg (seg_data *data,
                                         /* are starting new averaging interval */
         if (new_intg)
             {
-            nadded = timesum = timeoff_sum = 0;
+            nskips = nadded = timesum = timeoff_sum = 0;
             usum = vsum = ampsqsum = sumimag = sumreal = 0.0;
             inc_sigma_sum1 = inc_sigma_sum2 = coh_sigma_sum = weightsum = 0.0;
             refazsum = remazsum = refelsum = remelsum = 0.0;
@@ -203,12 +211,17 @@ baseline_avg (seg_data *data,
             {
             true_snr = datum->snr * fabs(conf.snrfact);
             sigma = datum->amp / true_snr;
-            ampsqsum += weight * (datum->amp*datum->amp - (2.0*sigma*sigma));
-
+            deltampsq = weight * (datum->amp*datum->amp - (2.0*sigma*sigma));
+            ampsqsum += deltampsq;
+            msg("Amp^2 sum inc by %lg with weight %lg to %lg", -1, deltampsq, weight, ampsqsum);
                                         /* This needed for SNR calculation */
             inc_sigma_sum1 += weight * weight * sigma * sigma; 
             inc_sigma_sum2 += weight * weight * pow (sigma, 4.0);
             coh_sigma_sum += 1.0 / (sigma * sigma);
+            }
+        else
+            {
+            nskips++;
             }
                                         /* Sum reals and imaginaries */
                                         /* separately to arrive at averaged */
@@ -234,6 +247,11 @@ baseline_avg (seg_data *data,
 
         nadded++;
         recno++;
+        }
+    msg("Added %d records, skipped %d records of %d in all", 0, nadded, nskips, recno);
+    if (conf.header && negamps)
+        {
+        fprintf(fpout, "Amp^2 summation went negative %d times\n", negamps);
         }
 
     return (nout);

@@ -63,12 +63,12 @@ index_data (seg_data *data,
             dsumm[nsource].tribase[nid].end_index = i-1;
             dsumm[nsource].nid = nid + 1;
                                         /* Start new source */
-	    msg("Source %d used %d ids.", -2, nsource, nid+1);
-            nsource++;
-	    if (nsource >= MAXSRC) break;
-            nid = 0;
-            dsumm[nsource].start_index = i;
-            dsumm[nsource].tribase[nid].start_index = i;
+            msg("Source %d used %d ids.", -2, nsource, nid+1);
+                nsource++;
+            if (nsource >= MAXSRC) break;
+                nid = 0;
+                dsumm[nsource].start_index = i;
+                dsumm[nsource].tribase[nid].start_index = i;
             }
                                         /* Or a new baseline/triangle? */
         else if (strcmp (id, oldid) != 0)
