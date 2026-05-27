@@ -6,8 +6,10 @@ if(BASH_PROGRAM)
         set(TEST_SCRIPT_BASENAMES "")
 
         list(APPEND TEST_SCRIPT_BASENAMES
+            chk_ff_2611
             chk_ff_2836
             chk_ff_2843
+            chk_ff_3064
             chk_ff_3372
             chk_ff_3413
             chk_ff_3756
