@@ -159,11 +159,11 @@ display_fplot (struct mk4_fringe *fringe)
                 // for unit testing, set MK4_PRINTER to no-such-printer
                 if (ppr) snprintf(cmd, sizeof(cmd),"lpr -P %s %s",ppr,ps_file);
                 else     snprintf(cmd, sizeof(cmd),"lpr %s",          ps_file);
-            } else {        // 2: PSHARDCOPY uses pplot_print
-                // for unit testing, set MK4_PRINTER to ./pplot_printer"
+            } else {        // 2: PSHARDCOPY uses pplot_print.sh
+                // for unit testing, set MK4_PRINTER to ./pplot_printer.sh"
                 snprintf (cmd, sizeof(cmd),
-                    (ppr && !strcmp(ppr, "./pplot_printer"))
-                        ? "./pplot_printer %s" : "pplot_print %s", ps_file);
+                    (ppr && !strcmp(ppr, "./pplot_printer.sh"))
+                        ? "./pplot_printer.sh %s" : "pplot_print.sh %s", ps_file);
             }
 
             msg ("Printing cmd: %s", 3, cmd);

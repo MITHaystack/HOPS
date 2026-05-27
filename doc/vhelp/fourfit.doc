@@ -77,7 +77,7 @@ OPTION FLAGS:
             when you build fourfit.  Valid "display_device" choices:
 
                 hardcopy          print via lpr or lpr -P MK4_PRINTER
-                pshardcopy        print the plot via pplot_print
+                pshardcopy        print the plot via pplot_print.sh
                 xwindow           displays it with the gs 'x11' device
                 psscreen          displays it with default gs device.
                 diskfile?file.ps  save the plot in "file.ps"

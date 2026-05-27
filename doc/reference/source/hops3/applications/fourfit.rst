@@ -101,7 +101,7 @@ OPTION FLAGS
     The valid choices for "display_device" are:
     ``diskfile:file.ps``  save the plot in "file.ps"
     ``hardcopy``          send the plot directly to lpr
-    ``pshardcopy``        print the plot via pplot_print
+    ``pshardcopy``        print the plot via pplot_print.sh
     ``xwindow``           show the plot in an X11 window
     ``psscreen``          the same, but allow GS_* options
 

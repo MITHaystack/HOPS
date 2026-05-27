@@ -159,9 +159,8 @@ main (int argc, char* argv[])
             size = strlen (fringe4.t221->pplot);
             fwrite (fringe4.t221->pplot, 1, size, fp);
             fclose (fp);
-            //sprintf (cmd, "pplot_print %s", ps_file);
             sprintf (cmd, "%s %s",
-                (display==HARDCOPY)?"pplot_print":"lpr", ps_file);
+                (display==HARDCOPY)?"pplot_print.sh":"lpr", ps_file);
             system (cmd);
             msg ("Printing hardcopy of fringe plot (%s)", 2, ps_file);
             unlink (ps_file);       /* Tidy up */
