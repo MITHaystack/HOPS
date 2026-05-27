@@ -24,9 +24,21 @@ class MHO_VexParameter
 
         MHO_VexParameter(std::string token, std::string units = ""): fToken(token), fUnits(units){};
 
-        MHO_VexParameter(std::string token, std::string units = ""): fToken(token), fUnits(units){};
+        virtual ~MHO_VexParameter() {}
 
-        virtual ~MHO_VexParameter();
+        /**
+         * @brief Getter for token string
+         *
+         * @return Token string
+         */
+        std::string GetTokenString() const { return fToken; }
+
+        /**
+         * @brief Getter for units string
+         *
+         * @return Units string
+         */
+        std::string GetUnitsString() const { return fUnits; }
 
         /**
          * @brief Setter for token string
@@ -40,7 +52,7 @@ class MHO_VexParameter
          *
          * @param units New units string to set
          */
-        void SetUnitsString(std::string units) { fUnits = unit; };
+        void SetUnitsString(std::string units) { fUnits = units; };
 
     private:
         std::string fToken;

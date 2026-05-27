@@ -143,8 +143,8 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
                         for(std::size_t a = 0; a < XArgType::rank::value; a++)
                         {
                             in_loc[a] = (fAxisSelectionMap[a])[out_loc[a]];
-                            out->ValueAt(out_loc) = in->ValueAt(in_loc);
                         }
+                        out->ValueAt(out_loc) = in->ValueAt(in_loc);
                     }
                     IfTableSelectOnAxes(in, out);
                 }
