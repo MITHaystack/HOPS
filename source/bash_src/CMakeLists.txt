@@ -29,6 +29,6 @@ install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/est_manual_phases.py DESTINATION $
 
 #configure and install the hops_vex2ovex.py.py script
 # this script is needed to support making summary plots from aedit
-configure_file( ${SHSOURCE}/hops_vex2ovex.py.py.in ${CMAKE_CURRENT_BINARY_DIR}/hops_vex2ovex.py.py @ONLY)
-install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops_vex2ovex.py.py DESTINATION ${BIN_INSTALL_DIR} )
+configure_file( ${SHSOURCE}/hops_vex2ovex.py.in ${CMAKE_CURRENT_BINARY_DIR}/hops_vex2ovex.py @ONLY)
+install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops_vex2ovex.py DESTINATION ${BIN_INSTALL_DIR} )
 
