@@ -43,10 +43,13 @@ void MHO_StationModel::ComputeModel()
         //if we have an evaluation time, then convert the vex string to a time point
         //otherwise the default is to just use the start time of the model
         auto eval_time = start;
-        if(fEvalTimeString == "")
+        if(fEvalTimeString != "")
+        {
+            eval_time = hops_clock::from_vex_format(fEvalTimeString);
+        }
+        else
         {
             msg_warn("calibration", "station model evaluation time not set, using model start time" << eom);
-            eval_time = hops_clock::from_vex_format(fEvalTimeString);
         }
 
         msg_debug("calibration", "evaluation time is: " << hops_clock::to_iso8601_format(eval_time) << eom);

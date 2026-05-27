@@ -359,7 +359,7 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
                 throw std::out_of_range("MHO_NDArrayView::*= size mismatch.");
             }
             auto bit1 = this->begin();
-            auto bit2 = anArray.begin();
+            auto bit2 = anArray.cbegin();
             auto it1 = bit1;
             auto it2 = bit2;
             for(std::size_t i = 0; i < fSize; i++)
@@ -381,7 +381,7 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
                 throw std::out_of_range("MHO_NDArrayView::+= size mismatch.");
             }
             auto bit1 = this->begin();
-            auto bit2 = anArray.begin();
+            auto bit2 = anArray.cbegin();
             auto it1 = bit1;
             auto it2 = bit2;
             for(std::size_t i = 0; i < fSize; i++)
@@ -403,7 +403,7 @@ template< typename XValueType, std::size_t RANK > class MHO_NDArrayView
                 throw std::out_of_range("MHO_NDArrayView::-= size mismatch.");
             }
             auto bit1 = this->begin();
-            auto bit2 = anArray.begin();
+            auto bit2 = anArray.cbegin();
             auto it1 = bit1;
             auto it2 = bit2;
             for(std::size_t i = 0; i < fSize; i++)

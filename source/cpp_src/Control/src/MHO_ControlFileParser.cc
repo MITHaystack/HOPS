@@ -8,21 +8,21 @@ inline std::string string_pattern_replace(const std::string& value, const std::s
 {
     //original implementation is via std::regex, however, std::regex is not implemented for <GCC 4.9
     //return std::regex_replace(value, std::regex(pattern), replacement);
-    if(pattern == replacement)
+    if(pattern.empty() || pattern == replacement)
     {
         return value;
     }
     std::string tmp = value;
-    std::size_t loc = std::string::npos;
-    do
+    //resume searching past each inserted replacement; otherwise, when the
+    //replacement contains the pattern (e.g. "(" -> " ( "), find() keeps matching
+    //the just-inserted text and the loop never terminates
+    std::size_t start = 0;
+    std::size_t loc;
+    while((loc = tmp.find(pattern, start)) != std::string::npos)
     {
-        loc = tmp.find(pattern);
-        if(loc != std::string::npos)
-        {
-            tmp.replace(loc, pattern.length(), replacement);
-        }
+        tmp.replace(loc, pattern.length(), replacement);
+        start = loc + replacement.length();
     }
-    while(loc != std::string::npos);
     return tmp;
 }
 
@@ -76,6 +76,11 @@ mho_json MHO_ControlFileParser::ParseControl()
 
 bool MHO_ControlFileParser::ReadFile()
 {
+    //clear any state left from a previous parse so the parser is reusable;
+    //otherwise if a second ParseControl() call were made it would append a second copy of the file
+    //lines and doubles the resulting conditions/statements
+    fLines.clear();
+
     //the set string needs to be handled here
     //this can be tricky because the set string may contain conditional statements
     //like 'if station G'
@@ -174,7 +179,7 @@ void MHO_ControlFileParser::FixSymbols()
     //so that they are treated as a separate token
     std::string bare_open_paren("(");
     std::string bare_close_paren(")");
-    //we have to use plain parentheses here (not be regex-escaped): string_pattern_replace does literal (not regex) matching
+    //we have to use plain parentheses here (not regex-escaped): string_pattern_replace does literal (not regex) matching
     std::string open_paren("(");
     std::string close_paren(")");
     std::string lt("<");
