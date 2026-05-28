@@ -53,6 +53,10 @@ if (PY_EXE)
             profile_plot_alt
             profile_report
             run_pyfringe_example
+            #imported from hops3
+            alma-vex-defs # this script is needed at correlators to support correlations with ALMA
+            est_manual_phases # this script is needed in analysis to estimate manual phase cal phases
+            hops_vex2ovex # this script is needed to support making summary plots from aedit
         )
 
     endif(HOPS3_PYTHON_EXTRAS)

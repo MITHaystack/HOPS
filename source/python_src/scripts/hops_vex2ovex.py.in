@@ -1,4 +1,4 @@
-#!@PYTHON@
+#!@PY_EXE@
 # coding: latin-1
 #===========================================================================
 # Copyright (C) 2016  Max-Planck-Institut für Radioastronomie, Bonn, Germany
@@ -79,7 +79,7 @@ def getEOPname():
     sys.exit(1)
 
 def printGlobal(expname):
-    ''' 
+    '''
     outputs the GLOBAL section to the ovex file
     '''
 
@@ -92,7 +92,7 @@ def printGlobal(expname):
     out.write("ref $EOP = %s;\n" % eopname)
 
 def printExper():
-    ''' 
+    '''
     Prints the EXPER section
     '''
     for i in range(index["EXPER"]["start"],index["EXPER"]["stop"]+1):
@@ -102,7 +102,7 @@ def printExper():
         out.write(content[i])
 
 def printMode():
-    ''' 
+    '''
     Prints the MODE section
     '''
     for i in range(index["MODE"]["start"],index["MODE"]["stop"]+1):
@@ -112,7 +112,7 @@ def printMode():
         out.write(content[i])
 
 def printStation():
-    ''' 
+    '''
     Prints the STATION section
     '''
     station = ""
@@ -129,7 +129,7 @@ def printStation():
         out.write(content[i])
 
 def printSite():
-    ''' 
+    '''
     Prints the SITE section
     '''
     temp = {}
@@ -160,7 +160,7 @@ def printSite():
         out.write(content[i])
 
 def printAntenna():
-    ''' 
+    '''
     Prints the ANTENNA section
     '''
     for i in range(index["ANTENNA"]["start"],index["ANTENNA"]["stop"]+1):
@@ -170,7 +170,7 @@ def printAntenna():
         out.write(content[i])
 
 def printDas():
-    ''' 
+    '''
     Prints the DAS section
     '''
     out.write(content[index["DAS"]["start"]])
@@ -179,14 +179,14 @@ def printDas():
             out.write(content[i])
 
 def printSource():
-    ''' 
+    '''
     Prints the SOURCE section
     '''
     for i in range(index["SOURCE"]["start"],index["SOURCE"]["stop"]+1):
         out.write(content[i])
 
 def printFreq():
-    ''' 
+    '''
     Prints the FREQ section
     '''
 #   count = 0
@@ -218,21 +218,21 @@ def printFreq():
             out.write(content[i])
 
 def printIf():
-    ''' 
+    '''
     Prints the IF section
     '''
     for i in range(index["IF"]["start"],index["IF"]["stop"]+1):
         out.write(content[i])
 
 def printBbc():
-    ''' 
+    '''
     Prints the BBC section
     '''
     for i in range(index["BBC"]["start"],index["BBC"]["stop"]+1):
         out.write(content[i])
 
 def printPhaseCalDetect():
-    ''' 
+    '''
     Prints the PHASE_CAL_DETECT section
     '''
     for i in range(index["PHASE_CAL_DETECT"]["start"],
@@ -240,7 +240,7 @@ def printPhaseCalDetect():
             out.write(content[i])
 
 def printTracks():
-    ''' 
+    '''
     Prints the TRACKS section
     '''
     for i in range(index["TRACKS"]["start"],index["TRACKS"]["stop"]+1):
@@ -255,7 +255,7 @@ def printTracks():
             out.write(content[i])
 
 def printPassOrder():
-    ''' 
+    '''
     Prints the PASS_ORDER section
     '''
     if ("PASS_ORDER" in index):
@@ -264,7 +264,7 @@ def printPassOrder():
                 out.write(content[i])
 
 def printHeadPos():
-    ''' 
+    '''
     Prints the HEAD_POS section
     '''
     if ("HEAD_POS" in index):
@@ -272,7 +272,7 @@ def printHeadPos():
             out.write(content[i])
 
 def printRoll():
-    ''' 
+    '''
     Prints the ROLL section
     '''
     if ("ROLL" in index):
@@ -280,19 +280,19 @@ def printRoll():
             out.write(content[i])
 
 def printSched():
-    ''' 
+    '''
     Prints the SCHED section
     '''
     for i in range(index["SCHED"]["start"],index["SCHED"]["stop"]+1):
         out.write(content[i])
 
 def printClock():
-    ''' 
+    '''
     Prints the CLOCK section
     #  def Az; clock_early=2015y085d00h00m :
     #          0.0 usec :2015y085d00h00m0s : 0 ; enddef;
     '''
-    startTime = "" 
+    startTime = ""
     # determine the start time of the first scan
     for i in range(index["SCHED"]["start"],index["SCHED"]["stop"]+1):
         match = re.match("start\s*=\s*(.*);\s*mode.*", content[i])
@@ -309,7 +309,7 @@ def printClock():
             continue
 
 def printEop():
-    ''' 
+    '''
     Prints the EOP section
     '''
     for i in range(index["EOP"]["start"],index["EOP"]["stop"]+1):
@@ -343,7 +343,7 @@ def parseVex():
         # new section start
         match = reSection.match(line)
         if match:
-            
+
             if 'start' in section.keys():
                 section["stop"] = count-1
                 vexIndex[sectionName] = section
