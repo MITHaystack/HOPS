@@ -314,6 +314,30 @@ if(PERL_FOUND)
     add_subdirectory(${PERLSOURCE})
 endif(PERL_FOUND)
 
+################################################################################
+# Java ghetto -- we presume these pieces may be moved...  but for the moment we
+# collect it all in one place.  ALMA development started with Java 8, so unless
+# things have gone incompatible in Java-land, that version or later suffices.
+# GBC has Java 25 by default and it still works.  Note that jarfiles are binary
+# compatible with any architecture so the lib64 bit isn't needed.
+#
+# https://cmake.org/cmake/help/latest/module/FindJava.html#module:FindJava
+# https://cmake.org/cmake/help/latest/module/UseJava.html#module:UseJava
+option(HOPS_USE_JAVA "Allow Java for VEX2XML." ON)
+if(HOPS_USE_JAVA)
+    find_package(Java 8)
+    if(${Java_FOUND})
+        include(UseJava)
+        message(STATUS "Java ${Java_VERSION} found for VEX2XML")
+        include(UseJava)
+        # for the moment re-use the existing lib dir
+        set(JAVA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+        #file(MAKE_DIRECTORY ${JAVE_INSTALL_DIR})
+        set(JAVASOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/java_src)
+        add_subdirectory(${JAVASOURCE})
+    endif()
+endif()
+################################################################################
 
 #build docs
 add_subdirectory(doc)
