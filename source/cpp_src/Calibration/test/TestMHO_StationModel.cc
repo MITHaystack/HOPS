@@ -15,8 +15,8 @@
 
 #include "MHO_Clock.hh"
 #include "MHO_ContainerDefinitions.hh"
-#include "MHO_StationModel.hh"
 #include "MHO_Message.hh"
+#include "MHO_StationModel.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
@@ -26,7 +26,8 @@ static double eval_poly(const double c[], int n_coeff, double t)
 {
     double result = 0.0;
     double tp = 1.0;
-    for (int p = 0; p < n_coeff; p++) {
+    for(int p = 0; p < n_coeff; p++)
+    {
         result += c[p] * tp;
         tp *= t;
     }
@@ -44,7 +45,7 @@ static const std::string MODEL_START = "2024y001d00h00m00s";
 static station_coord_type* make_station(int n_intervals)
 {
     station_coord_type* sta = new station_coord_type();
-    sta->Resize(NCOORD, static_cast<std::size_t>(n_intervals), NCOEFF);
+    sta->Resize(NCOORD, static_cast< std::size_t >(n_intervals), NCOEFF);
 
     sta->Insert("station_code", std::string("Gs"));
     sta->Insert("model_start", MODEL_START);
@@ -66,28 +67,35 @@ int main()
         auto* sta = make_station(n_intervals);
 
         // Interval 0 coefficients for all 7 coordinates
-        double delay_c[NCOEFF]     = {1.0e-3,  2.0e-6, -1.5e-9, 4.0e-12, -2.0e-15, 5.0e-19};
-        double azimuth_c[NCOEFF]   = {1.0,     1.0e-3,  0.0,    0.0,     0.0,      0.0};
-        double elev_c[NCOEFF]      = {0.5,     2.0e-3, -1.0e-6, 0.0,     0.0,      0.0};
-        double parang_c[NCOEFF]    = {0.1,     1.0e-4,  0.0,    0.0,     0.0,      0.0};
-        double u_c[NCOEFF]         = {1.0e6,   1.0e2,   0.0,    0.0,     0.0,      0.0};
-        double v_c[NCOEFF]         = {2.0e6,  -5.0e1,   0.0,    0.0,     0.0,      0.0};
-        double w_c[NCOEFF]         = {3.0e6,   1.0e1,   0.0,    0.0,     0.0,      0.0};
+        double delay_c[NCOEFF] = {1.0e-3, 2.0e-6, -1.5e-9, 4.0e-12, -2.0e-15, 5.0e-19};
+        double azimuth_c[NCOEFF] = {1.0, 1.0e-3, 0.0, 0.0, 0.0, 0.0};
+        double elev_c[NCOEFF] = {0.5, 2.0e-3, -1.0e-6, 0.0, 0.0, 0.0};
+        double parang_c[NCOEFF] = {0.1, 1.0e-4, 0.0, 0.0, 0.0, 0.0};
+        double u_c[NCOEFF] = {1.0e6, 1.0e2, 0.0, 0.0, 0.0, 0.0};
+        double v_c[NCOEFF] = {2.0e6, -5.0e1, 0.0, 0.0, 0.0, 0.0};
+        double w_c[NCOEFF] = {3.0e6, 1.0e1, 0.0, 0.0, 0.0, 0.0};
 
         auto sv = sta->SubView(0, 0); // delay
-        for (int i = 0; i < NCOEFF; i++) sv(i) = delay_c[i];
-        sv = sta->SubView(1, 0);      // azimuth
-        for (int i = 0; i < NCOEFF; i++) sv(i) = azimuth_c[i];
-        sv = sta->SubView(2, 0);      // elevation
-        for (int i = 0; i < NCOEFF; i++) sv(i) = elev_c[i];
-        sv = sta->SubView(3, 0);      // par_angle
-        for (int i = 0; i < NCOEFF; i++) sv(i) = parang_c[i];
-        sv = sta->SubView(4, 0);      // u
-        for (int i = 0; i < NCOEFF; i++) sv(i) = u_c[i];
-        sv = sta->SubView(5, 0);      // v
-        for (int i = 0; i < NCOEFF; i++) sv(i) = v_c[i];
-        sv = sta->SubView(6, 0);      // w
-        for (int i = 0; i < NCOEFF; i++) sv(i) = w_c[i];
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = delay_c[i];
+        sv = sta->SubView(1, 0); // azimuth
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = azimuth_c[i];
+        sv = sta->SubView(2, 0); // elevation
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = elev_c[i];
+        sv = sta->SubView(3, 0); // par_angle
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = parang_c[i];
+        sv = sta->SubView(4, 0); // u
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = u_c[i];
+        sv = sta->SubView(5, 0); // v
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = v_c[i];
+        sv = sta->SubView(6, 0); // w
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = w_c[i];
 
         MHO_StationModel model;
         model.SetStationData(sta);
@@ -125,20 +133,27 @@ int main()
         // Sub-test A: only azimuth has c_0 = 1.0
         {
             auto sv = sta->SubView(0, 0); // delay - zero
-            for (int i = 0; i < NCOEFF; i++) sv(i) = 0.0;
-            sv = sta->SubView(1, 0);      // azimuth
+            for(int i = 0; i < NCOEFF; i++)
+                sv(i) = 0.0;
+            sv = sta->SubView(1, 0); // azimuth
             sv(0) = 1.0;
-            for (int i = 1; i < NCOEFF; i++) sv(i) = 0.0;
-            sv = sta->SubView(2, 0);      // elev
-            for (int i = 0; i < NCOEFF; i++) sv(i) = 0.0;
-            sv = sta->SubView(3, 0);      // par
-            for (int i = 0; i < NCOEFF; i++) sv(i) = 0.0;
-            sv = sta->SubView(4, 0);      // u
-            for (int i = 0; i < NCOEFF; i++) sv(i) = 0.0;
-            sv = sta->SubView(5, 0);      // v
-            for (int i = 0; i < NCOEFF; i++) sv(i) = 0.0;
-            sv = sta->SubView(6, 0);      // w
-            for (int i = 0; i < NCOEFF; i++) sv(i) = 0.0;
+            for(int i = 1; i < NCOEFF; i++)
+                sv(i) = 0.0;
+            sv = sta->SubView(2, 0); // elev
+            for(int i = 0; i < NCOEFF; i++)
+                sv(i) = 0.0;
+            sv = sta->SubView(3, 0); // par
+            for(int i = 0; i < NCOEFF; i++)
+                sv(i) = 0.0;
+            sv = sta->SubView(4, 0); // u
+            for(int i = 0; i < NCOEFF; i++)
+                sv(i) = 0.0;
+            sv = sta->SubView(5, 0); // v
+            for(int i = 0; i < NCOEFF; i++)
+                sv(i) = 0.0;
+            sv = sta->SubView(6, 0); // w
+            for(int i = 0; i < NCOEFF; i++)
+                sv(i) = 0.0;
 
             MHO_StationModel model;
             model.SetStationData(sta);
@@ -158,9 +173,11 @@ int main()
         {
             // Fresh station with all zeros except u
             auto* sta2 = make_station(n_intervals);
-            for (int coord = 0; coord < NCOORD; coord++) {
+            for(int coord = 0; coord < NCOORD; coord++)
+            {
                 auto sv = sta2->SubView(coord, 0);
-                for (int i = 0; i < NCOEFF; i++) sv(i) = 0.0;
+                for(int i = 0; i < NCOEFF; i++)
+                    sv(i) = 0.0;
             }
             auto sv = sta2->SubView(4, 0); // u
             sv(0) = 1234.5;
@@ -195,7 +212,8 @@ int main()
         double delay_c[NCOEFF] = {1.0e-3, 2.0e-6, -1.5e-9, 4.0e-12, -2.0e-15, 5.0e-19};
 
         auto sv = sta->SubView(0, 0); // delay
-        for (int i = 0; i < NCOEFF; i++) sv(i) = delay_c[i];
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = delay_c[i];
 
         MHO_StationModel model;
         model.SetStationData(sta);
@@ -227,11 +245,13 @@ int main()
         // Azimuth coefficients: [1.0, c_1, 0, 0, 0, 0] with distinct c_1 per interval
         double c1[3] = {1.0e-3, 1.0e-2, 1.0e-1};
 
-        for (int iv = 0; iv < n_intervals; iv++) {
+        for(int iv = 0; iv < n_intervals; iv++)
+        {
             auto sv = sta->SubView(1, iv); // azimuth
             sv(0) = 1.0;
             sv(1) = c1[iv];
-            for (int i = 2; i < NCOEFF; i++) sv(i) = 0.0;
+            for(int i = 2; i < NCOEFF; i++)
+                sv(i) = 0.0;
         }
 
         MHO_StationModel model;
@@ -264,7 +284,8 @@ int main()
 
         double delay_c[NCOEFF] = {1.0e-3, 2.0e-6, -1.5e-9, 4.0e-12, -2.0e-15, 5.0e-19};
         auto sv = sta->SubView(0, 0);
-        for (int i = 0; i < NCOEFF; i++) sv(i) = delay_c[i];
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = delay_c[i];
 
         MHO_StationModel model;
         model.SetStationData(sta);
@@ -295,9 +316,11 @@ int main()
 
         // Use distinct delay coeffs for interval 2
         double delay_c[NCOEFF] = {1.0e-3, 2.0e-6, -1.5e-9, 4.0e-12, -2.0e-15, 5.0e-19};
-        for (int iv = 0; iv < n_intervals; iv++) {
+        for(int iv = 0; iv < n_intervals; iv++)
+        {
             auto sv = sta->SubView(0, iv);
-            for (int i = 0; i < NCOEFF; i++) sv(i) = delay_c[i] * (iv + 1);
+            for(int i = 0; i < NCOEFF; i++)
+                sv(i) = delay_c[i] * (iv + 1);
         }
 
         MHO_StationModel model;
@@ -313,7 +336,8 @@ int main()
 
         // Interval 2 coeffs are delay_c * 3, dt=150s
         double scaled_c[NCOEFF];
-        for (int i = 0; i < NCOEFF; i++) scaled_c[i] = delay_c[i] * 3.0;
+        for(int i = 0; i < NCOEFF; i++)
+            scaled_c[i] = delay_c[i] * 3.0;
         double dt = 150.0;
         double expected = eval_poly(scaled_c, NCOEFF, dt);
         CHECK_CLOSE(model.GetDelay(), expected, 1e-6); // larger tol for large values
@@ -354,7 +378,8 @@ int main()
 
         double delay_c[NCOEFF] = {1.0e-3, 2.0e-6, -1.5e-9, 4.0e-12, -2.0e-15, 5.0e-19};
         auto sv = sta->SubView(0, 0);
-        for (int i = 0; i < NCOEFF; i++) sv(i) = delay_c[i];
+        for(int i = 0; i < NCOEFF; i++)
+            sv(i) = delay_c[i];
 
         MHO_StationModel model;
         model.SetStationData(sta);

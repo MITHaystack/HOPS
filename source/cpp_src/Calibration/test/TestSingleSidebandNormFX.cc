@@ -1,12 +1,12 @@
 #include <cmath>
+#include <complex>
 #include <iostream>
 #include <string>
-#include <complex>
 #include <vector>
 
-#include "MHO_SingleSidebandNormFX.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
+#include "MHO_SingleSidebandNormFX.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
@@ -20,17 +20,17 @@ static void build_flat_usb_fixture(visibility_type& vis)
 {
     vis.Resize(1, 1, 1, 8);
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.at(0) = 8000.0;
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(0, "sky_freq", 8000.0);
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 32.0);
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t fr = 0; fr < vis.GetDimension(FREQ_AXIS); fr++)
-                    vis(pp, ch, ap, fr) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t fr = 0; fr < vis.GetDimension(FREQ_AXIS); fr++)
+                    vis(pp, ch, ap, fr) = std::complex< double >(1.0, 0.0);
 }
 
 // Build a flat-spectrum LSB fixture: same as above but net_sideband="L".
@@ -38,17 +38,17 @@ static void build_flat_lsb_fixture(visibility_type& vis)
 {
     vis.Resize(1, 1, 1, 8);
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.at(0) = 8000.0;
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("L"));
     chan_ax.InsertIndexLabelKeyValue(0, "sky_freq", 8000.0);
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 32.0);
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t fr = 0; fr < vis.GetDimension(FREQ_AXIS); fr++)
-                    vis(pp, ch, ap, fr) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t fr = 0; fr < vis.GetDimension(FREQ_AXIS); fr++)
+                    vis(pp, ch, ap, fr) = std::complex< double >(1.0, 0.0);
 }
 
 /* Build a tone fixture (USB): npol=1, nchan=1, nap=1, nfreq=8.
@@ -57,13 +57,13 @@ static void build_tone_usb_fixture(visibility_type& vis, int k0)
 {
     vis.Resize(1, 1, 1, 8);
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.at(0) = 8000.0;
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(0, "sky_freq", 8000.0);
 
     double Nfreq = (double)vis.GetDimension(FREQ_AXIS);
-    for (std::size_t fr = 0; fr < vis.GetDimension(FREQ_AXIS); fr++)
+    for(std::size_t fr = 0; fr < vis.GetDimension(FREQ_AXIS); fr++)
         vis(0, 0, 0, fr) = std::polar(1.0, 2.0 * M_PI * (double)k0 * (double)fr / Nfreq);
 }
 
@@ -72,13 +72,13 @@ static void build_tone_lsb_fixture(visibility_type& vis, int k0)
 {
     vis.Resize(1, 1, 1, 8);
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.at(0) = 8000.0;
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("L"));
     chan_ax.InsertIndexLabelKeyValue(0, "sky_freq", 8000.0);
 
     double Nfreq = (double)vis.GetDimension(FREQ_AXIS);
-    for (std::size_t fr = 0; fr < vis.GetDimension(FREQ_AXIS); fr++)
+    for(std::size_t fr = 0; fr < vis.GetDimension(FREQ_AXIS); fr++)
         vis(0, 0, 0, fr) = std::polar(1.0, 2.0 * M_PI * (double)k0 * (double)fr / Nfreq);
 }
 
@@ -86,13 +86,15 @@ static void build_tone_lsb_fixture(visibility_type& vis, int k0)
 static std::size_t find_peak_bin(const visibility_type& out)
 {
     std::size_t nfreq = out.GetDimension(FREQ_AXIS);
-    std::size_t best  = 0;
-    double best_mag   = std::abs(out(0, 0, 0, 0));
-    for (std::size_t fr = 1; fr < nfreq; fr++) {
+    std::size_t best = 0;
+    double best_mag = std::abs(out(0, 0, 0, 0));
+    for(std::size_t fr = 1; fr < nfreq; fr++)
+    {
         double mag = std::abs(out(0, 0, 0, fr));
-        if (mag > best_mag) {
+        if(mag > best_mag)
+        {
             best_mag = mag;
-            best     = fr;
+            best = fr;
         }
     }
     return best;
@@ -115,8 +117,8 @@ static int test_output_dimensions()
     // FREQ_AXIS should be 4 * 8 = 32; others unchanged
     REQUIRE(out.GetDimension(POLPROD_AXIS) == 1);
     REQUIRE(out.GetDimension(CHANNEL_AXIS) == 1);
-    REQUIRE(out.GetDimension(TIME_AXIS)    == 1);
-    REQUIRE(out.GetDimension(FREQ_AXIS)    == 32);
+    REQUIRE(out.GetDimension(TIME_AXIS) == 1);
+    REQUIRE(out.GetDimension(FREQ_AXIS) == 32);
 
     return 0;
 }
@@ -134,15 +136,18 @@ static int test_flat_spectrum_centered_peak()
     REQUIRE(nf.Execute());
 
     std::size_t peak = find_peak_bin(out);
-    REQUIRE(peak == 16);  // Nout/2 = 32/2
+    REQUIRE(peak == 16); // Nout/2 = 32/2
 
     // Peak must be strict global maximum
     double peak_mag = std::abs(out(0, 0, 0, peak));
-    double max_off  = 0.0;
-    for (std::size_t fr = 0; fr < out.GetDimension(FREQ_AXIS); fr++) {
-        if (fr == peak) continue;
+    double max_off = 0.0;
+    for(std::size_t fr = 0; fr < out.GetDimension(FREQ_AXIS); fr++)
+    {
+        if(fr == peak)
+            continue;
         double mag = std::abs(out(0, 0, 0, fr));
-        if (mag > max_off) max_off = mag;
+        if(mag > max_off)
+            max_off = mag;
     }
     REQUIRE(peak_mag > max_off);
 
@@ -163,8 +168,8 @@ static int test_normalization()
 
     /* With all-ones length-8 input: DFT DC component is 8, scaled by 1/Nfreq
        (1/8) gives peak magnitude 1.0. Padding does not change DC value. */
-    std::size_t peak     = find_peak_bin(out);
-    double peak_mag      = std::abs(out(0, 0, 0, peak));
+    std::size_t peak = find_peak_bin(out);
+    double peak_mag = std::abs(out(0, 0, 0, peak));
     double reference_mag = 1.0;
     CHECK_CLOSE(peak_mag, reference_mag, 1e-5);
 
@@ -196,7 +201,8 @@ static int test_lsb_conjugation()
 
     // Element-wise: out_LSB(f) == conj(out_USB(f))
     std::size_t nfreq = out_usb.GetDimension(FREQ_AXIS);
-    for (std::size_t fr = 0; fr < nfreq; fr++) {
+    for(std::size_t fr = 0; fr < nfreq; fr++)
+    {
         REQUIRE_CLOSE_CPLX(out_lsb(0, 0, 0, fr), std::conj(out_usb(0, 0, 0, fr)), 1e-6);
     }
 
@@ -225,7 +231,8 @@ static int test_reuse_idempotency()
 
     // Compare all bins
     std::size_t nfreq = out1.GetDimension(FREQ_AXIS);
-    for (std::size_t fr = 0; fr < nfreq; fr++) {
+    for(std::size_t fr = 0; fr < nfreq; fr++)
+    {
         REQUIRE_CLOSE_CPLX(out1(0, 0, 0, fr), out2(0, 0, 0, fr), 1e-9);
     }
 
@@ -259,12 +266,18 @@ int main(int /*argc*/, char** /*argv*/)
 {
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_output_dimensions())          return 1;
-    if (test_flat_spectrum_centered_peak()) return 1;
-    if (test_normalization())              return 1;
-    if (test_lsb_conjugation())            return 1;
-    if (test_reuse_idempotency())          return 1;
-    if (test_tone_peak_location())         return 1;
+    if(test_output_dimensions())
+        return 1;
+    if(test_flat_spectrum_centered_peak())
+        return 1;
+    if(test_normalization())
+        return 1;
+    if(test_lsb_conjugation())
+        return 1;
+    if(test_reuse_idempotency())
+        return 1;
+    if(test_tone_peak_location())
+        return 1;
 
     return 0;
 }

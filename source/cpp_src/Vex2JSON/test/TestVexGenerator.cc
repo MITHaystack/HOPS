@@ -1,14 +1,14 @@
+#include <fstream>
 #include <iostream>
 #include <memory>
-#include <string>
-#include <fstream>
 #include <sstream>
+#include <string>
 
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
+#include "MHO_TestAssertions.hh"
 #include "MHO_VexGenerator.hh"
 #include "MHO_VexParser.hh"
-#include "MHO_TestAssertions.hh"
 
 static std::string readFileContents(const std::string& filename)
 {
@@ -23,18 +23,16 @@ static std::string readFileContents(const std::string& filename)
     return ss.str();
 }
 
-
-
 int main()
 {
     hops::MHO_Message::GetInstance().AcceptAllKeys();
     hops::MHO_Message::GetInstance().SetMessageLevel(hops::eWarning);
 
 #ifndef VEX_FIXTURE_DIR
-#error "VEX_FIXTURE_DIR must be defined at compile time"
+    #error "VEX_FIXTURE_DIR must be defined at compile time"
 #endif
 #ifndef VEX_OUTPUT_DIR
-#error "VEX_OUTPUT_DIR must be defined at compile time"
+    #error "VEX_OUTPUT_DIR must be defined at compile time"
 #endif
 
     std::string data_dir(VEX_FIXTURE_DIR);
@@ -89,7 +87,8 @@ int main()
         for(auto it = j1.begin(); it != j1.end(); it++)
         {
             std::string key = it.key();
-            if(key == "VEX_rev") continue;
+            if(key == "VEX_rev")
+                continue;
             REQUIRE(j2.contains(key));
             REQUIRE(j1[key] == j2[key]);
         }
@@ -144,7 +143,8 @@ int main()
         for(auto it = j_orig.begin(); it != j_orig.end(); it++)
         {
             std::string key = it.key();
-            if(key == "VEX_rev") continue;
+            if(key == "VEX_rev")
+                continue;
             REQUIRE(j_after.contains(key));
             REQUIRE(j_orig[key] == j_after[key]);
         }
@@ -172,7 +172,8 @@ int main()
         for(auto it = j1.begin(); it != j1.end(); it++)
         {
             std::string key = it.key();
-            if(key == "VEX_rev") continue;
+            if(key == "VEX_rev")
+                continue;
             REQUIRE(j2.contains(key));
             REQUIRE(j1[key] == j2[key]);
         }
@@ -184,7 +185,9 @@ int main()
         // The generator should suppress $OVEX_REV in a VEX 1.5 context.
         mho_json j;
         j["VEX_rev"] = "1.5";
-        j["$OVEX_REV"] = {{"rev", "1.0"}};
+        j["$OVEX_REV"] = {
+            {"rev", "1.0"}
+        };
         j["$GLOBAL"] = mho_json::object();
 
         hops::MHO_VexGenerator gen;
@@ -229,7 +232,8 @@ int main()
         for(auto it = j1.begin(); it != j1.end(); it++)
         {
             std::string key = it.key();
-            if(key == "VEX_rev") continue;
+            if(key == "VEX_rev")
+                continue;
             REQUIRE(rt_a.contains(key));
             REQUIRE(j1[key] == rt_a[key]);
         }

@@ -15,8 +15,8 @@ static const std::string MODEL_START = "2024y001d00h00m00s";
 static const double MODEL_INTERVAL = 120.0;
 
 // build a station with the given per-interval delay-spline coefficients
-static station_coord_type* make_station(int n_intervals, const std::string& code, const std::string& start,
-                                        double interval, const double coeffs[][NCOEFF])
+static station_coord_type* make_station(int n_intervals, const std::string& code, const std::string& start, double interval,
+                                        const double coeffs[][NCOEFF])
 {
     station_coord_type* sta = new station_coord_type();
     sta->Resize(NCOORD, static_cast< std::size_t >(n_intervals), NCOEFF);
@@ -83,14 +83,14 @@ static int select_interval(int n_intervals, double tdiff, int int_no)
 
 struct ModelResult
 {
-    double delay, rate, accel;
-    double refDelay, refRate, refStationDelay;
+        double delay, rate, accel;
+        double refDelay, refRate, refStationDelay;
 };
 
 // independent reference computation mirroring MHO_DelayModel::ComputeModel
 static ModelResult reference_model(const double refc[][NCOEFF], int ref_nint, const std::string& ref_start,
-                                   const double remc[][NCOEFF], int rem_nint, const std::string& rem_start,
-                                   double interval, const std::string& frt_str, double clockOff, double clockRate)
+                                   const double remc[][NCOEFF], int rem_nint, const std::string& rem_start, double interval,
+                                   const std::string& frt_str, double clockOff, double clockRate)
 {
     ModelResult r;
 
@@ -148,8 +148,12 @@ int main(int /*argc*/, char** /*argv*/)
 
     // Case 1: happy path, single interval, fourfit reftime inside interval 0
     {
-        double refc[1][NCOEFF] = {{1.0e-3, 2.0e-6, -1.5e-9, 4.0e-12, 0.0, 0.0}};
-        double remc[1][NCOEFF] = {{1.2e-3, 1.0e-6, 1.0e-9, 0.0, 0.0, 0.0}};
+        double refc[1][NCOEFF] = {
+            {1.0e-3, 2.0e-6, -1.5e-9, 4.0e-12, 0.0, 0.0}
+        };
+        double remc[1][NCOEFF] = {
+            {1.2e-3, 1.0e-6, 1.0e-9, 0.0, 0.0, 0.0}
+        };
         std::string frt = reftime_str(MODEL_START, 60);
 
         station_coord_type* ref = make_station(1, "Gs", MODEL_START, MODEL_INTERVAL, refc);
@@ -174,12 +178,16 @@ int main(int /*argc*/, char** /*argv*/)
 
     // Case 2: multi-interval selection -- reftime lands in interval 1
     {
-        double refc[3][NCOEFF] = {{1.0e-3, 1.0e-6, 0.0, 0.0, 0.0, 0.0},
-                                  {2.0e-3, -3.0e-6, 5.0e-10, 0.0, 0.0, 0.0},
-                                  {5.0e-3, 7.0e-6, 0.0, 0.0, 0.0, 0.0}};
-        double remc[3][NCOEFF] = {{1.1e-3, 2.0e-6, 0.0, 0.0, 0.0, 0.0},
-                                  {2.5e-3, 4.0e-6, -1.0e-9, 0.0, 0.0, 0.0},
-                                  {6.0e-3, 1.0e-6, 0.0, 0.0, 0.0, 0.0}};
+        double refc[3][NCOEFF] = {
+            {1.0e-3, 1.0e-6,  0.0,     0.0, 0.0, 0.0},
+            {2.0e-3, -3.0e-6, 5.0e-10, 0.0, 0.0, 0.0},
+            {5.0e-3, 7.0e-6,  0.0,     0.0, 0.0, 0.0}
+        };
+        double remc[3][NCOEFF] = {
+            {1.1e-3, 2.0e-6, 0.0,     0.0, 0.0, 0.0},
+            {2.5e-3, 4.0e-6, -1.0e-9, 0.0, 0.0, 0.0},
+            {6.0e-3, 1.0e-6, 0.0,     0.0, 0.0, 0.0}
+        };
         std::string frt = reftime_str(MODEL_START, 150); // tdiff=150 -> interval 1, t=30
 
         station_coord_type* ref = make_station(3, "Gs", MODEL_START, MODEL_INTERVAL, refc);
@@ -204,8 +212,14 @@ int main(int /*argc*/, char** /*argv*/)
 
     // Case 3: extrapolation before the model start (negative tdiff -> clamp to interval 0)
     {
-        double refc[2][NCOEFF] = {{1.0e-3, 2.0e-6, 0.0, 0.0, 0.0, 0.0}, {2.0e-3, 1.0e-6, 0.0, 0.0, 0.0, 0.0}};
-        double remc[2][NCOEFF] = {{1.5e-3, -1.0e-6, 0.0, 0.0, 0.0, 0.0}, {3.0e-3, 2.0e-6, 0.0, 0.0, 0.0, 0.0}};
+        double refc[2][NCOEFF] = {
+            {1.0e-3, 2.0e-6, 0.0, 0.0, 0.0, 0.0},
+            {2.0e-3, 1.0e-6, 0.0, 0.0, 0.0, 0.0}
+        };
+        double remc[2][NCOEFF] = {
+            {1.5e-3, -1.0e-6, 0.0, 0.0, 0.0, 0.0},
+            {3.0e-3, 2.0e-6,  0.0, 0.0, 0.0, 0.0}
+        };
         std::string frt = reftime_str(MODEL_START, -30); // tdiff=-30 -> clamp interval 0, t=-30
 
         station_coord_type* ref = make_station(2, "Gs", MODEL_START, MODEL_INTERVAL, refc);
@@ -230,8 +244,14 @@ int main(int /*argc*/, char** /*argv*/)
 
     // Case 4: extrapolation past the model end (int_no >= n_intervals -> clamp to last)
     {
-        double refc[2][NCOEFF] = {{1.0e-3, 2.0e-6, 0.0, 0.0, 0.0, 0.0}, {2.0e-3, 3.0e-6, -1.0e-9, 0.0, 0.0, 0.0}};
-        double remc[2][NCOEFF] = {{1.2e-3, 1.0e-6, 0.0, 0.0, 0.0, 0.0}, {2.4e-3, 5.0e-6, 0.0, 0.0, 0.0, 0.0}};
+        double refc[2][NCOEFF] = {
+            {1.0e-3, 2.0e-6, 0.0,     0.0, 0.0, 0.0},
+            {2.0e-3, 3.0e-6, -1.0e-9, 0.0, 0.0, 0.0}
+        };
+        double remc[2][NCOEFF] = {
+            {1.2e-3, 1.0e-6, 0.0, 0.0, 0.0, 0.0},
+            {2.4e-3, 5.0e-6, 0.0, 0.0, 0.0, 0.0}
+        };
         std::string frt = reftime_str(MODEL_START, 300); // tdiff=300 -> clamp interval 1, t=180
 
         station_coord_type* ref = make_station(2, "Gs", MODEL_START, MODEL_INTERVAL, refc);
@@ -260,8 +280,12 @@ int main(int /*argc*/, char** /*argv*/)
         const std::string rem_start = "2024y001d00h00m30s"; // 30 s after ref start
         const double clockOff = 1.0e-6;
         const double clockRate = 2.0e-9;
-        double refc[1][NCOEFF] = {{1.0e-3, 2.0e-6, -1.5e-9, 0.0, 0.0, 0.0}};
-        double remc[1][NCOEFF] = {{1.2e-3, 1.0e-6, 0.0, 0.0, 0.0, 0.0}};
+        double refc[1][NCOEFF] = {
+            {1.0e-3, 2.0e-6, -1.5e-9, 0.0, 0.0, 0.0}
+        };
+        double remc[1][NCOEFF] = {
+            {1.2e-3, 1.0e-6, 0.0, 0.0, 0.0, 0.0}
+        };
         std::string frt = reftime_str(MODEL_START, 60);
 
         station_coord_type* ref = make_station(1, "Gs", MODEL_START, MODEL_INTERVAL, refc);
@@ -275,8 +299,7 @@ int main(int /*argc*/, char** /*argv*/)
         model.SetReferenceStationClockRate(clockRate);
         model.ComputeModel();
 
-        ModelResult exp =
-            reference_model(refc, 1, MODEL_START, remc, 1, rem_start, MODEL_INTERVAL, frt, clockOff, clockRate);
+        ModelResult exp = reference_model(refc, 1, MODEL_START, remc, 1, rem_start, MODEL_INTERVAL, frt, clockOff, clockRate);
         if(check_all(model, exp) != 0)
         {
             return 1;

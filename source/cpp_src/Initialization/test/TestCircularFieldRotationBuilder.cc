@@ -8,8 +8,8 @@
 
 #include "InitializationTestFixtures.hh"
 
-#include "MHO_CircularFieldRotationCorrection.hh"
 #include "MHO_CircularFieldRotationBuilder.hh"
+#include "MHO_CircularFieldRotationCorrection.hh"
 #include "MHO_Message.hh"
 #include "MHO_ParameterStore.hh"
 #include "MHO_TestAssertions.hh"

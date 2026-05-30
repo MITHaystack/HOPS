@@ -21,9 +21,13 @@ class ExposedBuilder: public MHO_OperatorBuilder
         bool Build() override { return true; }
 
         std::vector< std::string > ExtractAll() const { return ExtractAllStationIdentifiers(); }
+
         bool MatchRole(const std::string& id, const std::string& role) const { return StationMatchesRole(id, role); }
+
         bool MatchBaseline(const std::string& id) const { return StationMatchesCurrentBaseline(id); }
+
         std::vector< std::string > Matching() const { return GetMatchingStationIdentifiers(); }
+
         bool ConfigOk() { return IsConfigurationOk(); }
 };
 
@@ -88,13 +92,13 @@ int main(int /*argc*/, char** /*argv*/)
         ExposedBuilder b;
         b.SetParameterStore(&pstore);
 
-        REQUIRE(b.MatchRole("G", "ref") == true);    // mk4 id matches ref
-        REQUIRE(b.MatchRole("E", "ref") == false);   // mk4 id is the remote's
-        REQUIRE(b.MatchRole("Gs", "ref") == true);   // 2-char code matches ref
-        REQUIRE(b.MatchRole("Ef", "ref") == false);  // 2-char code is the remote's
-        REQUIRE(b.MatchRole("E", "rem") == true);    // mk4 id matches rem
-        REQUIRE(b.MatchRole("Ef", "rem") == true);   // 2-char code matches rem
-        REQUIRE(b.MatchRole("??", "ref") == true);   // wildcards always match
+        REQUIRE(b.MatchRole("G", "ref") == true);   // mk4 id matches ref
+        REQUIRE(b.MatchRole("E", "ref") == false);  // mk4 id is the remote's
+        REQUIRE(b.MatchRole("Gs", "ref") == true);  // 2-char code matches ref
+        REQUIRE(b.MatchRole("Ef", "ref") == false); // 2-char code is the remote's
+        REQUIRE(b.MatchRole("E", "rem") == true);   // mk4 id matches rem
+        REQUIRE(b.MatchRole("Ef", "rem") == true);  // 2-char code matches rem
+        REQUIRE(b.MatchRole("??", "ref") == true);  // wildcards always match
         REQUIRE(b.MatchRole("?", "rem") == true);
     }
 

@@ -4,9 +4,9 @@
 #include <map>
 #include <string>
 
-#include "MHO_ManualChannelDelayCorrection.hh"
-#include "MHO_ContainerDefinitions.hh"
 #include "MHO_Constants.hh"
+#include "MHO_ContainerDefinitions.hh"
+#include "MHO_ManualChannelDelayCorrection.hh"
 #include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
@@ -16,8 +16,7 @@ using namespace hops;
 
 /* Compute theta using the same formula as MHO_ManualChannelDelayCorrection::ExecuteInPlace.
    White-box regression: replicate the C++ expression verbatim. */
-static double compute_theta(double freq_MHz, double delay_ns, double bandwidth_MHz,
-                            std::size_t nsp, std::size_t sp)
+static double compute_theta(double freq_MHz, double delay_ns, double bandwidth_MHz, std::size_t nsp, std::size_t sp)
 {
     double fMHzToHz = MHO_Constants::MHz_to_Hz;
     double fNanoSecToSecond = MHO_Constants::nanosec_to_second;
@@ -48,12 +47,12 @@ static void build_fixture(visibility_type& vis)
     vis.Resize(2, 2, 2, 2);
 
     // FREQ axis: intra-channel spectral-point offsets in MHz
-    auto& freq_ax = std::get<FREQ_AXIS>(vis);
+    auto& freq_ax = std::get< FREQ_AXIS >(vis);
     freq_ax.at(0) = 0.0;
     freq_ax.at(1) = 16.0;
 
     // CHANNEL axis
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.InsertIndexLabelKeyValue(0, "channel_label", std::string("a"));
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 32.0);
@@ -63,7 +62,7 @@ static void build_fixture(visibility_type& vis)
     chan_ax.InsertIndexLabelKeyValue(1, "bandwidth", 32.0);
 
     // POLPROD axis
-    auto& pp_ax = std::get<POLPROD_AXIS>(vis);
+    auto& pp_ax = std::get< POLPROD_AXIS >(vis);
     pp_ax.at(0) = "XX";
     pp_ax.at(1) = "YY";
 
@@ -74,11 +73,11 @@ static void build_fixture(visibility_type& vis)
     vis.Insert(std::string("remote_station"), std::string("Ef"));
 
     // Fill all elements with (1.0, 0.0)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 }
 
 // Build fixture identical to build_fixture but WITHOUT the "bandwidth" label on channel 0.
@@ -90,11 +89,11 @@ static void build_fixture_no_bw_channel0(visibility_type& vis)
        We need to build from scratch without bandwidth on channel 0. */
     vis.Resize(2, 2, 2, 2);
 
-    auto& freq_ax = std::get<FREQ_AXIS>(vis);
+    auto& freq_ax = std::get< FREQ_AXIS >(vis);
     freq_ax.at(0) = 0.0;
     freq_ax.at(1) = 16.0;
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     // Channel 0: no bandwidth label
     chan_ax.InsertIndexLabelKeyValue(0, "channel_label", std::string("a"));
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
@@ -104,7 +103,7 @@ static void build_fixture_no_bw_channel0(visibility_type& vis)
     chan_ax.InsertIndexLabelKeyValue(1, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(1, "bandwidth", 32.0);
 
-    auto& pp_ax = std::get<POLPROD_AXIS>(vis);
+    auto& pp_ax = std::get< POLPROD_AXIS >(vis);
     pp_ax.at(0) = "XX";
     pp_ax.at(1) = "YY";
 
@@ -113,11 +112,11 @@ static void build_fixture_no_bw_channel0(visibility_type& vis)
     vis.Insert(std::string("remote_station_mk4id"), std::string("E"));
     vis.Insert(std::string("remote_station"), std::string("Ef"));
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 }
 
 // Test cases
@@ -152,11 +151,11 @@ static int test_case1_remote_phase_ramp()
     // Build a fixture with remote mk4id = "F" so SetStationIdentifier("F") matches
     vis.Resize(2, 2, 2, 2);
 
-    auto& freq_ax = std::get<FREQ_AXIS>(vis);
+    auto& freq_ax = std::get< FREQ_AXIS >(vis);
     freq_ax.at(0) = 0.0;
     freq_ax.at(1) = 16.0;
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.InsertIndexLabelKeyValue(0, "channel_label", std::string("a"));
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 32.0);
@@ -164,7 +163,7 @@ static int test_case1_remote_phase_ramp()
     chan_ax.InsertIndexLabelKeyValue(1, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(1, "bandwidth", 32.0);
 
-    auto& pp_ax = std::get<POLPROD_AXIS>(vis);
+    auto& pp_ax = std::get< POLPROD_AXIS >(vis);
     pp_ax.at(0) = "XX";
     pp_ax.at(1) = "YY";
 
@@ -173,16 +172,16 @@ static int test_case1_remote_phase_ramp()
     vis.Insert(std::string("remote_station_mk4id"), std::string("F"));
     vis.Insert(std::string("remote_station"), std::string("Fs"));
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 
     MHO_ManualChannelDelayCorrection op;
     op.SetStationIdentifier("F");
     op.SetPolarization("Y");
-    std::map<std::string, double> m;
+    std::map< std::string, double > m;
     m["a"] = 1.0;
     op.SetChannelToPCDelayMap(m);
 
@@ -198,29 +197,33 @@ static int test_case1_remote_phase_ramp()
     std::size_t nsp = vis.GetDimension(FREQ_AXIS);
     const double tol = 1e-9;
 
-    for (std::size_t sp = 0; sp < nsp; sp++) {
+    for(std::size_t sp = 0; sp < nsp; sp++)
+    {
         double freq_MHz = freq_ax.at(sp);
         double theta = compute_theta(freq_MHz, delay, bandwidth, nsp, sp);
-        std::complex<double> phasor = std::exp(std::complex<double>(0, 1.0) * theta);
+        std::complex< double > phasor = std::exp(std::complex< double >(0, 1.0) * theta);
         phasor = std::conj(phasor); // remote conjugation
 
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++) {
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+        {
             CHECK_CLOSE(vis(1, 0, ap, sp).real(), phasor.real(), tol);
             CHECK_CLOSE(vis(1, 0, ap, sp).imag(), phasor.imag(), tol);
         }
     }
 
     // XX (pp=0) and channel "b" (ch=1) should be untouched
-    for (std::size_t pp = 0; pp < 1; pp++)
-        for (std::size_t ch = 0; ch < 2; ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < nsp; sp++) {
+    for(std::size_t pp = 0; pp < 1; pp++)
+        for(std::size_t ch = 0; ch < 2; ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < nsp; sp++)
+                {
                     CHECK_CLOSE(vis(pp, ch, ap, sp).real(), 1.0, tol);
                     CHECK_CLOSE(vis(pp, ch, ap, sp).imag(), 0.0, tol);
                 }
     // YY channel 1 (b) untouched
-    for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-        for (std::size_t sp = 0; sp < nsp; sp++) {
+    for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+        for(std::size_t sp = 0; sp < nsp; sp++)
+        {
             CHECK_CLOSE(vis(1, 1, ap, sp).real(), 1.0, tol);
             CHECK_CLOSE(vis(1, 1, ap, sp).imag(), 0.0, tol);
         }
@@ -241,33 +244,33 @@ static int test_case2_ref_vs_remote_sign()
     // Remote fixture
     visibility_type vis_rem;
     vis_rem.Resize(2, 2, 2, 2);
-    auto& freq_ax_rem = std::get<FREQ_AXIS>(vis_rem);
+    auto& freq_ax_rem = std::get< FREQ_AXIS >(vis_rem);
     freq_ax_rem.at(0) = 0.0;
     freq_ax_rem.at(1) = 16.0;
-    auto& chan_ax_rem = std::get<CHANNEL_AXIS>(vis_rem);
+    auto& chan_ax_rem = std::get< CHANNEL_AXIS >(vis_rem);
     chan_ax_rem.InsertIndexLabelKeyValue(0, "channel_label", std::string("a"));
     chan_ax_rem.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax_rem.InsertIndexLabelKeyValue(0, "bandwidth", 32.0);
     chan_ax_rem.InsertIndexLabelKeyValue(1, "channel_label", std::string("b"));
     chan_ax_rem.InsertIndexLabelKeyValue(1, "net_sideband", std::string("U"));
     chan_ax_rem.InsertIndexLabelKeyValue(1, "bandwidth", 32.0);
-    auto& pp_ax_rem = std::get<POLPROD_AXIS>(vis_rem);
+    auto& pp_ax_rem = std::get< POLPROD_AXIS >(vis_rem);
     pp_ax_rem.at(0) = "XX";
     pp_ax_rem.at(1) = "YY";
     vis_rem.Insert(std::string("reference_station_mk4id"), std::string("H"));
     vis_rem.Insert(std::string("reference_station"), std::string("Hs"));
     vis_rem.Insert(std::string("remote_station_mk4id"), std::string("F"));
     vis_rem.Insert(std::string("remote_station"), std::string("Fs"));
-    for (std::size_t pp = 0; pp < vis_rem.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis_rem.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis_rem.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis_rem.GetDimension(FREQ_AXIS); sp++)
-                    vis_rem(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis_rem.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis_rem.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis_rem.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis_rem.GetDimension(FREQ_AXIS); sp++)
+                    vis_rem(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 
     MHO_ManualChannelDelayCorrection op_rem;
     op_rem.SetStationIdentifier("F");
     op_rem.SetPolarization("X");
-    std::map<std::string, double> m;
+    std::map< std::string, double > m;
     m["a"] = 1.0;
     op_rem.SetChannelToPCDelayMap(m);
     op_rem.SetArgs(&vis_rem);
@@ -277,28 +280,28 @@ static int test_case2_ref_vs_remote_sign()
     // Reference fixture
     visibility_type vis_ref;
     vis_ref.Resize(2, 2, 2, 2);
-    auto& freq_ax_ref = std::get<FREQ_AXIS>(vis_ref);
+    auto& freq_ax_ref = std::get< FREQ_AXIS >(vis_ref);
     freq_ax_ref.at(0) = 0.0;
     freq_ax_ref.at(1) = 16.0;
-    auto& chan_ax_ref = std::get<CHANNEL_AXIS>(vis_ref);
+    auto& chan_ax_ref = std::get< CHANNEL_AXIS >(vis_ref);
     chan_ax_ref.InsertIndexLabelKeyValue(0, "channel_label", std::string("a"));
     chan_ax_ref.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax_ref.InsertIndexLabelKeyValue(0, "bandwidth", 32.0);
     chan_ax_ref.InsertIndexLabelKeyValue(1, "channel_label", std::string("b"));
     chan_ax_ref.InsertIndexLabelKeyValue(1, "net_sideband", std::string("U"));
     chan_ax_ref.InsertIndexLabelKeyValue(1, "bandwidth", 32.0);
-    auto& pp_ax_ref = std::get<POLPROD_AXIS>(vis_ref);
+    auto& pp_ax_ref = std::get< POLPROD_AXIS >(vis_ref);
     pp_ax_ref.at(0) = "XX";
     pp_ax_ref.at(1) = "YY";
     vis_ref.Insert(std::string("reference_station_mk4id"), std::string("G"));
     vis_ref.Insert(std::string("reference_station"), std::string("Gs"));
     vis_ref.Insert(std::string("remote_station_mk4id"), std::string("H"));
     vis_ref.Insert(std::string("remote_station"), std::string("Hs"));
-    for (std::size_t pp = 0; pp < vis_ref.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis_ref.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis_ref.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis_ref.GetDimension(FREQ_AXIS); sp++)
-                    vis_ref(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis_ref.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis_ref.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis_ref.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis_ref.GetDimension(FREQ_AXIS); sp++)
+                    vis_ref(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 
     MHO_ManualChannelDelayCorrection op_ref;
     op_ref.SetStationIdentifier("G");
@@ -311,10 +314,11 @@ static int test_case2_ref_vs_remote_sign()
     // Compare: ref phasor == conj(remote phasor) for each spectral point
     const double tol = 1e-9;
     std::size_t nsp = vis_ref.GetDimension(FREQ_AXIS);
-    for (std::size_t sp = 0; sp < nsp; sp++) {
-        std::complex<double> rem_phasor = vis_rem(0, 0, 0, sp); // XX, ch0, ap0
-        std::complex<double> ref_phasor = vis_ref(0, 0, 0, sp); // XX, ch0, ap0
-        std::complex<double> conj_rem = std::conj(rem_phasor);
+    for(std::size_t sp = 0; sp < nsp; sp++)
+    {
+        std::complex< double > rem_phasor = vis_rem(0, 0, 0, sp); // XX, ch0, ap0
+        std::complex< double > ref_phasor = vis_ref(0, 0, 0, sp); // XX, ch0, ap0
+        std::complex< double > conj_rem = std::conj(rem_phasor);
         CHECK_CLOSE(ref_phasor.real(), conj_rem.real(), tol);
         CHECK_CLOSE(ref_phasor.imag(), conj_rem.imag(), tol);
     }
@@ -331,7 +335,7 @@ static int test_case3_missing_bandwidth()
     MHO_ManualChannelDelayCorrection op;
     op.SetStationIdentifier("F");
     op.SetPolarization("Y");
-    std::map<std::string, double> m;
+    std::map< std::string, double > m;
     m["a"] = 1.0;
     op.SetChannelToPCDelayMap(m);
 
@@ -343,9 +347,10 @@ static int test_case3_missing_bandwidth()
     // Channel 0 should be completely unchanged (== (1,0) everywhere)
     const double tol = 1e-12;
     std::size_t nsp = vis.GetDimension(FREQ_AXIS);
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < nsp; sp++) {
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < nsp; sp++)
+            {
                 CHECK_CLOSE(vis(pp, 0, ap, sp).real(), 1.0, tol);
                 CHECK_CLOSE(vis(pp, 0, ap, sp).imag(), 0.0, tol);
             }
@@ -358,33 +363,33 @@ static int test_case4_zero_delay_noop()
 {
     visibility_type vis;
     vis.Resize(2, 2, 2, 2);
-    auto& freq_ax = std::get<FREQ_AXIS>(vis);
+    auto& freq_ax = std::get< FREQ_AXIS >(vis);
     freq_ax.at(0) = 0.0;
     freq_ax.at(1) = 16.0;
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.InsertIndexLabelKeyValue(0, "channel_label", std::string("a"));
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 32.0);
     chan_ax.InsertIndexLabelKeyValue(1, "channel_label", std::string("b"));
     chan_ax.InsertIndexLabelKeyValue(1, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(1, "bandwidth", 32.0);
-    auto& pp_ax = std::get<POLPROD_AXIS>(vis);
+    auto& pp_ax = std::get< POLPROD_AXIS >(vis);
     pp_ax.at(0) = "XX";
     pp_ax.at(1) = "YY";
     vis.Insert(std::string("reference_station_mk4id"), std::string("G"));
     vis.Insert(std::string("reference_station"), std::string("Gs"));
     vis.Insert(std::string("remote_station_mk4id"), std::string("F"));
     vis.Insert(std::string("remote_station"), std::string("Fs"));
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 
     MHO_ManualChannelDelayCorrection op;
     op.SetStationIdentifier("F");
     op.SetPolarization("Y");
-    std::map<std::string, double> m;
+    std::map< std::string, double > m;
     m["a"] = 0.0;
     op.SetChannelToPCDelayMap(m);
 
@@ -394,10 +399,11 @@ static int test_case4_zero_delay_noop()
 
     // All elements should remain (1,0)
     const double tol = 1e-12;
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++) {
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                {
                     CHECK_CLOSE(vis(pp, ch, ap, sp).real(), 1.0, tol);
                     CHECK_CLOSE(vis(pp, ch, ap, sp).imag(), 0.0, tol);
                 }
@@ -416,9 +422,9 @@ static int test_case5_station_mismatch()
     vis0.Copy(vis);
 
     MHO_ManualChannelDelayCorrection op;
-    op.SetStationIdentifier("Z");  // doesn't match any station
+    op.SetStationIdentifier("Z"); // doesn't match any station
     op.SetPolarization("X");
-    std::map<std::string, double> m;
+    std::map< std::string, double > m;
     m["a"] = 5.0;
     op.SetChannelToPCDelayMap(m);
 
@@ -428,10 +434,11 @@ static int test_case5_station_mismatch()
 
     // Array should be identical to pristine
     const double tol = 1e-12;
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++) {
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                {
                     CHECK_CLOSE(vis(pp, ch, ap, sp).real(), vis0(pp, ch, ap, sp).real(), tol);
                     CHECK_CLOSE(vis(pp, ch, ap, sp).imag(), vis0(pp, ch, ap, sp).imag(), tol);
                 }
@@ -444,11 +451,16 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_case1_remote_phase_ramp()) return 1;
-    if (test_case2_ref_vs_remote_sign()) return 1;
-    if (test_case3_missing_bandwidth()) return 1;
-    if (test_case4_zero_delay_noop()) return 1;
-    if (test_case5_station_mismatch()) return 1;
+    if(test_case1_remote_phase_ramp())
+        return 1;
+    if(test_case2_ref_vs_remote_sign())
+        return 1;
+    if(test_case3_missing_bandwidth())
+        return 1;
+    if(test_case4_zero_delay_noop())
+        return 1;
+    if(test_case5_station_mismatch())
+        return 1;
 
     return 0;
 }

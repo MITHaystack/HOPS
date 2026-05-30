@@ -37,11 +37,11 @@ static void build_vis_fixture(visibility_type& vis)
     vis.Insert("remote_station_mk4id", std::string("W"));
     vis.Insert("start", std::string("2024y001d00h00m00s"));
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
-                for (std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
-                    vis(pp, ch, t, f) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
+                for(std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
+                    vis(pp, ch, t, f) = std::complex< double >(1.0, 0.0);
 }
 
 /* Build a multitone pcal fixture with 2 tones symmetric about band center.
@@ -65,8 +65,8 @@ static void build_pcal_fixture(multitone_pcal_type& pc, double phi)
     pc.Insert("start", std::string("2024y001d00h00m00s"));
     pc.Insert("station_code", std::string("Gs"));
 
-    for (std::size_t k = 0; k < pc.GetDimension(MTPCAL_TIME_AXIS); k++)
-        for (std::size_t t = 0; t < pc.GetDimension(MTPCAL_FREQ_AXIS); t++)
+    for(std::size_t k = 0; k < pc.GetDimension(MTPCAL_TIME_AXIS); k++)
+        for(std::size_t t = 0; t < pc.GetDimension(MTPCAL_FREQ_AXIS); t++)
             pc.at(0, k, t) = std::polar(1.0, phi);
 }
 
@@ -110,16 +110,16 @@ static int test_case2_non_matching_station()
 
     MHO_MultitonePhaseCorrection op;
     op.SetMultitonePCData(&pc);
-    op.SetStation("Xx");    // does not match "Gs" or "Wf"
+    op.SetStation("Xx");     // does not match "Gs" or "Wf"
     op.SetStationMk4ID("X"); // does not match "G" or "W"
     op.SetArgs(&vis);
     REQUIRE(op.Initialize());
     op.Execute();
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
-                for (std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
+                for(std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
                     CHECK_CLOSE(std::abs(vis(pp, ch, t, f) - pristine(pp, ch, t, f)), 0.0, 1e-12);
 
     return 0;
@@ -152,7 +152,7 @@ static int test_case3_matching_station()
     op.Execute();
 
     // Capture the applied phasor from the first element
-    std::complex<double> applied = vis(0, 0, 0, 0);
+    std::complex< double > applied = vis(0, 0, 0, 0);
     double mag = std::abs(applied);
     double phase = std::arg(applied);
 
@@ -166,15 +166,14 @@ static int test_case3_matching_station()
     // Due to the FFT delay-fit internals, the actual phase may be phi or -phi
     // or differ by pi. We verify the phase magnitude is close to phi or (pi - phi).
     double phase_abs = std::fabs(phase);
-    bool phase_ok = (std::fabs(phase_abs - std::fabs(phi)) < 1e-3) ||
-                    (std::fabs(phase_abs - (M_PI - std::fabs(phi))) < 1e-3);
+    bool phase_ok = (std::fabs(phase_abs - std::fabs(phi)) < 1e-3) || (std::fabs(phase_abs - (M_PI - std::fabs(phi))) < 1e-3);
     REQUIRE(phase_ok);
 
     // Verify all elements have the same applied phasor (uniformity)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
-                for (std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
+                for(std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
                     CHECK_CLOSE(std::abs(vis(pp, ch, t, f) - applied), 0.0, 1e-9);
 
     return 0;
@@ -203,10 +202,10 @@ static int test_case4_pol_mismatch()
     REQUIRE(op.Initialize());
     op.Execute();
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
-                for (std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
+                for(std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
                     CHECK_CLOSE(std::abs(vis(pp, ch, t, f) - pristine(pp, ch, t, f)), 0.0, 1e-12);
 
     return 0;
@@ -232,9 +231,9 @@ static int test_case5_uniform_across_aps()
     REQUIRE(op.Initialize());
     op.Execute();
 
-    std::complex<double> ref = vis(0, 0, 0, 0);
-    for (std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
-        for (std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
+    std::complex< double > ref = vis(0, 0, 0, 0);
+    for(std::size_t t = 0; t < vis.GetDimension(TIME_AXIS); t++)
+        for(std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
             CHECK_CLOSE(std::abs(vis(0, 0, t, f) - ref), 0.0, 1e-9);
 
     return 0;
@@ -245,11 +244,16 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_case1_no_pcal_data()) return 1;
-    if (test_case2_non_matching_station()) return 1;
-    if (test_case3_matching_station()) return 1;
-    if (test_case4_pol_mismatch()) return 1;
-    if (test_case5_uniform_across_aps()) return 1;
+    if(test_case1_no_pcal_data())
+        return 1;
+    if(test_case2_non_matching_station())
+        return 1;
+    if(test_case3_matching_station())
+        return 1;
+    if(test_case4_pol_mismatch())
+        return 1;
+    if(test_case5_uniform_across_aps())
+        return 1;
 
     return 0;
 }

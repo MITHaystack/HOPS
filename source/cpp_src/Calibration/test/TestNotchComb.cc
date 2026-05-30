@@ -1,11 +1,11 @@
 #include <cmath>
+#include <complex>
 #include <iostream>
 #include <string>
-#include <complex>
 
-#include "MHO_NotchComb.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
+#include "MHO_NotchComb.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
@@ -22,12 +22,12 @@ static void build_fixture_usb(visibility_type& vis, weight_type& wt)
     vis.Resize(1, 1, 1, 8);
     wt.Resize(1, 1, 1, 1);
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.at(0) = 8000.0;
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 8.0);
 
-    auto& freq_ax = std::get<FREQ_AXIS>(vis);
+    auto& freq_ax = std::get< FREQ_AXIS >(vis);
     freq_ax.at(0) = 0.5;
     freq_ax.at(1) = 1.5;
     freq_ax.at(2) = 2.5;
@@ -38,8 +38,8 @@ static void build_fixture_usb(visibility_type& vis, weight_type& wt)
     freq_ax.at(7) = 7.5;
 
     // Fill vis with (1,0)
-    for (std::size_t sp = 0; sp < 8; sp++)
-        vis(0, 0, 0, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t sp = 0; sp < 8; sp++)
+        vis(0, 0, 0, sp) = std::complex< double >(1.0, 0.0);
 
     // Fill weight with 1.0
     wt(0, 0, 0, 0) = 1.0;
@@ -54,12 +54,12 @@ static void build_fixture_lsb(visibility_type& vis, weight_type& wt)
     vis.Resize(1, 1, 1, 8);
     wt.Resize(1, 1, 1, 1);
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.at(0) = 8000.0;
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("L"));
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 8.0);
 
-    auto& freq_ax = std::get<FREQ_AXIS>(vis);
+    auto& freq_ax = std::get< FREQ_AXIS >(vis);
     freq_ax.at(0) = 0.5;
     freq_ax.at(1) = 1.5;
     freq_ax.at(2) = 2.5;
@@ -69,8 +69,8 @@ static void build_fixture_lsb(visibility_type& vis, weight_type& wt)
     freq_ax.at(6) = 6.5;
     freq_ax.at(7) = 7.5;
 
-    for (std::size_t sp = 0; sp < 8; sp++)
-        vis(0, 0, 0, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t sp = 0; sp < 8; sp++)
+        vis(0, 0, 0, sp) = std::complex< double >(1.0, 0.0);
 
     wt(0, 0, 0, 0) = 1.0;
 }
@@ -96,7 +96,8 @@ static int test_case1_narrow_comb_no_hit()
     /* Notch centers at ..., 8000, 8002, 8004, 8006, 8008, ...
        Half-width 0.2; sp_freqs are at .5 offsets from even integers.
        All points are 0.5 MHz from nearest center => outside notch. */
-    for (std::size_t sp = 0; sp < 8; sp++) {
+    for(std::size_t sp = 0; sp < 8; sp++)
+    {
         CHECK_CLOSE(vis(0, 0, 0, sp).real(), 1.0, 1e-12);
         CHECK_CLOSE(vis(0, 0, 0, sp).imag(), 0.0, 1e-12);
     }
@@ -105,7 +106,7 @@ static int test_case1_narrow_comb_no_hit()
     // Labels: ubf=1.0, rescaling_factor=1.0
     {
         double ubf, rf;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
         CHECK_CLOSE(ubf, 1.0, 1e-12);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "rescaling_factor", rf));
@@ -135,12 +136,14 @@ static int test_case2_comb_hits_points()
        Half-width 0.2; sp_freqs exactly on centers => inside.
        sp {0,2,4,6} zeroed; {1,3,5,7} intact. */
     // Zeroed: indices 0, 2, 4, 6
-    for (std::size_t sp = 0; sp < 8; sp += 2) {
+    for(std::size_t sp = 0; sp < 8; sp += 2)
+    {
         CHECK_CLOSE(vis(0, 0, 0, sp).real(), 0.0, 1e-12);
         CHECK_CLOSE(vis(0, 0, 0, sp).imag(), 0.0, 1e-12);
     }
     // Intact: indices 1, 3, 5, 7
-    for (std::size_t sp = 1; sp < 8; sp += 2) {
+    for(std::size_t sp = 1; sp < 8; sp += 2)
+    {
         CHECK_CLOSE(vis(0, 0, 0, sp).real(), 1.0, 1e-12);
         CHECK_CLOSE(vis(0, 0, 0, sp).imag(), 0.0, 1e-12);
     }
@@ -150,7 +153,7 @@ static int test_case2_comb_hits_points()
 
     {
         double ubf, rf;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
         CHECK_CLOSE(ubf, 0.5, 1e-12);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "rescaling_factor", rf));
@@ -182,7 +185,8 @@ static int test_case3_noop_period_zero()
     REQUIRE(op.Execute());
 
     // vis and wt unchanged
-    for (std::size_t sp = 0; sp < 8; sp++) {
+    for(std::size_t sp = 0; sp < 8; sp++)
+    {
         CHECK_CLOSE(vis(0, 0, 0, sp).real(), pristine(0, 0, 0, sp).real(), 1e-12);
         CHECK_CLOSE(vis(0, 0, 0, sp).imag(), pristine(0, 0, 0, sp).imag(), 1e-12);
     }
@@ -191,7 +195,7 @@ static int test_case3_noop_period_zero()
     // Labels should NOT be written
     {
         double dummy;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", dummy) == false);
     }
 
@@ -220,7 +224,8 @@ static int test_case4_noop_width_zero()
     REQUIRE(op.Execute());
 
     // vis and wt unchanged
-    for (std::size_t sp = 0; sp < 8; sp++) {
+    for(std::size_t sp = 0; sp < 8; sp++)
+    {
         CHECK_CLOSE(vis(0, 0, 0, sp).real(), pristine(0, 0, 0, sp).real(), 1e-12);
         CHECK_CLOSE(vis(0, 0, 0, sp).imag(), pristine(0, 0, 0, sp).imag(), 1e-12);
     }
@@ -229,7 +234,7 @@ static int test_case4_noop_width_zero()
     // Labels should NOT be written
     {
         double dummy;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", dummy) == false);
     }
 
@@ -256,11 +261,13 @@ static int test_case5_lsb_sign()
        Centers: 7999.5, 7997.5, 7995.5, 7993.5
        Half-width 0.2; exact match on sp {0,2,4,6} => zeroed.
        sp {1,3,5,7} intact. */
-    for (std::size_t sp = 0; sp < 8; sp += 2) {
+    for(std::size_t sp = 0; sp < 8; sp += 2)
+    {
         CHECK_CLOSE(vis(0, 0, 0, sp).real(), 0.0, 1e-12);
         CHECK_CLOSE(vis(0, 0, 0, sp).imag(), 0.0, 1e-12);
     }
-    for (std::size_t sp = 1; sp < 8; sp += 2) {
+    for(std::size_t sp = 1; sp < 8; sp += 2)
+    {
         CHECK_CLOSE(vis(0, 0, 0, sp).real(), 1.0, 1e-12);
         CHECK_CLOSE(vis(0, 0, 0, sp).imag(), 0.0, 1e-12);
     }
@@ -270,7 +277,7 @@ static int test_case5_lsb_sign()
 
     {
         double ubf, rf;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
         CHECK_CLOSE(ubf, 0.5, 1e-12);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "rescaling_factor", rf));
@@ -285,11 +292,16 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_case1_narrow_comb_no_hit()) return 1;
-    if (test_case2_comb_hits_points()) return 1;
-    if (test_case3_noop_period_zero()) return 1;
-    if (test_case4_noop_width_zero()) return 1;
-    if (test_case5_lsb_sign()) return 1;
+    if(test_case1_narrow_comb_no_hit())
+        return 1;
+    if(test_case2_comb_hits_points())
+        return 1;
+    if(test_case3_noop_period_zero())
+        return 1;
+    if(test_case4_noop_width_zero())
+        return 1;
+    if(test_case5_lsb_sign())
+        return 1;
 
     return 0;
 }

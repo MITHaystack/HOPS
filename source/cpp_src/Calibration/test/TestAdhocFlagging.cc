@@ -29,9 +29,9 @@ static std::string make_temp_flag_file(const std::string& suffix)
 static void write_flag_file(const std::string& path, double fpday, const std::string& hex)
 {
     std::ofstream ofs(path.c_str());
-    if (!ofs.is_open()) {
-        std::cerr << "FAIL: cannot open flag file " << path
-                  << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
+    if(!ofs.is_open())
+    {
+        std::cerr << "FAIL: cannot open flag file " << path << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
         std::exit(1);
     }
     ofs << fpday << "  " << hex << std::endl;
@@ -40,13 +40,12 @@ static void write_flag_file(const std::string& path, double fpday, const std::st
 
 /* Write two rows (before and after all AP centers) so the flag table
    brackets the full AP time range. Both rows use the same hex token. */
-static void write_flag_file_bracketed(const std::string& path, double fpday_before,
-                                      double fpday_after, const std::string& hex)
+static void write_flag_file_bracketed(const std::string& path, double fpday_before, double fpday_after, const std::string& hex)
 {
     std::ofstream ofs(path.c_str());
-    if (!ofs.is_open()) {
-        std::cerr << "FAIL: cannot open flag file " << path
-                  << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
+    if(!ofs.is_open())
+    {
+        std::cerr << "FAIL: cannot open flag file " << path << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
         std::exit(1);
     }
     ofs << fpday_before << "  " << hex << std::endl;
@@ -57,9 +56,9 @@ static void write_flag_file_bracketed(const std::string& path, double fpday_befo
 static void write_empty_flag_file(const std::string& path)
 {
     std::ofstream ofs(path.c_str());
-    if (!ofs.is_open()) {
-        std::cerr << "FAIL: cannot open empty flag file " << path
-                  << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
+    if(!ofs.is_open())
+    {
+        std::cerr << "FAIL: cannot open empty flag file " << path << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
         std::exit(1);
     }
     ofs.close();
@@ -70,9 +69,9 @@ static void write_empty_flag_file(const std::string& path)
    Returns bracket times for flag-file rows that span all AP centers. */
 struct FixtureInfo
 {
-    double scan_fpday;      // scan start fpday
-    double row_fpday_lo;    // flag-file row before first AP center
-    double row_fpday_hi;    // flag-file row after last AP center
+        double scan_fpday;   // scan start fpday
+        double row_fpday_lo; // flag-file row before first AP center
+        double row_fpday_hi; // flag-file row after last AP center
 };
 
 static FixtureInfo build_fixture(weight_type& w, bool include_start_tag)
@@ -81,7 +80,7 @@ static FixtureInfo build_fixture(weight_type& w, bool include_start_tag)
 
     // TIME axis: 0, 1, 2, 3 (AP = 1.0 s, center = t + 0.5)
     auto& time_ax = std::get< TIME_AXIS >(w);
-    for (std::size_t t = 0; t < time_ax.GetSize(); t++)
+    for(std::size_t t = 0; t < time_ax.GetSize(); t++)
         time_ax.at(t) = (double)t * 1.0;
 
     // CHANNEL axis: sideband labels
@@ -95,13 +94,13 @@ static FixtureInfo build_fixture(weight_type& w, bool include_start_tag)
     pp_ax[1] = "YY";
 
     // Start tag (optional)
-    if (include_start_tag)
+    if(include_start_tag)
         w.Insert(std::string("start"), std::string("2024y001d00h00m00s"));
 
     // Fill weights with 1.0
-    for (std::size_t pp = 0; pp < w.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < w.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t t = 0; t < w.GetDimension(TIME_AXIS); t++)
+    for(std::size_t pp = 0; pp < w.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < w.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t t = 0; t < w.GetDimension(TIME_AXIS); t++)
                 w(pp, ch, t, 0) = 1.0;
 
     /* Compute fpday of scan start for flag file row times.
@@ -114,8 +113,8 @@ static FixtureInfo build_fixture(weight_type& w, bool include_start_tag)
     hops_clock::time_point tp = hops_clock::from_vex_format("2024y001d00h00m00s");
     int yr;
     hops_clock::to_year_fpday(tp, yr, info.scan_fpday);
-    info.row_fpday_lo = info.scan_fpday + 0.25 / 86400.0;  // before first AP center
-    info.row_fpday_hi = info.scan_fpday + 4.5 / 86400.0;   // after last AP center
+    info.row_fpday_lo = info.scan_fpday + 0.25 / 86400.0; // before first AP center
+    info.row_fpday_hi = info.scan_fpday + 4.5 / 86400.0;  // after last AP center
 
     return info;
 }
@@ -138,13 +137,13 @@ static int test_case1_decode_hex_token_80()
     REQUIRE(op.Execute());
 
     // ch0 (USB): 0x80 & 0x55 = 0x00 -> zeroed
-    for (std::size_t pp = 0; pp < 2; pp++)
-        for (std::size_t t = 0; t < 4; t++)
+    for(std::size_t pp = 0; pp < 2; pp++)
+        for(std::size_t t = 0; t < 4; t++)
             CHECK_CLOSE(w(pp, 0, t, 0), 0.0, 1e-15);
 
     // ch1 (LSB): 0x80 & 0xAA = 0x80 != 0 -> retained
-    for (std::size_t pp = 0; pp < 2; pp++)
-        for (std::size_t t = 0; t < 4; t++)
+    for(std::size_t pp = 0; pp < 2; pp++)
+        for(std::size_t t = 0; t < 4; t++)
             CHECK_CLOSE(w(pp, 1, t, 0), 1.0, 1e-15);
 
     std::remove(ref_file.c_str());
@@ -167,13 +166,13 @@ static int test_case2_byte_55()
     REQUIRE(op.Execute());
 
     // ch0 (USB): 0x55 & 0x55 = 0x55 != 0 -> retained
-    for (std::size_t pp = 0; pp < 2; pp++)
-        for (std::size_t t = 0; t < 4; t++)
+    for(std::size_t pp = 0; pp < 2; pp++)
+        for(std::size_t t = 0; t < 4; t++)
             CHECK_CLOSE(w(pp, 0, t, 0), 1.0, 1e-15);
 
     // ch1 (LSB): 0x55 & 0xAA = 0x00 -> zeroed
-    for (std::size_t pp = 0; pp < 2; pp++)
-        for (std::size_t t = 0; t < 4; t++)
+    for(std::size_t pp = 0; pp < 2; pp++)
+        for(std::size_t t = 0; t < 4; t++)
             CHECK_CLOSE(w(pp, 1, t, 0), 0.0, 1e-15);
 
     std::remove(ref_file.c_str());
@@ -199,9 +198,9 @@ static int test_case3_ref_and_rem()
     REQUIRE(op.Execute());
 
     // combined = 0xFF & 0x00 = 0x00 -> both USB and LSB zeroed
-    for (std::size_t pp = 0; pp < 2; pp++)
-        for (std::size_t ch = 0; ch < 2; ch++)
-            for (std::size_t t = 0; t < 4; t++)
+    for(std::size_t pp = 0; pp < 2; pp++)
+        for(std::size_t ch = 0; ch < 2; ch++)
+            for(std::size_t t = 0; t < 4; t++)
                 CHECK_CLOSE(w(pp, ch, t, 0), 0.0, 1e-15);
 
     std::remove(ref_file.c_str());
@@ -230,9 +229,9 @@ static int test_case4_empty_ref()
     REQUIRE(op.Execute());
 
     // Array should be unchanged (all 1.0)
-    for (std::size_t pp = 0; pp < 2; pp++)
-        for (std::size_t ch = 0; ch < 2; ch++)
-            for (std::size_t t = 0; t < 4; t++)
+    for(std::size_t pp = 0; pp < 2; pp++)
+        for(std::size_t ch = 0; ch < 2; ch++)
+            for(std::size_t t = 0; t < 4; t++)
                 CHECK_CLOSE(w(pp, ch, t, 0), pristine(pp, ch, t, 0), 1e-15);
 
     std::remove(rem_file.c_str());
@@ -259,9 +258,9 @@ static int test_case5_time_out_of_range()
     REQUIRE(op.Execute());
 
     // All AP centers < table.front().time -> LookupFlagBytes returns ALL_GOOD
-    for (std::size_t pp = 0; pp < 2; pp++)
-        for (std::size_t ch = 0; ch < 2; ch++)
-            for (std::size_t t = 0; t < 4; t++)
+    for(std::size_t pp = 0; pp < 2; pp++)
+        for(std::size_t ch = 0; ch < 2; ch++)
+            for(std::size_t t = 0; t < 4; t++)
                 CHECK_CLOSE(w(pp, ch, t, 0), pristine(pp, ch, t, 0), 1e-15);
 
     std::remove(ref_file.c_str());
@@ -320,9 +319,9 @@ static int test_case7_both_empty()
     REQUIRE(op.Execute());
 
     // Array unchanged; n_zeroed == 0 so recompute block is skipped
-    for (std::size_t pp = 0; pp < 2; pp++)
-        for (std::size_t ch = 0; ch < 2; ch++)
-            for (std::size_t t = 0; t < 4; t++)
+    for(std::size_t pp = 0; pp < 2; pp++)
+        for(std::size_t ch = 0; ch < 2; ch++)
+            for(std::size_t t = 0; t < 4; t++)
                 CHECK_CLOSE(w(pp, ch, t, 0), pristine(pp, ch, t, 0), 1e-15);
 
     return 0;
@@ -353,14 +352,22 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_case1_decode_hex_token_80()) return 1;
-    if (test_case2_byte_55()) return 1;
-    if (test_case3_ref_and_rem()) return 1;
-    if (test_case4_empty_ref()) return 1;
-    if (test_case5_time_out_of_range()) return 1;
-    if (test_case6_parameter_store()) return 1;
-    if (test_case7_both_empty()) return 1;
-    if (test_case8_missing_start_tag()) return 1;
+    if(test_case1_decode_hex_token_80())
+        return 1;
+    if(test_case2_byte_55())
+        return 1;
+    if(test_case3_ref_and_rem())
+        return 1;
+    if(test_case4_empty_ref())
+        return 1;
+    if(test_case5_time_out_of_range())
+        return 1;
+    if(test_case6_parameter_store())
+        return 1;
+    if(test_case7_both_empty())
+        return 1;
+    if(test_case8_missing_start_tag())
+        return 1;
 
     return 0;
 }

@@ -82,8 +82,8 @@
             std::stringstream _hops_sb;                                                                                        \
             _hops_sa << (a);                                                                                                   \
             _hops_sb << (b);                                                                                                   \
-            std::cerr << "FAIL: " #a " == " #b " @ " << __FILE__ << ":" << __LINE__ << " (\"" << _hops_sa.str()                \
-                      << "\" vs \"" << _hops_sb.str() << "\")" << std::endl;                                                   \
+            std::cerr << "FAIL: " #a " == " #b " @ " << __FILE__ << ":" << __LINE__ << " (\"" << _hops_sa.str() << "\" vs \""  \
+                      << _hops_sb.str() << "\")" << std::endl;                                                                 \
             return 1;                                                                                                          \
         }                                                                                                                      \
     }                                                                                                                          \

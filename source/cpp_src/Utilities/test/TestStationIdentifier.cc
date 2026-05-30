@@ -28,8 +28,8 @@ int main()
     // Case 2: Equality is by NAME only
     {
         MHO_StationIdentity a("WESTFORD", "Wf", "E");
-        MHO_StationIdentity b("WESTFORD", "Zz", "Q");  // same name, diff code/id
-        MHO_StationIdentity c("GGAO12M", "Wf", "E");   // diff name, same code/id
+        MHO_StationIdentity b("WESTFORD", "Zz", "Q"); // same name, diff code/id
+        MHO_StationIdentity c("GGAO12M", "Wf", "E");  // diff name, same code/id
         REQUIRE(a == b);
         REQUIRE(!(a == c));
         REQUIRE(a != c);
@@ -38,12 +38,12 @@ int main()
     // Case 3: matches() dispatch by identifier length
     {
         MHO_StationIdentity s("WESTFORD", "Wf", "E");
-        REQUIRE(s.matches("E"));          // len 1> mk4id
-        REQUIRE(s.matches("Wf"));         // len 2> code
-        REQUIRE(s.matches("westford"));   // len>2> name (case-insensitive)
-        REQUIRE(!s.matches("X"));         // wrong mk4id
-        REQUIRE(!s.matches("Zz"));        // wrong code
-        REQUIRE(!s.matches("GGAO12M"));   // wrong name
+        REQUIRE(s.matches("E"));        // len 1> mk4id
+        REQUIRE(s.matches("Wf"));       // len 2> code
+        REQUIRE(s.matches("westford")); // len>2> name (case-insensitive)
+        REQUIRE(!s.matches("X"));       // wrong mk4id
+        REQUIRE(!s.matches("Zz"));      // wrong code
+        REQUIRE(!s.matches("GGAO12M")); // wrong name
     }
 
     // Case 4: as_string / from_string round-trip
@@ -140,7 +140,7 @@ int main()
     // Case 9: Insert of NEW name that COLLIDES on code/mk4id is rejected
     {
         MHO_StationIdentifier* p = MHO_StationIdentifier::GetInstance();
-        int rc = p->Insert("NEWNAME", "Wf", "Q");  // code "Wf" belongs to WESTFORD
+        int rc = p->Insert("NEWNAME", "Wf", "Q"); // code "Wf" belongs to WESTFORD
         REQUIRE(rc == -1);
         // NEWNAME must not be resolvable (echo on miss)
         REQUIRE_EQUAL(p->CanonicalStationName("NEWNAME"), "NEWNAME");

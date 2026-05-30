@@ -1,15 +1,14 @@
 #include <cmath>
+#include <complex>
 #include <iostream>
 #include <string>
-#include <complex>
 
-#include "MHO_Passband.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
+#include "MHO_Passband.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
-
 
 /* Build the shared USB fixture: npol=1, nchan=2, nap=1, nspec=4.
    Channel 0: sky=8000.0, net_sideband="U", bandwidth=8.0.
@@ -24,7 +23,7 @@ static void build_fixture(visibility_type& vis, weight_type& wt)
     vis.Resize(1, 2, 1, 4);
     wt.Resize(1, 2, 1, 1);
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.at(0) = 8000.0;
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 8.0);
@@ -32,21 +31,21 @@ static void build_fixture(visibility_type& vis, weight_type& wt)
     chan_ax.InsertIndexLabelKeyValue(1, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(1, "bandwidth", 8.0);
 
-    auto& freq_ax = std::get<FREQ_AXIS>(vis);
+    auto& freq_ax = std::get< FREQ_AXIS >(vis);
     freq_ax.at(0) = 1.0;
     freq_ax.at(1) = 3.0;
     freq_ax.at(2) = 5.0;
     freq_ax.at(3) = 7.0;
 
     // Fill vis with (1,0)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 
     // Fill weights with 1.0
-    for (std::size_t ch = 0; ch < 2; ch++)
+    for(std::size_t ch = 0; ch < 2; ch++)
         wt(0, ch, 0, 0) = 1.0;
 }
 
@@ -56,27 +55,26 @@ static void build_fixture(visibility_type& vis, weight_type& wt)
 static void build_fixture_lsb(visibility_type& vis, weight_type& wt)
 {
     build_fixture(vis, wt);
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("L"));
 }
 
 /* Check that all vis elements for channel ch equal expected value.
    Returns true on success, false on first mismatch (with cerr output). */
-static bool check_channel_vis(const visibility_type& vis, std::size_t ch,
-                              const std::complex<double>& expected, double tol)
+static bool check_channel_vis(const visibility_type& vis, std::size_t ch, const std::complex< double >& expected, double tol)
 {
     auto npol = vis.GetDimension(POLPROD_AXIS);
-    auto nap  = vis.GetDimension(TIME_AXIS);
+    auto nap = vis.GetDimension(TIME_AXIS);
     auto nspec = vis.GetDimension(FREQ_AXIS);
-    for (std::size_t pp = 0; pp < npol; pp++)
-        for (std::size_t ap = 0; ap < nap; ap++)
-            for (std::size_t sp = 0; sp < nspec; sp++) {
-                if (std::fabs(vis(pp, ch, ap, sp).real() - expected.real()) > tol ||
-                    std::fabs(vis(pp, ch, ap, sp).imag() - expected.imag()) > tol) {
-                    std::cerr << "FAIL: vis channel " << ch
-                              << " sp " << sp << " = " << vis(pp, ch, ap, sp)
-                              << " expected " << expected
-                              << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
+    for(std::size_t pp = 0; pp < npol; pp++)
+        for(std::size_t ap = 0; ap < nap; ap++)
+            for(std::size_t sp = 0; sp < nspec; sp++)
+            {
+                if(std::fabs(vis(pp, ch, ap, sp).real() - expected.real()) > tol ||
+                   std::fabs(vis(pp, ch, ap, sp).imag() - expected.imag()) > tol)
+                {
+                    std::cerr << "FAIL: vis channel " << ch << " sp " << sp << " = " << vis(pp, ch, ap, sp) << " expected "
+                              << expected << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
                     return false;
                 }
             }
@@ -122,13 +120,13 @@ static int test_case1_exclusion_interior()
     // used_bandwidth_fraction on chan axis
     {
         double ubf;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
         CHECK_CLOSE(ubf, 0.5, 1e-12);
     }
 
     // --- Channel 1: no overlap => fully intact ---
-    REQUIRE(check_channel_vis(vis, 1, std::complex<double>(1.0, 0.0), 1e-12));
+    REQUIRE(check_channel_vis(vis, 1, std::complex< double >(1.0, 0.0), 1e-12));
 
     // Weight for chan1 unchanged
     CHECK_CLOSE(wt(0, 1, 0, 0), 1.0, 1e-12);
@@ -136,7 +134,7 @@ static int test_case1_exclusion_interior()
     // No labels written on channel 1
     {
         double dummy;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(1, "used_bandwidth_fraction", dummy) == false);
     }
 
@@ -176,13 +174,13 @@ static int test_case2_inclusion_disjoint()
 
     {
         double ubf;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
         CHECK_CLOSE(ubf, 0.5, 1e-12);
     }
 
     // --- Channel 1: no intersection => whole channel zeroed ---
-    REQUIRE(check_channel_vis(vis, 1, std::complex<double>(0.0, 0.0), 1e-12));
+    REQUIRE(check_channel_vis(vis, 1, std::complex< double >(0.0, 0.0), 1e-12));
 
     // Weight for chan1 zeroed
     CHECK_CLOSE(wt(0, 1, 0, 0), 0.0, 1e-12);
@@ -190,8 +188,8 @@ static int test_case2_inclusion_disjoint()
     // ubf[1]=0.0, rescaling_factor[1]=0.0
     {
         double ubf, rf;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
-        auto& wchan_ax = std::get<CHANNEL_AXIS>(wt);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
+        auto& wchan_ax = std::get< CHANNEL_AXIS >(wt);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(1, "used_bandwidth_fraction", ubf));
         CHECK_CLOSE(ubf, 0.0, 1e-12);
         REQUIRE(wchan_ax.RetrieveIndexLabelKeyValue(1, "rescaling_factor", rf));
@@ -256,15 +254,15 @@ static int test_case4_full_exclusion()
     REQUIRE(pb.Execute());
 
     // --- Channel 0: all 4 points zeroed ---
-    REQUIRE(check_channel_vis(vis, 0, std::complex<double>(0.0, 0.0), 1e-12));
+    REQUIRE(check_channel_vis(vis, 0, std::complex< double >(0.0, 0.0), 1e-12));
 
     // count=4, frac=0.0, factor=0.0
     CHECK_CLOSE(wt(0, 0, 0, 0), 0.0, 1e-12);
 
     {
         double ubf, rf;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
-        auto& wchan_ax = std::get<CHANNEL_AXIS>(wt);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
+        auto& wchan_ax = std::get< CHANNEL_AXIS >(wt);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
         CHECK_CLOSE(ubf, 0.0, 1e-12);
         REQUIRE(wchan_ax.RetrieveIndexLabelKeyValue(0, "rescaling_factor", rf));
@@ -297,24 +295,23 @@ static int test_case5_no_overlap_exclusion()
     REQUIRE(pb.Execute());
 
     // --- Vis identical to pristine ---
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++) {
-                    CHECK_CLOSE(vis(pp, ch, ap, sp).real(),
-                                 pristine_vis(pp, ch, ap, sp).real(), 1e-12);
-                    CHECK_CLOSE(vis(pp, ch, ap, sp).imag(),
-                                 pristine_vis(pp, ch, ap, sp).imag(), 1e-12);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                {
+                    CHECK_CLOSE(vis(pp, ch, ap, sp).real(), pristine_vis(pp, ch, ap, sp).real(), 1e-12);
+                    CHECK_CLOSE(vis(pp, ch, ap, sp).imag(), pristine_vis(pp, ch, ap, sp).imag(), 1e-12);
                 }
 
     // --- Weight identical to pristine ---
-    for (std::size_t ch = 0; ch < 2; ch++)
+    for(std::size_t ch = 0; ch < 2; ch++)
         CHECK_CLOSE(wt(0, ch, 0, 0), pristine_wt(0, ch, 0, 0), 1e-12);
 
     // --- No labels written on either channel ---
     {
         double dummy;
-        auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", dummy) == false);
         REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(1, "used_bandwidth_fraction", dummy) == false);
     }
@@ -327,11 +324,16 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_case1_exclusion_interior())  return 1;
-    if (test_case2_inclusion_disjoint())  return 1;
-    if (test_case3_lsb_exclusion())       return 1;
-    if (test_case4_full_exclusion())      return 1;
-    if (test_case5_no_overlap_exclusion()) return 1;
+    if(test_case1_exclusion_interior())
+        return 1;
+    if(test_case2_inclusion_disjoint())
+        return 1;
+    if(test_case3_lsb_exclusion())
+        return 1;
+    if(test_case4_full_exclusion())
+        return 1;
+    if(test_case5_no_overlap_exclusion())
+        return 1;
 
     return 0;
 }

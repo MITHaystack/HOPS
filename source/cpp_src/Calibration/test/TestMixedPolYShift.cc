@@ -1,11 +1,11 @@
 #include <cmath>
+#include <complex>
 #include <iostream>
 #include <string>
-#include <complex>
 
-#include "MHO_MixedPolYShift.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
+#include "MHO_MixedPolYShift.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
@@ -19,8 +19,8 @@ static void build_fixture(visibility_type& vis, visibility_type& pristine)
 {
     vis.Resize(3, 2, 2, 2);
 
-    auto& pp_ax   = std::get<POLPROD_AXIS>(vis);
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& pp_ax = std::get< POLPROD_AXIS >(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
 
     pp_ax.at(0) = std::string("YR");
 
@@ -35,18 +35,18 @@ static void build_fixture(visibility_type& vis, visibility_type& pristine)
     chan_ax.InsertIndexLabelKeyValue(1, "net_sideband", std::string("L"));
 
     vis.Insert(std::string("reference_station"), std::string("Gs"));
-    vis.Insert(std::string("remote_station"),    std::string("Wf"));
+    vis.Insert(std::string("remote_station"), std::string("Wf"));
 
-    auto npol  = vis.GetDimension(POLPROD_AXIS);
+    auto npol = vis.GetDimension(POLPROD_AXIS);
     auto nchan = vis.GetDimension(CHANNEL_AXIS);
-    auto nap   = vis.GetDimension(TIME_AXIS);
+    auto nap = vis.GetDimension(TIME_AXIS);
     auto nspec = vis.GetDimension(FREQ_AXIS);
 
-    for (std::size_t pp = 0; pp < npol; pp++)
-        for (std::size_t ch = 0; ch < nchan; ch++)
-            for (std::size_t ap = 0; ap < nap; ap++)
-                for (std::size_t sp = 0; sp < nspec; sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < npol; pp++)
+        for(std::size_t ch = 0; ch < nchan; ch++)
+            for(std::size_t ap = 0; ap < nap; ap++)
+                for(std::size_t sp = 0; sp < nspec; sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 
     // Make pristine copy
     pristine.Copy(vis);
@@ -72,20 +72,22 @@ static int test_yr_reference_station()
     REQUIRE(op.Initialize());
     REQUIRE(op.Execute());
 
-    auto nap  = vis.GetDimension(TIME_AXIS);
+    auto nap = vis.GetDimension(TIME_AXIS);
     auto nspec = vis.GetDimension(FREQ_AXIS);
 
     // pp=0 (YR): reference station Y-pol mixed with R circular
     // ch=0 (USB): should be conj(base) = (0, +1)
-    for (std::size_t ap = 0; ap < nap; ap++)
-        for (std::size_t sp = 0; sp < nspec; sp++) {
+    for(std::size_t ap = 0; ap < nap; ap++)
+        for(std::size_t sp = 0; sp < nspec; sp++)
+        {
             CHECK_CLOSE(vis(0, 0, ap, sp).real(), 0.0, TOL);
             CHECK_CLOSE(vis(0, 0, ap, sp).imag(), 1.0, TOL);
         }
 
     // ch=1 (LSB): should be conj(conj(base)) = base = (0, -1)
-    for (std::size_t ap = 0; ap < nap; ap++)
-        for (std::size_t sp = 0; sp < nspec; sp++) {
+    for(std::size_t ap = 0; ap < nap; ap++)
+        for(std::size_t sp = 0; sp < nspec; sp++)
+        {
             CHECK_CLOSE(vis(0, 1, ap, sp).real(), 0.0, TOL);
             CHECK_CLOSE(vis(0, 1, ap, sp).imag(), -1.0, TOL);
         }
@@ -109,20 +111,22 @@ static int test_ry_remote_station()
     REQUIRE(op.Initialize());
     REQUIRE(op.Execute());
 
-    auto nap  = vis.GetDimension(TIME_AXIS);
+    auto nap = vis.GetDimension(TIME_AXIS);
     auto nspec = vis.GetDimension(FREQ_AXIS);
 
     // pp=1 (RY): remote station Y-pol mixed with R circular
     // ch=0 (USB): should be base = (0, -1)
-    for (std::size_t ap = 0; ap < nap; ap++)
-        for (std::size_t sp = 0; sp < nspec; sp++) {
+    for(std::size_t ap = 0; ap < nap; ap++)
+        for(std::size_t sp = 0; sp < nspec; sp++)
+        {
             CHECK_CLOSE(vis(1, 0, ap, sp).real(), 0.0, TOL);
             CHECK_CLOSE(vis(1, 0, ap, sp).imag(), -1.0, TOL);
         }
 
     // ch=1 (LSB): should be conj(base) = (0, +1)
-    for (std::size_t ap = 0; ap < nap; ap++)
-        for (std::size_t sp = 0; sp < nspec; sp++) {
+    for(std::size_t ap = 0; ap < nap; ap++)
+        for(std::size_t sp = 0; sp < nspec; sp++)
+        {
             CHECK_CLOSE(vis(1, 1, ap, sp).real(), 0.0, TOL);
             CHECK_CLOSE(vis(1, 1, ap, sp).imag(), 1.0, TOL);
         }
@@ -143,13 +147,14 @@ static int test_rr_untouched()
     REQUIRE(op.Execute());
 
     auto nchan = vis.GetDimension(CHANNEL_AXIS);
-    auto nap   = vis.GetDimension(TIME_AXIS);
+    auto nap = vis.GetDimension(TIME_AXIS);
     auto nspec = vis.GetDimension(FREQ_AXIS);
 
     // pp=2 (RR): not mixed, should remain (1, 0) everywhere
-    for (std::size_t ch = 0; ch < nchan; ch++)
-        for (std::size_t ap = 0; ap < nap; ap++)
-            for (std::size_t sp = 0; sp < nspec; sp++) {
+    for(std::size_t ch = 0; ch < nchan; ch++)
+        for(std::size_t ap = 0; ap < nap; ap++)
+            for(std::size_t sp = 0; sp < nspec; sp++)
+            {
                 CHECK_CLOSE(vis(2, ch, ap, sp).real(), 1.0, TOL);
                 CHECK_CLOSE(vis(2, ch, ap, sp).imag(), 0.0, TOL);
             }
@@ -172,16 +177,17 @@ static int test_custom_phase_offset_zero()
     REQUIRE(op.Initialize());
     REQUIRE(op.Execute());
 
-    auto npol  = vis.GetDimension(POLPROD_AXIS);
+    auto npol = vis.GetDimension(POLPROD_AXIS);
     auto nchan = vis.GetDimension(CHANNEL_AXIS);
-    auto nap   = vis.GetDimension(TIME_AXIS);
+    auto nap = vis.GetDimension(TIME_AXIS);
     auto nspec = vis.GetDimension(FREQ_AXIS);
 
     // All elements should be (1, 0) - same as pristine
-    for (std::size_t pp = 0; pp < npol; pp++)
-        for (std::size_t ch = 0; ch < nchan; ch++)
-            for (std::size_t ap = 0; ap < nap; ap++)
-                for (std::size_t sp = 0; sp < nspec; sp++) {
+    for(std::size_t pp = 0; pp < npol; pp++)
+        for(std::size_t ch = 0; ch < nchan; ch++)
+            for(std::size_t ap = 0; ap < nap; ap++)
+                for(std::size_t sp = 0; sp < nspec; sp++)
+                {
                     CHECK_CLOSE(vis(pp, ch, ap, sp).real(), 1.0, TOL);
                     CHECK_CLOSE(vis(pp, ch, ap, sp).imag(), 0.0, TOL);
                 }
@@ -207,11 +213,16 @@ int main(int /*argc*/, char** /*argv*/)
 {
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_yr_reference_station())     return 1;
-    if (test_ry_remote_station())        return 1;
-    if (test_rr_untouched())             return 1;
-    if (test_custom_phase_offset_zero()) return 1;
-    if (test_nullptr_input())            return 1;
+    if(test_yr_reference_station())
+        return 1;
+    if(test_ry_remote_station())
+        return 1;
+    if(test_rr_untouched())
+        return 1;
+    if(test_custom_phase_offset_zero())
+        return 1;
+    if(test_nullptr_input())
+        return 1;
 
     return 0;
 }

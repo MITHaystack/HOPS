@@ -249,8 +249,7 @@ std::string MHO_VexElementLineGenerator::GenerateCompound(std::string element_na
             }
             components.push_back(ret_val);
         }
-        else if(MHO_VexDefinitions::IsOptionalField(raw_field_name) &&
-                AnyLaterFieldPresent(i, format["fields"], element))
+        else if(MHO_VexDefinitions::IsOptionalField(raw_field_name) && AnyLaterFieldPresent(i, format["fields"], element))
         {
             //a missing optional field still needs an empty positional placeholder
             //whenever a later field is actually populated, otherwise the populated

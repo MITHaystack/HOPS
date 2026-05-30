@@ -1,15 +1,14 @@
+#include <cmath>
 #include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
-#include <cmath>
 
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
+#include "MHO_TestAssertions.hh"
 #include "MHO_VexBlockParser.hh"
 #include "MHO_VexLine.hh"
-#include "MHO_TestAssertions.hh"
-
 
 // Helpers
 
@@ -29,21 +28,18 @@ static bool json_double_close(mho_json& j, double expected, double eps = 1e-9)
     return std::fabs(val - expected) < eps;
 }
 
-
-
-
 int main()
 {
     hops::MHO_Message::GetInstance().AcceptAllKeys();
     hops::MHO_Message::GetInstance().SetMessageLevel(hops::eFatal);
 
 #ifndef VEX_FORMAT_DIR
-#error "VEX_FORMAT_DIR must be defined at compile time"
+    #error "VEX_FORMAT_DIR must be defined at compile time"
 #endif
 
     //  Test Case 1: Parse $FREQ block (single def)
     {
-        std::vector<hops::MHO_VexLine> lines = {
+        std::vector< hops::MHO_VexLine > lines = {
             MakeLine(1, 0, "$FREQ"),
             MakeLine(2, 1, "def TESTFREQ"),
             MakeLine(3, 2, "chan_def = &X : 8080.40 MHz : U : 32.00 MHz : &CH01 : &BBC01 : &U_Cal"),
@@ -77,7 +73,7 @@ int main()
 
     //  Test Case 2: Reference line in $MODE block
     {
-        std::vector<hops::MHO_VexLine> lines = {
+        std::vector< hops::MHO_VexLine > lines = {
             MakeLine(1, 0, "$MODE"),
             MakeLine(2, 1, "def NORMAL_MODE"),
             MakeLine(3, 2, "ref $FREQ = TESTFREQ : Aa : Bb"),
@@ -105,7 +101,7 @@ int main()
 
     //  Test Case 3: List-of-int element ($FREQ chan_def with freq_state)
     {
-        std::vector<hops::MHO_VexLine> lines = {
+        std::vector< hops::MHO_VexLine > lines = {
             MakeLine(1, 0, "$FREQ"),
             MakeLine(2, 1, "def TESTFREQ"),
             MakeLine(3, 2, "chan_def = &X : 8080.40 MHz : U : 32.00 MHz : &CH01 : &BBC01 : &U_Cal : 1 : 2 : 3"),
@@ -131,7 +127,7 @@ int main()
 
     //  Test Case 4: Compound element ($SOURCE with ra/dec)
     {
-        std::vector<hops::MHO_VexLine> lines = {
+        std::vector< hops::MHO_VexLine > lines = {
             MakeLine(1, 0, "$SOURCE"),
             MakeLine(2, 1, "def 3C273"),
             MakeLine(3, 2, "source_name = 3C273"),
@@ -155,7 +151,7 @@ int main()
 
     //  Test Case 5: Multiple defs in one block
     {
-        std::vector<hops::MHO_VexLine> lines = {
+        std::vector< hops::MHO_VexLine > lines = {
             MakeLine(1, 0, "$FREQ"),
             MakeLine(2, 1, "def FREQ1"),
             MakeLine(3, 2, "chan_def = &X : 8080.40 MHz : U : 32.00 MHz : &CH01 : &BBC01 : &U_Cal"),
@@ -185,10 +181,10 @@ int main()
 
     //  Test Case 6: Missing required field (truncated chan_def)
     {
-        std::vector<hops::MHO_VexLine> lines = {
+        std::vector< hops::MHO_VexLine > lines = {
             MakeLine(1, 0, "$FREQ"),
             MakeLine(2, 1, "def TESTFREQ"),
-            MakeLine(3, 2, "chan_def = &X"),  // truncated - only band_id
+            MakeLine(3, 2, "chan_def = &X"), // truncated - only band_id
             MakeLine(4, 3, "sample_rate = 64.00 Ms/sec"),
             MakeLine(5, 4, "enddef"),
         };
@@ -214,7 +210,7 @@ int main()
 
     //  Test Case 7: Unknown block name
     {
-        std::vector<hops::MHO_VexLine> lines = {
+        std::vector< hops::MHO_VexLine > lines = {
             MakeLine(1, 0, "$NOT_A_BLOCK"),
             MakeLine(2, 1, "def SOMETHING"),
             MakeLine(3, 2, "enddef"),
@@ -230,10 +226,10 @@ int main()
 
     //  Test Case 8: Literal line passthrough
     {
-        std::vector<hops::MHO_VexLine> lines = {
+        std::vector< hops::MHO_VexLine > lines = {
             MakeLine(1, 0, "$FREQ"),
             MakeLine(2, 1, "def TESTFREQ"),
-            MakeLine(3, 2, "This is a literal line", true),  // fIsLiteral = true
+            MakeLine(3, 2, "This is a literal line", true), // fIsLiteral = true
             MakeLine(4, 3, "sample_rate = 64.00 Ms/sec"),
             MakeLine(5, 4, "enddef"),
         };

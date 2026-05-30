@@ -44,11 +44,11 @@ int main(int /*argc*/, char** /*argv*/)
     {
         MHO_ParameterStore store;
 
-        std::vector<double> vinput{1.0, 2.0, 3.0};
+        std::vector< double > vinput{1.0, 2.0, 3.0};
         bool ok = store.Set("/global/dr_win", vinput);
         REQUIRE(ok);
 
-        std::vector<double> vout;
+        std::vector< double > vout;
         ok = store.Get("/global/dr_win", vout);
         REQUIRE(ok);
         REQUIRE(vout.size() == 3);
@@ -62,14 +62,16 @@ int main(int /*argc*/, char** /*argv*/)
         MHO_ParameterStore store;
 
         mho_json arr = {1, 2, 3};
-        mho_json obj = {{"k", "v"}};
+        mho_json obj = {
+            {"k", "v"}
+        };
 
         bool ok = store.Set("/arr", arr);
         REQUIRE(ok);
         ok = store.Set("/obj", obj);
         REQUIRE(ok);
 
-        std::vector<int> v;
+        std::vector< int > v;
         ok = store.Get("/arr", v);
         REQUIRE(ok);
         REQUIRE(v.size() == 3);
@@ -97,13 +99,13 @@ int main(int /*argc*/, char** /*argv*/)
     {
         MHO_ParameterStore store;
 
-        int i = store.GetAs<int>("/missing");
+        int i = store.GetAs< int >("/missing");
         REQUIRE(i == 0);
 
-        std::string s = store.GetAs<std::string>("/missing");
+        std::string s = store.GetAs< std::string >("/missing");
         REQUIRE(s == "");
 
-        double d = store.GetAs<double>("/missing");
+        double d = store.GetAs< double >("/missing");
         CHECK_CLOSE(d, 0.0, 1e-15);
     }
 
@@ -128,7 +130,7 @@ int main(int /*argc*/, char** /*argv*/)
         store.Set("/k", 2);
         store.Set("/k", 2);
 
-        REQUIRE(store.GetAs<int>("/k") == 2);
+        REQUIRE(store.GetAs< int >("/k") == 2);
     }
 
     // Case 8: Path sanitization
@@ -138,8 +140,8 @@ int main(int /*argc*/, char** /*argv*/)
         bool ok = store.Set("  /a/b/  ", 5);
         REQUIRE(ok);
 
-        REQUIRE(store.GetAs<int>("/a/b") == 5);
-        REQUIRE(store.GetAs<int>("/a/b/") == 5);
+        REQUIRE(store.GetAs< int >("/a/b") == 5);
+        REQUIRE(store.GetAs< int >("/a/b/") == 5);
         REQUIRE(store.IsPresent("/a/b") == true);
     }
 
@@ -150,7 +152,7 @@ int main(int /*argc*/, char** /*argv*/)
         bool ok = store.Set("/control/station/E/pc_mode/value", std::string("manual"));
         REQUIRE(ok);
 
-        REQUIRE(store.GetAs<std::string>("/control/station/E/pc_mode/value") == "manual");
+        REQUIRE(store.GetAs< std::string >("/control/station/E/pc_mode/value") == "manual");
         REQUIRE(store.IsPresent("/control/station/E") == true);
     }
 
@@ -179,17 +181,17 @@ int main(int /*argc*/, char** /*argv*/)
         MHO_ParameterStore storeB;
         storeB.FillData(snapshot);
 
-        REQUIRE(storeB.GetAs<int>("/alpha") == 10);
-        REQUIRE(storeB.GetAs<std::string>("/beta") == "world");
-        CHECK_CLOSE(storeB.GetAs<double>("/gamma/x"), 3.14, 1e-12);
+        REQUIRE(storeB.GetAs< int >("/alpha") == 10);
+        REQUIRE(storeB.GetAs< std::string >("/beta") == "world");
+        CHECK_CLOSE(storeB.GetAs< double >("/gamma/x"), 3.14, 1e-12);
 
         // CopyFrom
         MHO_ParameterStore storeC;
         storeC.CopyFrom(storeA);
 
-        REQUIRE(storeC.GetAs<int>("/alpha") == 10);
-        REQUIRE(storeC.GetAs<std::string>("/beta") == "world");
-        CHECK_CLOSE(storeC.GetAs<double>("/gamma/x"), 3.14, 1e-12);
+        REQUIRE(storeC.GetAs< int >("/alpha") == 10);
+        REQUIRE(storeC.GetAs< std::string >("/beta") == "world");
+        CHECK_CLOSE(storeC.GetAs< double >("/gamma/x"), 3.14, 1e-12);
 
         // ClearData
         storeA.ClearData();

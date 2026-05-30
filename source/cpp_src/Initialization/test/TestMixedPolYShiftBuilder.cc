@@ -2,9 +2,9 @@
 
 #include "InitializationTestFixtures.hh"
 
+#include "MHO_Message.hh"
 #include "MHO_MixedPolYShift.hh"
 #include "MHO_MixedPolYShiftBuilder.hh"
-#include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;

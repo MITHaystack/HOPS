@@ -5,9 +5,9 @@
 
 #include "InitializationTestFixtures.hh"
 
+#include "MHO_Message.hh"
 #include "MHO_Notches.hh"
 #include "MHO_NotchesBuilder.hh"
-#include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;

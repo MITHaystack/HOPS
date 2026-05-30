@@ -113,9 +113,9 @@ static int test_initialize()
     search.SetReferenceFrequency(REF_FREQ);
 
     REQUIRE(search.Initialize());
-    REQUIRE(search.GetNSBDBins() == 4);                  // FREQ_AXIS size
-    REQUIRE(search.GetNDRBins() == 16);                  // TIME_AXIS size
-    REQUIRE(search.GetNMBDBins() >= 8);                  // grid must cover all channels
+    REQUIRE(search.GetNSBDBins() == 4); // FREQ_AXIS size
+    REQUIRE(search.GetNDRBins() == 16); // TIME_AXIS size
+    REQUIRE(search.GetNMBDBins() >= 8); // grid must cover all channels
     CHECK_CLOSE(search.GetFrequencySpacing(), 16.0, 1e-6);
     REQUIRE(search.GetAverageFrequency() >= 8000.0);
     REQUIRE(search.GetAverageFrequency() <= 8112.0);

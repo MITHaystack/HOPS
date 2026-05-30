@@ -5,9 +5,8 @@
 #include <vector>
 
 #include "MHO_Message.hh"
-#include "MHO_VexLine.hh"
 #include "MHO_TestAssertions.hh"
-
+#include "MHO_VexLine.hh"
 
 using namespace hops;
 
@@ -15,7 +14,6 @@ int main()
 {
 
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
-
 
     // Case 1: Default construction
     {
@@ -26,7 +24,6 @@ int main()
         REQUIRE(l.fIsLiteral == false);
     }
 
-
     // Case 2: Aggregate-init
     {
         MHO_VexLine l{7u, 3u, std::string("def NORMAL_MODE"), false};
@@ -35,7 +32,6 @@ int main()
         REQUIRE(l.fContents == "def NORMAL_MODE");
         REQUIRE(l.fIsLiteral == false);
     }
-
 
     // Case 3: Mutability
     {
@@ -46,7 +42,6 @@ int main()
         REQUIRE(l.fContents == "abc ;");
     }
 
-
     // Case 4: Copy semantics
     {
         MHO_VexLine a{1u, 1u, "abc", false};
@@ -56,10 +51,9 @@ int main()
         REQUIRE(b.fContents == "xyz");
     }
 
-
     // Case 5: Container compatibility
     {
-        std::vector<MHO_VexLine> v;
+        std::vector< MHO_VexLine > v;
         v.push_back(MHO_VexLine{1u, 1u, "x", false});
         v.push_back(MHO_VexLine{2u, 2u, "y", true});
         REQUIRE(v.size() == 2);
@@ -67,13 +61,13 @@ int main()
         REQUIRE(v[0].fContents == "x");
     }
 
-
     // Case 6: Type-shape pin (compile-time static_assert)
     {
-        static_assert(std::is_same<decltype(MHO_VexLine{}.fLineNumber), std::size_t>::value, "fLineNumber type changed");
-        static_assert(std::is_same<decltype(MHO_VexLine{}.fStatementNumber), std::size_t>::value, "fStatementNumber type changed");
-        static_assert(std::is_same<decltype(MHO_VexLine{}.fContents), std::string>::value, "fContents type changed");
-        static_assert(std::is_same<decltype(MHO_VexLine{}.fIsLiteral), bool>::value, "fIsLiteral type changed");
+        static_assert(std::is_same< decltype(MHO_VexLine{}.fLineNumber), std::size_t >::value, "fLineNumber type changed");
+        static_assert(std::is_same< decltype(MHO_VexLine{}.fStatementNumber), std::size_t >::value,
+                      "fStatementNumber type changed");
+        static_assert(std::is_same< decltype(MHO_VexLine{}.fContents), std::string >::value, "fContents type changed");
+        static_assert(std::is_same< decltype(MHO_VexLine{}.fIsLiteral), bool >::value, "fIsLiteral type changed");
     }
 
     return 0;

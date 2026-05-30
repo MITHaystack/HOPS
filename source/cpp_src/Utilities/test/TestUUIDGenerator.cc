@@ -28,7 +28,7 @@ static bool is_hex_lower(char c)
 static bool validate_uuid_string(const std::string& s)
 {
     REQUIRE(s.size() == 32);
-    for (std::size_t i = 0; i < s.size(); ++i)
+    for(std::size_t i = 0; i < s.size(); ++i)
     {
         REQUIRE(is_hex_lower(s[i]));
     }
@@ -38,12 +38,16 @@ static bool validate_uuid_string(const std::string& s)
 /* Convert a two-character lowercase-hex substring to uint8_t. */
 static uint8_t hex_pair_to_byte(const std::string& s, std::size_t pos)
 {
-    uint8_t hi = static_cast<uint8_t>(s[pos]);
-    uint8_t lo = static_cast<uint8_t>(s[pos + 1]);
-    if (hi > '9') hi -= ('a' - 10);
-    else          hi -= '0';
-    if (lo > '9') lo -= ('a' - 10);
-    else          lo -= '0';
+    uint8_t hi = static_cast< uint8_t >(s[pos]);
+    uint8_t lo = static_cast< uint8_t >(s[pos + 1]);
+    if(hi > '9')
+        hi -= ('a' - 10);
+    else
+        hi -= '0';
+    if(lo > '9')
+        lo -= ('a' - 10);
+    else
+        lo -= '0';
     return (hi << 4) | lo;
 }
 
@@ -88,13 +92,13 @@ int main(int /*argc*/, char** /*argv*/)
     // Test 4: uniqueness / no collisions (10 000 UUIDs)
     {
         MHO_UUIDGenerator gen;
-        std::set<std::string> seen;
+        std::set< std::string > seen;
         const int N = 10000;
-        for (int i = 0; i < N; ++i)
+        for(int i = 0; i < N; ++i)
         {
             seen.insert(gen.GenerateUUIDAsString());
         }
-        REQUIRE(static_cast<int>(seen.size()) == N);
+        REQUIRE(static_cast< int >(seen.size()) == N);
     }
 
     // Test 5: ConvertUUIDToString faithfully encodes UUID bytes
@@ -104,7 +108,7 @@ int main(int /*argc*/, char** /*argv*/)
         std::string s = gen.ConvertUUIDToString(u);
 
         REQUIRE(s.size() == 32);
-        for (std::size_t i = 0; i < 16; ++i)
+        for(std::size_t i = 0; i < 16; ++i)
         {
             uint8_t recovered = hex_pair_to_byte(s, i * 2);
             REQUIRE(recovered == u[i]);

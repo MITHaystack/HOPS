@@ -46,8 +46,6 @@ class MHO_LegacyRootCodeGenerator
          */
         std::vector< std::string > GetCodes(std::size_t N);
 
-
-
         //THESE FUNCTIONS ARE PUBLIC FOR REFERENCE/TESTING BUT SHOULD NOT BE USED
 
         /**
@@ -100,8 +98,6 @@ class MHO_LegacyRootCodeGenerator
         int fHour;
         int fMin;
         int fSec;
-
-
 };
 
 } // namespace hops

@@ -4,30 +4,33 @@
 #include <string>
 #include <vector>
 
-#include "MHO_PolProductSummation.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
+#include "MHO_PolProductSummation.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
 
 /* Standard fixture: npp=4, nchan=1, nap=1, nfreq=2.
    XX=(1,0), YY=(1,0), XY=(0,0), YX=(0,0) for all (ch,t,f). */
-static void build_vis(visibility_type& vis,
-                      std::complex<double> xx_val, std::complex<double> yy_val,
-                      std::complex<double> xy_val, std::complex<double> yx_val)
+static void build_vis(visibility_type& vis, std::complex< double > xx_val, std::complex< double > yy_val,
+                      std::complex< double > xy_val, std::complex< double > yx_val)
 {
     vis.Resize(4, 1, 1, 2);
-    auto pax = &(std::get<POLPROD_AXIS>(vis));
+    auto pax = &(std::get< POLPROD_AXIS >(vis));
     pax->at(0) = "XX";
     pax->at(1) = "YY";
     pax->at(2) = "XY";
     pax->at(3) = "YX";
 
-    vis(0, 0, 0, 0) = xx_val;  vis(0, 0, 0, 1) = xx_val;
-    vis(1, 0, 0, 0) = yy_val;  vis(1, 0, 0, 1) = yy_val;
-    vis(2, 0, 0, 0) = xy_val;  vis(2, 0, 0, 1) = xy_val;
-    vis(3, 0, 0, 0) = yx_val;  vis(3, 0, 0, 1) = yx_val;
+    vis(0, 0, 0, 0) = xx_val;
+    vis(0, 0, 0, 1) = xx_val;
+    vis(1, 0, 0, 0) = yy_val;
+    vis(1, 0, 0, 1) = yy_val;
+    vis(2, 0, 0, 0) = xy_val;
+    vis(2, 0, 0, 1) = xy_val;
+    vis(3, 0, 0, 0) = yx_val;
+    vis(3, 0, 0, 1) = yx_val;
 }
 
 // Standard weight fixture: npp=4, nchan=1, nap=1, nfreq=1; all 0.5
@@ -41,11 +44,9 @@ static void build_weights(weight_type& w)
 }
 
 // Configure the operator with the standard pol-product set {"XX","YY","XY","YX"}.
-static void configure_op(MHO_PolProductSummation& op, visibility_type& vis,
-                         weight_type& w,
-                         double ref_par, double rem_par)
+static void configure_op(MHO_PolProductSummation& op, visibility_type& vis, weight_type& w, double ref_par, double rem_par)
 {
-    std::vector<std::string> ppset = {"XX", "YY", "XY", "YX"};
+    std::vector< std::string > ppset = {"XX", "YY", "XY", "YX"};
     op.SetPolProductSet(ppset);
     op.SetPolProductSumLabel("I");
     op.SetWeights(&w);
@@ -64,10 +65,8 @@ static int test_pseudo_stokes_i_dpar0()
 {
     visibility_type vis;
     weight_type w;
-    build_vis(vis, std::complex<double>(1.0, 0.0),
-                 std::complex<double>(1.0, 0.0),
-                 std::complex<double>(0.0, 0.0),
-                 std::complex<double>(0.0, 0.0));
+    build_vis(vis, std::complex< double >(1.0, 0.0), std::complex< double >(1.0, 0.0), std::complex< double >(0.0, 0.0),
+              std::complex< double >(0.0, 0.0));
     build_weights(w);
 
     MHO_PolProductSummation op;
@@ -80,7 +79,8 @@ static int test_pseudo_stokes_i_dpar0()
     REQUIRE(vis.GetDimension(POLPROD_AXIS) == 1);
 
     // Check value at both frequency points
-    for (std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++) {
+    for(std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
+    {
         CHECK_CLOSE(vis(0, 0, 0, f).real(), 1.0, 1e-9);
         CHECK_CLOSE(vis(0, 0, 0, f).imag(), 0.0, 1e-9);
     }
@@ -93,10 +93,8 @@ static int test_output_label()
 {
     visibility_type vis;
     weight_type w;
-    build_vis(vis, std::complex<double>(1.0, 0.0),
-                 std::complex<double>(1.0, 0.0),
-                 std::complex<double>(0.0, 0.0),
-                 std::complex<double>(0.0, 0.0));
+    build_vis(vis, std::complex< double >(1.0, 0.0), std::complex< double >(1.0, 0.0), std::complex< double >(0.0, 0.0),
+              std::complex< double >(0.0, 0.0));
     build_weights(w);
 
     MHO_PolProductSummation op;
@@ -105,7 +103,7 @@ static int test_output_label()
     REQUIRE(op.Initialize());
     REQUIRE(op.Execute());
 
-    auto pax = &(std::get<POLPROD_AXIS>(vis));
+    auto pax = &(std::get< POLPROD_AXIS >(vis));
     REQUIRE(pax->at(0) == "I");
 
     return 0;
@@ -117,10 +115,8 @@ static int test_weight_summation()
 {
     visibility_type vis;
     weight_type w;
-    build_vis(vis, std::complex<double>(1.0, 0.0),
-                 std::complex<double>(1.0, 0.0),
-                 std::complex<double>(0.0, 0.0),
-                 std::complex<double>(0.0, 0.0));
+    build_vis(vis, std::complex< double >(1.0, 0.0), std::complex< double >(1.0, 0.0), std::complex< double >(0.0, 0.0),
+              std::complex< double >(0.0, 0.0));
     build_weights(w);
 
     MHO_PolProductSummation op;
@@ -153,10 +149,8 @@ static int test_nonzero_dpar()
 {
     visibility_type vis;
     weight_type w;
-    build_vis(vis, std::complex<double>(1.0, 0.0),
-                 std::complex<double>(1.0, 0.0),
-                 std::complex<double>(1.0, 0.0),
-                 std::complex<double>(1.0, 0.0));
+    build_vis(vis, std::complex< double >(1.0, 0.0), std::complex< double >(1.0, 0.0), std::complex< double >(1.0, 0.0),
+              std::complex< double >(1.0, 0.0));
     build_weights(w);
 
     MHO_PolProductSummation op;
@@ -166,7 +160,8 @@ static int test_nonzero_dpar()
     REQUIRE(op.Execute());
 
     REQUIRE(vis.GetDimension(POLPROD_AXIS) == 1);
-    for (std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++) {
+    for(std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
+    {
         CHECK_CLOSE(vis(0, 0, 0, f).real(), 0.0, 1e-12);
         CHECK_CLOSE(vis(0, 0, 0, f).imag(), 0.0, 1e-12);
     }
@@ -181,15 +176,13 @@ static int test_out_of_place()
     visibility_type vis;
     weight_type w;
     visibility_type out;
-    build_vis(vis, std::complex<double>(1.0, 0.0),
-                 std::complex<double>(1.0, 0.0),
-                 std::complex<double>(0.0, 0.0),
-                 std::complex<double>(0.0, 0.0));
+    build_vis(vis, std::complex< double >(1.0, 0.0), std::complex< double >(1.0, 0.0), std::complex< double >(0.0, 0.0),
+              std::complex< double >(0.0, 0.0));
     build_weights(w);
 
     // Pre-size output to match input dimensions (reducer needs it)
-    out.Resize(vis.GetDimension(POLPROD_AXIS), vis.GetDimension(CHANNEL_AXIS),
-               vis.GetDimension(TIME_AXIS), vis.GetDimension(FREQ_AXIS));
+    out.Resize(vis.GetDimension(POLPROD_AXIS), vis.GetDimension(CHANNEL_AXIS), vis.GetDimension(TIME_AXIS),
+               vis.GetDimension(FREQ_AXIS));
 
     MHO_PolProductSummation op;
     configure_op(op, vis, w, 0.0, 0.0);
@@ -200,7 +193,8 @@ static int test_out_of_place()
     REQUIRE(op.Execute());
 
     REQUIRE(out.GetDimension(POLPROD_AXIS) == 1);
-    for (std::size_t f = 0; f < out.GetDimension(FREQ_AXIS); f++) {
+    for(std::size_t f = 0; f < out.GetDimension(FREQ_AXIS); f++)
+    {
         CHECK_CLOSE(out(0, 0, 0, f).real(), 1.0, 1e-9);
         CHECK_CLOSE(out(0, 0, 0, f).imag(), 0.0, 1e-9);
     }
@@ -225,14 +219,12 @@ static int test_label_not_in_set()
 {
     visibility_type vis;
     weight_type w;
-    build_vis(vis, std::complex<double>(1.0, 0.0),
-                 std::complex<double>(1.0, 0.0),
-                 std::complex<double>(0.0, 0.0),
-                 std::complex<double>(0.0, 0.0));
+    build_vis(vis, std::complex< double >(1.0, 0.0), std::complex< double >(1.0, 0.0), std::complex< double >(0.0, 0.0),
+              std::complex< double >(0.0, 0.0));
     build_weights(w);
 
     MHO_PolProductSummation op;
-    std::vector<std::string> small_ppset = {"XX", "YY"};
+    std::vector< std::string > small_ppset = {"XX", "YY"};
     op.SetPolProductSet(small_ppset);
     op.SetPolProductSumLabel("I");
     op.SetWeights(&w);
@@ -244,7 +236,8 @@ static int test_label_not_in_set()
     REQUIRE(op.Execute());
 
     REQUIRE(vis.GetDimension(POLPROD_AXIS) == 1);
-    for (std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++) {
+    for(std::size_t f = 0; f < vis.GetDimension(FREQ_AXIS); f++)
+    {
         CHECK_CLOSE(vis(0, 0, 0, f).real(), 1.0, 1e-9);
         CHECK_CLOSE(vis(0, 0, 0, f).imag(), 0.0, 1e-9);
     }
@@ -262,12 +255,18 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_pseudo_stokes_i_dpar0())  return 1;
-    if (test_output_label())           return 1;
-    if (test_weight_summation())       return 1;
-    if (test_nonzero_dpar())           return 1;
-    if (test_out_of_place())           return 1;
-    if (test_label_not_in_set())       return 1;
+    if(test_pseudo_stokes_i_dpar0())
+        return 1;
+    if(test_output_label())
+        return 1;
+    if(test_weight_summation())
+        return 1;
+    if(test_nonzero_dpar())
+        return 1;
+    if(test_out_of_place())
+        return 1;
+    if(test_label_not_in_set())
+        return 1;
 
     return 0;
 }

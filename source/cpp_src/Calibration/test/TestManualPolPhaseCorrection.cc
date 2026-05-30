@@ -3,9 +3,9 @@
 #include <iostream>
 #include <string>
 
-#include "MHO_ManualPolPhaseCorrection.hh"
-#include "MHO_ContainerDefinitions.hh"
 #include "MHO_Constants.hh"
+#include "MHO_ContainerDefinitions.hh"
+#include "MHO_ManualPolPhaseCorrection.hh"
 #include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
@@ -13,8 +13,7 @@ using namespace hops;
 
 // Helpers
 
-static bool cclose(std::complex<double> a, std::complex<double> b,
-                   double tol = 1e-9)
+static bool cclose(std::complex< double > a, std::complex< double > b, double tol = 1e-9)
 {
     return std::abs(a - b) <= tol;
 }
@@ -29,11 +28,11 @@ static void build_fixture(visibility_type& vis)
 {
     vis.Resize(2, 2, 2, 2);
 
-    auto& pp_ax = std::get<POLPROD_AXIS>(vis);
+    auto& pp_ax = std::get< POLPROD_AXIS >(vis);
     pp_ax.at(0) = "XX";
     pp_ax.at(1) = "YY";
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.InsertIndexLabelKeyValue(0, "channel_label", std::string("a"));
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(1, "channel_label", std::string("b"));
@@ -44,11 +43,11 @@ static void build_fixture(visibility_type& vis)
     vis.Insert(std::string("remote_station_mk4id"), std::string("F"));
     vis.Insert(std::string("remote_station"), std::string("Wf"));
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 }
 
 // Test cases
@@ -72,20 +71,18 @@ static int test_case1_remote_usb_polY()
     REQUIRE(op.Execute());
 
     const double tol = 1e-9;
-    const std::complex<double> exp30(
-        std::cos(MHO_Constants::deg_to_rad * 30.0),
-        std::sin(MHO_Constants::deg_to_rad * 30.0));
-    const std::complex<double> one(1.0, 0.0);
+    const std::complex< double > exp30(std::cos(MHO_Constants::deg_to_rad * 30.0), std::sin(MHO_Constants::deg_to_rad * 30.0));
+    const std::complex< double > one(1.0, 0.0);
 
     // YY (pp=1), ch0 USB: exp(i*30deg)
-    for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-        for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+        for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
             REQUIRE(cclose(vis(1, 0, ap, sp), exp30, tol));
 
     // XX (pp=0) unchanged
-    for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
                 REQUIRE(cclose(vis(0, ch, ap, sp), one, tol));
 
     return 0;
@@ -108,13 +105,12 @@ static int test_case2_lsb_conjugation()
     REQUIRE(op.Execute());
 
     const double tol = 1e-9;
-    const std::complex<double> exp_neg30(
-        std::cos(MHO_Constants::deg_to_rad * 30.0),
-       -std::sin(MHO_Constants::deg_to_rad * 30.0));
+    const std::complex< double > exp_neg30(std::cos(MHO_Constants::deg_to_rad * 30.0),
+                                           -std::sin(MHO_Constants::deg_to_rad * 30.0));
 
     // YY (pp=1), ch1 LSB remote: exp(-i*30deg)
-    for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-        for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+        for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
             REQUIRE(cclose(vis(1, 1, ap, sp), exp_neg30, tol));
 
     return 0;
@@ -139,28 +135,25 @@ static int test_case3_ref_station_conjugation()
     REQUIRE(op.Execute());
 
     const double tol = 1e-9;
-    const std::complex<double> exp30(
-        std::cos(MHO_Constants::deg_to_rad * 30.0),
-        std::sin(MHO_Constants::deg_to_rad * 30.0));
-    const std::complex<double> exp_neg30(
-        std::cos(MHO_Constants::deg_to_rad * 30.0),
-       -std::sin(MHO_Constants::deg_to_rad * 30.0));
+    const std::complex< double > exp30(std::cos(MHO_Constants::deg_to_rad * 30.0), std::sin(MHO_Constants::deg_to_rad * 30.0));
+    const std::complex< double > exp_neg30(std::cos(MHO_Constants::deg_to_rad * 30.0),
+                                           -std::sin(MHO_Constants::deg_to_rad * 30.0));
 
     // XX (pp=0), ch0 USB ref: conj(exp(i*30)) = exp(-i*30)
-    for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-        for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+        for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
             REQUIRE(cclose(vis(0, 0, ap, sp), exp_neg30, tol));
 
     // XX (pp=0), ch1 LSB ref: conj(conj(exp(i*30))) = exp(i*30)
-    for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-        for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+        for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
             REQUIRE(cclose(vis(0, 1, ap, sp), exp30, tol));
 
     // YY (pp=1) unchanged
-    const std::complex<double> one(1.0, 0.0);
-    for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    const std::complex< double > one(1.0, 0.0);
+    for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
                 REQUIRE(cclose(vis(1, ch, ap, sp), one, tol));
 
     return 0;
@@ -183,11 +176,11 @@ static int test_case4_pol_mismatch_no_change()
     REQUIRE(op.Execute());
 
     const double tol = 1e-12;
-    const std::complex<double> one(1.0, 0.0);
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    const std::complex< double > one(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
                     REQUIRE(cclose(vis(pp, ch, ap, sp), one, tol));
 
     return 0;
@@ -210,11 +203,11 @@ static int test_case5_station_mismatch_no_change()
     REQUIRE(op.Execute());
 
     const double tol = 1e-12;
-    const std::complex<double> one(1.0, 0.0);
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    const std::complex< double > one(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
                     REQUIRE(cclose(vis(pp, ch, ap, sp), one, tol));
 
     return 0;
@@ -237,23 +230,20 @@ static int test_case6_wildcard_pol()
     REQUIRE(op.Execute());
 
     const double tol = 1e-9;
-    const std::complex<double> exp10(
-        std::cos(MHO_Constants::deg_to_rad * 10.0),
-        std::sin(MHO_Constants::deg_to_rad * 10.0));
-    const std::complex<double> exp_neg10(
-        std::cos(MHO_Constants::deg_to_rad * 10.0),
-       -std::sin(MHO_Constants::deg_to_rad * 10.0));
+    const std::complex< double > exp10(std::cos(MHO_Constants::deg_to_rad * 10.0), std::sin(MHO_Constants::deg_to_rad * 10.0));
+    const std::complex< double > exp_neg10(std::cos(MHO_Constants::deg_to_rad * 10.0),
+                                           -std::sin(MHO_Constants::deg_to_rad * 10.0));
 
     // Both XX (pp=0) and YY (pp=1), ch0 USB: exp(i*10deg)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
                 REQUIRE(cclose(vis(pp, 0, ap, sp), exp10, tol));
 
     // Both XX and YY, ch1 LSB: exp(-i*10deg)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
                 REQUIRE(cclose(vis(pp, 1, ap, sp), exp_neg10, tol));
 
     return 0;
@@ -276,7 +266,7 @@ static int test_case7_axis_label_recorded()
     REQUIRE(op.Initialize());
     REQUIRE(op.Execute());
 
-    auto& pp_ax = std::get<POLPROD_AXIS>(vis);
+    auto& pp_ax = std::get< POLPROD_AXIS >(vis);
     double val = 0.0;
     bool ok = pp_ax.RetrieveIndexLabelKeyValue(1, "rem_pcphase_offset_Y", val);
     REQUIRE(ok);
@@ -306,21 +296,17 @@ static int test_case8_non_idempotent_re_execute()
 
     // First run: YY ch0 = exp(i*30deg)
     const double tol = 1e-9;
-    const std::complex<double> exp30(
-        std::cos(MHO_Constants::deg_to_rad * 30.0),
-        std::sin(MHO_Constants::deg_to_rad * 30.0));
-    for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-        for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    const std::complex< double > exp30(std::cos(MHO_Constants::deg_to_rad * 30.0), std::sin(MHO_Constants::deg_to_rad * 30.0));
+    for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+        for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
             REQUIRE(cclose(vis(1, 0, ap, sp), exp30, tol));
 
     // Second run: YY ch0 = exp(i*30deg) * exp(i*30deg) = exp(i*60deg)
     REQUIRE(op.Execute());
 
-    const std::complex<double> exp60(
-        std::cos(MHO_Constants::deg_to_rad * 60.0),
-        std::sin(MHO_Constants::deg_to_rad * 60.0));
-    for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-        for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    const std::complex< double > exp60(std::cos(MHO_Constants::deg_to_rad * 60.0), std::sin(MHO_Constants::deg_to_rad * 60.0));
+    for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+        for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
             REQUIRE(cclose(vis(1, 0, ap, sp), exp60, tol));
 
     return 0;
@@ -331,14 +317,22 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_case1_remote_usb_polY()) return 1;
-    if (test_case2_lsb_conjugation()) return 1;
-    if (test_case3_ref_station_conjugation()) return 1;
-    if (test_case4_pol_mismatch_no_change()) return 1;
-    if (test_case5_station_mismatch_no_change()) return 1;
-    if (test_case6_wildcard_pol()) return 1;
-    if (test_case7_axis_label_recorded()) return 1;
-    if (test_case8_non_idempotent_re_execute()) return 1;
+    if(test_case1_remote_usb_polY())
+        return 1;
+    if(test_case2_lsb_conjugation())
+        return 1;
+    if(test_case3_ref_station_conjugation())
+        return 1;
+    if(test_case4_pol_mismatch_no_change())
+        return 1;
+    if(test_case5_station_mismatch_no_change())
+        return 1;
+    if(test_case6_wildcard_pol())
+        return 1;
+    if(test_case7_axis_label_recorded())
+        return 1;
+    if(test_case8_non_idempotent_re_execute())
+        return 1;
 
     return 0;
 }

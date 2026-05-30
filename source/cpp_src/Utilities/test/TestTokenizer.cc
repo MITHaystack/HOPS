@@ -8,34 +8,30 @@
 
 using namespace hops;
 
-static int check_tokens(const std::vector<std::string>& actual,
-                        const std::vector<std::string>& expected)
+static int check_tokens(const std::vector< std::string >& actual, const std::vector< std::string >& expected)
 {
     if(actual.size() != expected.size())
     {
-        std::cerr << "FAIL: token count " << actual.size()
-                  << " != expected " << expected.size()
-                  << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
+        std::cerr << "FAIL: token count " << actual.size() << " != expected " << expected.size() << " @ " << __FILE__ << ":"
+                  << __LINE__ << std::endl;
         return 1;
     }
     for(std::size_t i = 0; i < actual.size(); i++)
     {
         if(actual[i] != expected[i])
         {
-            std::cerr << "FAIL: token[" << i << "] \"" << actual[i]
-                      << "\" != expected \"" << expected[i]
-                      << "\" @ " << __FILE__ << ":" << __LINE__ << std::endl;
+            std::cerr << "FAIL: token[" << i << "] \"" << actual[i] << "\" != expected \"" << expected[i] << "\" @ " << __FILE__
+                      << ":" << __LINE__ << std::endl;
             return 1;
         }
     }
     return 0;
 }
 
-static int get_and_check(MHO_Tokenizer& tok, const std::string* input,
-                         const std::vector<std::string>* expected)
+static int get_and_check(MHO_Tokenizer& tok, const std::string* input, const std::vector< std::string >* expected)
 {
     tok.SetString(input);
-    std::vector<std::string> result;
+    std::vector< std::string > result;
     tok.GetTokens(&result);
     return check_tokens(result, *expected);
 }
@@ -54,7 +50,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("This");
         exp.push_back("is");
         exp.push_back("a");
@@ -73,7 +69,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("This");
         exp.push_back("is");
         exp.push_back("a");
@@ -92,7 +88,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("This");
         exp.push_back("is");
         exp.push_back("a");
@@ -112,7 +108,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("This");
         exp.push_back("is");
         exp.push_back("a");
@@ -132,7 +128,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensTrue();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("a");
         exp.push_back("");
         exp.push_back("b");
@@ -148,7 +144,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("a");
         exp.push_back("b");
         REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
@@ -162,7 +158,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("alpha");
         exp.push_back("beta");
         exp.push_back("gamma");
@@ -177,7 +173,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesTrue();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("This");
         exp.push_back("is");
         exp.push_back("\"quoted \t text\"");
@@ -193,7 +189,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesTrue();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("a");
         exp.push_back("\"b");
         exp.push_back("c");
@@ -208,7 +204,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp; // empty
+        std::vector< std::string > exp; // empty
         REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
 
@@ -220,7 +216,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp; // empty
+        std::vector< std::string > exp; // empty
         REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
 
@@ -232,7 +228,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("mean_motion");
         exp.push_back("0.");
         REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
@@ -246,7 +242,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetPreserveQuotesFalse();
         tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
         tokenizer.SetIncludeEmptyTokensFalse();
-        std::vector<std::string> exp;
+        std::vector< std::string > exp;
         exp.push_back("XX");
         exp.push_back("YY");
         REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
@@ -264,8 +260,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     //  Case 15: SplitString() free function - empty delimiter (per-char)
     {
-        std::vector<std::string> result = hops::SplitString("abc");
-        std::vector<std::string> exp;
+        std::vector< std::string > result = hops::SplitString("abc");
+        std::vector< std::string > exp;
         exp.push_back("a");
         exp.push_back("b");
         exp.push_back("c");
@@ -274,8 +270,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     //  Case 16: SplitString() free function - explicit delimiter
     {
-        std::vector<std::string> result = hops::SplitString(" x , y , z ", ",");
-        std::vector<std::string> exp;
+        std::vector< std::string > result = hops::SplitString(" x , y , z ", ",");
+        std::vector< std::string > exp;
         exp.push_back("x");
         exp.push_back("y");
         exp.push_back("z");
@@ -293,7 +289,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
         tokenizer.SetIncludeEmptyTokensFalse();
         {
-            std::vector<std::string> exp;
+            std::vector< std::string > exp;
             exp.push_back("This");
             exp.push_back("is");
             exp.push_back("a");
@@ -308,7 +304,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetDelimiter("<d>");
         tokenizer.SetUseMulticharacterDelimiterTrue();
         {
-            std::vector<std::string> exp;
+            std::vector< std::string > exp;
             exp.push_back("This");
             exp.push_back("is");
             exp.push_back("a");
@@ -324,7 +320,7 @@ int main(int /*argc*/, char** /*argv*/)
         tokenizer.SetDelimiter(" ");
         tokenizer.SetUseMulticharacterDelimiterFalse();
         {
-            std::vector<std::string> exp;
+            std::vector< std::string > exp;
             exp.push_back("This");
             exp.push_back("is");
             exp.push_back("a");

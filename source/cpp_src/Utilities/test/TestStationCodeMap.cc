@@ -1,8 +1,8 @@
-#include <iostream>
+#include <cstdio>
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <vector>
-#include <cstdio>
 
 #include "MHO_Message.hh"
 #include "MHO_StationCodeMap.hh"
@@ -92,10 +92,15 @@ int main()
         REQUIRE_EQUAL(m.GetMk4IdFromStationCode("On"), "X");
 
         // "Dup" should not be present in GetAllStationCodes
-        std::vector<std::string> codes = m.GetAllStationCodes();
+        std::vector< std::string > codes = m.GetAllStationCodes();
         bool foundDup = false;
-        for(std::size_t i = 0; i < codes.size(); i++) {
-            if(codes[i] == "Dup") { foundDup = true; break; }
+        for(std::size_t i = 0; i < codes.size(); i++)
+        {
+            if(codes[i] == "Dup")
+            {
+                foundDup = true;
+                break;
+            }
         }
         REQUIRE(!foundDup);
 
@@ -107,8 +112,9 @@ int main()
     {
         MHO_StationCodeMap m(false);
         m.InitializeStationCodes(tmpfile);
-        std::vector<std::string> mk4ids = m.GetAllMk4Ids();
-        for(std::size_t i = 0; i < mk4ids.size(); i++) {
+        std::vector< std::string > mk4ids = m.GetAllMk4Ids();
+        for(std::size_t i = 0; i < mk4ids.size(); i++)
+        {
             std::string code = m.GetStationCodeFromMk4Id(mk4ids[i]);
             REQUIRE(!code.empty());
             std::string id2 = m.GetMk4IdFromStationCode(code);
@@ -146,18 +152,21 @@ int main()
     // Case 10: Free-pool exhaustion (52 distinct codes, then 53rd returns empty)
     {
         MHO_StationCodeMap m(false);
-        std::vector<std::string> ids;
-        for(int i = 0; i < 52; i++) {
+        std::vector< std::string > ids;
+        for(int i = 0; i < 52; i++)
+        {
             std::string code(2, ' ');
-            code[0] = static_cast<char>('A' + (i / 26));
-            code[1] = static_cast<char>('a' + (i % 26));
+            code[0] = static_cast< char >('A' + (i / 26));
+            code[1] = static_cast< char >('a' + (i % 26));
             std::string id = m.GetMk4IdFromStationCode(code);
             REQUIRE(!id.empty());
             ids.push_back(id);
         }
         // All 52 ids must be distinct
-        for(int i = 0; i < 52; i++) {
-            for(int j = i + 1; j < 52; j++) {
+        for(int i = 0; i < 52; i++)
+        {
+            for(int j = i + 1; j < 52; j++)
+            {
                 REQUIRE(ids[i] != ids[j]);
             }
         }
@@ -201,9 +210,9 @@ int main()
         REQUIRE_EQUAL(m.ToCanonicalCase("wF"), "Wf");
         REQUIRE_EQUAL(m.ToCanonicalCase("Wf"), "Wf"); // idempotent on canonical input
         REQUIRE_EQUAL(m.ToCanonicalCase("g"), "G");   // single char
-        REQUIRE_EQUAL(m.ToCanonicalCase("g2"), "G2");  // alpha then non-alpha
-        REQUIRE_EQUAL(m.ToCanonicalCase("2g"), "2g");  // leading non-alpha preserved, rest lower
-        REQUIRE_EQUAL(m.ToCanonicalCase(""), "");      // empty input handled by guard
+        REQUIRE_EQUAL(m.ToCanonicalCase("g2"), "G2"); // alpha then non-alpha
+        REQUIRE_EQUAL(m.ToCanonicalCase("2g"), "2g"); // leading non-alpha preserved, rest lower
+        REQUIRE_EQUAL(m.ToCanonicalCase(""), "");     // empty input handled by guard
     }
 
     // Cleanup

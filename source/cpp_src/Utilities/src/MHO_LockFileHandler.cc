@@ -186,7 +186,7 @@ int MHO_LockFileHandler::check_stale(lockfile_data* other)
             if(kill(static_cast< pid_t >(other->pid), 0) != 0 && errno == ESRCH)
             {
                 msg_warn("utilities", "lock holder pid " << other->pid << " on this host is gone; reclaiming lock: "
-                                                          << std::string(other->lockfile_name) << eom);
+                                                         << std::string(other->lockfile_name) << eom);
                 return LOCK_STALE_ERROR;
             }
         }
@@ -201,7 +201,8 @@ int MHO_LockFileHandler::check_stale(lockfile_data* other)
     {
         if((epoch_sec - other->time_sec) > LOCK_STALE_SEC)
         {
-            msg_warn("utilities", "stale lock file detected (age > " << LOCK_STALE_SEC << "s): "
+            msg_warn("utilities", "stale lock file detected (age > "
+                                      << LOCK_STALE_SEC << "s): "
                                       << std::string(other->active_directory) + std::string(other->lockfile_name) << eom);
             return LOCK_STALE_ERROR;
         }
@@ -486,7 +487,7 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
             //on an identical lock timestamp (and therefore both yielded in
             //lock_has_priority) do not retry in lock-step and collide again.
             static std::mt19937 rng(static_cast< unsigned >(getpid()) ^ static_cast< unsigned >(time(nullptr))); //seed pid-time
-            static std::uniform_int_distribution< int > jitter(0, 50000); // microseconds
+            static std::uniform_int_distribution< int > jitter(0, 50000);                                        // microseconds
             usleep(100000 + jitter(rng));
         }
     }

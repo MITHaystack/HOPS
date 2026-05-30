@@ -2,9 +2,9 @@
 
 #include "InitializationTestFixtures.hh"
 
+#include "MHO_Message.hh"
 #include "MHO_MinWeight.hh"
 #include "MHO_MinWeightBuilder.hh"
-#include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;

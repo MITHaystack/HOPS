@@ -1,22 +1,27 @@
+#include <cstdint>
 #include <iostream>
 #include <string>
-#include <cstdint>
 
-#include "MHO_Serializable.hh"
 #include "MHO_MD5HashGenerator.hh"
 #include "MHO_Message.hh"
+#include "MHO_Serializable.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
 
 /* Concrete subclasses (DetermineTypeUUID is private in base) */
-class FooSer : public MHO_Serializable {
+class FooSer: public MHO_Serializable
+{
     public:
-        FooSer() : MHO_Serializable() {}
-        FooSer(const MHO_UUID& u) : MHO_Serializable(u) {}
+        FooSer(): MHO_Serializable() {}
+
+        FooSer(const MHO_UUID& u): MHO_Serializable(u) {}
+
         uint64_t GetSerializedSize() const override { return 16; }
+
     private:
-        MHO_UUID DetermineTypeUUID() const override {
+        MHO_UUID DetermineTypeUUID() const override
+        {
             MHO_MD5HashGenerator gen;
             gen.Initialize();
             std::string name = "FooSer";
@@ -26,12 +31,16 @@ class FooSer : public MHO_Serializable {
         }
 };
 
-class BarSer : public MHO_Serializable {
+class BarSer: public MHO_Serializable
+{
     public:
-        BarSer() : MHO_Serializable() {}
+        BarSer(): MHO_Serializable() {}
+
         uint64_t GetSerializedSize() const override { return 99; }
+
     private:
-        MHO_UUID DetermineTypeUUID() const override {
+        MHO_UUID DetermineTypeUUID() const override
+        {
             MHO_MD5HashGenerator gen;
             gen.Initialize();
             std::string name = "BarSer";

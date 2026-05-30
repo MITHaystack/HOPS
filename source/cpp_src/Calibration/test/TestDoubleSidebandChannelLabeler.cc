@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-#include "MHO_DoubleSidebandChannelLabeler.hh"
 #include "MHO_ContainerDefinitions.hh"
+#include "MHO_DoubleSidebandChannelLabeler.hh"
 #include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
@@ -12,10 +12,9 @@ using namespace hops;
 
 // Helpers
 
-static void set_chan(visibility_type& vis, std::size_t i,
-                     double freq, double bw, const std::string& nsb)
+static void set_chan(visibility_type& vis, std::size_t i, double freq, double bw, const std::string& nsb)
 {
-    auto ax = &(std::get<CHANNEL_AXIS>(vis));
+    auto ax = &(std::get< CHANNEL_AXIS >(vis));
     ax->at(i) = freq;
     ax->InsertIndexLabelKeyValue(i, "bandwidth", bw);
     ax->InsertIndexLabelKeyValue(i, "net_sideband", nsb);
@@ -48,12 +47,12 @@ static int test_single_dsb_pair()
     set_chan(vis, 0, 8000.0, 16.0, "L");
     set_chan(vis, 1, 8000.0, 16.0, "U");
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
 
-    auto& ax = std::get<CHANNEL_AXIS>(vis);
+    auto& ax = std::get< CHANNEL_AXIS >(vis);
     REQUIRE(count_dsb(ax) == 1);
 
     int partner = 0;
@@ -75,16 +74,16 @@ static int test_usb_only()
     set_chan(vis, 2, 8032.0, 16.0, "U");
     set_chan(vis, 3, 8048.0, 16.0, "U");
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
 
-    auto& ax = std::get<CHANNEL_AXIS>(vis);
+    auto& ax = std::get< CHANNEL_AXIS >(vis);
     REQUIRE(count_dsb(ax) == 0);
 
     int partner = 0;
-    for (std::size_t i = 0; i < 4; i++)
+    for(std::size_t i = 0; i < 4; i++)
     {
         REQUIRE(get_dsb_partner(ax, i, partner) == false);
     }
@@ -102,16 +101,16 @@ static int test_lsb_only()
     set_chan(vis, 2, 8032.0, 16.0, "L");
     set_chan(vis, 3, 8048.0, 16.0, "L");
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
 
-    auto& ax = std::get<CHANNEL_AXIS>(vis);
+    auto& ax = std::get< CHANNEL_AXIS >(vis);
     REQUIRE(count_dsb(ax) == 0);
 
     int partner = 0;
-    for (std::size_t i = 0; i < 4; i++)
+    for(std::size_t i = 0; i < 4; i++)
     {
         REQUIRE(get_dsb_partner(ax, i, partner) == false);
     }
@@ -127,12 +126,12 @@ static int test_wrong_order_ul()
     set_chan(vis, 0, 8000.0, 16.0, "U");
     set_chan(vis, 1, 8000.0, 16.0, "L");
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
 
-    auto& ax = std::get<CHANNEL_AXIS>(vis);
+    auto& ax = std::get< CHANNEL_AXIS >(vis);
     REQUIRE(count_dsb(ax) == 0);
 
     int partner = 0;
@@ -150,12 +149,12 @@ static int test_mismatched_bandwidth()
     set_chan(vis, 0, 8000.0, 16.0, "L");
     set_chan(vis, 1, 8000.0, 32.0, "U");
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
 
-    auto& ax = std::get<CHANNEL_AXIS>(vis);
+    auto& ax = std::get< CHANNEL_AXIS >(vis);
     REQUIRE(count_dsb(ax) == 0);
 
     return 0;
@@ -169,12 +168,12 @@ static int test_different_freq()
     set_chan(vis, 0, 8000.0, 16.0, "L");
     set_chan(vis, 1, 8016.0, 16.0, "U");
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
 
-    auto& ax = std::get<CHANNEL_AXIS>(vis);
+    auto& ax = std::get< CHANNEL_AXIS >(vis);
     REQUIRE(count_dsb(ax) == 0);
 
     return 0;
@@ -190,12 +189,12 @@ static int test_multiple_dsb_pairs()
     set_chan(vis, 2, 8100.0, 16.0, "L");
     set_chan(vis, 3, 8100.0, 16.0, "U");
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
 
-    auto& ax = std::get<CHANNEL_AXIS>(vis);
+    auto& ax = std::get< CHANNEL_AXIS >(vis);
     REQUIRE(count_dsb(ax) == 2);
 
     int partner = 0;
@@ -221,12 +220,12 @@ static int test_tolerance_boundary()
         set_chan(vis, 0, 8000.0, 16.0, "L");
         set_chan(vis, 1, 8000.0000005, 16.0, "U");
 
-        MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+        MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
         labeler.SetArgs(&vis);
         REQUIRE(labeler.Initialize());
         REQUIRE(labeler.Execute());
 
-        auto& ax = std::get<CHANNEL_AXIS>(vis);
+        auto& ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(count_dsb(ax) == 1);
     }
 
@@ -236,12 +235,12 @@ static int test_tolerance_boundary()
         set_chan(vis, 0, 8000.0, 16.0, "L");
         set_chan(vis, 1, 8000.001, 16.0, "U");
 
-        MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+        MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
         labeler.SetArgs(&vis);
         REQUIRE(labeler.Initialize());
         REQUIRE(labeler.Execute());
 
-        auto& ax = std::get<CHANNEL_AXIS>(vis);
+        auto& ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(count_dsb(ax) == 0);
     }
 
@@ -251,13 +250,13 @@ static int test_tolerance_boundary()
         set_chan(vis, 0, 8000.0, 16.0, "L");
         set_chan(vis, 1, 8000.001, 16.0, "U");
 
-        MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+        MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
         labeler.SetTolerance(1.0);
         labeler.SetArgs(&vis);
         REQUIRE(labeler.Initialize());
         REQUIRE(labeler.Execute());
 
-        auto& ax = std::get<CHANNEL_AXIS>(vis);
+        auto& ax = std::get< CHANNEL_AXIS >(vis);
         REQUIRE(count_dsb(ax) == 1);
     }
 
@@ -269,12 +268,12 @@ static int test_tolerance_boundary()
 static int test_missing_labels()
 {
     visibility_type vis = make_vis(2);
-    auto ax = &(std::get<CHANNEL_AXIS>(vis));
+    auto ax = &(std::get< CHANNEL_AXIS >(vis));
     ax->at(0) = 8000.0;
     ax->at(1) = 8000.0;
     // No bandwidth or net_sideband labels set
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
@@ -291,12 +290,12 @@ static int test_single_channel()
     visibility_type vis = make_vis(1);
     set_chan(vis, 0, 8000.0, 16.0, "L");
 
-    MHO_DoubleSidebandChannelLabeler<visibility_type> labeler;
+    MHO_DoubleSidebandChannelLabeler< visibility_type > labeler;
     labeler.SetArgs(&vis);
     REQUIRE(labeler.Initialize());
     REQUIRE(labeler.Execute());
 
-    auto& ax = std::get<CHANNEL_AXIS>(vis);
+    auto& ax = std::get< CHANNEL_AXIS >(vis);
     REQUIRE(count_dsb(ax) == 0);
 
     return 0;
@@ -307,16 +306,26 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_single_dsb_pair())        return 1;
-    if (test_usb_only())               return 1;
-    if (test_lsb_only())               return 1;
-    if (test_wrong_order_ul())         return 1;
-    if (test_mismatched_bandwidth())   return 1;
-    if (test_different_freq())         return 1;
-    if (test_multiple_dsb_pairs())     return 1;
-    if (test_tolerance_boundary())     return 1;
-    if (test_missing_labels())         return 1;
-    if (test_single_channel())         return 1;
+    if(test_single_dsb_pair())
+        return 1;
+    if(test_usb_only())
+        return 1;
+    if(test_lsb_only())
+        return 1;
+    if(test_wrong_order_ul())
+        return 1;
+    if(test_mismatched_bandwidth())
+        return 1;
+    if(test_different_freq())
+        return 1;
+    if(test_multiple_dsb_pairs())
+        return 1;
+    if(test_tolerance_boundary())
+        return 1;
+    if(test_missing_labels())
+        return 1;
+    if(test_single_channel())
+        return 1;
 
     return 0;
 }

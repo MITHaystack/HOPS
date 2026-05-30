@@ -28,8 +28,14 @@ int main(int /*argc*/, char** /*argv*/)
     // control format: two operators with categories + priorities. Other default
     // builders are skipped because their format keys are absent.
     mho_json fmt;
-    fmt["dc_block"] = mho_json{{"operator_category", "flagging"}, {"priority", 1.0}};
-    fmt["min_weight"] = mho_json{{"operator_category", "selection"}, {"priority", 1.0}};
+    fmt["dc_block"] = mho_json{
+        {"operator_category", "flagging"},
+        {"priority",          1.0       }
+    };
+    fmt["min_weight"] = mho_json{
+        {"operator_category", "selection"},
+        {"priority",          1.0        }
+    };
 
     MHO_OperatorToolbox toolbox;
     MHO_OperatorBuilderManager manager(&toolbox, &fdata, fmt);

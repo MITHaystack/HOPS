@@ -1,13 +1,13 @@
 #include <cmath>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <fstream>
 
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
-#include "MHO_VexParser.hh"
 #include "MHO_TestAssertions.hh"
+#include "MHO_VexParser.hh"
 
 int main()
 {
@@ -15,7 +15,7 @@ int main()
     hops::MHO_Message::GetInstance().SetMessageLevel(hops::eFatal);
 
 #ifndef VEX_FIXTURE_DIR
-#error "VEX_FIXTURE_DIR must be defined at compile time"
+    #error "VEX_FIXTURE_DIR must be defined at compile time"
 #endif
 
     //  Test Case 1: Construct and destruct
@@ -143,8 +143,8 @@ int main()
         // Second parse (different file)
         parser.SetVexFile(VEX_FIXTURE_DIR "/minimal_v15.vex");
         auto j2 = parser.ParseVex();
-        REQUIRE(j2.count("VEX_rev") > 0); //show have VEX_rev
-        REQUIRE(j2.count("$FREQ") > 0); //should have a FREQ section
+        REQUIRE(j2.count("VEX_rev") > 0);    //show have VEX_rev
+        REQUIRE(j2.count("$FREQ") > 0);      //should have a FREQ section
         REQUIRE(j2.count("$OVEX_REV") == 0); // OVEX-specific block should NOT be present,
     }
 

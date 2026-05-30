@@ -90,7 +90,7 @@ int main(int /*argc*/, char** /*argv*/)
 
         REQUIRE_EQUAL(MHO_DirectoryInterface::StripExtensionFromBasename("file.txt"), "file");
         REQUIRE_EQUAL(MHO_DirectoryInterface::StripExtensionFromBasename("a.b.c"), "a.b"); // strips last ext only
-        REQUIRE_EQUAL(MHO_DirectoryInterface::StripExtensionFromBasename("noext"), ""); // no dot -> empty (+ warn)
+        REQUIRE_EQUAL(MHO_DirectoryInterface::StripExtensionFromBasename("noext"), "");    // no dot -> empty (+ warn)
 
         REQUIRE_EQUAL(MHO_DirectoryInterface::GetFileExtension("alpha.txt"), "txt");
         REQUIRE_EQUAL(MHO_DirectoryInterface::GetFileExtension("a.b.c"), "c");

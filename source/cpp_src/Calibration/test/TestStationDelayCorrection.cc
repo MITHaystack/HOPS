@@ -3,18 +3,17 @@
 #include <iostream>
 #include <string>
 
-#include "MHO_StationDelayCorrection.hh"
-#include "MHO_ContainerDefinitions.hh"
 #include "MHO_Constants.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
+#include "MHO_StationDelayCorrection.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
 
 // Helpers
 
-static bool cclose(std::complex<double> a, std::complex<double> b,
-                   double tol = 1e-9)
+static bool cclose(std::complex< double > a, std::complex< double > b, double tol = 1e-9)
 {
     return std::abs(a - b) <= tol;
 }
@@ -29,13 +28,13 @@ static void build_fixture(visibility_type& vis)
 {
     vis.Resize(2, 2, 2, 2);
 
-    auto& pp_ax = std::get<POLPROD_AXIS>(vis);
+    auto& pp_ax = std::get< POLPROD_AXIS >(vis);
     pp_ax.at(0) = "XX";
     pp_ax.at(1) = "YY";
 
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
-    chan_ax.at(0) = 1000.0;  // MHz
-    chan_ax.at(1) = 1500.0;  // MHz
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
+    chan_ax.at(0) = 1000.0; // MHz
+    chan_ax.at(1) = 1500.0; // MHz
     chan_ax.InsertIndexLabelKeyValue(0, "channel_label", std::string("a"));
     chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
     chan_ax.InsertIndexLabelKeyValue(1, "channel_label", std::string("b"));
@@ -46,11 +45,11 @@ static void build_fixture(visibility_type& vis)
     vis.Insert(std::string("remote_station_mk4id"), std::string("F"));
     vis.Insert(std::string("remote_station"), std::string("Wf"));
 
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 }
 
 // Test cases
@@ -78,16 +77,16 @@ static int test_case1_remote_all_pols()
     const double tol = 1e-9;
 
     // Both pol-products, ch0 USB: deltaf=0 => (1,0)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                REQUIRE(cclose(vis(pp, 0, ap, sp), std::complex<double>(1.0, 0.0), tol));
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                REQUIRE(cclose(vis(pp, 0, ap, sp), std::complex< double >(1.0, 0.0), tol));
 
     // Both pol-products, ch1 LSB remote: conj(exp(i*pi/2)) = (0,-1)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                REQUIRE(cclose(vis(pp, 1, ap, sp), std::complex<double>(0.0, -1.0), tol));
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                REQUIRE(cclose(vis(pp, 1, ap, sp), std::complex< double >(0.0, -1.0), tol));
 
     return 0;
 }
@@ -113,16 +112,16 @@ static int test_case2_ref_station_all_pols()
     const double tol = 1e-9;
 
     // Both pols, ch0: deltaf=0 => (1,0)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                REQUIRE(cclose(vis(pp, 0, ap, sp), std::complex<double>(1.0, 0.0), tol));
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                REQUIRE(cclose(vis(pp, 0, ap, sp), std::complex< double >(1.0, 0.0), tol));
 
     // Both pols, ch1 LSB ref: conj(conj(exp(i*pi/2))) = exp(i*pi/2) = (0,1)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                REQUIRE(cclose(vis(pp, 1, ap, sp), std::complex<double>(0.0, 1.0), tol));
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                REQUIRE(cclose(vis(pp, 1, ap, sp), std::complex< double >(0.0, 1.0), tol));
 
     return 0;
 }
@@ -146,16 +145,16 @@ static int test_case3_two_char_station_code()
     const double tol = 1e-9;
 
     // Both pols, ch0: (1,0)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                REQUIRE(cclose(vis(pp, 0, ap, sp), std::complex<double>(1.0, 0.0), tol));
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                REQUIRE(cclose(vis(pp, 0, ap, sp), std::complex< double >(1.0, 0.0), tol));
 
     // Both pols, ch1 LSB remote: (0,-1)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-            for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                REQUIRE(cclose(vis(pp, 1, ap, sp), std::complex<double>(0.0, -1.0), tol));
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+            for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                REQUIRE(cclose(vis(pp, 1, ap, sp), std::complex< double >(0.0, -1.0), tol));
 
     return 0;
 }
@@ -184,11 +183,11 @@ static int test_case4_wildcard_both_stations()
     const double tol = 1e-9;
 
     // Both pols, both channels should return to (1,0)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    REQUIRE(cclose(vis(pp, ch, ap, sp), std::complex<double>(1.0, 0.0), tol));
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    REQUIRE(cclose(vis(pp, ch, ap, sp), std::complex< double >(1.0, 0.0), tol));
 
     return 0;
 }
@@ -210,11 +209,11 @@ static int test_case5_station_mismatch()
     REQUIRE(op.Execute());
 
     const double tol = 1e-9;
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    REQUIRE(cclose(vis(pp, ch, ap, sp), std::complex<double>(1.0, 0.0), tol));
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    REQUIRE(cclose(vis(pp, ch, ap, sp), std::complex< double >(1.0, 0.0), tol));
 
     return 0;
 }
@@ -224,11 +223,16 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_case1_remote_all_pols()) return 1;
-    if (test_case2_ref_station_all_pols()) return 1;
-    if (test_case3_two_char_station_code()) return 1;
-    if (test_case4_wildcard_both_stations()) return 1;
-    if (test_case5_station_mismatch()) return 1;
+    if(test_case1_remote_all_pols())
+        return 1;
+    if(test_case2_ref_station_all_pols())
+        return 1;
+    if(test_case3_two_char_station_code())
+        return 1;
+    if(test_case4_wildcard_both_stations())
+        return 1;
+    if(test_case5_station_mismatch())
+        return 1;
 
     return 0;
 }

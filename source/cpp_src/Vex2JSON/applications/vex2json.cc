@@ -54,7 +54,11 @@ int main(int argc, char** argv)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
-    if(input_file == "" || output_file == ""){std::cout << usage << std::endl; return 1;}
+    if(input_file == "" || output_file == "")
+    {
+        std::cout << usage << std::endl;
+        return 1;
+    }
 
     //parse and convert
     MHO_VexParser vparser;

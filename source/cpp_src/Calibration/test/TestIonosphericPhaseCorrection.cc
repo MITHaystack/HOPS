@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 
-#include "MHO_ContainerDefinitions.hh"
 #include "MHO_Constants.hh"
+#include "MHO_ContainerDefinitions.hh"
 #include "MHO_IonosphericPhaseCorrection.hh"
 #include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
@@ -20,7 +20,7 @@ static void build_fixture(visibility_type& vis, bool lsb_channel1 = false)
 {
     vis.Resize(2, 2, 2, 2);
 
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(vis));
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(vis));
     (*chan_ax)(0) = 8000.0;
     (*chan_ax)(1) = 8400.0;
     chan_ax->InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
@@ -29,11 +29,11 @@ static void build_fixture(visibility_type& vis, bool lsb_channel1 = false)
     chan_ax->InsertIndexLabelKeyValue(1, "bandwidth", 32.0);
 
     // Fill all elements with (1.0, 0.0)
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
-                    vis(pp, ch, ap, sp) = std::complex<double>(1.0, 0.0);
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                    vis(pp, ch, ap, sp) = std::complex< double >(1.0, 0.0);
 }
 
 // Test cases
@@ -53,15 +53,17 @@ static int test_case1_nonzero_dtec_phasor()
 
     double ion_k = MHO_Constants::ion_k;
     // Channel centers: USB sky+bw/2
-    double fc[2] = { 8000.0 + 32.0 / 2.0,  8400.0 + 32.0 / 2.0 };  // 8016, 8416
+    double fc[2] = {8000.0 + 32.0 / 2.0, 8400.0 + 32.0 / 2.0}; // 8016, 8416
 
-    for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++) {
+    for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+    {
         double theta = ion_k * dTEC / (1e6 * fc[ch]);
-        std::complex<double> expected(std::cos(theta), std::sin(theta));
+        std::complex< double > expected(std::cos(theta), std::sin(theta));
 
-        for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++) {
+        for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                {
                     CHECK_CLOSE(vis(pp, ch, ap, sp).real(), expected.real(), 1e-9);
                     CHECK_CLOSE(vis(pp, ch, ap, sp).imag(), expected.imag(), 1e-9);
                 }
@@ -94,8 +96,8 @@ static int test_case2_1f_scaling()
     CHECK_CLOSE(ratio, expected_ratio, 1e-12);
 
     // Also verify operator output matches the per-channel expected phasor
-    std::complex<double> expected0(std::cos(theta0), std::sin(theta0));
-    std::complex<double> expected1(std::cos(theta1), std::sin(theta1));
+    std::complex< double > expected0(std::cos(theta0), std::sin(theta0));
+    std::complex< double > expected1(std::cos(theta1), std::sin(theta1));
     CHECK_CLOSE(vis(0, 0, 0, 0).real(), expected0.real(), 1e-9);
     CHECK_CLOSE(vis(0, 0, 0, 0).imag(), expected0.imag(), 1e-9);
     CHECK_CLOSE(vis(0, 1, 0, 0).real(), expected1.real(), 1e-9);
@@ -118,10 +120,11 @@ static int test_case3_metadata()
     op.Execute();
 
     double ion_k = MHO_Constants::ion_k;
-    double fc[2] = { 8016.0, 8416.0 };
+    double fc[2] = {8016.0, 8416.0};
 
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(vis));
-    for (std::size_t ch = 0; ch < 2; ch++) {
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(vis));
+    for(std::size_t ch = 0; ch < 2; ch++)
+    {
         double theta = ion_k * dTEC / (1e6 * fc[ch]);
         double expected_deg = theta * MHO_Constants::rad_to_deg;
 
@@ -149,15 +152,16 @@ static int test_case4_zero_dtec()
     op2.Execute();
 
     // Array must be unchanged
-    for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-        for (std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+    for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+        for(std::size_t ch = 0; ch < vis.GetDimension(CHANNEL_AXIS); ch++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
                     CHECK_CLOSE(std::abs(vis(pp, ch, ap, sp) - pristine(pp, ch, ap, sp)), 0.0, 1e-12);
 
     // dtec_phase_deg label must still be written with value 0
-    auto chan_ax = &(std::get<CHANNEL_AXIS>(vis));
-    for (std::size_t ch = 0; ch < 2; ch++) {
+    auto chan_ax = &(std::get< CHANNEL_AXIS >(vis));
+    for(std::size_t ch = 0; ch < 2; ch++)
+    {
         double actual_deg;
         bool found = chan_ax->RetrieveIndexLabelKeyValue(ch, "dtec_phase_deg", actual_deg);
         REQUIRE(found);
@@ -171,7 +175,7 @@ static int test_case4_zero_dtec()
 static int test_case5_lsb_channel()
 {
     visibility_type vis;
-    build_fixture(vis, true);  // channel 1 is LSB
+    build_fixture(vis, true); // channel 1 is LSB
 
     double dTEC = 10.0;
     MHO_IonosphericPhaseCorrection op;
@@ -188,7 +192,7 @@ static int test_case5_lsb_channel()
     // Verify channel 0 is unchanged from USB case
     {
         double theta = ion_k * dTEC / (1e6 * fc0);
-        std::complex<double> expected(std::cos(theta), std::sin(theta));
+        std::complex< double > expected(std::cos(theta), std::sin(theta));
         CHECK_CLOSE(vis(0, 0, 0, 0).real(), expected.real(), 1e-9);
         CHECK_CLOSE(vis(0, 0, 0, 0).imag(), expected.imag(), 1e-9);
     }
@@ -196,18 +200,19 @@ static int test_case5_lsb_channel()
     // Verify channel 1 uses LSB center frequency
     {
         double theta = ion_k * dTEC / (1e6 * fc1_lsb);
-        std::complex<double> expected(std::cos(theta), std::sin(theta));
+        std::complex< double > expected(std::cos(theta), std::sin(theta));
 
-        for (std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
-            for (std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
-                for (std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++) {
+        for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
+            for(std::size_t ap = 0; ap < vis.GetDimension(TIME_AXIS); ap++)
+                for(std::size_t sp = 0; sp < vis.GetDimension(FREQ_AXIS); sp++)
+                {
                     CHECK_CLOSE(vis(pp, 1, ap, sp).real(), expected.real(), 1e-9);
                     CHECK_CLOSE(vis(pp, 1, ap, sp).imag(), expected.imag(), 1e-9);
                 }
     }
 
     // Verify LSB center differs from USB center (8416 vs 8384)
-    double arg_usb_case = std::arg(std::exp(std::complex<double>(0, ion_k * dTEC / (1e6 * 8416.0))));
+    double arg_usb_case = std::arg(std::exp(std::complex< double >(0, ion_k * dTEC / (1e6 * 8416.0))));
     double arg_lsb_case = std::arg(vis(0, 1, 0, 0));
     REQUIRE(std::fabs(arg_lsb_case - arg_usb_case) > 1e-12);
 
@@ -219,11 +224,16 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_case1_nonzero_dtec_phasor()) return 1;
-    if (test_case2_1f_scaling()) return 1;
-    if (test_case3_metadata()) return 1;
-    if (test_case4_zero_dtec()) return 1;
-    if (test_case5_lsb_channel()) return 1;
+    if(test_case1_nonzero_dtec_phasor())
+        return 1;
+    if(test_case2_1f_scaling())
+        return 1;
+    if(test_case3_metadata())
+        return 1;
+    if(test_case4_zero_dtec())
+        return 1;
+    if(test_case5_lsb_channel())
+        return 1;
 
     return 0;
 }

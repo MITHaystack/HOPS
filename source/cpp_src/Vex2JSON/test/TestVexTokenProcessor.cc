@@ -5,9 +5,8 @@
 
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
-#include "MHO_VexTokenProcessor.hh"
 #include "MHO_TestAssertions.hh"
-
+#include "MHO_VexTokenProcessor.hh"
 
 static double json_double(mho_json& j)
 {
@@ -24,10 +23,10 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"42"};
+        std::vector< std::string > tokens = {"42"};
         auto r = tp.ProcessInt("exper_num", fmt, tokens);
         REQUIRE(r.is_number_integer());
-        REQUIRE(r.get<int>() == 42);
+        REQUIRE(r.get< int >() == 42);
     }
 
     //  Test Case 2: ProcessInt with trailing whitespace
@@ -35,9 +34,9 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {" 17 "};
+        std::vector< std::string > tokens = {" 17 "};
         auto r = tp.ProcessInt("x", fmt, tokens);
-        REQUIRE(r.get<int>() == 17);
+        REQUIRE(r.get< int >() == 17);
     }
 
     //  Test Case 3: ProcessInt negative
@@ -45,9 +44,9 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"-5"};
+        std::vector< std::string > tokens = {"-5"};
         auto r = tp.ProcessInt("x", fmt, tokens);
-        REQUIRE(r.get<int>() == -5);
+        REQUIRE(r.get< int >() == -5);
     }
 
     //  Test Case 4: ProcessListInt
@@ -55,11 +54,11 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"1", "2", "3", "4"};
+        std::vector< std::string > tokens = {"1", "2", "3", "4"};
         auto r = tp.ProcessListInt("freq_state", fmt, tokens);
         REQUIRE(r.is_array());
         REQUIRE(r.size() == 4);
-        REQUIRE(r[2].get<int>() == 3);
+        REQUIRE(r[2].get< int >() == 3);
     }
 
     //  Test Case 5: ProcessReal without units
@@ -67,7 +66,7 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"3.14"};
+        std::vector< std::string > tokens = {"3.14"};
         auto r = tp.ProcessReal("x", fmt, tokens);
         double val = json_double(r["value"]);
         REQUIRE(std::fabs(val - 3.14) < 1e-12);
@@ -83,7 +82,7 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"8080.40 MHz"};
+        std::vector< std::string > tokens = {"8080.40 MHz"};
         auto r = tp.ProcessReal("x", fmt, tokens);
         double val = json_double(r["value"]);
         REQUIRE(std::fabs(val - 8080.40) < 1e-9);
@@ -95,7 +94,7 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"-1.5e-3 sec"};
+        std::vector< std::string > tokens = {"-1.5e-3 sec"};
         auto r = tp.ProcessReal("x", fmt, tokens);
         double val = json_double(r["value"]);
         REQUIRE(std::fabs(val - (-1.5e-3)) < 1e-15);
@@ -110,7 +109,7 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"1.0", "2.0", "3.0 s"};
+        std::vector< std::string > tokens = {"1.0", "2.0", "3.0 s"};
         auto r = tp.ProcessListReal("x", fmt, tokens);
         REQUIRE(r["values"].is_array());
         REQUIRE(r["values"].size() == 3);
@@ -123,7 +122,7 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"1.0", "2.0", "3.0"};
+        std::vector< std::string > tokens = {"1.0", "2.0", "3.0"};
         auto r = tp.ProcessListReal("x", fmt, tokens);
         REQUIRE(r["values"].is_array());
         REQUIRE(r["values"].size() == 3);
@@ -134,11 +133,11 @@ int main()
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
 
-        std::vector<std::string> tokens = {"Aa", "Bb", "Cc"};
+        std::vector< std::string > tokens = {"Aa", "Bb", "Cc"};
         auto r = tp.ProcessListString("x", fmt, tokens);
         REQUIRE(r.is_array());
         REQUIRE(r.size() == 3);
-        REQUIRE(r[1].get<std::string>() == "Bb");
+        REQUIRE(r[1].get< std::string >() == "Bb");
     }
 
     //  Test Case 11: ContainsWhitespace

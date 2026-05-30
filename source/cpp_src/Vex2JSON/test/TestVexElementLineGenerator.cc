@@ -7,26 +7,25 @@
 
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
+#include "MHO_TestAssertions.hh"
 #include "MHO_Tokenizer.hh"
 #include "MHO_VexElementLineGenerator.hh"
 #include "MHO_VexTokenProcessor.hh"
-#include "MHO_TestAssertions.hh"
-
 
 static std::string Trim(std::string s)
 {
-    while (!s.empty() && (s.back() == ' ' || s.back() == '\t')) s.pop_back();
+    while(!s.empty() && (s.back() == ' ' || s.back() == '\t'))
+        s.pop_back();
     std::size_t i = 0;
-    while (i < s.size() && (s[i] == ' ' || s[i] == '\t')) ++i;
+    while(i < s.size() && (s[i] == ' ' || s[i] == '\t'))
+        ++i;
     return s.substr(i);
 }
-
 
 int main()
 {
     hops::MHO_Message::GetInstance().AcceptAllKeys();
     hops::MHO_Message::GetInstance().SetMessageLevel(hops::eFatal);
-
 
     // Case 1: GenerateInt
     {
@@ -34,7 +33,6 @@ int main()
         mho_json obj = 42;
         REQUIRE(Trim(gen.GenerateInt("exper_num", obj)) == "42");
     }
-
 
     // Case 2: GenerateListInt
     {
@@ -49,7 +47,6 @@ int main()
         REQUIRE(s.find("3") != std::string::npos);
     }
 
-
     // Case 3: GenerateReal with units
     {
         hops::MHO_VexElementLineGenerator gen;
@@ -60,7 +57,6 @@ int main()
         REQUIRE(s.find("8080.4") != std::string::npos);
         REQUIRE(s.find("MHz") != std::string::npos);
     }
-
 
     // Case 4: GenerateReal without units
     {
@@ -73,7 +69,6 @@ int main()
         REQUIRE(s.find("MHz") == std::string::npos);
         REQUIRE(s.find("sec") == std::string::npos);
     }
-
 
     // Case 5: GenerateListReal
     {
@@ -90,14 +85,12 @@ int main()
         REQUIRE(s.find("s") != std::string::npos);
     }
 
-
     // Case 6: GenerateString
     {
         hops::MHO_VexElementLineGenerator gen;
         mho_json obj = "U";
         REQUIRE(Trim(gen.GenerateString("net_sideband", obj)) == "U");
     }
-
 
     // Case 7: GenerateListString
     {
@@ -112,7 +105,6 @@ int main()
         REQUIRE(s.find("Cc") != std::string::npos);
     }
 
-
     // Case 8: GenerateKeyword
     {
         hops::MHO_VexElementLineGenerator gen;
@@ -120,14 +112,12 @@ int main()
         REQUIRE(gen.GenerateKeyword("keyword", obj).find("TESTFREQ") != std::string::npos);
     }
 
-
     // Case 9: GenerateLink
     {
         hops::MHO_VexElementLineGenerator gen;
         mho_json obj = "&CH01";
         REQUIRE(gen.GenerateLink("channel_id", obj).find("&CH01") != std::string::npos);
     }
-
 
     // Case 10: ConstructElementLine (compound chan_def)
     {
@@ -204,7 +194,6 @@ int main()
         REQUIRE(line.find("&U_Cal") != std::string::npos);
     }
 
-
     // Case 11: Round-trip GenerateReal -> ProcessReal
     {
         hops::MHO_VexElementLineGenerator gen;
@@ -213,23 +202,25 @@ int main()
         obj["units"] = "MHz";
         std::string line = gen.GenerateReal("sky_frequency", obj);
         // Tokenize the output using SplitString
-        std::vector<std::string> tokens = hops::SplitString(line, " ");
+        std::vector< std::string > tokens = hops::SplitString(line, " ");
         // Construct a single token from the non-empty tokens
         std::string combined;
-        for (std::size_t i = 0; i < tokens.size(); ++i) {
-            if (!tokens[i].empty()) {
-                if (!combined.empty()) combined += " ";
+        for(std::size_t i = 0; i < tokens.size(); ++i)
+        {
+            if(!tokens[i].empty())
+            {
+                if(!combined.empty())
+                    combined += " ";
                 combined += tokens[i];
             }
         }
-        std::vector<std::string> proc_tokens = {combined};
+        std::vector< std::string > proc_tokens = {combined};
         hops::MHO_VexTokenProcessor tp;
         mho_json fmt = mho_json::object();
         auto result = tp.ProcessReal("sky_frequency", fmt, proc_tokens);
         double recovered = (double)result["value"];
         REQUIRE(std::fabs(recovered - 8080.40) < 1e-9);
     }
-
 
     // Case 12: Trailing optional field
     {
@@ -279,7 +270,6 @@ int main()
         // Should contain the fields that are present
         REQUIRE(line.find("&X") != std::string::npos);
     }
-
 
     // Case 13: Interior optional gap must keep placeholders (regression)
     // clock_early with only clock_early_offset (#2) and fmout2gps (#7) populated.
@@ -334,7 +324,6 @@ int main()
         // The offset must come before fmout2gps in the line.
         REQUIRE(line.find("2.5") < line.find("12"));
     }
-
 
     // Case 14: Interior gap in the middle of populated fields ($SCHED station)
     // pass (#5) is missing but media_position (#4), wrap_id (#6) and record_flag (#7)

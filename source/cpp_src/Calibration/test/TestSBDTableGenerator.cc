@@ -3,9 +3,9 @@
 #include <iostream>
 #include <vector>
 
-#include "MHO_SBDTableGenerator.hh"
 #include "MHO_ContainerDefinitions.hh"
 #include "MHO_Message.hh"
+#include "MHO_SBDTableGenerator.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
@@ -24,27 +24,31 @@ static void build_input_visibility(visibility_type& vis, std::size_t in_dim[VIS_
     vis.ZeroArray();
 
     // Tag the POLPROD axis (string type)
-    auto& pol_ax = std::get<POLPROD_AXIS>(vis);
-    for (std::size_t i = 0; i < in_dim[POLPROD_AXIS]; ++i) {
+    auto& pol_ax = std::get< POLPROD_AXIS >(vis);
+    for(std::size_t i = 0; i < in_dim[POLPROD_AXIS]; ++i)
+    {
         pol_ax(i) = "POL" + std::to_string(i);
     }
 
     // Tag the CHANNEL axis (double type - sky frequency)
-    auto& chan_ax = std::get<CHANNEL_AXIS>(vis);
-    for (std::size_t i = 0; i < in_dim[CHANNEL_AXIS]; ++i) {
-        chan_ax(i) = 4000.0 + static_cast<double>(i) * 100.0;
+    auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
+    for(std::size_t i = 0; i < in_dim[CHANNEL_AXIS]; ++i)
+    {
+        chan_ax(i) = 4000.0 + static_cast< double >(i) * 100.0;
     }
 
     // Tag the TIME axis (double type)
-    auto& time_ax = std::get<TIME_AXIS>(vis);
-    for (std::size_t i = 0; i < in_dim[TIME_AXIS]; ++i) {
-        time_ax(i) = 100.0 + static_cast<double>(i);
+    auto& time_ax = std::get< TIME_AXIS >(vis);
+    for(std::size_t i = 0; i < in_dim[TIME_AXIS]; ++i)
+    {
+        time_ax(i) = 100.0 + static_cast< double >(i);
     }
 
     // Tag the FREQ axis (double type - distinctive values)
-    auto& freq_ax = std::get<FREQ_AXIS>(vis);
-    for (std::size_t i = 0; i < in_dim[FREQ_AXIS]; ++i) {
-        freq_ax(i) = 1000.0 + static_cast<double>(i);
+    auto& freq_ax = std::get< FREQ_AXIS >(vis);
+    for(std::size_t i = 0; i < in_dim[FREQ_AXIS]; ++i)
+    {
+        freq_ax(i) = 1000.0 + static_cast< double >(i);
     }
 }
 
@@ -53,10 +57,11 @@ static void check_dims(const sbd_type& out, std::size_t exp[VIS_NDIM], int& ret)
 {
     std::size_t out_dim[VIS_NDIM];
     out.GetDimensions(out_dim);
-    for (std::size_t i = 0; i < VIS_NDIM; ++i) {
-        if (out_dim[i] != exp[i]) {
-            std::cerr << "FAIL: out_dim[" << i << "] = " << out_dim[i]
-                      << " != expected " << exp[i] << " @ " << __FILE__ << ":"
+    for(std::size_t i = 0; i < VIS_NDIM; ++i)
+    {
+        if(out_dim[i] != exp[i])
+        {
+            std::cerr << "FAIL: out_dim[" << i << "] = " << out_dim[i] << " != expected " << exp[i] << " @ " << __FILE__ << ":"
                       << __LINE__ << std::endl;
             ret = 1;
         }
@@ -99,26 +104,29 @@ static int test_axes_copied()
     REQUIRE(gen.Execute());
 
     // Check POLPROD axis (string)
-    const auto& in_pol  = std::get<POLPROD_AXIS>(vis);
-    const auto& out_pol = std::get<POLPROD_AXIS>(sbd);
+    const auto& in_pol = std::get< POLPROD_AXIS >(vis);
+    const auto& out_pol = std::get< POLPROD_AXIS >(sbd);
     REQUIRE(in_pol.GetSize() == out_pol.GetSize());
-    for (std::size_t i = 0; i < in_pol.GetSize(); ++i) {
+    for(std::size_t i = 0; i < in_pol.GetSize(); ++i)
+    {
         REQUIRE(in_pol(i) == out_pol(i));
     }
 
     // Check CHANNEL axis (double)
-    const auto& in_chan  = std::get<CHANNEL_AXIS>(vis);
-    const auto& out_chan = std::get<CHANNEL_AXIS>(sbd);
+    const auto& in_chan = std::get< CHANNEL_AXIS >(vis);
+    const auto& out_chan = std::get< CHANNEL_AXIS >(sbd);
     REQUIRE(in_chan.GetSize() == out_chan.GetSize());
-    for (std::size_t i = 0; i < in_chan.GetSize(); ++i) {
+    for(std::size_t i = 0; i < in_chan.GetSize(); ++i)
+    {
         CHECK_CLOSE(out_chan(i), in_chan(i), 1e-12);
     }
 
     // Check TIME axis (double)
-    const auto& in_time  = std::get<TIME_AXIS>(vis);
-    const auto& out_time = std::get<TIME_AXIS>(sbd);
+    const auto& in_time = std::get< TIME_AXIS >(vis);
+    const auto& out_time = std::get< TIME_AXIS >(sbd);
     REQUIRE(in_time.GetSize() == out_time.GetSize());
-    for (std::size_t i = 0; i < in_time.GetSize(); ++i) {
+    for(std::size_t i = 0; i < in_time.GetSize(); ++i)
+    {
         CHECK_CLOSE(out_time(i), in_time(i), 1e-12);
     }
 
@@ -133,7 +141,7 @@ static int test_freq_not_copied()
     build_input_visibility(vis, in_dim);
 
     // Input FREQ axis has distinctive values 1000.0..1007.0
-    const auto& in_freq = std::get<FREQ_AXIS>(vis);
+    const auto& in_freq = std::get< FREQ_AXIS >(vis);
     REQUIRE(in_freq(0) == 1000.0);
 
     sbd_type sbd;
@@ -142,7 +150,7 @@ static int test_freq_not_copied()
     REQUIRE(gen.Initialize());
     REQUIRE(gen.Execute());
 
-    const auto& out_freq = std::get<FREQ_AXIS>(sbd);
+    const auto& out_freq = std::get< FREQ_AXIS >(sbd);
     REQUIRE(out_freq.GetSize() == PADDING_FACTOR * 8);
 
     // The FREQ axis values should be default-initialized (0.0), not the input's 1000.0
@@ -167,7 +175,8 @@ static int test_data_zeroed()
     REQUIRE(gen.Execute());
 
     // Scan all elements - should be (0,0)
-    for (auto it = sbd.begin(); it != sbd.end(); ++it) {
+    for(auto it = sbd.begin(); it != sbd.end(); ++it)
+    {
         CHECK_CLOSE(it->real(), 0.0, 1e-12);
         CHECK_CLOSE(it->imag(), 0.0, 1e-12);
     }
@@ -189,12 +198,12 @@ static int test_already_sized()
     sbd.ZeroArray();
 
     // Copy axes so they match input (so no resize is needed)
-    std::get<POLPROD_AXIS>(sbd).Copy(std::get<POLPROD_AXIS>(vis));
-    std::get<CHANNEL_AXIS>(sbd).Copy(std::get<CHANNEL_AXIS>(vis));
-    std::get<TIME_AXIS>(sbd).Copy(std::get<TIME_AXIS>(vis));
+    std::get< POLPROD_AXIS >(sbd).Copy(std::get< POLPROD_AXIS >(vis));
+    std::get< CHANNEL_AXIS >(sbd).Copy(std::get< CHANNEL_AXIS >(vis));
+    std::get< TIME_AXIS >(sbd).Copy(std::get< TIME_AXIS >(vis));
 
     // Set a SENTINEL value in the data buffer
-    sbd(0, 0, 0, 0) = std::complex<double>(7.0, 7.0);
+    sbd(0, 0, 0, 0) = std::complex< double >(7.0, 7.0);
 
     MHO_SBDTableGenerator gen;
     gen.SetArgs(&vis, &sbd);
@@ -235,7 +244,8 @@ static int test_reinit()
     // Dims should be unchanged
     std::size_t second_dim[VIS_NDIM];
     sbd.GetDimensions(second_dim);
-    for (std::size_t i = 0; i < VIS_NDIM; ++i) {
+    for(std::size_t i = 0; i < VIS_NDIM; ++i)
+    {
         REQUIRE(first_dim[i] == second_dim[i]);
     }
 
@@ -293,14 +303,22 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if (test_resize_from_empty())  return 1;
-    if (test_axes_copied())        return 1;
-    if (test_freq_not_copied())    return 1;
-    if (test_data_zeroed())        return 1;
-    if (test_already_sized())      return 1;
-    if (test_reinit())             return 1;
-    if (test_execute_before_init()) return 1;
-    if (test_different_freq_resize()) return 1;
+    if(test_resize_from_empty())
+        return 1;
+    if(test_axes_copied())
+        return 1;
+    if(test_freq_not_copied())
+        return 1;
+    if(test_data_zeroed())
+        return 1;
+    if(test_already_sized())
+        return 1;
+    if(test_reinit())
+        return 1;
+    if(test_execute_before_init())
+        return 1;
+    if(test_different_freq_resize())
+        return 1;
 
     return 0;
 }

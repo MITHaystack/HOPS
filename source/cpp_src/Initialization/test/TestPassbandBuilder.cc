@@ -5,9 +5,9 @@
 
 #include "InitializationTestFixtures.hh"
 
+#include "MHO_Message.hh"
 #include "MHO_Passband.hh"
 #include "MHO_PassbandBuilder.hh"
-#include "MHO_Message.hh"
 #include "MHO_TestAssertions.hh"
 
 using namespace hops;
