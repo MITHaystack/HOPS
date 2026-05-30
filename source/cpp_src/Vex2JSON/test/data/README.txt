@@ -2,7 +2,8 @@ The file wh2_ascii originated from:
 
 https://github.com/nvi-inc/vex/blob/main/test_parser/wh2
 
-It has been coverted to ascii only characters (replacing the Windows-style smart quotes), and the 'vector' keyword was updated to 'state_vector' according to the NRAO vex2 webpage:
+It has been converted to ascii only characters (replacing the Windows-style smart quotes), and
+the 'vector' keyword was updated to 'state_vector' according to the NRAO vex2 webpage:
 
 https://safe.nrao.edu/wiki/bin/view/VLBA/Vex2doc
 
@@ -681,4 +682,4 @@ into proprietary programs.  If your program is a subroutine library, you
 may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
-<https://www.gnu.org/licenses/why-not-lgpl.html>. 
+<https://www.gnu.org/licenses/why-not-lgpl.html>.
