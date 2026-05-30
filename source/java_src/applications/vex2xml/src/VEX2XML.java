@@ -1,7 +1,7 @@
 /**------------------------------------------------------
 * ALMA - Atacama Large Millimeter Array
 * (c) Associated Universities Inc., 2013
-* (c) Massachusetts Institute of Technology, 2013-2018
+* (c) Massachusetts Institute of Technology, 2013-2026
 * @author Victor Pankratius, MIT Haystack Observatory
 * @author Geoffrey Crew, MIT Haystack Observatory
 *
