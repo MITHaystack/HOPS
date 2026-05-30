@@ -1,7 +1,11 @@
 #!/bin/sh
 #
-exec java -classpath $HOPS_JAVACLASSPATH/lib4 \
-    -jar $HOPS_JAVACLASSPATH/lib4/VEX2XML.jar $@
+# the environment variables allows simple re-use in testing
+# once installed $HOPS_JAVACLASSPATH should hold all.
+#
+[ -z "$CLASSPATH" ] && CLASSPATH=$HOPS_JAVACLASSPATH
+[ -z "$VEX2XML4JAR" ] && VEX2XMLJAR=$CLASSPATH/java4/VEX2XML4.jar
+exec java -classpath $CLASSPATH/java4 -jar $VEX2XML4JAR $@
 #
 # eof
 #
