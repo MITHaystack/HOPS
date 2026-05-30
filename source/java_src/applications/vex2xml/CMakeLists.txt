@@ -14,7 +14,4 @@ endif(HOPS_VEX2XML4)
 add_subdirectory(doc)
 add_subdirectory(lib)
 add_subdirectory(src)
-
-if(HOPS_ENABLE_TEST)
-    add_subdirectory(test)
-endif(HOPS_ENABLE_TEST)
+add_subdirectory(test)

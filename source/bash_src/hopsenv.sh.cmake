@@ -52,7 +52,9 @@ export AHELP=@CMAKE_INSTALL_PREFIX@/share/vhelp/aedit
 export DEF_CONTROL=/dev/null
 export HOPS_VPAL_FRINGE_FITTER=@HOPS_VPAL_FOURFIT@
 export HOPS_DEFAULT_PLUGINS_DIR=@PLUGINS_INSTALL_DIR@
-# @JAVA_INSTALL_DIR@ does not work??
+#
+#export HOPS_JAVACLASSPATH=@JAVA_INSTALL_DIR@ does not work??
+#
 export HOPS_JAVACLASSPATH=@CMAKE_INSTALL_PREFIX@/lib
 
 #replace old (system) variable instances with new values
