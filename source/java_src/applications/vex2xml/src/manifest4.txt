@@ -1,2 +1,2 @@
-Main-Class: VEX2XML
-Class-Path: . ../lib/java4/antlr-4.8-complete.jar ../lib/java4/commons-cli-1.4.jar
+Main-Class: VEX2XML4
+Class-Path: . ./antlr-4.8-complete.jar ./commons-cli-1.4.jar
