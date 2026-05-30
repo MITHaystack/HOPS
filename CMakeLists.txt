@@ -126,10 +126,39 @@ else()
 endif()
 
 ################################################################################
-#create build timestamp...note: a consequence of this is that the build will not
-#be reproducible, and we will be forced to rebuild more files more often
-#This is required for legacy behavior of fringe plots (which report build time).
-string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
+#create build timestamp (reported by fourfit fringe plots, legacy behavior).
+#
+#To keep builds reproducible we derive the string(TIMESTAMP) from SOURCE_DATE_EPOCH
+#(should be ok so long as CMake >= 3.8) instead of the wall clock. The value is
+#resolved in the following order:
+#  1. grab SOURCE_DATE_EPOCH set in the environment (explicit override),
+#  2. fall back to commit time of HEAD (normal builds from a git checkout),
+#  3. fall back to the contents of source-date.last (release tarballs made with git-archive)
+#     NOTE: devs must regenerate it before tagging, use:
+#     source ./source/bash_src/source-date.sh | tee ./source-date.last
+if(NOT DEFINED ENV{SOURCE_DATE_EPOCH})
+    #try to derive the epoch from the last commit
+    execute_process(
+        COMMAND git -C "${CMAKE_CURRENT_SOURCE_DIR}" log -1 --pretty=%ct
+        OUTPUT_VARIABLE SOURCE_DATE_EPOCH_VALUE
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        ERROR_QUIET
+        RESULT_VARIABLE SOURCE_DATE_EPOCH_RESULT)
+    if(NOT (SOURCE_DATE_EPOCH_RESULT EQUAL 0 AND SOURCE_DATE_EPOCH_VALUE))
+        #no git available (e.g. a git-archive tarball), fall back to the recorded value
+        if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/source-date.last")
+            file(READ "${CMAKE_CURRENT_SOURCE_DIR}/source-date.last" SOURCE_DATE_EPOCH_VALUE)
+            string(STRIP "${SOURCE_DATE_EPOCH_VALUE}" SOURCE_DATE_EPOCH_VALUE)
+        endif()
+    endif()
+    if(SOURCE_DATE_EPOCH_VALUE)
+        set(ENV{SOURCE_DATE_EPOCH} "${SOURCE_DATE_EPOCH_VALUE}")
+    else()
+        message(WARNING "Could not determine SOURCE_DATE_EPOCH; build timestamp "
+                        "will reflect the current time and the build will not be reproducible.")
+    endif()
+endif()
+string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%S.0Z" UTC)
 message(STATUS "The build timestamp is ${BUILD_TIME}")
 
 ################################################################################

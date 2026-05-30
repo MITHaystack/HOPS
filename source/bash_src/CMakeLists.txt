@@ -11,6 +11,10 @@ install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/vhelp DESTINATION ${BIN_INSTALL_DI
 configure_file( ${SHSOURCE}/git-revision.sh ${CMAKE_CURRENT_BINARY_DIR}/git-revision.sh @ONLY)
 install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/git-revision.sh DESTINATION ${BIN_INSTALL_DIR} )
 
+#configure and install the source-date script (records SOURCE_DATE_EPOCH for reproducible release builds)
+configure_file( ${SHSOURCE}/source-date.sh ${CMAKE_CURRENT_BINARY_DIR}/source-date.sh @ONLY)
+install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/source-date.sh DESTINATION ${BIN_INSTALL_DIR} )
+
 #install the cohfit driver script (used by chk_cohfit_driver test and by users)
 install( PROGRAMS ${SHSOURCE}/cohfit-driver.sh DESTINATION ${BIN_INSTALL_DIR} )
 
