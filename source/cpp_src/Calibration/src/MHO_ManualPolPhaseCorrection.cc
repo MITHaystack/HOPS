@@ -131,6 +131,10 @@ bool MHO_ManualPolPhaseCorrection::IsApplicable(std::size_t st_idx, const visibi
 
 bool MHO_ManualPolPhaseCorrection::PolMatch(std::size_t station_idx, std::string& polprod)
 {
+    if(fPol == "?")
+    {
+        return true;
+    } //wild card allows for the implementation of pc_phases (with no pol-specification)
     make_upper(polprod);
     return (fPol[0] == polprod[station_idx]);
 }

@@ -2,145 +2,339 @@
 #include <string>
 #include <vector>
 
-#include "MHO_StationIdentity.hh"
+#include "MHO_Message.hh"
+#include "MHO_TestAssertions.hh"
 #include "MHO_Tokenizer.hh"
 
 using namespace hops;
 
+static int check_tokens(const std::vector<std::string>& actual,
+                        const std::vector<std::string>& expected)
+{
+    if(actual.size() != expected.size())
+    {
+        std::cerr << "FAIL: token count " << actual.size()
+                  << " != expected " << expected.size()
+                  << " @ " << __FILE__ << ":" << __LINE__ << std::endl;
+        return 1;
+    }
+    for(std::size_t i = 0; i < actual.size(); i++)
+    {
+        if(actual[i] != expected[i])
+        {
+            std::cerr << "FAIL: token[" << i << "] \"" << actual[i]
+                      << "\" != expected \"" << expected[i]
+                      << "\" @ " << __FILE__ << ":" << __LINE__ << std::endl;
+            return 1;
+        }
+    }
+    return 0;
+}
+
+static int get_and_check(MHO_Tokenizer& tok, const std::string* input,
+                         const std::vector<std::string>* expected)
+{
+    tok.SetString(input);
+    std::vector<std::string> result;
+    tok.GetTokens(&result);
+    return check_tokens(result, *expected);
+}
+
 int main(int /*argc*/, char** /*argv*/)
 {
+    MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
     MHO_Tokenizer tokenizer;
-    tokenizer.SetIncludeEmptyTokensFalse();
 
-    std::string test1 = "This is a string separated by spaces.";
-    std::string test2 = "This|is|a|string|separated|by|pipes.";
-    std::string test3 = "This \t is a\tstring|separated by a\nmix.";
-    std::string test4 = "This<d>is<d>a<d>string<d>separated<d>by<d>a<d>multi-character<d>delimiter.";
-
-    std::string test5 = "This is a string that \"contains \t quoted \t text\".";
-
-    std::string delim1 = " ";
-    std::string delim2 = "|";
-    std::string delim3 = "| \t\r\n";
-    std::string delim4 = "<d>";
-
-    std::vector< std::string > tok1;
-    std::vector< std::string > tok2;
-    std::vector< std::string > tok3;
-    std::vector< std::string > tok4;
-    std::vector< std::string > tok5;
-    std::vector< std::string > tok6;
-
-    tokenizer.SetDelimiter(delim1);
-    tokenizer.SetString(&test1);
-    tokenizer.GetTokens(&tok1);
-
-    tokenizer.SetDelimiter(delim2);
-    tokenizer.SetString(&test2);
-    tokenizer.GetTokens(&tok2);
-
-    tokenizer.SetDelimiter(delim3);
-    tokenizer.SetString(&test3);
-    tokenizer.GetTokens(&tok3);
-
-    tokenizer.SetDelimiter(delim4);
-    tokenizer.SetUseMulticharacterDelimiterTrue();
-    tokenizer.SetString(&test4);
-    tokenizer.GetTokens(&tok4);
-
-    tokenizer.SetDelimiter(delim1);
-    tokenizer.SetUseMulticharacterDelimiterFalse();
-    tokenizer.SetPreserveQuotesTrue();
-    tokenizer.SetString(&test5);
-    tokenizer.GetTokens(&tok5);
-
-    tokenizer.SetDelimiter(delim3);
-    tokenizer.SetPreserveQuotesTrue();
-    tokenizer.SetString(&test5);
-    tokenizer.GetTokens(&tok6);
-
-    for(std::size_t i = 0; i < tok1.size(); i++)
+    //  Case 1: Default delimiter (space), no empty tokens
     {
-        std::cout << tok1[i] << " ";
+        std::string input = "This is a string separated by spaces.";
+        tokenizer.SetDelimiter(" ");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("This");
+        exp.push_back("is");
+        exp.push_back("a");
+        exp.push_back("string");
+        exp.push_back("separated");
+        exp.push_back("by");
+        exp.push_back("spaces.");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
-    std::cout << std::endl;
-    for(std::size_t i = 0; i < tok2.size(); i++)
+
+    //  Case 2: Single-char delimiter '|'
     {
-        std::cout << tok2[i] << " ";
+        std::string input = "This|is|a|string|separated|by|pipes.";
+        tokenizer.SetDelimiter("|");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("This");
+        exp.push_back("is");
+        exp.push_back("a");
+        exp.push_back("string");
+        exp.push_back("separated");
+        exp.push_back("by");
+        exp.push_back("pipes.");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
-    std::cout << std::endl;
-    for(std::size_t i = 0; i < tok3.size(); i++)
+
+    //  Case 3: Single-char delimiter SET "| \t\r\n"
     {
-        std::cout << tok3[i] << " ";
+        std::string input = "This \t is a\tstring|separated by a\nmix.";
+        tokenizer.SetDelimiter("| \t\r\n");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("This");
+        exp.push_back("is");
+        exp.push_back("a");
+        exp.push_back("string");
+        exp.push_back("separated");
+        exp.push_back("by");
+        exp.push_back("a");
+        exp.push_back("mix.");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
-    std::cout << std::endl;
-    for(std::size_t i = 0; i < tok4.size(); i++)
+
+    //  Case 4: Multi-character delimiter "<d>"
     {
-        std::cout << tok4[i] << " ";
+        std::string input = "This<d>is<d>a<d>string<d>by<d>a<d>multi-character<d>delimiter.";
+        tokenizer.SetDelimiter("<d>");
+        tokenizer.SetUseMulticharacterDelimiterTrue();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("This");
+        exp.push_back("is");
+        exp.push_back("a");
+        exp.push_back("string");
+        exp.push_back("by");
+        exp.push_back("a");
+        exp.push_back("multi-character");
+        exp.push_back("delimiter.");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
-    std::cout << std::endl;
-    for(std::size_t i = 0; i < tok5.size(); i++)
+
+    //  Case 5: Repeated/adjacent delimiters, IncludeEmptyTokens TRUE
     {
-        std::cout << tok5[i] << " ";
+        std::string input = "a,,b,";
+        tokenizer.SetDelimiter(",");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensTrue();
+        std::vector<std::string> exp;
+        exp.push_back("a");
+        exp.push_back("");
+        exp.push_back("b");
+        exp.push_back(""); // trailing comma emits empty token after final delimiter
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
-    std::cout << std::endl;
-    for(std::size_t i = 0; i < tok6.size(); i++)
+
+    //  Case 6: Repeated/adjacent delimiters, IncludeEmptyTokens FALSE
     {
-        std::cout << tok6[i] << " ";
+        std::string input = "a,,b,";
+        tokenizer.SetDelimiter(",");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("a");
+        exp.push_back("b");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
-    std::cout << std::endl;
 
-    std::string val = "    mean_motion = 0.; ";
-    std::string fAssignmentDelim = "=;";
-    tokenizer.SetDelimiter(fAssignmentDelim);
-    tokenizer.SetUseMulticharacterDelimiterFalse();
-    tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
-    tokenizer.SetIncludeEmptyTokensFalse();
-
-    std::vector< std::string > tok7;
-    tokenizer.SetString(&val);
-    tokenizer.GetTokens(&tok7);
-
-    std::string polprod = "XX+YY";
-    std::vector< std::string > tok9;
-    //we have a pol-product summation like (RR+LL) or XX+YY, or RX+RY
-    //so split on all '+' symbols (currently we only support '+' not '-')
-    tokenizer.SetDelimiter("+");
-    tokenizer.SetUseMulticharacterDelimiterFalse();
-    tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
-    tokenizer.SetIncludeEmptyTokensFalse();
-    tokenizer.SetString(&polprod);
-    tokenizer.GetTokens(&tok9);
-    for(std::size_t i = 0; i < tok9.size(); i++)
+    //  Case 7: Whitespace trimming with single-char delim
     {
-        std::cout << tok9[i] << " ";
+        std::string input = "  alpha , beta ,gamma  ";
+        tokenizer.SetDelimiter(",");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("alpha");
+        exp.push_back("beta");
+        exp.push_back("gamma");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
-    std::cout << std::endl;
 
-    for(std::size_t i = 0; i < tok7.size(); i++)
+    //  Case 8: Quote preservation, matched quotes
     {
-        std::cout << tok7[i] << "|";
+        std::string input = "This is \"quoted \t text\" here";
+        tokenizer.SetDelimiter(" ");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesTrue();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("This");
+        exp.push_back("is");
+        exp.push_back("\"quoted \t text\"");
+        exp.push_back("here");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
     }
-    std::cout << std::endl;
 
-    //minor test of the station identifier class
-    MHO_StationIdentity west;
-    west.SetAll("WESTFORD", "Wf", "E");
+    //  Case 9: Quote preservation, UNMATCHED quote (odd '"')
+    {
+        std::string input = "a \"b c";
+        tokenizer.SetDelimiter(" ");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesTrue();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("a");
+        exp.push_back("\"b");
+        exp.push_back("c");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
+    }
 
-    std::cout << "station: " << west.as_string() << std::endl;
+    //  Case 10: Empty input string
+    {
+        std::string input = "";
+        tokenizer.SetDelimiter(" ");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp; // empty
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
+    }
 
-    MHO_StationIdentity ggao;
-    ggao.SetAll("GGAO12M", "Gs", "G");
+    //  Case 11: Delimiter-only input (3 spaces, space delim)
+    {
+        std::string input = "   ";
+        tokenizer.SetDelimiter(" ");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp; // empty
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
+    }
 
-    std::cout << "station: " << ggao.as_string() << std::endl;
+    //  Case 12: Assignment-style delimiter "=;" with trimming
+    {
+        std::string input = "    mean_motion = 0.; ";
+        tokenizer.SetDelimiter("=;");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("mean_motion");
+        exp.push_back("0.");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
+    }
 
-    bool ok = (ggao == west);
-    std::cout << "equivalent? " << ok << std::endl;
+    //  Case 13: Pol-product split "XX+YY" on "+"
+    {
+        std::string input = "XX+YY";
+        tokenizer.SetDelimiter("+");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceTrue();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        std::vector<std::string> exp;
+        exp.push_back("XX");
+        exp.push_back("YY");
+        REQUIRE(get_and_check(tokenizer, &input, &exp) == 0);
+    }
 
-    std::cout << "Westford matches 'E'? " << west.matches("E") << std::endl;
-    std::cout << "Westford matches 'G'? " << west.matches("G") << std::endl;
-    std::cout << "GGAO matches 'G'? " << ggao.matches("G") << std::endl;
+    //  Case 14: TrimLeadingAndTrailingWhitespace (static) direct
+    {
+        std::string r1 = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace("  \t hello world \t ");
+        REQUIRE(r1 == "hello world");
+        std::string r2 = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace("   ");
+        REQUIRE(r2 == "");
+        std::string r3 = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace("");
+        REQUIRE(r3 == "");
+    }
+
+    //  Case 15: SplitString() free function - empty delimiter (per-char)
+    {
+        std::vector<std::string> result = hops::SplitString("abc");
+        std::vector<std::string> exp;
+        exp.push_back("a");
+        exp.push_back("b");
+        exp.push_back("c");
+        REQUIRE(check_tokens(result, exp) == 0);
+    }
+
+    //  Case 16: SplitString() free function - explicit delimiter
+    {
+        std::vector<std::string> result = hops::SplitString(" x , y , z ", ",");
+        std::vector<std::string> exp;
+        exp.push_back("x");
+        exp.push_back("y");
+        exp.push_back("z");
+        REQUIRE(check_tokens(result, exp) == 0);
+    }
+
+    //  Case 17: Object reuse / idempotency
+    // Reuse the same tokenizer instance across 3 different configurations.
+    {
+        // Re-run case 2 config
+        std::string input2 = "This|is|a|string|separated|by|pipes.";
+        tokenizer.SetDelimiter("|");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        tokenizer.SetPreserveQuotesFalse();
+        tokenizer.SetRemoveLeadingTrailingWhitespaceFalse();
+        tokenizer.SetIncludeEmptyTokensFalse();
+        {
+            std::vector<std::string> exp;
+            exp.push_back("This");
+            exp.push_back("is");
+            exp.push_back("a");
+            exp.push_back("string");
+            exp.push_back("separated");
+            exp.push_back("by");
+            exp.push_back("pipes.");
+            REQUIRE(get_and_check(tokenizer, &input2, &exp) == 0);
+        }
+        // Reconfigure for case 4 (multi-char)
+        std::string input4 = "This<d>is<d>a<d>string<d>by<d>a<d>multi-character<d>delimiter.";
+        tokenizer.SetDelimiter("<d>");
+        tokenizer.SetUseMulticharacterDelimiterTrue();
+        {
+            std::vector<std::string> exp;
+            exp.push_back("This");
+            exp.push_back("is");
+            exp.push_back("a");
+            exp.push_back("string");
+            exp.push_back("by");
+            exp.push_back("a");
+            exp.push_back("multi-character");
+            exp.push_back("delimiter.");
+            REQUIRE(get_and_check(tokenizer, &input4, &exp) == 0);
+        }
+        // Back to default-space config (case 1)
+        std::string input1 = "This is a string separated by spaces.";
+        tokenizer.SetDelimiter(" ");
+        tokenizer.SetUseMulticharacterDelimiterFalse();
+        {
+            std::vector<std::string> exp;
+            exp.push_back("This");
+            exp.push_back("is");
+            exp.push_back("a");
+            exp.push_back("string");
+            exp.push_back("separated");
+            exp.push_back("by");
+            exp.push_back("spaces.");
+            REQUIRE(get_and_check(tokenizer, &input1, &exp) == 0);
+        }
+    }
 
     return 0;
 }

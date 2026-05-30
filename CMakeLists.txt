@@ -99,7 +99,11 @@ file(MAKE_DIRECTORY ${SHARE_VHELP_AEDIT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${PLUGINS_INSTALL_DIR})
 
 #developer coverage testing requires lcov and genhtml (install with: apt-get install lcov)
-#generate html report with 'make coverage'
+#to generate html report with 'make coverage'
+#then generate the .svg badges with:
+# build$ ../source/bash_src/coverage_badge.sh ./coverage_hops4.info
+# build$ ../source/bash_src/coverage_badge.sh ./coverage_hops3.info
+#and copy them to the doc directory
 include(HopsCoverage)
 
 #convenience variables
@@ -131,6 +135,7 @@ message(STATUS "The build timestamp is ${BUILD_TIME}")
 ################################################################################
 #options for triggering additional dependencies
 option(HOPS_ENABLE_TEST "Build developer tests." ON)
+option(HOPS_ENABLE_UNIT_TESTS "Build developer unit tests" OFF)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but highly recommended)" ON)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)

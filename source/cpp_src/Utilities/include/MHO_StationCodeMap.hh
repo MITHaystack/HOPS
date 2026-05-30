@@ -69,6 +69,30 @@ class MHO_StationCodeMap
          */
         std::vector< std::string > GetAllStationCodes();
 
+        /**
+         * @brief Converts a given string to uppercase while preserving non-alphabetic characters.
+         *
+         * @param token Input string to be converted to uppercase.
+         * @return Uppercase version of the input string, preserving non-alphabetic characters.
+         */
+        std::string ToUpperCase(std::string token); //AA
+
+        /**
+         * @brief Converts a given string to lowercase while preserving non-alphabetic characters.
+         *
+         * @param token Input string to be converted to lowercase.
+         * @return The input string converted to lowercase.
+         */
+        std::string ToLowerCase(std::string token); //aa
+
+        /**
+         * @brief Converts a given string token to canonical case (first character uppercase, second lowercase).
+         *
+         * @param token Input string token to be converted
+         * @return String token in canonical case
+         */
+        std::string ToCanonicalCase(std::string token); //Aa
+
     private:
         /**
          * @brief Initializes free Mk4 IDs and clears station codes and Mk4 IDs maps.
@@ -93,30 +117,6 @@ class MHO_StationCodeMap
          * @param mk4id Mk4 identifier string
          */
         void InsertPair(std::string station_code, std::string mk4id);
-
-        /**
-         * @brief Converts a given string to uppercase while preserving non-alphabetic characters.
-         *
-         * @param token Input string to be converted to uppercase.
-         * @return Uppercase version of the input string, preserving non-alphabetic characters.
-         */
-        std::string ToUpperCase(std::string token); //AA
-
-        /**
-         * @brief Converts a given string to lowercase while preserving non-alphabetic characters.
-         *
-         * @param token Input string to be converted to lowercase.
-         * @return The input string converted to lowercase.
-         */
-        std::string ToLowerCase(std::string token); //aa
-
-        /**
-         * @brief Converts a given string token to canonical case (first character uppercase, second lowercase).
-         *
-         * @param token Input string token to be converted
-         * @return String token in canonical case
-         */
-        std::string ToCanonicalCase(std::string token); //Aa
 
         bool fUseLegacyCodes;
         /**

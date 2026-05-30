@@ -205,90 +205,90 @@ void MHO_UniformGridPointsCalculator::Calculate_v1(int max_pts)
     }
 }
 
-void MHO_UniformGridPointsCalculator::Calculate_v2()
-{
-
-    //this function computes a set of grid points but does not enforce that it be a power of 2 in size
-    fIndexMap.clear();
-    if(fPoints.size() != 0)
-    {
-        FindStartAndMinMaxSpacing();
-
-        std::size_t start_grid_pts = (std::size_t)std::round(fMaxSpacing / fMinSpacing);
-        std::size_t grid_pts = start_grid_pts;
-        double max_delta = 0;
-        double grid_spacing = fMinSpacing;
-        std::size_t n_attempts = 0;
-        double factor = 1;
-
-        do
-        {
-            grid_pts = factor * start_grid_pts;
-            grid_spacing = fMinSpacing / factor;
-
-            max_delta = 0;
-            for(std::size_t i = 0; i < fPoints.size(); i++)
-            {
-                double val = fPoints[i];
-                double location = val - fStart;
-                //find nearest grid point
-                std::size_t idx = std::round(location / grid_spacing);
-                fIndexMap[i] = idx;
-                double delta = location - idx * grid_spacing;
-                if(std::fabs(delta) > max_delta)
-                {
-                    max_delta = std::fabs(delta);
-                }
-            }
-
-            n_attempts++;
-            if(max_delta > fEpsilon)
-            {
-                factor = n_attempts;
-            }
-        }
-        while(max_delta > fEpsilon && n_attempts < 128);
-
-        fSpacing = grid_spacing;
-        fNGridPoints = grid_pts;
-    }
-    else
-    {
-        msg_error("math", "cannot construct uniform grid with no points given." << eom);
-    }
-}
-
-void MHO_UniformGridPointsCalculator::FindStartAndMinMaxSpacing()
-{
-    if(fPoints.size() != 0)
-    {
-        fStart = std::numeric_limits< double >::max();
-        fMinSpacing = std::numeric_limits< double >::max();
-        fMaxSpacing = 0;
-
-        //look for min point and min spacing between any pair of points
-        std::size_t npts = fPoints.size();
-        for(std::size_t i = 0; i < npts; i++)
-        {
-            double val = fPoints[i];
-            if(val < fStart)
-            {
-                fStart = val;
-            }
-            for(std::size_t j = i + 1; j < npts; j++)
-            {
-                double space = std::fabs(fPoints[j] - val);
-                if(space < fMinSpacing && std::fabs(space) > fAbsEps)
-                {
-                    fMinSpacing = space;
-                }
-                if(space > fMaxSpacing)
-                {
-                    fMaxSpacing = space;
-                }
-            }
-        }
-    }
-}
+// void MHO_UniformGridPointsCalculator::Calculate_v2()
+// {
+//
+//     //this function computes a set of grid points but does not enforce that it be a power of 2 in size
+//     fIndexMap.clear();
+//     if(fPoints.size() != 0)
+//     {
+//         FindStartAndMinMaxSpacing();
+//
+//         std::size_t start_grid_pts = (std::size_t)std::round(fMaxSpacing / fMinSpacing);
+//         std::size_t grid_pts = start_grid_pts;
+//         double max_delta = 0;
+//         double grid_spacing = fMinSpacing;
+//         std::size_t n_attempts = 0;
+//         double factor = 1;
+//
+//         do
+//         {
+//             grid_pts = factor * start_grid_pts;
+//             grid_spacing = fMinSpacing / factor;
+//
+//             max_delta = 0;
+//             for(std::size_t i = 0; i < fPoints.size(); i++)
+//             {
+//                 double val = fPoints[i];
+//                 double location = val - fStart;
+//                 //find nearest grid point
+//                 std::size_t idx = std::round(location / grid_spacing);
+//                 fIndexMap[i] = idx;
+//                 double delta = location - idx * grid_spacing;
+//                 if(std::fabs(delta) > max_delta)
+//                 {
+//                     max_delta = std::fabs(delta);
+//                 }
+//             }
+//
+//             n_attempts++;
+//             if(max_delta > fEpsilon)
+//             {
+//                 factor = n_attempts;
+//             }
+//         }
+//         while(max_delta > fEpsilon && n_attempts < 128);
+//
+//         fSpacing = grid_spacing;
+//         fNGridPoints = grid_pts;
+//     }
+//     else
+//     {
+//         msg_error("math", "cannot construct uniform grid with no points given." << eom);
+//     }
+// }
+//
+// void MHO_UniformGridPointsCalculator::FindStartAndMinMaxSpacing()
+// {
+//     if(fPoints.size() != 0)
+//     {
+//         fStart = std::numeric_limits< double >::max();
+//         fMinSpacing = std::numeric_limits< double >::max();
+//         fMaxSpacing = 0;
+//
+//         //look for min point and min spacing between any pair of points
+//         std::size_t npts = fPoints.size();
+//         for(std::size_t i = 0; i < npts; i++)
+//         {
+//             double val = fPoints[i];
+//             if(val < fStart)
+//             {
+//                 fStart = val;
+//             }
+//             for(std::size_t j = i + 1; j < npts; j++)
+//             {
+//                 double space = std::fabs(fPoints[j] - val);
+//                 if(space < fMinSpacing && std::fabs(space) > fAbsEps)
+//                 {
+//                     fMinSpacing = space;
+//                 }
+//                 if(space > fMaxSpacing)
+//                 {
+//                     fMaxSpacing = space;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 } // namespace hops

@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 #
-# $Id: chk_baselines.sh 4383 2025-07-20 21:38:08Z gbc $
+# $Id: chk_baselines.sh 4600 2026-05-27 21:19:06Z gbc $
 #
 # test to verify local data processing
 #
@@ -53,10 +53,10 @@ $verb && echo files is $files
 [ "$files" -eq 6 ] || { echo Missing baselines; exit 2 ; }
 
 # create helper
-cat > pplot_print <<-EOF
+cat > pplot_print.sh <<-EOF
     mv \$1 temp_plot.ps
 EOF
-chmod +x pplot_print
+chmod +x pplot_print.sh
 
 rm -f ??.?.?.$time.ps
 for bsx in ??.?.?.$time
@@ -66,7 +66,7 @@ do
 done
 
 # remove helper
-rm -f pplot_print
+rm -f pplot_print.sh
 
 for f in ??.?.?.$time.ps
 do

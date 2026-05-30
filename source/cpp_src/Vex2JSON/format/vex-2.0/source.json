@@ -62,7 +62,7 @@
         "mean_motion":  {"type": "real", "dimension":"NA"},
         "orbit_epoch": {"type": "epoch"},
         "bsp_file_name": {"type": "string"},
-        "bsp_object_id": {"type": "string"},
+        "bsp_object_id": {"type": "int"},
         "tle0": {"type": "string"},
         "tle1": {"type": "string"},
         "tle2": {"type": "string"},
@@ -75,8 +75,7 @@
                 "ra" : {"type": "ra"},
                 "dec": {"type": "dec"},
                 "ra_rate": {"type": "real", "dimension": "angle/time"},
-                "dec_rate": {"type": "real", "dimension": "angle/time"},
-                "ref_coord_frame": {"type": "string"}
+                "dec_rate": {"type": "real", "dimension": "angle/time"}
             },
             "fields":
             [
@@ -84,8 +83,31 @@
                 "ra",
                 "dec",
                 "!ra_rate",
-                "!dec_rate",
-                "!ref_coord_frame"
+                "!dec_rate"
+            ]
+        },
+        "state_vector":
+        {
+            "type": "list_compound",
+            "parameters":
+            {
+                "time": {"type": "epoch"},
+                "x" : {"type": "real", "dimension": "length"},
+                "y" : {"type": "real", "dimension": "length"},
+                "z" : {"type": "real", "dimension": "length"},
+                "vx" : {"type": "real", "dimension": "length/time"},
+                "vy" : {"type": "real", "dimension": "length/time"},
+                "vz" : {"type": "real", "dimension": "length/time"}
+            },
+            "fields":
+            [
+                "time",
+                "x",
+                "y",
+                "z",
+                "!vx",
+                "!vy",
+                "!vz"
             ]
         }
     },
@@ -115,6 +137,7 @@
         "tle0",
         "tle1",
         "tle2",
-        "datum"
+        "datum",
+        "state_vector"
     ]
 }

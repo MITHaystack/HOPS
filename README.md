@@ -1,12 +1,14 @@
 [![test-ubuntu](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-22.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-22.yml)
 [![test-ubuntu-latest](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-latest.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/cmake-ubuntu-latest.yml)
 [![deploy-docs](https://github.com/MITHaystack/HOPS/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/MITHaystack/HOPS/actions/workflows/deploy-docs.yml)
+![HOPS4 Coverage](doc/coverage_hops4.svg)
+![HOPS3 Coverage](doc/coverage_hops3.svg)
 # HOPS 4 - Haystack Observatory Post-processing System
 
-HOPS (Haystack Observatory Post-processing System) is a software package for fringe-fitting, calibration and other post-correlation 
-tasks required to process VLBI (Very Long Baseline Interferometry) data. HOPS4 is ground-up re-write done in C/C++ and 
-python which is an ongoing effort to create a more modular framework capable of easier future extension and modification. 
-This repository also contains the original HOPS(3) software which can be installed alongside HOPS4. 
+HOPS (Haystack Observatory Post-processing System) is a software package for fringe-fitting, calibration and other post-correlation
+tasks required to process VLBI (Very Long Baseline Interferometry) data. HOPS4 is ground-up re-write done in C/C++ and
+python which is an ongoing effort to create a more modular framework capable of easier future extension and modification.
+This repository also contains the original HOPS(3) software which can be installed alongside HOPS4.
 For further information see the documentation [webpage](https://mithaystack.github.io/HOPS/) and the
 release notes under `<hops-source>/doc/notes/release.txt`.
 
@@ -23,8 +25,8 @@ After the build is complete, you will need to put the hops binary installation l
 
 `source <hops-install>/bin/hops.bash`
 
-where `<hops-install>` is the HOPS4 installation directory. On the x86 architecture, the default installation directory name 
-will be one level up from the build directory in: `<build-dir>/../x86_64-4.00`, but can be changed at configuration time. To set the install 
+where `<hops-install>` is the HOPS4 installation directory. On the x86 architecture, the default installation directory name
+will be one level up from the build directory in: `<build-dir>/../x86_64-4.00`, but can be changed at configuration time. To set the install
 prefix to a custom path on the command line using `cmake`, you can pass the `-DCMAKE_INSTALL_PREFIX` flag as in the following example:
 
 `HOPS4_INSTALL_DIR="~/hops-install"` \
@@ -104,12 +106,12 @@ sudo dnf config-manager --set-enabled crb
 dnf install epel-release
 ```
 So that you can locate some of these packages.
-While not strictly required by HOPS4, the Fast Fourier Transform library FFTW3 and gnuplot are highly recommended. The FFTW3 library will accelerate 
+While not strictly required by HOPS4, the Fast Fourier Transform library FFTW3 and gnuplot are highly recommended. The FFTW3 library will accelerate
 fringe fitting by utilizing optimized FFT routines, and gnuplot will enable faster plotting (without requring python). These can be installed with:
 ```
 sudo apt-get install libfftw3-dev gnuplot
 ```
-or 
+or
 ```
 sudo dnf install fftw-devel gnuplot
 ```
@@ -169,7 +171,7 @@ should print out the full path to the install directory:
 `HOPS install directory set to /home/oper/HOPS/x86_64-4.0.0`
 
 Do not worry about messages concerning an undefined 'CI/CD key', this is for downloading secured test data, tests that are related to that data will be skipped.
-You will need a terminal at least 95 characters wide to avoid line wraps from the `make test` suite output. 
+You will need a terminal at least 95 characters wide to avoid line wraps from the `make test` suite output.
 
 ### Building the documentation
 HOPS supports the ability to automatically build documentation using doxygen and sphinx. To do this, ensure that `doxygen`, `sphinx`, and the python packages `breathe` and `myst_parser` are installed, and that the cmake option `BUILD_DOCS` is set to `ON`. To build and install the auto-generated documentation run the command `make reference && make install` from the build directory. The resulting html documentation will be placed in `<hops-install>/doc/reference`. The master index file will be installed as `<hops-install>/doc/reference/index.html` and can be opened with any browser.
@@ -178,5 +180,5 @@ HOPS supports the ability to automatically build documentation using doxygen and
 
 For questions/comments on this software please direct emails to the developer mailing list: hops-dev@mit.edu
 
-### License and Authorship 
+### License and Authorship
 For license and authorship information see the LICENSE.md and AUTHORS.md files respectively.

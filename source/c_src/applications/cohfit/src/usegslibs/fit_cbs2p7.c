@@ -98,7 +98,7 @@ double fit_cbs2p7(cosumary *codatum, int npt)
         if (2 >= msglev && *er) fputs(er, stderr);
         msg("CBSpline2.7 fit at seglen %lf (%d)", 2, peakslen, status);
     } else {
-        fprintf(stderr, get_err_handler_report());
+        fputs(get_err_handler_report(), stderr);
         status = 0;
         peakslen = codatum->seglen[kp];
         msg("CBSpline2.7 remains at seglen %lf (%d)", 2, peakslen, status);

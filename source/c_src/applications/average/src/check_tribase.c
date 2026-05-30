@@ -32,8 +32,9 @@ check_tribase (seg_data *data,
     float ratio;
     fringesum *fdatum;
     trianglesum *tdatum;
-    static int allowed_seglen[NLEN] = {1,2,3,4,5,6,10,12,15,20,30,40,60,90,
-        120,150,180,240,300,360,480,600,720,900,1200,1500,1800};
+// allowed_seglen[] appears to be an ancient restriction
+//  static int allowed_seglen[NLEN] = {1,2,3,4,5,6,10,12,15,20,30,40,60,90,
+//      120,150,180,240,300,360,480,600,720,900,1200,1500,1800};
     extern int datatype;
     struct { int tdiff; int count; } hist[MAXHIST];
 
@@ -135,6 +136,11 @@ check_tribase (seg_data *data,
         }
                                         /* No-op for afile format < 3 */
     if (duration == 0) duration = seglen;
+    // unclear what this is enforcing.  However -q mode in fringex
+    // turns into a 'C' and if we are using -q and want to averge
+    // this test will prevent us as fringex is currently coded, better is:
+    // if ((seglen != duration) && (origin != 'O' && origin != 'C'))
+    // however that doesn't seem to work properly either.
     if ((seglen != duration) && (origin != 'O'))
         {
         msg ("Time tag spacing %d different from nominal segment length %d", 

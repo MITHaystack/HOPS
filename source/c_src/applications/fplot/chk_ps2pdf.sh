@@ -4,6 +4,8 @@
 #
 # Check that fplot dependencies are going to be satisfied
 #
+echo this is a redundant test
+exit 77
 
 # standard setup follows; comment out what is not needed
 [ -z "$testverb" ] && testverb=0

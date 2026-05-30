@@ -167,7 +167,7 @@ check_name(char *name, fstruct *f_info)
             if (strlen (field1) == 1)
                 {
                 baseline = NULL;
-                if (! isalpha (field1[0])) errcode = BADSTAT;
+                if (! isalnum (field1[0])) errcode = BADSTAT;
                 f_info->station = field1[0];
                 f_info->type = 3;
                 }
@@ -199,8 +199,8 @@ check_name(char *name, fstruct *f_info)
     if (baseline != NULL)           /* Baseline, e.g. "AB" */
         {
         if (strlen (baseline) != 2) errcode |= BADBASE;
-        else if((! isalpha(baseline[0])) ||
-                (! isalpha(baseline[1]))) errcode |= BADBASE;
+        else if((! isalnum(baseline[0])) ||
+                (! isalnum(baseline[1]))) errcode |= BADBASE;
         else strcpy (f_info->baseline, baseline);
         }
 

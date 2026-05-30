@@ -1,5 +1,5 @@
 *
-* $Id$
+* $Id: pformat.txt 2513 2018-09-05 14:16:07Z gbc $
 *
 * This is the vex parameter format definition file.  The format is 
 * field-based.  Comment lines begin with '*'.  All other lines must be

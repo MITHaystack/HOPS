@@ -1,4 +1,5 @@
 #include "MHO_ControlTokenProcessor.hh"
+#include "MHO_TestAssertions.hh"
 
 namespace hops
 {
@@ -89,7 +90,7 @@ mho_json MHO_ControlTokenProcessor::ProcessFixedLengthListString(const std::vect
         msg_fatal("control",
                   "invalid token on line: " << tokens[0].fLineNumber << ", user specified length of " << tokens[0].fValue
                                             << " is inconsistent with the number of tokens: " << (n_elem - 1) << "." << eom);
-        std::exit(1);
+        HOPS_THROW;
     }
 
     for(std::size_t i = 1; i < tokens.size(); i++)
@@ -143,7 +144,7 @@ bool MHO_ControlTokenProcessor::ConvertFloat(const MHO_Token& token, double& val
         //TODO - Q: Should this be a fatal error?
         msg_fatal("control", "invalid token on line: " << token.fLineNumber << ", could not convert: " << token.fValue
                                                        << " to float. " << eom);
-        std::exit(1);
+        HOPS_THROW;
     }
     return ok;
 }
@@ -158,11 +159,11 @@ bool MHO_ControlTokenProcessor::ConvertInteger(const MHO_Token& token, int& val)
         //TODO - Q: Should this be a fatal error?
         msg_fatal("control", "invalid token on line: " << token.fLineNumber << ", could not convert: " << token.fValue
                                                        << " to integer. " << eom);
-        std::exit(1);
+        HOPS_THROW;
     }
     else
     {
-        if(lval < std::numeric_limits< int >::max())
+        if(lval <= std::numeric_limits< int >::max() && lval >= std::numeric_limits< int >::lowest())
         {
             //narrow to regular int
             val = (int)lval;
@@ -171,7 +172,7 @@ bool MHO_ControlTokenProcessor::ConvertInteger(const MHO_Token& token, int& val)
         {
             //TODO - Q: Should this be a fatal error?
             msg_fatal("control", "could not convert: " << token.fValue << " to integer, out of range." << eom);
-            std::exit(1);
+            HOPS_THROW;
         }
     }
     return ok;
@@ -195,7 +196,7 @@ bool MHO_ControlTokenProcessor::ConvertBool(const MHO_Token& token, bool& val)
         //TODO - Q: Should this be a fatal error?
         msg_fatal("control",
                   "could not convert: " << token.fValue << " to boolean value, only 'true' and 'false' accepted." << eom);
-        std::exit(1);
+        HOPS_THROW;
     }
 
     return ok;

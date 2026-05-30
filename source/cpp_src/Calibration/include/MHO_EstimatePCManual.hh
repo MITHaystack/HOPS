@@ -82,7 +82,7 @@ class MHO_EstimatePCManual: public MHO_InspectingOperator< visibility_type >
          */
         virtual bool ExecuteImpl(const visibility_type* in) override;
 
-    private:
+    protected:
         /**
          * @brief Calculates and returns manual phase calibration for a given channel and polarization.
          *

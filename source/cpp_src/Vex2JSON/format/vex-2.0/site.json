@@ -63,7 +63,7 @@
     [
         "site_type",
         "site_name",
-        "site_id",
+        "site_ID",
         "site_position",
         "site_position_epoch",
         "site_position_ref",

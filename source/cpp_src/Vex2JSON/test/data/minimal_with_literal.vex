@@ -1,0 +1,8 @@
+VEX_rev = 1.5;
+$EXPER;
+  def TEST01;
+    exper_name = TEST01;
+    start_literal(NOTES);
+      This raw text must survive intact: *=;:&
+    end_literal(NOTES);
+  enddef;

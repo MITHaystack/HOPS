@@ -67,10 +67,10 @@ list of files to be displayed.  This capability is intended to save trees.
 
 For those who need hardcopy printout, the -h option is provided.  The
 plot is spooled using the "lpr" print spooler to an appropriate printer
-identified by the support script "pplot_print".  (PRINTER takes precedence
+identified by the support script "pplot_print.sh".  (PRINTER takes precedence
 over MK4_PRINTER unless you've redefined MK4_PRINTER from its default.  And
-in any case you can put your own pplot_print script earlier in your PATH to
-do what you like.)  The -l option bypasses any pplot_print script in your
+in any case you can put your own pplot_print.sh script earlier in your PATH to
+do what you like.)  The -l option bypasses any pplot_print.sh script in your
 path and spools the plot to your default printer directly.
 
 The -d/-p options allow you to extract the postscript plots from the Type-2

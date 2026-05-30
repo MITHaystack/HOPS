@@ -124,15 +124,24 @@ std::string MHO_DirectoryInterface::GetFileModifcationTime(const std::string& na
 
 bool MHO_DirectoryInterface::CreateDirectory(const std::string& dirname)
 {
-    std::string fullpath = GetDirectoryFullPath(dirname);
-    //use mkdir to create the directory with owner permissions
-    int retval = mkdir(fullpath.c_str(), S_IRWXU);
-    //if -1, failed to create dir -- TBD, do we want to use errno to get more error specifics?
-    if(retval == -1)
+    if(dirname.empty())
     {
         return false;
     }
-    return true;
+    //use mkdir to create the directory with owner permissions.
+    //NOTE: mkdir() resolves the path (relative or absolute) itself, so we do NOT
+    //route through realpath()/GetDirectoryFullPath() first (this should be more portable)
+    int retval = mkdir(dirname.c_str(), S_IRWXU);
+    if(retval == 0)
+    {
+        return true;
+    }
+    //on create: an already-present directory is treated as success
+    if(errno == EEXIST && IsDirectory(dirname))
+    {
+        return true;
+    }
+    return false;
 }
 
 void MHO_DirectoryInterface::SetCurrentDirectory(const std::string& dirname)

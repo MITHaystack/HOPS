@@ -23,6 +23,7 @@
 
 #include "htime.h"
 #include <ctype.h>
+#include <stdlib.h>
 
 /* all globals are defined in lifetime.c */
 
@@ -218,7 +219,6 @@ grb_str2gps(char *s)
 	static char	pass[22];
 	static UTime	ut;
 	static GTime	gps, secs;
-	extern double	atof();
 
 	strncpy(pass, s, 6);
 	pass[6] = '_';

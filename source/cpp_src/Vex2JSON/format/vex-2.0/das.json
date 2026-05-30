@@ -64,6 +64,7 @@
             },
             "fields": ["signal_link", "equipment_link", "label", "!direction", "!type"]
         },
+        "recording_system_ID": {"type": "int"},
         "record_method":
         {
             "type": "list_compound",
@@ -73,7 +74,7 @@
                 "early_start": {"type": "real", "dimension": "time"},
                 "minimum_gap": {"type": "real", "dimension": "time"}
             },
-            "fields": ["recording_pattern", "early_start", "minimum_gap"]
+            "fields": ["recording_pattern", "!early_start", "!minimum_gap"]
         },
         "record_control": {"type": "int"}
     },
@@ -84,6 +85,7 @@
         "equip_set",
         "equip_info",
         "connection",
+        "recording_system_ID",
         "record_method",
         "record_control"
     ]

@@ -90,7 +90,7 @@ def main():
 
     bad_count = 0
     bad_keys = []
-    
+
     rel_percent_error = reltol*100;
 
     print("tolerance is: ", rel_percent_error, " percent.")
@@ -113,8 +113,10 @@ def main():
                     print("missing ", k, " in ", f1_name)
                 if(not k in j2):
                     print("missing ", k , " in ", f2_name)
-                bad_count += 1
-                bad_keys.append(k)
+                if (k in j1) != (k in j2):
+                    #only flag as error if present in one file but not the other, ok if both are missing
+                    bad_count += 1
+                    bad_keys.append(k)
 
         if t == 'float':
             if(k in j1 and k in j2):
@@ -136,8 +138,10 @@ def main():
                     print("missing ", k, " in ", f1_name)
                 if(not k in j2):
                     print("missing ", k , " in ", f2_name)
-                bad_count += 1
-                bad_keys.append(k)
+                if (k in j1) != (k in j2):
+                    #only flag as error if present in one file but not the other, ok if both are missing
+                    bad_count += 1
+                    bad_keys.append(k)
 
         if t == 'phase_float':
             if(k in j1 and k in j2):
@@ -154,8 +158,10 @@ def main():
                     print("missing ", k, " in ", f1_name)
                 if(not k in j2):
                     print("missing ", k , " in ", f2_name)
-                bad_count += 1
-                bad_keys.append(k)
+                if (k in j1) != (k in j2):
+                    #only flag as error if present in one file but not the other, ok if both are missing
+                    bad_count += 1
+                    bad_keys.append(k)
 
     for k,t in optional_key_type_dict.items():
         if k in excluded:

@@ -238,7 +238,8 @@ template< typename XValueType > class MHO_BidirectionalConstIterator
         bool IsValid() const { return ((fBegin <= fPtr) && (fPtr < fBegin + fLength)); }
 
     protected:
-        const pointer fBegin;
+        // not const-qualified so operator= can rebind it (pointer already points to const data)
+        pointer fBegin;
         pointer fPtr;
         std::size_t fLength;
 };

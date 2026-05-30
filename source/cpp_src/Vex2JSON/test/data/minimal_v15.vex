@@ -1,0 +1,16 @@
+VEX_rev = 1.5;
+*
+* a comment line
+*
+$GLOBAL;
+  ref $EXPER = TEST01;
+$EXPER;
+  def TEST01;
+    exper_name = TEST01;
+    exper_num  = 1;
+  enddef;
+$FREQ;
+  def TESTFREQ;
+    chan_def = &X : 8080.40 MHz : U : 32.00 MHz : &CH01 : &BBC01 : &U_Cal;
+    sample_rate = 64.00 Ms/sec;
+  enddef;

@@ -154,7 +154,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
                 //new interval is just the min/max of the following
                 XIntegerType low = std::min(fLowerBound, other.GetLowerBound());
                 XIntegerType up = std::max(fUpperBound, other.GetUpperBound());
-                interval.SetInterval(low, up);
+                interval.SetBounds(low, up);
             }
             //they don't intersect, so just return an empty interval
             return interval;
@@ -175,7 +175,7 @@ template< typename XIntegerType = std::size_t > class MHO_Interval
                 fLowerBound, fUpperBound, other.GetLowerBound(), other.GetUpperBound(), result);
             if(numIntersections != 0)
             {
-                interval.SetInterval(result[0], result[1]);
+                interval.SetBounds(result[0], result[1]);
             }
             return interval;
         }

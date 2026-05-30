@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: ht_timeis.c 2911 2019-12-23 17:24:02Z gbc $
  *
  * Handle a time argument and do the dance.
  */
