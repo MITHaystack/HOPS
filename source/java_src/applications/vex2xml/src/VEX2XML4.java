@@ -28,7 +28,7 @@ import org.antlr.runtime.*;             //lexer and parser code generator
 import org.apache.commons.cli.*;        //parsing command line options
 
 
-public class VEX2XML {
+public class VEX2XML4 {
 
         static String inputFile, outputFile;
         
@@ -50,7 +50,7 @@ public class VEX2XML {
          */
         private static void outputCommandLineHelp(final Options options) {      
         final HelpFormatter formater = new HelpFormatter();
-        formater.printHelp("VEX2XML -in inputfile.vex -out outputfile.xml",
+        formater.printHelp("VEX2XML4.sh -in inputfile.vex -out outputfile.xml",
             options);
     }
 
@@ -91,9 +91,9 @@ public class VEX2XML {
         ANTLRInputStream input = new ANTLRInputStream(
             Files.newInputStream(Paths.get(inputFile),
                 StandardOpenOption.READ));
-        vexGrammarLexer lexer = new vexGrammarLexer(input);
+        vexGrammar4Lexer lexer = new vexGrammar4Lexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        vexGrammarParser parser = new vexGrammarParser(tokens, outputFile);
+        vexGrammar4Parser parser = new vexGrammar4Parser(tokens, outputFile);
         parser.vex();
 
         parser.finalize(inputFile); //append original vex file when done
@@ -106,7 +106,7 @@ public class VEX2XML {
 
         System.out.println("-------------------------------------" +
             "-------------------------------------");
-        System.out.println("VEX2XML v. 1.2");
+        System.out.println("VEX2XML4.sh v. 1.3");
         System.out.println("(C) MIT Haystack Observatory, 2013-2026");
         System.out.println("Authors: Victor Pankratius, Geoffrey Crew");
         System.out.println("-------------------------------------" +
