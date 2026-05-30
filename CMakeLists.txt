@@ -325,6 +325,8 @@ endif(PERL_FOUND)
 # https://cmake.org/cmake/help/latest/module/UseJava.html#module:UseJava
 option(HOPS_USE_JAVA "Allow Java for VEX2XML." ON)
 if(HOPS_USE_JAVA)
+    option(HOPS_VEX2XML3 "Provide older jars commons-cli-1.2/antlr-3.5.2 version" ON)
+    option(HOPS_VEX2XML4 "Provide newer jars commons-cli-1.4/antlr-4.8 version" ON)
     find_package(Java 8)
     if(${Java_FOUND})
         include(UseJava)

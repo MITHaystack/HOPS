@@ -52,6 +52,7 @@ export AHELP=@CMAKE_INSTALL_PREFIX@/share/vhelp/aedit
 export DEF_CONTROL=/dev/null
 export HOPS_VPAL_FRINGE_FITTER=@HOPS_VPAL_FOURFIT@
 export HOPS_DEFAULT_PLUGINS_DIR=@PLUGINS_INSTALL_DIR@
+export HOPS_JAVACLASSPATH=@JAVA_INSTALL_DIR@
 
 #replace old (system) variable instances with new values
 NEW_PATH=$(printf '%s\n' "$PATH" | sed "s|$OLD_PATH||g")
