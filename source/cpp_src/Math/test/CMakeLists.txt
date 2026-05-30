@@ -1,7 +1,7 @@
 #declare header paths ##########################################################
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Math)
+set (HOPS_TEST_LIBS MHO_Message MHO_Math MHO_Utilities)
 
 set(SOURCE_BASENAMES
     TestBitReversal
@@ -17,6 +17,20 @@ set(SOURCE_BASENAMES
     TestBasicMatrixSVDSolve
     TestEigen
 )
+
+if(HOPS_ENABLE_UNIT_TESTS)
+    list(APPEND SOURCE_BASENAMES
+        TestBitReversalPermutation
+        TestCheckForNaN
+        TestFringeRotation
+        TestSimulatedSignalGenerator
+        TestMathUtilities
+        TestLinearAlgebraUtilities
+        TestUniformGridPointsCalculator
+        TestGaussianWhiteNoiseSignal
+        TestSingleToneSignal
+    )
+endif()
 
 if(HOPS_USE_FFTW3)
     find_package(FFTW REQUIRED)

@@ -1,4 +1,5 @@
 #include "MHO_ControlConditionEvaluator.hh"
+#include "MHO_TestAssertions.hh"
 
 #include <iostream>
 
@@ -118,7 +119,7 @@ bool MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                     if(eval_stack.top() == ERROR_STATE)
                     {
                         msg_fatal("control", "error parsing token: '" << *it << "' on line: " << fStartLineNumber << eom);
-                        std::exit(1);
+                        HOPS_THROW;
                     }
 
                     //std::cout<<"top value = "<<eval_stack.top()<<std::endl;
@@ -135,7 +136,7 @@ bool MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                     {
                         msg_fatal("control", "unmatched parentheses while parsing if statement starting on line "
                                                  << fStartLineNumber << "." << eom);
-                        std::exit(1);
+                        HOPS_THROW;
                     }
 
                     if(eval_stack.top() == CLOSED_PAR)
@@ -165,7 +166,7 @@ bool MHO_ControlConditionEvaluator::Evaluate(mho_json& control_condition)
                 {
                     msg_fatal("control", "unmatched parentheses while parsing if statement starting on line "
                                              << fStartLineNumber << "." << eom);
-                    std::exit(1);
+                    HOPS_THROW;
                 }
 
                 //evalute the stack
@@ -271,10 +272,9 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
                 if(it == states.end())
                 {
                     //a 'not' with no following operand is a syntax error
-                    msg_fatal("control",
-                              "cannot parse 'not' condition with missing argument for if statement starting on line "
-                                  << fStartLineNumber << "." << eom);
-                    std::exit(1);
+                    msg_fatal("control", "cannot parse 'not' condition with missing argument for if statement starting on line "
+                                             << fStartLineNumber << "." << eom);
+                    HOPS_THROW;
                 }
                 //invert the operand; use else-if since these are mutually exclusive
                 if(*it == TRUE_STATE)
@@ -300,7 +300,7 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
                     msg_fatal("control",
                               "cannot parse 'and' condition with missing first argument for if statement starting on line "
                                   << fStartLineNumber << "." << eom);
-                    std::exit(1);
+                    HOPS_THROW;
                 }
 
                 auto first_arg_it = std::prev(it);
@@ -311,7 +311,7 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
                     msg_fatal("control",
                               "cannot parse 'and' condition with missing second argument for if statement starting on line "
                                   << fStartLineNumber << "." << eom);
-                    std::exit(1);
+                    HOPS_THROW;
                 }
 
                 int val1 = *first_arg_it;
@@ -339,7 +339,7 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
                     msg_fatal("control",
                               "cannot parse 'or' condition with missing first argument for if statement starting on line "
                                   << fStartLineNumber << "." << eom);
-                    std::exit(1);
+                    HOPS_THROW;
                 }
 
                 auto first_arg_it = std::prev(it);
@@ -350,7 +350,7 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
                     msg_fatal("control",
                               "cannot parse 'or' condition with missing second argument for if statement starting on line "
                                   << fStartLineNumber << "." << eom);
-                    std::exit(1);
+                    HOPS_THROW;
                 }
 
                 int val1 = *first_arg_it;

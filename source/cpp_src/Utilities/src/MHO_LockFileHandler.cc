@@ -1,18 +1,22 @@
 #include "MHO_LockFileHandler.hh"
 
+#include <cerrno>
+#include <ctime>
 #include <dirent.h>
+#include <random>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
 #include <sys/types.h>
 
-//wait time allowed before a lock file is declared stale (5 min)
-#define LOCK_STALE_SEC 300
+//wait time allowed before a lock file is declared stale (2 min)
+#define LOCK_STALE_SEC 120
 
 //number of lock attempts before time-out error
-//this is roughly 15 minutes...probably much longer than needed
-#define LOCK_TIMEOUT 9000
+//this is roughly 5 minutes...probably much longer than needed
+#define LOCK_TIMEOUT 3000
 
 //struct validity
 #define LOCK_VALID 0
@@ -161,21 +165,43 @@ int MHO_LockFileHandler::parse_lockfile_name(char* lockfile_name_base, lockfile_
 
 int MHO_LockFileHandler::check_stale(lockfile_data* other)
 {
-    //returns LOCK_STATUS_OK if the other lock is stale
-    //returns LOCK_STALE_ERROR if the lock is not stale
+    //returns LOCK_STALE_ERROR if the other lock is stale (its owner appears dead,
+    //  so the lock may be reclaimed)
+    //returns LOCK_STATUS_OK if the lock is still considered live (must be respected)
+    //
+    //A lock is treated as stale if EITHER:
+    //  (a) it was created by a process on THIS host whose pid is no longer alive
+    //      (probed with kill(pid,0)); a dead holder is reclaimed immediately, or
+    //  (b) it is older than LOCK_STALE_SEC. This is the backstop for locks held on
+    //      other hosts (whose liveness we cannot check locally) and for the
+    //      pid-recycling case where a dead holder's pid has been reused here.
 
-    //check for stale-ness irrespective of priority or host
+    //(a) same-host liveness check: only reclaim on ESRCH ("no such process").
+    //EPERM (process exists but owned by another user) is treated as alive.
+    char host_name[256] = {'\0'};
+    if(gethostname(host_name, 256) == 0)
+    {
+        if(strncmp(host_name, other->hostname, 256) == 0 && other->pid != 0)
+        {
+            if(kill(static_cast< pid_t >(other->pid), 0) != 0 && errno == ESRCH)
+            {
+                msg_warn("utilities", "lock holder pid " << other->pid << " on this host is gone; reclaiming lock: "
+                                                          << std::string(other->lockfile_name) << eom);
+                return LOCK_STALE_ERROR;
+            }
+        }
+    }
+
+    //(b) age-based backstop (handles other hosts and pid recycling)
     struct timeval timevalue;
     gettimeofday(&timevalue, NULL);
     unsigned long int epoch_sec = timevalue.tv_sec;
-    unsigned long int micro_sec = timevalue.tv_usec;
 
     if(other->time_sec < epoch_sec)
     {
         if((epoch_sec - other->time_sec) > LOCK_STALE_SEC)
         {
-            //issue warning, we do not have priority
-            msg_warn("utilities", "stale lock file detected: "
+            msg_warn("utilities", "stale lock file detected (age > " << LOCK_STALE_SEC << "s): "
                                       << std::string(other->active_directory) + std::string(other->lockfile_name) << eom);
             return LOCK_STALE_ERROR;
         }
@@ -194,43 +220,35 @@ int MHO_LockFileHandler::lock_has_priority(lockfile_data* ours, lockfile_data* o
     //no need to check for stale-ness, this function is only called
     //if the lock is stolen
 
-    //strict temporal ordering between the processes is not totally
-    //necessary, however, we do need a robust mechanism for deciding
-    //the ordering between processes, for this reason we use the pid
-    //in the rare circumstances where the pid is the same, because
-    //of different hosts or pid recycling, we defer to using time ordering
-    //if that in turn fails, then the lock with be deleted and we try again
+    //Priority is decided purely by creation time, and on an exact tie we YIELD
+    //(return no-priority) rather than picking a winner by pid. This is what makes
+    //the create-then-recheck scheme in at_front() correct:
+    //
+    //  - "other" is a lock we observed during our re-scan, so it necessarily
+    //    existed before our scan, i.e. it was created no later than us.
+    //  - If "other" was created strictly earlier, it is the rightful winner and
+    //    we yield. Its lock existed before we created ours, so we are guaranteed
+    //    to have seen it, the earlier process may not have seen us, but it is
+    //    correctly the winner.
+    //  - If our timestamps tie to the microsecond, at least one of the two tied
+    //    processes must see the other (both cannot miss each other: a process can
+    //    only miss a competitor that it created before, and that ordering cannot
+    //    hold both ways). Whichever process sees the tie yields here, so at most
+    //    one process ever proceeds. In the symmetric case both yield, remove their
+    //    locks, and retry with fresh (hopefully distinct!) timestamps.
+    //
+    //Cross-host clock skew on NFS can still misorder timestamps, but not our problem!
 
-    if(ours->pid < other->pid)
+    if(ours->time_sec != other->time_sec)
     {
-        return LOCK_PROCESS_HAS_PRIORITY;
+        return (ours->time_sec < other->time_sec) ? LOCK_PROCESS_HAS_PRIORITY : LOCK_PROCESS_NO_PRIORITY;
     }
-    else if(ours->pid == other->pid) // tie-break w/time
+    if(ours->time_usec != other->time_usec)
     {
-        if(ours->time_sec < other->time_sec)
-        {
-            return LOCK_PROCESS_HAS_PRIORITY;
-        }
-        else if(ours->time_sec == other->time_sec)
-        {
-            if(ours->time_usec < other->time_usec)
-            {
-                return LOCK_PROCESS_HAS_PRIORITY;
-            }
-            else
-            {
-                return LOCK_PROCESS_NO_PRIORITY;
-            }
-        }
-        else // ours is > other->pid
-        {
-            return LOCK_PROCESS_NO_PRIORITY;
-        }
+        return (ours->time_usec < other->time_usec) ? LOCK_PROCESS_HAS_PRIORITY : LOCK_PROCESS_NO_PRIORITY;
     }
-    else
-    {
-        return LOCK_PROCESS_NO_PRIORITY;
-    }
+    //exact timestamp tie: yield so that no two processes can both proceed
+    return LOCK_PROCESS_NO_PRIORITY;
 }
 
 int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_name, lockfile_data* lock_data, int max_seq_no)
@@ -332,9 +350,6 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name, lo
             if(strstr(dir->d_name, ".lock") != NULL)
             {
                 //found a lock file already in the directory
-                //so this process cannot have priority
-                process_priority = LOCK_PROCESS_NO_PRIORITY;
-                //check if the other file is stale (this is an error)
                 strcpy(temp_lock_name, dir->d_name);
                 init_lockfile_data(&temp_lock_struct);
                 int error_code = parse_lockfile_name(temp_lock_name, &temp_lock_struct);
@@ -342,14 +357,21 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name, lo
                 if(error_code != LOCK_STATUS_OK)
                 {
                     msg_error("utilities", "un-parsable lock file name: " << std::string(dir->d_name) << eom);
+                    closedir(d);
                     return LOCK_PARSE_ERROR;
                 }
-                int stale_lock = check_stale(&temp_lock_struct);
-                if(stale_lock != LOCK_STATUS_OK)
+                if(check_stale(&temp_lock_struct) != LOCK_STATUS_OK)
                 {
-                    closedir(d);
-                    return LOCK_STALE_ERROR;
+                    //the holder appears dead: reclaim the directory by removing the
+                    //stale lock. We do NOT yield on a stale lock, so if every
+                    //lock found is stale we can proceed to create our own on
+                    //this pass
+                    std::string stale_path = std::string(root_dir) + dir->d_name;
+                    remove(stale_path.c_str());
+                    continue;
                 }
+                //a live lock is present, so this process cannot have priority
+                process_priority = LOCK_PROCESS_NO_PRIORITY;
             }
         }
         closedir(d);
@@ -460,7 +482,12 @@ int MHO_LockFileHandler::wait_for_write_lock(int& next_seq_no)
         n_checks++;
         if(is_at_front == LOCK_PROCESS_NO_PRIORITY)
         {
-            usleep(100000);
+            //randomized backoff: jitter the sleep so that two processes which tied
+            //on an identical lock timestamp (and therefore both yielded in
+            //lock_has_priority) do not retry in lock-step and collide again.
+            static std::mt19937 rng(static_cast< unsigned >(getpid()) ^ static_cast< unsigned >(time(nullptr))); //seed pid-time
+            static std::uniform_int_distribution< int > jitter(0, 50000); // microseconds
+            usleep(100000 + jitter(rng));
         }
     }
     while(is_at_front == LOCK_PROCESS_NO_PRIORITY && n_checks < LOCK_TIMEOUT);

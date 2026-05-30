@@ -141,12 +141,12 @@ class MHO_UniformGridPointsCalculator
         /**
          * @brief Calculates uniform grid points without enforcing power-of-2 size - untested, not used
          */
-        void Calculate_v2();
+        //void Calculate_v2();
 
         /**
          * @brief Finds start point and minimum/maximum spacing between points in a list.
          */
-        void FindStartAndMinMaxSpacing();
+        //void FindStartAndMinMaxSpacing();
 
         double fEpsilon;
         double fStart;

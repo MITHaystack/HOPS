@@ -1,8 +1,5 @@
 #include "MHO_LegacyRootCodeGenerator.hh"
 
-/* [a-z]x6 before this unix clock and [0-9A-Z]x6 after it */
-#define HOPS_ROOT_BREAK (1519659904)
-
 namespace hops
 {
 

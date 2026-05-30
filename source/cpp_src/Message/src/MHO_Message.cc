@@ -23,24 +23,9 @@ void MHO_Message::AddKey(const std::string& key)
     fKeys.insert(key);
 }
 
-void MHO_Message::AddKey(const char* key)
-{
-    fKeys.insert(std::string(key));
-}
-
 void MHO_Message::RemoveKey(const std::string& key)
 {
     auto iter = fKeys.find(key);
-    if(iter != fKeys.end())
-    {
-        fKeys.erase(iter);
-    }
-}
-
-void MHO_Message::RemoveKey(const char* key)
-{
-    std::string tmp_key(key);
-    auto iter = fKeys.find(tmp_key);
     if(iter != fKeys.end())
     {
         fKeys.erase(iter);

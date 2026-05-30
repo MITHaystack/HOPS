@@ -77,25 +77,8 @@ class MHO_StationIdentity
 
         bool operator!=(const MHO_StationIdentity& rhs) const { return !(*this == rhs); }
 
-        //ordering on name
-        bool operator<(const MHO_StationIdentity& rhs) const
-        {
-            //compare station names
-            if(fStationName.size() != 0 && rhs.fStationName.size() != 0)
-            {
-                return (fStationName < rhs.fStationName);
-            }
-            //compare station codes
-            if(fStationCode.size() != 0 && rhs.fStationCode.size() != 0)
-            {
-                return (fStationCode < rhs.fStationCode);
-            }
-            //compare mk4 1-char codes
-            if(fStationMk4ID.size() != 0 && rhs.fStationMk4ID.size() != 0)
-            {
-                return (fStationMk4ID < rhs.fStationMk4ID);
-            }
-        }
+        //ordering on name, to stay consistent with operator== (which compares by name only)
+        bool operator<(const MHO_StationIdentity& rhs) const { return (fStationName < rhs.fStationName); }
 
         /*!*
          * Check if this station identity matches the given 1-char/2-char code or multi-char name
@@ -155,7 +138,7 @@ class MHO_StationIdentity
             {
                 SetStationName(tokens[0]);
                 SetStationCode(tokens[1]);
-                SetStationCode(tokens[2]);
+                SetStationMk4ID(tokens[2]);
                 return true;
             }
         }

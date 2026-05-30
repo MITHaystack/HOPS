@@ -1,118 +1,62 @@
-#include <iostream>
+// Builder test for MHO_ChannelLabelerBuilder: builds a channel-labeling operator
+// for both "vis" and "weight" (registered as "chan_ids:vis"/"chan_ids:weight")
+// from a {channel_names, channel_frequencies} attribute map. Requires both
+// containers and fFormat["priority"].
+
 #include <string>
+#include <vector>
+
+#include "InitializationTestFixtures.hh"
 
 #include "MHO_ChannelLabeler.hh"
 #include "MHO_ChannelLabelerBuilder.hh"
 #include "MHO_Message.hh"
+#include "MHO_TestAssertions.hh"
 
 using namespace hops;
+using namespace hops::inittest;
 
-// {
-//     "name": "chan_ids",
-//     "statement_type": "parameter",
-//     "type" : "compound",
-//     "parameters":
-//     {
-//         "channel_names": {"type": "string"},
-//         "channel_frequencies": {"type": "list_real"}
-//     },
-//     "fields":
-//     [
-//         "channel_names",
-//         "channel_frequencies"
-//     ]
-// }
-
-int main(int argc, char** argv)
+static mho_json channel_attributes()
 {
-    MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    mho_json attr;
+    attr["name"] = "chan_ids";
+    attr["value"]["channel_names"] = std::string("abcd");
+    attr["value"]["channel_frequencies"] = std::vector< double >{8000.0, 8016.0, 8032.0, 8048.0};
+    return attr;
+}
 
-    std::string chan_ids = "abcdefghijklmnopqrstuvwxyzABCDEF";
-    std::vector< double > freqs = {
-        215979.203125, 215920.609375, 215862.015625, 215803.421875, 215744.828125, 215686.234375, 215627.640625, 215569.046875,
-        215510.453125, 215451.859375, 215393.265625, 215334.671875, 215276.078125, 215217.484375, 215158.890625, 215100.296875,
-        215041.703125, 214983.109375, 214924.515625, 214865.921875, 214807.328125, 214748.734375, 214690.140625, 214631.546875,
-        214572.953125, 214514.359375, 214455.765625, 214397.171875, 214338.578125, 214279.984375, 214221.390625, 214162.796875};
+int main(int /*argc*/, char** /*argv*/)
+{
+    MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    MHO_OperatorToolbox toolbox;
-    MHO_ContainerStore store;
-
-    //make some fake visibility and weight objects
-    visibility_type* vis = new visibility_type();
-    vis->Resize(4, 32, 2, 2);
-    weight_type* wt = new weight_type();
-    wt->Resize(4, 32, 2, 1);
-
-    //configure vis channel frequencies
-    auto chan_axis_ptr1 = &(std::get< CHANNEL_AXIS >(*vis));
-    for(std::size_t i = 0; i < chan_axis_ptr1->GetSize(); i++)
+    // vis + weight present -> builds both labelers, registered with :vis/:weight suffixes
     {
-        chan_axis_ptr1->at(i) = freqs[32 - 1 - i]; //reverse labeling to make this interesting
+        MHO_OperatorToolbox toolbox;
+        MHO_ContainerStore store;
+        add_vis(store);
+        add_weight(store);
+
+        MHO_ChannelLabelerBuilder builder(&toolbox, &store);
+        builder.SetFormat(make_format());
+        builder.SetAttributes(channel_attributes());
+
+        REQUIRE(builder.Build());
+        REQUIRE(toolbox.GetOperatorAs< MHO_ChannelLabeler< visibility_type > >("chan_ids:vis") != nullptr);
+        REQUIRE(toolbox.GetOperatorAs< MHO_ChannelLabeler< weight_type > >("chan_ids:weight") != nullptr);
     }
 
-    //configure weight channel frequencies
-    auto chan_axis_ptr2 = &(std::get< CHANNEL_AXIS >(*wt));
-    for(std::size_t i = 0; i < chan_axis_ptr2->GetSize(); i++)
+    // missing "weight" -> Build fails
     {
-        chan_axis_ptr2->at(i) = freqs[32 - 1 - i]; //reverse labeling to make this interesting
+        MHO_OperatorToolbox toolbox;
+        MHO_ContainerStore store;
+        add_vis(store);
+
+        MHO_ChannelLabelerBuilder builder(&toolbox, &store);
+        builder.SetFormat(make_format());
+        builder.SetAttributes(channel_attributes());
+
+        REQUIRE(!builder.Build());
     }
 
-    store.AddObject(vis);
-    store.AddObject(wt);
-
-    store.SetShortName(vis->GetObjectUUID(), std::string("vis"));
-    store.SetShortName(wt->GetObjectUUID(), std::string("weight"));
-
-    mho_json attrib;
-
-    attrib["name"] = "chan_ids";
-    attrib["channel_names"] = chan_ids;
-    attrib["channel_frequencies"] = freqs;
-
-    MHO_ChannelLabelerBuilder builder(&toolbox);
-    builder.SetContainerStore(&store);
-    builder.SetAttributes(attrib);
-
-    bool ok = builder.Build();
-    std::string name1 = "chan_ids:vis";
-    std::string name2 = "chan_ids:weight";
-    auto op = toolbox.GetOperatorAs< MHO_ChannelLabeler< visibility_type > >(name1);
-    std::cout << "op = " << op << std::endl;
-    auto op_wt = toolbox.GetOperatorAs< MHO_ChannelLabeler< weight_type > >(name2);
-
-    if(op != nullptr)
-    {
-        std::string key = "channel_label";
-        //op->SetArgs(&vis);
-        op->Initialize();
-        bool success = op->Execute();
-        if(!success)
-        {
-            return 1;
-        }
-
-        std::cout << std::setprecision(12);
-        for(std::size_t i = 0; i < chan_axis_ptr1->GetSize(); i++)
-        {
-            std::string ch_label;
-            mho_json ilabel = chan_axis_ptr1->GetLabelObject(i);
-            if(ilabel.contains(key))
-            {
-                ch_label = ilabel[key].get< std::string >();
-                std::cout << "channel: " << i << " user label: " << ch_label << " freq: " << chan_axis_ptr1->at(i) << std::endl;
-            }
-            else
-            {
-                std::cout << "unlabelled channel present" << std::endl;
-            }
-        }
-
-        return 0;
-    }
-
-    //error
-    std::cout << "test failed" << std::endl;
-
-    return 1;
+    return 0;
 }

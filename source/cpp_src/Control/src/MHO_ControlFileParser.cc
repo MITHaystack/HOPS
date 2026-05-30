@@ -1,4 +1,5 @@
 #include "MHO_ControlFileParser.hh"
+#include "MHO_TestAssertions.hh"
 
 #include <fstream>
 
@@ -126,7 +127,7 @@ bool MHO_ControlFileParser::ReadFile()
         else
         {
             msg_fatal("control", "could not open control file: " << fControlFileName << eom);
-            std::exit(1);
+            HOPS_THROW;
         }
     }
 

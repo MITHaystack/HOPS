@@ -44,6 +44,8 @@ mho_json MHO_VexParser::ParseVex()
 
 void MHO_VexParser::ReadFile()
 {
+    fLines.clear(); //clear any pre-existing lines, so parser is reusable
+
     //nothing special, just read in the entire file line by line and stash in memory
     if(fVexFileName != "")
     {

@@ -16,6 +16,9 @@ namespace hops
  *@brief  generate the 6-character timestamp-like root codes for converted filenames
  */
 
+/* [a-z]x6 before this unix clock and [0-9A-Z]x6 after it */
+#define HOPS_ROOT_BREAK (1519659904)
+
 /**
  * @brief Class MHO_LegacyRootCodeGenerator
  */
@@ -43,13 +46,9 @@ class MHO_LegacyRootCodeGenerator
          */
         std::vector< std::string > GetCodes(std::size_t N);
 
-    private:
-        time_t fNow;
-        int fYear;
-        int fDay;
-        int fHour;
-        int fMin;
-        int fSec;
+
+
+        //THESE FUNCTIONS ARE PUBLIC FOR REFERENCE/TESTING BUT SHOULD NOT BE USED
 
         /**
          * @brief Calculates and returns delta value based on current time comparison with the HOPS_ROOT_BREAK time
@@ -93,6 +92,16 @@ class MHO_LegacyRootCodeGenerator
          * @return Root ID as a string
          */
         std::string root_id_break(time_t now, int year, int day, int hour, int min, int sec);
+
+    private:
+        time_t fNow;
+        int fYear;
+        int fDay;
+        int fHour;
+        int fMin;
+        int fSec;
+
+
 };
 
 } // namespace hops

@@ -25,7 +25,7 @@ typedef uint32_t MHO_ClassVersion;
  * @brief Compiler-independent type tag used as the input to UUID generation.
  *
  * The primary template falls back to MHO_ClassName< T >(), for any type that
- * is not explicitly registered. Types whose UUID must be stable across 
+ * is not explicitly registered. Types whose UUID must be stable across
  * compilers/stdlibs (e.g. anything serialized to disk!)
  * should specialize this trait via the HOPS_REGISTER_TYPE_TAG macro so that
  * their tag string is a fixed literal independent of __PRETTY_FUNCTION__.
@@ -33,7 +33,7 @@ typedef uint32_t MHO_ClassVersion;
  */
 template< typename XClassType > struct MHO_TypeTag
 {
-    static std::string Value() { return MHO_ClassName< XClassType >(); }
+        static std::string Value() { return MHO_ClassName< XClassType >(); }
 };
 
 /**
@@ -124,13 +124,13 @@ struct MHO_ClassIdentity
  * to on-disk format this string must never change. Use at file scope; T may be
  * a hops:: typedef written unqualified because the macro re-opens namespace hops.
  */
-#define HOPS_REGISTER_TYPE_TAG(T, NAME)                                  \
-    namespace hops                                                       \
-    {                                                                    \
-        template<> struct MHO_TypeTag< T >                               \
-        {                                                                \
-                static std::string Value() { return std::string(NAME); } \
-        };                                                               \
+#define HOPS_REGISTER_TYPE_TAG(T, NAME)                                                                                        \
+    namespace hops                                                                                                             \
+    {                                                                                                                          \
+    template<> struct MHO_TypeTag< T >                                                                                         \
+    {                                                                                                                          \
+            static std::string Value() { return std::string(NAME); }                                                           \
+    };                                                                                                                         \
     }
 
 #endif /*! end of include guard:MHO_ClassIdentity */

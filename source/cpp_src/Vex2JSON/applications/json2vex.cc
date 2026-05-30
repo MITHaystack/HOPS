@@ -36,9 +36,6 @@ int main(int argc, char** argv)
             break;
         switch(optId)
         {
-            case('h'): // help
-                std::cout << usage << std::endl;
-                return 0;
             case('i'):
                 input_file = std::string(optarg);
                 break;
@@ -48,23 +45,18 @@ int main(int argc, char** argv)
             case('m'):
                 message_level = std::atoi(optarg);
                 break;
+            case('h'): // help
+                //fall through
             default:
                 std::cout << usage << std::endl;
-                return 1;
+                return 0;
         }
     }
 
-    //clamp message level
-    if(message_level > 5)
-    {
-        message_level = 5;
-    }
-    if(message_level < -2)
-    {
-        message_level = -2;
-    }
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
+
+    if(input_file == "" || output_file == ""){std::cout << usage << std::endl; return 1;}
 
     std::ifstream ifs;
     ifs.open(input_file.c_str(), std::ifstream::in);

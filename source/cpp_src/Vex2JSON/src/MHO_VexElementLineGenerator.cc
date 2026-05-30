@@ -250,10 +250,12 @@ std::string MHO_VexElementLineGenerator::GenerateCompound(std::string element_na
             components.push_back(ret_val);
         }
         else if(MHO_VexDefinitions::IsOptionalField(raw_field_name) &&
-                !IsTrailingOptionalField(raw_field_name, format["fields"]))
+                AnyLaterFieldPresent(i, format["fields"], element))
         {
-            //std::cout<<"raw_field_name = "<<raw_field_name<<std::endl;
-            //add and empty space for optional fields which are not trailing elements
+            //a missing optional field still needs an empty positional placeholder
+            //whenever a later field is actually populated, otherwise the populated
+            //value would slide left into the wrong positional slot on re-parse.
+            //if nothing later is present we are genuinely trailing and emit nothing.
             std::string ret_val = fSpace;
             components.push_back(ret_val);
         }
@@ -278,30 +280,17 @@ std::string MHO_VexElementLineGenerator::GenerateCompound(std::string element_na
     return line;
 }
 
-bool MHO_VexElementLineGenerator::IsTrailingOptionalField(std::string field_name, mho_json& fields)
+bool MHO_VexElementLineGenerator::AnyLaterFieldPresent(std::size_t idx, mho_json& fields, mho_json& element)
 {
-    if(MHO_VexDefinitions::IsOptionalField(field_name))
+    std::string bang = MHO_VexDefinitions::OptionalFlag();
+    std::string nothing = "";
+    for(std::size_t i = idx + 1; i < fields.size(); i++)
     {
-        std::size_t start_idx = 0;
-        for(std::size_t i = 0; i < fields.size(); i++)
+        std::string field_name = string_pattern_replace(fields[i].get< std::string >(), bang, nothing);
+        if(element.contains(field_name))
         {
-            if(fields[i].get< std::string >() == field_name)
-            {
-                start_idx = i;
-                break;
-            }
+            return true;
         }
-
-        bool ret_val = true;
-        for(std::size_t i = start_idx; i < fields.size(); i++)
-        {
-            std::string tmp_name = fields[i].get< std::string >();
-            if(!MHO_VexDefinitions::IsOptionalField(tmp_name))
-            {
-                ret_val = false;
-            }
-        }
-        return ret_val;
     }
     return false;
 }

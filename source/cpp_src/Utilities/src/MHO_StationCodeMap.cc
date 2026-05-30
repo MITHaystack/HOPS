@@ -235,6 +235,10 @@ std::string MHO_StationCodeMap::ToLowerCase(std::string token)
 
 std::string MHO_StationCodeMap::ToCanonicalCase(std::string token)
 {
+    if(token.empty())
+    {
+        return token; //nothing to canonicalize; avoids out-of-range token[0] access below
+    }
     std::string value;
     value.resize(token.size());
     //first char is upper case

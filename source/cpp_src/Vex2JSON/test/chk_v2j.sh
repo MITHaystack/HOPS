@@ -10,20 +10,23 @@ RET_VAL=0
 EXP_DIR=$DATADIR
 cd $EXP_DIR
 
+#exercise the help flags
+vex2json -h
+json2vex -h
 
-#the round trip of vex -> json -> vex -> json -> vex 
+#the round trip of vex -> json -> vex -> json -> vex
 #should produce two identical vex files (with comments stripped)
 echo "Running: vex2json -i ./vt9105.vex.obs -o ./test1.json"
-vex2json -i ./vt9105.vex.obs -o ./test1.json
+vex2json -m -2 -i ./vt9105.vex.obs -o ./test1.json
 
 echo "Running: json2vex -i ./test1.json -o ./test1.vex.proxy"
-json2vex -i ./test1.json -o ./test1.vex.proxy
+json2vex -m -2 -i ./test1.json -o ./test1.vex.proxy
 
 echo "Running: vex2json -i ./test1.vex -o ./test2.json"
-vex2json -i ./test1.vex.proxy -o ./test2.json
+vex2json -m -2 -i ./test1.vex.proxy -o ./test2.json
 
 echo "Running: json2vex -i ./test2.json -o ./test2.vex.proxy"
-json2vex -i ./test2.json -o ./test2.vex.proxy
+json2vex -m -2 -i ./test2.json -o ./test2.vex.proxy
 
 #should return 0 if there is no difference between the two converted files
 diff ./test1.vex.proxy ./test2.vex.proxy

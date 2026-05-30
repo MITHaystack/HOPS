@@ -11,6 +11,12 @@ namespace hops
 
 bool MHO_PolProductSummationBuilder::Build()
 {
+    if(fParameterStore == nullptr)
+    {
+        msg_error("initialization", "cannot build operator without a parameter store." << eom);
+        return false;
+    }
+
     if(IsConfigurationOk())
     {
         msg_debug("initialization", "building a pol-product summation operator." << eom);

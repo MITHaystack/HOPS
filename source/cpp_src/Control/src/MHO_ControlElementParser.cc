@@ -1,4 +1,5 @@
 #include "MHO_ControlElementParser.hh"
+#include "MHO_TestAssertions.hh"
 
 namespace hops
 {
@@ -64,7 +65,7 @@ mho_json MHO_ControlElementParser::ParseTokens(const std::string& element_name, 
     if(tokens.size() == 0)
     {
         msg_fatal("control", "missing tokens when parsing a statement for keyword " << element_name << "." << eom);
-        std::exit(1);
+        HOPS_THROW;
     }
 
     switch(etype)

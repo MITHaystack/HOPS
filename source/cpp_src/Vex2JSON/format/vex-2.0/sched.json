@@ -54,7 +54,7 @@
                 "data_stop": {"type": "real", "dimension":"NA"},
                 "options": {"type": "string"}
             },
-            "fields": ["station", "method", "destination", "data_start", "data_stop", "options"]
+            "fields": ["station", "method", "destination", "data_start", "data_stop", "!options"]
         },
         "intent":
         {
@@ -65,7 +65,7 @@
                 "identifier": {"type": "string"},
                 "value": {"type":"string"}
             },
-            "fields": ["source", "identifier", "value"]
+            "fields": ["!source", "identifier", "value"]
         },
         "pointing_offset":
         {

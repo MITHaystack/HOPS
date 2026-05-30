@@ -21,7 +21,27 @@ set(SOURCE_BASENAMES
     TestObjectTags
     TestSnapshot
     TestNDArrayWrapperStrides
+    TestMHO_NDArrayView
+    TestMHO_NDArrayWrapper_0_1
 )
+
+list(APPEND SOURCE_BASENAMES
+     TestMHO_NDArrayWrapper
+     )
+
+if(HOPS_ENABLE_UNIT_TESTS)
+    list(APPEND SOURCE_BASENAMES
+        TestMHO_Axis
+        TestMHO_AxisPack
+        TestMHO_ScalarContainer
+        TestMHO_VectorContainer
+        TestMHO_TableContainer
+        TestMHO_ContainerDictionary
+        TestMHO_ContainerStore
+        TestMHO_ContainerJSONConverter
+        TestMHO_ContainerFileInterface
+    )
+endif()
 
 foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )

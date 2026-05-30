@@ -13,6 +13,14 @@ MHO_DelayModel::MHO_DelayModel()
     fAccel = 0;
     fRefData = nullptr;
     fRemData = nullptr;
+    //reference-station outputs and clock corrections: initialize so that calling
+    //ComputeModel() without SetReferenceStationClockOffset/Rate (or reading the
+    //Get*Ref* accessors before ComputeModel) does not expose uninitialized memory
+    fRefClockOff = 0;
+    fRefClockRate = 0;
+    fRefDelay = 0;
+    fRefRate = 0;
+    fRefStationDelay = 0;
 };
 
 MHO_DelayModel::~MHO_DelayModel(){};

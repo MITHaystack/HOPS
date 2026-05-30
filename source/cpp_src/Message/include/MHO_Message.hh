@@ -136,12 +136,10 @@ class MHO_Message
         //! \brief Add a message key to the allowed key set.
         //! \param key The key string to add.
         void AddKey(const std::string& key);
-        void AddKey(const char* key);
 
         //! \brief Remove a message key from the allowed key set.
         //! \param key The key string to remove.
         void RemoveKey(const std::string& key);
-        void RemoveKey(const char* key);
 
         //! \brief Remove all message keys (disables all filtering).
         void RemoveAllKeys();

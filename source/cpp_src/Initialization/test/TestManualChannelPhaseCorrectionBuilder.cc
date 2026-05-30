@@ -1,101 +1,58 @@
-#include <iostream>
+// Builder test for MHO_ManualChannelPhaseCorrectionBuilder: builds a per-channel
+// phase-correction operator from a {channel_names, pc_phases} attribute map.
+// Needs "vis" and a non-empty channel->phase map; reads fFormat["priority"].
+
 #include <string>
+#include <vector>
 
-#include "MHO_Message.hh"
+#include "InitializationTestFixtures.hh"
 
-#include "MHO_ContainerDefinitions.hh"
-
-#include "MHO_ChannelLabeler.hh"
 #include "MHO_ManualChannelPhaseCorrection.hh"
 #include "MHO_ManualChannelPhaseCorrectionBuilder.hh"
+#include "MHO_Message.hh"
+#include "MHO_TestAssertions.hh"
 
 using namespace hops;
+using namespace hops::inittest;
 
-// {
-//     "name": "pc_phases_x",
-//     "statement_type": "parameter",
-//     "type" : "compound",
-//     "parameters":
-//     {
-//         "channel_names": {"type": "string"},
-//         "pc_phases": {"type": "list_real"}
-//     },
-//     "fields":
-//     [
-//         "channel_names",
-//         "pc_phases"
-//     ]
-// }
-
-int main(int argc, char** argv)
+static mho_json pcphase_attributes()
 {
-    MHO_Message::GetInstance().AcceptAllKeys();
-    MHO_Message::GetInstance().SetMessageLevel(eDebug);
+    mho_json attr;
+    attr["name"] = "pc_phases_x";
+    attr["value"]["channel_names"] = std::string("abcd");
+    attr["value"]["pc_phases"] = std::vector< double >{10.0, 20.0, 30.0, 40.0};
+    return attr;
+}
 
-    MHO_OperatorToolbox toolbox;
-    MHO_ContainerStore store;
+int main(int /*argc*/, char** /*argv*/)
+{
+    MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    //construct some trivial visibilities
-    visibility_type* vis = new visibility_type();
-    vis->Insert(std::string("reference_station_mk4id"), std::string("E"));
-    vis->Resize(1, 32, 1, 1);
-
-    store.AddObject(vis);
-    store.SetShortName(vis->GetObjectUUID(), std::string("vis"));
-
-    //add a default channel labeler
-    MHO_ChannelLabeler< visibility_type > ch_labeler;
-    ch_labeler.SetArgs(vis);
-    ch_labeler.Initialize();
-    ch_labeler.Execute();
-
-    mho_json conditions;
-    conditions["name"] = "if";
-    conditions["value"].push_back("station");
-    conditions["value"].push_back("E");
-
-    mho_json attrib;
-    std::string chan_ids = "abcdefghijklmnopqrstuvwxyzABCDEF";
-    std::vector< double > pc_phases;
-    for(std::size_t i = 0; i < chan_ids.size(); i++)
+    // valid channel/phase map + vis present -> builds and registers the operator
     {
-        pc_phases.push_back(90.0 * (i % 4));
+        MHO_OperatorToolbox toolbox;
+        MHO_ContainerStore store;
+        add_vis(store);
+
+        MHO_ManualChannelPhaseCorrectionBuilder builder(&toolbox, &store);
+        builder.SetFormat(make_format());
+        builder.SetAttributes(pcphase_attributes());
+
+        REQUIRE(builder.Build());
+        REQUIRE(toolbox.GetOperatorAs< MHO_ManualChannelPhaseCorrection >("pc_phases_x") != nullptr);
     }
 
-    attrib["name"] = "pc_phases_x";
-    attrib["channel_names"] = chan_ids;
-    attrib["pc_phases"] = pc_phases;
-
-    MHO_ManualChannelPhaseCorrectionBuilder builder(&toolbox, &store, nullptr);
-    builder.SetAttributes(attrib);
-    builder.SetConditions(conditions);
-
-    bool ok = builder.Build();
-    std::string name = "pc_phases";
-    auto op = toolbox.GetOperatorAs< MHO_ManualChannelPhaseCorrection >(name);
-
-    if(op != nullptr)
+    // valid map but no "vis" in the store -> Build fails
     {
-        for(std::size_t i = 0; i < vis->GetSize(); i++)
-        {
-            (*vis)[i] = 1.0;
-        }
-        auto pol_axis_ptr = &(std::get< POLPROD_AXIS >(*vis));
-        auto chan_axis_ptr = &(std::get< CHANNEL_AXIS >(*vis));
-        pol_axis_ptr->at(0) = "XX";
-        bool ok = op->Initialize();
-        std::cout << "ok = " << ok << std::endl;
-        ok = op->Execute();
-        std::cout << "ok = " << ok << std::endl;
+        MHO_OperatorToolbox toolbox;
+        MHO_ContainerStore store;
 
-        for(std::size_t i = 0; i < chan_axis_ptr->GetSize(); i++)
-        {
-            std::cout << vis->at(0, i, 0, 0) << std::endl;
-        }
+        MHO_ManualChannelPhaseCorrectionBuilder builder(&toolbox, &store);
+        builder.SetFormat(make_format());
+        builder.SetAttributes(pcphase_attributes());
 
-        return 0;
+        REQUIRE(!builder.Build());
     }
 
-    //error
-    return 1;
+    return 0;
 }

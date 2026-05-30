@@ -131,13 +131,18 @@ class MHO_VexElementLineGenerator
         std::string fSpace;
 
         /**
-         * @brief Checks if a field is the last optional field in the given format fields.
+         * @brief Checks whether any field after the given index is populated in the element.
          *
-         * @param field_name Name of the field to check.
-         * @param fields (mho_json&)
-         * @return True if it's the last optional field, false otherwise.
+         * Used to decide whether a missing optional field requires an empty positional
+         * placeholder: if a later field carries data, the placeholder must be emitted so
+         * the populated value keeps its correct positional slot on re-parse.
+         *
+         * @param idx Index of the current (missing) field in the fields list.
+         * @param fields Ordered list of field names from the format definition.
+         * @param element The element data being serialized.
+         * @return True if at least one field after idx is present in element, false otherwise.
          */
-        bool IsTrailingOptionalField(std::string field_name, mho_json& fields);
+        bool AnyLaterFieldPresent(std::size_t idx, mho_json& fields, mho_json& element);
 };
 
 } // namespace hops

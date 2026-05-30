@@ -71,17 +71,11 @@ class MHO_Snapshot
 
         /**
          * @brief Setter for executable name
+         * @details accepts a const char* via implicit conversion to std::string
          *
          * @param exe_name New executable name to set
          */
         void SetExecutableName(std::string exe_name) { fExeName = exe_name; };
-
-        /**
-         * @brief Setter for executable name
-         *
-         * @param exe_name New executable name to set
-         */
-        void SetExecutableName(const char* exe_name) { SetExecutableName(std::string(exe_name)); }
 
         /**
          * @brief Sets the internal flag to accept all keys.
@@ -95,28 +89,18 @@ class MHO_Snapshot
 
         /**
          * @brief Inserts a key into the set of keys for MHO_Snapshot.
+         * @details accepts a const char* via implicit conversion to std::string
          *
          * @param key The key to be inserted.
          */
         void AddKey(const std::string& key);
         /**
-         * @brief Inserts a key into the set of keys for MHO_Snapshot.
-         *
-         * @param key The key to be inserted.
-         */
-        void AddKey(const char* key);
-        /**
-         * @brief Removes a key-value pair from the MHO_Snapshot object's keys.
-         *
-         * @param key Key to be removed; must exist in fKeys
-         */
-        void RemoveKey(const std::string& key);
-        /**
-         * @brief Removes a key-value pair from the MHO_Snapshot object if it exists.
+         * @brief Removes a key from the MHO_Snapshot object if it exists.
+         * @details accepts a const char* via implicit conversion to std::string
          *
          * @param key Key to be removed from the snapshot
          */
-        void RemoveKey(const char* key);
+        void RemoveKey(const std::string& key);
         /**
          * @brief Clears all keys in the MHO_Snapshot object.
          */
@@ -155,8 +139,7 @@ class MHO_Snapshot
 
                 if(status)
                 {
-                    uint32_t label = fCountLabel;
-                    inter.Write(*obj, name, label);
+                    inter.Write(*obj, name);
                     fCountLabel++;
                 }
                 else
@@ -196,8 +179,7 @@ class MHO_Snapshot
                     obj->Insert(std::string("file"), file);
                     obj->Insert(std::string("line"), line);
                     obj->Insert(std::string("count_label"), (int)fCountLabel);
-                    uint32_t label = fCountLabel;
-                    inter.Write(*obj, name, label);
+                    inter.Write(*obj, name);
                     fCountLabel++;
                 }
                 else

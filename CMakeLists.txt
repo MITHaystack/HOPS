@@ -99,7 +99,11 @@ file(MAKE_DIRECTORY ${SHARE_VHELP_AEDIT_INSTALL_DIR})
 file(MAKE_DIRECTORY ${PLUGINS_INSTALL_DIR})
 
 #developer coverage testing requires lcov and genhtml (install with: apt-get install lcov)
-#generate html report with 'make coverage'
+#to generate html report with 'make coverage'
+#then generate the .svg badges with:
+# build$ ../source/bash_src/coverage_badge.sh ./coverage_hops4.info
+# build$ ../source/bash_src/coverage_badge.sh ./coverage_hops3.info
+#and copy them to the doc directory
 include(HopsCoverage)
 
 #convenience variables

@@ -1,0 +1,2 @@
+VEX_rev = 1.5; $GLOBAL; ref $EXPER = TEST01;
+$EXPER; def TEST01; exper_name = TEST01; exper_num = 1; enddef;
