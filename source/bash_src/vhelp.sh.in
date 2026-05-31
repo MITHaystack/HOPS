@@ -1,16 +1,16 @@
 #!/bin/sh
-#!@SHELL@
 #
-# This script is the sh version of vhelp, suitable for machines
-# which do not have csh installed.  It provides organized and
-# semi-intelligent access to the various documentation files
+# This script is the sh version of vhelp.  It provides organized
+# and semi-intelligent access to the various documentation files
 # found in $PROGDOC or, by default, in /usr/local/doc
 #
-# Written by CJL, April 1994
+# Written by CJL, April 1994, updated May 2026 by GBC
 #################################################################
-cat=cat
-[ -x `type -p less` ] || cat=more
-					# Make sure we have proper setup
+cat=less
+[ -x `type -p less` ] || {
+    cat=more
+    [ -x `type -p more` ] || cat=cat
+}
 
 if [ -z "$HOPS_SYS" ] ; then
     echo "Your environment was not set up--source hops.bash."
