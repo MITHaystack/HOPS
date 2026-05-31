@@ -21,12 +21,53 @@
 
 #include <getopt.h>
 
-int
-parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
+#if BIGGER
+/* for readability in -x and -d argument parsing below */
+#define XD_BARFAGE do {\
+    msg("Only one of -x and -d may be given", 3);\
+    return(205);\
+    } while(0)
+
+/* this routine modifies the -d argument if /pdf is found
+ * so that pgplot only sees the part it understands */
+char *pdfixer(char *optarg, char **display)
     {
+        char *df = NULL, *slash, *co;
+        co = malloc(strlen(optarg) + MAX_TXT);
+        if (!co) { perror("pdfixer:malloc1"); return(NULL); }
+        strcpy(co, optarg);
+        msg("Convert optarg '%s' to '%s'", 0, optarg, (*display = co));
+        slash = strrchr(co, '/');
+        /* are we dealing with .../something/pdf */
+        if (slash[1] == 'p' && slash[2] == 'd' && slash[3] == 'f')
+            {
+            *slash = 0; /* optarg name/ps/pdf -> name/ps */
+            msg("into an optarg %s", 0, co);
+            df = malloc(strlen(co) + MAX_TXT);
+            if (!df) { perror("pdfixer:malloc2"); free(co); return(NULL); }
+            strcpy(df, co);
+            slash = strrchr(df, '/');
+            msg("slash is %s", 0, slash);
+            if (!slash) { free(df); free(co); return(NULL); }
+            *slash = 0;
+            msg("Output converts to %s", 0, df);
+            return(df);
+            }
+        return(NULL);
+    }
+#endif /* BIGGER */
+
+int
+parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
+    gpconf *gpcp)
+    {
+#if BIGGER 
+#else /* BIGGER */
     static char device[1000];
+#endif /* BIGGER */
     static char outfile[1000];
-    int i, c, nxsub = 2, nysub = 2;
+    int ii, c, nxsub = 2, nysub = 2;
+    char *display = NULL;
     extern char *optarg;
     extern int optind, msglev;
                                         /* Defaults */
@@ -39,10 +80,36 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
         {
         switch (c)
             {
+#if BIGGER
+            /* handle -x and -d cases together, similar to cohfit */
+            case 'd':   /* wedge in a ps2pdf fix; pdfile is malloc'd and used
+                         * by the caller to do the ps to pdf conversion, any
+                         * /pdf construct is deleted from optarg */
+                if (display) XD_BARFAGE;
+                msg("-d option with %s", 0, optarg);
+                gpcp->pdfile = pdfixer(optarg, &display);
+                if (gpcp->pdfile) msg("PDFile is %s", 0, gpcp->pdfile);
+                *plot = TRUE;
+            case 'x':
+                if (c == 'x' && display) XD_BARFAGE;
+                else if (!display) display = "/XW";
+                gpcp->devp = malloc((ii = strlen(display)) + MAX_TXT);
+                if (!gpcp->devp) { perror("parse-d:malloc"); return(ENOMEM); }
+                strncpy(gpcp->devp, display, ii);
+                msg("Device is %s, plot = %d", 0, gpcp->devp, gpcp->pdfile);
+                *plot = TRUE;
+                break;
+#else /* BIGGER */
             case 'd':                   /* File away the display string */
                 strncpy (device, optarg, sizeof(device));
                 *plot = TRUE;
                 break;
+
+            case 'x':                   /* short for -d /xw */
+                strcpy (device, "/XW");
+                *plot = TRUE;
+                break;
+#endif /* BIGGER */
 #if BIGGER
             case 'g':                   /* Specify the gridding */
                 if (3 == sscanf(optarg, "%dx%d:%d", &nxsub, &nysub, sqp))
@@ -76,11 +143,6 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
                     }
                 break;
 
-            case 'x':                   /* short for -d /xw */
-                strcpy (device, "/XW");
-                *plot = TRUE;
-                break;
-
             case '?':
             default:
 #if BIGGER
@@ -96,18 +158,27 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
         }
                                         /* Input files on command line are */
                                         /* handled in main routine. */
-
+                                        /* synchronize with gnuplot */
+    gpcp->ncols = nxsub;
+    gpcp->nrows = nysub;
+    gpcp->arat = *sqp;
+    gpcp->plot = *plot;
                                         /* Open plot device */
     if (*plot)
         {
+#if BIGGER
+        if (cpgbeg (0, gpcp->devp, 1, 1) != 1)
+            {
+            msg ("Could not open pgplot device '%s', abort.", 3, gpcp->devp);
+            exit (1);
+            }
+        cpgsubp (nxsub, nysub);
+#else /* BIGGER */
         if (cpgbeg (0, device, 1, 1) != 1)
             {
             msg ("Could not open pgplot device '%s', abort.", 3, device);
             exit (1);
             }
-#if BIGGER
-        cpgsubp (nxsub, nysub);
-#else /* BIGGER */
         cpgsubp (2, 2);
 #endif /* BIGGER */
         msg("pgplot initialized with %dx%d subplots", 1, nxsub, nysub);

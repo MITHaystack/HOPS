@@ -1,11 +1,13 @@
 #define FALSE 0
 #define TRUE  1
 
+#include <errno.h>
 #include <stdio.h>
 
 #include "adata.h"
 #include "mk4_util.h"
 #include "mk4_afio.h"
+#include "gnearch.h"
 
 #if BIGGER
 #define MAX_BNO 45 			/* 10 telescopes */
@@ -45,7 +47,7 @@ struct srchsummary
 
 extern int msglev;
 
-extern int parse_cmdline (int, char **, FILE **, int *, int *);
+extern int parse_cmdline (int, char **, FILE **, int *, int *, gpconf *);
 extern void plot_srchdata (struct srchsummary srchdata[], int square);
 extern int fill_grids_orig (struct srchsummary *srchdata);
 extern int fill_grids (struct srchsummary *srchdata);

@@ -30,6 +30,40 @@
 int datatype = 0;
 int space = 500;
 
+/* -DBIGGER=1 is the updated executable; -DBIGGER=0 is the '96 original */
+static gpconf gpf = {
+#if BIGGER==1
+    /* other functionality in support of gnuplot and PDFs */
+    .pdfile = NULL, .devp = NULL,
+#else /* BIGGER==1 */
+    /* initialized empty by the compiler is fine */
+#endif /* BIGGER==1 */
+    .ncols = 2, .nrows = 2, .arat = 0, .plot = FALSE
+};
+
+#if BIGGER==1
+/* cohfit.c coded this in main() but better as a function */
+void ps2pdfdance(gpconf *gpfp)
+{
+    int len = strlen(gpfp->pdfile) + 20;
+    char *cmd = malloc(len), *slash;
+    snprintf(cmd, len-1, "%s %s", PS2PDF, gpfp->pdfile);
+    msg("Converting with: %s", 1, cmd);
+    if (system(cmd))
+        msg("conversion failed", 3);
+    else 
+        {
+        msg("Unlinking %s", 1, gpfp->pdfile);
+        unlink(gpfp->pdfile);
+        slash = strstr(gpfp->pdfile, ".ps");
+        if (slash) { slash[2] = 'd'; slash[3] = 'f'; slash[4] = 0; }
+        msg("Plot is %s", 2, gpfp->pdfile);
+        }
+    free(gpfp->pdfile);
+    free(cmd);    
+}
+#endif /* BIGGER==1 */
+
 int main (int argc, char* argv[])
     {
     int i, navg, nout, scan_boundary, order, oldtime, bno, npt, plot;
@@ -59,7 +93,7 @@ int main (int argc, char* argv[])
 	exit (1);
 	}
 					/* Interpret command line */
-    if (parse_cmdline (argc, argv, &fpout, &plot, &square) != 0) 
+    if (parse_cmdline (argc, argv, &fpout, &plot, &square, &gpf) != 0) 
 	exit (1);
 
 					/* Read in the data */
@@ -144,7 +178,13 @@ int main (int argc, char* argv[])
 	}
     msg ("Wrote %d fringe_fitted output records", 1, nout);
 
+#if BIGGER
     if (plot) cpgend();
+    if (gpf.devp) free(gpf.devp);
+    if (gpf.pdfile) ps2pdfdance(&gpf);
+#else /* BIGGER */
+    if (plot) cpgend();
+#endif /* BIGGER */
     exit (0);
 
     return 0;

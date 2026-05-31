@@ -2,6 +2,12 @@ find_package (PGPLOT)
 find_package (X11)
 find_package (GFORTRAN)
 
+# almost same toys as for cohfit
+find_package(Gnuplot)
+find_package(ImageMagick COMPONENTS montage)
+find_program(PS2PDF_EXECUTABLE NAMES ps2pdf)
+find_program(BASH_EXECUTABLE NAMES bash)
+
 if( PGPLOT_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     
 #declare exe name ############################################################
@@ -98,6 +104,43 @@ add_executable (${EXENAME2} ${${EXENAME}_SOURCEFILES} )
 
 set_target_properties( ${EXENAME} PROPERTIES COMPILE_FLAGS "${CMAKE_C_FLAGS} -DBIGGER=1")
 set_target_properties( ${EXENAME2} PROPERTIES COMPILE_FLAGS "${CMAKE_C_FLAGS} -DBIGGER=0")
+
+#add cflag specifying gnuplot executable path
+if(Gnuplot_FOUND)
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT=\\\"${GNUPLOT_EXECUTABLE}\\\"")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGNUPLOT=\\\"${GNUPLOT_EXECUTABLE}\\\"")
+else()
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGNUPLOT=\\\"/bin/false\\\"")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGNUPLOT=\\\"/bin/false\\\"")
+endif(Gnuplot_FOUND)
+
+#add cflag specifying ps2pdf executable path
+if(PS2PDF_EXECUTABLE)
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPS2PDF=\\\"${PS2PDF_EXECUTABLE}\\\"")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPS2PDF=\\\"${PS2PDF_EXECUTABLE}\\\"")
+else()
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPS2PDF=\\\"/bin/false\\\"")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPS2PDF=\\\"/bin/false\\\"")
+endif()
+
+#add cflag specifying bash executable path
+if(BASH_EXECUTABLE)
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DBASH=\\\"${BASH_EXECUTABLE}\\\"")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBASH=\\\"${BASH_EXECUTABLE}\\\"")
+else()
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DBASH=\\\"/bin/false\\\"")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBASH=\\\"/bin/false\\\"")
+endif()
+
+#add cflag specifying montage (ImageMagick) executable path
+if(ImageMagick_montage_FOUND)
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMONTAGE=\\\"${ImageMagick_montage_EXECUTABLE}\\\"")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMONTAGE=\\\"${ImageMagick_montage_EXECUTABLE}\\\"")
+else()
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMONTAGE=\\\"/bin/false\\\"")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMONTAGE=\\\"/bin/false\\\"")
+endif(ImageMagick_montage_FOUND)
+
 
 target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
 target_link_libraries (${EXENAME2} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})

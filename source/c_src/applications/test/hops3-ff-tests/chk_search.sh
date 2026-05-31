@@ -32,7 +32,7 @@ fringex -i 20 -d 27x27 -r alist-aedit-X0X.out |\
 average -o search.avg > fas.out 2>&1
 
 HOPS_SEARCH_REMLIMIT=0.6 \
-search -g 1x1:1 -d search.ps/cps -o search.out search.avg >> fas.out 2>&1
+search -g 1x1:1 -d search.ps/cps/pdf -o search.out search.avg >> fas.out 2>&1
 searchrv=$?
 [ "$searchrv" -eq 0 ] || errs=$(($errs+1))
 echo searchrv is $searchrv errs=$errs
@@ -46,26 +46,27 @@ soirchrv=$?
 [ "$soirchrv" -eq 0 ] || errs=$(($errs+1))
 echo soirchrv is $soirchrv errs=$errs
 
+$verb && set +x
+
 ulimit -c 0
 soirch -g syntax-check 2>&1
 soirchsyntax=$?
+echo WE EXPECTED A SEGMENTATION FAULT HERE
 [ "$soirchsyntax" -eq 139 ] || errs=$(($errs+1))
 echo soirchsyntax exit return is $soirchsyntax errs=$errs
-
-$verb && set +x
 
 cmp search.avg soirch.avg && echo search.avg soirch.avg agree || {
     errs=$(($errs+1))
     echo search.avg soirch.avg differ errs=$errs
 }
 
-set -- `ls -s search.ps 2>&-` 0 0
+set -- `ls -s search.pdf 2>&-` 0 0
 size=$1
 $verb && echo search size is $size
 set -- `wc -l search.out` 0 0
 lines=$1
 $verb && echo search lines is $lines
-[ -f search.ps -a "$size" -ge 76 -a -f search.out -a "$lines" -eq 3 ] ||
+[ -f search.pdf -a "$size" -ge 76 -a -f search.out -a "$lines" -eq 3 ] ||
     errs=$(($errs+1))
 echo errs=$errs
 
