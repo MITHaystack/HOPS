@@ -36,7 +36,10 @@ jobs:
       run: cmake --install ${{github.workspace}}/build
 
     - name: TestDataDownload
-      run: bash ${{github.workspace}}/install/bin/testdata_download_all.sh
+      shell: bash
+      run: |
+        source "${{github.workspace}}/install/bin/hops.bash"
+        "${{github.workspace}}/install/bin/testdata_download_all.sh"
 
     - name: Test
       working-directory: ${{github.workspace}}/build
