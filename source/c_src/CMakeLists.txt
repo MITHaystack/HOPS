@@ -41,7 +41,7 @@ check_include_file(unistd.h HAVE_UNISTD_H)
 #HOPS 3.26 was released at 4602, however using 4604 here allows us
 #to note that, e.g. fourfit is post-HOPS3.26
 set(HOPS_SVN_REV_VALUE 4604)
-set(HOPS_REVISION_VALUE "3.26++")
+set(HOPS_REVISION_VALUE 3.26)
 set(PACKAGE_VERSION "\"${HOPS_REVISION_VALUE}\"")
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)
