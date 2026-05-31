@@ -58,7 +58,7 @@ read_data (avg_data** data, char* filename, int* navg)
 					/* Better be 0, 1, 2, 3 or 4 */
 	if (type != 2)
 	    {
-	    msg ("Found line other than type-2, skipping", 2);
+	    msg ("Found line type (%d) other than type-2, skipping", 2, type);
 	    continue;
 	    }
 					/* call parser */

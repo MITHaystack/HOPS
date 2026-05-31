@@ -213,7 +213,7 @@ baseline_avg (seg_data *data,
             sigma = datum->amp / true_snr;
             deltampsq = weight * (datum->amp*datum->amp - (2.0*sigma*sigma));
             ampsqsum += deltampsq;
-            msg("Amp^2 sum inc by %lg with weight %lg to %lg", -1, deltampsq, weight, ampsqsum);
+            msg("* Amp^2 sum inc by %lg with weight %lg to %lg", -1, deltampsq, weight, ampsqsum);
                                         /* This needed for SNR calculation */
             inc_sigma_sum1 += weight * weight * sigma * sigma; 
             inc_sigma_sum2 += weight * weight * pow (sigma, 4.0);
@@ -251,7 +251,7 @@ baseline_avg (seg_data *data,
     msg("Added %d records, skipped %d records of %d in all", 0, nadded, nskips, recno);
     if (conf.header && negamps)
         {
-        fprintf(fpout, "Amp^2 summation went negative %d times\n", negamps);
+        fprintf(fpout, "* Amp^2 summation went negative %d times\n", negamps);
         }
 
     return (nout);

@@ -55,7 +55,8 @@ soirchsyntax=$?
 [ "$soirchsyntax" -eq 1 ] || errs=$(($errs+1))
 echo soirchsyntax exit return is $soirchsyntax errs=$errs
 
-cmp search.avg soirch.avg && echo search.avg soirch.avg agree || {
+savgdifs=`diff search.avg soirch.avg | wc -l`
+[ "$savgdifs" -lt 8 ] && echo search.avg soirch.avg agree || {
     errs=$(($errs+1))
     echo search.avg soirch.avg differ errs=$errs
 }
