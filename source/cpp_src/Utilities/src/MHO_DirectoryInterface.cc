@@ -72,10 +72,25 @@ std::string MHO_DirectoryInterface::GetDirectoryFullPathPreserveSymlinks(const s
 
 std::string MHO_DirectoryInterface::GetHopsInstallPrefix()
 {
-    //Determine the HOPS install prefix at runtime from the on-disk location of
-    //the shared library that contains this function (libMHO_Utilities). Using
-    //dladdr keeps absolute install paths out of the compiled binary (needed for
-    //bit-for-bit reproducible builds) and makes the install tree relocatable.
+    //An explicit environment override takes precedence over self-location via dladdr.
+    //hops.bash exports HOPS_INSTALL (and HOPS_SYS) as the install prefix; following
+    //it lets the ctest target a specific install tree regardless of which
+    //shared libraries the loader happened to pick up (e.g. build-tree libraries
+    //during ctest). AGain...read at runtime, so nothing is baked into the binary.
+    const char* env_prefix = getenv("HOPS_INSTALL");
+    if(env_prefix == nullptr || env_prefix[0] == '\0')
+    {
+        env_prefix = getenv("HOPS_SYS");
+    }
+    if(env_prefix != nullptr && env_prefix[0] != '\0')
+    {
+        return std::string(env_prefix);
+    }
+
+    //Fall-back to determining the HOPS install prefix at runtime from the on-disk
+    //location of the shared library that contains this function (libMHO_Utilities).
+    //Using dladdr keeps absolute install paths out of the compiled binary (needed
+    //for bit-for-bit reproducible builds) and makes the install tree relocatable.
     Dl_info info;
     info.dli_fname = nullptr;
     int found = dladdr(reinterpret_cast< void* >(&MHO_DirectoryInterface::GetHopsInstallPrefix), &info);

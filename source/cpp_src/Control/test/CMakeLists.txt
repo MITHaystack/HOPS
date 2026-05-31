@@ -22,6 +22,10 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
     add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
+    #control format files are located via GetHopsInstallPrefix(); point it at the
+    #install tree so tests pass without sourcing hops.bash (still needs 'make install').
+    set_tests_properties(${BASENAME}_test PROPERTIES
+        ENVIRONMENT "HOPS_INSTALL=${CMAKE_INSTALL_PREFIX}")
 endforeach( BASENAME )
 
 hops_install_test_executables( ${SOURCE_BASENAMES} )
