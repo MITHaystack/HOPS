@@ -32,8 +32,27 @@ if [ -n "$HOPS_INSTALL" ]
         OLD_CMAKE_PREF=$OLD_HOPS_INSTALL:
 fi
 
-export HOPS_INSTALL=@CMAKE_INSTALL_PREFIX@
+#-------------------------------------------------------------------------------
+# Figure out the install prefix at runtime (rather than hard-coding it), so that
+# the installation is relocatable. Find the path of *this* script while it is
+# being sourced, then take its parent's parent: the script is installed as
+# <prefix>/bin/hops.bash, so the install prefix is two levels up.
+# This should work on bash/zsh, but dash/sh are probably out of scope
+if [ -n "${BASH_SOURCE:-}" ]; then
+   # shellcheck disable=SC3028 # bash sets BASH_SOURCE
+   HOPS_SCRIPT_SOURCE=${BASH_SOURCE}
+elif [ -n "${ZSH_VERSION:-}" ]; then
+   # shellcheck disable=all
+   HOPS_SCRIPT_SOURCE=${(%):-%N}
+else
+   echo "ERROR: could not determine the hops install location (need bash or zsh)." >&2
+   return 1
+fi
+
+HOPS_INSTALL=$(cd "$(dirname "${HOPS_SCRIPT_SOURCE}")/.." > /dev/null 2>&1 && pwd)
+export HOPS_INSTALL
 #export the hops install/sys location
+#-------------------------------------------------------------------------------
 
 if [ $# -eq 0 ]
   then
@@ -44,14 +63,14 @@ fi
 
 #define some useful variables
 export HOPS_SYS
-export HOPS_SYS_PY=@CMAKE_INSTALL_PREFIX@/@PYTHON_SITE_PREFIX@
+export HOPS_SYS_PY=$HOPS_INSTALL/@PYTHON_SITE_PREFIX@
 export HOPS_ARCH=@CMAKE_SYSTEM_PROCESSOR@
 export HOPS_VERSION=@HOPS_VERSION_NUMBER@
-export PROGDOC=@CMAKE_INSTALL_PREFIX@/share/vhelp
-export AHELP=@CMAKE_INSTALL_PREFIX@/share/vhelp/aedit
+export PROGDOC=$HOPS_INSTALL/share/vhelp
+export AHELP=$HOPS_INSTALL/share/vhelp/aedit
 export DEF_CONTROL=/dev/null
 export HOPS_VPAL_FRINGE_FITTER=@HOPS_VPAL_FOURFIT@
-export HOPS_DEFAULT_PLUGINS_DIR=@PLUGINS_INSTALL_DIR@
+export HOPS_DEFAULT_PLUGINS_DIR=$HOPS_INSTALL/plugin_scripts
 
 #replace old (system) variable instances with new values
 NEW_PATH=$(printf '%s\n' "$PATH" | sed "s|$OLD_PATH||g")
@@ -73,5 +92,8 @@ export PYTHONPATH="$NEW_PYTHONPATH"
 
 #NOTE: we will also look for plugin scripts in the environmental variable: HOPS_USER_PLUGINS_DIR
 echo "HOPS install directory set to ${HOPS_INSTALL}"
+
+#clean up temporary variables used during environment set-up
+unset HOPS_SCRIPT_SOURCE
 
 return 0
