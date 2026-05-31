@@ -1,7 +1,9 @@
-prefix=@CMAKE_INSTALL_PREFIX@
+# Resolve the prefix relative to this .pc file's own location so the file is relocatable
+# using (${pcfiledir} requires pkg-config >= 0.29
+prefix=${pcfiledir}/../..
 exec_prefix=${prefix}
-libdir=@LIB_INSTALL_DIR@
-includedir=@INCLUDE_INSTALL_DIR@
+libdir=${prefix}/lib
+includedir=${prefix}/include
 
 Name: @PC_NAME@
 Description: @PC_DESCRIPTION@

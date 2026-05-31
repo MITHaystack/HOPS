@@ -8,6 +8,7 @@ OLD_CMAKE_PREF="NULL"
 OLD_LD_LIBPATH="NULL"
 OLD_LD_LIB64PATH="NULL"
 OLD_PATH="NULL"
+OLD_PKG_CONFIG="NULL"
 
 if [ -n "$HOPS_SYS_PY" ]
     then
@@ -22,6 +23,7 @@ if [ -n "$HOPS_SYS" ]
         OLD_LD_LIBPATH=$OLD_HOPS_SYS/lib:
         OLD_LD_LIB64PATH=$OLD_HOPS_SYS/lib64:
         OLD_CMAKE_PREF=$OLD_HOPS_SYS:
+        OLD_PKG_CONFIG=$OLD_HOPS_SYS/lib/pkgconfig:
 fi
 
 if [ -n "$HOPS_INSTALL" ]
@@ -30,6 +32,7 @@ if [ -n "$HOPS_INSTALL" ]
         OLD_PATH=$OLD_HOPS_INSTALL/bin:$OLD_HOPS_INSTALL/bin/test:
         OLD_LD_LIBPATH=$OLD_HOPS_INSTALL/lib:
         OLD_CMAKE_PREF=$OLD_HOPS_INSTALL:
+        OLD_PKG_CONFIG=$OLD_HOPS_INSTALL/lib/pkgconfig:
 fi
 
 #-------------------------------------------------------------------------------
@@ -88,6 +91,11 @@ export CMAKE_PREFIX_PATH="$NEW_CMAKE_PREFIX_PATH"
 NEW_PYTHONPATH=$(printf '%s\n' "$PYTHONPATH" | sed "s|$OLD_HOPS_SYS_PY||g")
 NEW_PYTHONPATH="$HOPS_SYS_PY:$NEW_PYTHONPATH"
 export PYTHONPATH="$NEW_PYTHONPATH"
+
+#added so any downstream builds can locate hops3.pc/hops4.pc by name
+NEW_PKG_CONFIG_PATH=$(printf '%s\n' "$PKG_CONFIG_PATH" | sed "s|$OLD_PKG_CONFIG||g")
+NEW_PKG_CONFIG_PATH="$HOPS_INSTALL/lib/pkgconfig:$NEW_PKG_CONFIG_PATH"
+export PKG_CONFIG_PATH="$NEW_PKG_CONFIG_PATH"
 
 
 #NOTE: we will also look for plugin scripts in the environmental variable: HOPS_USER_PLUGINS_DIR
