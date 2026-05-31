@@ -150,6 +150,7 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
 #else /* BIGGER */
                 /* override for help for soirch */
                 msg("The -g option is not allowed in soirch", 3);
+                msg("(soirch is the original version of search)", 3);
                 set_progname("search");
 #endif /* BIGGER */
                 syntax("search/parse_cmdline.c");

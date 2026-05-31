@@ -51,8 +51,8 @@ $verb && set +x
 ulimit -c 0
 soirch -g syntax-check 2>&1
 soirchsyntax=$?
-echo WE EXPECTED A SEGMENTATION FAULT HERE
-[ "$soirchsyntax" -eq 139 ] || errs=$(($errs+1))
+# echo WE EXPECTED A SEGMENTATION FAULT HERE
+[ "$soirchsyntax" -eq 1 ] || errs=$(($errs+1))
 echo soirchsyntax exit return is $soirchsyntax errs=$errs
 
 cmp search.avg soirch.avg && echo search.avg soirch.avg agree || {
