@@ -91,7 +91,7 @@ read_data (avg_data** data, char* filename, int* navg)
 		exit(1);
 		}
 	    nkb = (space*sizeof(avg_data))/1024;
-	    printf ("Expanded array memory to %d Kb ...\r", nkb); fflush (stdout);
+	    msg("Expanded array memory to %d Kb ...\r", 0, nkb);
 	    }
 
 	}				/* End of main read loop */

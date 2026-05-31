@@ -13,6 +13,7 @@ typedef struct gpconf {
 #if BIGGER
     char *pdfile;                   /* [-d] pdf file if /pdf given */
     char *devp;                     /* [-d] dev name for pgplot */
+    char *gplatt;                   /* gnuplot filename pattern */
 #endif /* BIGGER */
     int ncols, nrows, arat, plot;   /* [-g] cols x rows : arat ; plot? */
 } gpconf;

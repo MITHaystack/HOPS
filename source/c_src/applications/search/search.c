@@ -182,6 +182,7 @@ int main (int argc, char* argv[])
     if (plot) cpgend();
     if (gpf.devp) free(gpf.devp);
     if (gpf.pdfile) ps2pdfdance(&gpf);
+    if (gpf.gplatt) free(gpf.gplatt);
 #else /* BIGGER */
     if (plot) cpgend();
 #endif /* BIGGER */

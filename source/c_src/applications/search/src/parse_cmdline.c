@@ -55,6 +55,28 @@ char *pdfixer(char *optarg, char **display)
             }
         return(NULL);
     }
+/* build a gnuplot filepattern from the device name */
+char *gnupattern(char *device)
+{
+    char *gpname = malloc(strlen(device) + MAX_TXT), *slh;
+    strcpy(gpname, device);
+    slh = strrchr(gpname, '/');
+    if (!slh || slh == gpname) {
+        msg("You can only use gunplot with -d filename[.ps]/dev", 3);
+        free(gpname);
+        return(NULL);
+    }
+    if (slh[-1] == 's' && slh[-2] == 'p' && slh[-3] == '.') slh -= 3;
+    if (slh < gpname) {
+        msg("You cannot use '.ps' for a filename", 3);
+        free(gpname);
+        return(NULL);
+    }
+    *slh = 0;                   /* terminate prior to .ps */
+    strcat(gpname, "-%d");      /* append -%d for sprintf later */
+    msg("Gnuplot artifacts will use %s", 2, gpname);
+    return(gpname);
+}
 #endif /* BIGGER */
 
 int
@@ -62,11 +84,12 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
     gpconf *gpcp)
     {
 #if BIGGER 
+    int ii, gp;
 #else /* BIGGER */
     static char device[1000];
 #endif /* BIGGER */
     static char outfile[1000];
-    int ii, c, nxsub = 2, nysub = 2;
+    int c, nxsub = 2, nysub = 2;
     char *display = NULL;
     extern char *optarg;
     extern int optind, msglev;
@@ -112,14 +135,17 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
 #endif /* BIGGER */
 #if BIGGER
             case 'g':                   /* Specify the gridding */
-                if (3 == sscanf(optarg, "%dx%d:%d", &nxsub, &nysub, sqp))
-                    {
+                ii = sscanf(optarg, "%dx%d:%d:%d", &nxsub, &nysub, sqp, &gp);
+                if (3 <= ii)
+                    {                   /* in case -x/-d not called */
                     if (getenv("PGPLOT_DEV")) *plot = TRUE;
+                    gp = (4 == ii) ? 1 : 0;
                     }
                 else
                     {
                     nxsub = nysub = 2;
                     *sqp = 0;
+                    gp = 0;
                     }
                 break;
 #else /* BIGGER */
@@ -164,6 +190,9 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
     gpcp->nrows = nysub;
     gpcp->arat = *sqp;
     gpcp->plot = *plot;
+#if BIGGER
+    if (gp) gpcp->gplatt = gnupattern(gpcp->devp);
+#endif /* BIGGER */
                                         /* Open plot device */
     if (*plot)
         {
