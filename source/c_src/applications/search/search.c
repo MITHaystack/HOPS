@@ -27,8 +27,6 @@
 #include "search.h"
 #include "msg.h"
 
-// char progname[8] = "search";
-// int msglev = 1;
 int datatype = 0;
 int space = 500;
 
@@ -63,7 +61,7 @@ int main (int argc, char* argv[])
 					/* Interpret command line */
     if (parse_cmdline (argc, argv, &fpout, &plot, &square) != 0) 
 	exit (1);
-    if (BIGGER == 0) exit(0);   /* test code */
+
 					/* Read in the data */
 					/* After parse_cmdline, optind points */
 					/* at the arguments following command */

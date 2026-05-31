@@ -7,11 +7,14 @@ SYNOPSIS:  Searches incoherently averaged A-file data for fringes
 
 SYNTAX:  search [-d device] [-g CxR:A] [-m msglevel] [-o outfile] [-x] filelist
 
-OPTION FLAGS:	-d device
+OPTION FLAGS:
+        -d device
 			Specifies the output graphics device for the
 			contour plots of SNR in the delay/rate grid.
 			The specification is in the standard PGPLOT form
-			of filename/devicetype (e.g. test.ps/ps)
+			of filename/devicetype (e.g. test.ps/ps).  You may
+            append /pdf to the device name to convert to pdf
+            (e.g. test.ps/vcps/pdf) via ps2pdf if it exists.
 
 		-g CxR:A
 			The default is 2 Columns and 2 Rows of plots per
@@ -20,7 +23,11 @@ OPTION FLAGS:	-d device
 			default, the aspect ratio is chosen to reflect
 			the relative number of sample points in the two
 			directions (A == 0).  You can override this for
-			a square plot (A == 1).
+			a square plot (A == 1).  Alternatively it may
+            refer to a file with support for gnuplot graphics.
+            If the named file does not exist, a template is
+            created with the same name.  This option is not
+            available in the "soirch" flavor of this tool.
 
 		-m msglevel
 			Verbosity control parameter, ranging from -3 to +3,

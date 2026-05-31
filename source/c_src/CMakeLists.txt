@@ -38,9 +38,10 @@ check_include_file(string.h HAVE_STRING_H)
 check_include_file(sys/socket.h HAVE_SYS_SOCKET_H)
 check_include_file(unistd.h HAVE_UNISTD_H)
 
-#update these values whenever hops3 source code is synchronized
-set(HOPS_SVN_REV_VALUE 4270)
-set(HOPS_REVISION_VALUE 3.26)
+#HOPS 3.26 was released at 4602, however using 4604 here allows us
+#to note that, e.g. fourfit is post-HOPS3.26
+set(HOPS_SVN_REV_VALUE 4604)
+set(HOPS_REVISION_VALUE "3.26++")
 set(PACKAGE_VERSION "\"${HOPS_REVISION_VALUE}\"")
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops_config.h)

@@ -83,6 +83,13 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
 
             case '?':
             default:
+#if BIGGER
+                /* as set in search.c for search */
+#else /* BIGGER */
+                /* override for help for soirch */
+                msg("The -g option is not allowed in soirch", 3);
+                set_progname("search");
+#endif /* BIGGER */
                 syntax("search/parse_cmdline.c");
                 return (1);
             }
@@ -103,6 +110,7 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp)
 #else /* BIGGER */
         cpgsubp (2, 2);
 #endif /* BIGGER */
+        msg("pgplot initialized with %dx%d subplots", 1, nxsub, nysub);
         }
 
     return (0);
