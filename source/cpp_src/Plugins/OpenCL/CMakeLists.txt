@@ -100,9 +100,9 @@ if (HOPS_USE_OPENCL)
         ${CMAKE_CURRENT_SOURCE_DIR}/Core/src/MHO_OpenCLKernelBuilder.cc
     )
 
-    set_property( SOURCE ${OPENCLPLUGIN_SOURCEFILES}
-        APPEND PROPERTY COMPILE_DEFINITIONS DEFAULT_KERNEL_DIR="${OPENCL_KERNEL_INSTALL_DIR}"
-    )
+    #NOTE: the OpenCL kernel directory is resolved at runtime (see
+    #MHO_OpenCLInterface / MHO_DirectoryInterface::GetHopsInstallPrefix) so that no
+    #absolute install path is baked into the plugin.
 
     add_library (MHO_OpenCLPlugin SHARED ${OPENCLPLUGIN_SOURCEFILES})
 

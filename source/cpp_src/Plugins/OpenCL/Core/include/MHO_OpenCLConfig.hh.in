@@ -13,6 +13,7 @@
 
 #define HOPS_DEFAULT_GPU_ID @HOPS_DEFAULT_GPU_ID@
 
-#define DEFAULT_KERNEL_DIR "@OPENCL_KERNEL_INSTALL_DIR@"
+//DEFAULT_KERNEL_DIR removed: the OpenCL kernel directory is resolved at runtime
+//via MHO_DirectoryInterface::GetHopsInstallPrefix()
 
 #endif /* end of include guard: MHO_OPENCLCONFIG_HH__ */

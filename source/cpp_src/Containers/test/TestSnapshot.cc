@@ -41,9 +41,10 @@ int main()
     const std::string exe = "TestSnapshot_probe";
     snap.SetExecutableName(exe);
 
-    // The dump filename is <HOPS_SNAPSHOT_DIR>/<exe>.pid<PID>.snap (see MHO_Snapshot ctor).
+    // The dump filename is <snapshot-dir>/<exe>.pid<PID>.snap (see MHO_Snapshot ctor).
+    // MHO_Snapshot::GetSnapshotDirectory() resolves the same runtime path the ctor uses.
     const std::string outfile =
-        std::string(HOPS_SNAPSHOT_DIR_STR) + "/" + exe + ".pid" + std::to_string(static_cast< int >(getpid())) + ".snap";
+        MHO_Snapshot::GetSnapshotDirectory() + "/" + exe + ".pid" + std::to_string(static_cast< int >(getpid())) + ".snap";
     std::remove(outfile.c_str()); // clean slate
 
     // Build a representative object to dump.

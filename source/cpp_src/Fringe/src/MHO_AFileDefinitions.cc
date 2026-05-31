@@ -1,5 +1,8 @@
 #include "MHO_AFileDefinitions.hh"
 
+#include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
+
 #include <fstream>
 #include <iostream>
 
@@ -9,7 +12,15 @@ namespace hops
 std::string MHO_AFileDefinitions::GetFormatDirectory(const std::string& file_type)
 {
     //allowed file types are: root, frng, and cor
-    std::string format_dir = HOPS_AFILE_FORMAT_DIR;
+    //the afile-format .json files live under <install_prefix>/data/afio/<file_type>/
+    //(the prefix is resolved at runtime so no absolute path is baked into the binary)
+    std::string prefix = MHO_DirectoryInterface::GetHopsInstallPrefix();
+    if(prefix.empty())
+    {
+        msg_warn("afile", "could not determine HOPS install prefix; using relative path for afile format directory" << eom);
+        prefix = ".";
+    }
+    std::string format_dir = prefix + "/data";
     format_dir += "/afio/" + file_type + "/";
     return format_dir;
 }

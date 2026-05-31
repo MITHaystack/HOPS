@@ -1,6 +1,14 @@
+//_GNU_SOURCE must precede any libc header so that dladdr() is declared
+#ifndef _GNU_SOURCE
+    #define _GNU_SOURCE
+#endif
+
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_Message.hh"
 #include "MHO_TimeStampConverter.hh"
+
+//needed to locate the shared library this code lives in (GetHopsInstallPrefix)
+#include <dlfcn.h>
 
 //needed for listing/navigating files/directories on *nix
 #include <dirent.h>
@@ -60,6 +68,33 @@ std::string MHO_DirectoryInterface::GetDirectoryFullPathPreserveSymlinks(const s
     buffer[PATH_MAX - 1] = '\0';
     std::string fullpath(buffer);
     return fullpath;
+}
+
+std::string MHO_DirectoryInterface::GetHopsInstallPrefix()
+{
+    //Determine the HOPS install prefix at runtime from the on-disk location of
+    //the shared library that contains this function (libMHO_Utilities). Using
+    //dladdr keeps absolute install paths out of the compiled binary (needed for
+    //bit-for-bit reproducible builds) and makes the install tree relocatable.
+    Dl_info info;
+    info.dli_fname = nullptr;
+    int found = dladdr(reinterpret_cast< void* >(&MHO_DirectoryInterface::GetHopsInstallPrefix), &info);
+    if(found == 0 || info.dli_fname == nullptr)
+    {
+        //could not locate ourselves (static build?, shouldn't happen)
+        return std::string();
+    }
+
+    //info.dli_fname is <prefix>/lib/libMHO_Utilities.so
+    std::string lib_path = GetDirectoryFullPath(info.dli_fname); //canonical, resolves symlinks
+    if(lib_path.empty())
+    {
+        lib_path = info.dli_fname; //realpath failed; fall back to the raw loader path
+    }
+
+    std::string lib_dir = GetPrefix(lib_path); // <prefix>/lib
+    std::string prefix = GetPrefix(lib_dir);   // <prefix>
+    return prefix;
 }
 
 bool MHO_DirectoryInterface::DoesDirectoryExist(const std::string& dirname)

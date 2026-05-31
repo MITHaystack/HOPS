@@ -65,7 +65,7 @@ endif()
 set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include")
 set(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 #on some systems the tzdate library gets put here (lib64)
-#so make sure it exists and is added to the library path
+#so make sure it exists and is added to the library paths
 set(LIB64_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib64")
 set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin")
 set(TEST_BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin/test")
@@ -81,22 +81,24 @@ set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
 set(SHARE_VHELP_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp")
 set(SHARE_VHELP_AEDIT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp/aedit")
 
-file(MAKE_DIRECTORY ${INCLUDE_INSTALL_DIR})
-file(MAKE_DIRECTORY ${LIB_INSTALL_DIR})
-file(MAKE_DIRECTORY ${LIB64_INSTALL_DIR})
-file(MAKE_DIRECTORY ${BIN_INSTALL_DIR})
-file(MAKE_DIRECTORY ${TEST_BIN_INSTALL_DIR})
-file(MAKE_DIRECTORY ${CONFIG_INSTALL_DIR})
-file(MAKE_DIRECTORY ${DATA_INSTALL_DIR})
-file(MAKE_DIRECTORY ${DOC_INSTALL_DIR})
-file(MAKE_DIRECTORY ${LOG_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SNAPSHOT_INSTALL_DIR})
-file(MAKE_DIRECTORY ${OPENCL_KERNEL_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SHARE_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SHARE_VHELP_AEDIT_INSTALL_DIR})
-file(MAKE_DIRECTORY ${PLUGINS_INSTALL_DIR})
+# Create the install-tree directory skeleton at *install* time, not configure
+# time, DESTINATION paths are relative to CMAKE_INSTALL_PREFIX.
+install(DIRECTORY DESTINATION include)
+install(DIRECTORY DESTINATION lib)
+install(DIRECTORY DESTINATION lib64)
+install(DIRECTORY DESTINATION bin)
+install(DIRECTORY DESTINATION bin/test)
+install(DIRECTORY DESTINATION config)
+install(DIRECTORY DESTINATION data)
+install(DIRECTORY DESTINATION doc)
+install(DIRECTORY DESTINATION log)
+install(DIRECTORY DESTINATION snapshot)
+install(DIRECTORY DESTINATION cl_kernel)
+install(DIRECTORY DESTINATION share)
+install(DIRECTORY DESTINATION share/text)
+install(DIRECTORY DESTINATION share/vhelp)
+install(DIRECTORY DESTINATION share/vhelp/aedit)
+install(DIRECTORY DESTINATION plugin_scripts)
 
 #developer coverage testing requires lcov and genhtml (install with: apt-get install lcov)
 #to generate html report with 'make coverage'
@@ -306,6 +308,11 @@ else()
     set(HOPS_USE_PYBIND11 OFF CACHE BOOL "Build python bindings with pybind11" FORCE)
 
 endif(PY_EXE)
+
+################################################################################
+#reproducible-build settings (strip absolute build/source paths from binaries).
+#Must run before the subdirectory builds so externs inherit the flags too.
+include(HopsReproducible)
 
 ################################################################################
 #call build in the subdirectories
