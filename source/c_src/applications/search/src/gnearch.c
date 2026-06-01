@@ -15,7 +15,7 @@ int gnuconfile(int scancnt, char *gfile, gpconf *gpfp)
         msg("-g arg '%%dx%%d:%%d:%%d' scanned %d items", 3, scancnt);
         return(1);
     } else if (scancnt == 0) {
-
+        return(gnuedits(gfile, gpfp));
     } /* else */
     msg("plots configured with %dx%d:%d", 2,
         gpfp->ncols, gpfp->nrows, gpfp->asqr);
