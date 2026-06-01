@@ -48,15 +48,6 @@ int main(int argc, char** argv)
     // if(detail > eJSONAxesWithLabelsLevel){detail = eJSONAxesWithLabelsLevel;}
     // if(detail < eJSONBasicLevel){detail = eJSONBasicLevel;}
 
-    //clamp message level
-    if(message_level > 5)
-    {
-        message_level = 5;
-    }
-    if(message_level < -2)
-    {
-        message_level = -2;
-    }
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 

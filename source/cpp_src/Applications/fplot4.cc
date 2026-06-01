@@ -151,15 +151,6 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
         std::exit(1); //just exit don't bother returning to main
     }
 
-    //clamp message level
-    if(message_level > 5)
-    {
-        message_level = 5;
-    }
-    if(message_level < -2)
-    {
-        message_level = -2;
-    }
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetLegacyMessageLevel(message_level);
 
