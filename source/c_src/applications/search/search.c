@@ -41,9 +41,9 @@ static gpconf gpf = {
     .montage = 0, .density = 0, .npdfs = 0,
 #endif /* defined(MONTAGE) */
     .gpdfs_alloc = 0, .gnupdfs = NULL,
-    .savegnu = 1, .savedata = 1,
+    .savegnu = 1, .savedata = 1, .gplt = FALSE,
 #endif /* BIGGER==1 */
-    .ncols = 2, .nrows = 2, .asqr = 0, .plot = FALSE
+    .ncols = 2, .nrows = 2, .asqr = 0, .pplt = TRUE
 };
 
 #if BIGGER==1
@@ -169,7 +169,7 @@ int main (int argc, char* argv[])
                 continue;
                 }
             if (fit_peaks (srchdata) != 0) continue;
-            if (gpf.plot) plot_srchdata (srchdata, gpf.asqr);
+            if (gpf.pplt) plot_srchdata (srchdata, gpf.asqr);
             nout += write_srchdata (srchdata, fpout);
 #if BIGGER
             gnusrchplot(nout, srchdata, &gpf);
@@ -180,11 +180,11 @@ int main (int argc, char* argv[])
     msg ("Wrote %d fringe_fitted output records", 1, nout);
 
 #if BIGGER
-    if (gpf.plot) cpgend();
+    if (gpf.pplt) cpgend();
     if (gpf.pdfile) ps2pdfdance(&gpf);
     if (gpf.gplatt) gnufinish(&gpf);
 #else /* BIGGER */
-    if (gpf.plot) cpgend();
+    if (gpf.pplt) cpgend();
 #endif /* BIGGER */
     exit (0);
 

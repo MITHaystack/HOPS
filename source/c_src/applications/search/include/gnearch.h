@@ -22,7 +22,8 @@ typedef struct gpconf {
     char **gnupdfs;                 /* from npdfs output pdf files */
     int savegnu, savedata;          /* don't unlink intermediates */
 #endif /* BIGGER */
-    int ncols, nrows, asqr, plot;   /* [-g] cols x rows : asqr ; plot? */
+    int ncols, nrows, asqr;         /* [-g] cols x rows : asqr ; */
+    int pplt, gplt;                 /* pgplot and gnuplot */
 } gpconf;
 
 #if BIGGER

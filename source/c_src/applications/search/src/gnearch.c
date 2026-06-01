@@ -25,19 +25,20 @@ int gnuconfile(int scancnt, char *gfile, gpconf *gpfp)
 /* parse the -g argument for CxR or a filename */
 int gargparse(char *garg, gpconf *gpfp)
 {
-    int ii = sscanf(garg, "%dx%d:%d:%d",
-        &gpfp->ncols, &gpfp->nrows, &gpfp->asqr, &gpfp->plot);
+    int ii = sscanf(garg, "%dx%d:%d:%d:%d",
+        &gpfp->ncols, &gpfp->nrows, &gpfp->asqr, &gpfp->pplt, &gpfp->gplt);
     /* in case the PGPLOT is specified in the environment */
-    if (ii > 0 && ii < 5) {
-        if (getenv("PGPLOT_DEV")) gpfp->plot = TRUE;
+    if (ii > 0 && ii < 6) {
+        if (getenv("PGPLOT_DEV")) gpfp->pplt = TRUE;
     } else {
         /* handler for the other cases */
         return(gnuconfile(ii, garg, gpfp));
     }
-    if (gpfp->plot) msg("PGPLOT search plots will be made", 2);
-    if (gpfp->gplatt) msg("Gnuplot search plots will be made", 2);
-    if (gpfp->montage) msg("And a montage of all plots will be made", 2);
-    if (ii == 4) msg("Search gnuplots will be made with defaults", 2);
+    if (gpfp->pplt) msg("PGPLOT search plots will be made", 2);
+    if (gpfp->gplt) {
+        if (gpfp->gplatt) msg("Gnuplot search plots will be made", 2);
+        if (gpfp->montage) msg("And a montage of all plots will be made", 2);
+    }
     return(0);
 }
 
@@ -45,18 +46,20 @@ int gargparse(char *garg, gpconf *gpfp)
 void gnufinish(gpconf *gpfp)
 {
     int ii;
-    if (gpfp->montage && gpfp->density > 0 && gpfp->npdfs > 0)
-        search_montage(gpfp);
-    msg("Freeing PDF plot filenames", 3);
-    if (gpfp->gnupdfs) {
-        for (ii = 0; ii < gpfp->npdfs; ii++)
-            if (gpfp->gnupdfs[ii]) free(gpfp->gnupdfs[ii]);
-        free(gpfp->gnupdfs);
+    if (gpfp->gplt) {
+        if (gpfp->montage && gpfp->density > 0 && gpfp->npdfs > 0)
+            search_montage(gpfp);
+        msg("Freeing PDF plot filenames", 3);
+        if (gpfp->gnupdfs) {
+            for (ii = 0; ii < gpfp->npdfs; ii++)
+                if (gpfp->gnupdfs[ii]) free(gpfp->gnupdfs[ii]);
+            free(gpfp->gnupdfs);
+        }
+        msg("Freeing gnuplot config file", 3);
+        if (gpfp->gcfile) free(gpfp->gcfile);
+        msg("Freeing gnuplot file pattern", 3);
+        if (gpfp->gplatt) free(gpfp->gplatt);
     }
-    msg("Freeing gnuplot config file", 3);
-    if (gpfp->gcfile) free(gpfp->gcfile);
-    msg("Freeing gnuplot file pattern", 3);
-    if (gpfp->gplatt) free(gpfp->gplatt);
     msg("Freeing PGPLOT device", 3);
     if (gpfp->devp) free(gpfp->devp);
 }

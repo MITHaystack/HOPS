@@ -97,7 +97,8 @@ int parse_cmdline (int argc, char **argv, FILE **fpout, gpconf *gpcp)
     extern int optind, msglev;
                                         /* Defaults */
     *fpout = stdout;
-    gpcp->plot = FALSE;
+    gpcp->pplt = FALSE;
+    gpcp->gplt = FALSE;
     gpcp->asqr = FALSE;
                                         /* parse command line and read in */
                                         /* filename */
@@ -114,26 +115,26 @@ int parse_cmdline (int argc, char **argv, FILE **fpout, gpconf *gpcp)
                 msg("-d option with %s", 0, optarg);
                 gpcp->pdfile = pdfixer(optarg, &display);
                 if (gpcp->pdfile) msg("PDFile is %s", 0, gpcp->pdfile);
-                gpcp->plot = TRUE;
+                gpcp->pplt = TRUE;
             case 'x':
                 if (c == 'x' && display) XD_BARFAGE;
                 else if (!display) display = "/XW";
                 gpcp->devp = malloc((ii = strlen(display)) + MAX_TXT);
                 if (!gpcp->devp) { perror("parse-d:malloc"); return(ENOMEM); }
                 strncpy(gpcp->devp, display, ii);
-                msg("Device is %s, pdf is %s, plot = %d", 0,
-                    gpcp->devp, gpcp->pdfile, gpcp->plot);
-                gpcp->plot = TRUE;
+                msg("Device is %s, pdf is %s, PGplot = %d", 0,
+                    gpcp->devp, gpcp->pdfile, gpcp->pplt);
+                gpcp->pplt = TRUE;
                 break;
 #else /* BIGGER */
             case 'd':                   /* File away the display string */
                 strncpy (device, optarg, sizeof(device));
-                gpcp->plot = TRUE;
+                gpcp->pplt = TRUE;
                 break;
 
             case 'x':                   /* short for -d /xw */
                 strcpy (device, "/XW");
-                gpcp->plot = TRUE;
+                gpcp->pplt = TRUE;
                 break;
 #endif /* BIGGER */
 #if BIGGER
@@ -184,13 +185,13 @@ int parse_cmdline (int argc, char **argv, FILE **fpout, gpconf *gpcp)
     gpcp->ncols = nxsub;
     gpcp->nrows = nysub;
 #if BIGGER && defined(GNUPLOT)
-    if (gpcp->plot) {
+    if (gpcp->gplt) {
         gpcp->gplatt = gnupattern(gpcp->devp);
         gpcp->patlen = strlen(gpcp->gplatt + 32);
     }
 #endif /* BIGGER && defined(GNUPLOT) */
                                         /* Open plot device */
-    if (gpcp->plot)
+    if (gpcp->pplt)
         {
 #if BIGGER
         if (cpgbeg (0, gpcp->devp, 1, 1) != 1)
