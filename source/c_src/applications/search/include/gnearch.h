@@ -19,6 +19,10 @@ typedef struct gpconf {
     int ncols, nrows, asqr, plot;   /* [-g] cols x rows : asqr ; plot? */
 } gpconf;
 
+extern int gnuexists(char *, int *);
+extern int create_gnuconf(char *, gpconf *);
+extern int gnuparse(char *, gpconf *);
+extern int gnuedits(char *, gpconf *);
 extern int gnuconfile(int, char *, gpconf *);
 extern int gargparse(char *, gpconf *);
 extern void gnusrchplt(int, srchsum *, gpconf *);
