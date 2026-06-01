@@ -16,12 +16,12 @@
 #include "mk4_afio.h"
 
 #if BIGGER
-#define MAX_BNO 45 			/* 10 telescopes */
-#define MAX_NRATE 1500			/* generous maximums */
+#define MAX_BNO 45                      /* 10 telescopes */
+#define MAX_NRATE 1500                  /* generous maximums */
 #define MAX_NDELAY 1500
 #else /* BIGGER */
-#define MAX_BNO 66 			/* 12 telescopes */
-#define MAX_NRATE 300			/* Reasonable maximums */
+#define MAX_BNO 66                      /* 12 telescopes */
+#define MAX_NRATE 300                   /* Reasonable maximums */
 #define MAX_NDELAY 50
 #endif /* BIGGER */
 
@@ -31,24 +31,24 @@
 
 typedef struct
     {
-    int		order;
-    int		lastorder;
-    int		keyval;
-    fringesum	fdata;
+    int         order;
+    int         lastorder;
+    int         keyval;
+    fringesum   fdata;
     } avg_data;
 
 typedef struct srchsummary
     {
-    fringesum	*datum;			/* Data structure ptr for this scan */
-    int		nd;
+    fringesum   *datum;                 /* Data structure ptr for this scan */
+    int         nd;
     fringesum   *darray[MAX_NRATE * MAX_NDELAY];
-    int		nrate;
-    int		ndelay;
-    float	min_rate;
-    float	max_rate;
-    float	min_delay;
-    float	max_delay;
-    float	snr[MAX_NRATE][MAX_NDELAY];
+    int         nrate;
+    int         ndelay;
+    float       min_rate;
+    float       max_rate;
+    float       min_delay;
+    float       max_delay;
+    float       snr[MAX_NRATE][MAX_NDELAY];
     } srchsum;
 
 extern int space;

@@ -105,7 +105,7 @@ plot_srchdata (struct srchsummary srchdata[], int square)
                 }
             /* printf("\n"); */
             }
-        msg ("npos=%d, nneg=%d\n",2, npos,nneg); 
+        msg ("npos=%d, nneg=%d",2, npos,nneg);
 
         cpgsci (2);     /* red */
         for (i=0; i<2; i++)
