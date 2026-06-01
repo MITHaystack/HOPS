@@ -388,6 +388,46 @@ if(PERL_FOUND)
     add_subdirectory(${PERLSOURCE})
 endif(PERL_FOUND)
 
+###############################################################################
+# Java ghetto -- we presume these pieces may be moved...  but for the moment we
+# collect it all in one place.  ALMA development started with Java 8, so unless
+# things have gone incompatible in Java-land, that version or later suffices.
+# GBC has Java 25 by default and it still works.  Note that jarfiles are binary
+# compatible with any architecture so the lib64 bit isn't needed.
+#
+# https://cmake.org/cmake/help/latest/module/FindJava.html#module:FindJava
+# https://cmake.org/cmake/help/latest/module/UseJava.html#module:UseJava
+
+# NOTE: JAVA 8 doesn't support reproducible builds (file ordering, SOURCE_DATE_EPOCH)
+# so builds involving JAVA will not be bit-for-bit reproducible (although they may still portable)
+# For now we gate this all behind HOPS_USE_JAVA, and default to "OFF"
+# JPB - Do we want to require JAVA 21/22+ for reproducibility?
+# My guess is that if you care about using vex2xml, this is probably not important to you.
+
+option(HOPS_USE_JAVA "Allow Java for VEX2XML." OFF)
+if(HOPS_USE_JAVA)
+    option(HOPS_VEX2XML3 "Provide older jars commons-cli-1.2/antlr-3.5.2 version" ON)
+    option(HOPS_VEX2XML4 "Provide newer jars commons-cli-1.4/antlr-4.8 version" OFF)
+    find_package(Java 8)
+    if(${Java_FOUND})
+        include(UseJava)
+        message(STATUS "Java ${Java_VERSION} found for VEX2XML")
+        # for the moment re-use the existing lib dir
+        set(JAVA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+        #relative dir companion (see *_INSTALL_RELDIR block above) so the java
+        #install() rules stay relocatable/CPack-friendly (abs dirs will get dropped from the distrib)
+        file(RELATIVE_PATH JAVA_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${JAVA_INSTALL_DIR}")
+        set(JAVASOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/java_src)
+        add_subdirectory(${JAVASOURCE})
+    endif()
+endif()
+if(HOPS_VEX2XML3)
+    message(STATUS "Making commons-cli-1.2/antlr-3.5.2 version")
+endif()
+if(HOPS_VEX2XML4)
+    message(STATUS "Making commons-cli-1.4/antlr-4.8 version")
+endif()
+################################################################################
 
 #build docs
 add_subdirectory(doc)
@@ -407,7 +447,7 @@ hops_generate_cmake_config()
 # relocatable-build setup above), the resulting tarball is relocatable: extract
 # it anywhere and run bin/* directly. However, external shared libraries (fftw3, pgplot,
 # X11, gfortran, libpng, zlib, ...) are NOT(!!) bundled and must be present on the
-# target system as runtime prerequisites.
+# target system as runtime prerequisites, (probably we should provide a helper install-deps.sh for supported distros)
 # That also goes for any optional library deps, like difxio, etc.
 #
 # DEV: Usage (from the build dir, after configure):

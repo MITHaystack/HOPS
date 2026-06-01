@@ -75,6 +75,8 @@ export DEF_CONTROL=/dev/null
 export HOPS_VPAL_FRINGE_FITTER=@HOPS_VPAL_FOURFIT@
 export HOPS_DEFAULT_PLUGINS_DIR=$HOPS_INSTALL/plugin_scripts
 
+export HOPS_JAVACLASSPATH=$HOPS_INSTALL/lib
+
 #replace old (system) variable instances with new values
 NEW_PATH=$(printf '%s\n' "$PATH" | sed "s|$OLD_PATH||g")
 NEW_PATH="$HOPS_INSTALL/bin:$HOPS_INSTALL/bin/test:$NEW_PATH"

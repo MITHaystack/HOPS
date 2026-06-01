@@ -1,7 +1,7 @@
 /**------------------------------------------------------
 * ALMA - Atacama Large Millimeter Array
 * (c) Associated Universities Inc., 2013
-* (c) Massachusetts Institute of Technology, 2013
+* (c) Massachusetts Institute of Technology, 2026
 * @author Victor Pankratius, MIT Haystack Observatory
 *
 * This library is free software; you can redistribute it and/or
@@ -29,7 +29,7 @@
 *  - VEX file is appended as XML comment, where all '-' are replaced by '~' to match XML spec.
 */
 
-grammar vexGrammar;
+grammar vexGrammar3;
 
 
 options {
@@ -49,7 +49,7 @@ options {
   PrintWriter writer;
 
   //write to files within parser actions
-  public vexGrammarParser(TokenStream input, String fileName) {
+  public vexGrammar3Parser(TokenStream input, String fileName) {
     super(input);
     try {      
       writer = new PrintWriter(new PrintWriter(fileName), true); //creates printWriter with autoflush

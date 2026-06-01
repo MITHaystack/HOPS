@@ -78,6 +78,21 @@ clean-local:
 
 # only 3.5.2 works, but we'll try to get 4.8 to work and the
 # makefile work is the same for both, I believe
+#
+# if enable_antlr4 these:
+#   ANTLR4SRC=src4
+#   ANTLR4LIB=lib4
+#   ANTLR4VER=4.8
+#   APACHECLI=1.4
+#
+# else:
+#   ANTLR4SRC=src
+#   ANTLR4LIB=lib
+#   ANTLR4VER=3.5.2
+#   APACHECLI=1.2
+#
+# Unclear if I got things to work, but the sources were the same
+
 antlr=$(srcdir)/@ANTLR4LIB@/antlr-@ANTLR4VER@-complete.jar
 cmmns=$(srcdir)/@ANTLR4LIB@/commons-cli-@APACHECLI@.jar
 gramr=$(srcdir)/@ANTLR4SRC@/vexGrammar.g
