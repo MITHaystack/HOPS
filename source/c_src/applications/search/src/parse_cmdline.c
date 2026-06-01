@@ -79,9 +79,7 @@ char *gnupattern(char *device)
 }
 #endif /* BIGGER */
 
-int
-parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
-    gpconf *gpcp)
+int parse_cmdline (int argc, char **argv, FILE **fpout, gpconf *gpcp)
     {
 #if BIGGER 
     int ii;
@@ -95,8 +93,8 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
     extern int optind, msglev;
                                         /* Defaults */
     *fpout = stdout;
-    *plot = FALSE;
-    *sqp = FALSE;
+    gpcp->plot = FALSE;
+    gpcp->asqr = FALSE;
                                         /* parse command line and read in */
                                         /* filename */
     while ((c = getopt (argc, argv, "d:g:m:o:x")) != -1)
@@ -112,35 +110,34 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
                 msg("-d option with %s", 0, optarg);
                 gpcp->pdfile = pdfixer(optarg, &display);
                 if (gpcp->pdfile) msg("PDFile is %s", 0, gpcp->pdfile);
-                *plot = TRUE;
+                gpcp->plot = TRUE;
             case 'x':
                 if (c == 'x' && display) XD_BARFAGE;
                 else if (!display) display = "/XW";
                 gpcp->devp = malloc((ii = strlen(display)) + MAX_TXT);
                 if (!gpcp->devp) { perror("parse-d:malloc"); return(ENOMEM); }
                 strncpy(gpcp->devp, display, ii);
-                msg("Device is %s, plot = %d", 0, gpcp->devp, gpcp->pdfile);
-                *plot = TRUE;
+                msg("Device is %s, pdf is %s, plot = %d", 0,
+                    gpcp->devp, gpcp->pdfile, gpcp->plot);
+                gpcp->plot = TRUE;
                 break;
 #else /* BIGGER */
             case 'd':                   /* File away the display string */
                 strncpy (device, optarg, sizeof(device));
-                *plot = TRUE;
+                gpcp->plot = TRUE;
                 break;
 
             case 'x':                   /* short for -d /xw */
                 strcpy (device, "/XW");
-                *plot = TRUE;
+                gpcp->plot = TRUE;
                 break;
 #endif /* BIGGER */
 #if BIGGER
             case 'g':                   /* Specify the gridding */
                 /* negative return is template case */
                 if (gargparse(optarg, gpcp)) return(-1);
-                *plot = gpcp->plot;
                 nxsub = gpcp->ncols;
                 nysub = gpcp->nrows;
-                *sqp  = gpcp->asqr;
                 break;
 #else /* BIGGER */
 #endif /* BIGGER */
@@ -182,13 +179,11 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
                                         /* synchronize with gnuplot */
     gpcp->ncols = nxsub;
     gpcp->nrows = nysub;
-    gpcp->asqr = *sqp;
-    gpcp->plot = *plot;
 #if BIGGER
     if (gpcp->plot) gpcp->gplatt = gnupattern(gpcp->devp);
 #endif /* BIGGER */
                                         /* Open plot device */
-    if (*plot)
+    if (gpcp->plot)
         {
 #if BIGGER
         if (cpgbeg (0, gpcp->devp, 1, 1) != 1)

@@ -61,7 +61,7 @@ extern int write_srchdata (srchsum *srchdata, FILE* fpout);
 
 #include "gnearch.h"
 
-extern int parse_cmdline (int, char **, FILE **, int *, int *, gpconf *);
+extern int parse_cmdline (int, char **, FILE **, gpconf *);
 extern void plot_srchdata (srchsum srchdata[], int square);
 extern int fill_grids_orig (srchsum *srchdata);
 extern int fill_grids (srchsum *srchdata);

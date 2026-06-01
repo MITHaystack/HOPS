@@ -64,8 +64,8 @@ void ps2pdfdance(gpconf *gpfp)
 
 int main (int argc, char* argv[])
     {
-    int i, navg, nout, scan_boundary, order, oldtime, bno, npt, plot;
-    int rate_index, delay_index, oldextent, square;
+    int i, navg, nout, scan_boundary, order, oldtime, bno, npt;
+    int rate_index, delay_index, oldextent;
     avg_data *data;
     char oldbl[3], oldroot[7];
     static struct srchsummary srchdata[MAX_BNO];
@@ -83,7 +83,8 @@ int main (int argc, char* argv[])
 	exit (1);
 	}
 					/* Interpret command line */
-    if (parse_cmdline (argc, argv, &fpout, &plot, &square, &gpf) != 0) 
+    if (parse_cmdline (argc, argv, &fpout, &gpf) != 0)
+
 	exit (1);
 
 					/* Read in the data */
@@ -161,7 +162,7 @@ int main (int argc, char* argv[])
 		continue;
 		}
 	    if (fit_peaks (srchdata) != 0) continue;
-	    if (plot) plot_srchdata (srchdata, square);
+	    if (gpf.plot) plot_srchdata (srchdata, gpf.asqr);
 	    nout += write_srchdata (srchdata, fpout);
 #if BIGGER
         gnusrchplot(nout, srchdata, &gpf);
@@ -172,11 +173,11 @@ int main (int argc, char* argv[])
     msg ("Wrote %d fringe_fitted output records", 1, nout);
 
 #if BIGGER
-    if (plot) cpgend();
+    if (gpf.plot) cpgend();
     if (gpf.pdfile) ps2pdfdance(&gpf);
     if (gpf.devp) gnufinish(&gpf);
 #else /* BIGGER */
-    if (plot) cpgend();
+    if (gpf.plot) cpgend();
 #endif /* BIGGER */
     exit (0);
 
