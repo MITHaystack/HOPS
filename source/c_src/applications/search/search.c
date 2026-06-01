@@ -34,11 +34,9 @@ int space = 500;
 static gpconf gpf = {
 #if BIGGER==1
     /* other functionality in support of gnuplot and PDFs */
-    .pdfile = NULL, .devp = NULL,
-#else /* BIGGER==1 */
-    /* initialized empty by the compiler is fine */
+    .pdfile = NULL, .devp = NULL, .gplatt = NULL, .nprv = 0,
 #endif /* BIGGER==1 */
-    .ncols = 2, .nrows = 2, .arat = 0, .plot = FALSE
+    .ncols = 2, .nrows = 2, .asqr = 0, .plot = FALSE
 };
 
 #if BIGGER==1
@@ -73,16 +71,8 @@ int main (int argc, char* argv[])
     static struct srchsummary srchdata[MAX_BNO];
     fringesum *datum;
     FILE *fpout;
-    extern int optind;
     set_progname(BIGGER ? "search": "soirch");
     set_msglev(1);
-
-    //declare helper functions
-    extern int read_data (avg_data** data, char* filename, int* navg);
-    extern int sort_data (avg_data* data, int navg);
-    extern void clear_srchdata (struct srchsummary srchdata[]);
-    extern int fit_peaks (struct srchsummary *srchdata);
-    extern int write_srchdata (struct srchsummary *srchdata, FILE* fpout);
 
 					/* Allocate some space to start */
     data = (avg_data *) calloc (space, sizeof (avg_data));
@@ -173,6 +163,9 @@ int main (int argc, char* argv[])
 	    if (fit_peaks (srchdata) != 0) continue;
 	    if (plot) plot_srchdata (srchdata, square);
 	    nout += write_srchdata (srchdata, fpout);
+#if BIGGER
+        gnusrchplot(nout, srchdata, &gpf);
+#endif /* BIGGER */
 	    clear_srchdata (srchdata);
 	    }
 	}
@@ -180,9 +173,8 @@ int main (int argc, char* argv[])
 
 #if BIGGER
     if (plot) cpgend();
-    if (gpf.devp) free(gpf.devp);
     if (gpf.pdfile) ps2pdfdance(&gpf);
-    if (gpf.gplatt) free(gpf.gplatt);
+    if (gpf.devp) gnufinish(&gpf);
 #else /* BIGGER */
     if (plot) cpgend();
 #endif /* BIGGER */

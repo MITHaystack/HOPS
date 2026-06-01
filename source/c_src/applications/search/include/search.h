@@ -1,13 +1,19 @@
+/*
+ * includes for search
+ */
+#ifndef __search_h__
+#define __search_h__
+
 #define FALSE 0
 #define TRUE  1
 
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "adata.h"
 #include "mk4_util.h"
 #include "mk4_afio.h"
-#include "gnearch.h"
 
 #if BIGGER
 #define MAX_BNO 45 			/* 10 telescopes */
@@ -31,7 +37,7 @@ typedef struct
     fringesum	fdata;
     } avg_data;
 
-struct srchsummary
+typedef struct srchsummary
     {
     fringesum	*datum;			/* Data structure ptr for this scan */
     int		nd;
@@ -43,11 +49,24 @@ struct srchsummary
     float	min_delay;
     float	max_delay;
     float	snr[MAX_NRATE][MAX_NDELAY];
-    };
+    } srchsum;
 
-extern int msglev;
+extern int space;
+extern int optind;
+extern int read_data (avg_data** data, char* filename, int* navg);
+extern int sort_data (avg_data* data, int navg);
+extern void clear_srchdata (srchsum srchdata[]);
+extern int fit_peaks (srchsum *srchdata);
+extern int write_srchdata (srchsum *srchdata, FILE* fpout);
+
+#include "gnearch.h"
 
 extern int parse_cmdline (int, char **, FILE **, int *, int *, gpconf *);
-extern void plot_srchdata (struct srchsummary srchdata[], int square);
-extern int fill_grids_orig (struct srchsummary *srchdata);
-extern int fill_grids (struct srchsummary *srchdata);
+extern void plot_srchdata (srchsum srchdata[], int square);
+extern int fill_grids_orig (srchsum *srchdata);
+extern int fill_grids (srchsum *srchdata);
+
+#endif /* __search_h__ */
+/*
+ * eof vim: nospell
+ */

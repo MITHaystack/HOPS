@@ -24,7 +24,6 @@
 int
 read_data (avg_data** data, char* filename, int* navg)
     {
-    extern int space;
     static int first = TRUE;
     FILE *fp;
     struct stat statbuf;

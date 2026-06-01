@@ -14,12 +14,17 @@ typedef struct gpconf {
     char *pdfile;                   /* [-d] pdf file if /pdf given */
     char *devp;                     /* [-d] dev name for pgplot */
     char *gplatt;                   /* gnuplot filename pattern */
+    int nprv;                       /* previous nout */
 #endif /* BIGGER */
-    int ncols, nrows, arat, plot;   /* [-g] cols x rows : arat ; plot? */
+    int ncols, nrows, asqr, plot;   /* [-g] cols x rows : asqr ; plot? */
 } gpconf;
 
-#endif /* __gnearch_h__ */
+extern int gnuconfile(int, char *, gpconf *);
+extern int gargparse(char *, gpconf *);
+extern void gnusrchplt(int, srchsum *, gpconf *);
+extern void gnufinish(gpconf *);
 
+#endif /* __gnearch_h__ */
 /*
  * eof vim:nospell
  */

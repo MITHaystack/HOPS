@@ -6,7 +6,7 @@
 /*                                                                      */
 /*      Output:         fpout           output file pointer             */
 /*                      display         For graphical output            */
-/*                      return value    0=OK, 1=BAD                     */
+/*                      return value    0=OK, 1=BAD, -1=CONF            */
 /*                                                                      */
 /* Created October 5 1995 by CJL                                        */
 /*                                                                      */
@@ -84,7 +84,7 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
     gpconf *gpcp)
     {
 #if BIGGER 
-    int ii, gp;
+    int ii;
 #else /* BIGGER */
     static char device[1000];
 #endif /* BIGGER */
@@ -135,18 +135,12 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
 #endif /* BIGGER */
 #if BIGGER
             case 'g':                   /* Specify the gridding */
-                ii = sscanf(optarg, "%dx%d:%d:%d", &nxsub, &nysub, sqp, &gp);
-                if (3 <= ii)
-                    {                   /* in case -x/-d not called */
-                    if (getenv("PGPLOT_DEV")) *plot = TRUE;
-                    gp = (4 == ii) ? 1 : 0;
-                    }
-                else
-                    {
-                    nxsub = nysub = 2;
-                    *sqp = 0;
-                    gp = 0;
-                    }
+                /* negative return is template case */
+                if (gargparse(optarg, gpcp)) return(-1);
+                *plot = gpcp->plot;
+                nxsub = gpcp->ncols;
+                nysub = gpcp->nrows;
+                *sqp  = gpcp->asqr;
                 break;
 #else /* BIGGER */
 #endif /* BIGGER */
@@ -188,10 +182,10 @@ parse_cmdline (int argc, char **argv, FILE **fpout, int *plot, int *sqp,
                                         /* synchronize with gnuplot */
     gpcp->ncols = nxsub;
     gpcp->nrows = nysub;
-    gpcp->arat = *sqp;
+    gpcp->asqr = *sqp;
     gpcp->plot = *plot;
 #if BIGGER
-    if (gp) gpcp->gplatt = gnupattern(gpcp->devp);
+    if (gpcp->plot) gpcp->gplatt = gnupattern(gpcp->devp);
 #endif /* BIGGER */
                                         /* Open plot device */
     if (*plot)
