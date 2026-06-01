@@ -58,6 +58,7 @@ char *pdfixer(char *optarg, char **display)
 /* build a gnuplot filepattern from the device name */
 char *gnupattern(char *device)
 {
+#if defined(GNUPLOT)
     char *gpname = malloc(strlen(device) + MAX_TXT), *slh;
     strcpy(gpname, device);
     slh = strrchr(gpname, '/');
@@ -76,6 +77,9 @@ char *gnupattern(char *device)
     strcat(gpname, "-%d");      /* append -%d for sprintf later */
     msg("Gnuplot artifacts will use %s", 2, gpname);
     return(gpname);
+#else /* defined(GNUPLOT) */
+    return(NULL);
+#endif /* defined(GNUPLOT) */
 }
 #endif /* BIGGER */
 
@@ -179,9 +183,12 @@ int parse_cmdline (int argc, char **argv, FILE **fpout, gpconf *gpcp)
                                         /* synchronize with gnuplot */
     gpcp->ncols = nxsub;
     gpcp->nrows = nysub;
-#if BIGGER
-    if (gpcp->plot) gpcp->gplatt = gnupattern(gpcp->devp);
-#endif /* BIGGER */
+#if BIGGER && defined(GNUPLOT)
+    if (gpcp->plot) {
+        gpcp->gplatt = gnupattern(gpcp->devp);
+        gpcp->patlen = strlen(gpcp->gplatt + 32);
+    }
+#endif /* BIGGER && defined(GNUPLOT) */
                                         /* Open plot device */
     if (gpcp->plot)
         {

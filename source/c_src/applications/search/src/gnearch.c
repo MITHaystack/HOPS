@@ -35,22 +35,30 @@ int gargparse(char *garg, gpconf *gpfp)
         return(gnuconfile(ii, garg, gpfp));
     }
     if (gpfp->plot) msg("PGPLOT search plots will be made", 2);
+    if (gpfp->gplatt) msg("Gnuplot search plots will be made", 2);
+    if (gpfp->montage) msg("And a montage of all plots will be made", 2);
     if (ii == 4) msg("Search gnuplots will be made with defaults", 2);
     return(0);
 }
 
-/* make the plot */
-void gnusrchplot(int nout, srchsum *srchp, gpconf *gpfp)
-{
-}
-
-/* make a montage and cleanup */
+/* make a montage and cleanup of various allocations */
 void gnufinish(gpconf *gpfp)
 {
-
-
-    free(gpfp->gplatt);
-    free(gpfp->devp);
+    int ii;
+    if (gpfp->montage && gpfp->density > 0 && gpfp->npdfs > 0)
+        search_montage(gpfp);
+    msg("Freeing PDF plot filenames", 3);
+    if (gpfp->gnupdfs) {
+        for (ii = 0; ii < gpfp->npdfs; ii++)
+            if (gpfp->gnupdfs[ii]) free(gpfp->gnupdfs[ii]);
+        free(gpfp->gnupdfs);
+    }
+    msg("Freeing gnuplot config file", 3);
+    if (gpfp->gcfile) free(gpfp->gcfile);
+    msg("Freeing gnuplot file pattern", 3);
+    if (gpfp->gplatt) free(gpfp->gplatt);
+    msg("Freeing PGPLOT device", 3);
+    if (gpfp->devp) free(gpfp->devp);
 }
 
 #endif /* BIGGER */

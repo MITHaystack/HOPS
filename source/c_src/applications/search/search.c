@@ -35,6 +35,13 @@ static gpconf gpf = {
 #if BIGGER==1
     /* other functionality in support of gnuplot and PDFs */
     .pdfile = NULL, .devp = NULL, .gplatt = NULL, .nprv = 0,
+#if defined(MONTAGE)
+    .montage = 1, .density = 150, .npdfs = 0,
+#else /* defined(MONTAGE) */
+    .montage = 0, .density = 0, .npdfs = 0,
+#endif /* defined(MONTAGE) */
+    .gpdfs_alloc = 0, .gnupdfs = NULL,
+    .savegnu = 1, .savedata = 1,
 #endif /* BIGGER==1 */
     .ncols = 2, .nrows = 2, .asqr = 0, .plot = FALSE
 };
@@ -175,7 +182,7 @@ int main (int argc, char* argv[])
 #if BIGGER
     if (gpf.plot) cpgend();
     if (gpf.pdfile) ps2pdfdance(&gpf);
-    if (gpf.devp) gnufinish(&gpf);
+    if (gpf.gplatt) gnufinish(&gpf);
 #else /* BIGGER */
     if (gpf.plot) cpgend();
 #endif /* BIGGER */

@@ -52,6 +52,13 @@ int create_gnuconf(char *gfile, gpconf *gpfp)
         "# as well as the montage:\n"
         "CxR:A= %dx%d:%d\n"
         "#\n", MAX_TXT, gpfp->ncols, gpfp->nrows, gpfp->asqr);
+    fprintf(fpg,
+        "#The montage converts the gnuplot PDFs into images for tiling\n"
+        "# using a density set by -density geometry.  Here we assume the\n"
+        "# same density in both axes that may be adjusted with:\n"
+        "montage=%d\n"
+        "density=%d\n"
+        "#\n", gpfp->montage, gpfp->density);
 
     /* other things */
 
@@ -94,6 +101,14 @@ int gnuparse(char *gfile, gpconf *gpfp)
             ncs = sscanf(line, "CxR:A=%dx%d:%d",
                 &gpfp->ncols, &gpfp->nrows, &gpfp->asqr);
             if (3 == ncs) continue;
+            return(puke(lno, "Line %d did not parse properly:", line, 202));
+        } else if (!strncmp(line, "montage=", 8)) {
+            ncs = sscanf(line, "montage=%d", &gpfp->montage);
+            if (1 == ncs) continue;
+            return(puke(lno, "Line %d did not parse properly:", line, 202));
+        } else if (!strncmp(line, "density=", 8)) {
+            ncs = sscanf(line, "density=%d", &gpfp->density);
+            if (1 == ncs) continue;
             return(puke(lno, "Line %d did not parse properly:", line, 202));
         } else {
             return(puke(lno, "Line %d is beyond the pale:", line, 254));

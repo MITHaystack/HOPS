@@ -37,7 +37,6 @@ plot_srchdata (struct srchsummary srchdata[], int square)
     float grid[MAX_NRATE*MAX_NDELAY];
 #endif /* BIGGER */
     struct srchsummary *sb;
-    extern char* fringename(fringesum *fsumm);
                                         /* How many baselines are there? */
     nbase = 0;
     while (srchdata[nbase].datum != NULL) nbase++;
@@ -94,7 +93,6 @@ plot_srchdata (struct srchsummary srchdata[], int square)
         npos=nneg=0;
         for (i=0; i<sb->ndelay; i++)
             {
-            /* printf("delay %d: ", i); */
             for (j=0; j<sb->nrate; j++)
                 {
                 gridindex = i * sb->nrate + j;
@@ -103,7 +101,6 @@ plot_srchdata (struct srchsummary srchdata[], int square)
                 if (sb->snr[j][i] > 0.0) npos++;
                 else nneg++;
                 }
-            /* printf("\n"); */
             }
         msg ("npos=%d, nneg=%d",2, npos,nneg);
 
