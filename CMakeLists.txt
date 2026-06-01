@@ -295,22 +295,30 @@ endif()
 
 if(PY_EXE)
 
-    #figure out the python version and appropriate install path, so we can add it to PYTHONPATH
-    #also figure out if we should use distutils or setuptools/pip
+    #figure out the python site-packages install path, so we can add it to
+    #PYTHONPATH and install our (pure-python, file-copy) modules there
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pyinfo.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
     FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
     GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
     )
-    execute_process(COMMAND ${PY_EXE} "${CMAKE_CURRENT_BINARY_DIR}/pyinfo.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_CONFIG)
-    string(STRIP "${PYTHON_CONFIG}" PYTHON_CONFIG)
-    message(STATUS "Python configuration (vers,prefix,setup,need_pip,have_pip) = ${PYTHON_CONFIG}")
-    set(PYTHON_CONFIG_SETTINGS ${PYTHON_CONFIG} )
+    execute_process(COMMAND ${PY_EXE} "${CMAKE_CURRENT_BINARY_DIR}/pyinfo.py"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        OUTPUT_VARIABLE PYTHON_SITE_PREFIX
+        RESULT_VARIABLE PYINFO_RESULT
+        ERROR_VARIABLE  PYINFO_STDERR)
+    string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
 
-    list(GET PYTHON_CONFIG_SETTINGS 0 PYTHON_VERS)
-    list(GET PYTHON_CONFIG_SETTINGS 1 PYTHON_SITE_PREFIX)
-    list(GET PYTHON_CONFIG_SETTINGS 2 PYTHON_SETUP)
-    list(GET PYTHON_CONFIG_SETTINGS 3 PYTHON_NEED_PIP)
-    list(GET PYTHON_CONFIG_SETTINGS 4 PYTHON_HAVE_PIP)
+    if(NOT PYINFO_RESULT EQUAL 0 OR PYTHON_SITE_PREFIX STREQUAL "")
+        message(FATAL_ERROR
+            "Failed to query the python site-packages path via pyinfo.py "
+            "(interpreter: ${PY_EXE}, exit code: ${PYINFO_RESULT}).\n"
+            "Output: '${PYTHON_SITE_PREFIX}'\n"
+            "Stderr: ${PYINFO_STDERR}\n"
+            "Re-run with -DHOPS_USE_PYBIND11=OFF (and no python tools) to build "
+            "without the python components, or fix the Python environment.")
+    endif()
+
+    message(STATUS "Python module install path = ${PYTHON_SITE_PREFIX}")
     set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
 
 else()
@@ -346,16 +354,9 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION} for HOPS4")
 add_subdirectory(${CPPSOURCE}) #mostly hops4 source
 
 if(PY_EXE)
-    # add the python source dir
-    if("${PYTHON_NEED_PIP}" STREQUAL "false")
-        add_subdirectory(${PYSOURCE})
-    else()
-        if("${PYTHON_HAVE_PIP}" STREQUAL "true")
-        add_subdirectory(${PYSOURCE})
-        else()
-        message(WARNING "Python ${PYTHON_VERS} requires pip for proper packaging of local hops tools. Install pip for these to be built.")
-        endif()
-    endif()
+    # NOTE: The hops python modules install as plain file copies (see
+    # source/python_src/*/CMakeLists.txt), so no pip/setuptools/etc is required
+    add_subdirectory(${PYSOURCE})
 endif()
 
 ################################################################################

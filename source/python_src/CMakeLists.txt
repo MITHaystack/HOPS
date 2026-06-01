@@ -1,7 +1,22 @@
 if(PY_EXE)
 
     if(HOPS_PYPI_MANAGE_DEPS)
-        
+
+        #use pip to fetch numpy/scipy/matplotlib, so pip is required
+        #here (and only here). Fail clearly at configure time rather than later
+        #at install time if it is missing.
+        execute_process(
+            COMMAND ${PY_EXE} -m pip --version
+            RESULT_VARIABLE _pip_status
+            OUTPUT_QUIET ERROR_QUIET
+        )
+        if(NOT _pip_status EQUAL 0)
+            message(FATAL_ERROR
+                "HOPS_PYPI_MANAGE_DEPS is ON but pip is not available for "
+                "${PY_EXE}. Install pip, or set HOPS_PYPI_MANAGE_DEPS=OFF and "
+                "provide numpy/scipy/matplotlib yourself.")
+        endif()
+
         #look for our minimal set of python dependencies and install them if they are not found
         set(PYTHON_PACKAGES "numpy" "scipy" "matplotlib")
 
