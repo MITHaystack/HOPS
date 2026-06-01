@@ -14,6 +14,7 @@ typedef struct gpconf {
     char *pdfile;                   /* [-d] pdf file if /pdf given */
     char *devp;                     /* [-d] dev name for pgplot */
     char *gplatt;                   /* gnuplot filename pattern */
+    char *gcfile;                   /* gnuplot config filename */
     int nprv;                       /* previous nout */
 #endif /* BIGGER */
     int ncols, nrows, asqr, plot;   /* [-g] cols x rows : asqr ; plot? */
