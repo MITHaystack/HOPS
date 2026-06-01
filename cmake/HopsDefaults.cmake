@@ -1,5 +1,5 @@
 macro(hops_install_headers)
-    install(FILES ${ARGN} DESTINATION ${INCLUDE_INSTALL_DIR})
+    install(FILES ${ARGN} DESTINATION ${INCLUDE_INSTALL_RELDIR})
 endmacro()
 
 macro(hops_install_libraries)
@@ -15,7 +15,7 @@ endmacro()
 
 #this installs into a prefixed directory '.../include/hops'
 macro(legacy_hops_install_headers)
-    install(FILES ${ARGN} DESTINATION ${INCLUDE_INSTALL_DIR}/hops)
+    install(FILES ${ARGN} DESTINATION ${INCLUDE_INSTALL_RELDIR}/hops)
 endmacro()
 
 #this installs into a prefixed directory '.../include/hops'
@@ -23,7 +23,7 @@ endmacro()
 #typically installed via hops_install_libraries() (canonical location), and
 #a target can appear in an export set only once.
 macro(legacy_hops_install_libraries)
-    install(TARGETS ${ARGN} DESTINATION ${LIB_INSTALL_DIR}/hops)
+    install(TARGETS ${ARGN} DESTINATION ${LIB_INSTALL_RELDIR}/hops)
     set_property(GLOBAL APPEND PROPERTY MODULE_TARGETS ${ARGN})
     set_target_properties(${ARGN} PROPERTIES INSTALL_NAME_DIR ${LIB_INSTALL_DIR}/hops)
 endmacro()
@@ -52,33 +52,33 @@ macro (hops_add_cxxflag CFLAG)
 endmacro()
 
 macro(hops_install_data)
-    install(FILES ${ARGN} DESTINATION ${${PROJECT_NAME}_DATA_INSTALL_DIR})
+    install(FILES ${ARGN} DESTINATION ${DATA_INSTALL_RELDIR})
 endmacro()
 
 macro(hops_install_config)
-    install(FILES ${ARGN} DESTINATION ${${PROJECT_NAME}_CONFIG_INSTALL_DIR})
+    install(FILES ${ARGN} DESTINATION ${CONFIG_INSTALL_RELDIR})
 endmacro()
 
 macro(hops_install_doc)
-    install(FILES ${ARGN} DESTINATION ${${PROJECT_NAME}_DOC_INSTALL_DIR})
+    install(FILES ${ARGN} DESTINATION ${DOC_INSTALL_RELDIR})
 endmacro()
 
 #to match automake build
 macro(legacy_hops_install_share_text)
-    install(FILES ${ARGN} DESTINATION ${SHARE_INSTALL_DIR}/hops/text)
+    install(FILES ${ARGN} DESTINATION ${SHARE_INSTALL_RELDIR}/hops/text)
 endmacro()
 
 #to match automake build
 macro(hops_install_share_text)
-    install(FILES ${ARGN} DESTINATION ${SHARE_TEXT_INSTALL_DIR})
+    install(FILES ${ARGN} DESTINATION ${SHARE_TEXT_INSTALL_RELDIR})
 endmacro()
 
 macro(hops_install_share_vhelp)
-    install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_INSTALL_DIR})
+    install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_INSTALL_RELDIR})
 endmacro()
 
 macro(hops_install_share_vhelp_aedit)
-    install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_AEDIT_INSTALL_DIR})
+    install(FILES ${ARGN} DESTINATION ${SHARE_VHELP_AEDIT_INSTALL_RELDIR})
 endmacro()
 
 #for explicitly setting options for extern submodules

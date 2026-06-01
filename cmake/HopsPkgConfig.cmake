@@ -39,7 +39,7 @@ function(hops_generate_pkgconfig)
         @ONLY
     )
     install(FILES "${_pc_out}"
-            DESTINATION "${LIB_INSTALL_DIR}/pkgconfig")
+            DESTINATION "${LIB_INSTALL_RELDIR}/pkgconfig")
 endfunction()
 
 

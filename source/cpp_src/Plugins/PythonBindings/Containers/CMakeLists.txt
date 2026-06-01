@@ -29,7 +29,7 @@ target_compile_options(pyMHO_Containers PRIVATE -fvisibility=hidden)
 
 target_link_libraries(pyMHO_Containers PRIVATE ${PYCONTAINER_LIBS})
 
-install(TARGETS pyMHO_Containers DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+install(TARGETS pyMHO_Containers DESTINATION ${PYTHON_MODULE_INSTALL_RELDIR})
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

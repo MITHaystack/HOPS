@@ -27,7 +27,7 @@ target_compile_options(pyMHO_Operators PRIVATE -fvisibility=hidden)
 
 target_link_libraries(pyMHO_Operators PRIVATE ${PYOPERATOR_LIBS})
 
-install(TARGETS pyMHO_Operators DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+install(TARGETS pyMHO_Operators DESTINATION ${PYTHON_MODULE_INSTALL_RELDIR})
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

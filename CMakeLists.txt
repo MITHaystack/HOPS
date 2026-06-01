@@ -82,15 +82,34 @@ set(SHARE_VHELP_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp")
 set(SHARE_VHELP_AEDIT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp/aedit")
 
 #Relative companions to the absolute *_INSTALL_DIR vars above (resolved against
-#CMAKE_INSTALL_PREFIX at install time). Use THESE (not abs paths)
-#for install(TARGETS ... EXPORT hopsTargets) and install(EXPORT ...), so the
-#generated HopsTargets*.cmake are forced to derive the install prefix from their own on-disk
-#location instead of baking in an absolute CMAKE_INSTALL_PREFIX. That makes the
-#CMake package config relocatable/reproducible.
+#CMAKE_INSTALL_PREFIX at install time). We have to use these (not abs paths) as the
+#DESTINATION for every install() rule, for two reasons:
+#  1. install(TARGETS ... EXPORT hopsTargets) / install(EXPORT ...) need a
+#     relative DESTINATION so the generated HopsTargets*.cmake derive the install
+#     prefix from their own on-disk location instead of baking in an absolute
+#     CMAKE_INSTALL_PREFIX (relocatable/reproducible CMake package config).
+#  2. CPack stages a package by re-running the install rules with
+#     CMAKE_INSTALL_PREFIX redirected to a temporary staging tree. Relative
+#     DESTINATIONs follow that redirect (and land in the package); ABSOLUTE ones
+#     are written to the original baked-in path and silently dropped from the
+#     package!
 #Computed from the absolute vars so the two can never drift out of sync.
+file(RELATIVE_PATH INCLUDE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${INCLUDE_INSTALL_DIR}")
 file(RELATIVE_PATH LIB_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${LIB_INSTALL_DIR}")
+file(RELATIVE_PATH LIB64_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${LIB64_INSTALL_DIR}")
 file(RELATIVE_PATH BIN_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${BIN_INSTALL_DIR}")
 file(RELATIVE_PATH TEST_BIN_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${TEST_BIN_INSTALL_DIR}")
+file(RELATIVE_PATH CONFIG_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${CONFIG_INSTALL_DIR}")
+file(RELATIVE_PATH DATA_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${DATA_INSTALL_DIR}")
+file(RELATIVE_PATH DOC_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${DOC_INSTALL_DIR}")
+file(RELATIVE_PATH LOG_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${LOG_INSTALL_DIR}")
+file(RELATIVE_PATH PLUGINS_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PLUGINS_INSTALL_DIR}")
+file(RELATIVE_PATH SNAPSHOT_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SNAPSHOT_INSTALL_DIR}")
+file(RELATIVE_PATH OPENCL_KERNEL_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${OPENCL_KERNEL_INSTALL_DIR}")
+file(RELATIVE_PATH SHARE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SHARE_INSTALL_DIR}")
+file(RELATIVE_PATH SHARE_TEXT_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SHARE_TEXT_INSTALL_DIR}")
+file(RELATIVE_PATH SHARE_VHELP_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SHARE_VHELP_INSTALL_DIR}")
+file(RELATIVE_PATH SHARE_VHELP_AEDIT_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SHARE_VHELP_AEDIT_INSTALL_DIR}")
 
 #Create the install-tree directory skeleton at *install* time, not configure
 #time, DESTINATION paths are relative to CMAKE_INSTALL_PREFIX.
@@ -320,6 +339,9 @@ if(PY_EXE)
 
     message(STATUS "Python module install path = ${PYTHON_SITE_PREFIX}")
     set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+    #relative companion (see the *_RELDIR block near the top); use this as the
+    #install() DESTINATION so the python modules land in cpack-staged packages.
+    file(RELATIVE_PATH PYTHON_MODULE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PYTHON_MODULE_INSTALL_DIR}")
 
 else()
 
@@ -376,3 +398,41 @@ add_subdirectory(doc)
 include(HopsPkgConfig)
 hops_generate_all_pkgconfig()
 hops_generate_cmake_config()
+
+################################################################################
+# Binary distribution packaging via CPack...finally!
+#
+# The TGZ generator stages every install() rule into a clean tree and tars it.
+# Because the installed binaries/libs carry $ORIGIN-relative RUNPATHs (see the
+# relocatable-build setup above), the resulting tarball is relocatable: extract
+# it anywhere and run bin/* directly. However, external shared libraries (fftw3, pgplot,
+# X11, gfortran, libpng, zlib, ...) are NOT(!!) bundled and must be present on the
+# target system as runtime prerequisites.
+# That also goes for any optional library deps, like difxio, etc.
+#
+# DEV: Usage (from the build dir, after configure):
+#   cpack -G TGZ
+# produces: hops-<version>-<arch>.tar.gz
+set(CPACK_PACKAGE_NAME "hops")
+set(CPACK_PACKAGE_VENDOR "MIT Haystack Observatory")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "HOPS - Haystack Observatory Postprocessing System (VLBI fringe fitting)")
+set(CPACK_PACKAGE_VERSION_MAJOR "${MODULE_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${MODULE_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${MODULE_VERSION_PATCH}")
+set(CPACK_PACKAGE_VERSION "${HOPS_VERSION_NUMBER}")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.md")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+
+# <name>-<version>-<arch>.tar.gz, with everything under a matching top dir.
+set(CPACK_PACKAGE_FILE_NAME "hops-${HOPS_VERSION_NUMBER}-${CMAKE_SYSTEM_PROCESSOR}")
+set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY ON)
+set(CPACK_GENERATOR "TGZ")
+
+# The package contains whatever the install() rules emit. Note this includes
+# the developer test binaries under bin/test when HOPS_ENABLE_TEST is ON;
+# We may want to set -DHOPS_ENABLE_TEST=OFF to leave them out...but that's debatable...
+
+# Reproducible tarball: the archive generator ought to follow SOURCE_DATE_EPOCH
+# for the mtime stamped on archive members.
+set(CPACK_ARCHIVE_THREADS 1)
+include(CPack)
