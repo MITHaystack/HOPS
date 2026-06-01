@@ -38,9 +38,8 @@ include_directories(${EXTERN_HLIBS}/date/include) #date library
 
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-set_property( SOURCE ${MK4INTERFACE_SOURCEFILES}
-    APPEND PROPERTY COMPILE_DEFINITIONS HOPS_MK4AUX_DIR="${DATA_INSTALL_DIR}"
-)
+#NOTE: the mk4aux directory is resolved at runtime (see MHO_DirectoryInterface::GetHopsInstallPrefix)
+#so that no absolute install path is baked into the binary.
 
 #compile and install library ###################################################
 

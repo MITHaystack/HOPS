@@ -1,5 +1,8 @@
 #include "MHO_ControlDefinitions.hh"
 
+#include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
+
 #include <fstream>
 #include <iostream>
 
@@ -8,8 +11,15 @@ namespace hops
 
 std::string MHO_ControlDefinitions::GetFormatDirectory()
 {
-    std::string format_dir = HOPS_CONTROL_FORMAT_DIR;
-    format_dir += "/control/";
+    //the control-format .json files live under <install_prefix>/data/control/
+    //(the prefix is resolved at runtime so no absolute path is baked into the binary)
+    std::string prefix = MHO_DirectoryInterface::GetHopsInstallPrefix();
+    if(prefix.empty())
+    {
+        msg_warn("control", "could not determine HOPS install prefix; using relative path for control format directory" << eom);
+        prefix = ".";
+    }
+    std::string format_dir = prefix + "/data/control/";
     return format_dir;
 }
 

@@ -2,19 +2,19 @@ if (PY_EXE)
 
     #configure and install scripts
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/example1.py" "${CMAKE_CURRENT_BINARY_DIR}/example1.py" @ONLY)
-    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/example1.py" DESTINATION ${PLUGINS_INSTALL_DIR} )
+    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/example1.py" DESTINATION ${PLUGINS_INSTALL_RELDIR} )
 
     #configure and install scripts
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/example2.py" "${CMAKE_CURRENT_BINARY_DIR}/example2.py" @ONLY)
-    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/example2.py" DESTINATION ${PLUGINS_INSTALL_DIR} )
+    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/example2.py" DESTINATION ${PLUGINS_INSTALL_RELDIR} )
 
     #configure and install scripts
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/example3.py" "${CMAKE_CURRENT_BINARY_DIR}/example3.py" @ONLY)
-    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/example3.py" DESTINATION ${PLUGINS_INSTALL_DIR} )
+    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/example3.py" DESTINATION ${PLUGINS_INSTALL_RELDIR} )
 
     #configure and install scripts
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/example4.py" "${CMAKE_CURRENT_BINARY_DIR}/example4.py" @ONLY)
-    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/example4.py" DESTINATION ${PLUGINS_INSTALL_DIR} )
+    install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/example4.py" DESTINATION ${PLUGINS_INSTALL_RELDIR} )
 
 
 endif (PY_EXE)

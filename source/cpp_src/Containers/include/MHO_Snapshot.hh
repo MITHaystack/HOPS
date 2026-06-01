@@ -21,13 +21,6 @@
 #include "MHO_ContainerFileInterface.hh"
 #include "MHO_ContainerStore.hh"
 
-//hops snapshot directory should be defined as <install_dir>/snapshot/
-#ifndef HOPS_SNAPSHOT_DIR
-    #define HOPS_SNAPSHOT_DIR_STR "./"
-#else
-    #define HOPS_SNAPSHOT_DIR_STR STRING(HOPS_SNAPSHOT_DIR)
-#endif
-
 namespace hops
 {
 
@@ -53,6 +46,23 @@ class MHO_Snapshot
         MHO_Snapshot(MHO_Snapshot&&) = delete;
         MHO_Snapshot& operator=(MHO_Snapshot const&) = delete;
         MHO_Snapshot& operator=(MHO_Snapshot&&) = delete;
+
+        // @brief Returns the directory into which snapshot files are written:
+        // <install_prefix>/snapshot, resolved at runtime via
+        // MHO_DirectoryInterface::GetHopsInstallPrefix(). Falls back to "." (the
+        // current directory) if the install prefix cannot be determined, so that
+        // no absolute install path is baked into the binary..
+        static std::string GetSnapshotDirectory()
+        {
+            std::string prefix = MHO_DirectoryInterface::GetHopsInstallPrefix();
+            if(prefix.empty())
+            {
+                msg_warn("snapshot",
+                         "could not determine HOPS install prefix; writing snapshot files to the current directory" << eom);
+                return std::string(".");
+            }
+            return prefix + "/snapshot";
+        }
 
         /**
          * @brief provides public access to the only static instance
@@ -203,14 +213,12 @@ class MHO_Snapshot
         }
 
         //no public access to constructor
-        //set up the stream, for now just point to std::cout
-        //but we may want to allow this to be configured post-construction
-        //perhaps we should also pipe information into log file(s)
+        //set up the directory where we dump snapshots
         MHO_Snapshot(): fCurrentKeyIsAllowed(false), fAcceptAllKeys(false)
         {
-            std::string dir_string = HOPS_SNAPSHOT_DIR_STR;
+            std::string dir_string = GetSnapshotDirectory();
 
-            //dump bl_data into a file for later inspection
+            //dump data into a file for later inspection
             std::stringstream ss;
             ss << ".pid";
             ss << GetPID();

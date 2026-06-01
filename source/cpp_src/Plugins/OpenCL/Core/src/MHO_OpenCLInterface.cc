@@ -5,9 +5,9 @@
 
 #include "MHO_OpenCLConfig.hh"
 
-#ifndef DEFAULT_KERNEL_DIR
-    #define DEFAULT_KERNEL_DIR "."
-#endif /* !DEFAULT_KERNEL_DIR */
+//the need this for GetHopsInstallPrefix
+#include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
 
 namespace hops
 {
@@ -78,7 +78,13 @@ void MHO_OpenCLInterface::InitializeOpenCL()
     fDevices = availableDevices;
     fQueues.resize(fDevices.size(), NULL);
 
-    fKernelPath = DEFAULT_KERNEL_DIR;
+    std::string cl_kernel_prefix = MHO_DirectoryInterface::GetHopsInstallPrefix();
+    if(cl_kernel_prefix.empty())
+    {
+        msg_warn("opencl", "could not determine HOPS install prefix; using relative path for OpenCL kernel directory" << eom);
+        cl_kernel_prefix = ".";
+    }
+    fKernelPath = cl_kernel_prefix + "/cl_kernel";
 
     FillErrorCodeMaps();
 }

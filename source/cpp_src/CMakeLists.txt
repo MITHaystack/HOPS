@@ -17,7 +17,6 @@ endif(HOPS_ENABLE_COLOR_MSG)
 option(HOPS_ENABLE_SNAPSHOTS "Enable object dumps to snapshot file for debugging/inspection" OFF)
 if(HOPS_ENABLE_SNAPSHOTS)
     hops_add_cxxflag(HOPS_ENABLE_SNAPSHOTS)
-    add_compile_definitions("HOPS_SNAPSHOT_DIR=${SNAPSHOT_INSTALL_DIR}")
 endif(HOPS_ENABLE_SNAPSHOTS)
 
 #add option to throw errors on bad return values
@@ -36,16 +35,13 @@ if(HOPS_ENABLE_DEV_TODO)
     hops_add_cxxflag(HOPS_ENABLE_DEV_TODO)
 endif()
 
-#add the plugin directory definition, so we can search in this path
-add_compile_definitions("HOPS_DEFAULT_PLUGINS_DIR=${PLUGINS_INSTALL_DIR}")
-
 #configure the version header
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_version.hh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops_version.hh)
 hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_version.hh)
 hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 #########################################################################
-# Core HOPS4 source sub directories 
+# Core HOPS4 source sub directories
 # listed in order of dependence...this is important!
 add_subdirectory(${CPPSOURCE}/Message) #the messaging library
 add_subdirectory(${CPPSOURCE}/Utilities) #other generic utilities
@@ -74,20 +70,20 @@ endif(HOPS_USE_CUDA)
 
 if(HOPS_USE_OPENCL)
     #opencl plugin (GPU/accelerator parallelism)
-    add_subdirectory(${CPPSOURCE}/Plugins/OpenCL) 
+    add_subdirectory(${CPPSOURCE}/Plugins/OpenCL)
 endif(HOPS_USE_OPENCL)
 
 #########################################################################
-# HOPS4 library of fringe-fitting related functionality 
+# HOPS4 library of fringe-fitting related functionality
 # this library may depend on any of the above accelerator plugins (if enabled)
-add_subdirectory(${CPPSOURCE}/Fringe) 
+add_subdirectory(${CPPSOURCE}/Fringe)
 
 #########################################################################
 # plugins which extend capabilities, and external language interfaces
 
 if(HOPS_USE_DIFXIO)
     #difxio input support
-    add_subdirectory(${CPPSOURCE}/DiFXInterface) 
+    add_subdirectory(${CPPSOURCE}/DiFXInterface)
 endif(HOPS_USE_DIFXIO)
 
 if(HOPS_USE_PYBIND11)
@@ -108,7 +104,7 @@ endif(HOPS_USE_HDF5)
 #########################################################################
 # Aggregate all optional capability plugin deps into a single INTERFACE
 # target. Any library or executable that needs them only needs to link to this one
-# target (MHO_OptionalPlugins), adding a new plugin requires editing this block, but 
+# target (MHO_OptionalPlugins), adding a new plugin requires editing this block, but
 # we don't need to have a bunch of if statements wrapping plugin dependencies
 # for executables/libs downstream
 add_library(MHO_OptionalPlugins INTERFACE)
@@ -146,8 +142,6 @@ endif()
 add_subdirectory(${CPPSOURCE}/Plugins/PluginManagement)
 
 ######################################################################
-# lastly we build our applications 
+# lastly we build our applications
 # which may depend on any of the enabled plugins
-add_subdirectory(${CPPSOURCE}/Applications) 
-
-
+add_subdirectory(${CPPSOURCE}/Applications)

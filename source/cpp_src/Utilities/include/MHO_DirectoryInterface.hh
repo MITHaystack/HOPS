@@ -45,6 +45,20 @@ class MHO_DirectoryInterface
         static std::string GetDirectoryFullPathPreserveSymlinks(const std::string& dirname);
 
         /**
+         * @brief Returns the absolute path of the HOPS install prefix, determined at
+         * runtime from the on-disk location of the shared library that contains this
+         * function (libMHO_Utilities), via dladdr().
+         * This avoids baking absolute install paths into the binary at compile time
+         * (required for bit-for-bit reproducible builds) and makes the install tree
+         * relocatable/
+         *
+         * @return The absolute install prefix, or an empty string if it cannot be
+         * determined (e.g. a fully static build where dladdr has no shared object).
+         * @note This is a static function.
+         */
+        static std::string GetHopsInstallPrefix();
+
+        /**
          * @brief Checks if a directory exists by attempting to open it.
          *
          * @param dirname The name of the directory to check.

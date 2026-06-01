@@ -16,4 +16,4 @@ target_compile_options(pyMHO_Fringe PRIVATE -fvisibility=hidden)
 
 target_link_libraries(pyMHO_Fringe PRIVATE ${PYFRINGE_LIBS})
 
-install(TARGETS pyMHO_Fringe DESTINATION ${PYTHON_MODULE_INSTALL_DIR})
+install(TARGETS pyMHO_Fringe DESTINATION ${PYTHON_MODULE_INSTALL_RELDIR})

@@ -13,8 +13,10 @@ extern "C"
 }
 #endif
 
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_LegacyDateConverter.hh"
 #include "MHO_LockFileHandler.hh"
+#include "MHO_Message.hh"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -793,9 +795,15 @@ int MHO_MK4FringeExport::fill_221(struct type_221** t221)
     char *pplot, *end;
 
     double tickinc;
-    //load the dummy ps file
+    //load the dummy ps file (mk4aux dir resolved at runtime: <install_prefix>/data/mk4aux/)
     std::string ps_file;
-    ps_file += HOPS_MK4AUX_DIR;
+    std::string prefix = MHO_DirectoryInterface::GetHopsInstallPrefix();
+    if(prefix.empty())
+    {
+        msg_warn("mk4interface", "could not determine HOPS install prefix; using relative path for mk4aux directory" << eom);
+        prefix = ".";
+    }
+    ps_file += prefix + "/data";
     ps_file += "/mk4aux/blank.ps";
     fp = fopen(ps_file.c_str(), "r");
 

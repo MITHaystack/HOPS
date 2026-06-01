@@ -65,7 +65,7 @@ endif()
 set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include")
 set(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 #on some systems the tzdate library gets put here (lib64)
-#so make sure it exists and is added to the library path
+#so make sure it exists and is added to the library paths
 set(LIB64_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib64")
 set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin")
 set(TEST_BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin/test")
@@ -81,22 +81,54 @@ set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
 set(SHARE_VHELP_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp")
 set(SHARE_VHELP_AEDIT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp/aedit")
 
-file(MAKE_DIRECTORY ${INCLUDE_INSTALL_DIR})
-file(MAKE_DIRECTORY ${LIB_INSTALL_DIR})
-file(MAKE_DIRECTORY ${LIB64_INSTALL_DIR})
-file(MAKE_DIRECTORY ${BIN_INSTALL_DIR})
-file(MAKE_DIRECTORY ${TEST_BIN_INSTALL_DIR})
-file(MAKE_DIRECTORY ${CONFIG_INSTALL_DIR})
-file(MAKE_DIRECTORY ${DATA_INSTALL_DIR})
-file(MAKE_DIRECTORY ${DOC_INSTALL_DIR})
-file(MAKE_DIRECTORY ${LOG_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SNAPSHOT_INSTALL_DIR})
-file(MAKE_DIRECTORY ${OPENCL_KERNEL_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SHARE_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SHARE_TEXT_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SHARE_VHELP_INSTALL_DIR})
-file(MAKE_DIRECTORY ${SHARE_VHELP_AEDIT_INSTALL_DIR})
-file(MAKE_DIRECTORY ${PLUGINS_INSTALL_DIR})
+#Relative companions to the absolute *_INSTALL_DIR vars above (resolved against
+#CMAKE_INSTALL_PREFIX at install time). We have to use these (not abs paths) as the
+#DESTINATION for every install() rule, for two reasons:
+#  1. install(TARGETS ... EXPORT hopsTargets) / install(EXPORT ...) need a
+#     relative DESTINATION so the generated HopsTargets*.cmake derive the install
+#     prefix from their own on-disk location instead of baking in an absolute
+#     CMAKE_INSTALL_PREFIX (relocatable/reproducible CMake package config).
+#  2. CPack stages a package by re-running the install rules with
+#     CMAKE_INSTALL_PREFIX redirected to a temporary staging tree. Relative
+#     DESTINATIONs follow that redirect (and land in the package); ABSOLUTE ones
+#     are written to the original baked-in path and silently dropped from the
+#     package!
+#Computed from the absolute vars so the two can never drift out of sync.
+file(RELATIVE_PATH INCLUDE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${INCLUDE_INSTALL_DIR}")
+file(RELATIVE_PATH LIB_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${LIB_INSTALL_DIR}")
+file(RELATIVE_PATH LIB64_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${LIB64_INSTALL_DIR}")
+file(RELATIVE_PATH BIN_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${BIN_INSTALL_DIR}")
+file(RELATIVE_PATH TEST_BIN_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${TEST_BIN_INSTALL_DIR}")
+file(RELATIVE_PATH CONFIG_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${CONFIG_INSTALL_DIR}")
+file(RELATIVE_PATH DATA_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${DATA_INSTALL_DIR}")
+file(RELATIVE_PATH DOC_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${DOC_INSTALL_DIR}")
+file(RELATIVE_PATH LOG_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${LOG_INSTALL_DIR}")
+file(RELATIVE_PATH PLUGINS_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PLUGINS_INSTALL_DIR}")
+file(RELATIVE_PATH SNAPSHOT_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SNAPSHOT_INSTALL_DIR}")
+file(RELATIVE_PATH OPENCL_KERNEL_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${OPENCL_KERNEL_INSTALL_DIR}")
+file(RELATIVE_PATH SHARE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SHARE_INSTALL_DIR}")
+file(RELATIVE_PATH SHARE_TEXT_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SHARE_TEXT_INSTALL_DIR}")
+file(RELATIVE_PATH SHARE_VHELP_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SHARE_VHELP_INSTALL_DIR}")
+file(RELATIVE_PATH SHARE_VHELP_AEDIT_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${SHARE_VHELP_AEDIT_INSTALL_DIR}")
+
+#Create the install-tree directory skeleton at *install* time, not configure
+#time, DESTINATION paths are relative to CMAKE_INSTALL_PREFIX.
+install(DIRECTORY DESTINATION include)
+install(DIRECTORY DESTINATION lib)
+install(DIRECTORY DESTINATION lib64)
+install(DIRECTORY DESTINATION bin)
+install(DIRECTORY DESTINATION bin/test)
+install(DIRECTORY DESTINATION config)
+install(DIRECTORY DESTINATION data)
+install(DIRECTORY DESTINATION doc)
+install(DIRECTORY DESTINATION log)
+install(DIRECTORY DESTINATION snapshot)
+install(DIRECTORY DESTINATION cl_kernel)
+install(DIRECTORY DESTINATION share)
+install(DIRECTORY DESTINATION share/text)
+install(DIRECTORY DESTINATION share/vhelp)
+install(DIRECTORY DESTINATION share/vhelp/aedit)
+install(DIRECTORY DESTINATION plugin_scripts)
 
 #developer coverage testing requires lcov and genhtml (install with: apt-get install lcov)
 #to generate html report with 'make coverage'
@@ -126,10 +158,39 @@ else()
 endif()
 
 ################################################################################
-#create build timestamp...note: a consequence of this is that the build will not
-#be reproducible, and we will be forced to rebuild more files more often
-#This is required for legacy behavior of fringe plots (which report build time).
-string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
+#create build timestamp (reported by fourfit fringe plots, legacy behavior).
+#
+#To keep builds reproducible we derive the string(TIMESTAMP) from SOURCE_DATE_EPOCH
+#(should be ok so long as CMake >= 3.8) instead of the wall clock. The value is
+#resolved in the following order:
+#  1. grab SOURCE_DATE_EPOCH set in the environment (explicit override),
+#  2. fall back to commit time of HEAD (normal builds from a git checkout),
+#  3. fall back to the contents of source-date.last (release tarballs made with git-archive)
+#     NOTE: devs must regenerate it before tagging, use:
+#     source ./source/bash_src/source-date.sh | tee ./source-date.last
+if(NOT DEFINED ENV{SOURCE_DATE_EPOCH})
+    #try to derive the epoch from the last commit
+    execute_process(
+        COMMAND git -C "${CMAKE_CURRENT_SOURCE_DIR}" log -1 --pretty=%ct
+        OUTPUT_VARIABLE SOURCE_DATE_EPOCH_VALUE
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        ERROR_QUIET
+        RESULT_VARIABLE SOURCE_DATE_EPOCH_RESULT)
+    if(NOT (SOURCE_DATE_EPOCH_RESULT EQUAL 0 AND SOURCE_DATE_EPOCH_VALUE))
+        #no git available (e.g. a git-archive tarball), fall back to the recorded value
+        if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/source-date.last")
+            file(READ "${CMAKE_CURRENT_SOURCE_DIR}/source-date.last" SOURCE_DATE_EPOCH_VALUE)
+            string(STRIP "${SOURCE_DATE_EPOCH_VALUE}" SOURCE_DATE_EPOCH_VALUE)
+        endif()
+    endif()
+    if(SOURCE_DATE_EPOCH_VALUE)
+        set(ENV{SOURCE_DATE_EPOCH} "${SOURCE_DATE_EPOCH_VALUE}")
+    else()
+        message(WARNING "Could not determine SOURCE_DATE_EPOCH; build timestamp "
+                        "will reflect the current time and the build will not be reproducible.")
+    endif()
+endif()
+string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%S.0Z" UTC)
 message(STATUS "The build timestamp is ${BUILD_TIME}")
 
 ################################################################################
@@ -253,23 +314,34 @@ endif()
 
 if(PY_EXE)
 
-    #figure out the python version and appropriate install path, so we can add it to PYTHONPATH
-    #also figure out if we should use distutils or setuptools/pip
+    #figure out the python site-packages install path, so we can add it to
+    #PYTHONPATH and install our (pure-python, file-copy) modules there
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pyinfo.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
     FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
     GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
     )
-    execute_process(COMMAND ${PY_EXE} "${CMAKE_CURRENT_BINARY_DIR}/pyinfo.py"  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_VARIABLE PYTHON_CONFIG)
-    string(STRIP "${PYTHON_CONFIG}" PYTHON_CONFIG)
-    message(STATUS "Python configuration (vers,prefix,setup,need_pip,have_pip) = ${PYTHON_CONFIG}")
-    set(PYTHON_CONFIG_SETTINGS ${PYTHON_CONFIG} )
+    execute_process(COMMAND ${PY_EXE} "${CMAKE_CURRENT_BINARY_DIR}/pyinfo.py"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        OUTPUT_VARIABLE PYTHON_SITE_PREFIX
+        RESULT_VARIABLE PYINFO_RESULT
+        ERROR_VARIABLE  PYINFO_STDERR)
+    string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
 
-    list(GET PYTHON_CONFIG_SETTINGS 0 PYTHON_VERS)
-    list(GET PYTHON_CONFIG_SETTINGS 1 PYTHON_SITE_PREFIX)
-    list(GET PYTHON_CONFIG_SETTINGS 2 PYTHON_SETUP)
-    list(GET PYTHON_CONFIG_SETTINGS 3 PYTHON_NEED_PIP)
-    list(GET PYTHON_CONFIG_SETTINGS 4 PYTHON_HAVE_PIP)
+    if(NOT PYINFO_RESULT EQUAL 0 OR PYTHON_SITE_PREFIX STREQUAL "")
+        message(FATAL_ERROR
+            "Failed to query the python site-packages path via pyinfo.py "
+            "(interpreter: ${PY_EXE}, exit code: ${PYINFO_RESULT}).\n"
+            "Output: '${PYTHON_SITE_PREFIX}'\n"
+            "Stderr: ${PYINFO_STDERR}\n"
+            "Re-run with -DHOPS_USE_PYBIND11=OFF (and no python tools) to build "
+            "without the python components, or fix the Python environment.")
+    endif()
+
+    message(STATUS "Python module install path = ${PYTHON_SITE_PREFIX}")
     set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+    #relative companion (see the *_RELDIR block near the top); use this as the
+    #install() DESTINATION so the python modules land in cpack-staged packages.
+    file(RELATIVE_PATH PYTHON_MODULE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PYTHON_MODULE_INSTALL_DIR}")
 
 else()
 
@@ -277,6 +349,11 @@ else()
     set(HOPS_USE_PYBIND11 OFF CACHE BOOL "Build python bindings with pybind11" FORCE)
 
 endif(PY_EXE)
+
+################################################################################
+#reproducible-build settings (strip absolute build/source paths from binaries).
+#Must run before the subdirectory builds so externs inherit the flags too.
+include(HopsReproducible)
 
 ################################################################################
 #call build in the subdirectories
@@ -299,16 +376,9 @@ message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION} for HOPS4")
 add_subdirectory(${CPPSOURCE}) #mostly hops4 source
 
 if(PY_EXE)
-    # add the python source dir
-    if("${PYTHON_NEED_PIP}" STREQUAL "false")
-        add_subdirectory(${PYSOURCE})
-    else()
-        if("${PYTHON_HAVE_PIP}" STREQUAL "true")
-        add_subdirectory(${PYSOURCE})
-        else()
-        message(WARNING "Python ${PYTHON_VERS} requires pip for proper packaging of local hops tools. Install pip for these to be built.")
-        endif()
-    endif()
+    # NOTE: The hops python modules install as plain file copies (see
+    # source/python_src/*/CMakeLists.txt), so no pip/setuptools/etc is required
+    add_subdirectory(${PYSOURCE})
 endif()
 
 ################################################################################
@@ -318,6 +388,46 @@ if(PERL_FOUND)
     add_subdirectory(${PERLSOURCE})
 endif(PERL_FOUND)
 
+###############################################################################
+# Java ghetto -- we presume these pieces may be moved...  but for the moment we
+# collect it all in one place.  ALMA development started with Java 8, so unless
+# things have gone incompatible in Java-land, that version or later suffices.
+# GBC has Java 25 by default and it still works.  Note that jarfiles are binary
+# compatible with any architecture so the lib64 bit isn't needed.
+#
+# https://cmake.org/cmake/help/latest/module/FindJava.html#module:FindJava
+# https://cmake.org/cmake/help/latest/module/UseJava.html#module:UseJava
+
+# NOTE: JAVA 8 doesn't support reproducible builds (file ordering, SOURCE_DATE_EPOCH)
+# so builds involving JAVA will not be bit-for-bit reproducible (although they may still portable)
+# For now we gate this all behind HOPS_USE_JAVA, and default to "OFF"
+# JPB - Do we want to require JAVA 21/22+ for reproducibility?
+# My guess is that if you care about using vex2xml, this is probably not important to you.
+
+option(HOPS_USE_JAVA "Allow Java for VEX2XML." OFF)
+if(HOPS_USE_JAVA)
+    option(HOPS_VEX2XML3 "Provide older jars commons-cli-1.2/antlr-3.5.2 version" ON)
+    option(HOPS_VEX2XML4 "Provide newer jars commons-cli-1.4/antlr-4.8 version" OFF)
+    find_package(Java 8)
+    if(${Java_FOUND})
+        include(UseJava)
+        message(STATUS "Java ${Java_VERSION} found for VEX2XML")
+        # for the moment re-use the existing lib dir
+        set(JAVA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+        #relative dir companion (see *_INSTALL_RELDIR block above) so the java
+        #install() rules stay relocatable/CPack-friendly (abs dirs will get dropped from the distrib)
+        file(RELATIVE_PATH JAVA_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${JAVA_INSTALL_DIR}")
+        set(JAVASOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source/java_src)
+        add_subdirectory(${JAVASOURCE})
+    endif()
+endif()
+if(HOPS_VEX2XML3)
+    message(STATUS "Making commons-cli-1.2/antlr-3.5.2 version")
+endif()
+if(HOPS_VEX2XML4)
+    message(STATUS "Making commons-cli-1.4/antlr-4.8 version")
+endif()
+################################################################################
 
 #build docs
 add_subdirectory(doc)
@@ -328,3 +438,41 @@ add_subdirectory(doc)
 include(HopsPkgConfig)
 hops_generate_all_pkgconfig()
 hops_generate_cmake_config()
+
+################################################################################
+# Binary distribution packaging via CPack...finally!
+#
+# The TGZ generator stages every install() rule into a clean tree and tars it.
+# Because the installed binaries/libs carry $ORIGIN-relative RUNPATHs (see the
+# relocatable-build setup above), the resulting tarball is relocatable: extract
+# it anywhere and run bin/* directly. However, external shared libraries (fftw3, pgplot,
+# X11, gfortran, libpng, zlib, ...) are NOT(!!) bundled and must be present on the
+# target system as runtime prerequisites, (probably we should provide a helper install-deps.sh for supported distros)
+# That also goes for any optional library deps, like difxio, etc.
+#
+# DEV: Usage (from the build dir, after configure):
+#   cpack -G TGZ
+# produces: hops-<version>-<arch>.tar.gz
+set(CPACK_PACKAGE_NAME "hops")
+set(CPACK_PACKAGE_VENDOR "MIT Haystack Observatory")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "HOPS - Haystack Observatory Postprocessing System (VLBI fringe fitting)")
+set(CPACK_PACKAGE_VERSION_MAJOR "${MODULE_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${MODULE_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${MODULE_VERSION_PATCH}")
+set(CPACK_PACKAGE_VERSION "${HOPS_VERSION_NUMBER}")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.md")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+
+# <name>-<version>-<arch>.tar.gz, with everything under a matching top dir.
+set(CPACK_PACKAGE_FILE_NAME "hops-${HOPS_VERSION_NUMBER}-${CMAKE_SYSTEM_PROCESSOR}")
+set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY ON)
+set(CPACK_GENERATOR "TGZ")
+
+# The package contains whatever the install() rules emit. Note this includes
+# the developer test binaries under bin/test when HOPS_ENABLE_TEST is ON;
+# We may want to set -DHOPS_ENABLE_TEST=OFF to leave them out...but that's debatable...
+
+# Reproducible tarball: the archive generator ought to follow SOURCE_DATE_EPOCH
+# for the mtime stamped on archive members.
+set(CPACK_ARCHIVE_THREADS 1)
+include(CPack)

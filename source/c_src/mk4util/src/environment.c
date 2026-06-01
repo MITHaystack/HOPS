@@ -17,9 +17,13 @@
 /* Added a few Mk4-specific directories 930323 CJL                      */
 /*                                                                      */
 /************************************************************************/
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE   /* for dladdr() */
+#endif
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <dlfcn.h>
 #ifdef HOPS_VEX_TEXT_SHARE_DIR
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -48,22 +52,46 @@ char tmpdir[200];
 static char *textdef(void)
 {
 #ifdef HOPS_VEX_TEXT_SRC_DIR
-#   warning "Configured testdir to " HOPS_VEX_TEXT_SRC_DIR
+    /* pre-install: use the in-tree vex/text source directory */
     static char *textdefault = HOPS_VEX_TEXT_SRC_DIR;
 #else /* HOPS_VEX_TEXT_SRC_DIR */
-#   ifndef PFORMAT_TEXT_DIR
-    #   define PFORMAT_TEXT_DIR "/correlator/prog/text"
-#   endif /* !PFORMAT_TEXT_DIR */
-#   warning "Configured testdir to a useless default"
-    static char *textdefault = PFORMAT_TEXT_DIR;
+    /* Resolve <install_prefix>/share/text at runtime from the on-disk location
+       of this shared library (libmk4util.so), via dladdr(). This keeps the
+       absolute install path out of the binary (reproducible builds) and makes the
+       install relocatable. This is the C analogue of the C++ tree's
+       MHO_DirectoryInterface::GetHopsInstallPrefix(). */
+    static char textbuf[1024];
+    char *textdefault = "/correlator/prog/text"; /* legacy fallback */
+    Dl_info info;
+    if (dladdr((void *)textdef, &info) && info.dli_fname != NULL)
+    {
+        char *resolved = realpath(info.dli_fname, NULL); /* <prefix>/lib/libmk4util.so */
+        if (resolved != NULL)
+        {
+            char *p = strrchr(resolved, '/'); /* strip /libmk4util.so */
+            if (p != NULL)
+            {
+                *p = '\0';
+                p = strrchr(resolved, '/');   /* strip /lib */
+                if (p != NULL)
+                {
+                    *p = '\0';                /* now <prefix> */
+                    snprintf(textbuf, sizeof(textbuf), "%s/share/text", resolved);
+                    textdefault = textbuf;
+                }
+            }
+            free(resolved);
+        }
+    }
 #endif /* HOPS_VEX_TEXT_SRC_DIR */
 
 #ifdef HOPS_VEX_TEXT_SHARE_DIR
-    struct stat sb;
-    /* see if the directory exists, if so, use it */
-#   warning "Configured testdir to " HOPS_VEX_TEXT_SHARE_DIR
-    if (!stat(HOPS_VEX_TEXT_SHARE_DIR, &sb))
-        return(HOPS_VEX_TEXT_SHARE_DIR);
+    {
+        struct stat sb;
+        /* see if the directory exists, if so, use it */
+        if (!stat(HOPS_VEX_TEXT_SHARE_DIR, &sb))
+            return(HOPS_VEX_TEXT_SHARE_DIR);
+    }
 #endif /* HOPS_VEX_TEXT_SHARE_DIR */
     return(textdefault);
 }

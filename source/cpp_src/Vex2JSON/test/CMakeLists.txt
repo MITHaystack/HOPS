@@ -71,6 +71,20 @@ if(HOPS_ENABLE_UNIT_TESTS)
                 VEX_FORMAT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../format"
     )
     add_test(NAME TestVexParserUnit_test COMMAND TestVexParserUnit)
+
+    #These unit tests exercise the MHO_Vex2JSON library, which locates its vex
+    #format files via MHO_DirectoryInterface::GetHopsInstallPrefix(). Here we point it at
+    #the install tree (via $HOPS_INSTALL) so the tests pass without the user having
+    #to source hops.bash first. (still requires 'make install' to have populated the data dir)
+    set_tests_properties(
+        TestVexGenerator_test
+        TestVexBlockParser_test
+        TestVexTokenProcessor_test
+        TestVexParameter_test
+        TestVexLine_test
+        TestVexElementLineGenerator_test
+        TestVexParserUnit_test
+        PROPERTIES ENVIRONMENT "HOPS_INSTALL=${CMAKE_INSTALL_PREFIX}")
 endif()
 
 hops_install_test_executables( ${SOURCE_BASENAMES} )

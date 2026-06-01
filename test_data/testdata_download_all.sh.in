@@ -1,5 +1,26 @@
 #!/bin/bash
-DATA_DIR=@HOPS_CACHED_TEST_DATADIR@
+#
+# Test data is downloaded to <install prefix>/data/test_data.
+#
+# The install prefix is discovered at run time from the environment (no path is
+# baked into this script, so it stays relocatable/reproducible). hops.bash
+# exports HOPS_INSTALL (and HOPS_SYS) so expected usage is:
+#     source <install prefix>/bin/hops.bash
+#     testdata_download_all.sh
+#
+# An explicit prefix may also be passed as the first argument, which overrides
+# the environment.
+
+HOPS_PREFIX="${1:-${HOPS_INSTALL:-${HOPS_SYS:-}}}"
+
+if [ -z "$HOPS_PREFIX" ]; then
+    echo "ERROR: could not determine the HOPS install prefix." >&2
+    echo "       Source the environment first (e.g. 'source <prefix>/bin/hops.bash')" >&2
+    echo "       so that HOPS_INSTALL is set, or pass the prefix as the first argument." >&2
+    exit 1
+fi
+
+DATA_DIR="${HOPS_PREFIX}/data/test_data"
 
 current_dir=$(pwd)
 
@@ -24,7 +45,7 @@ MMODE_DB_LINK="https://www.dropbox.com/scl/fi/h6f3j6kj2mx9ppos7a0kq/mixed_mode_k
 
 if [ -d "$DATA_DIR" ]; then
     echo "$DATA_DIR exists."
-else 
+else
     echo "Creating directory: ${DATA_DIR}"
     mkdir -p "$DATA_DIR"
 fi
@@ -64,7 +85,7 @@ DATA_TARBALL=3593.tar.gz
 DATA_LINK="${E3593_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
-else 
+else
     echo "Downloading ${DATA_TARBALL} (43MB) to ${DATA_DIR}"
     wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
@@ -73,7 +94,7 @@ DATA_TARBALL=3741.tar.gz
 DATA_LINK="${E3741_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
-else 
+else
     echo "Downloading ${DATA_TARBALL} (58MB) to ${DATA_DIR}"
     wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi

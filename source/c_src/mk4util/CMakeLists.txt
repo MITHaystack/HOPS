@@ -37,9 +37,10 @@ endforeach(path)
 set(INC_RELPATH "include")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${INC_RELPATH})
 
-#add compiler definition to specify where the 'text' directory is ##############
-#TODO what about the other directory locations defined in environment.c ?
-add_definitions(-DPFORMAT_TEXT_DIR="${SHARE_TEXT_INSTALL_DIR}")
+#NOTE: the 'text' (share/text) directory is resolved at runtime in environment.c
+#(via dladdr on libmk4util.so) so that no absolute install path is baked into the
+#library. The flag ${CMAKE_DL_LIBS} (added to the link below) provides
+#dladdr, which is needed to figure out the install prefix at runtime.
 
 if(HOPS3_USE_CXX)
 SET_SOURCE_FILES_PROPERTIES(${${LIBNAME}_SOURCEFILES} PROPERTIES LANGUAGE CXX )
@@ -48,8 +49,8 @@ endif(HOPS3_USE_CXX)
 #build/link/install library ####################################################
 list(APPEND LIBLIST "msg")
 
-#math library
-set(EXTERNAL_LIBLIST m)
+#math library (+ ${CMAKE_DL_LIBS} for dladdr used by textdef() in environment.c)
+set(EXTERNAL_LIBLIST m ${CMAKE_DL_LIBS})
 
 add_library (${LIBNAME} SHARED ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES})
 

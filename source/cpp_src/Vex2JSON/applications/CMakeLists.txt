@@ -1,4 +1,5 @@
 hops_internal_include_directories()
+hops_internal_include_directories(../../../../extern/cli11)
 
 set(EXE_LIBS
     MHO_Message

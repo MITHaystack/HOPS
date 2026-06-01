@@ -1,4 +1,5 @@
 #include "MHO_VexDefinitions.hh"
+#include "MHO_DirectoryInterface.hh"
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Tokenizer.hh"
 
@@ -68,7 +69,15 @@ void MHO_VexDefinitions::SetVexVersion(std::string version)
 
 std::string MHO_VexDefinitions::GetFormatDirectory() const
 {
-    std::string format_dir = VEX_FORMAT_DIR;
+    //the vex-format .json files live under <install_prefix>/data/ (resolved at
+    //runtime so no absolute install path is baked into the library)
+    std::string prefix = MHO_DirectoryInterface::GetHopsInstallPrefix();
+    if(prefix.empty())
+    {
+        msg_warn("vex", "could not determine HOPS install prefix; using relative path for vex format directory" << eom);
+        prefix = ".";
+    }
+    std::string format_dir = prefix + "/data";
     if(fVexVersion == "ovex")
     {
         format_dir += "/ovex/";

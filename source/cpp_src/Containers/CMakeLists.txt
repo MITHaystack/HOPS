@@ -54,8 +54,9 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 #install library (headers only) ################################################
 set(CONTAINER_LIBS MHO_Message MHO_Utilities)
 
-#add compile defines
-hops_add_cxxflag("HOPS_SNAPSHOT_DIR=${SNAPSHOT_INSTALL_DIR}")
+#NOTE: the snapshot output directory is resolved at runtime
+#(MHO_Snapshot / MHO_DirectoryInterface::GetHopsInstallPrefix) so no absolute
+#install path is baked into the library.
 
 add_library(MHO_Containers SHARED ${CONTAINER_SOURCEFILES})
 target_link_libraries(MHO_Containers ${CONTAINER_LIBS})

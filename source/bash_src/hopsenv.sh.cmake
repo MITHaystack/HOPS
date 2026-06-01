@@ -8,6 +8,7 @@ OLD_CMAKE_PREF="NULL"
 OLD_LD_LIBPATH="NULL"
 OLD_LD_LIB64PATH="NULL"
 OLD_PATH="NULL"
+OLD_PKG_CONFIG="NULL"
 
 if [ -n "$HOPS_SYS_PY" ]
     then
@@ -22,6 +23,7 @@ if [ -n "$HOPS_SYS" ]
         OLD_LD_LIBPATH=$OLD_HOPS_SYS/lib:
         OLD_LD_LIB64PATH=$OLD_HOPS_SYS/lib64:
         OLD_CMAKE_PREF=$OLD_HOPS_SYS:
+        OLD_PKG_CONFIG=$OLD_HOPS_SYS/lib/pkgconfig:
 fi
 
 if [ -n "$HOPS_INSTALL" ]
@@ -30,10 +32,30 @@ if [ -n "$HOPS_INSTALL" ]
         OLD_PATH=$OLD_HOPS_INSTALL/bin:$OLD_HOPS_INSTALL/bin/test:
         OLD_LD_LIBPATH=$OLD_HOPS_INSTALL/lib:
         OLD_CMAKE_PREF=$OLD_HOPS_INSTALL:
+        OLD_PKG_CONFIG=$OLD_HOPS_INSTALL/lib/pkgconfig:
 fi
 
-export HOPS_INSTALL=@CMAKE_INSTALL_PREFIX@
+#-------------------------------------------------------------------------------
+# Figure out the install prefix at runtime (rather than hard-coding it), so that
+# the installation is relocatable. Find the path of *this* script while it is
+# being sourced, then take its parent's parent: the script is installed as
+# <prefix>/bin/hops.bash, so the install prefix is two levels up.
+# This should work on bash/zsh, but dash/sh are probably out of scope
+if [ -n "${BASH_SOURCE:-}" ]; then
+   # shellcheck disable=SC3028 # bash sets BASH_SOURCE
+   HOPS_SCRIPT_SOURCE=${BASH_SOURCE}
+elif [ -n "${ZSH_VERSION:-}" ]; then
+   # shellcheck disable=all
+   HOPS_SCRIPT_SOURCE=${(%):-%N}
+else
+   echo "ERROR: could not determine the hops install location (need bash or zsh)." >&2
+   return 1
+fi
+
+HOPS_INSTALL=$(cd "$(dirname "${HOPS_SCRIPT_SOURCE}")/.." > /dev/null 2>&1 && pwd)
+export HOPS_INSTALL
 #export the hops install/sys location
+#-------------------------------------------------------------------------------
 
 if [ $# -eq 0 ]
   then
@@ -44,14 +66,16 @@ fi
 
 #define some useful variables
 export HOPS_SYS
-export HOPS_SYS_PY=@CMAKE_INSTALL_PREFIX@/@PYTHON_SITE_PREFIX@
+export HOPS_SYS_PY=$HOPS_INSTALL/@PYTHON_SITE_PREFIX@
 export HOPS_ARCH=@CMAKE_SYSTEM_PROCESSOR@
 export HOPS_VERSION=@HOPS_VERSION_NUMBER@
-export PROGDOC=@CMAKE_INSTALL_PREFIX@/share/vhelp
-export AHELP=@CMAKE_INSTALL_PREFIX@/share/vhelp/aedit
+export PROGDOC=$HOPS_INSTALL/share/vhelp
+export AHELP=$HOPS_INSTALL/share/vhelp/aedit
 export DEF_CONTROL=/dev/null
 export HOPS_VPAL_FRINGE_FITTER=@HOPS_VPAL_FOURFIT@
-export HOPS_DEFAULT_PLUGINS_DIR=@PLUGINS_INSTALL_DIR@
+export HOPS_DEFAULT_PLUGINS_DIR=$HOPS_INSTALL/plugin_scripts
+
+export HOPS_JAVACLASSPATH=$HOPS_INSTALL/lib
 
 #replace old (system) variable instances with new values
 NEW_PATH=$(printf '%s\n' "$PATH" | sed "s|$OLD_PATH||g")
@@ -70,8 +94,16 @@ NEW_PYTHONPATH=$(printf '%s\n' "$PYTHONPATH" | sed "s|$OLD_HOPS_SYS_PY||g")
 NEW_PYTHONPATH="$HOPS_SYS_PY:$NEW_PYTHONPATH"
 export PYTHONPATH="$NEW_PYTHONPATH"
 
+#added so any downstream builds can locate hops3.pc/hops4.pc by name
+NEW_PKG_CONFIG_PATH=$(printf '%s\n' "$PKG_CONFIG_PATH" | sed "s|$OLD_PKG_CONFIG||g")
+NEW_PKG_CONFIG_PATH="$HOPS_INSTALL/lib/pkgconfig:$NEW_PKG_CONFIG_PATH"
+export PKG_CONFIG_PATH="$NEW_PKG_CONFIG_PATH"
+
 
 #NOTE: we will also look for plugin scripts in the environmental variable: HOPS_USER_PLUGINS_DIR
 echo "HOPS install directory set to ${HOPS_INSTALL}"
+
+#clean up temporary variables used during environment set-up
+unset HOPS_SCRIPT_SOURCE
 
 return 0

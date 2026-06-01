@@ -4,6 +4,7 @@
     #include <sstream>
     #include <string>
 
+    #include "MHO_DirectoryInterface.hh"
     #include "MHO_Message.hh"
 
     //pybind11 stuff to interface with python
@@ -36,7 +37,15 @@ static void configure_pypath()
         //(e.g. we don't want each individual class messing with the search paths)
         std::stringstream pyss;
         pyss << "import sys\n";
-        std::string default_path = STRING(HOPS_DEFAULT_PLUGINS_DIR);
+        //the default plugins dir lives at <install_prefix>/plugin_scripts (resolved at runtime)
+        std::string default_path = MHO_DirectoryInterface::GetHopsInstallPrefix();
+        if(default_path.empty())
+        {
+            msg_warn("python_bindings",
+                     "could not determine HOPS install prefix; using relative path for default plugins directory" << eom);
+            default_path = ".";
+        }
+        default_path += "/plugin_scripts";
         if(default_path.back() != '/')
         {
             default_path.push_back('/');
@@ -65,7 +74,7 @@ static void configure_pypath()
         pyss << "import pyMHO_Calibration\n";
 
         //IMPORTANT...if we create additional bindings libraries, we should import them here,
-        //otherwise if a use tries to write a plugin but fails to import what they need, they
+        //otherwise if a user tries to write a plugin but fails to import what they need, they
         //will encounter a cryptic error of the form:
         //terminate called after throwing an instance of 'pybind11::cast_error'
         //  what():  Unable to convert call argument '0' of type '<...something...>' to Python object

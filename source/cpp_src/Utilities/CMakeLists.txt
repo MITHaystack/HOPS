@@ -76,7 +76,8 @@ hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
 
 #compile and install library ###################################################
 
-set(UTILITIES_LIBS MHO_Message date-tz)
+#${CMAKE_DL_LIBS} provides dladdr (used by GetHopsInstallPrefix for runtime self-location)
+set(UTILITIES_LIBS MHO_Message date-tz ${CMAKE_DL_LIBS})
 
 add_library (MHO_Utilities SHARED ${UTILITIES_SOURCEFILES})
 

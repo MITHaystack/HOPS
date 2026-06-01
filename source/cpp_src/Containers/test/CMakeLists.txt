@@ -47,6 +47,10 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_TEST_LIBS})
     add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
+    #TestSnapshot writes to <install>/snapshot, located via GetHopsInstallPrefix();
+    #point it at the install tree so it passes without sourcing hops.bash.
+    set_tests_properties(${BASENAME}_test PROPERTIES
+        ENVIRONMENT "HOPS_INSTALL=${CMAKE_INSTALL_PREFIX}")
 endforeach( BASENAME )
 
 

@@ -78,9 +78,8 @@ if(HOPS_USE_OPENMP)
     list(APPEND FRINGE_LIBS MHO_OpenMPPlugin OpenMP::OpenMP_CXX)
 endif(HOPS_USE_OPENMP)
 
-set_property( SOURCE ${FRINGE_SOURCEFILES}
-    APPEND PROPERTY COMPILE_DEFINITIONS HOPS_AFILE_FORMAT_DIR="${DATA_INSTALL_DIR}"
-)
+#NOTE: the afile-format directory is resolved at runtime (see MHO_DirectoryInterface::GetHopsInstallPrefix)
+#so that no absolute install path is baked into the binary.
 
 #compile and install library ###################################################
 add_library (MHO_Fringe SHARED ${FRINGE_SOURCEFILES})

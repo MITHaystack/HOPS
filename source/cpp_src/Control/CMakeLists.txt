@@ -20,9 +20,8 @@ set (CONTROL_SOURCEFILES
 include_directories(${EXTERN_HLIBS}/json/include)
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-set_property( SOURCE ${CONTROL_SOURCEFILES}
-    APPEND PROPERTY COMPILE_DEFINITIONS HOPS_CONTROL_FORMAT_DIR="${DATA_INSTALL_DIR}"
-)
+#NOTE: the control-format directory is resolved at runtime (see MHO_DirectoryInterface::GetHopsInstallPrefix)
+#so that no absolute install path is baked into the binary.
 
 add_library (MHO_Control SHARED ${CONTROL_SOURCEFILES} ${CONTROL_HEADERFILES})
 
