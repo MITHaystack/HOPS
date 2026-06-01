@@ -3,7 +3,12 @@ macro(hops_install_headers)
 endmacro()
 
 macro(hops_install_libraries)
-    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${LIB_INSTALL_DIR})
+    # Relative DESTINATION (against CMAKE_INSTALL_PREFIX) so the generated
+    # HopsTargets*.cmake derive _IMPORT_PREFIX from their own location instead
+    # of baking an absolute path to keep the package config relocatable and
+    # reproducible. INSTALL_NAME_DIR legitimately wants an absolute
+    # path, so it keeps the absolute var
+    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${LIB_INSTALL_RELDIR})
     set_property(GLOBAL APPEND PROPERTY MODULE_TARGETS ${ARGN})
     set_target_properties(${ARGN} PROPERTIES INSTALL_NAME_DIR ${LIB_INSTALL_DIR})
 endmacro()
@@ -14,7 +19,7 @@ macro(legacy_hops_install_headers)
 endmacro()
 
 #this installs into a prefixed directory '.../include/hops'
-#NOTE: no EXPORT hopsTargets here -- libraries using this macro are also
+#NOTE: no EXPORT hopsTargets here, the libraries using this macro are also
 #typically installed via hops_install_libraries() (canonical location), and
 #a target can appear in an export set only once.
 macro(legacy_hops_install_libraries)
@@ -24,11 +29,13 @@ macro(legacy_hops_install_libraries)
 endmacro()
 
 macro(hops_install_executables)
-    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${BIN_INSTALL_DIR})
+    # relative DESTINATION, see hops_install_libraries() rationale above
+    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${BIN_INSTALL_RELDIR})
 endmacro()
 
 macro(hops_install_test_executables)
-    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${TEST_BIN_INSTALL_DIR})
+    # relative DESTINATION, see hops_install_libraries() rationale above
+    install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${TEST_BIN_INSTALL_RELDIR})
 endmacro()
 
 macro(hops_install_symlink filepath sympath)

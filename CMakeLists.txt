@@ -81,8 +81,19 @@ set(SHARE_TEXT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/text")
 set(SHARE_VHELP_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp")
 set(SHARE_VHELP_AEDIT_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share/vhelp/aedit")
 
-# Create the install-tree directory skeleton at *install* time, not configure
-# time, DESTINATION paths are relative to CMAKE_INSTALL_PREFIX.
+#Relative companions to the absolute *_INSTALL_DIR vars above (resolved against
+#CMAKE_INSTALL_PREFIX at install time). Use THESE (not abs paths)
+#for install(TARGETS ... EXPORT hopsTargets) and install(EXPORT ...), so the
+#generated HopsTargets*.cmake are forced to derive the install prefix from their own on-disk
+#location instead of baking in an absolute CMAKE_INSTALL_PREFIX. That makes the
+#CMake package config relocatable/reproducible.
+#Computed from the absolute vars so the two can never drift out of sync.
+file(RELATIVE_PATH LIB_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${LIB_INSTALL_DIR}")
+file(RELATIVE_PATH BIN_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${BIN_INSTALL_DIR}")
+file(RELATIVE_PATH TEST_BIN_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${TEST_BIN_INSTALL_DIR}")
+
+#Create the install-tree directory skeleton at *install* time, not configure
+#time, DESTINATION paths are relative to CMAKE_INSTALL_PREFIX.
 install(DIRECTORY DESTINATION include)
 install(DIRECTORY DESTINATION lib)
 install(DIRECTORY DESTINATION lib64)

@@ -151,6 +151,13 @@ function(hops_generate_cmake_config)
     include(CMakePackageConfigHelpers)
 
     set(_cmake_install_dir "${LIB_INSTALL_DIR}/cmake/Hops")
+    #Relative companion (against CMAKE_INSTALL_PREFIX) used ONLY for the
+    #install(EXPORT) DESTINATION below: a relative DESTINATION makes CMake emit
+    #a relocatable _IMPORT_PREFIX  in HopsTargets*.cmake instead of an absolute prefix.
+    #The other uses (INSTALL_DESTINATION for the
+    #config file and install(FILES ...)) but only to decide where files land,
+    #so they need the absolute path.
+    set(_cmake_install_reldir "${LIB_INSTALL_RELDIR}/cmake/Hops")
 
     # Library lists baked into the generated HopsConfig.cmake.
     set(HOPS3_LIBS
@@ -198,6 +205,6 @@ function(hops_generate_cmake_config)
         EXPORT hopsTargets
         FILE HopsTargets.cmake
         NAMESPACE Hops::
-        DESTINATION "${_cmake_install_dir}"
+        DESTINATION "${_cmake_install_reldir}"
     )
 endfunction()

@@ -73,14 +73,15 @@ if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
     set_option(FETCHCONTENT_FULLY_DISCONNECTED OFF)
     set_option(FETCHCONTENT_UPDATES_DISCONNECTED OFF)
 
-    #TODO...we should check if the user has matplotplusplus installed locally first! 
     add_subdirectory(matplotplusplus)
     #install the matplot.so library into hopsTargets so it's part of the
     #same exported set as MHO_MatplotPlugin (which links to it PUBLICly).
+    # relative DESTINATION (see hops_install_libraries() in HopsDefaults.cmake)
+    # so the exported target stays relocatable/reproducible.
     install(
         TARGETS matplot
         EXPORT hopsTargets
-        LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+        LIBRARY DESTINATION ${LIB_INSTALL_RELDIR}
     )
 
     #might as well install the headers too
