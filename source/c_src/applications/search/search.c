@@ -9,14 +9,13 @@
 /* the fitted rate and delay offsets into an output data record.  This  */
 /* process is repeated for all baseline/scans fed to the program.       */
 /*                                                                      */
-/* The structure of this program is modelled after cofit.               */
+/* The structure of this program is modeled after cohfit.               */
 /*                                                                      */
 /*      Inputs:         filename                Input A-file data       */
-/*                                                                      */
 /*      Output:         filename                Output A-file data      */
 /*                                                                      */
 /* Created January 26 1996 by CJL                                       */
-/*                                                                      */
+/* Enhanced by GBC June 2026                                            */
 /************************************************************************/
 #include <stdio.h>
 #include <string.h>
@@ -35,7 +34,7 @@ static gpconf gpf = {
 #if BIGGER==1
     /* other functionality in support of gnuplot and PDFs */
     .pdfile = NULL, .devp = NULL, .gplatt = NULL, .nprv = 0,
-#if defined(MONTAGE)
+#if defined(MONTAGE) && defined(GNUPLOT)
     .montage = 1, .density = 150, .npdfs = 0,
 #else /* defined(MONTAGE) */
     .montage = 0, .density = 0, .npdfs = 0,
@@ -172,7 +171,7 @@ int main (int argc, char* argv[])
             if (gpf.pplt) plot_srchdata (srchdata, gpf.asqr);
             nout += write_srchdata (srchdata, fpout);
 #if BIGGER
-            gnusrchplot(nout, srchdata, &gpf);
+            if (gpf.gplt) gnusrchplot(nout, srchdata, &gpf);
 #endif /* BIGGER */
             clear_srchdata (srchdata);
             }

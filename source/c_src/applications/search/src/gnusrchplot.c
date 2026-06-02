@@ -52,6 +52,7 @@ void gnusrchplot(int nout, srchsum *srchp, gpconf *gpfp)
     for (base=0; base<nbase; base++, fileno++) {
         sb = srchp + base;
         frdt = sb->datum;
+        msg("pattern is %s length is %d", 3, gpfp->gplatt, gpfp->patlen);
         pfile = malloc(gpfp->patlen + 10);
         if (!pfile) { perror("gnusrchplot:malloc"); return; }
         snprintf(pfile, 3*(gpfp->patlen), gpfp->gplatt, fileno);

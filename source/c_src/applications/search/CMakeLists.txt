@@ -141,7 +141,6 @@ else()
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMONTAGE=\\\"/bin/false\\\"")
 endif(ImageMagick_montage_FOUND)
 
-
 target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
 target_link_libraries (${EXENAME2} ${INTERNAL_LIBLIST} ${EXTERNAL_LIBLIST})
 

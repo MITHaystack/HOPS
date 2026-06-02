@@ -75,7 +75,7 @@ char *gnupattern(char *device)
     }
     *slh = 0;                   /* terminate prior to .ps */
     strcat(gpname, "-%d");      /* append -%d for sprintf later */
-    msg("Gnuplot artifacts will use %s", 2, gpname);
+    msg("Gnuplot (%s) artifacts will use %s", 2, GNUPLOT, gpname);
     return(gpname);
 #else /* defined(GNUPLOT) */
     return(NULL);
@@ -187,7 +187,7 @@ int parse_cmdline (int argc, char **argv, FILE **fpout, gpconf *gpcp)
 #if BIGGER && defined(GNUPLOT)
     if (gpcp->gplt) {
         gpcp->gplatt = gnupattern(gpcp->devp);
-        gpcp->patlen = strlen(gpcp->gplatt + 32);
+        gpcp->patlen = strlen(gpcp->gplatt) + 32;
     }
 #endif /* BIGGER && defined(GNUPLOT) */
                                         /* Open plot device */

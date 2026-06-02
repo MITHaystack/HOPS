@@ -32,7 +32,8 @@ fringex -i 20 -d 27x27 -r alist-aedit-X0X.out |\
 average -o search.avg > fas.out 2>&1
 
 HOPS_SEARCH_REMLIMIT=0.6 \
-search -g 1x1:1:1 -d search.ps/cps/pdf -o search.out search.avg >> fas.out 2>&1
+search -g 1x1:1:1:1 \
+    -d search.ps/cps/pdf -o search.out search.avg >> fas.out 2>&1
 searchrv=$?
 [ "$searchrv" -eq 0 ] || errs=$(($errs+1))
 echo searchrv is $searchrv errs=$errs
