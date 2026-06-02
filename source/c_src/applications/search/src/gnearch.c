@@ -47,12 +47,17 @@ void gnufinish(gpconf *gpfp)
 {
     int ii;
     if (gpfp->gplt) {
-        if (gpfp->montage && gpfp->density > 0 && gpfp->npdfs > 0)
-            search_montage(gpfp);
+        if (gpfp->montage && gpfp->density > 0) {
+            if (gpfp->npdfs > 0) search_montage(gpfp);
+            else msg("Have no pdfs to montage", 3);
+        }
         msg("Freeing PDF plot filenames", 3);
         if (gpfp->gnupdfs) {
             for (ii = 0; ii < gpfp->npdfs; ii++)
-                if (gpfp->gnupdfs[ii]) free(gpfp->gnupdfs[ii]);
+                if (gpfp->gnupdfs[ii]) {
+                    msg("Free %p", 3, gpfp->gnupdfs[ii] - 2*gpfp->patlen);
+                    free(gpfp->gnupdfs[ii] - 2*gpfp->patlen);
+                }
             free(gpfp->gnupdfs);
         }
         msg("Freeing gnuplot config file", 3);

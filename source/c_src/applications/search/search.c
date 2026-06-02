@@ -37,10 +37,10 @@ static gpconf gpf = {
 #if defined(MONTAGE) && defined(GNUPLOT)
     .montage = 1, .density = 150, .npdfs = 0,
 #else /* defined(MONTAGE) */
-    .montage = 0, .density = 0, .npdfs = 0,
+    .montage = 1, .density = 0, .npdfs = 0,
 #endif /* defined(MONTAGE) */
     .gpdfs_alloc = 0, .gnupdfs = NULL,
-    .savegnu = 1, .savedata = 1, .gplt = FALSE,
+    .nukegnu = 0, .nukedata = 0, .gplt = FALSE,
 #endif /* BIGGER==1 */
     .ncols = 2, .nrows = 2, .asqr = 0, .pplt = TRUE
 };

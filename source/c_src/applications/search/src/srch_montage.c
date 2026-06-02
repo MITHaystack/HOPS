@@ -31,13 +31,15 @@ void search_montage(gpconf *gpfp)
     char *montyc = malloc(cmdlen), *mtpdfo = malloc(patlen + 32), *pc;
     if (!montyc) { perror("search_montage:malloc:1"); return; }
     if (!mtpdfo) { perror("search_montage:malloc:2"); return; }
+    msg("Making the montage", 3);
     pc = strchr(gpfp->gplatt, '%');         /* expect -%<integer>d */
     *--pc = 0;
     /* create the output filename */
     nc = snprintf(mtpdfo, patlen + 32,
-        " %s-%d.montage.pdf", gpfp->gplatt, gpfp->npdfs);
+        " %s-%d.montage.pdf", gpfp->gplatt, gpfp->npdfs + 1);
     *pc = '-';                              /* restore it to be clean */
     if (nc > patlen + 32) MONTY_RETURN(nc, patlen+32, mtpdfo);
+    msg("montage output is %s", 0, mtpdfo);
 
     /* start with the basic montage command */
     nc = snprintf(montyc, cmdlen,
@@ -47,6 +49,7 @@ void search_montage(gpconf *gpfp)
 
     /* pile on the file names */
     for (pp = 0; pp < gpfp->npdfs; pp++) {
+        msg("adding #%d %s (%p)", 1, pp, gpfp->gnupdfs[pp], gpfp->gnupdfs[pp]);
         nc += snprintf(montyc + nc, strlen(gpfp->gnupdfs[pp]) + 2,
             " %s ", gpfp->gnupdfs[pp]);
         if (--nc >= cmdlen) MONTY_RETURN(nc, cmdlen, montyc);
@@ -57,6 +60,7 @@ void search_montage(gpconf *gpfp)
     nc += snprintf(montyc + nc, patlen + 16, "%s", mtpdfo);
     if (nc >= cmdlen) MONTY_RETURN(nc, cmdlen, montyc);
     msg("Montage command len %d < limit %d is:", 1, nc, cmdlen);
+    msg("Final montage file name: %s", 2, mtpdfo);
     free(mtpdfo);
     monty_runit(montyc);
 }
