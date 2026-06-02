@@ -78,7 +78,7 @@ int main (int argc, char* argv[])
     fringesum *datum;
     FILE *fpout;
     set_progname(BIGGER ? "search": "soirch");
-    set_msglev(1);
+    set_msglev(2);
 
                                         /* Allocate some space to start */
     data = (avg_data *) calloc (space, sizeof (avg_data));

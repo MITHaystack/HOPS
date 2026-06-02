@@ -34,11 +34,6 @@ int gargparse(char *garg, gpconf *gpfp)
         /* handler for the other cases */
         return(gnuconfile(ii, garg, gpfp));
     }
-    if (gpfp->pplt) msg("PGPLOT search plots will be made", 2);
-    if (gpfp->gplt) {
-        if (gpfp->gplatt) msg("Gnuplot search plots will be made", 2);
-        if (gpfp->montage) msg("And a montage of all plots will be made", 2);
-    }
     return(0);
 }
 

@@ -186,13 +186,16 @@ int parse_cmdline (int argc, char **argv, FILE **fpout, gpconf *gpcp)
     gpcp->nrows = nysub;
 #if BIGGER && defined(GNUPLOT)
     if (gpcp->gplt) {
+        msg("Gnuplot search plots will be made", 2);
         gpcp->gplatt = gnupattern(gpcp->devp);
         gpcp->patlen = strlen(gpcp->gplatt) + 32;
+        if (gpcp->montage) msg("And a montage of all plots will be made", 2);
     }
 #endif /* BIGGER && defined(GNUPLOT) */
                                         /* Open plot device */
     if (gpcp->pplt)
         {
+        msg("PGPLOT search plots will be made", 2);
 #if BIGGER
         if (cpgbeg (0, gpcp->devp, 1, 1) != 1)
             {
