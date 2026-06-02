@@ -1681,11 +1681,6 @@ void MHO_BasicPlotVisitor::make_top_info_text(const mho_json& plot_dict)
     auto baseline_text = right_justify_text(fLastAxis, 0.95, 0.85, baseline);
     baseline_text->font("Arial Black,12");
 
-    // Top-left, lower (0.05, 0.96): NOT FOR PRODUCTION warning
-    auto warning_text = fLastAxis->text(0.025, 0.5, "NOT FOR PRODUCTION");
-    warning_text->font("Arial Black,11");
-    warning_text->color("red");
-
     // Top-right, lower (0.965, 0.96): PolStr
     auto pol_text = right_justify_text(fLastAxis, 0.965, 0.5, pol_str);
     pol_text->font("Arial Black,11");
