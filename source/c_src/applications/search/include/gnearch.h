@@ -20,8 +20,8 @@ typedef struct gpconf {
     int nprv;                       /* previous nout */
     int montage, density, npdfs;    /* make a montage w/ density */
     int gpdfs_alloc;                /* size of allocated gnupdfs */
-    char **gnupdfs;                 /* from npdfs output pdf files */
     int nukegnu, nukedata;          /* unlink intermediates */
+    char **gnupdfs;                 /* from npdfs output pdf files */
 #endif /* BIGGER */
     int ncols, nrows, asqr;         /* [-g] cols x rows : asqr ; */
     int pplt, gplt;                 /* pgplot and gnuplot */

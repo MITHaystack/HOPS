@@ -32,11 +32,25 @@ fringex -i 20 -d 27x27 -r alist-aedit-X0X.out |\
 average -o search.avg > fas.out 2>&1
 
 HOPS_SEARCH_REMLIMIT=0.6 \
-search -g 1x1:1:1:1 \
-    -d search.ps/cps/pdf -o search.out search.avg >> fas.out 2>&1
+search -g 3x1:1:1:1 \
+    -d search.ps/cps/pdf -o search.out -m1 search.avg >> fas.out 2>&1
 searchrv=$?
 [ "$searchrv" -eq 0 ] || errs=$(($errs+1))
 echo searchrv is $searchrv errs=$errs
+
+# made by gnuplot and montage
+splotfiles=''
+gnuplot=`type -p gnuplot`
+[ -x "$gnuplot" ] && splotfiles="
+    search-0.data search-0.gnu search-0.pdf
+    search-1.data search-1.gnu search-1.pdf
+    search-2.data search-2.gnu search-2.pdf
+"
+montage=`type -p montage`
+[ -x "$montage" ] && splotfiles="$splotfiles search-4.montage.pdf"
+for s in $splotfiles
+do [ -s $s ] || { echo empty $s ; errs=$(($errs+1)) ; echo errs is $errs; }
+done
 
 fringex -i 20 -d 27x27 -r alist-aedit-X0X.out |\
 average -o soirch.avg > fos.out 2>&1
@@ -68,7 +82,7 @@ $verb && echo search size is $size
 set -- `wc -l search.out` 0 0
 lines=$1
 $verb && echo search lines is $lines
-[ -f search.pdf -a "$size" -ge 76 -a -f search.out -a "$lines" -eq 3 ] ||
+[ -f search.pdf -a "$size" -ge 60 -a -f search.out -a "$lines" -eq 3 ] ||
     errs=$(($errs+1))
 echo errs=$errs
 

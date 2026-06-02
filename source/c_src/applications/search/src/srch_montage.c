@@ -10,6 +10,7 @@
 void monty_runit(char *cmd)
 {
     int rc = system(cmd);
+    msg("Ran system('%s') = %d", 1, cmd, rc);
     if (rc) {
         msg("system(%s) failed (%d)", 3, cmd, rc);
         perror("monty_runit:system");
@@ -31,7 +32,7 @@ void search_montage(gpconf *gpfp)
     char *montyc = malloc(cmdlen), *mtpdfo = malloc(patlen + 32), *pc;
     if (!montyc) { perror("search_montage:malloc:1"); return; }
     if (!mtpdfo) { perror("search_montage:malloc:2"); return; }
-    msg("Making the montage", 3);
+    msg("Making the montage", 2);
     pc = strchr(gpfp->gplatt, '%');         /* expect -%<integer>d */
     *--pc = 0;
     /* create the output filename */
@@ -39,7 +40,7 @@ void search_montage(gpconf *gpfp)
         " %s-%d.montage.pdf", gpfp->gplatt, gpfp->npdfs + 1);
     *pc = '-';                              /* restore it to be clean */
     if (nc > patlen + 32) MONTY_RETURN(nc, patlen+32, mtpdfo);
-    msg("montage output is %s", 0, mtpdfo);
+    msg("montage output is %s", 1, mtpdfo);
 
     /* start with the basic montage command */
     nc = snprintf(montyc, cmdlen,
@@ -53,7 +54,7 @@ void search_montage(gpconf *gpfp)
         nc += snprintf(montyc + nc, strlen(gpfp->gnupdfs[pp]) + 2,
             " %s ", gpfp->gnupdfs[pp]);
         if (--nc >= cmdlen) MONTY_RETURN(nc, cmdlen, montyc);
-        msg("%s %d == %d?", 0, montyc, nc, strlen(montyc));
+        msg("%s %d == %d?", 1, montyc, nc, strlen(montyc));
     }
 
     /* and finally add the output file */

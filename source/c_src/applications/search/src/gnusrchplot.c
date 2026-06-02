@@ -23,8 +23,8 @@ void gnu_plot_doit(char *cmds)
     int len;
     char *syscmd;
     if (!cmds) return;
-    syscmd = malloc(len);
     len = strlen(cmds) + strlen(GNUPLOT) + 16;
+    syscmd = malloc(len);
     snprintf(syscmd, len-1, "%s %s", GNUPLOT, cmds);
     monty_runit(syscmd);
 }
@@ -35,7 +35,8 @@ void save_gpdf(gsplot *gspp)
     size_t blob = MAX_BNO * sizeof(char *);
     gpconf *gc = gspp->gpcopy;
     if (!gc->gnupdfs) gc->gnupdfs = malloc(gc->gpdfs_alloc = blob);
-    if (gc->npdfs == gc->gpdfs_alloc)
+    /* make sure there is an extra one for the last command */
+    if ((gc->npdfs + 1)*sizeof(char *) == gc->gpdfs_alloc)
         gc->gnupdfs = realloc(gc->gnupdfs, gc->gpdfs_alloc += blob);
     gc->gnupdfs[gc->npdfs] = gspp->gnpdf;
     /* make sure the next one is nulled just in case npdfs is wrong */
@@ -63,26 +64,26 @@ char *setup_gnu_filenames(int fno, gsplot *gspp, gpconf *gpfp)
         gpfp->gplatt, gpfp->patlen);
     memset(gspp, 0, sizeof(gsplot));
     gspp->gpcopy = gpfp;                /* convenience ptr */
-    pfile = calloc(3*(gpfp->patlen) + 10, 1);
+    pfile = calloc(4*(gpfp->patlen + 1), 1);
     if (!pfile) { perror("gnusrchplot:malloc"); return(NULL); }
 
     gspp->pfile = pfile;
     snprintf(gspp->pfile, gpfp->patlen, gpfp->gplatt, fno);
     strcat(gspp->pfile, ".data");
-    msg("splot data file is %s (%p) ALLOC", 0, gspp->pfile, gspp->pfile);
+    msg("splot data file is %s (%p) ALLOC", 1, gspp->pfile, gspp->pfile);
 
     gspp->gfile = pfile + 1*gpfp->patlen;
     gspp->gfile[-1] = 0;                 /* ensure null-termination */
     snprintf(gspp->gfile, gpfp->patlen, gpfp->gplatt, fno);
     strcat(gspp->gfile, ".gnu");
-    msg("splot gnu cmd file is %s (%p)", 0, gspp->gfile, gspp->gfile);
+    msg("splot gnu cmd file is %s (%p)", 1, gspp->gfile, gspp->gfile);
 
     gspp->gnpdf = pfile + 2*gpfp->patlen;
     gspp->gnpdf[-1] = 0;                 /* ensure null-termination */
     snprintf(gspp->gnpdf, gpfp->patlen, gpfp->gplatt, fno);
     strcat(gspp->gnpdf, ".pdf");
     gspp->gnpdf[gpfp->patlen-1] = 0;     /* ensure null-termination */
-    msg("splot gnu pdf file is %s (%p)", 0, gspp->gnpdf, gspp->gnpdf);
+    msg("splot gnu pdf file is %s (%p)", 1, gspp->gnpdf, gspp->gnpdf);
     return(pfile);
 }
 

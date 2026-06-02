@@ -51,21 +51,32 @@ void gnufinish(gpconf *gpfp)
             if (gpfp->npdfs > 0) search_montage(gpfp);
             else msg("Have no pdfs to montage", 3);
         }
-        msg("Freeing PDF plot filenames", 3);
         if (gpfp->gnupdfs) {
             for (ii = 0; ii < gpfp->npdfs; ii++)
                 if (gpfp->gnupdfs[ii]) {
-                    msg("Free %p", 3, gpfp->gnupdfs[ii] - 2*gpfp->patlen);
-                    free(gpfp->gnupdfs[ii] - 2*gpfp->patlen);
+                    /* gpfp->gnupdfs[ii] points to .pdf */
+                    void *pfile, *gfile, *gnpdf;
+                    pfile = gpfp->gnupdfs[ii] - 2*gpfp->patlen;
+                    gfile = gpfp->gnupdfs[ii] - 1*gpfp->patlen;
+                    gnpdf = gpfp->gnupdfs[ii];
+                    msg("Free '%s' (%p) '%s' (%p) '%s' (%p)", 1,
+                        (char *)pfile, pfile, (char *)gfile, gfile,
+                        (char *)gnpdf, gnpdf);
+                    /* pfile was allocated */
+                    free(pfile);
                 }
             free(gpfp->gnupdfs);
         }
-        msg("Freeing gnuplot config file", 3);
-        if (gpfp->gcfile) free(gpfp->gcfile);
-        msg("Freeing gnuplot file pattern", 3);
-        if (gpfp->gplatt) free(gpfp->gplatt);
+        if (gpfp->gcfile) {
+            msg("Freeing gnuplot config file", 1);
+            free(gpfp->gcfile);
+        }
+        if (gpfp->gplatt) {
+            msg("Freeing gnuplot file pattern", 1);
+            free(gpfp->gplatt);
+        }
     }
-    msg("Freeing PGPLOT device", 3);
+    msg("Freeing PGPLOT device", 1);
     if (gpfp->devp) free(gpfp->devp);
 }
 
