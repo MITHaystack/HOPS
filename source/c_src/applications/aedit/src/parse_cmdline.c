@@ -35,13 +35,13 @@ int parse_cmdline (int argc, char **argv, int *xwindow, char *run_fname,
 	if (*filelist)
 	    {
 	    msg ("Error. -f option must be the LAST option", 3);
-	    syntax("$HeadURL$");
+	    syntax("");
 	    return (1);
 	    }
 	if (strlen (batch_string) > 0)
 	    {
 	    msg ("Error. -b option must be the ONLY option if given", 3);
-	    syntax("$HeadURL$");
+	    syntax("");
 	    return (1);
 	    }
 
@@ -76,7 +76,7 @@ int parse_cmdline (int argc, char **argv, int *xwindow, char *run_fname,
 
 	    case '?':
 		msg ("Unrecognized command-line flag '-%c'", 2, c);
-		syntax("$HeadURL$");
+		syntax("");
 		return (1);
 		break;
 	    }

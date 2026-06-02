@@ -169,7 +169,7 @@ struct type_param *param)
 
             case '?':
             default:
-                syntax("$HeadURL$");
+                syntax("");
                 return (1);
             }
         }
@@ -249,7 +249,7 @@ struct type_param *param)
     else if (get_filelist (set-optind, argv+optind, 0, files) != 0)
         {
         msg ("Error extracting list of files to process from command line args", 2);
-        syntax("$HeadURL$");
+        syntax("");
         return (1);
         }
                                         /* Check to see if any data files */
@@ -257,7 +257,7 @@ struct type_param *param)
     if ((*files)[0].order < 0)
         {
         msg ("No valid root files specified", 2);
-        syntax("$HeadURL$");
+        syntax("");
         return (1);
         }
 

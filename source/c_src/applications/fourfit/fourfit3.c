@@ -114,7 +114,7 @@ int main (int argc, char** argv)
     environment();                  /* Get standard environment settings */
     if (argc == 1)                  /* Trap empty argument list */
         {
-        syntax("$HeadURL$");
+        syntax("");
         return (1);
         }
     pexec = argv[0];                // point to executable name

@@ -39,7 +39,7 @@ check_include_file(sys/socket.h HAVE_SYS_SOCKET_H)
 check_include_file(unistd.h HAVE_UNISTD_H)
 
 #update these values whenever hops3 source code is synchronized
-set(HOPS_SVN_REV_VALUE 4270)
+set(HOPS_SVN_REV_VALUE 4601)
 set(HOPS_REVISION_VALUE 3.26)
 set(PACKAGE_VERSION "\"${HOPS_REVISION_VALUE}\"")
 
@@ -52,9 +52,9 @@ hops_add_cxxflag(HAVE_CONFIG_H)
 
 #fourfit displays the fringe plot with ghostscript and the postscript copypage command
 #this command was disabled on recent systems so some tweaks have to changes
-#need to happen in order to figure out how to display the fringe plot properly 
+#need to happen in order to figure out how to display the fringe plot properly
 
-find_program(GS_EXE gs) 
+find_program(GS_EXE gs)
 if(GS_EXE)
     set (GS_VER_ARG "--version")
     message(STATUS "Executing command: ${GS_EXE} ${GS_VER_ARG}")
@@ -91,13 +91,13 @@ else()
 endif()
 
 #old HOPS is littered with implicit function declarations
-#since fixing properly this would require a header for each function 
+#since fixing properly this would require a header for each function
 #for the time being we are just going to disable this warning with:
 #    -Wno-implicit-function-declaration and -Wno-implicit-int
 
-#There are also a huge number of string formatting/truncation/overflow errors 
+#There are also a huge number of string formatting/truncation/overflow errors
 #due to all the snprintf/sprintf use that need to be fixed, so diable format with:
-# -Wno-format 
+# -Wno-format
 
 option( HOPS3_DISABLE_WARNINGS "Disable specific compiler warnings in HOPS3 c-code." ON)
 

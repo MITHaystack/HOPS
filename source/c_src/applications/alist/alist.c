@@ -63,13 +63,13 @@ int main (int argc, char *argv[])
     if (parse_cmdline (argc, argv, &files, outfile) != 0)
         {
         msg ("Fatal error interpreting command line", 2);
-        syntax("$HeadURL$");
+        syntax("");
         exit(1);
         }
     if (files[0].order == -1)
         {
         msg ("No valid correlator files found/specified", 2);
-        syntax("$HeadURL$");
+        syntax("");
         exit (1);
         }
 
