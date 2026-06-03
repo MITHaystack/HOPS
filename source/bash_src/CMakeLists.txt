@@ -20,3 +20,6 @@ install( PROGRAMS ${SHSOURCE}/cohfit-driver.sh DESTINATION ${BIN_INSTALL_RELDIR}
 
 #install the pprint script (used by several applications)
 install( PROGRAMS ${SHSOURCE}/pplot_print.sh DESTINATION ${BIN_INSTALL_RELDIR} )
+
+#install the dependency-installer helper (apt/dnf system packages for building/running HOPS from source)
+install( PROGRAMS ${SHSOURCE}/hops-install-deps.sh DESTINATION ${BIN_INSTALL_RELDIR} )
