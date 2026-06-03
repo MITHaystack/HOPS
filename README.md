@@ -166,7 +166,8 @@ However you will first need to download the relevant set of test data. If you do
 can retrieve it by running the script `testdata_download_all.sh` as detailed below. This will download the necessary tarballs and place them in the HOPS test data directory under `<hops-install>/data/test_data`. The overall process is:
 
 ```
-`cd HOPS && mkdir -p build && cd build && cmake .. && make && make install`
+cd HOPS
+mkdir -p build && cd build && cmake .. && make && make install
 source <hops-install>/bin/hops.bash
 testdata_download_all.sh
 make test
