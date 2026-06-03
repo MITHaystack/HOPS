@@ -38,9 +38,9 @@ To set the install prefix to a custom path on the command line using `cmake`, yo
 To change the default options or if a needed library is not automatically detected you can
 use the command line interface `ccmake` (cmake-curses-gui) in place of `cmake` to edit the options. This command will open a CLI
 GUI where you may change various parameters and toggle various optional dependencies. On the first run of this command you will be
-presented with an "empty cache", so press 'c' to configure, and then 'e' exit and edit the options. Once you are satisfied with
-your option selection, press 'c' to configure again, and if no errors are detected, you can then generate the build system and
-exit to the command line by pressing 'g'. Now that the build system has been generated, run `make && make install` to compile
+presented with an "empty cache", so press `c` to configure, and then `e` exit and edit the options. Once you are satisfied with
+your option selection, press `c` to configure again, and if no errors are detected, you can then generate the build system and
+exit to the command line by pressing `g`. Now that the build system has been generated, run `make && make install` to compile
 and install the software.
 
 A full description of the configurable options can be found here:
