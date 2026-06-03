@@ -43,9 +43,7 @@ your option selection, press `c` to configure again, and if no errors are detect
 exit to the command line by pressing `g`. Now that the build system has been generated, run `make && make install` to compile
 and install the software.
 
-A full description of the configurable options can be found here:
-
-[webpage](https://mithaystack.github.io/HOPS/ FIXME!)
+A full description of the configurable options can be found at the end of this document.
 
 ## Dependencies/pre-requisites:
 
@@ -185,9 +183,89 @@ should print out the full path to the install directory, e.g:
 ### Building the documentation
 HOPS supports the ability to automatically build documentation using doxygen and sphinx. To do this, ensure that `doxygen`, `sphinx`, and the python packages `breathe` and `myst_parser` are installed, and that the cmake option `HOPS_BUILD_DOCS` is set to `ON`. To build and install the auto-generated documentation run the command `make reference && make install` from the build directory. The resulting html documentation will be placed in `<hops-install>/doc/reference`. The master index file will be installed as `<hops-install>/doc/reference/index.html` and can be opened with any browser.
 
-### Getting help
+## Getting help
 
 For questions/comments on this software please direct emails to the developer mailing list: hops-dev@mit.edu
 
-### License and Authorship
+## License and Authorship
 For license and authorship information see the LICENSE.md and AUTHORS.md files respectively.
+
+## Configurable build options
+
+The build is controlled by a set of cmake cache variables which can be set on the command line with
+`-D<OPTION>=<VALUE>` (e.g. `cmake .. -DHOPS_USE_FFTW3=OFF`) or interactively with `ccmake`. Boolean
+options take `ON`/`OFF`; a few take a string or path value. The tables below list every HOPS option,
+its accepted values (default in **bold**), and what it controls. Options whose default is auto-disabled
+when a required dependency is missing are noted as such.
+
+### General / install
+
+| Option | Values (default) | Description |
+|---|---|---|
+| `CMAKE_INSTALL_PREFIX` | path (**`<build>/../<arch>-<version>`**) | Installation directory for the built software. |
+| `CMAKE_BUILD_TYPE` | **`Release`** / `Debug` / `RelWithDebInfo` / `MinSizeRel` | Compiler optimization/debug profile. |
+| `HOPS_CXX_STANDARD` | **`11`** / `17` / `20` | C++ standard used to build HOPS4 (matplot++ plotting forces at least 17). |
+| `HOPS_IS_HOPS4` | `ON` / **`OFF`** | Install HOPS4 executables under the legacy names (symlinks `fourfit`, `fplot`, ... to the HOPS4 versions). |
+| `HOPS_PYPI_MANAGE_DEPS` | `ON` / **`OFF`** | Let pip download/install the Python deps (numpy, scipy, matplotlib) locally into the install prefix. |
+
+### HOPS4 features / optional dependencies
+
+| Option | Values (default) | Description |
+|---|---|---|
+| `HOPS_USE_FFTW3` | **`ON`** / `OFF` | Use FFTW3 for fast Fourier transforms (recommended; uses internal fallback if OFF). |
+| `HOPS_USE_PYBIND11` | **`ON`** / `OFF` | Build the pybind11 Python bindings and enable Python plugins (auto-OFF if no Python is found). |
+| `HOPS_USE_MATPLOTPP` | **`ON`** / `OFF` | Build the bundled matplot++ for fast C++ fringe plotting (needs gnuplot + a C++17 compiler; auto-OFF if absent). |
+| `HOPS_USE_OPENMP` | **`ON`** / `OFF` | Use OpenMP shared-memory parallelism (auto-OFF if not found). |
+| `HOPS_USE_DIFXIO` | `ON` / **`OFF`** | Link against `difxio` to read/import DiFX correlator output (`difx2hops`). |
+| `HOPS_USE_HDF5` | `ON` / **`OFF`** | Build HDF5 export support. |
+| `HOPS_USE_MPI` | `ON` / **`OFF`** | Use MPI (Message Passing Interface) to enable distributed parallel processing. |
+| `HOPS_USE_OPENCL` | `ON` / **`OFF`** | Build OpenCL acceleration via the C++ wrapper API (experimental). |
+| `HOPS_USE_CUDA` | `ON` / **`OFF`** | Build CUDA acceleration support (experimental). |
+| `HOPS_USE_JAVA` | `ON` / **`OFF`** | Enable the Java-based VEX2XML tool. |
+| `HOPS_VEX2XML3` | **`ON`** / `OFF` | (Only when `HOPS_USE_JAVA=ON`) provide the older commons-cli-1.2 / antlr-3.5.2 jars. |
+| `HOPS_VEX2XML4` | `ON` / **`OFF`** | (Only when `HOPS_USE_JAVA=ON`) provide the newer commons-cli-1.4 / antlr-4.8 jars. |
+| `HOPS_BUILD_EXTRA_CONTAINERS` | `ON` / **`OFF`** | Build support for a larger variety of extra data-container types. |
+
+### HOPS3 (legacy suite)
+
+| Option | Values (default) | Description |
+|---|---|---|
+| `HOPS3_PYTHON_EXTRAS` | **`ON`** / `OFF` | Build the Python (ctypes) interface to the HOPS3 libraries. |
+| `HOPS3_ENABLE_BUILD_D2M4` | `ON` / **`OFF`** | Build `difx2mark4` (also requires `HOPS_USE_DIFXIO=ON`). |
+| `HOPS3_USE_ADHOC_FLAGGING` | **`ON`** / `OFF` | Enable the ad-hoc flagging feature in `fourfit3`. |
+| `HOPS3_DISABLE_WARNINGS` | **`ON`** / `OFF` | Suppress specific (noisy) compiler warnings in the HOPS3 C code. |
+| `HOPS3_USE_CXX` | `ON` / **`OFF`** | (Advanced) Build the HOPS3 libraries with the C++ compiler; disables `HOPS3_PYTHON_EXTRAS`. |
+
+### Documentation
+
+| Option | Values (default) | Description |
+|---|---|---|
+| `HOPS_BUILD_DOCS` | `ON` / **`OFF`** | Build the doxygen/sphinx reference documentation (`make reference`). |
+| `HOPS_DEPLOY_DOCS` | `ON` / **`OFF`** | Configure the documentation for deployment of the HTML pages to GitHub. |
+
+### Reproducible / relocatable builds
+
+| Option | Values (default) | Description |
+|---|---|---|
+| `HOPS_REPRODUCIBLE_PATHS` | **`ON`** / `OFF` | Strip absolute build/source paths from compiled binaries for reproducible builds. |
+| `HOPS_REPRODUCIBLE_RPATH` | **`ON`** / `OFF` | Use `$ORIGIN`-relative install RPATHs so the install tree is relocatable. |
+
+### Testing / developer diagnostics
+
+These are mainly of interest to developers; defaults are fine for ordinary users.
+
+| Option | Values (default) | Description |
+|---|---|---|
+| `HOPS_ENABLE_TEST` | **`ON`** / `OFF` | Build the developer test suite (`make test`) and the `bin/test/*` binaries. |
+| `HOPS_ENABLE_UNIT_TESTS` | `ON` / **`OFF`** | Build the additional developer unit tests. |
+| `HOPS_ENABLE_COVERAGE` | `ON` / **`OFF`** | Enable gcov/lcov coverage instrumentation (for `make coverage`). |
+| `HOPS_ENABLE_PROFILER` | `ON` / **`OFF`** | Enable the built-in HOPS4 profiler tool. |
+| `HOPS_ENABLE_SNAPSHOTS` | `ON` / **`OFF`** | Enable object dumps to snapshot files for debugging/inspection (Caution! High disk usage). |
+| `HOPS_ENABLE_STEPWISE_CHECK` | `ON` / **`OFF`** | Check the return value of every operator init/execute step and throw on error. |
+| `HOPS_ENABLE_DEBUG_MSG` | **`ON`** / `OFF` | Enable emission of debug-level log messages. |
+| `HOPS_ENABLE_EXTRA_VERBOSE_MSG` | `ON` / **`OFF`** | Add `file:line` origin information to all log messages. |
+| `HOPS_ENABLE_COLOR_MSG` | **`ON`** / `OFF` | Colorize log messages on the terminal. |
+| `HOPS_ENABLE_DEV_TODO` | `ON` / **`OFF`** | Emit developer to-do / fix-me messages at compile time. |
+| `HOPS_OPENCL_DEBUG` | `ON` / **`OFF`** | (Only when `HOPS_USE_OPENCL=ON`) verbose OpenCL debugging mode. |
+| `HOPS_ENFORCE_CLFINISH` | **`ON`** / `OFF` | (Only when `HOPS_USE_OPENCL=ON`) force OpenCL kernels/transfers to run sequentially (for debugging). |
+| `EXTRA_WARNINGS` | `ON` / **`OFF`** | Turn on `-Wall -Wextra` compiler warnings. |
