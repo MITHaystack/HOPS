@@ -16,7 +16,7 @@ To get the latest code from the repository, clone into the main branch with:
 
 `git clone https://github.com/MITHaystack/HOPS.git`
 
-Alternatively, tagged releases are available as .tar.gz archives from the release page [webpage](https://github.com/MITHaystack/HOPS/releases)
+Alternatively, tagged releases are available as .tar.gz archives from the [release page](https://github.com/MITHaystack/HOPS/releases)
 
 To configure the build system (accepting the default options) and compile the code using cmake, run the following:
 
