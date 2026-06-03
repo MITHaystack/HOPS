@@ -1,0 +1,43 @@
+#!/bin/sh
+# hops_pypath.sh
+#
+# Append the HOPS install's python site-packages directory to PYTHONPATH so that
+# an interactive interpreter (or ad-hoc user scripts) can `import` the HOPS python
+# modules and bindings, e.g.  python -c "import hops; import pyMHO_Containers".
+# NOTE: the *installed* HOPS command-line tools do NOT depend on this export!
+#
+# This file is configured by CMake (the @PYTHON_SITE_PREFIX@ token is the python
+# site-packages subdir, e.g. lib/python3.10/site-packages). The absolute path is
+# derived from HOPS_INSTALL at runtime so the install stays relocatable. Must be source'd
+# after hops.bash, e.g.  . "$HOPS_INSTALL/bin/hops_pypath.sh"
+
+# REMINDER: the pybind11 bindings (pyMHO_*) are ABI-locked to the python version
+# HOPS was built against. A different interpreter in the same shell will still see
+# these modules via PYTHONPATH but will fail to import the compiled bindings
+# Do not mix interpreters in a HOPS-sourced shell!
+
+if [ -z "${HOPS_INSTALL:-}" ]; then
+    echo "hops_pypath.sh: HOPS_INSTALL is not set; source hops.bash first." >&2
+    return 0 2>/dev/null || exit 0
+fi
+
+# The python site-packages subdir (relative to the install prefix), baked in at
+# configure time; combined with HOPS_INSTALL to get the absolute path.
+HOPS_PY_SITE_SUBDIR="@PYTHON_SITE_PREFIX@"
+HOPS_PY_SITE_DIR="$HOPS_INSTALL/$HOPS_PY_SITE_SUBDIR"
+
+# Strip any entry from a previously-sourced HOPS instance, then append the current
+# one. hops.bash exports OLD_HOPS_INSTALL / OLD_HOPS_SYS pointing at the prior
+# prefix (if any).
+HOPS_OLD_PREFIX="${OLD_HOPS_INSTALL:-${OLD_HOPS_SYS:-NULL}}"
+HOPS_OLD_PY_SITE_DIR="$HOPS_OLD_PREFIX/$HOPS_PY_SITE_SUBDIR"
+
+HOPS_NEW_PYTHONPATH=$(printf '%s\n' "${PYTHONPATH:-}" | sed "s|${HOPS_OLD_PY_SITE_DIR}||g")
+if [ -n "$HOPS_NEW_PYTHONPATH" ]; then
+    HOPS_NEW_PYTHONPATH="$HOPS_NEW_PYTHONPATH:$HOPS_PY_SITE_DIR"
+else
+    HOPS_NEW_PYTHONPATH="$HOPS_PY_SITE_DIR"
+fi
+export PYTHONPATH="$HOPS_NEW_PYTHONPATH"
+
+unset HOPS_PY_SITE_SUBDIR HOPS_PY_SITE_DIR HOPS_OLD_PREFIX HOPS_OLD_PY_SITE_DIR HOPS_NEW_PYTHONPATH

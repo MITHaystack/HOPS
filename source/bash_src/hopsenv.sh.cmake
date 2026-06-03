@@ -2,40 +2,25 @@
 
 #initialize some vars
 OLD_HOPS_SYS="NULL"
-OLD_HOPS_SYS_PY="NULL"
 OLD_HOPS_INSTALL="NULL"
-OLD_CMAKE_PREF="NULL"
-OLD_LD_LIBPATH="NULL"
-OLD_LD_LIB64PATH="NULL"
 OLD_PATH="NULL"
-OLD_PKG_CONFIG="NULL"
 
-if [ -n "$HOPS_SYS_PY" ]
-    then
-        export OLD_HOPS_SYS_PY="$HOPS_SYS_PY"
-fi
-
-#look for any old copies of these variables and cache them
+#look for any old copies of these variables and cache them. Note that OLD_HOPS_SYS /
+#OLD_HOPS_INSTALL are also exported for the helper scripts (hops_buildenv.sh,
+#hops_pypath.sh), which scrub the old prefix out of CMAKE_PREFIX_PATH /
+#PKG_CONFIG_PATH / PYTHONPATH respectively.
 if [ -n "$HOPS_SYS" ]
     then
         export OLD_HOPS_SYS="$HOPS_SYS"
         OLD_PATH=$OLD_HOPS_SYS/bin:$OLD_HOPS_SYS/bin/test:
-        OLD_LD_LIBPATH=$OLD_HOPS_SYS/lib:
-        OLD_LD_LIB64PATH=$OLD_HOPS_SYS/lib64:
-        OLD_CMAKE_PREF=$OLD_HOPS_SYS:
-        OLD_PKG_CONFIG=$OLD_HOPS_SYS/lib/pkgconfig:
 fi
 
 if [ -n "$HOPS_INSTALL" ]
     then
         export OLD_HOPS_INSTALL="$HOPS_INSTALL"
         OLD_PATH=$OLD_HOPS_INSTALL/bin:$OLD_HOPS_INSTALL/bin/test:
-        OLD_LD_LIBPATH=$OLD_HOPS_INSTALL/lib:
-        OLD_CMAKE_PREF=$OLD_HOPS_INSTALL:
-        OLD_PKG_CONFIG=$OLD_HOPS_INSTALL/lib/pkgconfig:
 fi
 
-#-------------------------------------------------------------------------------
 # Figure out the install prefix at runtime (rather than hard-coding it), so that
 # the installation is relocatable. Find the path of *this* script while it is
 # being sourced, then take its parent's parent: the script is installed as
@@ -52,55 +37,52 @@ else
    return 1
 fi
 
+#export the hops install/sys location (use path based on this script's location)
 HOPS_INSTALL=$(cd "$(dirname "${HOPS_SCRIPT_SOURCE}")/.." > /dev/null 2>&1 && pwd)
 export HOPS_INSTALL
-#export the hops install/sys location
-#-------------------------------------------------------------------------------
 
-if [ $# -eq 0 ]
-  then
-    HOPS_SYS=$HOPS_INSTALL
-  else
-    HOPS_SYS=$(readlink -f "$1")
-fi
+#used to select the VGOS VPAL code fringe fitter (fourfit3 or fourfit4)
+export HOPS_VPAL_FRINGE_FITTER=@HOPS_VPAL_FOURFIT@
 
-#define some useful variables
-export HOPS_SYS
-export HOPS_SYS_PY=$HOPS_INSTALL/@PYTHON_SITE_PREFIX@
+#used to specify the directory where to look for user python plugins
+export HOPS_DEFAULT_PLUGINS_DIR=$HOPS_INSTALL/plugin_scripts
+
+#needed by VEX2XML
+export HOPS_JAVACLASSPATH=$HOPS_INSTALL/lib
+
+#install info
 export HOPS_ARCH=@CMAKE_SYSTEM_PROCESSOR@
 export HOPS_VERSION=@HOPS_VERSION_NUMBER@
+
+#legacy env
 export PROGDOC=$HOPS_INSTALL/share/vhelp
 export AHELP=$HOPS_INSTALL/share/vhelp/aedit
 export DEF_CONTROL=/dev/null
-export HOPS_VPAL_FRINGE_FITTER=@HOPS_VPAL_FOURFIT@
-export HOPS_DEFAULT_PLUGINS_DIR=$HOPS_INSTALL/plugin_scripts
-
-export HOPS_JAVACLASSPATH=$HOPS_INSTALL/lib
+export HOPS_SYS="$HOPS_INSTALL" #needed by vhelps.sh
 
 #replace old (system) variable instances with new values
 NEW_PATH=$(printf '%s\n' "$PATH" | sed "s|$OLD_PATH||g")
 NEW_PATH="$HOPS_INSTALL/bin:$HOPS_INSTALL/bin/test:$NEW_PATH"
 export PATH="$NEW_PATH"
 
-NEW_LD_LIBRARY_PATH=$(printf '%s\n' "$LD_LIBRARY_PATH" | sed "s|$OLD_LD_LIBPATH||g" | sed "s|$OLD_LD_LIB64PATH||g" | sed "s|$OLD_HOPS_SYS_PY||g" )
-NEW_LD_LIBRARY_PATH="$HOPS_INSTALL/lib:$HOPS_INSTALL/lib64:$HOPS_SYS_PY:$NEW_LD_LIBRARY_PATH"
-export LD_LIBRARY_PATH="$NEW_LD_LIBRARY_PATH"
+#NOTE: (1) We deliberately do NOT set LD_LIBRARY_PATH. The installed binaries and
+#libraries (including the pybind11 modules)
+#carry $ORIGIN-relative RUNPATHs (see cmake/HopsReproducible.cmake), so the loader
+#can find the HOPS libraries relative to each binary's own location.
 
-NEW_CMAKE_PREFIX_PATH=$(printf '%s\n' "$CMAKE_PREFIX_PATH" | sed "s|$OLD_CMAKE_PREF||g")
-NEW_CMAKE_PREFIX_PATH="$HOPS_INSTALL:$NEW_CMAKE_PREFIX_PATH"
-export CMAKE_PREFIX_PATH="$NEW_CMAKE_PREFIX_PATH"
+#NOTE: (2) CMAKE_PREFIX_PATH and PKG_CONFIG_PATH are NOT set here. They are only
+#needed when *compiling/linking* downstream code against an installed HOPS, not
+#for running the installed tools. To set them up, source the build-env helper:
+#    . "$HOPS_INSTALL/bin/hops_buildenv.sh"
 
-NEW_PYTHONPATH=$(printf '%s\n' "$PYTHONPATH" | sed "s|$OLD_HOPS_SYS_PY||g")
-NEW_PYTHONPATH="$HOPS_SYS_PY:$NEW_PYTHONPATH"
-export PYTHONPATH="$NEW_PYTHONPATH"
+#NOTE: (3) To setup PYTHONPATH (append the HOPS site-packages dir), so that you may import
+# hops related python modules into your environment use the helper script:
+#     . "$HOPS_INSTALL/bin/hops_pypath.sh"
+# the installed HOPS CLI (python) tools do not depend on
+#this, they self-locate their modules, this is just for interactive use.
 
-#added so any downstream builds can locate hops3.pc/hops4.pc by name
-NEW_PKG_CONFIG_PATH=$(printf '%s\n' "$PKG_CONFIG_PATH" | sed "s|$OLD_PKG_CONFIG||g")
-NEW_PKG_CONFIG_PATH="$HOPS_INSTALL/lib/pkgconfig:$NEW_PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH="$NEW_PKG_CONFIG_PATH"
+#NOTE: (3) We also look for plugin scripts in the environmental variable: HOPS_USER_PLUGINS_DIR
 
-
-#NOTE: we will also look for plugin scripts in the environmental variable: HOPS_USER_PLUGINS_DIR
 echo "HOPS install directory set to ${HOPS_INSTALL}"
 
 #clean up temporary variables used during environment set-up

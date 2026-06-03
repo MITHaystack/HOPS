@@ -94,8 +94,8 @@ if(HOPS_REPRODUCIBLE_RPATH AND NOT APPLE)
     # This is essential for reproducibility, not just relocatability: at link
     # time CMake bakes the absolute build-tree library dirs into .dynstr and
     # sizes that section to fit. At install time it overwrites the RPATH with the
-    # (shorter) $ORIGIN install RPATH in place, but cannot shrink the section --
-    # it just zero-pads. So the *length* of the absolute build path leaks into
+    # (shorter) $ORIGIN install RPATH in place, but cannot shrink the allocated section,
+    # it just zero-pads it. So the *length* of the absolute build path leaks into
     # the installed binary's .dynstr size (and hence every following section
     # offset and the GNU build-id), making two builds in different directories
     # differ even though the final RPATH string is identical. Forcing the build
@@ -110,7 +110,10 @@ if(HOPS_REPRODUCIBLE_RPATH AND NOT APPLE)
                         "path, breaking bit-for-bit reproducibility.")
     endif()
 
-    # Reach lib/, lib/hops/, lib64/ from bin/, bin/test/, lib/, and lib/hops/.
+    # Reach lib/, lib/hops/, lib64/ from bin/, bin/test/, lib/, lib/hops/, and
+    # from the python site-packages dir (lib/pythonX.Y/site-packages, three levels
+    # deep) so the installed pybind11 modules locate the HOPS libs via RPATH
+    # without needing LD_LIBRARY_PATH.
     set(CMAKE_INSTALL_RPATH
         "$ORIGIN"
         "$ORIGIN/hops"
@@ -123,7 +126,10 @@ if(HOPS_REPRODUCIBLE_RPATH AND NOT APPLE)
         "$ORIGIN/../lib64"
         "$ORIGIN/../../lib"
         "$ORIGIN/../../lib/hops"
-        "$ORIGIN/../../lib64")
+        "$ORIGIN/../../lib64"
+        "$ORIGIN/../../../lib"
+        "$ORIGIN/../../../lib/hops"
+        "$ORIGIN/../../../lib64")
 
     message(STATUS "Reproducible install RPATH enabled (\$ORIGIN-relative).")
 

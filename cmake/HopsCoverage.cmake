@@ -84,7 +84,7 @@ if(HOPS_ENABLE_COVERAGE)
         # --extract keeps only matching files and recomputes totals, so each
         # report carries its own independent percentages.
 
-        # HOPS3 — C sources (source/c_src)
+        # HOPS3 C sources (source/c_src)
         COMMAND ${LCOV_EXECUTABLE}
             --extract "${COVERAGE_CLEAN_FILE}"
             "*/source/c_src/*"
@@ -96,7 +96,7 @@ if(HOPS_ENABLE_COVERAGE)
             --legend
             --title "HOPS3 (c_src) Coverage"
 
-        # HOPS4 — C++ sources (source/cpp_src)
+        # HOPS4 C++ sources (source/cpp_src)
         COMMAND ${LCOV_EXECUTABLE}
             --extract "${COVERAGE_CLEAN_FILE}"
             "*/source/cpp_src/*"

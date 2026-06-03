@@ -3,6 +3,17 @@
 configure_file( ${SHSOURCE}/hopsenv.sh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops.bash @ONLY)
 install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops.bash DESTINATION ${BIN_INSTALL_RELDIR} )
 
+#configure and install the PYTHONPATH helper (see hops_pypath.sh). Users should source
+#this (after hops.bash) if they wish to import the HOPS python extensions into
+#external python programs
+configure_file( ${SHSOURCE}/hops_pypath.sh.in ${CMAKE_CURRENT_BINARY_DIR}/hops_pypath.sh @ONLY)
+install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/hops_pypath.sh DESTINATION ${BIN_INSTALL_RELDIR} )
+
+#install the build-env helper (see hops_buildenv.sh). Users should source this
+#(after hops.bash) only when compiling/linking downstream code against HOPS.
+#This sets up CMAKE_PREFIX_PATH / PKG_CONFIG_PATH
+install( PROGRAMS ${SHSOURCE}/hops_buildenv.sh DESTINATION ${BIN_INSTALL_RELDIR} )
+
 #configure and install the vhelp script
 configure_file( ${SHSOURCE}/vhelp.sh.in ${CMAKE_CURRENT_BINARY_DIR}/vhelp @ONLY)
 install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/vhelp DESTINATION ${BIN_INSTALL_RELDIR} )

@@ -104,10 +104,20 @@ everything else is optional and can be toggled with a `cmake` option, as follows
 | MPI / OpenCL / CUDA | optional | `HOPS_USE_MPI` / `_OPENCL` / `_CUDA` (OFF) | distributed / experimental GPU acceleration |
 
 The **HOPS4 Python tools** (and the HOPS3 Python extras) require **numpy**, **matplotlib**, and **scipy** at runtime.
-If you enable `-DHOPS_PYPI_MANAGE_DEPS=ON`, and have python-pip installed then pip will download and install these
+If you enable `-DHOPS_PYPI_MANAGE_DEPS=ON`, and have python-pip installed ,then pip will download and install these
 dependencies *locally* into the HOPS install directory; If you prefer to manage your python dependencies separately, leave
-this option set to (`OFF`). The Python tools will still be installed, but will require these packages to
+this option set to the default (`OFF`). The Python tools will still be installed, but will require these packages to
 be present in your Python environment in order to function at runtime.
+
+> **Note: Python interpreter pinning:** the pybind11 bindings (`pyMHO_*`) are compiled against the
+> exact Python *minor* version found at configure time and are tagged accordingly (e.g.
+> `...cpython-310-...so`); they can only be imported by that same interpreter (here, Python 3.10).
+> Sourcing `hops_pypath.sh` (see [Environment setup helpers](#environment-setup-helpers)) adds the
+> HOPS modules to `PYTHONPATH`, which applies to **every** Python you
+> run in that shell. Avoid mixing interpreters in a HOPS-sourced shell, if you activate a different
+> environment (e.g. a `conda` env on a different Python version), its `python` will pick up the HOPS
+> modules from `PYTHONPATH` and may fail to import the bindings if it is a different interpreter. Either use the
+> interpreter HOPS was built against, or reconfigure/rebuild HOPS against the interpreter you intend to use.
 
 Recommended HOPS4 extras on Ubuntu/Debian:
 ```
@@ -183,6 +193,68 @@ should print out the full path to the install directory, e.g:
 
 ### Building the documentation
 HOPS supports the ability to automatically build documentation using doxygen and sphinx. To do this, ensure that `doxygen`, `sphinx`, and the python packages `breathe` and `myst_parser` are installed, and that the cmake option `HOPS_BUILD_DOCS` is set to `ON`. To build and install the auto-generated documentation run the command `make reference && make install` from the build directory. The resulting html documentation will be placed in `<hops-install>/doc/reference`. The master index file will be installed as `<hops-install>/doc/reference/index.html` and can be opened with any browser.
+
+## Environment setup helpers
+
+HOPS installs a few shell helpers in `<hops-install>/bin/` that set up environment
+variables. They are all meant to be **sourced** (not executed), and only `hops.bash` is needed for normal use of the installed tools:
+
+| Script | When to source it | What it sets |
+|---|---|---|
+| `hops.bash` | Always, to use HOPS | Adds HOPS to `PATH`; sets `HOPS_INSTALL` and the other `HOPS_*` variables |
+| `hops_pypath.sh` | Only to `import` the HOPS Python modules/bindings for your **own** interpreter (interactive use or ad-hoc scripts) | Appends the HOPS site-packages dir to `PYTHONPATH` |
+| `hops_buildenv.sh` | Only to **compile/link** your own code against an installed HOPS | `CMAKE_PREFIX_PATH` (for `find_package(Hops)`) and `PKG_CONFIG_PATH` (for `hops3.pc`/`hops4.pc`) |
+
+The two optional helpers rely on `HOPS_INSTALL` being set, so `hops.bash` must be source'd
+first. The installed HOPS command-line tools self-locate their libraries and
+Python modules, so they do **not** require `hops_pypath.sh` or `hops_buildenv.sh`.
+
+### Using the HOPS Python modules from your own interpreter
+
+In python scripts, to `import hops`, or `import pyMHO_Containers`, etc. from an interpreter that you launch
+yourself, source the PYTHONPATH helper after `hops.bash` as:
+
+```
+source <hops-install>/bin/hops.bash
+source <hops-install>/bin/hops_pypath.sh
+```
+
+Note the interpreter-pinning caveat above: the compiled bindings (`pyMHO_*`) will only
+import under the exact Python minor version that HOPS was built against, but so long as that is true, imports like:
+
+```
+python -c "import hops; import pyMHO_Containers"
+```
+should succeed.
+
+### Building/linking your own code against HOPS
+
+When you want to compile a downstream project against an installed HOPS (e.g. via
+CMake `find_package(Hops)` or `pkg-config`), source the build environment helper after
+`hops.bash`:
+
+```
+source <hops-install>/bin/hops.bash
+source <hops-install>/bin/hops_buildenv.sh
+```
+
+This adds the install prefix to `CMAKE_PREFIX_PATH` and the HOPS `lib/pkgconfig`
+directory to `PKG_CONFIG_PATH`. Then from your project's CMakeLists.txt you can then do something like:
+
+```cmake
+find_package(Hops CONFIG REQUIRED)
+target_link_libraries(my_target PRIVATE Hops::MHO_Containers Hops::MHO_Utilities)
+```
+
+Alternatively, you can always just point CMake at your local install prefix directly without sourcing
+the helper, e.g. `cmake -DCMAKE_PREFIX_PATH=<hops-install> ..`. If you prefer to use pkg-config in
+some other build system, typical library and compile flags can be extracted via:
+
+```
+pkg-config --cflags --libs hops4
+pkg-config --cflags --libs hops3
+```
+
 
 ## Getting help
 

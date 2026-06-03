@@ -61,9 +61,33 @@ if (PY_EXE)
 
     endif(HOPS3_PYTHON_EXTRAS)
 
+    #Self-locating sys.path bootstrap injected right after each tool's shebang, that way
+    #every installed CLI tool can find the HOPS python modules relative to its own
+    #location (bin/ -> ../${PYTHON_SITE_PREFIX}) without relying on a globally
+    #exported PYTHONPATH. The path is resolved at runtime from __file__, so it should
+    #stay correct if the install tree is relocated.
+    #NOTE! if the PYTHON_SITE_PREFIX location changes relative location in future HOPS this will need to be modified
+    set(HOPS_PY_PATH_BOOTSTRAP
+"import os as _hops_os, sys as _hops_sys
+_hops_sys.path.insert(0, _hops_os.path.realpath(_hops_os.path.join(_hops_os.path.dirname(_hops_os.path.abspath(__file__)), \"..\", \"${PYTHON_SITE_PREFIX}\")))
+del _hops_os, _hops_sys
+")
+
     #configure and install scripts
     foreach( BASENAME ${SOURCE_BASENAMES} )
-        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.py.in" "${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.py" @ONLY)
+        #configure_file (keeps the .py.in tracked as a reconfigure dependency),
+        #then splice in the bootstrap locator in right after the shebang line.
+        configure_file("${CMAKE_CURRENT_SOURCE_DIR}/${BASENAME}.py.in" "${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.py.in.configured" @ONLY)
+        file(READ "${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.py.in.configured" _hops_script_body)
+        string(REGEX MATCH "^[^\n]*\n" _hops_shebang "${_hops_script_body}")
+        if(_hops_shebang)
+            string(LENGTH "${_hops_shebang}" _hops_shebang_len)
+            string(SUBSTRING "${_hops_script_body}" ${_hops_shebang_len} -1 _hops_rest)
+            file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.py" "${_hops_shebang}${HOPS_PY_PATH_BOOTSTRAP}${_hops_rest}")
+        else()
+            #no shebang found (unexpected): prepend the bootstrap to be safe.
+            file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.py" "${HOPS_PY_PATH_BOOTSTRAP}${_hops_script_body}")
+        endif()
         install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/${BASENAME}.py" DESTINATION ${BIN_INSTALL_RELDIR})
     endforeach( BASENAME )
 
