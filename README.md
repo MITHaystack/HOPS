@@ -20,7 +20,8 @@ Alternatively, tagged releases are available as .tar.gz archives from the releas
 
 To configure the build system (accepting the default options) and compile the code using cmake, run the following:
 
-`cd HOPS && mkdir -p build && cd build && cmake .. && make && make install`
+`cd HOPS` \
+`mkdir -p build && cd build && cmake .. && make && make install`
 
 If you want faster compilation it is preferable to paralellize it by passing the `-j N` option to `make` (e.g. `make -j 8`).
 After the build is complete, you will need to put the hops binary installation location in your PATH by running:
