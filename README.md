@@ -43,7 +43,7 @@ your option selection, press `c` to configure again, and if no errors are detect
 exit to the command line by pressing `g`. Now that the build system has been generated, run `make && make install` to compile
 and install the software.
 
-A full description of the configurable options can be found at the end of this document.
+A full description of the [configurable options](#configurable-build-options) can be found at the end of this document.
 
 ## Dependencies/pre-requisites:
 
@@ -94,7 +94,7 @@ everything else is optional and can be toggled with a `cmake` option, as follows
 
 | Dependency | Required? | cmake option (default) | Purpose |
 |---|---|---|---|
-| C++ compiler + bundled externs | required | — | the core has no external library requirement |
+| C++ compiler + bundled externs | required | N/A | the core has no external library requirement |
 | FFTW3 | optional (recommended) | `HOPS_USE_FFTW3` (ON) | accelerated FFTs; internal fallback used if OFF |
 | Python 3 + dev headers | optional | `HOPS_USE_PYBIND11` (ON) | Python bindings and user plugins |
 | gnuplot | optional (recommended) | `HOPS_USE_MATPLOTPP` (ON) | fast C++ fringe plotting; needs a C++17 capable compiler, auto-disabled if absent |
