@@ -20,7 +20,14 @@ list(APPEND DIFXIO_DEP_SOURCE_BASENAMES
 foreach( BASENAME ${DIFXIO_DEP_SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_link_libraries( ${BASENAME} ${HOPS_DIFXAPP_LIBS} PkgConfig::DIFXIO)
-    install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME} DESTINATION ${BIN_INSTALL_RELDIR})
+    # Install as a TARGET (not a plain file via install(PROGRAMS)) so CMake
+    # rewrites the build-tree RPATH to the relocatable $ORIGIN install RPATH (see
+    # cmake/HopsReproducible.cmake) and the binary can find the HOPS libraries
+    # once it lives in <prefix>/bin. INSTALL_RPATH_USE_LINK_PATH additionally
+    # appends the external difxio library dir to the install RPATH so
+    # libdifxio.so (which lives outside the HOPS install tree) can still found.
+    set_target_properties( ${BASENAME} PROPERTIES INSTALL_RPATH_USE_LINK_PATH ON )
+    install(TARGETS ${BASENAME} RUNTIME DESTINATION ${BIN_INSTALL_RELDIR})
 endforeach( BASENAME )
 
 
