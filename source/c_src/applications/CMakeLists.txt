@@ -24,13 +24,15 @@ else()
     add_subdirectory(snratio)
     add_subdirectory(legacy/CorAsc2)
     add_subdirectory(cohfit)
-    
-    # difx2mark4 links GPL difxio; excluded from license-compat builds.
-    if(HOPS_USE_DIFXIO AND NOT HOPS_BDIST_LICENSE_COMPAT_ONLY)
+
+    # difx2mark4 is GPLv3 (links GPL difxio). Like difxinput2json it is an
+    # allowed GPL exception, so it is NOT automatically excluded in license-compat mode,
+    # but it must statically link difxio for bdist (see its CMakeLists).
+    if(HOPS_USE_DIFXIO)
         if(HOPS3_ENABLE_BUILD_D2M4)
             add_subdirectory(difx2mark4)
         endif(HOPS3_ENABLE_BUILD_D2M4)
-    endif()
+    endif(HOPS_USE_DIFXIO)
 
 endif()
 

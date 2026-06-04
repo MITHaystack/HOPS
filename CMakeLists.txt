@@ -240,7 +240,6 @@ if(HOPS_BDIST_LICENSE_COMPAT_ONLY)
     set(HOPS_USE_FFTW3          OFF CACHE BOOL "Use FFTW3 for fast fourier transforms" FORCE)
     set(HOPS3_USE_PGPLOT        OFF CACHE BOOL "Build PGPLOT-linked HOPS3 legacy plotting apps" FORCE)
     set(HOPS3_USE_GSL           OFF CACHE BOOL "Build GSL-linked HOPS3 apps" FORCE)
-    set(HOPS3_ENABLE_BUILD_D2M4 OFF CACHE BOOL "Enable build of difx2mark4." FORCE)
     #matplot++'s bundled CImg (we don't use it anyways) auto-detects optional backends, so disable these:
     set(CMAKE_DISABLE_FIND_PACKAGE_FFTW ON)
     set(CMAKE_DISABLE_FIND_PACKAGE_TIFF ON)

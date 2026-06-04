@@ -132,10 +132,13 @@ if(HOPS_USE_MATPLOTPP)
             DESTINATION "${TPL_DESTBASE}")
 endif()
 
-# difxinput2json is GPLv3 (the one intentional non-MIT exception); ship its
-# license whenever it is built.
+# difxinput2json and difx2mark4 are GPLv3 (intentional non-MIT exceptions);
+# ship each one's license whenever it is built.
 if(HOPS_USE_DIFXIO)
     hops_install_tpl(difxinput2json "${CPPSOURCE}/DiFXInterface/applications/difxinput2json/LICENSE")
+    if(HOPS3_ENABLE_BUILD_D2M4)
+        hops_install_tpl(difx2mark4 "${CSOURCE}/applications/difx2mark4/LICENSE")
+    endif()
 endif()
 
 # Java vex2xml bundles ANTLR (BSD-3) and Apache Commons CLI (Apache-2.0, incl. NOTICE)

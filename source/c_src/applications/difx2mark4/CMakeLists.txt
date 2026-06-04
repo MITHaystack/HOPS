@@ -82,15 +82,38 @@ set(INTERNAL_LIBLIST
     "dfio"
 )
 
-set(EXTERNAL_LIBLIST
-    PkgConfig::DIFXIO
-    m
-)
-
-# target_link_libraries(${EXENAME} PkgConfig::DIFXIO ${EXTERNAL_LIBLIST})
-
 add_executable (${EXENAME} ${${EXENAME}_SOURCEFILES} )
-target_link_libraries (${EXENAME}  ${EXTERNAL_LIBLIST} ${INTERNAL_LIBLIST} )
+
+# Try to STATICALLY link difxio so this binary is self-contained and
+# carries no runtime libdifxio.so dependency, (same as difxinput2json).
+# difxio's only external dependency is libm. Force the static (.a) suffix when
+# searching so we don't accidentally match the shared library, then restore it.
+set(_saved_find_suffixes ${CMAKE_FIND_LIBRARY_SUFFIXES})
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+find_library(DIFXIO_STATIC_LIB NAMES difxio HINTS ${DIFXIO_LIBDIR} ${DIFXIO_LIBRARY_DIRS})
+set(CMAKE_FIND_LIBRARY_SUFFIXES ${_saved_find_suffixes})
+
+if(DIFXIO_STATIC_LIB)
+    message(STATUS "difx2mark4: static-linking difxio from ${DIFXIO_STATIC_LIB}")
+    target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} ${DIFXIO_STATIC_LIB} m)
+    # libdifxio.a may be built without -fPIC while our toolchain defaults to PIE,
+    # so build just this target as non-PIE in order to link it
+    set_target_properties(${EXENAME} PROPERTIES POSITION_INDEPENDENT_CODE OFF)
+    target_link_options(${EXENAME} PRIVATE -no-pie)
+else()
+    # In license-compat mode do not ship a non-relocatable (shared) difxio-linked
+    # binary; error out so we don't distribute a broken bdist.
+    if(HOPS_BDIST_LICENSE_COMPAT_ONLY)
+        message(FATAL_ERROR
+            "difx2mark4: static libdifxio.a not found. "
+            "HOPS_BDIST_LICENSE_COMPAT_ONLY=ON requires a statically-linked, relocatable "
+            "difx2mark4 for redistribution. "
+            "Install a static libdifxio.a, or set -DHOPS3_ENABLE_BUILD_D2M4=OFF to omit difx2mark4.")
+    endif()
+    message(STATUS "difx2mark4: static libdifxio.a not found, linking shared difxio")
+    target_link_libraries (${EXENAME} ${INTERNAL_LIBLIST} PkgConfig::DIFXIO m)
+    set_target_properties(${EXENAME} PROPERTIES INSTALL_RPATH_USE_LINK_PATH ON)
+endif()
 
 #we do not install difx2mark4 headers
 #hops_install_headers (${${EXENAME}_HEADERFILES})

@@ -25,7 +25,7 @@ A full list follows:
 - **FFTW3** - GPL-2.0+ - excluded from MIT-license only builds (HOPS4 has a built-in FFT)
 - **PGPLOT** - non-free - excluded from MIT-license only builds
 - **GSL** - GPL-3.0+ - excluded from MIT-license only builds
-- **difxio** (DiFX) - GPL used only by `difxinput2json` but linked statically
+- **difxio** (DiFX) - GPL, used only by `difxinput2json` and `difx2mark4`, linked statically
 - **libpng / zlib / X11 / MPI** - permissive
 - **libgfortran / libgomp** - GPL + GCC Runtime Library Exception, ok
 - **gnuplot** - invoked as a subprocess, not linked, ok
@@ -34,12 +34,13 @@ A full list follows:
 ## Exceptions
 
 - **difxinput2json** - GPLv3 (isolated, statically-linked exe)
+- **difx2mark4** - GPLv3 (isolated, statically-linked exe; treated exactly like `difxinput2json`)
 - **cohfit** - not distributable in binary form (GSL + PGPLOT conflict); source only
 - **legacy PGPLOT dependent apps** (`aedit`, `search`, `fourfit3`) - not MIT-redistributable
 - **various python scripts** Various python scripts may have their own (GPL) licenses, declared in source.
 
 ## Generating a clean MIT-licensed binary distribution
 
-Configure with `-DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON`: forces off FFTW3, PGPLOT, GSL, and `difx2mark4`,
-It also blocks CImg's transitively included GPL backends. The executable `difxinput2json` (GPLv3)
-is the only non-MIT component it leaves enabled.
+Configure with `-DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON`: forces off FFTW3, PGPLOT, and GSL,
+and blocks CImg's transitively included GPL backends. The GPLv3 executables
+`difxinput2json` and `difx2mark4` are the only non-MIT components it leaves enabled (difxio).
