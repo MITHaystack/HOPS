@@ -337,8 +337,9 @@
 #cmakedefine PACKAGE_URL
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "@HOPS_SVN_REV_VALUE@"
-
+#define PACKAGE_VERSION @HOPS_SVN_REV_VALUE@
+/* introduced for syntax() only */
+#define PACKAGE_VERSION_SYNTAX "@HOPS_REVISION_VALUE@++"
 
 /* If using the C implementation of alloca, define if you know the
    direction of stack growth for your system; otherwise it will be

@@ -21,7 +21,7 @@
 #define FALSE 0
 #define TRUE  1
 
-#define copyright1 "Copyright (c) 1992-2018 by Haystack Observatory,"
+#define copyright1 "Copyright (c) 1992-2026 by Haystack Observatory,"
 #define copyright2 "Massachusetts Institute of Technology."
 #define copyright3 "This is free software; see the source Copyright file"
 #define copyright4 "for conditions.  There is NO warranty; not even for"
@@ -29,7 +29,9 @@
 
 void version(char *headurl)
     {
-    msg ("Version: hops-%s (svn rev %d)", 3, PACKAGE_VERSION, HOPS_SVN_REV);
+    msg ("Version: hops-%s (svn rev %d)", 3,
+        PACKAGE_VERSION_SYNTAX, HOPS_SVN_REV);
+    msg ("", 3);
     msg ("%s", 3, copyright1);
     msg ("%s", 3, copyright2);
     msg ("%s", 3, copyright3);
@@ -61,6 +63,7 @@ void syntax(char *headurl)
 	    snprintf (docdir, sizeof(docdir), "/usr/local/doc");
 	}
     sprintf (helpfile, "%s/%s.doc", docdir, progname);
+    msg ("Docfile is %s", 0, helpfile);
 
     if ((fp = fopen (helpfile, "r")) == NULL)
 	msg ("Syntax error.  Could not open documentation file, sorry", 3);
