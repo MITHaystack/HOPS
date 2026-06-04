@@ -251,7 +251,7 @@ def load_vexpy_library():
     """locate and load the vex parsing c-library"""
     #first try to find the library using LD_LIBRARY_PATH
     ld_lib_path = os.getenv('LD_LIBRARY_PATH')
-    possible_path_list = ld_lib_path.split(':')
+    possible_path_list = ld_lib_path.split(':') if ld_lib_path else []
     for a_path in possible_path_list:
         libpath = os.path.join(a_path, 'hops', 'libvex.so')
         altlibpath = os.path.join(a_path, 'libvex.so')
@@ -263,6 +263,17 @@ def load_vexpy_library():
             #found the library, go ahead and load it up
             vexpy = ctypes.cdll.LoadLibrary(altlibpath)
             return vexpy
+
+    #next try to find the library relative to the HOPS install prefix, which is
+    #exported as HOPS_INSTALL by hops.bash. Check the flat lib/ layout (where the
+    #library is actually installed) as well as the legacy lib/hops/ layout.
+    install_prefix = os.getenv('HOPS_INSTALL')
+    if install_prefix != None:
+        for path in (os.path.join(install_prefix, 'lib', 'libvex.so'),
+                     os.path.join(install_prefix, 'lib', 'hops', 'libvex.so')):
+            if os.path.isfile(path):
+                vexpy = ctypes.cdll.LoadLibrary(path)
+                return vexpy
 
     #next try to find the library using the environmental variable HOPS_PREFIX
     prefix = os.getenv('HOPS_PREFIX')

@@ -331,7 +331,7 @@ def afio_load():
     """ load the c-code afile parsing library """
     #first try to find the library using LD_LIBRARY_PATH
     ld_lib_path = os.getenv('LD_LIBRARY_PATH')
-    possible_path_list = ld_lib_path.split(':')
+    possible_path_list = ld_lib_path.split(':') if ld_lib_path else []
     for a_path in possible_path_list:
         libpath = os.path.join(a_path, 'hops', 'libafio.so')
         altlibpath = os.path.join(a_path, 'libafio.so')
@@ -344,7 +344,16 @@ def afio_load():
             afio = ctypes.cdll.LoadLibrary(altlibpath)
             return afio
 
-
+    #next try to find the library relative to the HOPS install prefix, which is
+    #exported as HOPS_INSTALL by hops.bash. Check the flat lib/ layout (where the
+    #library is actually installed) as well as the legacy lib/hops/ layout.
+    install_prefix = os.getenv('HOPS_INSTALL')
+    if install_prefix != None:
+        for path in (os.path.join(install_prefix, 'lib', 'libafio.so'),
+                     os.path.join(install_prefix, 'lib', 'hops', 'libafio.so')):
+            if os.path.isfile(path):
+                afio = ctypes.cdll.LoadLibrary(path)
+                return afio
 
     #next try to find the library using the environmental variable HOPS_PREFIX
     prefix = os.getenv('HOPS_PREFIX')
