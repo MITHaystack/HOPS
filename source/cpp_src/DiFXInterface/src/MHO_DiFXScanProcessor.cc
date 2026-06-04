@@ -18,6 +18,11 @@
 #include <algorithm>
 #include <cctype> //toupper
 
+//needed for the subprocess
+#include <cstdio>  //popen/pclose/fgets
+#include <cstdlib> //std::exit
+#include <stdexcept>
+
 #define EPS 1e-15
 
 //this is the nominal DiFX MJD epoch start...however, it will be off by however
@@ -36,6 +41,7 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
     fStationCodeMap = nullptr;
     fPreserveDiFXScanNames = false;
     fAttachDiFXInput = false;
+    fTryLocalDir = false;
     fNormalize = false;
     fExportAsMark4 = false;
     fFreqBands.clear();
@@ -631,14 +637,73 @@ void MHO_DiFXScanProcessor::CleanUp()
     fDiFXInputFilename = "";
 }
 
+std::string MHO_DiFXScanProcessor::LocateDiFXInput2JSON() const
+{
+    //the difxinput2json helper is installed next to the other HOPS binaries in
+    //<prefix>/bin, fall back to a bare name (PATH lookup) if
+    //the expected file is not present
+    std::string prefix = MHO_DirectoryInterface::GetHopsInstallPrefix();
+    std::string path = prefix + "/bin/difxinput2json";
+
+    struct stat attrib;
+    if(stat(path.c_str(), &attrib) == 0)
+    {
+        return path;
+    }
+
+    msg_debug("difx_interface", "difxinput2json not found at " << path << ", falling back to PATH lookup." << eom);
+    return "difxinput2json";
+}
+
 void MHO_DiFXScanProcessor::LoadInputFile()
 {
-    //convert the input to json
-    MHO_DiFXInputProcessor input_proc;
-    input_proc.LoadDiFXInputFile(fFileSet->fInputFile);
+    //Converts a DiFX .input file to JSON by running the difxinput2json helper as
+    //a subprocess and capturing its stdout, then consume the json
+    std::string converter = LocateDiFXInput2JSON();
+
+    //double-quote arguments so paths containing spaces survive the shell
+    std::string command = "\"" + converter + "\"";
+    if(fTryLocalDir)
+    {
+        command += " --localdir";
+    }
+    command += " \"" + fFileSet->fInputFile + "\"";
+
+    msg_debug("difx_interface", "converting difx input file via: " << command << eom);
+
+    FILE* pipe = popen(command.c_str(), "r");
+    if(pipe == nullptr)
+    {
+        msg_fatal("difx_interface", "failed to launch difx input converter: " << command << eom);
+        std::exit(1);
+    }
+
+    std::string json_output;
+    char buffer[4096];
+    while(fgets(buffer, sizeof(buffer), pipe) != nullptr)
+    {
+        json_output += buffer;
+    }
+
+    int rc = pclose(pipe);
+    if(rc != 0)
+    {
+        msg_fatal("difx_interface", "difxinput2json failed (exit code " << rc << ") for input file: "
+                                                                        << fFileSet->fInputFile << eom);
+        std::exit(1);
+    }
+
     fInput.clear(); //clear all pre-existing input file data in this json object
-    input_proc.ConvertToJSON(fInput);
-    // input_proc.FillFrequencyTable();
+    try
+    {
+        fInput = mho_json::parse(json_output);
+    }
+    catch(const std::exception& e)
+    {
+        msg_fatal("difx_interface", "failed to parse JSON from difxinput2json for input file: "
+                                        << fFileSet->fInputFile << ", error: " << e.what() << eom);
+        std::exit(1);
+    }
 
     //grab the date when the fInputFile was last modified as the correlation time
     struct tm* mod_time;

@@ -16,7 +16,6 @@
 #include "MHO_ClassIdentityMap.hh"
 
 #include "MHO_DiFXChannelNameConstructor.hh"
-#include "MHO_DiFXInputProcessor.hh"
 #include "MHO_DiFXOvexPatcher.hh"
 #include "MHO_DiFXPCalProcessor.hh"
 #include "MHO_DiFXScanFileSet.hh"
@@ -107,6 +106,11 @@ class MHO_DiFXScanProcessor
          */
         void SetAttachDiFXInputFalse() { fAttachDiFXInput = false; }
 
+        /**
+         * @brief Enable/disable the difxio --localdir option, forwarded to difxinput2json
+         */
+        void SetTryLocalDirectory(bool val) { fTryLocalDir = val; }
+
         void SetExportAsMark4True() { fExportAsMark4 = true; }
 
         void SetExportAsMark4False() { fExportAsMark4 = false; }
@@ -161,6 +165,8 @@ class MHO_DiFXScanProcessor
 
         bool CreateScanOutputDirectory();
         void LoadInputFile();
+        //needed to locate the difxinput2json helper (installed alongside the HOPS binaries)
+        std::string LocateDiFXInput2JSON() const;
         void CreateRootFileObject(std::string vexfile);
 
         //finalize the OVEX/root.json after visibilities have been processed: assigns
@@ -240,8 +246,9 @@ class MHO_DiFXScanProcessor
 
         bool fPreserveDiFXScanNames;
         bool fAttachDiFXInput;
+        bool fTryLocalDir; //forwarded as --localdir to the difxinput2json subprocess
 
-        //frequency band labelling/selection
+        //frequency band labeling/selection
         std::vector< std::tuple< std::string, double, double > > fFreqBands; //frequency band/group labels and ranges
         std::vector< std::string > fFreqGroups;                              //limit output to matching frequency groups
         bool fSelectByBandwidth;

@@ -169,6 +169,7 @@ class MHO_DiFXInterface
         bool fPreserveDiFXScanNames;
         bool fAttachDiFXInput;
         bool fExportAsMark4;
+        bool fTryLocalDir; //forwarded as --localdir to the difxinput2json subprocess
 
         std::vector< std::tuple< std::string, double, double > > fFreqBands; //frequency band/group labels and ranges
         std::vector< std::string > fFreqGroups;                              //limit output to matching frequency groups

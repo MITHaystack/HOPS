@@ -5,7 +5,6 @@ set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXScanFileSet.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXVisibilityRecord.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXInterface.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXInputProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXScanProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXVisibilityProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXBaselineProcessor.hh
@@ -24,7 +23,6 @@ set (DIFXINTERFACE_HEADERFILES
 set( DIFXINTERFACE_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXInterface.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXScanProcessor.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXInputProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXVisibilityProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXBaselineProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_DiFXPCalProcessor.cc
@@ -41,58 +39,14 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities MHO_Vex2JSON MHO_Containers MHO_Operators MHO_MK4Interface date-tz)
 
-# we use pkg-config to find difxio
-find_package(PkgConfig)
-pkg_search_module(DIFXIO REQUIRED difxio IMPORTED_TARGET)
-hops_external_include_directories (${DIFXIO_INCLUDE_DIRS})
-message(STATUS "found difxio version: ${DIFXIO_VERSION}")
-message(STATUS "difx include dirs: ${DIFXIO_INCLUDE_DIRS}")
-
-# Probe for the difx_options.h header...this showed up sometime around DiFX 2.7.1?
-# without difx_options.h we have to disable the --localdir option
-# for reading/converting difx input files
-include(CheckIncludeFile)
-set(CMAKE_REQUIRED_INCLUDES ${DIFXIO_INCLUDE_DIRS})
-unset(HAVE_DIFX_OPTIONS_H CACHE)
-check_include_file("difxio/difx_options.h" HAVE_DIFX_OPTIONS_H)
-unset(CMAKE_REQUIRED_INCLUDES)
-
-if(HAVE_DIFX_OPTIONS_H)
-    message(STATUS "Found difx_options.h: will enable --localdir option")
-    add_compile_definitions(HAVE_DIFX_OPTS)
-else()
-    message(STATUS "difx_options.h not found: --localdir option is unavailable")
-endif()
-
-# list(APPEND DIFXINTERFACE_LIBS ${DIFXIO_LDFLAGS})
-message(STATUS "DIFXIO LDFLAGS = ${DIFXIO_LDFLAGS}")
-message(STATUS "DIFXIO LIBS = ${DIFIO_LINK_LIBRARIES}")
-message(STATUS "DIFXIO INCDIR = ${DIFXIO_INCLUDE_DIRS}")
-message(STATUS "DIFXIO VERSION = ${DIFXIO_VERSION}")
-
-#add a flag to specify the difxio version
-set(DIFXIO_VERSION_STRING "DIFXIO_VERSION=\\\"${DIFXIO_VERSION}\\\"")
-hops_add_cxxflag(${DIFXIO_VERSION_STRING})
-
-string(REPLACE "." ";" VERSION_LIST ${DIFXIO_VERSION})
-list(GET VERSION_LIST 0 DIFXIO_VERSION_MAJOR)
-list(GET VERSION_LIST 1 DIFXIO_VERSION_MINOR)
-list(GET VERSION_LIST 2 DIFXIO_VERSION_PATCH)
-
-#add flags to specify the numerical equivalents
-hops_add_cxxflag("DIFXIO_VERSION_MAJOR=${DIFXIO_VERSION_MAJOR}")
-hops_add_cxxflag("DIFXIO_VERSION_MINOR=${DIFXIO_VERSION_MINOR}")
-hops_add_cxxflag("DIFXIO_VERSION_PATCH=${DIFXIO_VERSION_PATCH}")
+# NOTE: this library no longer links difxio. The difxio-dependent .input parser
+# lives in the GPL-licensed difxinput2json executable (applications/difxinput2json);
+# this MIT-licensed code consumes the JSON that program emits instead. As a
+# result this library (and difx2hops) are fully relocatable and carry no GPL
+# dependency.
 
 add_library (MHO_DiFXInterface SHARED ${DIFXINTERFACE_SOURCEFILES})
-target_link_libraries(MHO_DiFXInterface ${DIFXINTERFACE_LIBS} PkgConfig::DIFXIO)
-
-# Enabling INSTALL_RPATH_USE_LINK_PATH on just this target appends the external
-# difxio dir to the standard $ORIGIN install RPATH (build-tree/project dirs are
-# NOT appended), so both the HOPS libs and libdifxio.so resolve at runtime.
-# NOTE: this bakes difxio's absolute path into the RPATH, so these two targets
-# (the library and difx2hops) are not relocatable w.r.t. difxio.
-set_target_properties(MHO_DiFXInterface PROPERTIES INSTALL_RPATH_USE_LINK_PATH ON)
+target_link_libraries(MHO_DiFXInterface ${DIFXINTERFACE_LIBS})
 
 hops_install_headers (${DIFXINTERFACE_HEADERFILES})
 install(TARGETS MHO_DiFXInterface DESTINATION ${LIB_INSTALL_RELDIR})

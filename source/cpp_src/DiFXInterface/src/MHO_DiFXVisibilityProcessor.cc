@@ -1,9 +1,11 @@
 #include "MHO_DiFXVisibilityProcessor.hh"
 
-#include "difxio/parsevis.h"
-
 namespace hops
 {
+
+//DiFX visibility record sync words, see difxio/parsevis.h.
+static const int32_t VISRECORD_SYNC_WORD_DIFX1 = (('B' << 24) + ('A' << 16) + ('S' << 8) + 'E');
+static const int32_t VISRECORD_SYNC_WORD_DIFX2 = (int32_t)0xFF00FF00;
 
 MHO_DiFXVisibilityProcessor::MHO_DiFXVisibilityProcessor()
 {

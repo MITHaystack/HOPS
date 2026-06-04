@@ -3,13 +3,14 @@
 #include "MHO_DiFXTimeUtilities.hh"
 #include "MHO_Message.hh"
 
-#include "difxio/difx_input.h" //MAX_MODEL_ORDER
-
 #include <cmath>
 #include <vector>
 
 namespace hops
 {
+
+//constant MAX_MODEL_ORDER, see difxio/difx_input.h
+static const int HOPS_MAX_MODEL_ORDER = 5;
 
 void MHO_DiFXStationCoordBuilder::Extract(std::map< std::string, station_coord_type* >& out)
 {
@@ -124,7 +125,7 @@ void MHO_DiFXStationCoordBuilder::ApplyDelayClockCorrection(const mho_json& ant,
                                                             station_coord_type* st_coord)
 {
     //see difx2mark4 createType3s.c line 269
-    double clock[MAX_MODEL_ORDER + 1];
+    double clock[HOPS_MAX_MODEL_ORDER + 1];
     //units of difx are usec, ff uses sec; shift clock polynomial to start of model interval
     double clockrefmjd = ant["clockrefmjd"];
     double modelrefmjd = ant_poly[0]["mjd"];
@@ -138,7 +139,7 @@ void MHO_DiFXStationCoordBuilder::ApplyDelayClockCorrection(const mho_json& ant,
         int nclock = GetDifxAntennaShiftedClock(ant, dt, 6, clock);
 
         //difx delay doesn't have clock added in, so we do it here
-        for(int p = 0; p < MAX_MODEL_ORDER + 1; p++)
+        for(int p = 0; p < HOPS_MAX_MODEL_ORDER + 1; p++)
         {
             if(p < nclock)
             {
@@ -163,8 +164,8 @@ int MHO_DiFXStationCoordBuilder::GetDifxAntennaShiftedClock(const mho_json& da, 
         return -2;
     }
 
-    double a[MAX_MODEL_ORDER + 1];
-    for(int i = 0; i < MAX_MODEL_ORDER + 1; ++i)
+    double a[HOPS_MAX_MODEL_ORDER + 1];
+    for(int i = 0; i < HOPS_MAX_MODEL_ORDER + 1; ++i)
     {
         a[i] = 0.0;
         if(i <= clockorder)

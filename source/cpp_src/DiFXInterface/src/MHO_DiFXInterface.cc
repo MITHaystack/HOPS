@@ -1,13 +1,5 @@
 #include "MHO_DiFXInterface.hh"
 
-//NOTE: difx_options.h only showed up in DiFX v2.8.1
-//it is not available for older versions, so the '--localdir'
-//will not be enabled for these older versions
-
-#ifdef HAVE_DIFX_OPTS
-    #include "difxio/difx_options.h"
-#endif
-
 namespace hops
 {
 
@@ -21,6 +13,7 @@ MHO_DiFXInterface::MHO_DiFXInterface(): fInputDirectory(""), fOutputDirectory(""
     fSelectByBandwidth = false;
     fAttachDiFXInput = false;
     fExportAsMark4 = false;
+    fTryLocalDir = false;
 };
 
 MHO_DiFXInterface::~MHO_DiFXInterface(){};
@@ -342,6 +335,7 @@ void MHO_DiFXInterface::ProcessScans()
                   "processing scan: " << fScanFileSetList[i].fScanName << " and assigning root code: " << scan_codes[i] << eom);
         fScanProcessor.SetExperimentNumber(fExperNum);
         fScanProcessor.SetRootCode(scan_codes[i]);
+        fScanProcessor.SetTryLocalDirectory(fTryLocalDir);
         fScanProcessor.SetNormalizeFalse();
         if(fNormalize)
         {
@@ -410,12 +404,7 @@ bool MHO_DiFXInterface::IsSingleScan(const std::string& input_dir) const
 
 void MHO_DiFXInterface::SetTryLocalDirectoryTrue()
 {
-#ifdef HAVE_DIFX_OPTS
-    int true_val = 1;
-    difxioSetOption(DIFXIO_OPT_LOCALDIR, &true_val);
-#else
-    msg_error("difx_interface", "the linked version of difxio does not provide difxioSetOption, --localdir is disabled" << eom);
-#endif
+    fTryLocalDir = true;
 }
 
 } // namespace hops

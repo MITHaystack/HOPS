@@ -99,7 +99,7 @@ everything else is optional and can be toggled with a `cmake` option, as follows
 | Python 3 + dev headers | optional | `HOPS_USE_PYBIND11` (ON) | Python bindings and user plugins |
 | gnuplot | optional (recommended) | `HOPS_USE_MATPLOTPP` (ON) | fast C++ fringe plotting; needs a C++17 capable compiler, auto-disabled if absent |
 | OpenMP | optional | `HOPS_USE_OPENMP` (ON) | shared-memory parallelism; auto-disabled if absent |
-| difxio | optional | `HOPS_USE_DIFXIO` (OFF) | read/import DiFX correlator output (`difx2hops`) |
+| difxio | optional | `HOPS_USE_DIFXIO` (OFF) | read/import DiFX correlator output (`difxinput2json`, `difx2hops`) |
 | HDF5 | optional | `HOPS_USE_HDF5` (OFF) | HDF5 export |
 | MPI / OpenCL / CUDA | optional | `HOPS_USE_MPI` / `_OPENCL` / `_CUDA` (OFF) | distributed / experimental GPU acceleration |
 

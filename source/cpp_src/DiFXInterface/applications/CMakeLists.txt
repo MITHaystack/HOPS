@@ -8,28 +8,20 @@ set(SOURCE_BASENAMES
     #TestVexStripper
 )
 
-find_package(PkgConfig) # we use pkg-config to find difxio
-pkg_search_module(DIFXIO REQUIRED difxio)
-
-hops_external_include_directories (${DIFXIO_INCLUDE_DIRS})
-
-list(APPEND DIFXIO_DEP_SOURCE_BASENAMES
-    difx2hops
-)
-
-foreach( BASENAME ${DIFXIO_DEP_SOURCE_BASENAMES} )
+# NOTE: difx2hops does not link against difxio. It gets the DiFX .input data as JSON
+# by invoking the difxinput2json helper as a subprocess at runtime
+foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
-    target_link_libraries( ${BASENAME} ${HOPS_DIFXAPP_LIBS} PkgConfig::DIFXIO)
+    target_link_libraries( ${BASENAME} ${HOPS_DIFXAPP_LIBS} )
     # Install as a TARGET (not a plain file via install(PROGRAMS)) so CMake
     # rewrites the build-tree RPATH to the relocatable $ORIGIN install RPATH (see
     # cmake/HopsReproducible.cmake) and the binary can find the HOPS libraries
-    # once it lives in <prefix>/bin. INSTALL_RPATH_USE_LINK_PATH additionally
-    # appends the external difxio library dir to the install RPATH so
-    # libdifxio.so (which lives outside the HOPS install tree) can still found.
-    set_target_properties( ${BASENAME} PROPERTIES INSTALL_RPATH_USE_LINK_PATH ON )
+    # once it lives in <prefix>/bin.
     install(TARGETS ${BASENAME} RUNTIME DESTINATION ${BIN_INSTALL_RELDIR})
 endforeach( BASENAME )
 
+#the statically linked difx .input file -> JSON converter (GPL-licensed)
+add_subdirectory(difxinput2json)
 
 if(HOPS_ENABLE_TEST)
     add_subdirectory(test)
