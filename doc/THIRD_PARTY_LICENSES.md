@@ -1,8 +1,10 @@
 # Third-Party Licenses
-HOPS is MIT-licensed (see `LICENSE.md`). At install time the license text of
-every redistributed sub-component/dependency is collected under
+HOPS is MIT-licensed (see `LICENSE.md`).
+However, it depends on several other packages with varying license conditions.
+Below is a summary of the various packages and their conditions.
+On installation the licenses of every redistributed sub-component/dependency will be collected under:
+
 `<install-prefix>/doc/third_party_licenses/<library>/`
-and also dumped into the CPack TGZ bundle.
 
 A full list follows:
 
