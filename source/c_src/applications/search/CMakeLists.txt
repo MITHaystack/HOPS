@@ -1,9 +1,15 @@
+#gate behind HOPS3_USE_PGPLOT
+if(NOT HOPS3_USE_PGPLOT)
+    message(STATUS "HOPS3_USE_PGPLOT=OFF: skipping the executable: search")
+    return()
+endif()
+
 find_package (PGPLOT)
 find_package (X11)
 find_package (GFORTRAN)
 
 if( PGPLOT_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
-    
+
 #declare exe name ############################################################
 set(EXENAME "search")
 set(EXENAME2 "soirch")
@@ -108,15 +114,15 @@ hops_install_executables(${EXENAME})
 hops_install_executables(${EXENAME2})
 
 else()
-    
+
     if( NOT PGPLOT_FOUND )
         message(WARNING "PGPLOT library was not found, will not build and install search.")
     endif()
-    
+
     if( NOT X11_FOUND )
             message(WARNING "X11 library was not found, will not build and install search.")
     endif()
-    
+
     if( NOT GFORTRAN_FOUND )
             message(WARNING "gfortran compiler/library was not found, will not build and install search.")
     endif()

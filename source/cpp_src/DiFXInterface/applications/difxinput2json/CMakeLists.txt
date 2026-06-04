@@ -56,6 +56,15 @@ if(DIFXIO_STATIC_LIB)
     target_link_options(difxinput2json PRIVATE -no-pie)
     install(TARGETS difxinput2json RUNTIME DESTINATION ${BIN_INSTALL_RELDIR})
 else()
+    # in license-compat mode do not ship a non-relocatable (shared) difxio-linked difxinput2json
+    # error out here so we don't distribute a broken bdist
+    if(HOPS_BDIST_LICENSE_COMPAT_ONLY)
+        message(FATAL_ERROR
+            "difxinput2json: static libdifxio.a not found. "
+            "HOPS_BDIST_LICENSE_COMPAT_ONLY=ON requires a statically-linked, relocatable "
+            "difxinput2json for redistribution."
+            "Install a static libdifxio.a, or set -DHOPS_USE_DIFXIO=OFF to omit difxinput2json.")
+    endif()
     # Fallback: no static archive available, link the shared difxio. In this case
     # we need INSTALL_RPATH_USE_LINK_PATH so libdifxio.so resolves at runtime, but will not be relocatable.
     # DEV NOTE: Do not generate binaries for distribution in this case!

@@ -217,6 +217,36 @@ if(HOPS3_USE_CXX)
     set(HOPS3_PYTHON_EXTRAS OFF CACHE BOOL "(Disabled when HOPS3_USE_CXX=ON)" FORCE )
 endif()
 
+# toggles for HOPS3 only third-party libraries. The HOPS4 (C++) code does not use PGPLOT or GSL.
+# Note that some library combinations in HOPS3 cannot be distributed as binaries (e.g. PGPLOT+GSL)
+option(HOPS3_USE_PGPLOT "Build PGPLOT-linked HOPS3 legacy plotting apps (aedit/search/fourfit3/cohfit)" ON)
+option(HOPS3_USE_GSL "Build GSL-linked HOPS3 apps (cohfit)" ON)
+
+
+##########################################################################################################
+#master switch to disable all MIT license incompatible linking
+#DEV NOTE: This flag must be switched to ON when building/releasing binary distributions!
+option(HOPS_BDIST_LICENSE_COMPAT_ONLY "Restrict the build to redistributable components." OFF)
+
+#license-compatibility mode (must run before FFTW discovery!)
+#and before the extern/ subdirectory is added (since itneeds to cover matplot++'s bundled CImg)
+if(HOPS_BDIST_LICENSE_COMPAT_ONLY)
+    message(STATUS "=====================================================================")
+    message(STATUS "HOPS_BDIST_LICENSE_COMPAT_ONLY=ON: restricts build to MIT-redistributable components.")
+    message(STATUS "  Forcing OFF:" )
+    message(STATUS "  HOPS_USE_FFTW3 (GPL), HOPS3_USE_PGPLOT (non-free),")
+    message(STATUS "  HOPS3_USE_GSL (GPL), HOPS3_ENABLE_BUILD_D2M4 (GPL difx2mark4).")
+    message(STATUS "=====================================================================")
+    set(HOPS_USE_FFTW3          OFF CACHE BOOL "Use FFTW3 for fast fourier transforms" FORCE)
+    set(HOPS3_USE_PGPLOT        OFF CACHE BOOL "Build PGPLOT-linked HOPS3 legacy plotting apps" FORCE)
+    set(HOPS3_USE_GSL           OFF CACHE BOOL "Build GSL-linked HOPS3 apps" FORCE)
+    set(HOPS3_ENABLE_BUILD_D2M4 OFF CACHE BOOL "Enable build of difx2mark4." FORCE)
+    #matplot++'s bundled CImg (we don't use it anyways) auto-detects optional backends, so disable these:
+    set(CMAKE_DISABLE_FIND_PACKAGE_FFTW ON)
+    set(CMAKE_DISABLE_FIND_PACKAGE_TIFF ON)
+    set(CMAKE_DISABLE_FIND_PACKAGE_JPEG ON)
+endif()
+
 if(HOPS_USE_FFTW3)
     find_package(FFTW REQUIRED)
     if(FFTW_FOUND)
@@ -228,7 +258,7 @@ if(HOPS_USE_FFTW3)
     endif(FFTW_FOUND)
 endif (HOPS_USE_FFTW3)
 
-#link against difxio, and build difx2hops
+#link against difxio, and build difxinput2json / difx2hops
 if(HOPS_USE_DIFXIO)
     find_package(PkgConfig) # we use pkg-config to find difxio
     pkg_search_module(DIFXIO REQUIRED difxio)
@@ -272,12 +302,12 @@ if(HOPS_USE_MATPLOTPP)
     endif()
 endif()
 
-#explicity set the command to for vpal library fringe fitter via env var
-if(HOPS_IS_HOPS4)
-    set(HOPS_VPAL_FOURFIT "fourfit4")
+#explicitly set the command to for vpal library fringe fitter via env var
+if(HOPS_IS_HOPS4 OR ( NOT HOPS3_USE_PGPLOT OR NOT HOPS_USE_FFTW3)  )
+    set(HOPS_VPAL_FOURFIT "fourfit4") #either HOPS3 is unavailable or we chose fourfit4
 else()
     set(HOPS_VPAL_FOURFIT "fourfit")
-endif(HOPS_IS_HOPS4)
+endif()
 
 ################################################################################
 #stuff for controlling testing/test-data location

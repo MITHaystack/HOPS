@@ -1,3 +1,9 @@
+#gate cohfit behind GSL/PGPLOT usage flags
+if(NOT HOPS3_USE_GSL OR NOT HOPS3_USE_PGPLOT)
+    message(STATUS "HOPS3_USE_GSL/HOPS3_USE_PGPLOT disabled: skipping the executable: cohfit")
+    return()
+endif()
+
 find_package(GSL)
 find_package(Gnuplot)
 find_package(ImageMagick COMPONENTS montage)
@@ -10,7 +16,6 @@ find_package(GFORTRAN)
 find_file(GSL_MULTIFIT_NLINEAR_H gsl_multifit_nlinear.h HINTS /usr/include/gsl)
 find_file(GSL_MULTIFIT_NLIN_H gsl_multifit_nlin.h HINTS /usr/include/gsl)
 # could test for gsl_bspline_eval (through GSL 2.7) or gsl_bspline_calc (starting 2.8)
-
 
 if(NOT GSL_FOUND)
     message(STATUS "GSL not found, disabling cohfit")

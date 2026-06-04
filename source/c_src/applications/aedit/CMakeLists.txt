@@ -1,3 +1,9 @@
+#gate behind HOPS3_USE_PGPLOT
+if(NOT HOPS3_USE_PGPLOT)
+    message(STATUS "HOPS3_USE_PGPLOT=OFF: skipping the executable: aedit")
+    return()
+endif()
+
 # pre-requisites ###############################################################
 find_package (PGPLOT)
 find_package (FFTW)
@@ -98,19 +104,19 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
 
 
 else()
-    
+
     if( NOT PGPLOT_FOUND )
         message(WARNING "PGPLOT library was not found, will not build and install aedit.")
     endif()
-    
+
     if( NOT FFTW_FOUND )
             message(WARNING "FFTW3 library was not found, will not build and install aedit.")
     endif()
-    
+
     if( NOT X11_FOUND )
             message(WARNING "X11 library was not found, will not build and install aedit.")
     endif()
-    
+
     if( NOT GFORTRAN_FOUND )
             message(WARNING "gfortran compiler/library was not found, will not build and install aedit.")
     endif()

@@ -1,3 +1,9 @@
+#disable if pgplot use is disabled (whether found or not)
+if(NOT HOPS3_USE_PGPLOT)
+    message(STATUS "HOPS3_USE_PGPLOT=OFF: skipping the executable: fourfit3")
+    return()
+endif()
+
 # pre-requisites ###############################################################
 find_package (PGPLOT)
 find_package (FFTW)
@@ -132,21 +138,21 @@ if( PGPLOT_FOUND AND FFTW_FOUND AND X11_FOUND AND GFORTRAN_FOUND )
     endif()
 
 else()
-    
+
     if( NOT PGPLOT_FOUND )
         message(WARNING "PGPLOT library was not found, will not build and install fourfit3.")
     endif()
-    
+
     if( NOT FFTW_FOUND )
             message(WARNING "FFTW3 library was not found, will not build and install fourfit3.")
     endif()
-    
+
     if( NOT X11_FOUND )
             message(WARNING "X11 library was not found, will not build and install fourfit3.")
     endif()
-    
+
     if( NOT GFORTRAN_FOUND )
             message(WARNING "gfortran compiler/library was not found, will not build and install fourfit3.")
     endif()
-    
+
 endif()

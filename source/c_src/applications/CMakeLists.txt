@@ -25,11 +25,12 @@ else()
     add_subdirectory(legacy/CorAsc2)
     add_subdirectory(cohfit)
     
-    if(HOPS_USE_DIFXIO)
+    # difx2mark4 links GPL difxio; excluded from license-compat builds.
+    if(HOPS_USE_DIFXIO AND NOT HOPS_BDIST_LICENSE_COMPAT_ONLY)
         if(HOPS3_ENABLE_BUILD_D2M4)
             add_subdirectory(difx2mark4)
         endif(HOPS3_ENABLE_BUILD_D2M4)
-    endif(HOPS_USE_DIFXIO)
+    endif()
 
 endif()
 
