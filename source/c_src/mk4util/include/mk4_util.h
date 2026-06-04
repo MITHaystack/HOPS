@@ -26,6 +26,7 @@ extern void   datec_to_datef (struct datec *, struct datef *);
 extern void   datef_to_datec (struct datef *, struct datec *);
 extern short  day_of_datef (struct datef);
 extern void   environment (void);
+extern const char *hops_install_prefix (void);
 //
 // this was moved to fileset.h
 // should have been called get_fileset as it lives in fileset.c

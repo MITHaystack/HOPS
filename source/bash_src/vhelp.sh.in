@@ -7,62 +7,88 @@
 # found in $PROGDOC or, by default, in /usr/local/doc
 #
 # Written by CJL, April 1994
+# Modified to in-line the awk helper scripts (vhelp1.awk and vhelp2.awk)
+# and use relative path to locate the installed .doc files - JPB Jun 2026
 #################################################################
+# Pick a pager (POSIX-clean; works under dash/bash):
+# default to plain cat, fall back to more if less
+# is unavailable.
 cat=cat
-[ -x `type -p less` ] || cat=more
-					# Make sure we have proper setup
-
-if [ -z "$HOPS_SYS" ] ; then
-    echo "Your environment was not set up--source hops.bash."
-    exit 1
+command -v less >/dev/null 2>&1 || cat=more
+# Locate the documentation directory. We will follow an
+# explicit $PROGDOC; otherwise self-locate
+# <prefix>/share/vhelp relative to this script
+# (installed as <prefix>/bin/vhelp), so no
+# environment set-up (sourcing hops.bash) is required.
+if [ -z "$PROGDOC" ] ; then
+	self="$0"
+	case "$self" in
+		*/*) ;;				# already a path
+		*) self=$(command -v -- "$self") ;;	# resolve via PATH
+	esac
+	bindir=$(cd "$(dirname "$self")" && pwd)
+	PROGDOC="$bindir/../share/vhelp"
 fi
-					# Cancel unnecessary aborts
-shopt -s failglob
-					# Get to correct directory
-[ -z "$PROGDOC" ] && export PROGDOC=/usr/local/doc
-[ -d "$PROGDOC" ] && cd $PROGDOC || {
-    echo "Cannot find any documentation--neither of"
-    echo "PROGDOC or /usr/local/doc exist"
-    exit 2
+[ -d "$PROGDOC" ] && cd "$PROGDOC" || {
+	echo "Cannot find the HOPS documentation directory:"
+	echo "  $PROGDOC"
+	echo "(set \$PROGDOC to override)"
+	exit 2
 }
 					# No arguments, grep out synopses
 					# and add generic vhelp document
 if [ "$1" = "" ] ; then
-    echo ""
-    echo "vhelp:  Program       Description"
-    echo "vhelp:  -------       -----------"
-    grep SYNOPSIS *.doc |\
-    grep -v template | awk -f vhelp1.awk
-    $cat vhelp.doc
-    echo ""
+	echo ""
+	echo "vhelp:  Program	   Description"
+	echo "vhelp:  -------	   -----------"
+	grep SYNOPSIS *.doc |\
+	grep -v template | awk '{
+		split ($0, name, ".")
+		position = length (name[1]) + 16
+		print "vhelp: ", sprintf ("%-12s %s", name[1], substr ($0, position))}'
+	$cat vhelp.doc
+	echo ""
 					# Program name specified, locate it
-else 
-    progname=$1.doc
-    second=$2
-    third=$3
-    if [ ! -e $progname ] ; then
-        set -- $1*.doc no-such-file
+else
+	progname=$1.doc
+	second=$2
+	third=$3
+	if [ ! -e $progname ] ; then
+		set -- $1*.doc no-such-file
 	progname="$1"
-    fi
-    if [ $# -gt 2 ] ; then
+	fi
+	if [ $# -gt 2 ] ; then
 	echo "ambiguous argument '" $@ "'"
-    elif [ ! -e "$progname" ] ; then
+	elif [ ! -e "$progname" ] ; then
 	echo "No documentation file for " $1
 					# No 2nd arg, just more the whole file
-    elif [ -z "$second" ] ; then
+	elif [ -z "$second" ] ; then
 	echo ""
 	$cat "$progname"
 	echo ""
-    elif [ -n "$third" ] ; then
+	elif [ -n "$third" ] ; then
 	echo "vhelp has at most two arguments"
 					# Subsection requested, go get it
-    else
-        echo ""
+	else
+		echo ""
 	echo "vhelp: Subsection from file" $progname
 	echo "vhelp:"
-	awk -f vhelp2.awk -v section=$second $progname
+	awk -v section="$second" '
+		BEGIN { usection = toupper (section)
+			printit = 0
+			if (index ("SYNTAX", usection) != 0) {start="SYNTAX";stop="OPTION"}
+			if (index ("OPTION", usection) != 0) {start="OPTION";stop="ARGUMENTS"}
+			if (index ("ARGUMENTS", usection) != 0) {start="ARGUMENTS";stop="ENVIRONMENT"}
+			if (index ("ENVIRONMENT", usection) != 0) {start="ENVIRONMENT";stop="DESCRIPTION"}
+			if (index ("DESCRIPTION", usection) != 0) {start="DESCRIPTION";stop="LIBRARIES"}
+			if (index ("UPDATE", usection) != 0) {start="UPDATE";stop="The end ..."}}
+
+			{gsub ("\t", "		")}
+			{if (index ($0, start) > 0) printit=1}
+			{if (index ($0, stop) > 0) printit=0}
+			{if (printit > 0) printf ("vhelp: %s\n", $0)}' "$progname"
 	echo ""
-    fi
+	fi
 fi
 
 #

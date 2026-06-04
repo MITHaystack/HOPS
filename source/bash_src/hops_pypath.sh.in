@@ -4,11 +4,11 @@
 # Append the HOPS install's python site-packages directory to PYTHONPATH so that
 # an interactive interpreter (or ad-hoc user scripts) can `import` the HOPS python
 # modules and bindings, e.g.  python -c "import hops; import pyMHO_Containers".
-# NOTE: the *installed* HOPS command-line tools do NOT depend on this export!
+# NOTE: most *installed* HOPS command-line tools do NOT depend on this export!
 #
 # This file is configured by CMake (the @PYTHON_SITE_PREFIX@ token is the python
-# site-packages subdir, e.g. lib/python3.10/site-packages). The absolute path is
-# derived from HOPS_INSTALL at runtime so the install stays relocatable. Must be source'd
+# site-packages subdir, e.g. lib/python3.10/site-packages) under HOPS_INSTALL. The absolute path is
+# derived from HOPS_INSTALL at runtime so the installation stays relocatable. This must be source'd
 # after hops.bash, e.g.  . "$HOPS_INSTALL/bin/hops_pypath.sh"
 
 # REMINDER: the pybind11 bindings (pyMHO_*) are ABI-locked to the python version
@@ -27,9 +27,8 @@ HOPS_PY_SITE_SUBDIR="@PYTHON_SITE_PREFIX@"
 HOPS_PY_SITE_DIR="$HOPS_INSTALL/$HOPS_PY_SITE_SUBDIR"
 
 # Strip any entry from a previously-sourced HOPS instance, then append the current
-# one. hops.bash exports OLD_HOPS_INSTALL / OLD_HOPS_SYS pointing at the prior
-# prefix (if any).
-HOPS_OLD_PREFIX="${OLD_HOPS_INSTALL:-${OLD_HOPS_SYS:-NULL}}"
+# one. hops.bash exports OLD_HOPS_INSTALL pointing at the prior prefix (if any).
+HOPS_OLD_PREFIX="${OLD_HOPS_INSTALL:-NULL}"
 HOPS_OLD_PY_SITE_DIR="$HOPS_OLD_PREFIX/$HOPS_PY_SITE_SUBDIR"
 
 HOPS_NEW_PYTHONPATH=$(printf '%s\n' "${PYTHONPATH:-}" | sed "s|${HOPS_OLD_PY_SITE_DIR}||g")

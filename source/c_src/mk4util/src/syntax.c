@@ -46,10 +46,20 @@ void syntax(char *headurl)
     FILE *fp;
 					/* Start with a blank line for appearance */
     msg ("", 3);
-					/* User override of documentation location */
-    if ((evar = getenv ("PROGDOC")) == NULL) 
-	sprintf (docdir, "/usr/local/doc");
-    else sprintf (docdir, "%s", evar);
+    /* User override of documentation location; */
+    /* otherwise self-locate <prefix>/share/vhelp */
+    /* relative to the install (see */
+    /* hops_install_prefix()), with a legacy fallback */
+    if ((evar = getenv ("PROGDOC")) != NULL)
+	snprintf (docdir, sizeof(docdir), "%s", evar);
+    else
+	{
+	const char *prefix = hops_install_prefix();
+	if (prefix != NULL)
+	    snprintf (docdir, sizeof(docdir), "%s/share/vhelp", prefix);
+	else
+	    snprintf (docdir, sizeof(docdir), "/usr/local/doc");
+	}
     sprintf (helpfile, "%s/%s.doc", docdir, progname);
 
     if ((fp = fopen (helpfile, "r")) == NULL)
@@ -62,7 +72,7 @@ void syntax(char *headurl)
 	    {
 	    if (strncmp (line, "OPTION FLAGS:", 13) == 0) break;
 	    if (strncmp (line, "SYNTAX:", 7) == 0) print = TRUE;
-	    if (print) 
+	    if (print)
 		{
 					/* Strip newline */
 		len = strlen (line);

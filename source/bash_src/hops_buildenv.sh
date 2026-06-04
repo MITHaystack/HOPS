@@ -18,8 +18,8 @@ if [ -z "${HOPS_INSTALL:-}" ]; then
 fi
 
 # Strip any entries from a previously-sourced HOPS instance. hops.bash exports
-# OLD_HOPS_INSTALL / OLD_HOPS_SYS pointing at the prior prefix (if any).
-HOPS_OLD_PREFIX="${OLD_HOPS_INSTALL:-${OLD_HOPS_SYS:-NULL}}"
+# OLD_HOPS_INSTALL pointing at the prior prefix (if any).
+HOPS_OLD_PREFIX="${OLD_HOPS_INSTALL:-NULL}"
 
 # CMAKE_PREFIX_PATH: lets find_package(Hops) locate the installed config package
 HOPS_NEW_CMAKE_PREFIX_PATH=$(printf '%s\n' "${CMAKE_PREFIX_PATH:-}" | sed "s|${HOPS_OLD_PREFIX}:||g")

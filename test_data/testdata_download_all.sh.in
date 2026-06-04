@@ -4,14 +4,14 @@
 #
 # The install prefix is discovered at run time from the environment (no path is
 # baked into this script, so it stays relocatable/reproducible). hops.bash
-# exports HOPS_INSTALL (and HOPS_SYS) so expected usage is:
+# exports HOPS_INSTALL so expected usage is:
 #     source <install prefix>/bin/hops.bash
 #     testdata_download_all.sh
 #
 # An explicit prefix may also be passed as the first argument, which overrides
 # the environment.
 
-HOPS_PREFIX="${1:-${HOPS_INSTALL:-${HOPS_SYS:-}}}"
+HOPS_PREFIX="${1:-${HOPS_INSTALL:-}}"
 
 if [ -z "$HOPS_PREFIX" ]; then
     echo "ERROR: could not determine the HOPS install prefix." >&2

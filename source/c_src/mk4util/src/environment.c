@@ -17,13 +17,9 @@
 /* Added a few Mk4-specific directories 930323 CJL                      */
 /*                                                                      */
 /************************************************************************/
-#ifndef _GNU_SOURCE
-#define _GNU_SOURCE   /* for dladdr() */
-#endif
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <dlfcn.h>
 #ifdef HOPS_VEX_TEXT_SHARE_DIR
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -56,32 +52,16 @@ static char *textdef(void)
     static char *textdefault = HOPS_VEX_TEXT_SRC_DIR;
 #else /* HOPS_VEX_TEXT_SRC_DIR */
     /* Resolve <install_prefix>/share/text at runtime from the on-disk location
-       of this shared library (libmk4util.so), via dladdr(). This keeps the
-       absolute install path out of the binary (reproducible builds) and makes the
-       install relocatable. This is the C analogue of the C++ tree's
-       MHO_DirectoryInterface::GetHopsInstallPrefix(). */
+       of libmk4util.so (see hops_install_prefix()). This keeps the absolute
+       install path out of the binary (reproducible build) and makes the install
+       relocatable. */
     static char textbuf[1024];
     char *textdefault = "/correlator/prog/text"; /* legacy fallback */
-    Dl_info info;
-    if (dladdr((void *)textdef, &info) && info.dli_fname != NULL)
+    const char *prefix = hops_install_prefix();
+    if (prefix != NULL)
     {
-        char *resolved = realpath(info.dli_fname, NULL); /* <prefix>/lib/libmk4util.so */
-        if (resolved != NULL)
-        {
-            char *p = strrchr(resolved, '/'); /* strip /libmk4util.so */
-            if (p != NULL)
-            {
-                *p = '\0';
-                p = strrchr(resolved, '/');   /* strip /lib */
-                if (p != NULL)
-                {
-                    *p = '\0';                /* now <prefix> */
-                    snprintf(textbuf, sizeof(textbuf), "%s/share/text", resolved);
-                    textdefault = textbuf;
-                }
-            }
-            free(resolved);
-        }
+        snprintf(textbuf, sizeof(textbuf), "%s/share/text", prefix);
+        textdefault = textbuf;
     }
 #endif /* HOPS_VEX_TEXT_SRC_DIR */
 

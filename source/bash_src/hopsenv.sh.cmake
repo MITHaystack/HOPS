@@ -1,20 +1,13 @@
 #!/bin/sh
 
 #initialize some vars
-OLD_HOPS_SYS="NULL"
 OLD_HOPS_INSTALL="NULL"
 OLD_PATH="NULL"
 
-#look for any old copies of these variables and cache them. Note that OLD_HOPS_SYS /
-#OLD_HOPS_INSTALL are also exported for the helper scripts (hops_buildenv.sh,
+#look for any old copy of the install prefix and cache it. Note that
+#OLD_HOPS_INSTALL is also exported for the helper scripts (hops_buildenv.sh,
 #hops_pypath.sh), which scrub the old prefix out of CMAKE_PREFIX_PATH /
 #PKG_CONFIG_PATH / PYTHONPATH respectively.
-if [ -n "$HOPS_SYS" ]
-    then
-        export OLD_HOPS_SYS="$HOPS_SYS"
-        OLD_PATH=$OLD_HOPS_SYS/bin:$OLD_HOPS_SYS/bin/test:
-fi
-
 if [ -n "$HOPS_INSTALL" ]
     then
         export OLD_HOPS_INSTALL="$HOPS_INSTALL"
@@ -25,7 +18,7 @@ fi
 # the installation is relocatable. Find the path of *this* script while it is
 # being sourced, then take its parent's parent: the script is installed as
 # <prefix>/bin/hops.bash, so the install prefix is two levels up.
-# This should work on bash/zsh, but dash/sh are probably out of scope
+# This should work on bash/zsh but dash/sh are probably out of scope (for now)
 if [ -n "${BASH_SOURCE:-}" ]; then
    # shellcheck disable=SC3028 # bash sets BASH_SOURCE
    HOPS_SCRIPT_SOURCE=${BASH_SOURCE}
@@ -55,10 +48,8 @@ export HOPS_ARCH=@CMAKE_SYSTEM_PROCESSOR@
 export HOPS_VERSION=@HOPS_VERSION_NUMBER@
 
 #legacy env
-export PROGDOC=$HOPS_INSTALL/share/vhelp
-export AHELP=$HOPS_INSTALL/share/vhelp/aedit
+#NOTE: PROGDOC (HOPS3 program docs) and AHELP (aedit help) are no longer set here and are deprecated.
 export DEF_CONTROL=/dev/null
-export HOPS_SYS="$HOPS_INSTALL" #needed by vhelps.sh
 
 #replace old (system) variable instances with new values
 NEW_PATH=$(printf '%s\n' "$PATH" | sed "s|$OLD_PATH||g")
@@ -81,7 +72,9 @@ export PATH="$NEW_PATH"
 # the installed HOPS CLI (python) tools do not depend on
 #this, they self-locate their modules, this is just for interactive use.
 
-#NOTE: (3) We also look for plugin scripts in the environmental variable: HOPS_USER_PLUGINS_DIR
+#NOTE: (3) We will also look for plugin scripts in the environmental variable:
+#HOPS_USER_PLUGINS_DIR
+#but it is not set here (the user should set it independently)
 
 echo "HOPS install directory set to ${HOPS_INSTALL}"
 
