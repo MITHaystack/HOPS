@@ -85,6 +85,73 @@ hops_install_share_vhelp_aedit( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit/yscale )
 hops_install_share_vhelp_aedit( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit/zoom )
 
 
+################################################################################
+# Third-party license bundle
+#
+# Collect the license files of every third-party component we redistribute into
+# <install-prefix>/doc/third_party_licenses/<library>/. A relative DESTINATION is
+# used (resolved against CMAKE_INSTALL_PREFIX) so these files are also staged
+# into the CPack TGZ package (see the install-dir notes in the top-level
+# CMakeLists.txt). Optional components are gated by the same options that build
+# them, so a given configuration only ships licenses for what it actually
+# contains. See THIRD_PARTY_LICENSES.md for the overview.
+set(TPL_DESTBASE "${DOC_INSTALL_RELDIR}/third_party_licenses")
+
+# install one component's license file(s) under .../third_party_licenses/<name>/
+function(hops_install_tpl name)
+    install(FILES ${ARGN} DESTINATION "${TPL_DESTBASE}/${name}")
+endfunction()
+
+# top-level overview + the HOPS (MIT) license itself
+install(FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/THIRD_PARTY_LICENSES.md"
+    "${CMAKE_SOURCE_DIR}/LICENSE.md"
+    DESTINATION "${TPL_DESTBASE}")
+
+# always-bundled header-only dependencies
+hops_install_tpl(nlohmann_json "${EXTERN_HLIBS}/json/include/nlohmann/LICENSE.txt")
+hops_install_tpl(pybind11_json "${EXTERN_HLIBS}/json/include/pybind11_json/LICENSE.txt")
+hops_install_tpl(cli11         "${EXTERN_HLIBS}/cli11/LICENSE.txt")
+hops_install_tpl(date          "${EXTERN_HLIBS}/date/LICENSE.txt")
+file(GLOB _eigen_copying "${EXTERN_HLIBS}/eigen/COPYING.*")
+hops_install_tpl(eigen         ${_eigen_copying})
+
+# pybind11 (python bindings)
+if(HOPS_USE_PYBIND11)
+    hops_install_tpl(pybind11  "${EXTERN_HLIBS}/pybind11/LICENSE")
+endif()
+
+# Matplot++ and its bundled third-party code (CImg, nodesoup). The CImg and
+# nodesoup license texts are authored under doc/third_party_licenses/ because the
+# vendored copies have no standalone license file (CImg's is embedded in CImg.h;
+# nodesoup's was stripped). CImg is taken under its CeCILL-C (LGPL-like) arm.
+if(HOPS_USE_MATPLOTPP)
+    hops_install_tpl(matplotplusplus "${EXTERN_HLIBS}/matplotplusplus/LICENSE")
+    install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/third_party_licenses/cimg"
+                      "${CMAKE_CURRENT_SOURCE_DIR}/third_party_licenses/nodesoup"
+            DESTINATION "${TPL_DESTBASE}")
+endif()
+
+# difxinput2json is GPLv3 (the one intentional non-MIT exception); ship its
+# license whenever it is built.
+if(HOPS_USE_DIFXIO)
+    hops_install_tpl(difxinput2json "${CPPSOURCE}/DiFXInterface/applications/difxinput2json/LICENSE")
+endif()
+
+# Java vex2xml bundles ANTLR (BSD-3) and Apache Commons CLI (Apache-2.0, incl. NOTICE)
+if(HOPS_USE_JAVA)
+    set(_v2x "${CMAKE_SOURCE_DIR}/source/java_src/applications/vex2xml/doc")
+    hops_install_tpl(antlr
+        "${_v2x}/Antlr-LICENSE-ver3.txt"
+        "${_v2x}/Antlr-LICENSE-ver4.txt")
+    hops_install_tpl(apache_commons_cli
+        "${_v2x}/Apache-LICENSE-ver2.0.txt"
+        "${_v2x}/Apache-cli-1.4-LICENSE.txt"
+        "${_v2x}/Apache-cli-1.4-NOTICE.txt")
+endif()
+
+################################################################################
+
 option(HOPS_BUILD_DOCS "Build documentation with doxygen/sphinx" OFF)
 option(HOPS_DEPLOY_DOCS "Configure documentation to deploy html pages on github" OFF)
 

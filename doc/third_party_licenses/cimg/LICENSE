@@ -1,0 +1,26 @@
+CImg Library
+Project manager: David Tschumperlé
+https://cimg.eu/
+
+CImg is bundled inside Matplot++
+(extern/matplotplusplus/source/3rd_party/cimg/CImg.h) and is compiled into
+libmatplot.
+
+CImg is dual-licensed: the recipient may choose EITHER
+
+  * the CeCILL-C license (a weak, file-level copyleft, close to the GNU LGPL), OR
+  * the CeCILL v2.1 license (a strong copyleft, compatible with the GNU GPL).
+
+For the HOPS distribution we elect the **CeCILL-C** license (the LGPL-like
+arm), under which CImg may be incorporated as a component into a larger work
+distributed under other terms here, the MIT-licensed HOPS. We do NOT elect the
+CeCILL / CeCILL v2.1 arm.
+
+The full text of the CeCILL-C Free Software License Agreement, version 1, is
+provided alongside this file as Licence_CeCILL-C_V1-en.txt, and is also
+published at:
+
+    https://cecill.info/licences/Licence_CeCILL-C_V1-en.txt
+
+The governing license notice as distributed by the CImg authors is retained
+verbatim in the bundled CImg.h source file.
