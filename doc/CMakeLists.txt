@@ -1,10 +1,11 @@
 
-#install the fourfit.doc file so syntax error doesn't cause it to crash
+#install the fourfit.doc files so syntax error doesn't cause it to crash
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/adump.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/aedit.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/alist.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/average.doc )
-# HOPS3: bispec calamp cofit coterp fearfit deleted
+# HOPS3: bispec calamp cofit coterp fearfit have been deleted
+hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/cohfit.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/ff_control.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/ff_output.doc )
 hops_install_share_vhelp( ${CMAKE_CURRENT_SOURCE_DIR}/vhelp/ff_search.doc )
@@ -104,11 +105,11 @@ find_package(Sphinx REQUIRED)
         set(MIT_BASE_URL "https://github.mit.edu/pages/barrettj/hops-git")
         set(GITHUB_BASE_URL "https://mithaystack.github.io/HOPS")
 
-        # we use REF_BUILD_DIR to direct sphinx-doxylink to the local file system, 
+        # we use REF_BUILD_DIR to direct sphinx-doxylink to the local file system,
         # MIT_BASE_URL for github.mit.edu and GITHUB_BASE_URL for github.com (deployment)
-        set(DOC_BASE_URL "${REF_BUILD_DIR}") 
+        set(DOC_BASE_URL "${REF_BUILD_DIR}")
         if(HOPS_DEPLOY_DOCS)
-            set(DOC_BASE_URL "${GITHUB_BASE_URL}") 
+            set(DOC_BASE_URL "${GITHUB_BASE_URL}")
         endif(HOPS_DEPLOY_DOCS)
 
         #first generate the doxygen C++ API reference
@@ -120,7 +121,7 @@ find_package(Sphinx REQUIRED)
             COMMENT "Generating API documentation with Doxygen for hops"
             VERBATIM
         )
-        
+
         # Copy Doxygen common.tag into Sphinx _static
         add_custom_command(
             OUTPUT ${REF_BUILD_DIR}/_static/doxygen/common.tag
@@ -129,7 +130,7 @@ find_package(Sphinx REQUIRED)
             DEPENDS doxygen_reference
             COMMENT "Copying Doxygen XML to Sphinx _static"
         )
-        
+
         add_custom_target(copy_doxygen_tag
             DEPENDS ${REF_BUILD_DIR}/_static/doxygen/common.tag
         )

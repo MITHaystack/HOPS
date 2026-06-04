@@ -72,16 +72,11 @@ std::string MHO_DirectoryInterface::GetDirectoryFullPathPreserveSymlinks(const s
 
 std::string MHO_DirectoryInterface::GetHopsInstallPrefix()
 {
-    //An explicit environment override takes precedence over self-location via dladdr.
-    //hops.bash exports HOPS_INSTALL (and HOPS_SYS) as the install prefix; following
-    //it lets the ctest target a specific install tree regardless of which
-    //shared libraries the loader happened to pick up (e.g. build-tree libraries
-    //during ctest). AGain...read at runtime, so nothing is baked into the binary.
+    //An explicit HOPS_INSTALL override takes precedence over self-location via
+    //dladdr; hops.bash exports it as the install prefix. Following it lets ctest
+    //target a specific install tree regardless of which shared libraries the
+    //loader happened to pick up (e.g. build-tree libraries during ctest).
     const char* env_prefix = getenv("HOPS_INSTALL");
-    if(env_prefix == nullptr || env_prefix[0] == '\0')
-    {
-        env_prefix = getenv("HOPS_SYS");
-    }
     if(env_prefix != nullptr && env_prefix[0] != '\0')
     {
         return std::string(env_prefix);
