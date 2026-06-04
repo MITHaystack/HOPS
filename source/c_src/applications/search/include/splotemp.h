@@ -11,35 +11,48 @@
 
 /* pdfcairo terminal setup */
 #define GNUPLOT_PDFILE "\
-set term pdfcairo size %lf,%lf font '%s,%d'\n\
-set output '%s'\n\
+# comment-out the next two lines and you can load into gnuplot and\n\
+# then also comment out both 'set output' lines around the splot cmd\n\
+trmsize=%lf; xtrmsize=trmsize*%lf; ytrmsize=trmsize*%lf\n\
+set term pdfcairo size xtrmsize,ytrmsize font '%s,%d'\n\
+set title \"Fringe: %s\\n%s\" font '%s,%d' offset 0,1\n\
 "
-#define GNUPLOT_PDFILE_BASE 200
 
 /* pre-command configuration */
 #define GNUPLOT_CONFIG "\
 #\n\
-# %s\n\
+set key off\n\
+set view map\n\
+set isosamples %d\n\
+set dgrid3d %d,%d %s %d\n\
+set contour base\n\
+set cntrparam bspline order %d\n\
+set cntrparam firstlinetype 7\n\
+set cntrparam levels incremental %lf, %lf\n\
+set pm3d at b\n\
+set xrange [0:%d]\n\
+set xlabel 'Resid.Rate (ps/s) FIXME values'\n\
+set yrange [0:%d]\n\
+set ylabel 'Resid.Delay (us) FIXME values'\n\
+set zrange [%lf:%lf]\n\
+set cblabel '%s'\n\
+set palette rgbformulae '%s'\n\
 #\n\
 "
-#define GNUPLOT_CONFIG_BASE 200
 
 /* splot command */
 #define GNUPLOT_SPLOT "\
-splot '%s'\n\
-"
-#define GNUPLOT_SPLOT_BASE 200
-
-/* so the human knows this is all there is */
-#define GNUPLOT_CODA "\
+set output '%s'\n\
+# disable drawing the lines of the surface which is flat\n\
+unset surface\n\
+set object 1 rect from graph 0,0 to graph 1,1 behind fc rgb '%s'\n\
+splot '%s' with lines\n\
 set output\n\
-#\n\
-# %s\n\
 #\n\
 # eof\n\
 #\n\
 "
-#define GNUPLOT_CODA_BASE 200
+//#define GNUPLOT_SPLOT_BASE 300
 
 #endif /* __splotemp_h__ */
 #endif /* BIGGER */

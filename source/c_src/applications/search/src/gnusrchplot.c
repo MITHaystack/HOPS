@@ -87,18 +87,71 @@ char *setup_gnu_filenames(int fno, gsplot *gspp, gpconf *gpfp)
     return(pfile);
 }
 
+/* open the data file and sort out aspect ratio */
+FILE *open_gdata_file(srchsum *sb, gpconf *gpfp, gsplot *gspp)
+{
+    int size;
+    FILE *ofp;
+
+    /* open the file */
+    ofp = fopen(gspp->pfile, "w");
+    if (!ofp) { perror("open_gdata_file:fopen"); return(NULL); }
+    fprintf(ofp, "#\n# search plot for %s\n", gspp->frname);
+    fprintf(ofp, "#'%s'\n#\n", gspp->pfile);
+
+    /* rate and delay are size multipliers on nominal size */
+    size = sb->nrate;
+    if (sb->ndelay > size) size = sb->ndelay;
+    gspp->ratesize = 1.0 * ((double)sb->nrate / (double)size);
+    gspp->delaysize = 1.0 * ((double)sb->ndelay / (double)size);
+    if (gpfp->asqr) gspp->delaysize = gspp->ratesize = 1.0;
+    fprintf(ofp, "# rate,delay size: %.3f,%.3f\n",
+        gspp->ratesize, gspp->delaysize);
+    return(ofp);
+}
+
+/* construct the plot title/label */
+void write_gplot_label(FILE *ofp, fringesum *frdt, gsplot *gspp)
+{
+    int year, day, hour, min, sec;
+    int_to_time (frdt->time_tag, &year, &day, &hour, &min, &sec);
+    snprintf(gspp->label, sizeof(gspp->label),
+        "%04d-%03d-%02d%02d%02d/%s.%c.%d.%s pol %2s",
+        1900+year, day, hour, min, sec, frdt->baseline, frdt->freq_code,
+        frdt->extent_no, frdt->root_id, frdt->polarization);
+    /* this appears as the plot overtitle */
+    fprintf(ofp, "# fringe: %s\n", gspp->label);
+}
+
+/* write number of items into the header of the file */
+void write_gplot_info(FILE *ofp, srchsum *sb, gsplot *gspp)
+{
+    fringesum *frdt = sb->datum;
+    /* this appears as the plot undertitle */
+    snprintf(gspp->srcsnr, sizeof(gspp->srcsnr),
+        "Source: %s  SNR: %.2f",
+        (gspp->source = frdt->source), (gspp->snr = frdt->snr));
+    fprintf(ofp, "# %s\n", gspp->srcsnr);
+    fprintf(ofp, "# resid rate: (ps/s) %f .. %f\n",
+        (gspp->min_rate = sb->min_rate), (gspp->max_rate = sb->max_rate));
+    fprintf(ofp, "# resid delay: (us) %f .. %f\n",
+        (gspp->min_delay = sb->min_delay), (gspp->max_delay = sb->max_delay));
+    fprintf(ofp, "# peak rate %5.2f\n", (gspp->peak_rate=frdt->delay_rate));
+    fprintf(ofp, "# peak delay %5.2f\n", (gspp->peak_delay = frdt->mbdelay));
+    fprintf(ofp, "# num rates %d\n", (gspp->numrates = sb->nrate));
+    fprintf(ofp, "# num delays %d\n", (gspp->numdelays = sb->ndelay));
+}
+
 /* follow the plot_srchdata() logic with one plot per baseline */
 void gnusrchplot(int nout, srchsum *srchp, gpconf *gpfp)
 {
-    int base, nbase = 0, fileno = gpfp->nprv, size, ii, jj;
-    int year, day, hour, min, sec;
-    double ratesize, delaysize;
-    char *pfile, *frname, label[MAX_TXT];
+    int base, nbase = 0, fileno = gpfp->nprv, ii, jj;
     FILE *ofp;
     srchsum *sb;
     fringesum *frdt;
     gsplot gsp;
 
+    memset(&gsp, 0, sizeof(gsplot));
     while (srchp[nbase].datum != NULL) nbase++;
     if (nbase != nout) {
         msg("The # baselines found != # written (%d != %d)", 3, nbase, nout);
@@ -107,44 +160,21 @@ void gnusrchplot(int nout, srchsum *srchp, gpconf *gpfp)
     for (base=0; base<nbase; base++, fileno++) {
         sb = srchp + base;
         frdt = sb->datum;
-        /* setup of gnuplot filenames */
-        if (!(pfile = setup_gnu_filenames(fileno, &gsp, gpfp))) return;
-        ofp = fopen(pfile, "w");
-        frname = fringename(frdt);
+        /* setup of gnuplot filenames and dig out fringe name */
+        if (!setup_gnu_filenames(fileno, &gsp, gpfp)) return;
+        gsp.frname = fringename(frdt);
         if ((sb->nrate == 1) || (sb->ndelay == 1)) {
-            msg("Cannot plot 1-D grid for %s", 2, frname);
+            msg("Cannot plot 1-D grid for %s", 2, gsp.frname);
             continue;
         }
-        /* Make cells square to indicate true search space represented */
-        size = sb->nrate;
-        if (sb->ndelay > size) size = sb->ndelay;
-        ratesize = 0.7 * ((double)sb->nrate / (double)size);
-        delaysize = 0.7 * ((double)sb->ndelay / (double)size);
-        /* or force it to be a square plot using 0.7 of the plot area */
-        if (gpfp->asqr) delaysize = ratesize = 0.7;
-        fprintf(ofp, "#'%s'\n", pfile);
-        fprintf(ofp, "#\n# search plot for %s\n#\n",
-            (gsp.frname = frname));
-        fprintf(ofp, "# rate,delay size: %.3f,%.3f\n", ratesize, delaysize);
-        int_to_time (frdt->time_tag, &year, &day, &hour, &min, &sec);
-        snprintf(label, MAX_TXT, "%04d-%03d-%02d%02d%02d/%s.%c.%d.%s pol %2s",
-            1900+year, day, hour, min, sec, frdt->baseline, frdt->freq_code,
-            frdt->extent_no, frdt->root_id, frdt->polarization);
-        fprintf(ofp, "# fringe: %s\n", (gsp.label = label));
-        fprintf(ofp, "# source: %s SNR: %5.2f\n",
-            (gsp.source = frdt->source), (gsp.snr = frdt->snr));
-        fprintf(ofp, "# resid rate: (ps/s) %f .. %f\n",
-            (gsp.min_rate = sb->min_rate), (gsp.max_rate = sb->max_rate));
-        fprintf(ofp, "# resid delay: (us) %f .. %f\n",
-            (gsp.min_delay = sb->min_delay), (gsp.max_delay = sb->max_delay));
-        fprintf(ofp, "# peak rate %5.2f\n", (gsp.peak_rate=frdt->delay_rate));
-        fprintf(ofp, "# peak delay %5.2f\n", (gsp.peak_delay = frdt->mbdelay));
+        /* open the data file and share some of info in header */
+        if (!(ofp = open_gdata_file(sb, gpfp, &gsp))) continue;
+        write_gplot_label(ofp, sb->datum, &gsp);
+        write_gplot_info(ofp, sb, &gsp);
         /* gnuplot help splot datafile example */
-        for (ii = 0; ii < sb->ndelay; ii++) {
-            for (jj=0; jj<sb->nrate; jj++) {
-                fprintf(ofp, "%d %d %5.2f\n", ii, jj, sb->snr[jj][ii]);
-            }
-        }
+        for (ii = 0; ii < sb->nrate;  ii++)
+            for (jj = 0; jj < sb->ndelay; jj++)
+                fprintf(ofp, "%d %d %5.2f\n", ii, jj, sb->snr[ii][jj]);
         fputs("#\n# eodata\n#\n", ofp);
         fclose(ofp);
         make_gnu_splot(&gsp);

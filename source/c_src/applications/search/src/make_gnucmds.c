@@ -8,9 +8,29 @@
 #include "search.h"
 #include "splotemp.h"
 
+/* items currently hardwired */
+void set_gsplot_defaults(gsplot *gspp)
+{
+    gspp->isosamples = 100;
+    gspp->dgrid3dalgorithm = "qnorm";
+    gspp->dgrid3dalgorder = 2;
+    gspp->bsplineorder = 6;
+    /* FIXME: need to adjust based on min/max */
+    gspp->cntr_lowest = 5.0;
+    gspp->cntr_increment = 10.0;
+    gspp->min_snr = 3.0;
+    gspp->bgfieldname = "gray20";
+    gspp->colorbar_label = "SNR: FIXME contour levels";
+    gspp->palette_rgbformulae = "23,28,3";
+}
+
 void make_gnucmds(gsplot *gspp)
 {
     FILE *gfp;
+
+    /* set hardwired parameters */
+    set_gsplot_defaults(gspp);
+
     if (!gspp->gfile || !gspp->gnpdf) {
         msg("No gnuplot command file or final PDF provided", 3);
         return;
@@ -21,13 +41,16 @@ void make_gnucmds(gsplot *gspp)
     }
     /* now create the various parts */
     fprintf(gfp, GNUPLOT_PDFILE,
-        5.0, 8.0, "Sans", 14, gspp->gnpdf);
+        7.0, gspp->ratesize, gspp->delaysize, "Sans", 14,
+        gspp->label, gspp->srcsnr, "SansBold", (int)round(14 * 1.15));
     fprintf(gfp, GNUPLOT_CONFIG,
-        "NOTHING YET");
+        gspp->isosamples, gspp->numrates, gspp->numdelays,
+        gspp->dgrid3dalgorithm, gspp->dgrid3dalgorder,
+        gspp->bsplineorder, gspp->cntr_lowest, gspp->cntr_increment,
+        gspp->numrates-1, gspp->numdelays-1, gspp->min_snr, gspp->snr,
+        gspp->colorbar_label, gspp->palette_rgbformulae);
     fprintf(gfp, GNUPLOT_SPLOT,
-        gspp->pfile);
-    fprintf(gfp, GNUPLOT_CODA,
-        "NO COMMENT");
+        gspp->gnpdf, gspp->bgfieldname, gspp->pfile);
     fclose(gfp);
 }
 #endif /* BIGGER */
