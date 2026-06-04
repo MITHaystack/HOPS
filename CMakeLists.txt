@@ -18,7 +18,7 @@ endif()
 # project version (stuck with these names due to configure.ac for now)
 set(MODULE_VERSION_MAJOR 4)
 set(MODULE_VERSION_MINOR 0)
-set(MODULE_VERSION_PATCH 0)
+set(MODULE_VERSION_PATCH 3)
 set(HOPS_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}.${MODULE_VERSION_PATCH}")
 project(Hops VERSION ${HOPS_VERSION_NUMBER})
 
