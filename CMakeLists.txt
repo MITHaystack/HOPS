@@ -356,6 +356,10 @@ endif(PY_EXE)
 include(HopsReproducible)
 
 ################################################################################
+#Restrict Eigen to its MPL-2.0 (and more-permissive) code paths only
+hops_add_cxxflag(EIGEN_MPL2_ONLY)
+
+################################################################################
 #call build in the subdirectories
 add_subdirectory(${SHSOURCE}) #shell scripts
 add_subdirectory(${CSOURCE}) #mostly hops3 source
