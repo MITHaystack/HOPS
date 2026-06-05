@@ -36,8 +36,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             build-essential cmake cmake-curses-gui python3-dev python3-pip wget jq \
-            autoconf automake libtool pkg-config
-
+            autoconf automake libtool pkg-config \
+            gnuplot
+          # gnuplot is detected at configure time (and toggles HOPS_USE_MATPLOTPP)
       # Test-only python deps. Installed into an external --target dir (not the
       # HOPS install prefix) so the packaged tarball stays "deps off"; --target
       # also sidesteps PEP-668 "externally-managed" pip on ubuntu-24.04.
