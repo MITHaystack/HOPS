@@ -67,7 +67,8 @@ add_subdirectory(date)
 
 
 
-if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
+#Note that gnuplot is a RUNTIME dependency of matplot++
+if(HOPS_USE_MATPLOTPP)
 
     set_option(FETCHCONTENT_QUIET OFF)
     set_option(FETCHCONTENT_FULLY_DISCONNECTED OFF)

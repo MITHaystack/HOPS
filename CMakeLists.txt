@@ -200,7 +200,7 @@ option(HOPS_ENABLE_UNIT_TESTS "Build developer unit tests" OFF)
 option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but highly recommended)" ON)
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
-option(HOPS_USE_MATPLOTPP "Build copy of matplot++ (requires gnuplot & C++17) for fast plotting" ON)
+option(HOPS_USE_MATPLOTPP "Build copy of matplot++ (requires C++17; gnuplot needed only at runtime) for fast plotting" ON)
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 option(HOPS_IS_HOPS4 "Install the HOPS4 version of relevant executables (symlinked to expected names, e.g. fourfit, fplot)" OFF)
 option(HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
@@ -292,8 +292,8 @@ if(HOPS_USE_MATPLOTPP)
         set(HOPS_USE_MATPLOTPP OFF CACHE BOOL "Build copy of matplot++ (requires C++17)" FORCE)
     else()
         hops_add_cxxflag(USE_MATPLOTPP)
-        # gnuplot is only needed at RUNTIME (matplot++ pipes its commands to a
-        # gnuplot subprocess); it is not required to compile or link, but let user know.
+        # gnuplot is only needed at RUNTIME for matplot++
+        # it is not required to compile or link, but let user know if it is missing
         find_package(Gnuplot)
         if(NOT Gnuplot_FOUND)
             message(STATUS "gnuplot not found; building the matplot++ plotter anyway "
