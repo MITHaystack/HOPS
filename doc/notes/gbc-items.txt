@@ -1,0 +1,18 @@
+[ 75%] Building C object source/c_src/dfio/CMakeFiles/dfio.dir/src/display_221.c.o
+/home/gbc/HOPS/hops-git/source/c_src/dfio/src/display_221.c:39:3: warning: #warning "GS_EXEC default of /usr/bin/gs used" [-Wcpp]
+   39 | # warning "GS_EXEC default of /usr/bin/gs used"
+      |   ^~~~~~~
+/home/gbc/HOPS/hops-git/source/c_src/dfio/src/display_221.c:58:3: warning: #warning "flushpage is our best hope now" [-Wcpp]
+   58 | # warning "flushpage is our best hope now"
+      |   ^~~~~~~
+
+[ 75%] Building C object source/c_src/dfio/CMakeFiles/dfio.dir/src/read_mk4corel.c.o
+/home/gbc/HOPS/hops-git/source/c_src/dfio/src/read_mk4corel.c:24:2: warning: #warning "The number of lags is restricted only by size." [-Wcpp]
+   24 | #warning "The number of lags is restricted only by size."
+      |  ^~~~~~~
+
+search:
+    set/adjust contour levels
+    auto rate/delay scaling and units
+    better color map
+    hook up with conf file
