@@ -63,17 +63,31 @@ jobs:
           export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-}"
           export PYTHONPATH="${PYTHONPATH:-}"
           export PERL5LIB="${PERL5LIB:-}"
+          # Build difxio WITHOUT gsl so the statically-linked difxinput2json /
+          # difx2mark4 stay self-contained (no runtime libgsl dependency).
+          # install-difx has no gsl switch, but difxio auto-enables gsl only when
+          # pkg-config finds it (same as the optional fftw3). So hand install-difx
+          # a pkg-config search path that mirrors the system one minus gsl.pc.
+          NOGSL_PKGDIR="$RUNNER_TEMP/pkgconfig-nogsl"
+          mkdir -p "$NOGSL_PKGDIR"
+          for d in $(pkg-config --variable pc_path pkg-config | tr ':' ' '); do
+            [ -d "$d" ] && cp -n "$d"/*.pc "$NOGSL_PKGDIR"/ 2>/dev/null || true
+          done
+          rm -f "$NOGSL_PKGDIR"/gsl.pc
           # difxio only, no Intel IPP. difxio is statically linked into the HOPS
           # tools, so only the build-time pkg-config/headers/static lib matter -
           # nothing difxio-related needs to ship in the tarball.
-          ./install-difx --noipp --doonly=difxio
-          # Source the generated DiFX environment and forward what HOPS needs at
-          # configure time to subsequent steps.
-          source "$DIFXROOT/setup.bash"
-          {
-            echo "PATH=$PATH"
-            echo "PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}"
-          } >> "$GITHUB_ENV"
+          PKG_CONFIG_LIBDIR="$NOGSL_PKGDIR" ./install-difx --noipp --doonly=difxio
+          # A --doonly=difxio build installs difxio.pc/headers/lib but does NOT
+          # generate a setup.bash (that only comes from a full DiFX install), so
+          # point pkg-config at the installed difxio.pc directly for later steps.
+          test -f "$DIFXROOT/lib/pkgconfig/difxio.pc" || { echo "difxio.pc not found under $DIFXROOT"; exit 1; }
+          # confirm gsl really was dropped (otherwise difxinput2json would carry a
+          # runtime libgsl dependency and would not be relocatable)
+          if grep -qi "gsl" "$DIFXROOT/lib/pkgconfig/difxio.pc"; then
+            echo "difxio.pc still references gsl!"; exit 1
+          fi
+          echo "PKG_CONFIG_PATH=$DIFXROOT/lib/pkgconfig:${PKG_CONFIG_PATH:-}" >> "$GITHUB_ENV"
 
       # first pass, tests-ENABLED build to gate the release
       - name: Configure (test build)
