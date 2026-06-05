@@ -43,7 +43,12 @@ for d in $(pkg-config --variable pc_path pkg-config | tr ':' ' '); do
 done
 rm -f "$NOGSL_PKGDIR"/gsl.pc
 
-PKG_CONFIG_LIBDIR="$NOGSL_PKGDIR" ./install-difx --noipp --doonly=difxio
+# install-difx has a `#!/usr/bin/env python` shebang, but some environments
+# (e.g. the manylinux container) only provide python3, not bare python.
+# Invoke it with an explicit interpreter so we don't depend on a python symlink.
+PY=python3
+command -v "$PY" >/dev/null 2>&1 || PY=python
+PKG_CONFIG_LIBDIR="$NOGSL_PKGDIR" "$PY" ./install-difx --noipp --doonly=difxio
 
 PC="$DIFXROOT/lib/pkgconfig/difxio.pc"
 [ -f "$PC" ] || { echo "ERROR: difxio.pc not found at $PC" >&2; exit 1; }
