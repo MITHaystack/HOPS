@@ -33,6 +33,15 @@ A full list follows:
 - **gnuplot** - invoked as a subprocess, not linked, ok
 - **Python: numpy / scipy / matplotlib** - BSD (pip-installed, not redistributed)
 
+## Optional Plugin (`source/cpp_src/Plugins/`) dependencies
+
+- **MatplotPlugin** (`HOPS_USE_MATPLOTPP`) - (see the Matplot++ entry above)
+- **PythonBindings** (`HOPS_USE_PYBIND11`) - (see pybind11 entry above)
+- **OpenMP** (`HOPS_USE_OPENMP`) - libgomp (GPL + GCC Runtime Library Exception)
+- **HDF5** (`HOPS_USE_HDF5`) - HDF5 license - BSD-3-style permissive, redistributable.
+- **OpenCL** (`HOPS_USE_OPENCL`) - Khronos headers/ICD loader (Apache-2.0 / MIT-style, permissive);
+- **CUDA** (`HOPS_USE_CUDA`) - NVIDIA CUDA EULA - proprietary, not MIT-redistributable;
+
 ## Exceptions
 
 - **difxinput2json** - GPLv3 (isolated, statically-linked exe)
@@ -43,6 +52,6 @@ A full list follows:
 
 ## Generating a clean MIT-licensed binary distribution
 
-Configure with `-DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON`: forces off FFTW3, PGPLOT, and GSL,
+Configure with `-DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON`: forces off FFTW3, PGPLOT, and GSL (and CUDA),
 and blocks CImg's transitively included GPL backends. The GPLv3 executables
 `difxinput2json` and `difx2mark4` are the only non-MIT components it leaves enabled (difxio).
