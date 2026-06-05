@@ -2,8 +2,6 @@
  * This file holds templates used to construct the
  * eventual gnuplot splot command; the idea is similar
  * to what is done in cohfit, but it is a simpler plot.
- * Each string defined has a BASE size which is updated
- * for the various %-items expanded.
  */
 #if BIGGER
 #ifndef __splotemp_h__
@@ -28,7 +26,11 @@ set dgrid3d %d,%d %s %d # N,M values\n\
 set contour base\n\
 set cntrparam bspline order %d\n\
 set cntrparam firstlinetype 7\n\
+if (%d == 2) {\n\
 set cntrparam levels incremental %lf, %lf\n\
+} else {\n\
+set cntrparam levels auto\n\
+}\n\
 set pm3d at b\n\
 # function for linear in t from mn to mx in nn steps\n\
 ldr(sf, t, mn,pk,mx,nn) = \\\n\
@@ -51,13 +53,14 @@ set output '%s'\n\
 # disable drawing the lines of the surface which is flat\n\
 unset surface\n\
 set object 1 rect from graph 0,0 to graph 1,1 behind fc rgb '%s'\n\
+set object 2 circle center %lf,%lf size screen %lf \\\n\
+  front fc rgb '%s' fs transparent solid %lf\n\
 splot '%s' using (f($1)):(g($2)):3 with lines\n\
 set output\n\
 #\n\
 # eof\n\
 #\n\
 "
-//#define GNUPLOT_SPLOT_BASE 300
 
 #endif /* __splotemp_h__ */
 #endif /* BIGGER */

@@ -99,6 +99,7 @@ void set_delay_unit_sf(char *unit, gsplot *gspp)
 /* items currently hardwired but in principal adjustable */
 void set_gsplot_defaults(gsplot *gspp)
 {
+    memset(gspp, 0, sizeof(gsplot));
     set_colormap_palette(gspp);
     set_basic_contour_options(gspp);
     set_rate_unit_sf("ps/s", gspp);
@@ -127,7 +128,13 @@ void show_gsplot_defaults(FILE *fpg)
 void set_contour_options(gsplot *gspp)
 {
     static char cblabel[MAX_TXT];
-    if (gspp->snr < 10.0) { /* below 10 and you are desparate */
+    if (gspp->cntr_specified > 0) {
+        if (gspp->cntr_specified == 1) {
+            msg("You must specify both cntr_lowest and cntr_increment", 3);
+            gspp->colorbar_label = "SNR: contours automatic";
+            return;
+        }                           /* otherwise leave them as they are */
+    } else if (gspp->snr < 10.0) {  /* below 10 and you are desparate */
         gspp->cntr_lowest = 3.0;
         gspp->cntr_increment = 1.0;
     } else if (gspp->snr < 50.0) {
@@ -148,7 +155,7 @@ void set_contour_options(gsplot *gspp)
     } else if (gspp->snr < 2500) {
         gspp->cntr_lowest = 250.0;
         gspp->cntr_increment = 500.0;
-    } else {            /* above 2500 and you are just messing around */
+    } else {                        /* above 2500 is a joke */
         gspp->cntr_lowest = 500.0;
         gspp->cntr_increment = 1000.0;
     }
@@ -157,20 +164,27 @@ void set_contour_options(gsplot *gspp)
     gspp->colorbar_label = cblabel;
 }
 
+/* if these were provided by the previous routine, clear them out */
+void nuke_contour_options(gsplot *gspp)
+{
+}
+
 /* report on what can be set in the gnuplot config file */
 void show_gsplot_contours(FILE *fpg)
 {
     fprintf(fpg,
         "#There are three options for the coutours that are automatically\n"
         "# set based on the SNR of the fringe found by search.  You may\n"
-        "# override the choices by setting these variables:\n"
+        "# override the choices by setting BOTH of these variables:\n"
         "cntr_lowest=<float>\n"
         "cntr_increment=<float>\n"
         "colorbar_label=<string>\n"
         "# Contours are placed at cntr_lowest + N*cntr_increment for\n"
         "# N=0,1,... such that the last contour is below the SNR found.\n"
         "# The label is 'SNR: contours from <...> by <...> steps' but\n"
-        "# you can subsitute any text you like\n"
+        "# you can subsitute any text you like.  Note that these choices\n"
+        "# will apply to ALL fringes.  So if you don't want that, leave\n"
+        "# the default options in place and edit the .gnu command file.\n"
     );
 }
 
@@ -188,7 +202,6 @@ int is_gsplot_option(char *line, int lno, int err, gpconf *gpfp)
     msg("Only scanned %d of %d on line %d for variable '%s'", 3, N,E,LN,VAR);\
     msg("'%s'", 3, LINE);\
     return(ERR); } while(0)
-
     static gsplot gsp_gcfile_private;
     gsplot *ggp = &gsp_gcfile_private;
     int ncs;
@@ -196,13 +209,16 @@ int is_gsplot_option(char *line, int lno, int err, gpconf *gpfp)
     if (gsp_gcfile_private.fileno == 0) {
         set_gsplot_defaults(ggp);
         gsp_gcfile_private.fileno = -1;
+        msg("Using options from %s for gnuplot plots", 2, gpfp->gcfile);
     }
-    /* test the line */
+    /* test the line and connect to ggp if there is input */
     if (!strncmp(line, "cntr_lowest=", 12)) {
         ncs = sscanf(line, "cntr_lowest=%lf", &ggp->cntr_lowest);
+        if (ncs == 1) ggp->cntr_specified ++;
         RETURN_PUKE(ncs, 1, line, lno, "cntr_lowest", err);
     } else if (!strncmp(line, "cntr_increment=", 15)) {
         ncs = sscanf(line, "cntr_increment=%lf", &ggp->cntr_increment);
+        if (ncs == 1) ggp->cntr_specified ++;
         RETURN_PUKE(ncs, 1, line, lno, "cntr_increment", err);
     }
 }
@@ -213,11 +229,6 @@ void make_gnucmds(gsplot *gspp)
 {
     FILE *gfp;
 
-    /* these are independent of the data input */
-    set_gsplot_defaults(gspp);
-    /* these options depends on peak SNR found */
-    set_contour_options(gspp);
-
     if (!gspp->gfile || !gspp->gnpdf) {
         msg("No gnuplot command file or final PDF provided", 3);
         return;
@@ -226,6 +237,9 @@ void make_gnucmds(gsplot *gspp)
         perror("make_gnucmds:fopen");
         msg("Unable to open gnu command file %s", 3, gspp->gfile);
     }
+    /* these options depends on peak SNR found */
+    set_contour_options(gspp);
+
     /* now create the various parts */
     fprintf(gfp, GNUPLOT_PDFILE,
         7.0, gspp->ratesize, gspp->delaysize, "Sans", 14,
@@ -234,7 +248,8 @@ void make_gnucmds(gsplot *gspp)
         /* setup options for data and contouring */
         gspp->isosamples, gspp->numrates, gspp->numdelays,
         gspp->dgrid3dalgorithm, gspp->dgrid3dalgorder,
-        gspp->bsplineorder, gspp->cntr_lowest, gspp->cntr_increment,
+        gspp->bsplineorder, gspp->cntr_specified,
+        gspp->cntr_lowest, gspp->cntr_increment,
         /* linear scaling function( indices to rate and delay values */
         gspp->rate_sf, gspp->min_rate,
         gspp->peak_rate, gspp->max_rate, gspp->numrates-1,
@@ -249,8 +264,14 @@ void make_gnucmds(gsplot *gspp)
         (gspp->cntr_lowest)*0.6, gspp->snr,
         gspp->colorbar_label, gspp->palette_type, gspp->palette_options);
     fprintf(gfp, GNUPLOT_SPLOT,
-        gspp->gnpdf, gspp->bgfieldname, gspp->pfile);
+        gspp->gnpdf, gspp->bgfieldname,
+        // FIXME: these can be computed or as options:
+        gspp->peak_rate, gspp->peak_delay, 0.5/27., "red", .5,
+        gspp->pfile);
     fclose(gfp);
+
+    /* since next fringe may require other choices */
+    nuke_contour_options(gspp);
 }
 #endif /* BIGGER */
 /*

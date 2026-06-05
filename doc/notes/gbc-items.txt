@@ -12,4 +12,5 @@
       |  ^~~~~~~
 
 search:
-    hook up with conf file
+    finish hookup to gcfile
+    review registration of search data to contour and color map

@@ -57,6 +57,7 @@ typedef struct gsplot {
     int isosamples;                 /* for smooth contours */
     int bsplineorder;               /* ditto */
     int dgrid3dalgorder;            /* algorithm order value */
+    int cntr_specified;             /* if nonzero */
     double cntr_lowest;             /* lowest value contour level */
     double cntr_increment;          /* increment on contour levels */
     char *dgrid3dalgorithm;         /* dgrid3d algorithm name */
@@ -89,6 +90,7 @@ extern void set_delay_unit_sf(char *unit, gsplot *gspp);
 extern void set_gsplot_defaults(gsplot *gspp);
 extern void show_gsplot_defaults(FILE *);
 extern void set_contour_options(gsplot *gspp);
+extern void nuke_contour_options(gsplot *gspp);
 extern void show_gsplot_contours(FILE *);
 extern void make_gnucmds(gsplot *);
 

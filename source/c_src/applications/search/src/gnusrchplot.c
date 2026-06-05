@@ -62,7 +62,6 @@ char *setup_gnu_filenames(int fno, gsplot *gspp, gpconf *gpfp)
     char *pfile;
     msg("setup_gnu_filenames: pattern is %s length is %d", 0,
         gpfp->gplatt, gpfp->patlen);
-    memset(gspp, 0, sizeof(gsplot));
     gspp->gpcopy = gpfp;                /* convenience ptr */
     pfile = calloc(4*(gpfp->patlen + 1), 1);
     if (!pfile) { perror("gnusrchplot:malloc"); return(NULL); }
@@ -149,9 +148,18 @@ void gnusrchplot(int nout, srchsum *srchp, gpconf *gpfp)
     FILE *ofp;
     srchsum *sb;
     fringesum *frdt;
-    gsplot gsp;
+    gsplot gsp, *gspp;
 
-    memset(&gsp, 0, sizeof(gsplot));
+    if (gpfp->gsp_gcfile) {
+        /* use the values from the config file */
+        gspp = gpfp->gsp_gcfile;
+        msg("Using options from %s for gnuplot plots", 2, gpfp->gcfile);
+    } else {
+        /* these are independent of the data input */
+        set_gsplot_defaults((gspp = &gsp));
+        msg("Using defaults for gnuplot plots", 2);
+    }
+
     while (srchp[nbase].datum != NULL) nbase++;
     if (nbase != nout) {
         msg("The # baselines found != # written (%d != %d)", 3, nbase, nout);
@@ -161,23 +169,23 @@ void gnusrchplot(int nout, srchsum *srchp, gpconf *gpfp)
         sb = srchp + base;
         frdt = sb->datum;
         /* setup of gnuplot filenames and dig out fringe name */
-        if (!setup_gnu_filenames(fileno, &gsp, gpfp)) return;
-        gsp.frname = fringename(frdt);
+        if (!setup_gnu_filenames(fileno, gspp, gpfp)) return;
+        gspp->frname = fringename(frdt);
         if ((sb->nrate == 1) || (sb->ndelay == 1)) {
-            msg("Cannot plot 1-D grid for %s", 2, gsp.frname);
+            msg("Cannot plot 1-D grid for %s", 2, gspp->frname);
             continue;
         }
         /* open the data file and share some of info in header */
-        if (!(ofp = open_gdata_file(sb, gpfp, &gsp))) continue;
-        write_gplot_label(ofp, sb->datum, &gsp);
-        write_gplot_info(ofp, sb, &gsp);
+        if (!(ofp = open_gdata_file(sb, gpfp, gspp))) continue;
+        write_gplot_label(ofp, sb->datum, gspp);
+        write_gplot_info(ofp, sb, gspp);
         /* gnuplot help splot datafile example */
         for (ii = 0; ii < sb->nrate;  ii++)
             for (jj = 0; jj < sb->ndelay; jj++)
                 fprintf(ofp, "%d %d %5.2f\n", ii, jj, sb->snr[ii][jj]);
         fputs("#\n# eodata\n#\n", ofp);
         fclose(ofp);
-        make_gnu_splot(&gsp);
+        make_gnu_splot(gspp);
     }
     /* sanity check the counters */
     gpfp->nprv += nout;
