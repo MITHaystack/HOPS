@@ -24,16 +24,21 @@ set title \"Fringe: %s\\n%s\" font '%s,%d' offset 0,1\n\
 set key off\n\
 set view map\n\
 set isosamples %d\n\
-set dgrid3d %d,%d %s %d\n\
+set dgrid3d %d,%d %s %d # N,M values\n\
 set contour base\n\
 set cntrparam bspline order %d\n\
 set cntrparam firstlinetype 7\n\
 set cntrparam levels incremental %lf, %lf\n\
 set pm3d at b\n\
-set xrange [0:%d]\n\
-set xlabel 'Resid.Rate (ps/s) FIXME values'\n\
-set yrange [0:%d]\n\
-set ylabel 'Resid.Delay (us) FIXME values'\n\
+# function for linear in t from mn to mx in nn steps\n\
+ldr(sf, t, mn,pk,mx,nn) = \\\n\
+    sf*((mn-pk)*((nn-1-t)/(nn-1)) + (mx-pk)*(t/(nn-1)))\n\
+f(x) = ldr(%lf, x, %lf,%lf,%lf,%d) # rate  scaling function on 0:N-1\n\
+g(y) = ldr(%lf, y, %lf,%lf,%lf,%d) # delay scaling function on 0:M-1\n\
+set xrange [f(0):f(%d)]\n\
+set xlabel 'Resid.Rate from Peak Rate (%.3f %s'\n\
+set yrange [g(0):g(%d)]\n\
+set ylabel 'Resid.Delay from Peak Delay (%.3f %s)'\n\
 set zrange [%lf:%lf]\n\
 set cblabel '%s'\n\
 set palette rgbformulae '%s'\n\
@@ -46,7 +51,7 @@ set output '%s'\n\
 # disable drawing the lines of the surface which is flat\n\
 unset surface\n\
 set object 1 rect from graph 0,0 to graph 1,1 behind fc rgb '%s'\n\
-splot '%s' with lines\n\
+splot '%s' using (f($1)):(g($2)):3 with lines\n\
 set output\n\
 #\n\
 # eof\n\

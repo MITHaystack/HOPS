@@ -44,6 +44,8 @@ typedef struct gsplot {
     char *source;                   /* source */
     double snr;                     /* SNR */
     int numrates, numdelays;        /* count of rates and delays */
+    char *rate_unit, *delay_unit;   /* ps/s and us for scaling of 1.0 */
+    double rate_sf, delay_sf;       /* scale factors 1.0 and 1e3 */
     double ratesize, delaysize;     /* multipliers on screen dimensions */
     double min_rate, max_rate;      /* min and max rates (ps/s) */
     double min_delay, max_delay;    /* min and max delays (us) */
