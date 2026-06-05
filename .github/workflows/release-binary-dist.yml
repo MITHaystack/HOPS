@@ -16,7 +16,7 @@ permissions:
   contents: write          # required to create the release and upload assets
 
 env:
-  BUILD_TYPE: RelWithDebInfo
+  BUILD_TYPE: Release
   # DiFX / difxio is built from source below (difxio only)
   DIFXROOT: ${{ github.workspace }}/difx-install
 
@@ -36,9 +36,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             build-essential cmake cmake-curses-gui python3-dev python3-pip wget jq \
-            autoconf automake libtool pkg-config \
-            gnuplot
-          # gnuplot is detected at configure time (and toggles HOPS_USE_MATPLOTPP)
+            autoconf automake libtool pkg-config
+          # NOTE: gnuplot is intentionally NOT installed here - it is only a
+          # runtime dependency of the matplot++ plotter, not needed to build it.
       # Test-only python deps. Installed into an external --target dir (not the
       # HOPS install prefix) so the packaged tarball stays "deps off"; --target
       # also sidesteps PEP-668 "externally-managed" pip on ubuntu-24.04.
@@ -95,6 +95,7 @@ jobs:
             -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
             -DHOPS_USE_DIFXIO=ON \
             -DHOPS_USE_PYBIND11=ON \
+            -DHOPS_ENABLE_DEBUG_MSG=OFF \
             -DHOPS_ENABLE_TEST=OFF
 
       - name: Build (distribution)
