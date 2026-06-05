@@ -1,0 +1,163 @@
+name: Release (manylinux portable)
+
+# Portable, broad-compatibility release built inside the manylinux_2_28 container
+# (AlmaLinux 8 base, glibc 2.28) so the binaries run on a wide range of distros.
+#
+# Two flavors of artifact (bring-your-own-Python model, see project memory):
+#   * minimal  - python-free (HOPS_USE_PYBIND11=OFF): core fourfit4 fringe-fit,
+#                C++ matplot++ plotter, difx tools. No libpython dependency.
+#                tag: -manylinux_2_28-nopython
+#   * bindings - one build per CPython minor (3.9+), built against
+#                /opt/python/cpXY. The pyMHO_* modules + embed apps are ABI-locked
+#                to that minor and resolve the USER's interpreter at runtime.
+#                tag: -manylinux_2_28-python3.X
+#
+# A v* tag attaches all tarballs to the Release; workflow_dispatch just uploads
+# them as artifacts (dry run).
+#
+# NOTE (runtime, not handled here): the per-minor embed apps (fplot4/blingfit)
+# are linked against the container's CPython, whose prefix won't exist on the
+# user's machine - they need PYTHONHOME pointed at the user's matching python3.X
+# (via hops.bash or a scoped_interpreter startup change). Tracked separately.
+
+on:
+  push:
+    tags: [ "v*" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  MANYLINUX_IMAGE: quay.io/pypa/manylinux_2_28_x86_64
+  COMPAT_TAG: manylinux_2_28          # portability label used in artifact names
+
+jobs:
+  # ---------------------------------------------------------------- minimal ---
+  minimal:
+    name: minimal (python-free)
+    runs-on: ubuntu-22.04
+    container: quay.io/pypa/manylinux_2_28_x86_64
+    env:
+      DIFXROOT: ${{ github.workspace }}/difx-install
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install build tools
+        run: dnf -y install git make autoconf automake libtool pkgconfig cmake wget
+
+      - name: Build difxio (no gsl)
+        run: bash source/bash_src/ci-build-difxio.sh
+
+      - name: Configure / build / install (no python)
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX="$PWD/install" \
+            -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
+            -DHOPS_USE_DIFXIO=ON \
+            -DHOPS_USE_PYBIND11=OFF \
+            -DHOPS_ENABLE_TEST=OFF \
+            -DHOPS_ENABLE_DEBUG_MSG=OFF
+          cmake --build build --parallel 4
+          cmake --install build
+
+      - name: Package
+        working-directory: build
+        run: |
+          cpack -G TGZ
+          shopt -s nullglob
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          pkgs=( hops-*.tar.gz )
+          [ "${#pkgs[@]}" -gt 0 ] || { echo "cpack produced no tarball"; exit 1; }
+          for pkg in "${pkgs[@]}"; do
+            base="$(basename "${pkg%.tar.gz}")"
+            mv "$pkg" "$GITHUB_WORKSPACE/dist/${base}-${COMPAT_TAG}-nopython.tar.gz"
+          done
+          ls -l "$GITHUB_WORKSPACE/dist"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hops-${{ env.COMPAT_TAG }}-nopython
+          path: dist/*.tar.gz
+          if-no-files-found: error
+
+      - name: Attach to GitHub Release (tags only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.tar.gz
+          fail_on_unmatched_files: true
+
+  # --------------------------------------------------------------- bindings ---
+  bindings:
+    name: bindings (${{ matrix.py }})
+    runs-on: ubuntu-22.04
+    container: quay.io/pypa/manylinux_2_28_x86_64
+    strategy:
+      fail-fast: false
+      matrix:
+        # CPython minors to support (3.9+). Trim/extend to match what the
+        # manylinux_2_28 image actually ships under /opt/python.
+        py: [ cp39, cp310, cp311, cp312, cp313 ]
+    env:
+      DIFXROOT: ${{ github.workspace }}/difx-install
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install build tools
+        run: dnf -y install git make autoconf automake libtool pkgconfig cmake wget
+
+      - name: Build difxio (no gsl)
+        run: bash source/bash_src/ci-build-difxio.sh
+
+      - name: Configure / build / install (python ${{ matrix.py }})
+        run: |
+          PYBIN="/opt/python/${{ matrix.py }}-${{ matrix.py }}/bin/python"
+          test -x "$PYBIN" || { echo "interpreter $PYBIN not found in image"; exit 1; }
+          # Pin every FindPython variant so pybind11 (and pyinfo.py via the same
+          # interpreter) build against this exact minor.
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX="$PWD/install" \
+            -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
+            -DHOPS_USE_DIFXIO=ON \
+            -DHOPS_USE_PYBIND11=ON \
+            -DPython_EXECUTABLE="$PYBIN" \
+            -DPython3_EXECUTABLE="$PYBIN" \
+            -DPYTHON_EXECUTABLE="$PYBIN" \
+            -DHOPS_ENABLE_TEST=OFF \
+            -DHOPS_ENABLE_DEBUG_MSG=OFF
+          cmake --build build --parallel 4
+          cmake --install build
+
+      - name: Package
+        working-directory: build
+        run: |
+          PYBIN="/opt/python/${{ matrix.py }}-${{ matrix.py }}/bin/python"
+          PY_TAG="python$("$PYBIN" -c 'import sys; print("%d.%d" % sys.version_info[:2])')"
+          cpack -G TGZ
+          shopt -s nullglob
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          pkgs=( hops-*.tar.gz )
+          [ "${#pkgs[@]}" -gt 0 ] || { echo "cpack produced no tarball"; exit 1; }
+          for pkg in "${pkgs[@]}"; do
+            base="$(basename "${pkg%.tar.gz}")"
+            mv "$pkg" "$GITHUB_WORKSPACE/dist/${base}-${COMPAT_TAG}-${PY_TAG}.tar.gz"
+          done
+          ls -l "$GITHUB_WORKSPACE/dist"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hops-${{ env.COMPAT_TAG }}-${{ matrix.py }}
+          path: dist/*.tar.gz
+          if-no-files-found: error
+
+      - name: Attach to GitHub Release (tags only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.tar.gz
+          fail_on_unmatched_files: true
