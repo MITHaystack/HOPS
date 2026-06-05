@@ -55,6 +55,14 @@ jobs:
           mkdir -p "$DIFXROOT"
           git clone --depth 1 https://github.com/difx/difx.git "$RUNNER_TEMP/difx-src"
           cd "$RUNNER_TEMP/difx-src"
+          # install-difx assumes these env vars already exist and appends onto
+          # them (e.g. `x += ":" + os.environ.get('PKG_CONFIG_PATH')`), which
+          # crashes with TypeError when they are unset. Pre-set any that are
+          # missing so the script gets empty strings instead of None.
+          export PKG_CONFIG_PATH="${PKG_CONFIG_PATH:-}"
+          export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-}"
+          export PYTHONPATH="${PYTHONPATH:-}"
+          export PERL5LIB="${PERL5LIB:-}"
           # difxio only, no Intel IPP. difxio is statically linked into the HOPS
           # tools, so only the build-time pkg-config/headers/static lib matter -
           # nothing difxio-related needs to ship in the tarball.
