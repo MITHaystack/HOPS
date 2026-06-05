@@ -9,6 +9,13 @@
 #     hops-4.0.0-x86_64-ubuntu-22.04-python3.10.tar.gz
 #     hops-4.0.0-x86_64-rocky-9.3-python3.9.tar.gz
 #
+# NOTE: the CMake flags below should be kept in sync with the CI release workflow
+# (.github/workflows/release-binary-dist.yml). One difference is unavoidable: that
+# workflow builds difxio WITHOUT gsl, whereas this script links the difxio from
+# $DIFX_BUILD_DIR (a full DiFX install, can be gsl-linked) - so difxinput2json /
+# difx2mark4 built here may carry a runtime libgsl dependency the CI ones do not.
+# Need to be careful because a libgsl link may cause the distribution to NOT be relocatable
+#
 # The following environment variables must be defined (e.g. in ~/.bashrc):
 #   DIFX_BUILD_DIR        - DiFX install dir containing setup.bash (for difxio)
 #   HOPS_CI_DIR           - working dir holding the HOPS source checkout
@@ -106,10 +113,13 @@ CONFIG_LOG="$HOPS_CI_LOG_DIR/config-${CURRENT_REV}.log"
 BUILD_LOG="$HOPS_CI_LOG_DIR/build-${CURRENT_REV}.log"
 
 cd "$BUILD_DIR"
+# Keep these flags in sync with .github/workflows/release-binary-dist.yml so the
+# locally-built distribution matches the CI-produced one.
 cmake \
-    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DCMAKE_BUILD_TYPE=Release \
     -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
     -DHOPS_ENABLE_TEST=OFF \
+    -DHOPS_ENABLE_DEBUG_MSG=OFF \
     -DHOPS_USE_DIFXIO=ON \
     -DHOPS_USE_PYBIND11=ON \
     "$HOPS_CI_DIR" 2>&1 | tee "$CONFIG_LOG"
