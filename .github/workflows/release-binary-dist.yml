@@ -1,0 +1,146 @@
+name: Release binary distribution
+
+# Builds the redistributable HOPS binary distribution (CPack TGZ), gated on the
+# test suite passing, and attaches it to the GitHub Release when a v* tag is
+# pushed. A manual run (workflow_dispatch) produces the tarball as a downloadable
+# workflow artifact without creating a release (useful for dry-runs).
+#
+# Two build passes are used:
+#   1. a tests-ENABLED build, used only to run ctest (the release gate);
+#   2. a tests-DISABLED build (HOPS_ENABLE_TEST=OFF), which is the one packaged
+#      and shipped - this keeps the developer test binaries (bin/test) out of
+#      the tarball
+
+on:
+  push:
+    tags: [ "v*" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write          # required to create the release and upload assets
+
+env:
+  BUILD_TYPE: RelWithDebInfo
+  # DiFX / difxio is built from source below (difxio only)
+  DIFXROOT: ${{ github.workspace }}/difx-install
+
+jobs:
+  release:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-22.04, ubuntu-24.04 ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential cmake cmake-curses-gui python3-dev python3-pip wget jq \
+            autoconf automake libtool pkg-config
+
+      # Test-only python deps. Installed into an external --target dir (not the
+      # HOPS install prefix) so the packaged tarball stays "deps off"; --target
+      # also sidesteps PEP-668 "externally-managed" pip on ubuntu-24.04.
+      - name: Install python test dependencies
+        run: |
+          python3 -m pip install --target="$RUNNER_TEMP/pydeps" -r source/python_src/requirements.txt
+          echo "PYTHONPATH=$RUNNER_TEMP/pydeps:${PYTHONPATH:-}" >> "$GITHUB_ENV"
+
+      - name: Build difxio from DiFX source
+        run: |
+          mkdir -p "$DIFXROOT"
+          git clone --depth 1 https://github.com/difx/difx.git "$RUNNER_TEMP/difx-src"
+          cd "$RUNNER_TEMP/difx-src"
+          # difxio only, no Intel IPP. difxio is statically linked into the HOPS
+          # tools, so only the build-time pkg-config/headers/static lib matter -
+          # nothing difxio-related needs to ship in the tarball.
+          ./install-difx --noipp --doonly=difxio
+          # Source the generated DiFX environment and forward what HOPS needs at
+          # configure time to subsequent steps.
+          source "$DIFXROOT/setup.bash"
+          {
+            echo "PATH=$PATH"
+            echo "PKG_CONFIG_PATH=${PKG_CONFIG_PATH:-}"
+          } >> "$GITHUB_ENV"
+
+      # first pass, tests-ENABLED build to gate the release
+      - name: Configure (test build)
+        run: |
+          cmake -B build-test \
+            -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+            -DCMAKE_INSTALL_PREFIX=$PWD/install-test \
+            -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
+            -DHOPS_USE_DIFXIO=ON \
+            -DHOPS_USE_PYBIND11=ON \
+            -DHOPS_ENABLE_TEST=ON \
+            -DHOPS_ENABLE_UNIT_TESTS=ON
+
+      - name: Build (test)
+        run: cmake --build build-test --config $BUILD_TYPE --parallel 4
+
+      - name: Install (test)
+        run: cmake --install build-test
+
+      - name: Download test data
+        run: |
+          source install-test/bin/hops.bash
+          install-test/bin/testdata_download_all.sh
+
+      - name: Test (release gate)
+        working-directory: build-test
+        run: ctest -C $BUILD_TYPE --output-on-failure
+
+      # 2nd pass, tests-DISABLED build, ship it
+      - name: Configure (distribution build)
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+            -DCMAKE_INSTALL_PREFIX=$PWD/install \
+            -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
+            -DHOPS_USE_DIFXIO=ON \
+            -DHOPS_USE_PYBIND11=ON \
+            -DHOPS_ENABLE_TEST=OFF
+
+      - name: Build (distribution)
+        run: cmake --build build --config $BUILD_TYPE --parallel 4
+
+      - name: Install (distribution)
+        run: cmake --install build
+
+      # rename hops-<version>-<arch>.tar.gz to identify the OS + python version
+      # see hops-build-binary-dist.sh, e.g.
+      # hops-4.0.0-x86_64-ubuntu-22.04-python3.10.tar.gz
+      - name: Package and tag with OS + python version
+        working-directory: build
+        run: |
+          cpack -G TGZ
+          . /etc/os-release
+          OS_TAG="${ID}-${VERSION_ID}"
+          PY_TAG="python$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')"
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          shopt -s nullglob
+          pkgs=( hops-*.tar.gz )
+          [ "${#pkgs[@]}" -gt 0 ] || { echo "cpack produced no tarball"; exit 1; }
+          for pkg in "${pkgs[@]}"; do
+            base="$(basename "${pkg%.tar.gz}")"
+            mv "$pkg" "$GITHUB_WORKSPACE/dist/${base}-${OS_TAG}-${PY_TAG}.tar.gz"
+          done
+          ls -l "$GITHUB_WORKSPACE/dist"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hops-binary-dist-${{ matrix.os }}
+          path: dist/*.tar.gz
+          if-no-files-found: error
+
+      - name: Attach to GitHub Release (tags only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.tar.gz
+          fail_on_unmatched_files: true
