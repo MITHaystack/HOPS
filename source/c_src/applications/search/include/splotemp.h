@@ -36,12 +36,12 @@ ldr(sf, t, mn,pk,mx,nn) = \\\n\
 f(x) = ldr(%lf, x, %lf,%lf,%lf,%d) # rate  scaling function on 0:N-1\n\
 g(y) = ldr(%lf, y, %lf,%lf,%lf,%d) # delay scaling function on 0:M-1\n\
 set xrange [f(0):f(%d)]\n\
-set xlabel 'Resid.Rate from Peak Rate (%.3f %s'\n\
+set xlabel 'Resid.Rate (%s) from Peak Rate (at %.3f %s)'\n\
 set yrange [g(0):g(%d)]\n\
-set ylabel 'Resid.Delay from Peak Delay (%.3f %s)'\n\
+set ylabel 'Resid.Delay (%s) from Peak Delay (at %.3f %s)'\n\
 set zrange [%lf:%lf]\n\
 set cblabel '%s'\n\
-set palette rgbformulae '%s'\n\
+set palette %s %s\n\
 #\n\
 "
 

@@ -12,7 +12,4 @@
       |  ^~~~~~~
 
 search:
-    set/adjust contour levels
-    auto rate/delay scaling and units
-    better color map
     hook up with conf file

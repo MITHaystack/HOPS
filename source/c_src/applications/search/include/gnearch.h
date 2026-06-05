@@ -58,9 +58,9 @@ typedef struct gsplot {
     double cntr_increment;          /* increment on contour levels */
     char *dgrid3dalgorithm;         /* dgrid3d algorithm name */
     char *colorbar_label;           /* label for the colorbar */
-    char *palette_rgbformulae;      /* controls the colors via formulae */
+    char *palette_type;             /* rgbformulae, cubehelix, viridis */
+    char *palette_options;          /* formulae or start/cycles/saturation */
     char *bgfieldname;              /* color name for snr<min background */
-    double min_snr;                 /* lowest SNR level (e.g. 3.0) */
 } gsplot;
 
 /* functions in srch_montage.c */
@@ -78,7 +78,12 @@ extern void write_gplot_info(FILE *, srchsum *, gsplot *);
 extern void gnusrchplot(int, srchsum *, gpconf *);
 
 /* functions in make_gnucmds.c, with templates in splotemp.h */
+extern void set_basic_contour_options(gsplot *gspp);
+extern void set_colormap_palette(gsplot *gspp);
+extern void set_rate_unit_sf(char *unit, gsplot *gspp);
+extern void set_delay_unit_sf(char *unit, gsplot *gspp);
 extern void set_gsplot_defaults(gsplot *gspp);
+extern void set_contour_options(gsplot *gspp);
 extern void make_gnucmds(gsplot *);
 
 /* functions in gnedits.c */
