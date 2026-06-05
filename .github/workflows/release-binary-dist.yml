@@ -5,11 +5,7 @@ name: Release binary distribution
 # pushed. A manual run (workflow_dispatch) produces the tarball as a downloadable
 # workflow artifact without creating a release (useful for dry-runs).
 #
-# Two build passes are used:
-#   1. a tests-ENABLED build, used only to run ctest (the release gate);
-#   2. a tests-DISABLED build (HOPS_ENABLE_TEST=OFF), which is the one packaged
-#      and shipped - this keeps the developer test binaries (bin/test) out of
-#      the tarball
+# tests are disabled for now since most of them require HOPS3 for comparison
 
 on:
   push:
@@ -89,34 +85,7 @@ jobs:
           fi
           echo "PKG_CONFIG_PATH=$DIFXROOT/lib/pkgconfig:${PKG_CONFIG_PATH:-}" >> "$GITHUB_ENV"
 
-      # first pass, tests-ENABLED build to gate the release
-      - name: Configure (test build)
-        run: |
-          cmake -B build-test \
-            -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
-            -DCMAKE_INSTALL_PREFIX=$PWD/install-test \
-            -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
-            -DHOPS_USE_DIFXIO=ON \
-            -DHOPS_USE_PYBIND11=ON \
-            -DHOPS_ENABLE_TEST=ON \
-            -DHOPS_ENABLE_UNIT_TESTS=ON
-
-      - name: Build (test)
-        run: cmake --build build-test --config $BUILD_TYPE --parallel 4
-
-      - name: Install (test)
-        run: cmake --install build-test
-
-      - name: Download test data
-        run: |
-          source install-test/bin/hops.bash
-          install-test/bin/testdata_download_all.sh
-
-      - name: Test (release gate)
-        working-directory: build-test
-        run: ctest -C $BUILD_TYPE --output-on-failure
-
-      # 2nd pass, tests-DISABLED build, ship it
+      # disable test for bdist build, just ship it
       - name: Configure (distribution build)
         run: |
           cmake -B build \
