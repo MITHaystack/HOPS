@@ -59,8 +59,16 @@ int create_gnuconf(char *gfile, gpconf *gpfp)
         "montage=%d\n"
         "density=%d\n"
         "#\n", gpfp->montage, gpfp->density);
+    fprintf(fpg,
+        "#The gnuplot PDFs require a data file and a file of gnuplot\n"
+        "# commands.  Normally, these are left on disk so you may tweak\n"
+        "# them, but you may change these two variables to delete them:\n"
+        "nukegnu=%d\n"
+        "nukedata=%d\n"
+        "#\n", gpfp->nukegnu, gpfp->nukedata);
 
-    /* other things */
+    show_gsplot_defaults(fpg);
+    show_gsplot_contours(fpg);
 
     fprintf(fpg, "#\n# eoc\n#\n"); 
     fclose(fpg);
@@ -69,10 +77,11 @@ int create_gnuconf(char *gfile, gpconf *gpfp)
 }
 
 /* private support to print msg and exit with some uniq number */
-int puke(int lno, char *wye, char *line, int errval)
+int puke(FILE *fpg, int lno, char *wye, char *line, int errval)
 {
     msg(wye, 3, lno);
     msg("'%s'", 3, line);
+    fclose(fpg);
     return(errval);
 }
 
@@ -101,19 +110,32 @@ int gnuparse(char *gfile, gpconf *gpfp)
             ncs = sscanf(line, "CxR:A=%dx%d:%d",
                 &gpfp->ncols, &gpfp->nrows, &gpfp->asqr);
             if (3 == ncs) continue;
-            return(puke(lno, "Line %d did not parse properly:", line, 202));
+            return(puke(fpg, lno, "Line %d parse error:", line, 202));
         } else if (!strncmp(line, "montage=", 8)) {
             ncs = sscanf(line, "montage=%d", &gpfp->montage);
             if (1 == ncs) continue;
-            return(puke(lno, "Line %d did not parse properly:", line, 202));
+            return(puke(fpg, lno, "Line %d parse error:", line, 202));
         } else if (!strncmp(line, "density=", 8)) {
             ncs = sscanf(line, "density=%d", &gpfp->density);
             if (1 == ncs) continue;
-            return(puke(lno, "Line %d did not parse properly:", line, 202));
+            return(puke(fpg, lno, "Line %d parse error:", line, 202));
+        } else if (!strncmp(line, "nukegnu=", 8)) {
+            ncs = sscanf(line, "nukegnu=%d", &gpfp->nukegnu);
+            if (1 == ncs) continue;
+            return(puke(fpg, lno, "Line %d parse error:", line, 202));
+        } else if (!strncmp(line, "nukedata=", 9)) {
+            ncs = sscanf(line, "nukedata=%d", &gpfp->nukedata);
+            if (1 == ncs) continue;
+            return(puke(fpg, lno, "Line %d parse error:", line, 202));
+        } else if ((ncs = is_gsplot_option(line, lno, 203, gpfp))) {
+            /* anything scanned will be placed in gpfp->gspin */
+            if (ncs == 203) return(203);
+            continue;
         } else {
-            return(puke(lno, "Line %d is beyond the pale:", line, 254));
+            return(puke(fpg, lno, "Line %d is beyond the pale:", line, 254));
         }
     }
+    fclose(fpg);
     gpfp->gcfile = malloc(strlen(gfile) + 2);
     if (!gpfp->gcfile) { perror("gnuparse:malloc"); return(253); }
     strcpy(gpfp->gcfile, gfile);

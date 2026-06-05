@@ -31,6 +31,10 @@ $verb && set -x
 fringex -i 20 -d 27x27 -r alist-aedit-X0X.out |\
 average -o search.avg > fas.out 2>&1
 
+# dump out a config file
+rm -f search.conf
+search -g search.conf
+
 HOPS_SEARCH_REMLIMIT=0.6 \
 search -g 3x1:1:1:1 \
     -d search.ps/cps/pdf -o search.out -m1 search.avg >> fas.out 2>&1

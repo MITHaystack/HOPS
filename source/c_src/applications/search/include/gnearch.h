@@ -26,6 +26,9 @@ typedef struct gpconf {
 #endif /* BIGGER */
     int ncols, nrows, asqr;         /* [-g] cols x rows : asqr ; */
     int pplt, gplt;                 /* pgplot and gnuplot */
+    /* if gcfile has any gsplot items, the next pointer is set to
+     * a copy of what was correctly scanned by is_gsplot_option() */
+    struct gsplot *gsp_gcfile;      /* any parsed gsplot options */
 } gpconf;
 
 #if BIGGER
@@ -78,18 +81,21 @@ extern void write_gplot_info(FILE *, srchsum *, gsplot *);
 extern void gnusrchplot(int, srchsum *, gpconf *);
 
 /* functions in make_gnucmds.c, with templates in splotemp.h */
+extern int is_gsplot_option(char *, int, int, gpconf *);
 extern void set_basic_contour_options(gsplot *gspp);
 extern void set_colormap_palette(gsplot *gspp);
 extern void set_rate_unit_sf(char *unit, gsplot *gspp);
 extern void set_delay_unit_sf(char *unit, gsplot *gspp);
 extern void set_gsplot_defaults(gsplot *gspp);
+extern void show_gsplot_defaults(FILE *);
 extern void set_contour_options(gsplot *gspp);
+extern void show_gsplot_contours(FILE *);
 extern void make_gnucmds(gsplot *);
 
 /* functions in gnedits.c */
 extern int gnuexists(char *, int *);
 extern int create_gnuconf(char *, gpconf *);
-extern int puke(int, char *, char *, int);
+extern int puke(FILE *, int, char *, char *, int);
 extern int gnuparse(char *, gpconf *);
 extern int gnuedits(char *, gpconf *);
 

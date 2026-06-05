@@ -105,6 +105,21 @@ void set_gsplot_defaults(gsplot *gspp)
     set_delay_unit_sf("ns", gspp);
 }
 
+/* report on what can be set in the gnuplot config file */
+void show_gsplot_defaults(FILE *fpg)
+{
+    gsplot gsp_dummy;
+    fprintf(fpg,
+        "#There are many options that may be used in gnuplot 3d plots.\n"
+        "# We have made some general choices that mirror the original\n"
+        "# search output via PGPLOT.  Options are provided to make some\n"
+        "# adjustments to this plan.  However, the data file and gnuplot\n"
+        "# commands are normally left on disk so you may experiment.\n"
+        "#\n");
+    set_gsplot_defaults(&gsp_dummy);
+    /* FIXME: dump out the default values with explanations */
+}
+
 /*
  * These options depend on the peak SNR value found
  * generally don't want too many contours or it gets confusing
@@ -141,6 +156,57 @@ void set_contour_options(gsplot *gspp)
         gspp->cntr_lowest, gspp->cntr_increment);
     gspp->colorbar_label = cblabel;
 }
+
+/* report on what can be set in the gnuplot config file */
+void show_gsplot_contours(FILE *fpg)
+{
+    fprintf(fpg,
+        "#There are three options for the coutours that are automatically\n"
+        "# set based on the SNR of the fringe found by search.  You may\n"
+        "# override the choices by setting these variables:\n"
+        "cntr_lowest=<float>\n"
+        "cntr_increment=<float>\n"
+        "colorbar_label=<string>\n"
+        "# Contours are placed at cntr_lowest + N*cntr_increment for\n"
+        "# N=0,1,... such that the last contour is below the SNR found.\n"
+        "# The label is 'SNR: contours from <...> by <...> steps' but\n"
+        "# you can subsitute any text you like\n"
+    );
+}
+
+/* Check to see if the line matches a legal edit.  If so, try to parse
+ * it, and if it parses correctly, set gpfp->gsp_gcfile to point to the
+ * internal staging area here.  Later, when the plots are made, this
+ * pointer can be checked.  The following macro is for readability: */
+int is_gsplot_option(char *line, int lno, int err, gpconf *gpfp)
+{
+#define RETURN_PUKE(N,E,LINE,LN,VAR,ERR) do {\
+    if (N == E) {\
+        if (!(gpfp->gsp_gcfile)) gpfp->gsp_gcfile = ggp;\
+        return(1);\
+    }\
+    msg("Only scanned %d of %d on line %d for variable '%s'", 3, N,E,LN,VAR);\
+    msg("'%s'", 3, LINE);\
+    return(ERR); } while(0)
+
+    static gsplot gsp_gcfile_private;
+    gsplot *ggp = &gsp_gcfile_private;
+    int ncs;
+    /* load up all defaults to make life easier in make_gnucmds() */
+    if (gsp_gcfile_private.fileno == 0) {
+        set_gsplot_defaults(ggp);
+        gsp_gcfile_private.fileno = -1;
+    }
+    /* test the line */
+    if (!strncmp(line, "cntr_lowest=", 12)) {
+        ncs = sscanf(line, "cntr_lowest=%lf", &ggp->cntr_lowest);
+        RETURN_PUKE(ncs, 1, line, lno, "cntr_lowest", err);
+    } else if (!strncmp(line, "cntr_increment=", 15)) {
+        ncs = sscanf(line, "cntr_increment=%lf", &ggp->cntr_increment);
+        RETURN_PUKE(ncs, 1, line, lno, "cntr_increment", err);
+    }
+}
+#undef RETURN_PUKE
 
 /* construct the .gnu file from template and options */
 void make_gnucmds(gsplot *gspp)
