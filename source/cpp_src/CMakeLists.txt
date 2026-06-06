@@ -91,8 +91,8 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings)
 endif(HOPS_USE_PYBIND11)
 
-if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
-    #Matplot++ (gnuplot) wrapper support (fast default fringe plotting)
+if(HOPS_USE_MATPLOTPP)
+    #Matplot++ (gnuplot is runtime dependency) support (fast default fringe plotting)
     add_subdirectory(${CPPSOURCE}/Plugins/MatplotPlugin)
 endif()
 
@@ -119,7 +119,7 @@ if(HOPS_USE_PYBIND11)
     target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_PYBIND11)
 endif()
 
-if(HOPS_USE_MATPLOTPP AND Gnuplot_FOUND)
+if(HOPS_USE_MATPLOTPP)
     target_link_libraries(MHO_OptionalPlugins INTERFACE MHO_MatplotPlugin matplot)
     target_include_directories(MHO_OptionalPlugins INTERFACE
         ${CPPSOURCE}/../extern/matplotplusplus/source/

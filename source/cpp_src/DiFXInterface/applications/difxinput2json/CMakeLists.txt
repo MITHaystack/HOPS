@@ -33,6 +33,10 @@ set(DIFXINPUT2JSON_SOURCES
 
 add_executable(difxinput2json ${DIFXINPUT2JSON_SOURCES})
 
+# expose the difxio version (from difxio.pc, via pkg_search_module above) to the
+# program so it can report it through the --difxio-version flag.
+target_compile_definitions(difxinput2json PRIVATE HOPS_DIFXIO_VERSION="${DIFXIO_VERSION}")
+
 # Try to STATICALLY link difxio, that way this (GPL) binary is self-contained,
 # and carries no runtime libdifxio.so dependency and needs no difxio RPATH,
 # making it fully relocatable. difxio's only external dependency is libm.

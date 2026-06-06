@@ -40,6 +40,11 @@
     #include "difxio/difx_options.h"
 #endif
 
+//difxio version this binary was compiled against
+#ifndef HOPS_DIFXIO_VERSION
+    #define HOPS_DIFXIO_VERSION "unknown"
+#endif
+
 using namespace hops;
 
 int main(int argc, char** argv)
@@ -51,6 +56,9 @@ int main(int argc, char** argv)
     int message_level = 5; //default is silent...we only want the JSON emitted
 
     CLI::App app{"difxinput2json: convert a DiFX .input file to a JSON description"};
+
+    app.set_version_flag("--difxio-version", std::string("difxio ") + HOPS_DIFXIO_VERSION,
+                         "print the difxio library version this program was compiled against and exit");
 
     app.add_option("input_file", input_file, "the DiFX .input file to convert")->required();
     app.add_option("-o,--output", output_file, "output JSON file (default: write to stdout)");

@@ -23,6 +23,27 @@ static void restore_termios_atexit()
     }
 }
 
+// matplot++ drives a gnuplot subprocess at runtime
+// check and true if a 'gnuplot' executable is in PATH
+static bool gnuplot_in_path()
+{
+    const char* path = std::getenv("PATH");
+    if(path == nullptr)
+    {
+        return false;
+    }
+    std::stringstream ss(path);
+    std::string dir;
+    while(std::getline(ss, dir, ':'))
+    {
+        if(!dir.empty() && access((dir + "/gnuplot").c_str(), X_OK) == 0)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 std::string extension_to_terminal_cmd(const std::string& ext)
 {
     //we only support .pdf, .eps, and .svg output
@@ -216,6 +237,15 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
     if(is_skipped)
     {
         msg_debug("plot", "plotting disabled or scan skipped, returning" << eom);
+        return;
+    }
+
+    // gnuplot is a runtime dependency of the matplot++ plotter, warn
+    // and skip here if gnuplot is unavailable rather than failing deep inside matplot++
+    if(!gnuplot_in_path())
+    {
+        msg_warn("fringe", "gnuplot was not found in PATH, skipping fringe plot, "
+                           "install gnuplot to enable the matplot++ plotter" << eom);
         return;
     }
 

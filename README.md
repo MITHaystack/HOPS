@@ -191,9 +191,6 @@ should print out the full path to the install directory, e.g:
 
 `HOPS install directory set to /home/oper/HOPS/x86_64-4.0.0`
 
-### Building the documentation
-HOPS supports the ability to automatically build documentation using doxygen and sphinx. To do this, ensure that `doxygen`, `sphinx`, and the python packages `breathe` and `myst_parser` are installed, and that the cmake option `HOPS_BUILD_DOCS` is set to `ON`. To build and install the auto-generated documentation run the command `make reference && make install` from the build directory. The resulting html documentation will be placed in `<hops-install>/doc/reference`. The master index file will be installed as `<hops-install>/doc/reference/index.html` and can be opened with any browser.
-
 ## Environment setup helpers
 
 HOPS installs a few shell helpers in `<hops-install>/bin/` that set up environment
@@ -255,10 +252,13 @@ pkg-config --cflags --libs hops4
 pkg-config --cflags --libs hops3
 ```
 
+## Documentation and Help
 
-## Getting help
+The online documentation can be found here: https://mithaystack.github.io/HOPS/.
 
-For questions/comments on this software please direct emails to the developer mailing list: hops-dev@mit.edu
+Alternatively, HOPS supports the ability to automatically build documentation using doxygen and sphinx. To do this, ensure that `doxygen`, `sphinx`, and the python packages `breathe` and `myst_parser` are installed, and that the cmake option `HOPS_BUILD_DOCS` is set to `ON`. To build and install the auto-generated documentation run the command `make reference && make install` from the build directory. The resulting html documentation will be placed in `<hops-install>/doc/reference`. The master index file will be installed as `<hops-install>/doc/reference/index.html` and can be opened with any browser.
+
+For questions/comments on this software please direct emails to the developer mailing list: hops-dev (at) mit.edu
 
 ## License and Authorship
 For license and authorship information see the LICENSE.md and AUTHORS.md files respectively.
