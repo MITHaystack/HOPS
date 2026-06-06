@@ -12,5 +12,8 @@
       |  ^~~~~~~
 
 search:
-    finish hookup to gcfile
-    review registration of search data to contour and color map
+    finish hookup to gcfile: 2 FIXME items
+
+
+
+vim:nospell

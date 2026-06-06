@@ -17,6 +17,20 @@ void set_basic_contour_options(gsplot *gspp)
     gspp->bsplineorder = 6;
 }
 
+/* set values for a number of pdfcairo options */
+void set_pdfcairo_options(gsplot *gspp)
+{
+    gspp->pdfsizeinch = 7.0;
+    gspp->labelfont = "Sans";
+    gspp->titlefont = "Sans-Bold";
+    gspp->labelfontsize = 14;
+    gspp->titlefontscale = 1.30;
+    gspp->snrminfrac = 0.6;
+    gspp->peakradius = 0.25;
+    gspp->peakcolorname = "orange";
+    gspp->peaktransparency = 0.6;
+}
+
 /* For palette type and options that we have tested, set a bg color
  * otherwise at least make sure 3 strings are passed.  We tested:
  *   gspp->palette_type = "cubehelix";
@@ -101,6 +115,7 @@ void set_gsplot_defaults(gsplot *gspp)
 {
     memset(gspp, 0, sizeof(gsplot));
     set_colormap_palette(gspp);
+    set_pdfcairo_options(gspp);
     set_basic_contour_options(gspp);
     set_rate_unit_sf("ps/s", gspp);
     set_delay_unit_sf("ns", gspp);
@@ -124,6 +139,7 @@ void show_gsplot_defaults(FILE *fpg)
 /*
  * These options depend on the peak SNR value found
  * generally don't want too many contours or it gets confusing
+ * gspp->cntr_specified is set nonzero if something was specified.
  */
 void set_contour_options(gsplot *gspp)
 {
@@ -167,6 +183,8 @@ void set_contour_options(gsplot *gspp)
 /* if these were provided by the previous routine, clear them out */
 void nuke_contour_options(gsplot *gspp)
 {
+    if (gspp->cntr_specified) return;
+    gspp->cntr_lowest = gspp->cntr_increment = 0.0;
 }
 
 /* report on what can be set in the gnuplot config file */
@@ -221,6 +239,7 @@ int is_gsplot_option(char *line, int lno, int err, gpconf *gpfp)
         if (ncs == 1) ggp->cntr_specified ++;
         RETURN_PUKE(ncs, 1, line, lno, "cntr_increment", err);
     }
+    /* FIXME: add code to scan for the remaining options */
 }
 #undef RETURN_PUKE
 
@@ -228,6 +247,7 @@ int is_gsplot_option(char *line, int lno, int err, gpconf *gpfp)
 void make_gnucmds(gsplot *gspp)
 {
     FILE *gfp;
+    double ngrid;
 
     if (!gspp->gfile || !gspp->gnpdf) {
         msg("No gnuplot command file or final PDF provided", 3);
@@ -242,8 +262,10 @@ void make_gnucmds(gsplot *gspp)
 
     /* now create the various parts */
     fprintf(gfp, GNUPLOT_PDFILE,
-        7.0, gspp->ratesize, gspp->delaysize, "Sans", 14,
-        gspp->label, gspp->srcsnr, "SansBold", (int)round(14 * 1.15));
+        gspp->pdfsizeinch, gspp->ratesize, gspp->delaysize,
+        gspp->labelfont, gspp->labelfontsize,
+        gspp->label, gspp->srcsnr, gspp->titlefont,
+        (int)round(gspp->labelfontsize * gspp->titlefontscale));
     fprintf(gfp, GNUPLOT_CONFIG,
         /* setup options for data and contouring */
         gspp->isosamples, gspp->numrates, gspp->numdelays,
@@ -251,9 +273,9 @@ void make_gnucmds(gsplot *gspp)
         gspp->bsplineorder, gspp->cntr_specified,
         gspp->cntr_lowest, gspp->cntr_increment,
         /* linear scaling function( indices to rate and delay values */
-        gspp->rate_sf, gspp->min_rate,
+        gspp->rate_sf, X_COORD_SHIFT, gspp->min_rate,
         gspp->peak_rate, gspp->max_rate, gspp->numrates-1,
-        gspp->delay_sf, gspp->min_delay,
+        gspp->delay_sf, Y_COORD_SHIFT, gspp->min_delay,
         gspp->peak_delay, gspp->max_delay, gspp->numdelays-1,
         /* ranges and labels */
         gspp->numrates-1, gspp->rate_unit,
@@ -261,13 +283,15 @@ void make_gnucmds(gsplot *gspp)
         gspp->numdelays-1, gspp->delay_unit,
         gspp->peak_delay*gspp->delay_sf, gspp->delay_unit,
         /* zrange and cb label and formula */
-        (gspp->cntr_lowest)*0.6, gspp->snr,
+        (gspp->cntr_lowest)*gspp->snrminfrac, gspp->snr,
         gspp->colorbar_label, gspp->palette_type, gspp->palette_options);
+    /* take the smaller number of grid points to scale peak circle */
+    ngrid = (double)gspp->numrates;
+    if ((double)gspp->numdelays > ngrid) ngrid = (double)gspp->numdelays;
     fprintf(gfp, GNUPLOT_SPLOT,
         gspp->gnpdf, gspp->bgfieldname,
-        // FIXME: these can be computed or as options:
-        gspp->peak_rate, gspp->peak_delay, 0.5/27., "red", .5,
-        gspp->pfile);
+        gspp->peak_rate, gspp->peak_delay, gspp->peakradius/ngrid,
+        gspp->peakcolorname, gspp->peaktransparency, gspp->pfile);
     fclose(gfp);
 
     /* since next fringe may require other choices */

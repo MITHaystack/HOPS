@@ -40,7 +40,7 @@ typedef struct gsplot {
     char *pfile;                    /* data file name */
     char *gfile;                    /* gnu cmd file name */
     char *gnpdf;                    /* resulting gnuplot pdf file */
-    /* details for the gnu plot derived from data */
+    /* details for the gnu plot derived from search data */
     char *frname;                   /* fringe name */
     char label[MAX_TXT];            /* scan-time, timestamp, pol title */
     char srcsnr[MAX_TXT];           /* source and peak SNR subtitle */
@@ -65,6 +65,15 @@ typedef struct gsplot {
     char *palette_type;             /* rgbformulae, cubehelix, viridis */
     char *palette_options;          /* formulae or start/cycles/saturation */
     char *bgfieldname;              /* color name for snr<min background */
+    /* various details for pdfcairo setup, &c. */
+    double pdfsizeinch;             /* sets pdfcairo plot size */
+    char *labelfont, *titlefont;    /* names of fonts */
+    int labelfontsize;              /* in points */
+    double titlefontscale;          /* multiplier on basic font size */
+    double snrminfrac;              /* where to cut cbar at low end */
+    double peakradius;              /* fraction of grid size */
+    char *peakcolorname;            /* what color for this object */
+    double peaktransparency;        /* how transparent to make it */
 } gsplot;
 
 /* functions in srch_montage.c */
@@ -83,14 +92,15 @@ extern void gnusrchplot(int, srchsum *, gpconf *);
 
 /* functions in make_gnucmds.c, with templates in splotemp.h */
 extern int is_gsplot_option(char *, int, int, gpconf *);
-extern void set_basic_contour_options(gsplot *gspp);
-extern void set_colormap_palette(gsplot *gspp);
-extern void set_rate_unit_sf(char *unit, gsplot *gspp);
-extern void set_delay_unit_sf(char *unit, gsplot *gspp);
-extern void set_gsplot_defaults(gsplot *gspp);
+extern void set_basic_contour_options(gsplot *);
+extern void set_colormap_palette(gsplot *);
+extern void set_pdfcairo_options(gsplot *);
+extern void set_rate_unit_sf(char *, gsplot *);
+extern void set_delay_unit_sf(char *, gsplot *);
+extern void set_gsplot_defaults(gsplot *);
 extern void show_gsplot_defaults(FILE *);
-extern void set_contour_options(gsplot *gspp);
-extern void nuke_contour_options(gsplot *gspp);
+extern void set_contour_options(gsplot *);
+extern void nuke_contour_options(gsplot *);
 extern void show_gsplot_contours(FILE *);
 extern void make_gnucmds(gsplot *);
 

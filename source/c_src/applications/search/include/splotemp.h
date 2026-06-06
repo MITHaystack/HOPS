@@ -16,6 +16,13 @@ set term pdfcairo size xtrmsize,ytrmsize font '%s,%d'\n\
 set title \"Fringe: %s\\n%s\" font '%s,%d' offset 0,1\n\
 "
 
+/* gnuplot appears to consider the x and y indices to refer to the lower-left
+ * corner of a grid box.  PGPLOT appears to have had a different convention.
+ * these offsets produce the correct appearance in the regression test
+ * comparison, but this should be confirmed in a careful examination of code.*/
+#define X_COORD_SHIFT   0.5     /* shift rate for map */
+#define Y_COORD_SHIFT   0.5     /* shift delay for map */
+
 /* pre-command configuration */
 #define GNUPLOT_CONFIG "\
 #\n\
@@ -35,11 +42,11 @@ set pm3d at b\n\
 # function for linear in t from mn to mx in nn steps\n\
 ldr(sf, t, mn,pk,mx,nn) = \\\n\
     sf*((mn-pk)*((nn-1-t)/(nn-1)) + (mx-pk)*(t/(nn-1)))\n\
-f(x) = ldr(%lf, x, %lf,%lf,%lf,%d) # rate  scaling function on 0:N-1\n\
-g(y) = ldr(%lf, y, %lf,%lf,%lf,%d) # delay scaling function on 0:M-1\n\
-set xrange [f(0):f(%d)]\n\
+f(x) = ldr(%lf, x-%lf, %lf,%lf,%lf,%d) # rate  scaling function on 0:N-1\n\
+g(y) = ldr(%lf, y-%lf, %lf,%lf,%lf,%d) # delay scaling function on 0:M-1\n\
+set xrange [f(0):f(%d)] noextend\n\
 set xlabel 'Resid.Rate (%s) from Peak Rate (at %.3f %s)'\n\
-set yrange [g(0):g(%d)]\n\
+set yrange [g(0):g(%d)] noextend\n\
 set ylabel 'Resid.Delay (%s) from Peak Delay (at %.3f %s)'\n\
 set zrange [%lf:%lf]\n\
 set cblabel '%s'\n\
@@ -54,7 +61,7 @@ set output '%s'\n\
 unset surface\n\
 set object 1 rect from graph 0,0 to graph 1,1 behind fc rgb '%s'\n\
 set object 2 circle center %lf,%lf size screen %lf \\\n\
-  front fc rgb '%s' fs transparent solid %lf\n\
+  front fc rgb '%s' fs transparent solid %lf noborder\n\
 splot '%s' using (f($1)):(g($2)):3 with lines\n\
 set output\n\
 #\n\
