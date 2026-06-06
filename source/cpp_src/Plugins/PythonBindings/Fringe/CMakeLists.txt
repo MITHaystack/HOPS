@@ -9,7 +9,7 @@ set(PYFRINGE_LIBS
     pybind11::module
 )
 
-pybind11_add_module(pyMHO_Fringe SHARED ${PYFRINGE_SOURCEFILES})
+pybind11_add_module(pyMHO_Fringe MODULE ${PYFRINGE_SOURCEFILES})
 
 # Suppress the visibility warnings pybind11 modules commonly trigger
 target_compile_options(pyMHO_Fringe PRIVATE -fvisibility=hidden)

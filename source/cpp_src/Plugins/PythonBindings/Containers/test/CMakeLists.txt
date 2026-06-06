@@ -1,7 +1,9 @@
 #declare header paths ##########################################################
 hops_internal_include_directories()
 
-set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pyMHO_Containers pybind11::embed)
+# pyMHO_Containers is a MODULE (unlinkable); the tests embed an interpreter
+# (pybind11::embed) and `import pyMHO_Containers` at runtime instead of linking it.
+set (HOPS_TEST_LIBS MHO_Message MHO_Utilities MHO_Containers MHO_Operators pybind11::embed)
 
 #all the test exectuables
 set(SOURCE_BASENAMES
@@ -25,6 +27,7 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     add_executable( ${BASENAME} ${BASENAME}.cc )
     target_compile_options( ${BASENAME} PRIVATE -fvisibility=hidden)
     target_link_libraries( ${BASENAME} PRIVATE ${HOPS_TEST_LIBS})
+    add_dependencies( ${BASENAME} pyMHO_Containers )
 endforeach( BASENAME )
 
 #

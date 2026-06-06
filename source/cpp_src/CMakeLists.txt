@@ -110,8 +110,13 @@ endif(HOPS_USE_HDF5)
 add_library(MHO_OptionalPlugins INTERFACE)
 
 if(HOPS_USE_PYBIND11)
+    # pyMHO_Containers / pyMHO_Operators are MODULE python extensions: unlinkable
+    # and exporting no C++ symbols we call. Consumers use only their headers
+    # (include dirs below) and load the modules at runtime via py::module::import.
+    # MHO_pyVisitors is a real SHARED lib, pybind11::embed pulls in libpython for the
+    # embedded interpreter.
     target_link_libraries(MHO_OptionalPlugins INTERFACE
-        pyMHO_Containers pyMHO_Operators MHO_pyVisitors pybind11::embed)
+        MHO_pyVisitors pybind11::embed)
     target_include_directories(MHO_OptionalPlugins INTERFACE
         ${CPPSOURCE}/Plugins/PythonBindings/Containers/include
         ${CPPSOURCE}/Plugins/PythonBindings/Operators/include
@@ -140,6 +145,16 @@ endif()
 
 #management layer for optional plugins
 add_subdirectory(${CPPSOURCE}/Plugins/PluginManagement)
+
+if(HOPS_USE_PYBIND11)
+    # The pyMHO_* python modules are no longer LINKED by MHO_OptionalPlugins (they
+    # are unlinkable MODULE extensions, loaded at runtime via py::module::import).
+    # Use add_dependencies for build-order, so that the module .so files exist before
+    # the python-using apps (fplot4/fourfit4/blingfit, which all link
+    # MHO_PluginManagement) are run from the build tree.
+    add_dependencies(MHO_PluginManagement
+        pyMHO_Containers pyMHO_Operators pyMHO_Calibration pyMHO_Fringe)
+endif()
 
 ######################################################################
 # lastly we build our applications

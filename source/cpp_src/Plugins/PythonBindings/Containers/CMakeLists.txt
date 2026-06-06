@@ -19,7 +19,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(PYCONTAINER_LIBS MHO_Message MHO_Utilities MHO_Containers)
 
 #create and install the python module
-pybind11_add_module(pyMHO_Containers SHARED ${PYCONTAINER_SOURCEFILES})
+pybind11_add_module(pyMHO_Containers MODULE ${PYCONTAINER_SOURCEFILES})
 
 #we need to add the -fvisibility hidden flag, to avoid warnings of the type
 # X declared with greater visibility than the type of its field Y

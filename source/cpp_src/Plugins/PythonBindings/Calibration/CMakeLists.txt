@@ -14,17 +14,19 @@ set(PYCALIBRATION_LIBS
     MHO_Containers
     MHO_Operators
     MHO_Calibration
-    pyMHO_Containers
-    pyMHO_Operators
 )
 
 #create and install the python module #########################################
-pybind11_add_module(pyMHO_Calibration SHARED ${PYCALIBRATION_SOURCEFILES})
+pybind11_add_module(pyMHO_Calibration MODULE ${PYCALIBRATION_SOURCEFILES})
 
 # Required to suppress pybind11 visibility warnings (see pybind11 FAQ)
 target_compile_options(pyMHO_Calibration PRIVATE -fvisibility=hidden)
 
 target_link_libraries(pyMHO_Calibration PRIVATE ${PYCALIBRATION_LIBS})
+
+#build-order only (no link): the other python modules must exist for cross-module
+#type resolution when pyMHO_Calibration is imported.
+add_dependencies(pyMHO_Calibration pyMHO_Containers pyMHO_Operators)
 
 install(TARGETS pyMHO_Calibration DESTINATION ${PYTHON_MODULE_INSTALL_RELDIR})
 
