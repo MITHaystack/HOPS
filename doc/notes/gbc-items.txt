@@ -12,7 +12,7 @@
       |  ^~~~~~~
 
 search:
-    finish hookup to gcfile: 2 FIXME items
+    test search gnuplot conf file.
 
 
 

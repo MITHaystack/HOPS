@@ -53,15 +53,16 @@ typedef struct gsplot {
     double min_rate, max_rate;      /* min and max rates (ps/s) */
     double min_delay, max_delay;    /* min and max delays (us) */
     double peak_rate, peak_delay;   /* peak of rate and delay */
-    /* other details from somewhere else */
+    /* other details these two depend on data for peak snr */
+    int cntr_specified;             /* if nonzero, these two were input */
+    double cntr_lowest;             /* lowest value contour level */
+    double cntr_increment;          /* increment on contour levels */
+    char *colorbar_label;           /* label for the colorbar */
+    /* other details come from defaults or config file */
     int isosamples;                 /* for smooth contours */
     int bsplineorder;               /* ditto */
     int dgrid3dalgorder;            /* algorithm order value */
-    int cntr_specified;             /* if nonzero */
-    double cntr_lowest;             /* lowest value contour level */
-    double cntr_increment;          /* increment on contour levels */
     char *dgrid3dalgorithm;         /* dgrid3d algorithm name */
-    char *colorbar_label;           /* label for the colorbar */
     char *palette_type;             /* rgbformulae, cubehelix, viridis */
     char *palette_options;          /* formulae or start/cycles/saturation */
     char *bgfieldname;              /* color name for snr<min background */
@@ -91,17 +92,20 @@ extern void write_gplot_info(FILE *, srchsum *, gsplot *);
 extern void gnusrchplot(int, srchsum *, gpconf *);
 
 /* functions in make_gnucmds.c, with templates in splotemp.h */
-extern int is_gsplot_option(char *, int, int, gpconf *);
+extern void set_contour_options(gsplot *);
+extern void nuke_contour_options(gsplot *);
+extern void show_gsplot_contours(FILE *);
 extern void set_basic_contour_options(gsplot *);
+extern void show_basic_contour_options(FILE *, gsplot *);
 extern void set_colormap_palette(gsplot *);
+extern void show_colormap_palette(FILE *, gsplot *);
 extern void set_pdfcairo_options(gsplot *);
+extern void show_pdfcairo_options(FILE *, gsplot *);
 extern void set_rate_unit_sf(char *, gsplot *);
 extern void set_delay_unit_sf(char *, gsplot *);
 extern void set_gsplot_defaults(gsplot *);
 extern void show_gsplot_defaults(FILE *);
-extern void set_contour_options(gsplot *);
-extern void nuke_contour_options(gsplot *);
-extern void show_gsplot_contours(FILE *);
+extern int is_gsplot_option(char *, int, int, gpconf *);
 extern void make_gnucmds(gsplot *);
 
 /* functions in gnedits.c */

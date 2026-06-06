@@ -47,10 +47,10 @@ int create_gnuconf(char *gfile, gpconf *gpfp)
         "# correspondingly scanned by %%d or %%f or %%lf.  Booleans\n"
         "# are expressed as 0 for FALSE and nonzero for TRUE.\n"
         "#\n"
-        "#The following line sets the number of rows x columns\n"
-        "# : aspect ratio (square if nonzero) for both the PGPLOT\n"
-        "# as well as the montage:\n"
-        "CxR:A= %dx%d:%d\n"
+        "#The following line sets the number of columns(C) x rows(R)\n"
+        "# and aspect ratio (A nonzero means square) for both the PGPLOT\n"
+        "# as well as the montage plots:\n"
+        "CxR:A=%dx%d:%d\n"
         "#\n", MAX_TXT, gpfp->ncols, gpfp->nrows, gpfp->asqr);
     fprintf(fpg,
         "#The montage converts the gnuplot PDFs into images for tiling\n"
@@ -66,10 +66,7 @@ int create_gnuconf(char *gfile, gpconf *gpfp)
         "nukegnu=%d\n"
         "nukedata=%d\n"
         "#\n", gpfp->nukegnu, gpfp->nukedata);
-
     show_gsplot_defaults(fpg);
-    show_gsplot_contours(fpg);
-
     fprintf(fpg, "#\n# eoc\n#\n"); 
     fclose(fpg);
     msg("Created graphic config file '%s'", 2, gfile);
