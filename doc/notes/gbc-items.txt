@@ -1,3 +1,16 @@
+Random error message:
+
+[ 39%] Building C object source/c_src/applications/aedit/CMakeFiles/aedit.dir/src/ps_proc_datum.c.o
+/home/gbc/HOPS/hops-git/source/c_src/applications/aedit/src/ps_proc_datum.c: In function ‘ps_proc_datum’:
+/home/gbc/HOPS/hops-git/source/c_src/applications/aedit/src/ps_proc_datum.c:116:2: warning: #warning "Y2K Issues with AEDI                      T need to be investigated" [-Wcpp]
+  116 | #warning "Y2K Issues with AEDIT need to be investigated"
+
+[ 46%] Linking C executable aedit
+/usr/bin/ld: CMakeFiles/aedit.dir/src/set_device.c.o: in function `set_device':
+./source/c_src/applications/aedit/./source/c_src/applications/aedit/src/set_device.c:41:(.text+0x3d): warning: the use of                       `tmpnam' is dangerous, better use `mkstemp'
+[ 46%] Built target aedit
+
+
 [ 75%] Building C object source/c_src/dfio/CMakeFiles/dfio.dir/src/display_221.c.o
 /home/gbc/HOPS/hops-git/source/c_src/dfio/src/display_221.c:39:3: warning: #warning "GS_EXEC default of /usr/bin/gs used" [-Wcpp]
    39 | # warning "GS_EXEC default of /usr/bin/gs used"
@@ -11,9 +24,30 @@
    24 | #warning "The number of lags is restricted only by size."
       |  ^~~~~~~
 
+[ 92%] Building CXX object source/cpp_src/MK4Interface/CMakeFiles/MHO_MK4Interface.dir/src/MHO_MK4StationInterfaceReversed.cc.o
+/home/gbc/HOPS/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc: In member function ‘std::string hops::MHO_MK4StationInterfaceReversed::GetStationMode()’:
+/home/gbc/HOPS/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc:583:10: warning: ignoring return value of ‘bool std:operator==(const __cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*) [with _CharT = char; _Traits = char_traits<char>; _Alloc = allocator<char>]’, declared with attribute ‘nodiscard’ [-Wunused-result]
+  583 |     mode == "";
+      |     ~~~~~^~~~~
+In file included from /usr/include/c++/15/string:56,
+                 from /home/gbc/HOPS/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterfaceReversed.hh:8,
+                 from /home/gbc/HOPS/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterfaceReversed.cc:1:
+/usr/include/c++/15/bits/basic_string.h:4062:5: note: declared here
+ 4062 |     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+
+
 search:
     test search gnuplot conf file.
 
+remove soirch
 
+disable PGPLOT from search and cohfit
+
+develop pdflatex / includegraphics as alternative to montage
+
+v7 of afile which allows fractional second durations, &c
+
+Average error bars?
 
 vim:nospell
