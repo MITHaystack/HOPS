@@ -333,12 +333,10 @@ int is_gsplot_option(char *line, int lno, int err, gpconf *gpfp)
         if (ncs == 1) ggp->cntr_specified ++;
         RETURN_PUKE(ncs, 1, line, lno, "cntr_increment", err);
     } else if (!strncmp(line, "colorbar_label=", 15)) {
-        ncs = sscanf(line, "colorbar_label=%s", colorbar_label);
-        if (ncs == 1) {
-            ggp->cntr_specified ++;
-            ggp->colorbar_label=colorbar_label;
-        }
-        RETURN_PUKE(ncs, 1, line, lno, "colorbar_label", err);
+        strcpy(colorbar_label, line+15);
+        ggp->cntr_specified ++;
+        ggp->colorbar_label=colorbar_label;
+        RETURN_PUKE(1, 1, line, lno, "colorbar_label", err);
     } else if (!strncmp(line, "isosamples=", 11)) {
         ncs = sscanf(line, "isosamples=%d", &ggp->isosamples);
         RETURN_PUKE(ncs, 1, line, lno, "isosamples", err);

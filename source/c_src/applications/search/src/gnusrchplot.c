@@ -150,6 +150,7 @@ void gnusrchplot(int nout, srchsum *srchp, gpconf *gpfp)
     fringesum *frdt;
     gsplot gsp, *gspp;
 
+    msg("gnusrchplot with config %s", 2, gpfp->gsp_gcfile);
     if (gpfp->gsp_gcfile) {
         /* use the values from the config file */
         gspp = gpfp->gsp_gcfile;

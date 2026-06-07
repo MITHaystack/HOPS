@@ -104,9 +104,10 @@ int gnuparse(char *gfile, gpconf *gpfp)
         } else if (line[0] == '#') {
             continue;                               /* do nothing */
         } else if (!strncmp(line, "CxR:A=", 6)) {
-            ncs = sscanf(line, "CxR:A=%dx%d:%d",
-                &gpfp->ncols, &gpfp->nrows, &gpfp->asqr);
-            if (3 == ncs) continue;
+            ncs = sscanf(line, "CxR:A=%dx%d:%d:%d:%d",
+                &gpfp->ncols, &gpfp->nrows,
+                &gpfp->asqr, &gpfp->pplt, &gpfp->gplt);
+            if (5 == ncs) continue;
             return(puke(fpg, lno, "Line %d parse error:", line, 202));
         } else if (!strncmp(line, "montage=", 8)) {
             ncs = sscanf(line, "montage=%d", &gpfp->montage);
