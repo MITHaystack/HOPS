@@ -37,9 +37,6 @@ In file included from /usr/include/c++/15/string:56,
       |     ^~~~~~~~
 
 
-search:
-    test search gnuplot conf file.
-
 remove soirch
 
 disable PGPLOT from search and cohfit
