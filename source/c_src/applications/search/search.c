@@ -41,6 +41,7 @@ static gpconf gpf = {
 #endif /* defined(MONTAGE) */
     .gpdfs_alloc = 0, .gnupdfs = NULL,
     .nukegnu = 0, .nukedata = 0, .gplt = FALSE,
+    .gsp_gcfile = NULL,
 #endif /* BIGGER==1 */
     .ncols = 2, .nrows = 2, .asqr = 0, .pplt = TRUE
 };

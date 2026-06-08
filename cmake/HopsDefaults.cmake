@@ -230,7 +230,11 @@ macro( hops_include_directories )
 
     foreach(dir ${ARGN})
         string(FIND ${dir} ${CMAKE_SOURCE_DIR} pos)
-        if(pos LESS 0)
+        string(FIND ${dir} "${CMAKE_SOURCE_DIR}/extern" extern_pos)
+        # Treat anything outside the source tree (or any bundled third-party header
+        # under extern/) as a system include, so their warnings (e.g. nlohmann/json
+        # deprecation noise) are kept quiet
+        if(pos LESS 0 OR NOT extern_pos LESS 0)
             list(APPEND SYSTEM_DIRS ${dir})
         else()
             list(APPEND hops_DIRS ${dir})

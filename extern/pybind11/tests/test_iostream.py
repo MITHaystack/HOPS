@@ -1,7 +1,23 @@
+from __future__ import annotations
+
+import sys
 from contextlib import redirect_stderr, redirect_stdout
 from io import StringIO
 
+import pytest
+
+import env
 from pybind11_tests import iostream as m
+
+if env.WIN:
+    wv_build = sys.getwindowsversion().build
+    skip_if_ge = 26100
+    if wv_build >= skip_if_ge:
+        pytest.skip(
+            f"Windows build {wv_build} >= {skip_if_ge}:"
+            " Skipping iostream capture (redirection regression needs investigation)",
+            allow_module_level=True,
+        )
 
 
 def test_captured(capsys):
@@ -34,7 +50,7 @@ def test_captured_large_string(capsys):
 
 
 def test_captured_utf8_2byte_offset0(capsys):
-    msg = "\u07FF"
+    msg = "\u07ff"
     msg = "" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -44,7 +60,7 @@ def test_captured_utf8_2byte_offset0(capsys):
 
 
 def test_captured_utf8_2byte_offset1(capsys):
-    msg = "\u07FF"
+    msg = "\u07ff"
     msg = "1" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -54,7 +70,7 @@ def test_captured_utf8_2byte_offset1(capsys):
 
 
 def test_captured_utf8_3byte_offset0(capsys):
-    msg = "\uFFFF"
+    msg = "\uffff"
     msg = "" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -64,7 +80,7 @@ def test_captured_utf8_3byte_offset0(capsys):
 
 
 def test_captured_utf8_3byte_offset1(capsys):
-    msg = "\uFFFF"
+    msg = "\uffff"
     msg = "1" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -74,7 +90,7 @@ def test_captured_utf8_3byte_offset1(capsys):
 
 
 def test_captured_utf8_3byte_offset2(capsys):
-    msg = "\uFFFF"
+    msg = "\uffff"
     msg = "12" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -84,7 +100,7 @@ def test_captured_utf8_3byte_offset2(capsys):
 
 
 def test_captured_utf8_4byte_offset0(capsys):
-    msg = "\U0010FFFF"
+    msg = "\U0010ffff"
     msg = "" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -94,7 +110,7 @@ def test_captured_utf8_4byte_offset0(capsys):
 
 
 def test_captured_utf8_4byte_offset1(capsys):
-    msg = "\U0010FFFF"
+    msg = "\U0010ffff"
     msg = "1" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -104,7 +120,7 @@ def test_captured_utf8_4byte_offset1(capsys):
 
 
 def test_captured_utf8_4byte_offset2(capsys):
-    msg = "\U0010FFFF"
+    msg = "\U0010ffff"
     msg = "12" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -114,7 +130,7 @@ def test_captured_utf8_4byte_offset2(capsys):
 
 
 def test_captured_utf8_4byte_offset3(capsys):
-    msg = "\U0010FFFF"
+    msg = "\U0010ffff"
     msg = "123" + msg * (1024 // len(msg) + 1)
 
     m.captured_output_default(msg)
@@ -268,14 +284,36 @@ def test_redirect_both(capfd):
     assert stream2.getvalue() == msg2
 
 
+def test_move_redirect(capsys):
+    m.move_redirect_output("before_move", "after_move")
+    stdout, stderr = capsys.readouterr()
+    assert stdout == "before_moveafter_move"
+    assert not stderr
+
+
+def test_move_redirect_unflushed(capsys):
+    m.move_redirect_output_unflushed("before_move", "after_move")
+    stdout, stderr = capsys.readouterr()
+    assert stdout == "before_moveafter_move"
+    assert not stderr
+
+
+def test_move_redirect_null_rdbuf(capsys):
+    m.move_redirect_null_rdbuf("hello")
+    stdout, stderr = capsys.readouterr()
+    assert stdout == "hellohello"
+    assert not stderr
+
+
+def test_null_rdbuf_restored():
+    assert m.get_null_rdbuf_restored("test")
+
+
+@pytest.mark.skipif(sys.platform.startswith("emscripten"), reason="Requires threads")
 def test_threading():
     with m.ostream_redirect(stdout=True, stderr=False):
         # start some threads
-        threads = []
-
-        # start some threads
-        for _j in range(20):
-            threads.append(m.TestThread())
+        threads = [m.TestThread() for _j in range(20)]
 
         # give the threads some time to fail
         threads[0].sleep()

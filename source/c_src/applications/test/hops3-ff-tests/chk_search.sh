@@ -31,12 +31,49 @@ $verb && set -x
 fringex -i 20 -d 27x27 -r alist-aedit-X0X.out |\
 average -o search.avg > fas.out 2>&1
 
+# dump out a config file
+rm -f search.conf
+search -g search.conf
+
 HOPS_SEARCH_REMLIMIT=0.6 \
 search -g 3x1:1:1:1 \
     -d search.ps/cps/pdf -o search.out -m1 search.avg >> fas.out 2>&1
 searchrv=$?
 [ "$searchrv" -eq 0 ] || errs=$(($errs+1))
 echo searchrv is $searchrv errs=$errs
+
+cat > search.revised.conf <<EOF
+#search configuration file -- this line is mandatory
+CxR:A=1x3:1:1:1
+montage=1
+density=100
+nukegnu=0
+nukedata=0
+isosamples=50
+dgrid3dalgorithm=qnorm
+dgrid3dalgorder=3
+bsplineorder=5
+palette_type=rgbformulae
+palette_options=34,35,36
+bgfieldname=gray40
+pdfsizeinch=8.000000
+labelfont=Courier
+titlefont=Times-New-Roman
+labelfontsize=15
+titlefontscale=1.500000
+snrminfrac=0.500000
+peakradius=0.100000
+peakcolorname=black
+peaktransparency=1.000000
+cntr_lowest=10
+cntr_increment=15
+colorbar_label=SNR starting 10 by 15
+EOF
+HOPS_SEARCH_REMLIMIT=0.6 \
+search -g search.revised.conf \
+    -d searchy.ps/cps/pdf -o searchy.out -m0 search.avg > fasy.out 2>&1
+cmp search.out searchy.out || {
+    echo search output differs; errs=$(($errs+1)) ; echo errs is $errs; }
 
 # made by gnuplot and montage
 splotfiles=''
