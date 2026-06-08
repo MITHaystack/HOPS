@@ -113,15 +113,22 @@ if(HOPS_USE_PYBIND11)
     # pyMHO_Containers / pyMHO_Operators are MODULE python extensions: unlinkable
     # and exporting no C++ symbols we call. Consumers use only their headers
     # (include dirs below) and load the modules at runtime via py::module::import.
-    # MHO_pyVisitors is a real SHARED lib, pybind11::embed pulls in libpython for the
-    # embedded interpreter.
-    target_link_libraries(MHO_OptionalPlugins INTERFACE
-        MHO_pyVisitors pybind11::embed)
+    # These are always available when pybind11 is enabled (independent of embed).
     target_include_directories(MHO_OptionalPlugins INTERFACE
         ${CPPSOURCE}/Plugins/PythonBindings/Containers/include
         ${CPPSOURCE}/Plugins/PythonBindings/Operators/include
         ${CPPSOURCE}/Plugins/PythonBindings/Visitors/include)
     target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_PYBIND11)
+
+    # MHO_pyVisitors is a SHARED lib and pybind11::embed pulls in libpython
+    # for the embedded interpreter. Only link them (and advertise the embedded
+    # code paths via USE_EMBEDDED_PYTHON) when embedding is enabled; the
+    # subprocess path (EMBEDDED=OFF) must stay free of any libpython dependency.
+    if(HOPS_ENABLE_EMBEDDED_PYTHON)
+        target_link_libraries(MHO_OptionalPlugins INTERFACE
+            MHO_pyVisitors pybind11::embed)
+        target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_EMBEDDED_PYTHON)
+    endif()
 endif()
 
 if(HOPS_USE_MATPLOTPP)
