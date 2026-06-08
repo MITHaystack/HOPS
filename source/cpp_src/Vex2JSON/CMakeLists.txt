@@ -20,7 +20,7 @@ set (VEX2JSON_SOURCEFILES
 )
 
 #declare header paths ##########################################################
-include_directories(${EXTERN_HLIBS}/json/include)
+include_directories(SYSTEM ${EXTERN_HLIBS}/json/include)
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #NOTE: the vex-format directory is resolved at runtime (see
