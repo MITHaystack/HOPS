@@ -55,7 +55,7 @@ template <class Map>
 Map *times_ten(int n) {
     auto *m = new Map();
     for (int i = 1; i <= n; i++) {
-        m->emplace(int(i), E_nc(10 * i));
+        m->emplace(i, E_nc(10 * i));
     }
     return m;
 }
@@ -65,7 +65,7 @@ NestMap *times_hundred(int n) {
     auto *m = new NestMap();
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
-            (*m)[i].emplace(int(j * 10), E_nc(100 * j));
+            (*m)[i].emplace(j * 10, E_nc(100 * j));
         }
     }
     return m;
@@ -270,7 +270,6 @@ TEST_SUBMODULE(stl_binders, m) {
     PYBIND11_NUMPY_DTYPE(VStruct, w, x, y, z);
     py::class_<VStruct>(m, "VStruct").def_readwrite("x", &VStruct::x);
     py::bind_vector<std::vector<VStruct>>(m, "VectorStruct", py::buffer_protocol());
-    m.def("get_vectorstruct", [] {
-        return std::vector<VStruct>{{false, 5, 3.0, true}, {true, 30, -1e4, false}};
-    });
+    m.def("get_vectorstruct",
+          [] { return std::vector<VStruct>{{false, 5, 3.0, true}, {true, 30, -1e4, false}}; });
 }

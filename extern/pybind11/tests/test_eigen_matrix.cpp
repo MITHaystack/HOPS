@@ -55,7 +55,7 @@ void reset_refs() {
 }
 
 // Returns element 2,1 from a matrix (used to test copy/nocopy)
-double get_elem(const Eigen::Ref<const Eigen::MatrixXd> &m) { return m(2, 1); };
+double get_elem(const Eigen::Ref<const Eigen::MatrixXd> &m) { return m(2, 1); }
 
 // Returns a matrix with 10*r + 100*c added to each matrix element (to help test that the matrix
 // reference is referencing rows/columns correctly).
@@ -76,7 +76,7 @@ struct CustomOperatorNew {
     Eigen::Matrix4d a = Eigen::Matrix4d::Zero();
     Eigen::Matrix4d b = Eigen::Matrix4d::Identity();
 
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 };
 
 TEST_SUBMODULE(eigen_matrix, m) {
@@ -237,6 +237,7 @@ TEST_SUBMODULE(eigen_matrix, m) {
 
     public:
         ReturnTester() { print_created(this); }
+        ReturnTester(const ReturnTester &) = default;
         ~ReturnTester() { print_destroyed(this); }
         static Eigen::MatrixXd create() { return Eigen::MatrixXd::Ones(10, 10); }
         // NOLINTNEXTLINE(readability-const-return-type)
@@ -340,12 +341,10 @@ TEST_SUBMODULE(eigen_matrix, m) {
     if (have_numpy) {
         py::module_::import("numpy");
         Eigen::Matrix<double, 3, 3> defaultMatrix = Eigen::Matrix3d::Identity();
-        m.def(
-            "defaults_mat", [](const Eigen::Matrix3d &) {}, py::arg("mat") = defaultMatrix);
+        m.def("defaults_mat", [](const Eigen::Matrix3d &) {}, py::arg("mat") = defaultMatrix);
 
         Eigen::VectorXd defaultVector = Eigen::VectorXd::Ones(32);
-        m.def(
-            "defaults_vec", [](const Eigen::VectorXd &) {}, py::arg("vec") = defaultMatrix);
+        m.def("defaults_vec", [](const Eigen::VectorXd &) {}, py::arg("vec") = defaultMatrix);
     }
     // test_sparse, test_sparse_signature
     m.def("sparse_r", [mat]() -> SparseMatrixR {
@@ -442,4 +441,8 @@ TEST_SUBMODULE(eigen_matrix, m) {
         py::module_::import("numpy").attr("ones")(10);
         return v[0](5);
     });
+    m.def("round_trip_vector", [](const Eigen::VectorXf &x) -> Eigen::VectorXf { return x; });
+    m.def("round_trip_dense", [](const DenseMatrixR &m) -> DenseMatrixR { return m; });
+    m.def("round_trip_dense_ref",
+          [](const Eigen::Ref<DenseMatrixR> &m) -> Eigen::Ref<DenseMatrixR> { return m; });
 }
