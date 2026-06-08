@@ -1,7 +1,18 @@
 #ifndef JSON_WRAPPER_HH__
 #define JSON_WRAPPER_HH__
 
+// nlohmann/json >= 3.11 deprecated json_pointer's implicit operator string_t(), but the
+// library's own operator[] SFINAE (detail::is_comparable) still references it, producing
+// spurious deprecated-declarations warnings at every json_pointer-keyed access.
+// supress it here...
+#if defined(__GNUC__)
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
 #include "nlohmann/json.hpp"
+#if defined(__GNUC__)
+    #pragma GCC diagnostic pop
+#endif
 using mho_json = nlohmann::json;
 using mho_ordered_json = nlohmann::ordered_json;
 namespace nl = nlohmann;
