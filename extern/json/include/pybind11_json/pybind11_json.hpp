@@ -9,6 +9,7 @@
 #ifndef PYBIND11_JSON_HPP
 #define PYBIND11_JSON_HPP
 
+#include <set>
 #include <string>
 #include <vector>
 
@@ -54,7 +55,7 @@ namespace pyjson
             {
                 obj[i] = from_json(j[i]);
             }
-            return std::move(obj);
+            return obj;
         }
         else // Object
         {
@@ -63,11 +64,11 @@ namespace pyjson
             {
                 obj[py::str(it.key())] = from_json(it.value());
             }
-            return std::move(obj);
+            return obj;
         }
     }
 
-    inline nl::json to_json(const py::handle& obj)
+    inline nl::json to_json(const py::handle& obj, std::set<const PyObject*>& refs)
     {
         if (obj.ptr() == nullptr || obj.is_none())
         {
@@ -118,24 +119,48 @@ namespace pyjson
         }
         if (py::isinstance<py::tuple>(obj) || py::isinstance<py::list>(obj))
         {
+            auto insert_ret = refs.insert(obj.ptr());
+            if (!insert_ret.second) {
+                throw std::runtime_error("Circular reference detected");
+            }
+
             auto out = nl::json::array();
             for (const py::handle value : obj)
             {
-                out.push_back(to_json(value));
+                out.push_back(to_json(value, refs));
             }
+
+            refs.erase(insert_ret.first);
+
             return out;
         }
         if (py::isinstance<py::dict>(obj))
         {
+            auto insert_ret = refs.insert(obj.ptr());
+            if (!insert_ret.second) {
+                throw std::runtime_error("Circular reference detected");
+            }
+
             auto out = nl::json::object();
             for (const py::handle key : obj)
             {
-                out[py::str(key).cast<std::string>()] = to_json(obj[key]);
+                out[py::str(key).cast<std::string>()] = to_json(obj[key], refs);
             }
+
+            refs.erase(insert_ret.first);
+
             return out;
         }
+
         throw std::runtime_error("to_json not implemented for this type of object: " + py::repr(obj).cast<std::string>());
     }
+
+    inline nl::json to_json(const py::handle& obj)
+    {
+        std::set<const PyObject*> refs;
+        return to_json(obj, refs);
+    }
+
 }
 
 // nlohmann_json serializers
