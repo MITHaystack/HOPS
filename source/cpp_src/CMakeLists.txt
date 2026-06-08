@@ -91,6 +91,12 @@ if(HOPS_USE_PYBIND11)
     add_subdirectory(${CPPSOURCE}/Plugins/PythonBindings)
 endif(HOPS_USE_PYBIND11)
 
+if(PY_EXE)
+    # Pybind-free subprocess backend (control-file evaluation + default plotting
+    # via the user's python3, no embedded interpreter / no libpython)
+    add_subdirectory(${CPPSOURCE}/Plugins/PythonSubprocess)
+endif(PY_EXE)
+
 if(HOPS_USE_MATPLOTPP)
     #Matplot++ (gnuplot is runtime dependency) support (fast default fringe plotting)
     add_subdirectory(${CPPSOURCE}/Plugins/MatplotPlugin)

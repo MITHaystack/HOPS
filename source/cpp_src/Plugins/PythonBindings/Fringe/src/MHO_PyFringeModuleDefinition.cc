@@ -3,8 +3,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include "MHO_ControlConditionEvaluator.hh"
-#include "MHO_ControlFileParser.hh"
+#include "MHO_ControlEvaluatorSupport.hh"
 #include "MHO_FringePass.hh"
 #include "MHO_PyFringeDataInterface.hh"
 
@@ -17,42 +16,11 @@ using namespace hops;
 //
 // This mirrors MHO_PyControlEvaluator::EvaluateCallable but lives here so
 // pyMHO_Fringe does not need to link against MHO_pyVisitors (which would
-// create a fragile runtime dependency on an installed shared library).
+// create a fragile runtime dependency on an installed shared library). The
+// pybind-free pass-info construction and condition/set-string post-processing
+// are shared with the embedded and subprocess evaluators via
+// MHO_ControlEvaluatorSupport.
 // ---------------------------------------------------------------------------
-
-static void apply_condition_filter_and_set_string(MHO_ParameterStore* ps, mho_json& stmts)
-{
-    std::string baseline = ps->GetAs< std::string >("/config/baseline");
-    std::string source = "?";
-    ps->Get("/vex/scan/source/name", source);
-    std::string fgroup = "?";
-    ps->Get("/config/fgroup", fgroup);
-    std::string scan_name = "?";
-    ps->Get("/vex/scan/name", scan_name);
-
-    mho_json wrapped;
-    wrapped["conditions"] = stmts;
-    MHO_ControlConditionEvaluator ceval;
-    ceval.SetPassInformation(baseline, source, fgroup, scan_name);
-    stmts = ceval.GetApplicableStatements(wrapped);
-
-    std::string set_string = ps->GetAs< std::string >("/cmdline/set_string");
-    if(set_string != "")
-    {
-        MHO_ControlFileParser set_parser;
-        set_parser.SetControlFile("/dev/null");
-        set_parser.PassSetString(set_string);
-        auto set_contents = set_parser.ParseControl();
-
-        MHO_ControlConditionEvaluator set_eval;
-        set_eval.SetPassInformation(baseline, source, fgroup, scan_name);
-        mho_json set_stmts = set_eval.GetApplicableStatements(set_contents);
-        for(auto& block : set_stmts)
-        {
-            stmts.push_back(block);
-        }
-    }
-}
 
 static MHO_FringePass::ControlEvaluatorFn make_py_evaluator(py::object fn)
 {
@@ -68,36 +36,7 @@ static MHO_FringePass::ControlEvaluatorFn make_py_evaluator(py::object fn)
             py::object PassInfo = hops_ctrl.attr("PassInfo");
             py::object Config = hops_ctrl.attr("Config");
 
-            // Build pass-info dict from parameter store
-            mho_json pd;
-            std::string baseline = ps->GetAs< std::string >("/config/baseline");
-            pd["baseline"] = baseline;
-            if(baseline.size() == 2)
-            {
-                pd["ref_mk4id"] = std::string(1, baseline[0]);
-                pd["rem_mk4id"] = std::string(1, baseline[1]);
-                pd["ref_code"] = std::string(1, baseline[0]);
-                pd["rem_code"] = std::string(1, baseline[1]);
-            }
-            else
-            {
-                pd["ref_mk4id"] = "?";
-                pd["rem_mk4id"] = "?";
-                pd["ref_code"] = "??";
-                pd["rem_code"] = "??";
-            }
-            std::string source = "?";
-            ps->Get("/vex/scan/source/name", source);
-            std::string fgroup = "?";
-            ps->Get("/config/fgroup", fgroup);
-            std::string scan = "?";
-            ps->Get("/vex/scan/name", scan);
-            std::string pp = "??";
-            ps->Get("/config/polprod", pp);
-            pd["source"] = source;
-            pd["fgroup"] = fgroup;
-            pd["scan_name"] = scan;
-            pd["polprod"] = pp;
+            mho_json pd = MHO_ControlEvaluatorSupport::BuildPassInfoDict(ps);
 
             py::object pass_info = PassInfo(pd);
             py::object config = Config(fmt);
@@ -112,7 +51,7 @@ static MHO_FringePass::ControlEvaluatorFn make_py_evaluator(py::object fn)
             return false;
         }
 
-        apply_condition_filter_and_set_string(ps, stmts);
+        MHO_ControlEvaluatorSupport::ApplyConditionFilterAndSetString(ps, stmts);
         return true;
     };
 }

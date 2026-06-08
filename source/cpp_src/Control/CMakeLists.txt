@@ -4,6 +4,7 @@ set (CONTROL_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlElementParser.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlTokenProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlConditionEvaluator.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ControlEvaluatorSupport.hh
 )
 
 ##################################################
@@ -14,6 +15,7 @@ set (CONTROL_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlElementParser.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlTokenProcessor.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlConditionEvaluator.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ControlEvaluatorSupport.cc
 )
 
 #declare header paths ##########################################################
