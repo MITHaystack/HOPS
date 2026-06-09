@@ -1,0 +1,93 @@
+name: CMake minimal on ubuntu-latest
+
+# alternative minimal build, no python: build the libpython-free configuration (HOPS_USE_PYBIND11=OFF)
+#   1. the build needs NO python development package (no python3-dev)
+#   2. the resulting executables should have NO libpython in their DT_NEEDED (ldd), and
+#   3. the default plotting + .py control-file paths still work by shelling out
+#      to a stock python3 (numpy/matplotlib), exercised by the Subprocess ctests.
+#   4. We also do not support embedded python plug-in scripts on this build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: RelWithDebInfo
+
+jobs:
+  build-subprocess-python:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v5
+
+    # NOTE: NO python3-dev here on purpose, runtime python3 + pip only.
+    - name: InstallHOPS4Deps
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake cmake-curses-gui python3 python3-pip wget jq
+
+    - name: InstallHOPS3Deps
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libfftw3-dev pgplot5 libgfortran5 libx11-dev gnuplot binutils libxpm-dev ghostscript ghostscript-x gsl-bin libgsl-dev libgslcblas0 imagemagick
+
+    # Configure the libpython-free flavor: pybind11 off (which forces the embedded
+    # interpreter off), so control files + default plotting route through python3.
+    # HOPS_PYPI_MANAGE_DEPS pip-installs numpy/matplotlib
+    - name: Configure CMake (subprocess / no-embed)
+      run: >
+        cmake -B ${{github.workspace}}/build
+        -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+        -DHOPS_USE_PYBIND11=OFF
+        -DHOPS_PYPI_MANAGE_DEPS=ON
+        -DHOPS_ENABLE_UNIT_TESTS=ON
+        -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --parallel 6
+
+    - name: Install
+      run: cmake --install ${{github.workspace}}/build
+
+    # check no libpython anywhere in the apps.
+    - name: Assert no libpython linked
+      shell: bash
+      run: |
+        status=0
+        for app in fourfit4 fplot4; do
+          bin="${{github.workspace}}/install/bin/${app}"
+          if [ ! -x "$bin" ]; then
+            echo "ERROR: $bin not found / not executable"; status=1; continue
+          fi
+          echo "== ldd $app =="
+          ldd "$bin" || true
+          if ldd "$bin" | grep -qi 'libpython'; then
+            echo "ERROR: $app links libpython in a no-embed build!"; status=1
+          else
+            echo "OK: $app has no libpython dependency"
+          fi
+        done
+        exit $status
+
+    # Fetch the sample VLBI data so the positive default-plot render test
+    # (chk_subprocess_plot) has a real fringe fit to dump a plot_dict from.
+    - name: TestDataDownload
+      shell: bash
+      run: |
+        source "${{github.workspace}}/install/bin/hops.bash"
+        "${{github.workspace}}/install/bin/testdata_download_all.sh"
+
+    # Exercise the subprocess control-evaluator + plotter tests. These spawn the
+    # stock python3 and use the installed hops packages + numpy/matplotlib.
+    # Source hops.bash so $HOPS_INSTALL is set for chk_env.sh (used by the
+    # chk_subprocess_plot wrapper).
+    - name: Test (subprocess python backend)
+      working-directory: ${{github.workspace}}/build
+      shell: bash
+      run: |
+        source "${{github.workspace}}/install/bin/hops.bash"
+        ctest -C ${{env.BUILD_TYPE}} -R "[Ss]ubprocess" --output-on-failure

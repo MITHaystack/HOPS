@@ -52,7 +52,7 @@ jobs:
       - name: Build difxio from DiFX source (no gsl)
         run: bash source/bash_src/ci-build-difxio.sh
 
-      # disable test for bdist build, just ship it
+      # disable test for bdist build, just ship it...though this has embedded python interpreter enabled by default
       - name: Configure (distribution build)
         run: |
           cmake -B build \

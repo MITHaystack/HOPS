@@ -3,26 +3,29 @@ name: Release (manylinux portable)
 # Portable, broad-compatibility release built inside the manylinux_2_28 container
 # (AlmaLinux 8 base, glibc 2.28) so the binaries run on a wide range of distros.
 #
-# Two flavors of artifact (bring-your-own-Python model, see project memory):
-#   * minimal  - no-embed (HOPS_USE_PYBIND11=OFF, no interpreter at build): NO
-#                libpython is linked. Ships the C++ matplot++ plotter AND the
-#                libpython-free subprocess backend + pure-python control/plot
-#                packages, so the SAME binaries additionally do default
-#                matplotlib plotting + .py control by shelling out to the USER's
-#                python3 (+ numpy/matplotlib) when present. A single,
-#                non-ABI-locked binary set. tag: -manylinux_2_28-nopython
-#   * bindings - one build per CPython minor (3.9+), built against
-#                /opt/python/cpXY. The pyMHO_* modules + embed apps are ABI-locked
-#                to that minor and resolve the USER's interpreter at runtime.
-#                tag: -manylinux_2_28-python3.X
+# Two shippable artifacts (bring-your-own-Python model, see project memory):
+#   * minimal     - no-embed (HOPS_USE_PYBIND11=OFF, no interpreter at build): NO
+#                   libpython is linked. Ships the C++ matplot++ plotter AND the
+#                   libpython-free subprocess backend + pure-python control/plot
+#                   packages, so the SAME binaries additionally do default
+#                   matplotlib plotting + .py control by shelling out to the USER's
+#                   python3 (+ numpy/matplotlib) when present. A single,
+#                   non-ABI-locked binary set. tag: -manylinux_2_28-nopython
+#   * multipython - the minimal binaries PLUS the pybind11 extension modules
+#                   (pyMHO_*) compiled for EVERY supported CPython minor, all
+#                   co-located in lib/python3/site-packages. The modules carry the
+#                   SOABI tag (pyMHO_*.cpython-3X-...so) and link no libpython, so
+#                   the user's own python3 (3.8-3.14) imports the matching one
+#                   automatically so we have one relocatable tarball, no per-minor tarball
+#                   but no embedded/ABI-locked apps. tag: -manylinux_2_28-multipython
 #
-# A v* tag attaches all tarballs to the Release; workflow_dispatch just uploads
+# Internally the per-minor modules come from the `bindings` matrix job (one build
+# per /opt/python/cpXY); the `bundle` job overlays them onto the `minimal` tree.
+# We do NOT ship per-minor EMBEDDED apps: users who need in-process python plug-in
+# operators build from source (the embedded interpreter is ABI-locked to one minor version)
+#
+# A v* tag attaches the tarballs to the Release; workflow_dispatch just uploads
 # them as artifacts (dry run).
-#
-# NOTE (runtime, not handled here): the per-minor embed apps (fplot4/blingfit)
-# are linked against the container's CPython, whose prefix won't exist on the
-# user's machine - they need PYTHONHOME pointed at the user's matching python3.X
-# (via hops.bash or a scoped_interpreter startup change). Tracked separately.
 
 on:
   push:
@@ -43,7 +46,7 @@ jobs:
   # pure-python hops_control / hops_visualization packages are still staged (both
   # are interpreter-independent at build time), so the SAME binaries additionally
   # do default matplotlib plotting + .py control whenever the END user has a
-  # python3 (+ numpy/matplotlib) on PATH -- otherwise they fall back to the C++
+  # python3 (+ numpy/matplotlib) on PATH otherwise they fall back to the C++
   # matplot++ plotter. A single, non-ABI-locked artifact.
   minimal:
     name: minimal (no-libpython)
@@ -122,6 +125,12 @@ jobs:
           fail_on_unmatched_files: true
 
   # --------------------------------------------------------------- bindings ---
+  # Build the pybind11 extension modules (pyMHO_*) once per CPython minor. We only
+  # HARVEST the per-minor modules (+ the version-independent pure-python packages)
+  # here; the relocatable apps/libs come from the no-embed `minimal` build. The
+  # modules are SOABI-tagged (pyMHO_*.cpython-3X-*.so) and link no libpython, so
+  # every minor's modules coexist in one dir and the user's interpreter selects
+  # its match. The `bundle` job overlays these onto the minimal tree.
   bindings:
     name: bindings (${{ matrix.py }})
     runs-on: ubuntu-22.04
@@ -129,9 +138,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # CPython minors to support (3.9+). Trim/extend to match what the
-        # manylinux_2_28 image actually ships under /opt/python.
-        py: [ cp39, cp310, cp311, cp312, cp313 ]
+        # CPython minors to support. Keep this in sync with what manylinux_2_28
+        # actually ships under /opt/python (a missing one fails its leg, which
+        # blocks the bundle (never ship an incomplete set).
+        py: [ cp38, cp39, cp310, cp311, cp312, cp313, cp314 ]
     env:
       DIFXROOT: ${{ github.workspace }}/difx-install
     steps:
@@ -147,14 +157,14 @@ jobs:
         run: |
           PYBIN="/opt/python/${{ matrix.py }}-${{ matrix.py }}/bin/python"
           test -x "$PYBIN" || { echo "interpreter $PYBIN not found in image"; exit 1; }
-          # Pin every FindPython variant so pybind11 (and pyinfo.py via the same
-          # interpreter) build against this exact minor.
+          # Pin every FindPython variant so pybind11 builds against this exact minor.
           cmake -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_PREFIX="$PWD/install" \
             -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
             -DHOPS_USE_DIFXIO=ON \
             -DHOPS_USE_PYBIND11=ON \
+            -DHOPS_ENABLE_EMBEDDED_PYTHON=OFF \
             -DPython_EXECUTABLE="$PYBIN" \
             -DPython3_EXECUTABLE="$PYBIN" \
             -DPYTHON_EXECUTABLE="$PYBIN" \
@@ -163,26 +173,95 @@ jobs:
           cmake --build build --parallel 4
           cmake --install build
 
-      - name: Package
-        working-directory: build
+      # The modules must not link libpython (they resolve Python symbols from the
+      # importing interpreter); that property is what lets all minors coexist.
+      - name: Assert modules carry no libpython
         run: |
-          PYBIN="/opt/python/${{ matrix.py }}-${{ matrix.py }}/bin/python"
-          PY_TAG="python$("$PYBIN" -c 'import sys; print("%d.%d" % sys.version_info[:2])')"
-          cpack -G TGZ
           shopt -s nullglob
-          mkdir -p "$GITHUB_WORKSPACE/dist"
-          pkgs=( hops-*.tar.gz )
-          [ "${#pkgs[@]}" -gt 0 ] || { echo "cpack produced no tarball"; exit 1; }
-          for pkg in "${pkgs[@]}"; do
-            base="$(basename "${pkg%.tar.gz}")"
-            mv "$pkg" "$GITHUB_WORKSPACE/dist/${base}-${COMPAT_TAG}-${PY_TAG}.tar.gz"
+          mods=( install/lib/python3/site-packages/pyMHO_*.so )
+          [ "${#mods[@]}" -gt 0 ] || { echo "ERROR: no pyMHO_* modules were built"; exit 1; }
+          status=0
+          for so in "${mods[@]}"; do
+            echo "== ldd $(basename "$so") =="
+            if ldd "$so" | grep -qi libpython; then
+              echo "ERROR: $(basename "$so") links libpython"; status=1
+            fi
           done
-          ls -l "$GITHUB_WORKSPACE/dist"
+          exit $status
+
+      - name: Stage python payload (modules + pure-python packages)
+        run: |
+          mkdir -p payload
+          cp -a install/lib/python3/site-packages/. payload/
+          echo "== staged payload =="; ls -1 payload
+
+      - name: Upload per-minor python payload
+        uses: actions/upload-artifact@v4
+        with:
+          name: pybind-${{ matrix.py }}
+          path: payload
+          if-no-files-found: error
+
+  # ----------------------------------------------------------------- bundle ---
+  # Assemble ONE relocatable tarball: the no-embed apps/libs/pure-python packages
+  # from `minimal`, plus every minor's pybind11 modules co-located in
+  # lib/python3/site-packages. No build here, just download + overlay + re-tar.
+  bundle:
+    name: bundle (no-embed apps + multi-minor bindings)
+    needs: [ minimal, bindings ]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download no-embed base tarball
+        uses: actions/download-artifact@v4
+        with:
+          name: hops-${{ env.COMPAT_TAG }}-nopython
+          path: base
+
+      - name: Download per-minor python payloads
+        uses: actions/download-artifact@v4
+        with:
+          pattern: pybind-*
+          path: payloads
+
+      - name: Assemble multi-minor bundle
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+
+          base_tgz="$(find base -name '*.tar.gz' | head -n1)"
+          [ -n "$base_tgz" ] || { echo "ERROR: no base tarball found"; exit 1; }
+          mkdir -p stage && tar -xzf "$base_tgz" -C stage
+
+          # cpack's TGZ has a single top-level dir: hops-<version>-<arch>
+          root="$(find stage -mindepth 1 -maxdepth 1 -type d | head -n1)"
+          [ -n "$root" ] || { echo "ERROR: unexpected base tarball layout"; exit 1; }
+          sitedir="$root/lib/python3/site-packages"
+          mkdir -p "$sitedir"
+
+          # Overlay each minor's payload. SOABI-tagged .so have unique names (no
+          # clobber); the pure-python packages are identical across minors.
+          count=0
+          for d in payloads/*/; do
+            echo "overlaying $d"
+            cp -a "$d". "$sitedir"/
+            ls "$d"pyMHO_Containers.cpython-*.so >/dev/null 2>&1 \
+              || { echo "ERROR: payload $d has no pyMHO_Containers module"; exit 1; }
+            count=$((count + 1))
+          done
+          [ "$count" -gt 0 ] || { echo "ERROR: no binding payloads downloaded"; exit 1; }
+
+          echo "== bundled $count minor(s) =="
+          ls -1 "$sitedir"/pyMHO_Containers.cpython-*.so
+
+          base_name="$(basename "$root")"
+          mkdir -p dist
+          tar -czf "dist/${base_name}-${COMPAT_TAG}-multipython.tar.gz" -C stage "$base_name"
+          ls -l dist
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: hops-${{ env.COMPAT_TAG }}-${{ matrix.py }}
+          name: hops-${{ env.COMPAT_TAG }}-multipython
           path: dist/*.tar.gz
           if-no-files-found: error
 
