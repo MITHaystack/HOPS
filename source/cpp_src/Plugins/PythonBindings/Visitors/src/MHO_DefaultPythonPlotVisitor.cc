@@ -18,6 +18,7 @@ using namespace pybind11::literals;
 #include "MHO_PyScanStoreInterface.hh"
 #include "MHO_PyTableContainer.hh"
 #include "MHO_PythonOperatorBuilder.hh"
+#include "MHO_PythonPluginInterface.hh" //owns the embedded interpreter lifecycle
 
 namespace hops
 {
@@ -68,6 +69,13 @@ void MHO_DefaultPythonPlotVisitor::Plot(MHO_FringeData* data)
 
 void MHO_DefaultPythonPlotVisitor::ConstructPlot(MHO_FringeData* data)
 {
+    //Guarantee the embedded interpreter is up before touching any py:: object.
+    //Idempotent: a no-op when fourfit4 already started it via the plugin factory,
+    //but essential for callers (e.g. fplot4) that go straight to the plot factory
+    //and never construct MHO_PythonPluginInterface. configure_pypath() (run here)
+    //also imports the required pyMHO_* modules.
+    MHO_PythonPluginInterface::EnsureInitialized();
+
     MHO_PyFringeDataInterface data_wrapper(data);
     ////////////////////////////////////////////////////////////////////////
     //load our interface module -- this is extremely slow!

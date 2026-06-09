@@ -17,19 +17,11 @@
 #include "MHO_ParameterStore.hh"
 #include "MHO_Tokenizer.hh"
 
-//pybind11 stuff to interface with python
-#ifdef USE_PYBIND11
-    #include "pybind11_json/pybind11_json.hpp"
-    #include <pybind11/embed.h>
-    #include <pybind11/pybind11.h>
-namespace py = pybind11;
-namespace nl = nlohmann;
-using namespace pybind11::literals;
-    #include "MHO_DefaultPythonPlotVisitor.hh"
-    #include "MHO_PyConfigurePath.hh"
-    #include "MHO_PyFringeDataInterface.hh"
-    #include "MHO_PythonOperatorBuilder.hh"
-#endif
+// fplot4 has no direct Python coupling: the plotting backend (C++ matplot++,
+// embedded-python, or python-subprocess) is selected entirely inside
+// MHO_FringePlotVisitorFactory::ConstructPlotter(), which is compiled in
+// MHO_PluginManagement where the USE_* backend defs are visible. The app links
+// no libpython and starts no interpreter itself.
 
 using namespace hops;
 
@@ -321,13 +313,6 @@ int main(int argc, char** argv)
 {
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eDebug);
-
-#ifdef USE_PYBIND11
-    //start the interpreter and keep it alive, need this or we segfault
-    //each process has its own interpreter
-    py::scoped_interpreter guard{};
-    configure_pypath();
-#endif
 
     MHO_ParameterStore paramStore;
     parse_fplot_command_line(argc, argv, &paramStore);

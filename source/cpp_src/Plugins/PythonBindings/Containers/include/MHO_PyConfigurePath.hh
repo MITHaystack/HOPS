@@ -1,5 +1,5 @@
 #ifndef MHO_PyConfigurePath_HH__
-    #define MHO_PyConfigurePath_HH_
+    #define MHO_PyConfigurePath_HH__
 
     #include <sstream>
     #include <string>
