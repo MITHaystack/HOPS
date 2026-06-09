@@ -62,13 +62,10 @@ detect_os_tag()
 }
 
 # Emit a "python<major>.<minor>" tag for the interpreter the bindings build
-# against (pybind11). pyinfo.py prints "lib/python3.10/site-packages"; we pull
-# the "python3.10" component out of that so the package name matches the ABI.
+# against (pybind11), so the package name matches the ABI
 detect_python_tag()
 {
-    local site
-    site="$(python3 "$HOPS_CI_DIR/pyinfo.py")" || return 1
-    basename "$(dirname "$site")"
+    python3 -c 'import sys; print("python%d.%d" % sys.version_info[:2])' || return 1
 }
 
 #set up

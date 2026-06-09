@@ -343,55 +343,30 @@ else()
 endif()
 
 
-if(PY_EXE)
+# All HOPS python content (the pure-python packages and, when built, the pybind11
+# extension modules) installs into a single, version-INDEPENDENT directory under
+# the install prefix. This is the directory added to PYTHONPATH at runtime
+# (hops_pypath.sh, the subprocess runner, and the relative sys.path insert baked
+# into installed scripts). python never auto-discovers it by version, so the
+# name need not encode the CPython minor. Because it carries no minor, ONE install
+# tree can hold pybind11 modules for several minors side by side: CPython selects
+# the matching one by the SOABI suffix in the .so filename
+# (pyMHO_*.cpython-3X-...so), so a multi-minor bundle needs no custom resolver.
+# (This also means a build-time interpreter is not required just to know where to
+# put things; only the pybind/embedded/pip paths actually need one.)
 
-    #figure out the python site-packages install path, so we can add it to
-    #PYTHONPATH and install our (pure-python, file-copy) modules there
-    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/pyinfo.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
-    FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-    GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-    )
-    execute_process(COMMAND ${PY_EXE} "${CMAKE_CURRENT_BINARY_DIR}/pyinfo.py"
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        OUTPUT_VARIABLE PYTHON_SITE_PREFIX
-        RESULT_VARIABLE PYINFO_RESULT
-        ERROR_VARIABLE  PYINFO_STDERR)
-    string(STRIP "${PYTHON_SITE_PREFIX}" PYTHON_SITE_PREFIX)
+set(PYTHON_SITE_PREFIX "lib/python3/site-packages")
+set(PYTHON_MODULE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+#relative companion (see the *_RELDIR block near the top); use this as the
+#install() DESTINATION so the python modules land in cpack-staged packages.
+file(RELATIVE_PATH PYTHON_MODULE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PYTHON_MODULE_INSTALL_DIR}")
+message(STATUS "Python module install path = ${PYTHON_SITE_PREFIX}")
 
-    if(NOT PYINFO_RESULT EQUAL 0 OR PYTHON_SITE_PREFIX STREQUAL "")
-        message(FATAL_ERROR
-            "Failed to query the python site-packages path via pyinfo.py "
-            "(interpreter: ${PY_EXE}, exit code: ${PYINFO_RESULT}).\n"
-            "Output: '${PYTHON_SITE_PREFIX}'\n"
-            "Stderr: ${PYINFO_STDERR}\n"
-            "Re-run with -DHOPS_USE_PYBIND11=OFF (and no python tools) to build "
-            "without the python components, or fix the Python environment.")
-    endif()
-
-    message(STATUS "Python module install path = ${PYTHON_SITE_PREFIX}")
-    set( PYTHON_MODULE_INSTALL_DIR  "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
-    #relative companion (see the *_RELDIR block near the top); use this as the
-    #install() DESTINATION so the python modules land in cpack-staged packages.
-    file(RELATIVE_PATH PYTHON_MODULE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PYTHON_MODULE_INSTALL_DIR}")
-
-else()
-
-    #no python found so turn off pybind11 too
+if(NOT PY_EXE)
+    #no interpreter at build time, so turn off pybind11 (the pure-python packages
+    #and the libpython-free subprocess backend still build/install without one)
     set(HOPS_USE_PYBIND11 OFF CACHE BOOL "Build python bindings with pybind11" FORCE)
-
-    #We can still build (and ship) the pybind-free subprocess backend + the
-    #pure-python control/plot packages without a build-time interpreter: the
-    #subprocess code only popen()s the USER's python3 at runtime. Since those
-    #packages are pure python (no compiled extensions, no version-locked ABI),
-    #a version-independent site dir is fine here -- the runtime PYTHONPATH is set
-    #explicitly to this dir (see MHO_PythonSubprocessRunner / hops_pypath.sh), so
-    #python does not need to auto-discover it by version.
-    set(PYTHON_SITE_PREFIX "lib/python3/site-packages")
-    message(STATUS "No python interpreter at build time; using fallback python module install path = ${PYTHON_SITE_PREFIX}")
-    set(PYTHON_MODULE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
-    file(RELATIVE_PATH PYTHON_MODULE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PYTHON_MODULE_INSTALL_DIR}")
-
-endif(PY_EXE)
+endif()
 
 ################################################################################
 # The embedded interpreter requires HOPS_USE_PYBIND11=ON, so force it off if PYBIND11 is OFF

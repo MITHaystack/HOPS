@@ -6,8 +6,8 @@
 # modules and bindings, e.g.  python -c "import hops; import pyMHO_Containers".
 # NOTE: most *installed* HOPS command-line tools do NOT depend on this export!
 #
-# This file is configured by CMake (the @PYTHON_SITE_PREFIX@ token is the python
-# site-packages subdir, e.g. lib/python3.10/site-packages) under HOPS_INSTALL. The absolute path is
+# This file is configured by CMake (the @PYTHON_SITE_PREFIX@ token is the HOPS
+# python module subdir, version-independent: lib/python3/site-packages) under HOPS_INSTALL. The absolute path is
 # derived from HOPS_INSTALL at runtime so the installation stays relocatable. This must be source'd
 # after hops.bash, e.g.  . "$HOPS_INSTALL/bin/hops_pypath.sh"
 

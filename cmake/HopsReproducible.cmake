@@ -111,7 +111,7 @@ if(HOPS_REPRODUCIBLE_RPATH AND NOT APPLE)
     endif()
 
     # Reach lib/, lib/hops/, lib64/ from bin/, bin/test/, lib/, lib/hops/, and
-    # from the python site-packages dir (lib/pythonX.Y/site-packages, three levels
+    # from the HOPS python module dir (lib/python3/site-packages, three levels
     # deep) so the installed pybind11 modules locate the HOPS libs via RPATH
     # without needing LD_LIBRARY_PATH.
     set(CMAKE_INSTALL_RPATH
