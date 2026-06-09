@@ -379,6 +379,18 @@ else()
     #no python found so turn off pybind11 too
     set(HOPS_USE_PYBIND11 OFF CACHE BOOL "Build python bindings with pybind11" FORCE)
 
+    #We can still build (and ship) the pybind-free subprocess backend + the
+    #pure-python control/plot packages without a build-time interpreter: the
+    #subprocess code only popen()s the USER's python3 at runtime. Since those
+    #packages are pure python (no compiled extensions, no version-locked ABI),
+    #a version-independent site dir is fine here -- the runtime PYTHONPATH is set
+    #explicitly to this dir (see MHO_PythonSubprocessRunner / hops_pypath.sh), so
+    #python does not need to auto-discover it by version.
+    set(PYTHON_SITE_PREFIX "lib/python3/site-packages")
+    message(STATUS "No python interpreter at build time; using fallback python module install path = ${PYTHON_SITE_PREFIX}")
+    set(PYTHON_MODULE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
+    file(RELATIVE_PATH PYTHON_MODULE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PYTHON_MODULE_INSTALL_DIR}")
+
 endif(PY_EXE)
 
 ################################################################################
@@ -427,11 +439,12 @@ endif()
 message(STATUS "Using compiler ${COMPILER_ID} ${COMPILER_VERSION} for HOPS4")
 add_subdirectory(${CPPSOURCE}) #mostly hops4 source
 
-if(PY_EXE)
-    # NOTE: The hops python modules install as plain file copies (see
-    # source/python_src/*/CMakeLists.txt), so no pip/setuptools/etc is required
-    add_subdirectory(${PYSOURCE})
-endif()
+# NOTE: The hops python modules install as plain file copies (see
+# source/python_src/*/CMakeLists.txt), so no pip/setuptools/etc (and no build-time
+# interpreter) is required to stage the pure-python packages. The parts that DO
+# need an interpreter (pip dependency management, the pybind plugins, the python
+# unit tests) are guarded by PY_EXE inside that subdirectory.
+add_subdirectory(${PYSOURCE})
 
 ################################################################################
 #find and configure perl if available

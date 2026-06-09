@@ -75,8 +75,11 @@ if(PY_EXE)
         add_subdirectory(test)
     endif(HOPS_ENABLE_TEST)
 
-    add_subdirectory(hops_module)
     add_subdirectory(scripts)
     add_subdirectory(plugins)
 
 endif(PY_EXE)
+
+# The pure-python packages install as plain *.py file copies, so they are staged
+# regardless of whether a python interpreter exists at build time.
+add_subdirectory(hops_module)

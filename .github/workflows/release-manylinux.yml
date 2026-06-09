@@ -4,9 +4,13 @@ name: Release (manylinux portable)
 # (AlmaLinux 8 base, glibc 2.28) so the binaries run on a wide range of distros.
 #
 # Two flavors of artifact (bring-your-own-Python model, see project memory):
-#   * minimal  - python-free (HOPS_USE_PYBIND11=OFF): core fourfit4 fringe-fit,
-#                C++ matplot++ plotter, difx tools. No libpython dependency.
-#                tag: -manylinux_2_28-nopython
+#   * minimal  - no-embed (HOPS_USE_PYBIND11=OFF, no interpreter at build): NO
+#                libpython is linked. Ships the C++ matplot++ plotter AND the
+#                libpython-free subprocess backend + pure-python control/plot
+#                packages, so the SAME binaries additionally do default
+#                matplotlib plotting + .py control by shelling out to the USER's
+#                python3 (+ numpy/matplotlib) when present. A single,
+#                non-ABI-locked binary set. tag: -manylinux_2_28-nopython
 #   * bindings - one build per CPython minor (3.9+), built against
 #                /opt/python/cpXY. The pyMHO_* modules + embed apps are ABI-locked
 #                to that minor and resolve the USER's interpreter at runtime.
@@ -34,8 +38,15 @@ env:
 
 jobs:
   # ---------------------------------------------------------------- minimal ---
+  # No-embed: built with NO python interpreter at all (HOPS_USE_PYBIND11=OFF), so
+  # NO libpython is linked. The subprocess backend is still compiled in and the
+  # pure-python hops_control / hops_visualization packages are still staged (both
+  # are interpreter-independent at build time), so the SAME binaries additionally
+  # do default matplotlib plotting + .py control whenever the END user has a
+  # python3 (+ numpy/matplotlib) on PATH -- otherwise they fall back to the C++
+  # matplot++ plotter. A single, non-ABI-locked artifact.
   minimal:
-    name: minimal (python-free)
+    name: minimal (no-libpython)
     runs-on: ubuntu-22.04
     container: quay.io/pypa/manylinux_2_28_x86_64
     env:
@@ -61,6 +72,26 @@ jobs:
             -DHOPS_ENABLE_DEBUG_MSG=OFF
           cmake --build build --parallel 4
           cmake --install build
+
+      # Prove the shipped apps carry no libpython (DT_NEEDED), so they are not
+      # ABI-locked to any CPython minor.
+      - name: Assert no libpython linked
+        run: |
+          status=0
+          for app in fourfit4 fplot4; do
+            bin="install/bin/${app}"
+            if [ ! -x "$bin" ]; then
+              echo "ERROR: $bin not found / not executable"; status=1; continue
+            fi
+            echo "== ldd $app =="
+            ldd "$bin" || true
+            if ldd "$bin" | grep -qi 'libpython'; then
+              echo "ERROR: $app links libpython in a no-embed build!"; status=1
+            else
+              echo "OK: $app has no libpython dependency"
+            fi
+          done
+          exit $status
 
       - name: Package
         working-directory: build
