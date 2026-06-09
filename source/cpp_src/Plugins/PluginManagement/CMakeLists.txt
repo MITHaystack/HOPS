@@ -7,6 +7,7 @@ set (PLUGIN_MANAGEMENT_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_OutputVisitorFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PluginVisitorFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FringePlotVisitorFactory.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_PythonBackendSelector.hh
 )
 
 #list source files #############################################################
@@ -16,6 +17,7 @@ set( PLUGIN_MANAGEMENT_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_OutputVisitorFactory.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PluginVisitorFactory.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_FringePlotVisitorFactory.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_PythonBackendSelector.cc
 )
 
 #declare header paths ##########################################################

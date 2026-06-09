@@ -1082,3 +1082,65 @@ def make_fourfit_plot_wrapper(fringe_data_interface):
         show_plot = fringe_data_interface.get_parameter_store().get_by_path("/cmdline/show_plot");
 
     make_fourfit_plot(fringe_data_interface.get_plot_data(), show_plot, plot_file)
+
+
+def _run_subprocess_entry(argv):
+    '''
+    Subprocess (no-embed) plotting entry point.
+
+    Invoked by MHO_SubprocessPythonPlotVisitor as::
+
+        python -m hops_visualization.fourfit_plot <request.json>
+
+    This is the Python half of the no-embed default-plot backend. It reads the
+    JSON request, renders with make_fourfit_plot() (the same dict-driven
+    renderer the embedded path uses), and writes a JSON response to stdout.
+
+    JSON contract (keep in sync with MHO_PythonSubprocessContract.hh):
+        request  : { schema_version, plot_dict, show_plot, disk_file }
+        response : { schema_version, ok, output_file, error }
+    '''
+    import json
+    schema_version = 1
+
+    def emit(response):
+        json.dump(response, sys.stdout)
+        sys.stdout.flush()
+
+    try:
+        if len(argv) < 2:
+            raise ValueError("no request file argument provided")
+        src = argv[1]
+        if src == "-":
+            request = json.load(sys.stdin)
+        else:
+            with open(src, "r") as f:
+                request = json.load(f)
+
+        req_version = request.get("schema_version")
+        if req_version != schema_version:
+            raise ValueError("plot request schema_version %r != expected %d" % (req_version, schema_version))
+
+        plot_dict = request.get("plot_dict")
+        if plot_dict is None:
+            raise ValueError("request is missing 'plot_dict'")
+        show_plot = bool(request.get("show_plot", False))
+        filename = request.get("disk_file", "") or ""
+
+        # When we are not displaying on-screen, force a headless-safe backend so
+        # saving to a file works without a display / Tk (the module selects an
+        # interactive backend at import time).
+        if not show_plot:
+            plt.switch_backend("Agg")
+
+        make_fourfit_plot(plot_dict, show_plot, filename)
+
+        emit({"schema_version": schema_version, "ok": True, "output_file": filename})
+        return 0
+    except Exception as exc:  # surface any failure as a contract error
+        emit({"schema_version": schema_version, "ok": False, "error": "%s" % exc})
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(_run_subprocess_entry(sys.argv))

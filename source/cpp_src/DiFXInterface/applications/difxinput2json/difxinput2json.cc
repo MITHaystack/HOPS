@@ -74,10 +74,10 @@ int main(int argc, char** argv)
 
     if(localdir)
     {
-        #ifdef HAVE_DIFX_OPTS
-                int true_val = 1;
-                difxioSetOption(DIFXIO_OPT_LOCALDIR, &true_val);
-        #endif
+#ifdef HAVE_DIFX_OPTS
+        int true_val = 1;
+        difxioSetOption(DIFXIO_OPT_LOCALDIR, &true_val);
+#endif
     }
 
     MHO_DiFXInputProcessor proc;
@@ -87,8 +87,14 @@ int main(int argc, char** argv)
     proc.ConvertToJSON(input);
 
     std::string output;
-    if(pretty){output = input.dump(2);}
-    else{output = input.dump(); }
+    if(pretty)
+    {
+        output = input.dump(2);
+    }
+    else
+    {
+        output = input.dump();
+    }
 
     if(output_file.empty())
     {

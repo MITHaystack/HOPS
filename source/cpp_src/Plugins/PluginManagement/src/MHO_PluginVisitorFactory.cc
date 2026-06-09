@@ -4,8 +4,9 @@
     #include "MHO_BasicPlotVisitor.hh"
 #endif
 
-#ifdef USE_PYBIND11
-    #include "MHO_DefaultPythonPlotVisitor.hh"
+// The in-process python plug-in operators are provided by MHO_PythonPluginInterface,
+// which owns the embedded interpreter; it is only available in an embedded (pybind11) build.
+#if defined(USE_EMBEDDED_PYTHON)
     #include "MHO_PythonPluginInterface.hh"
 #endif
 
@@ -70,7 +71,7 @@ void MHO_PluginVisitorFactory::ConstructPlugins()
     if(fParameterStore != nullptr)
     {
 
-#ifdef USE_PYBIND11
+#if defined(USE_EMBEDDED_PYTHON)
         bool need_python_plugin = false;
         if(fParameterStore->IsPresent("/config/plugins/activate_python"))
         {
@@ -79,7 +80,7 @@ void MHO_PluginVisitorFactory::ConstructPlugins()
 
         std::string plot_backend;
         fParameterStore->Get("/control/config/plot_backend", plot_backend);
-        if(plot_backend == "matplotlib") //we need the python plugin if the plotter is matplotlib too
+        if(plot_backend == "matplotlib") //embedded matplotlib plotting needs the in-process interpreter
         {
             need_python_plugin |= true;
         }
@@ -91,6 +92,24 @@ void MHO_PluginVisitorFactory::ConstructPlugins()
             fPluginVisitors.push_back(py_visitor);
         }
 
+#else
+        // No embedded interpreter in this build. The default plotter and Python
+        // control files still work via the subprocess backend, but in-process
+        // user plug-in operators (zero-copy access to the data) are unavailable.
+        // Emit a clear error if the control file explicitly requests them rather
+        // than letting it fail later as an unknown operator.
+        bool activate_python = false;
+        if(fParameterStore->IsPresent("/config/plugins/activate_python"))
+        {
+            activate_python = fParameterStore->GetAs< bool >("/config/plugins/activate_python");
+        }
+        if(activate_python)
+        {
+            msg_error("plugins", "Python plug-in operators require HOPS to be built against an embedded "
+                                 "Python interpreter (HOPS_ENABLE_EMBEDDED_PYTHON=ON), they are unavailable in this "
+                                 "binary and will be ignored"
+                                     << eom);
+        }
 #endif
     }
     fPluginsInitialized = true;

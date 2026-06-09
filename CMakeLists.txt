@@ -201,7 +201,6 @@ option(HOPS_USE_FFTW3 "Use FFTW3 for fast fourier transforms (optional, but high
 option(HOPS_USE_DIFXIO "Link against difxio library to read DiFX files" OFF)
 option(HOPS_USE_PYBIND11 "Build python bindings with pybind11" ON)
 option(HOPS_ENABLE_EMBEDDED_PYTHON "Link against an embedded Python interpreter (enables plug-in operators)" ON)
-option(HOPS_PYMODULE_STABLE_ABI "Build the pyMHO_* extension modules against CPython ABI (abi3):requires python >= 3.12" OFF)
 option(HOPS_USE_MATPLOTPP "Build copy of matplot++ (requires C++17; gnuplot needed only at runtime) for fast plotting" ON)
 option(HOPS_USE_MPI "Use MPI (Message Passing Interface) for parallel processing" OFF)
 option(HOPS_IS_HOPS4 "Install the HOPS4 version of relevant executables (symlinked to expected names, e.g. fourfit, fplot)" OFF)
@@ -383,18 +382,12 @@ else()
 endif(PY_EXE)
 
 ################################################################################
-# The embedded interpreter and the abi3 modules both require HOPS_USE_PYBIND11=ON
-# so force them off if PYBIND11 is OFF
+# The embedded interpreter requires HOPS_USE_PYBIND11=ON, so force it off if PYBIND11 is OFF
 if(NOT HOPS_USE_PYBIND11)
     if(HOPS_ENABLE_EMBEDDED_PYTHON)
         message(STATUS "HOPS_USE_PYBIND11=OFF: forcing HOPS_ENABLE_EMBEDDED_PYTHON=OFF")
         set(HOPS_ENABLE_EMBEDDED_PYTHON OFF CACHE BOOL
             "Link an embedded CPython interpreter." FORCE)
-    endif()
-    if(HOPS_PYMODULE_STABLE_ABI)
-        message(STATUS "HOPS_USE_PYBIND11=OFF: forcing HOPS_PYMODULE_STABLE_ABI=OFF")
-        set(HOPS_PYMODULE_STABLE_ABI OFF CACHE BOOL
-            "Build the pyMHO_* extension modules against the CPython stable ABI (abi3)." FORCE)
     endif()
 endif()
 
@@ -403,17 +396,6 @@ if(HOPS_ENABLE_EMBEDDED_PYTHON AND NOT Python3_Development_FOUND)
     message(FATAL_ERROR
         "HOPS_ENABLE_EMBEDDED_PYTHON=ON but no Python 'Development' component "
         "(shared libpython) was found. Install the python dev package")
-endif()
-
-# abi3 modules require pybind11 (>= 2.13 for STABLE_ABI; we vendor 3.x) and a
-# CPython >= 3.12 interpreter to compile/import against.
-if(HOPS_PYMODULE_STABLE_ABI)
-    if(NOT Python3_VERSION OR Python3_VERSION VERSION_LESS "3.12")
-        message(FATAL_ERROR
-            "HOPS_PYMODULE_STABLE_ABI=ON requires Python >= 3.12 "
-            "(configured interpreter: '${Python3_VERSION}'). Re-run with "
-            "-DHOPS_PYMODULE_STABLE_ABI=OFF to build full versioned python modules.")
-    endif()
 endif()
 
 ################################################################################

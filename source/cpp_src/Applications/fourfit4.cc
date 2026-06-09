@@ -20,11 +20,8 @@
 #include "MHO_FringeDataDiscovery.hh"
 #include "MHO_Mk4InputConverter.hh"
 
-//Python control-file support (only when pybind11 is available)
-#ifdef USE_PYBIND11
-    #include "MHO_PyControlEvaluator.hh"
-    #include "MHO_PythonPluginInterface.hh"
-#endif
+//Python control-file support
+#include "MHO_PythonBackendSelector.hh"
 
 //single-pass encapsulation
 #include "MHO_FringePass.hh"
@@ -144,18 +141,24 @@ int main(int argc, char** argv)
             continue;
         }
 
-        // Inject the Python control evaluator only when the resolved control
-        // file has a .py extension; DSL (.cf) files use the normal path.
-#ifdef USE_PYBIND11
+        // inject the Python control evaluator only when the resolved control
+        // file has a .py extension, plain old control files files use the normal path. The
+        // backend (embedded or subprocess) is chosen by MakePythonControlEvaluator(), error out if no python available
         {
             std::string ctrl = fpass.GetFringeData()->GetParameterStore()->GetAs< std::string >("/files/control_file");
             if(MHO_DirectoryInterface::GetFileExtension(ctrl) == "py")
             {
-                MHO_PythonPluginInterface::EnsureInitialized();
-                fpass.SetPythonControlEvaluator(MHO_PyControlEvaluator::Evaluate);
+                MHO_PythonControlEvaluatorFn py_eval = MakePythonControlEvaluator();
+                if(py_eval)
+                {
+                    fpass.SetPythonControlEvaluator(py_eval);
+                }
+                else
+                {
+                    msg_error("main", "can not parse python control file, no interpreter available." << eom);
+                }
             }
         }
-#endif
 
         if(!fpass.Configure())
         {

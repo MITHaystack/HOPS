@@ -4,13 +4,32 @@
     #include "MHO_BasicPlotVisitor.hh"
 #endif
 
-//pybind11 stuff to interface with python
-#ifdef USE_PYBIND11
+// Python plotting backend: in-process (embedded) or via the user's python3
+// (subprocess). At most one of these is defined in a python-enabled build.
+#if defined(USE_EMBEDDED_PYTHON)
     #include "MHO_DefaultPythonPlotVisitor.hh"
+#elif defined(USE_PYTHON_SUBPROCESS)
+    #include "MHO_SubprocessPythonPlotVisitor.hh"
 #endif
 
 namespace hops
 {
+
+namespace
+{
+//construct the python (matplotlib) plotter for the compiled backend, or nullptr
+//if no python plotting backend is available in this build.
+static MHO_FringePlotVisitor* make_python_plotter()
+{
+#if defined(USE_EMBEDDED_PYTHON)
+    return new MHO_DefaultPythonPlotVisitor();
+#elif defined(USE_PYTHON_SUBPROCESS)
+    return new MHO_SubprocessPythonPlotVisitor();
+#else
+    return nullptr;
+#endif
+}
+} // namespace
 
 MHO_FringePlotVisitorFactory::MHO_FringePlotVisitorFactory(): fFringePlotter(nullptr)
 {}
@@ -47,9 +66,9 @@ MHO_FringePlotVisitor* MHO_FringePlotVisitorFactory::ConstructPlotter(std::strin
     else if(plot_backend == "matplotlib")
     {
 
-#ifdef USE_PYBIND11
+#if defined(USE_EMBEDDED_PYTHON) || defined(USE_PYTHON_SUBPROCESS)
         msg_debug("fringe", "plotting backend choice is: " << plot_backend << eom);
-        fFringePlotter = new MHO_DefaultPythonPlotVisitor();
+        fFringePlotter = make_python_plotter();
         return fFringePlotter;
 #else
         msg_warn("fringe", "plotting backend choice: " << plot_backend << " is not available on this system " << eom);
@@ -64,9 +83,9 @@ MHO_FringePlotVisitor* MHO_FringePlotVisitorFactory::ConstructPlotter(std::strin
 #endif
 
 //made it here, so no plot_backend was set, and 'gnuplot' wasn't build, so fall back to python
-#ifdef USE_PYBIND11
+#if defined(USE_EMBEDDED_PYTHON) || defined(USE_PYTHON_SUBPROCESS)
     msg_debug("fringe", "default plotting backend is: matplotlib " << eom);
-    fFringePlotter = new MHO_DefaultPythonPlotVisitor();
+    fFringePlotter = make_python_plotter();
     return fFringePlotter;
 #endif
 

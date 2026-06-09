@@ -57,8 +57,7 @@ mho_json MHO_ControlEvaluatorSupport::BuildPassInfoDict(MHO_ParameterStore* para
     return d;
 }
 
-void MHO_ControlEvaluatorSupport::ApplyConditionFilterAndSetString(MHO_ParameterStore* paramStore,
-                                                                   mho_json& control_statements)
+void MHO_ControlEvaluatorSupport::ApplyConditionFilterAndSetString(MHO_ParameterStore* paramStore, mho_json& control_statements)
 {
     std::string baseline = paramStore->GetAs< std::string >("/config/baseline");
     std::string source = "?";

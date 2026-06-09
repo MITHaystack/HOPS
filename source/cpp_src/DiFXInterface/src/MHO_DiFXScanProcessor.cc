@@ -688,8 +688,8 @@ void MHO_DiFXScanProcessor::LoadInputFile()
     int rc = pclose(pipe);
     if(rc != 0)
     {
-        msg_fatal("difx_interface", "difxinput2json failed (exit code " << rc << ") for input file: "
-                                                                        << fFileSet->fInputFile << eom);
+        msg_fatal("difx_interface",
+                  "difxinput2json failed (exit code " << rc << ") for input file: " << fFileSet->fInputFile << eom);
         std::exit(1);
     }
 

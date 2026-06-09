@@ -245,7 +245,8 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
     if(!gnuplot_in_path())
     {
         msg_warn("fringe", "gnuplot was not found in PATH, skipping fringe plot, "
-                           "install gnuplot to enable the matplot++ plotter" << eom);
+                           "install gnuplot to enable the matplot++ plotter"
+                               << eom);
         return;
     }
 

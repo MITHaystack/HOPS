@@ -125,16 +125,29 @@ if(HOPS_USE_PYBIND11)
         ${CPPSOURCE}/Plugins/PythonBindings/Operators/include
         ${CPPSOURCE}/Plugins/PythonBindings/Visitors/include)
     target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_PYBIND11)
+endif()
 
-    # MHO_pyVisitors is a SHARED lib and pybind11::embed pulls in libpython
-    # for the embedded interpreter. Only link them (and advertise the embedded
-    # code paths via USE_EMBEDDED_PYTHON) when embedding is enabled; the
-    # subprocess path (EMBEDDED=OFF) must stay free of any libpython dependency.
-    if(HOPS_ENABLE_EMBEDDED_PYTHON)
-        target_link_libraries(MHO_OptionalPlugins INTERFACE
-            MHO_pyVisitors pybind11::embed)
-        target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_EMBEDDED_PYTHON)
-    endif()
+# Python *execution backend* (mutually exclusive). This is intentionally OUTSIDE
+# the HOPS_USE_PYBIND11 guard so the subprocess backend also links in fully
+# pybind-free builds:
+#   - EMBEDDED: link MHO_pyVisitors + pybind11::embed (libpython), advertise
+#     USE_EMBEDDED_PYTHON. The in-process control evaluator, default plotter, and
+#     user plug-in operators run here.
+#   - SUBPROCESS (embed OFF, python available): link the libpython-free
+#     MHO_PySubprocess and advertise USE_PYTHON_SUBPROCESS. Control files and the
+#     python matplotlib plotter are routed through the user's python at runtime
+# These defs reach the PluginManagement factories (which link MHO_OptionalPlugins
+# PRIVATE); the applications stay pybind-free and select a backend only through
+# those factories / MakePythonControlEvaluator().
+if(HOPS_ENABLE_EMBEDDED_PYTHON)
+    target_link_libraries(MHO_OptionalPlugins INTERFACE
+        MHO_pyVisitors pybind11::embed)
+    target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_EMBEDDED_PYTHON)
+elseif(TARGET MHO_PySubprocess)
+    target_link_libraries(MHO_OptionalPlugins INTERFACE MHO_PySubprocess)
+    target_include_directories(MHO_OptionalPlugins INTERFACE
+        ${CPPSOURCE}/Plugins/PythonSubprocess/include)
+    target_compile_definitions(MHO_OptionalPlugins INTERFACE USE_PYTHON_SUBPROCESS)
 endif()
 
 if(HOPS_USE_MATPLOTPP)

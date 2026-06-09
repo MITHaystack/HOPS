@@ -191,8 +191,14 @@ std::string MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const s
 void MHO_Message::SetLegacyMessageLevel(int legacy_message_level)
 {
     //clamp message level between [-2,5]
-    if(legacy_message_level < -2){legacy_message_level = -2;}
-    if(legacy_message_level > 5){legacy_message_level = 5;}
+    if(legacy_message_level < -2)
+    {
+        legacy_message_level = -2;
+    }
+    if(legacy_message_level > 5)
+    {
+        legacy_message_level = 5;
+    }
 
     //set the message level according to the fourfit (legacy) style
     //where 3 is least verbose, and '-1' is most verbose
