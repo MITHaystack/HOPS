@@ -2,6 +2,13 @@
 verb=false
 [ -n "$testverb" ] && verb=true
 
+# this test exercises an embedded-Python plug-in operator; skip it when HOPS was
+# built without the embedded interpreter (HOPS_ENABLE_EMBEDDED_PYTHON=OFF).
+if [ "@HOPS_ENABLE_EMBEDDED_PYTHON@" != "ON" ]; then
+    echo "embedded python interpreter not enabled (HOPS_ENABLE_EMBEDDED_PYTHON=OFF); skipping"
+    exit 127
+fi
+
 [ -d "$srcdir" ] || { echo srcdir not set; exit 1; }
 ${HOPS_SETUP-'false'} || . $srcdir/chk_env.sh
 
