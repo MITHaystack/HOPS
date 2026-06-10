@@ -265,8 +265,14 @@ bool MHO_DirectoryInterface::ReadCurrentDirectory()
                 }
             }
             while(epdf != NULL);
+            closedir(dpdf);
         }
-        closedir(dpdf);
+        else
+        {
+            //opendir failed (e.g. directory removed since the existence check)
+            msg_error("utility", "failed to open directory: " << fCurrentDirectoryFullPath << eom);
+            return false;
+        }
         fCurrentFileList = allFiles;
         fCurrentSubDirectoryList = allDirs;
         fHaveReadDirectory = true;
