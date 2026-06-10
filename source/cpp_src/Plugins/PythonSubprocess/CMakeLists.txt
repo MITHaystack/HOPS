@@ -28,13 +28,7 @@ target_link_libraries(MHO_PySubprocess MHO_Utilities MHO_Message MHO_Control MHO
 # factory in the no-embed wiring; see python-refactor.txt task 6).
 target_compile_definitions(MHO_PySubprocess PUBLIC USE_PYTHON_SUBPROCESS)
 
-# Bake the install-relative python site-packages subdir so the runtime can build
-# the child PYTHONPATH the same way source/bash_src/hops_pypath.sh.in does
-# (<install_prefix>/<PYTHON_SITE_PREFIX>), resolved against the install prefix
-# at runtime for relocatability.
-if(PYTHON_SITE_PREFIX)
-    target_compile_definitions(MHO_PySubprocess PRIVATE HOPS_PYTHON_SITE_SUBDIR="${PYTHON_SITE_PREFIX}")
-endif()
+# NOTE: HOPS_PYTHON_SITE_SUBDIR is defined globally in the top-level CMakeLists
 
 hops_install_headers(${PYSUBPROC_HEADERFILES})
 hops_install_libraries(MHO_PySubprocess)

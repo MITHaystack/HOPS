@@ -362,6 +362,11 @@ set(PYTHON_MODULE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITE_PREFIX}")
 file(RELATIVE_PATH PYTHON_MODULE_INSTALL_RELDIR "${CMAKE_INSTALL_PREFIX}" "${PYTHON_MODULE_INSTALL_DIR}")
 message(STATUS "Python module install path = ${PYTHON_SITE_PREFIX}")
 
+#Add the install-relative python module subdir so runtime code can self-locate
+#the shipped packages/bindings (combined with the install prefix resolved at
+#runtime) without the user having to source hops_pypath.sh.
+add_compile_definitions(HOPS_PYTHON_SITE_SUBDIR="${PYTHON_SITE_PREFIX}")
+
 if(NOT PY_EXE)
     #no interpreter at build time, so turn off pybind11 (the pure-python packages
     #and the libpython-free subprocess backend still build/install without one)

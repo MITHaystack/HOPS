@@ -52,6 +52,26 @@ static void configure_pypath()
         }
         msg_info("main", "adding HOPS_DEFAULT_PLUGINS_DIR to search path: " << default_path << eom);
         pyss << "sys.path.append(\"" << default_path << "\") \n";
+
+        //Also add the install tree's python module dir so the embedded interpreter
+        //can import the compiled pyMHO_* bindings without the user having to source
+        //hops_pypath.sh first.
+#ifdef HOPS_PYTHON_SITE_SUBDIR
+        {
+            std::string site_dir = MHO_DirectoryInterface::GetHopsInstallPrefix();
+            if(!site_dir.empty())
+            {
+                if(site_dir.back() != '/')
+                {
+                    site_dir.push_back('/');
+                }
+                site_dir += HOPS_PYTHON_SITE_SUBDIR;
+                msg_info("main", "adding HOPS python module dir to search path: " << site_dir << eom);
+                pyss << "sys.path.insert(0, \"" << site_dir << "\")\n";
+            }
+        }
+#endif
+
         const char* user_plugin_env = std::getenv("HOPS_USER_PLUGINS_DIR");
         if(user_plugin_env != nullptr)
         {
