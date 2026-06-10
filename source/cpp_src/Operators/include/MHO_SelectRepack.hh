@@ -255,7 +255,15 @@ template< class XArgType > class MHO_SelectRepack: public MHO_UnaryOperator< XAr
         {
             for(std::size_t a = 0; a < XArgType::rank::value; a++) //apply to all axes
             {
-                SelectOnAxis axis_sub_sampler(fAxisSelectionMap[a]);
+                //look up via find(), as the operator[] does an implicit insertion on a unfound element
+                //possibly corrupting the selection map for later executions
+                std::vector< std::size_t > selection;
+                auto sel_iter = fAxisSelectionMap.find(a);
+                if(sel_iter != fAxisSelectionMap.end())
+                {
+                    selection = sel_iter->second;
+                }
+                SelectOnAxis axis_sub_sampler(selection);
                 apply_at2< typename XArgType::axis_pack_tuple_type, SelectOnAxis >(*in, *out, a, axis_sub_sampler);
             }
             out->CopyTags(*in); //make sure the table tags get copied
