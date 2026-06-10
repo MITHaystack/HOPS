@@ -14,26 +14,26 @@ def limit_periodic_quantity_to_range(value_to_limit, low_value=-180.0, high_valu
         high = low_value
         low = high_value
 
-    dm = divmod(value_to_limit + high, high - low)
-    return low + dm[1]
+    #shift relative to 'low' (not 'high') so that ranges which are not
+    #symmetric about zero (e.g. [10,370)) also map correctly
+    span = high - low
+    return low + ((value_to_limit - low) % span)
 
 def minimum_angular_difference(angle1, angle2, low_value=-180.0, high_value=180.0):
-    """compute smallest value of (angle1-angle2) taking branch cuts into account"""
+    """compute the signed value of (angle1-angle2) folded into [-span/2, span/2),
+    i.e. the smallest-magnitude difference taking branch cuts into account"""
     high = high_value
     low = low_value
     if high_value < low_value:
         high = low_value
         low = high_value
 
-    #first put a and b in the expected branch:
-    aprime = limit_periodic_quantity_to_range(angle1, low, high)
-    bprime = limit_periodic_quantity_to_range(angle2, low, high)
-
-    ret_val = aprime - bprime
-    if ret_val > (abs(high - low)/2.0):
-        ret_val = abs(high - low) - ret_val
-
-    return ret_val
+    #fold the difference symmetrically; the raw difference lies in (-span, span)
+    #and BOTH wrap directions must be corrected (a one-sided test misses
+    #differences below -span/2, e.g. (-170) - (+170) = -340 -> +20)
+    span = high - low
+    diff = angle1 - angle2
+    return ((diff + span/2.0) % span) - span/2.0
 
 def time_to_int(year, day, hour, minute, sec):
     """ported from time_to_int.c in hops/sub/util"""
