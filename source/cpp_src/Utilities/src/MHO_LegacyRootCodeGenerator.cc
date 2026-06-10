@@ -82,16 +82,17 @@ std::string MHO_LegacyRootCodeGenerator::root_id(int year, int day, int hour, in
     if(year_79 < 0)
         year_79 += 100;         /* Take care of Y2K */
     nleaps = (year_79 + 2) / 4; /* Count leap days */
+    //an empty string signals invalid date input
     if(day < 1 || day > 366)
-        return (NULL);
+        return std::string();
     if(day == 366 && (year_79 + 3) % 4 != 0)
-        return (NULL); /* Leap year? */
+        return std::string(); /* Leap year? */
     if(hour < 0 || hour > 23)
-        return (NULL);
+        return std::string();
     if(min < 0 || min > 59)
-        return (NULL);
+        return std::string();
     if(sec < 0)
-        return (NULL); // allow secs beyond 59 for sequential rcode gen
+        return std::string(); // allow secs beyond 59 for sequential rcode gen
 
     /* 4-sec periods elapsed since 00:00 Jan 1 1979 */
     elapsed = year_79 * 7884000 + (day + nleaps - 1) * 21600 + hour * 900 + min * 15 + (sec / 4);
