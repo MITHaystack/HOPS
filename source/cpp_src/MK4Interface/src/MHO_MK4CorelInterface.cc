@@ -37,7 +37,7 @@ class chan_label_freq_predicate
             double a_bw = (*a)["bandwidth"];
             double b_bw = (*b)["bandwidth"];
             std::string a_sb = (*a)["net_sideband"];
-            std::string b_sb = (*a)["net_sideband"];
+            std::string b_sb = (*b)["net_sideband"];
             double a_sign = 0;
             double b_sign = 0;
             if(a_sb == "U")
