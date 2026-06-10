@@ -1,6 +1,7 @@
 #include "MHO_TimeStampConverter.hh"
 
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 
@@ -34,10 +35,15 @@ bool MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(const uint64_t& epoch
 
     //get fractional part in nano seconds
     unsigned int nano_sec = std::round(std::abs(fractional_part / 1e-9));
+    if(nano_sec > 999999999)
+    {
+        nano_sec = 999999999; //rounding cannot be allowed to carry into the seconds
+    }
+    //zero-pad to 9 digits before stripping trailing zeros, otherwise
+    //leading zeros are lost (e.g. 0.05s -> 50000000 -> "5" -> ".5Z")
     std::stringstream ss;
-    ss << nano_sec;
-    std::string snano_sec;
-    ss >> snano_sec;
+    ss << std::setw(9) << std::setfill('0') << nano_sec;
+    std::string snano_sec = ss.str();
     //removing trailing zeros
     snano_sec.erase(snano_sec.find_last_not_of('0') + 1, std::string::npos);
 

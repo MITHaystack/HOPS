@@ -129,26 +129,31 @@ int main(int /*argc*/, char** /*argv*/)
 }
 
 /* Case 5  Fractional-second rounding to nearest nanosecond   */
-/* The implementation rounds frac to integer nanoseconds, outputs */
-/* the integer as a decimal string, then strips trailing zeros.*/
-/* This means the emitted string is NOT a standard fractional */
-/* second representation: "123000000" -> ".123" works, but */
-/* "1000000" -> ".1" does not equal 0.001. Only the forward */
-/* conversion's rounding behavior is verified here. */
+/* The implementation rounds frac to integer nanoseconds, zero-pads */
+/* to 9 digits, then strips trailing zeros, so the emitted string is */
+/* a standard fractional-second representation at ns resolution. */
 {/* 0.0000000004 rounds to 0 ns -> no fractional part emitted */
  {std::string s;
 bool ok = MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(0, 0.0000000004, s);
 REQUIRE(ok);
 REQUIRE(s == "1970-01-01T00:00:00Z");
 }
-/* 0.0000000006 rounds to 1 ns -> emits ".1Z" */
+/* 0.0000000006 rounds to 1 ns -> emits ".000000001Z" */
 /* NOTE: round-trip to sub-nanosecond precision is not possible  */
-/* with this string representation  */
 {
     std::string s;
     bool ok = MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(0, 0.0000000006, s);
     REQUIRE(ok);
-    REQUIRE(s == "1970-01-01T00:00:00.1Z");
+    REQUIRE(s == "1970-01-01T00:00:00.000000001Z");
+}
+/* Fractions with leading zeros keep them (regression: 0.05s once emitted ".5Z") */
+{
+    std::string s;
+    bool ok = MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp(0, 0.05, s);
+    REQUIRE(ok);
+    REQUIRE(s == "1970-01-01T00:00:00.05Z");
+    REQUIRE(roundtrip_epoch(0, 0.05) == 0);
+    REQUIRE(roundtrip_epoch(0, 0.000000001) == 0);
 }
 /* Normal fractional parts round-trip correctly */
 {
