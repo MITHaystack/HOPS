@@ -141,7 +141,7 @@ jobs:
         # CPython minors to support. Keep this in sync with what manylinux_2_28
         # actually ships under /opt/python (a missing one fails its leg, which
         # blocks the bundle (never ship an incomplete set).
-        py: [ cp38, cp39, cp310, cp311, cp312, cp313, cp314 ]
+        py: [ cp39, cp310, cp311, cp312, cp313, cp314 ]
     env:
       DIFXROOT: ${{ github.workspace }}/difx-install
     steps:
