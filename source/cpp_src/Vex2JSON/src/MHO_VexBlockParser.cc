@@ -136,6 +136,17 @@ mho_json MHO_VexBlockParser::ParseBlock()
         msg_error("vex", "failed to parse block, no lines to process." << eom);
     }
 
+    //delete any block elements left open by a missing stop tag; the bottom
+    //stack entry is block_root (not heap-allocated) and must remain
+    while(file_node.size() > 1)
+    {
+        msg_error("vex", "unclosed block element: " << path.top() << " in " << fBlockName << " block (missing '" << fStopTag
+                                                    << "'), discarding." << eom);
+        delete file_node.top();
+        file_node.pop();
+        path.pop();
+    }
+
     return block_root;
 }
 
@@ -422,6 +433,13 @@ bool MHO_VexBlockParser::ProcessReference(const MHO_VexLine& line, std::stack< s
                 msg_error("vex", "could not process a reference from: " << ref_tokens[0] << eom);
                 return false;
             }
+        }
+        else
+        {
+            //without exactly 2 ref tokens the block name is unknown; falling through
+            //here would insert the element under an empty key
+            msg_error("vex", "could not parse reference statement: <" << line.fContents << ">." << eom);
+            return false;
         }
 
         (*file_node)[element_block_name].push_back(element);
