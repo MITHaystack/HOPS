@@ -41,7 +41,10 @@ class MHO_OperatorToolbox
          * @param op Pointer to the MHO_Operator to be added
          * @param name Name of the operator (duplicate names can be replaced)
          * @param category Category under which the operator will be stored
-         * @param replace_duplicate Flag indicating whether to replace duplicate operators by name
+         * @param replace_duplicate If true, an existing operator with the same name is removed first.
+         *        If false, the new operator is added alongside any same-named ones,
+         *        GetOperator(name) then returns the most recently added, while GetAllOperatorsByName(name)
+         *        retrieves all of them sorted by priority.
          */
         void AddOperator(std::unique_ptr< MHO_Operator > op, const std::string& name, const std::string& category,
                          bool replace_duplicate = true)
