@@ -111,7 +111,7 @@ bool MHO_Message::PassMessage()
 
 std::string MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const std::string& key)
 {
-    std::size_t color_size;
+    std::size_t color_size = 0; //initialize to zero always (in case HOPS_COLOR_MSG is OFF)
     std::stringstream ss;
     if(fWasLastLineNewLine)
     {
@@ -150,6 +150,8 @@ std::string MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const s
             color_size = fCyan.size();
             ss << fCyan << "DEBUG[" << key << "] ";
             break;
+        default:
+            break; //eSpecial/eSilent messages carry no prefix
     }
 
 #else  // HOPS_COLOR_MSG is disabled
@@ -174,6 +176,8 @@ std::string MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const s
         case eDebug:
             ss << "DEBUG[" << key << "] ";
             break;
+        default:
+            break; //eSpecial/eSilent messages carry no prefix
     }
 #endif //end of HOPS_COLOR_MSG
 
