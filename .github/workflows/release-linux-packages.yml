@@ -83,15 +83,18 @@ jobs:
       # (/opt/hops for DEB/RPM), so no `cmake --install` step is needed either.
       - name: Configure (system-package build)
         run: |
+          PYTHON_EXE=$(command -v python3)
           cmake -B build \
             -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
             -DCMAKE_INSTALL_PREFIX=$PWD/install \
+            -DPython3_EXECUTABLE="$PYTHON_EXE" \
             -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
             -DHOPS_USE_DIFXIO=ON \
             -DHOPS_USE_PYBIND11=ON \
             -DHOPS_ENABLE_EMBEDDED_PYTHON=ON \
             -DHOPS_ENABLE_DEBUG_MSG=OFF \
-            -DHOPS_ENABLE_TEST=OFF
+            -DHOPS_ENABLE_TEST=OFF \
+            -DCPACK_RPM_SPEC_MORE_DEFINE="%define __requires_exclude ^/usr/sbin/python.*$"
 
       - name: Build
         run: cmake --build build --config $BUILD_TYPE --parallel 4
@@ -101,6 +104,7 @@ jobs:
       #   hops-4.0.3-1.x86_64-fedora-44-python3.14.rpm
       - name: Package and tag with OS + python version
         working-directory: build
+        shell: bash
         run: |
           cpack -G ${{ matrix.generator }}
           . /etc/os-release
