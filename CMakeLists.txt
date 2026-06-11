@@ -492,8 +492,7 @@ hops_generate_cmake_config()
 # relocatable-build setup above), the resulting tarball is relocatable: extract
 # it anywhere and run bin/* directly. However, external shared libraries (fftw3, pgplot,
 # X11, gfortran, libpng, zlib, ...) are NOT(!!) bundled and must be present on the
-# target system as runtime prerequisites, (probably we should provide a helper install-deps.sh for supported distros)
-# That also goes for any optional library deps, like difxio, etc.
+# target system as runtime prerequisites...alternatively use DEB/RPM packages
 #
 # DEV: Usage (from the build dir, after configure):
 #   cpack -G TGZ
@@ -520,4 +519,32 @@ set(CPACK_GENERATOR "TGZ")
 # Reproducible tarball: the archive generator ought to follow SOURCE_DATE_EPOCH
 # for the mtime stamped on archive members.
 set(CPACK_ARCHIVE_THREADS 1)
+
+# DEB/RPM system packages (build on the target distro, e.g. ubuntu:24.04 or fedora:44):
+#   cpack -G DEB
+#   cpack -G RPM   (requires rpmbuild on the build host)
+# These install under /opt/hops (this is set per-generator in the project config file
+# below, so the TGZ layout above is unaffected).
+set(CPACK_PACKAGE_CONTACT "barrettj@mit.edu") #required by the DEB generator
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT) #e.g. hops_4.0.3_amd64.deb
+set(CPACK_DEBIAN_PACKAGE_SECTION "science")
+#auto-generate Depends: via dpkg-shlibdeps; it follows the $ORIGIN RPATHs so the
+#package's own libMHO_* libraries resolve within the staging tree
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+set(CPACK_RPM_FILE_NAME RPM-DEFAULT) #e.g. hops-4.0.3-1.x86_64.rpm
+set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+set(CPACK_RPM_PACKAGE_GROUP "Applications/Engineering")
+#note: /opt is in RPM's default CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION,
+#so the package claims ownership of /opt/hops only, not /opt itself
+
+#cpack evaluates this file at packaging time (when CPACK_GENERATOR is known),
+#letting us redirect only the system-package generators to /opt without
+#prefixing the above relocatable TGZ contents with opt/hops/
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/HopsCPackOptions.cmake" [=[
+if(CPACK_GENERATOR MATCHES "DEB|RPM")
+    set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/hops")
+endif()
+]=])
+set(CPACK_PROJECT_CONFIG_FILE "${CMAKE_CURRENT_BINARY_DIR}/HopsCPackOptions.cmake")
+
 include(CPack)

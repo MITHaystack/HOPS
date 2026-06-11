@@ -1,0 +1,157 @@
+name: Release linux packages (deb/rpm)
+
+# Builds native .deb/.rpm system packages (CPack DEB/RPM generators, installing
+# under /opt/hops -- see the CPack section of the top-level CMakeLists.txt) and
+# attaches them to the GitHub Release when a v* tag is pushed. A manual run
+# (workflow_dispatch) produces the packages as workflow artifacts without
+# creating a release.
+#
+# Unlike the relocatable TGZ/manylinux tracks, these packages are built ON the
+# target distro (container) and are specific to that release: dpkg-shlibdeps /
+# rpm auto-requires resolve against the container's package set, and with
+# HOPS_ENABLE_EMBEDDED_PYTHON=ON each package hard-links that distro's
+# libpython (3.10 on ubuntu 22.04, 3.12 on 24.04, ...). One package per
+# (distro, release); they are NOT portable across releases.
+#
+# HOPS_BDIST_LICENSE_COMPAT_ONLY=ON keeps the binaries MIT-redistributable
+# (no FFTW3/GSL/PGPLOT linking).
+
+on:
+  push:
+    tags: [ "v*" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write          # required to attach assets to the release
+
+env:
+  BUILD_TYPE: Release
+  # DiFX / difxio is built from source below (difxio only)
+  DIFXROOT: ${{ github.workspace }}/difx-install
+
+jobs:
+  package:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: ubuntu-22.04
+            image: ubuntu:22.04
+            generator: DEB
+          - target: ubuntu-24.04
+            image: ubuntu:24.04
+            generator: DEB
+          - target: fedora-44
+            image: fedora:44
+            generator: RPM
+
+    runs-on: ubuntu-latest
+    container: ${{ matrix.image }}
+
+    steps:
+      # git must be present BEFORE checkout so actions/checkout leaves a real
+      # .git dir (the build derives SOURCE_DATE_EPOCH from `git log -1`).
+      # build-essential/gcc-c++ pull in the dpkg-dev/rpm-build packaging tools
+      # used by the CPack DEB (dpkg-shlibdeps) and RPM (rpmbuild) generators.
+      - name: Install build dependencies (apt)
+        if: matrix.generator == 'DEB'
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update
+          apt-get install -y \
+            build-essential cmake git ca-certificates python3-dev python3-pip \
+            autoconf automake libtool pkg-config
+          # NOTE: gnuplot is intentionally NOT installed here - it is only a
+          # runtime dependency of the matplot++ plotter, not needed to build it.
+
+      - name: Install build dependencies (dnf)
+        if: matrix.generator == 'RPM'
+        run: |
+          dnf install -y \
+            gcc gcc-c++ make cmake git python3-devel python3-pip \
+            autoconf automake libtool pkgconf-pkg-config rpm-build
+
+      - uses: actions/checkout@v5
+
+      # Builds difxio (no gsl) from DiFX main and appends PKG_CONFIG_PATH to
+      # $GITHUB_ENV for the later configure step. See the script for details.
+      - name: Build difxio from DiFX source (no gsl)
+        run: bash source/bash_src/ci-build-difxio.sh
+
+      # The configure-time install prefix is irrelevant to the packages: cpack
+      # restages every install() rule under CPACK_PACKAGING_INSTALL_PREFIX
+      # (/opt/hops for DEB/RPM), so no `cmake --install` step is needed either.
+      - name: Configure (system-package build)
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+            -DCMAKE_INSTALL_PREFIX=$PWD/install \
+            -DHOPS_BDIST_LICENSE_COMPAT_ONLY=ON \
+            -DHOPS_USE_DIFXIO=ON \
+            -DHOPS_USE_PYBIND11=ON \
+            -DHOPS_ENABLE_EMBEDDED_PYTHON=ON \
+            -DHOPS_ENABLE_DEBUG_MSG=OFF \
+            -DHOPS_ENABLE_TEST=OFF
+
+      - name: Build
+        run: cmake --build build --config $BUILD_TYPE --parallel 4
+
+      # rename to identify the OS + (embedded) python version, e.g.
+      #   hops_4.0.3_amd64-ubuntu-22.04-python3.10.deb
+      #   hops-4.0.3-1.x86_64-fedora-44-python3.14.rpm
+      - name: Package and tag with OS + python version
+        working-directory: build
+        run: |
+          cpack -G ${{ matrix.generator }}
+          . /etc/os-release
+          OS_TAG="${ID}-${VERSION_ID}"
+          PY_TAG="python$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')"
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          shopt -s nullglob
+          pkgs=( hops*.deb hops*.rpm )
+          [ "${#pkgs[@]}" -gt 0 ] || { echo "cpack produced no package"; exit 1; }
+          for pkg in "${pkgs[@]}"; do
+            base="${pkg%.*}"
+            ext="${pkg##*.}"
+            mv "$pkg" "$GITHUB_WORKSPACE/dist/${base}-${OS_TAG}-${PY_TAG}.${ext}"
+          done
+          ls -l "$GITHUB_WORKSPACE/dist"
+
+      # Smoke test: install the package with the native package manager in the
+      # same container. This verifies the auto-generated dependencies actually
+      # resolve on the target distro and that the payload lands under /opt/hops.
+      - name: Install package (smoke test)
+        run: |
+          if [ "${{ matrix.generator }}" = "DEB" ]; then
+            apt-get install -y "$GITHUB_WORKSPACE"/dist/*.deb
+          else
+            dnf install -y "$GITHUB_WORKSPACE"/dist/*.rpm
+          fi
+          test -d /opt/hops/bin || { echo "/opt/hops/bin missing after install"; exit 1; }
+          ls /opt/hops/bin | head -20
+          # the $ORIGIN RUNPATHs must resolve from the installed location
+          for exe in /opt/hops/bin/*; do
+            [ -f "$exe" ] && [ -x "$exe" ] || continue
+            if ldd "$exe" 2>/dev/null | grep -q "not found"; then
+              echo "unresolved libs in $exe:"; ldd "$exe"; exit 1
+            fi
+          done
+          echo "all installed binaries resolve their shared libraries"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hops-package-${{ matrix.target }}
+          path: |
+            dist/*.deb
+            dist/*.rpm
+          if-no-files-found: error
+
+      - name: Attach to GitHub Release (tags only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.deb
+            dist/*.rpm
+          fail_on_unmatched_files: false
