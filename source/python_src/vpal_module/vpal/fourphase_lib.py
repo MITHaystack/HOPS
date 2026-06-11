@@ -220,7 +220,7 @@ class VGOSFourphaseSingleScanProcessor(object):
         self.station_y_minus_x_delays = { st:list() for st in valid_stations }
         self.station_y_minus_x_phases = { st:list() for st in valid_stations }
         #loop over each baseline, and extract the station y-x phase/delays offsets
-        for bl in valid_baselines:
+        for bl in sorted(valid_baselines):
             #compute delay offsets for ref and rem stations
             dyy_xy = results_table[(bl,'YY')][2] - results_table[(bl,'XY')][2]
             dyx_xx = results_table[(bl,'YX')][2] - results_table[(bl,'XX')][2]
@@ -363,7 +363,7 @@ class MixedModeFourphaseSingleScanProcessor(object):
         self.station_y_minus_x_delays = { st:list() for st in valid_stations }
         self.station_y_minus_x_phases = { st:list() for st in valid_stations }
         #loop over each baseline, and extract the station y-x phase/delays offsets
-        for bl in valid_baselines:
+        for bl in sorted(valid_baselines):
             #compute delay and phase offsets for ref and rem stations from this pair
             if (bl,'YR') in results_table and (bl, 'XR') in results_table:
                 dyr_xr = results_table[(bl,'YR')][2] - results_table[(bl,'XR')][2]
@@ -566,7 +566,7 @@ class SingleStationPhaseDelayOffsets( report_lib.JsonSerializableObject ):
             median_delay = self.get_delay_offset_median()
             mad_delay = self.get_delay_offset_mad()
 
-            for scan in self.used_scans:
+            for scan in sorted(self.used_scans):
                 #strip delay values which are too far from the mean
                 delay_list = self.pc_delay_offsets[scan]
                 new_delay_list = []
@@ -783,7 +783,7 @@ def generate_station_phase_delay_corrections(config_obj, report_data_obj=None):
     for bl_list in list(baseline_indexed_scan_lists.values()):
         for scan in bl_list:
             root_file_set.add(scan.associated_root_file)
-    root_file_set = list(root_file_set)
+    root_file_set = sorted(root_file_set)
 
     #now we have a list of unique scans/root-files, for each one we will now run fourphase, and collect the results for each stations
     station_delay_phase_results = dict()

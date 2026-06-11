@@ -1075,7 +1075,7 @@ def recursive_find_fringe_files(base_directory, include_autos=False, exclude_lis
                         extension = filename_base.split('.')[3] #get the file extension (root_id)
                         if len(extension) == 6:     #check that the extension has a length of 6 chars
                             fringe_file_list.append(  os.path.abspath(full_name) ) #probably a fringe file
-    return fringe_file_list
+    return sorted(fringe_file_list)
 
 
 def recursive_find_corel_files(base_directory, include_autos=False, exclude_list=None):

@@ -193,13 +193,13 @@ def sort_collections_by_baseline(baseline_collection_list):
         bline_set.add(bl)
 
     sorted_collections = dict()
-    for bl in bline_set:
+    for bl in sorted(bline_set):
         sorted_collections[bl]= []
 
-    for y in bline_set:
+    for y in sorted(bline_set):
         for x in baseline_collection_list:
             if y == x.baseline:
-                sorted_collections[bl].append(x)
+                sorted_collections[y].append(x)
 
     return sorted_collections
 
@@ -210,7 +210,7 @@ def group_baseline_collections_by_scan(bl_collection_list):
     for x in bl_collection_list:
         scan_id_set.add(x.root_id)
     scan_blc = dict()
-    for sc_root_id in scan_id_set:
+    for sc_root_id in sorted(scan_id_set):
         scan_blc[sc_root_id] = ffm.SingleScanBaselineCollection()
     for blc in bl_collection_list:
         scan_blc[blc.root_id].add_baseline_collection(blc)
@@ -327,7 +327,7 @@ def construct_valid_baseline_list(directory, network_reference_station, remote_s
             if bl in unique_blines:
                 baseline_set.add(bl)
 
-    return list(baseline_set)
+    return sorted(baseline_set)
 
 
 ################################################################################

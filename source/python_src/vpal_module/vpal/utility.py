@@ -98,9 +98,9 @@ def native_circmean(samples, high=2*math.pi, low=0.0):
     #normalize
     angles = [( (x - low) / (high - low) ) * 2*math.pi for x in samples]
 
-    #mean cos/sin
-    sin_sum = sum(math.sin(a) for a in angles)
-    cos_sum = sum(math.cos(a) for a in angles)
+    #mean cos/sin, we use fsum for order-independent accumulation
+    sin_sum = math.fsum(math.sin(a) for a in angles)
+    cos_sum = math.fsum(math.cos(a) for a in angles)
 
     # atan2 gives mean angle
     mean_angle = math.atan2(sin_sum, cos_sum)
@@ -134,9 +134,9 @@ def native_circstd(samples, high=2*math.pi, low=0.0):
     angles = [((x - low) / (high - low)) * 2*math.pi for x in samples]
     n = len(angles)
 
-    #compute mean cos/sin
-    c = sum(math.cos(a) for a in angles) / n
-    s = sum(math.sin(a) for a in angles) / n
+    #compute mean cos/sin, we use fsum for order-independent accumulation
+    c = math.fsum(math.cos(a) for a in angles) / n
+    s = math.fsum(math.sin(a) for a in angles) / n
 
     #magnitude
     R = math.sqrt(c*c + s*s)
