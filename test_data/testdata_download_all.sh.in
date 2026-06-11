@@ -58,7 +58,7 @@ DATA_LINK="${HOPS4_TESTDATA_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
-    echo "Dowloading ${DATA_TARBALL} (65MB) to ${DATA_DIR}"
+    echo "Downloading ${DATA_TARBALL} (65MB) to ${DATA_DIR}"
     wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
@@ -68,7 +68,7 @@ DATA_LINK="${AE_TESTDATA_DB_LINK}"
 if [ -f "$DATA_TARBALL" ]; then
     echo "$DATA_TARBALL exists."
 else
-    echo "Dowloading ${DATA_TARBALL} (97K) to ${DATA_DIR}"
+    echo "Downloading ${DATA_TARBALL} (97K) to ${DATA_DIR}"
     wget -q "${DATA_LINK}" -O $DATA_TARBALL
 fi
 
