@@ -6,9 +6,6 @@ constexpr const char* PADDING = "                                ";
 namespace hops
 {
 
-//static initialization to nullptr
-MHO_Message* MHO_Message::fInstance = nullptr;
-
 std::string MHO_Message::fRed = "\33[31;1m";      //fatal
 std::string MHO_Message::fYellow = "\33[93;1m";   //error
 std::string MHO_Message::fOrange = "\33[33;1m";   //warning
@@ -63,7 +60,7 @@ MHO_Message& MHO_Message::SendMessage(const MHO_MessageLevel& level, const std::
         fMessageStream << GetCurrentPrefix(level, key);
     }
 
-    return *fInstance;
+    return GetInstance();
 }
 
 MHO_Message& MHO_Message::SendMessage(const MHO_MessageLevel& level, const char* key)
@@ -82,14 +79,16 @@ MHO_Message& MHO_Message::SendMessage(const MHO_MessageLevel& level, const char*
         fMessageStream << GetCurrentPrefix(level, tmp_key);
     }
 
-    return *fInstance;
+    return GetInstance();
+
 }
 
 MHO_Message& MHO_Message::operator<<(const MHO_MessageNewline&)
 {
     fMessageStream << '\n';
     fWasLastLineNewLine = true;
-    return *fInstance;
+    return GetInstance();
+
 }
 
 MHO_Message& MHO_Message::operator<<(const MHO_MessageEndline&)
@@ -101,7 +100,8 @@ MHO_Message& MHO_Message::operator<<(const MHO_MessageEndline&)
 #endif
     fWasLastLineNewLine = false;
     Flush();
-    return *fInstance;
+    return GetInstance();
+
 }
 
 bool MHO_Message::PassMessage()
