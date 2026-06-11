@@ -38,10 +38,25 @@ macro(hops_install_test_executables)
     install(TARGETS ${ARGN} EXPORT hopsTargets DESTINATION ${TEST_BIN_INSTALL_RELDIR})
 endmacro()
 
-macro(hops_install_symlink filepath sympath)
-    install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${filepath} ${sympath})")
-    install(CODE "message(\"-- Created symlink: ${sympath} -> ${filepath}\")")
-endmacro(hops_install_symlink)
+# hops_install_symlink(link_target link_name)
+#
+# Both args are paths relative to CMAKE_INSTALL_PREFIX (e.g. "bin/fourfit4", "bin/fourfit").
+# The escaped \${CMAKE_INSTALL_PREFIX} is intentional: it defers expansion to install/CPack
+# time so CPack can substitute its own staging prefix rather than the build-tree prefix.
+function(hops_install_symlink link_target link_name)
+    get_filename_component(_link_dir "${link_name}"   DIRECTORY)
+    get_filename_component(_tgt_name "${link_target}" NAME)
+
+    install(CODE "
+        file(MAKE_DIRECTORY \"\${CMAKE_INSTALL_PREFIX}/${_link_dir}\")
+        file(CREATE_LINK
+            \"${_tgt_name}\"
+            \"\${CMAKE_INSTALL_PREFIX}/${link_name}\"
+            SYMBOLIC
+        )
+        message(STATUS \"Created symlink: \${CMAKE_INSTALL_PREFIX}/${link_name} -> ${_tgt_name}\")
+    ")
+endfunction()
 
 macro (hops_add_cflag CFLAG)
   set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D${CFLAG}")

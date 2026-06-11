@@ -58,9 +58,9 @@ hops_install_test_executables( ${TEST_BASENAMES} )
 
 #fourfit is fourfit4...so install a symlink as: fourfit -> fourfit4
 if(HOPS_IS_HOPS4)
-    hops_install_symlink( "${BIN_INSTALL_DIR}/fourfit4" "${BIN_INSTALL_DIR}/fourfit" )
-    hops_install_symlink( "${BIN_INSTALL_DIR}/fplot4" "${BIN_INSTALL_DIR}/fplot" )
-    hops_install_symlink( "${BIN_INSTALL_DIR}/alist4" "${BIN_INSTALL_DIR}/alist" )
+    hops_install_symlink( "bin/fourfit4" "bin/fourfit" )
+    hops_install_symlink( "bin/fplot4" "bin/fplot" )
+    hops_install_symlink( "bin/alist4" "bin/alist" )
 endif()
 
 ################################################################################
