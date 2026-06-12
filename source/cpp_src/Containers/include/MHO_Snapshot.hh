@@ -72,11 +72,8 @@ class MHO_Snapshot
          */
         static MHO_Snapshot& GetInstance()
         {
-            if(fInstance == nullptr)
-            {
-                fInstance = new MHO_Snapshot();
-            }
-            return *fInstance;
+            static MHO_Snapshot instance;
+            return instance;
         }
 
         /**
@@ -231,8 +228,6 @@ class MHO_Snapshot
         virtual ~MHO_Snapshot(){};
 
         bool PassSnapshot(std::string key);
-
-        static MHO_Snapshot* fInstance; //static global class instance
 
         //used to construct filename in which to dump snapshots
         int fPID;
