@@ -93,76 +93,76 @@ int main()
     // PART B: MHO_StationIdentifier singleton
     // =========================================================
 
-    // Case 6: GetInstance returns a stable non-null pointer
+    // Case 6: GetInstance returns a stable reference (same address each call)
     {
-        MHO_StationIdentifier* p1 = MHO_StationIdentifier::GetInstance();
-        MHO_StationIdentifier* p2 = MHO_StationIdentifier::GetInstance();
-        REQUIRE(p1 != nullptr);
-        REQUIRE(p1 == p2);
+        MHO_StationIdentifier& p1 = MHO_StationIdentifier::GetInstance();
+        MHO_StationIdentifier& p2 = MHO_StationIdentifier::GetInstance();
+        REQUIRE(&p1 != nullptr);
+        REQUIRE(&p1 == &p2);
     }
 
     // Case 7: Insert + three-way lookup (happy path)
     {
-        MHO_StationIdentifier* p = MHO_StationIdentifier::GetInstance();
-        int rc1 = p->Insert("WESTFORD", "Wf", "E");
+        MHO_StationIdentifier& p = MHO_StationIdentifier::GetInstance();
+        int rc1 = p.Insert("WESTFORD", "Wf", "E");
         REQUIRE(rc1 == 0);
-        int rc2 = p->Insert("GGAO12M", "Gs", "G");
+        int rc2 = p.Insert("GGAO12M", "Gs", "G");
         REQUIRE(rc2 == 0);
-        int rc3 = p->Insert("ONSALA60", "On", "X");
+        int rc3 = p.Insert("ONSALA60", "On", "X");
         REQUIRE(rc3 == 0);
 
         // Lookup by mk4id
-        REQUIRE_EQUAL(p->CanonicalStationName("E"), "WESTFORD");
-        REQUIRE_EQUAL(p->CanonicalStationName("G"), "GGAO12M");
+        REQUIRE_EQUAL(p.CanonicalStationName("E"), "WESTFORD");
+        REQUIRE_EQUAL(p.CanonicalStationName("G"), "GGAO12M");
         // Lookup by code
-        REQUIRE_EQUAL(p->CanonicalStationName("Wf"), "WESTFORD");
-        REQUIRE_EQUAL(p->CanonicalStationName("On"), "ONSALA60");
+        REQUIRE_EQUAL(p.CanonicalStationName("Wf"), "WESTFORD");
+        REQUIRE_EQUAL(p.CanonicalStationName("On"), "ONSALA60");
         // Lookup by name
-        REQUIRE_EQUAL(p->CanonicalStationName("WESTFORD"), "WESTFORD");
-        REQUIRE_EQUAL(p->CanonicalStationName("ONSALA60"), "ONSALA60");
+        REQUIRE_EQUAL(p.CanonicalStationName("WESTFORD"), "WESTFORD");
+        REQUIRE_EQUAL(p.CanonicalStationName("ONSALA60"), "ONSALA60");
         // Mk4ID from name
-        REQUIRE_EQUAL(p->StationMk4IDFromName("WESTFORD"), "E");
-        REQUIRE_EQUAL(p->StationMk4IDFromName("GGAO12M"), "G");
+        REQUIRE_EQUAL(p.StationMk4IDFromName("WESTFORD"), "E");
+        REQUIRE_EQUAL(p.StationMk4IDFromName("GGAO12M"), "G");
         // Code from name
-        REQUIRE_EQUAL(p->StationCodeFromName("WESTFORD"), "Wf");
-        REQUIRE_EQUAL(p->StationCodeFromName("ONSALA60"), "On");
+        REQUIRE_EQUAL(p.StationCodeFromName("WESTFORD"), "Wf");
+        REQUIRE_EQUAL(p.StationCodeFromName("ONSALA60"), "On");
     }
 
     // Case 8: Insert is idempotent for an already-present name
     {
-        MHO_StationIdentifier* p = MHO_StationIdentifier::GetInstance();
-        int rc = p->Insert("WESTFORD", "Wf", "E");
+        MHO_StationIdentifier& p = MHO_StationIdentifier::GetInstance();
+        int rc = p.Insert("WESTFORD", "Wf", "E");
         REQUIRE(rc == 0);
         // Lookup from Case 7 should still work
-        REQUIRE_EQUAL(p->CanonicalStationName("E"), "WESTFORD");
+        REQUIRE_EQUAL(p.CanonicalStationName("E"), "WESTFORD");
     }
 
     // Case 9: Insert of NEW name that COLLIDES on code/mk4id is rejected
     {
-        MHO_StationIdentifier* p = MHO_StationIdentifier::GetInstance();
-        int rc = p->Insert("NEWNAME", "Wf", "Q"); // code "Wf" belongs to WESTFORD
+        MHO_StationIdentifier& p = MHO_StationIdentifier::GetInstance();
+        int rc = p.Insert("NEWNAME", "Wf", "Q"); // code "Wf" belongs to WESTFORD
         REQUIRE(rc == -1);
         // NEWNAME must not be resolvable (echo on miss)
-        REQUIRE_EQUAL(p->CanonicalStationName("NEWNAME"), "NEWNAME");
+        REQUIRE_EQUAL(p.CanonicalStationName("NEWNAME"), "NEWNAME");
         // Original mapping unchanged
-        REQUIRE_EQUAL(p->CanonicalStationName("Wf"), "WESTFORD");
+        REQUIRE_EQUAL(p.CanonicalStationName("Wf"), "WESTFORD");
     }
 
     // Case 10: Lookup miss echoes the input unchanged
     {
-        MHO_StationIdentifier* p = MHO_StationIdentifier::GetInstance();
-        REQUIRE_EQUAL(p->CanonicalStationName("ZZZNOPE"), "ZZZNOPE");
-        REQUIRE_EQUAL(p->StationMk4IDFromName("ZZZNOPE"), "ZZZNOPE");
-        REQUIRE_EQUAL(p->StationCodeFromName("ZZZNOPE"), "ZZZNOPE");
+        MHO_StationIdentifier& p = MHO_StationIdentifier::GetInstance();
+        REQUIRE_EQUAL(p.CanonicalStationName("ZZZNOPE"), "ZZZNOPE");
+        REQUIRE_EQUAL(p.StationMk4IDFromName("ZZZNOPE"), "ZZZNOPE");
+        REQUIRE_EQUAL(p.StationCodeFromName("ZZZNOPE"), "ZZZNOPE");
     }
 
     // Case 11: Insert via MHO_StationIdentity overload
     {
-        MHO_StationIdentifier* p = MHO_StationIdentifier::GetInstance();
+        MHO_StationIdentifier& p = MHO_StationIdentifier::GetInstance();
         MHO_StationIdentity s("HAYSTACK", "Ha", "H");
-        int rc = p->Insert(s);
+        int rc = p.Insert(s);
         REQUIRE(rc == 0);
-        REQUIRE_EQUAL(p->CanonicalStationName("H"), "HAYSTACK");
+        REQUIRE_EQUAL(p.CanonicalStationName("H"), "HAYSTACK");
     }
 
     return 0;

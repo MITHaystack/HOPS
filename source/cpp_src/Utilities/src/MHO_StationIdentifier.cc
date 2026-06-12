@@ -3,8 +3,6 @@
 namespace hops
 {
 
-MHO_StationIdentifier* MHO_StationIdentifier::fStationIdentifier = nullptr;
-
 MHO_StationIdentifier::MHO_StationIdentifier()
 {
     fStationIds.clear();
@@ -14,14 +12,10 @@ MHO_StationIdentifier::MHO_StationIdentifier()
 
 MHO_StationIdentifier::~MHO_StationIdentifier() = default;
 
-MHO_StationIdentifier* MHO_StationIdentifier::GetInstance()
+MHO_StationIdentifier& MHO_StationIdentifier::GetInstance()
 {
-    //singleton interface construction
-    if(fStationIdentifier == nullptr)
-    {
-        fStationIdentifier = new MHO_StationIdentifier();
-    }
-    return fStationIdentifier;
+    static MHO_StationIdentifier instance;
+    return instance;
 }
 
 } // namespace hops

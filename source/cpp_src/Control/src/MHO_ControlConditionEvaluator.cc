@@ -40,17 +40,17 @@ void MHO_ControlConditionEvaluator::SetPassInformation(std::string baseline, std
         fBaselineMk4 = baseline;
         fRefStationMk4ID = std::string(1, fBaselineMk4[0]);
         fRemStationMk4ID = std::string(1, fBaselineMk4[1]);
-        fCanonicalRefStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(fRefStationMk4ID);
-        fCanonicalRemStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(fRemStationMk4ID);
+        fCanonicalRefStation = MHO_StationIdentifier::GetInstance().CanonicalStationName(fRefStationMk4ID);
+        fCanonicalRemStation = MHO_StationIdentifier::GetInstance().CanonicalStationName(fRemStationMk4ID);
     }
     else if(baseline.find(fDelim) != std::string::npos) //baseline is of the form: 'Gs-Wf'
     {
         std::string ref_station = baseline.substr(0, baseline.find(fDelim));
         std::string rem_station = baseline.substr(baseline.find(fDelim) + 1);
-        fCanonicalRefStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(ref_station);
-        fCanonicalRemStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(rem_station);
-        fRefStationMk4ID = MHO_StationIdentifier::GetInstance()->StationMk4IDFromName(fCanonicalRefStation);
-        fRemStationMk4ID = MHO_StationIdentifier::GetInstance()->StationMk4IDFromName(fCanonicalRemStation);
+        fCanonicalRefStation = MHO_StationIdentifier::GetInstance().CanonicalStationName(ref_station);
+        fCanonicalRemStation = MHO_StationIdentifier::GetInstance().CanonicalStationName(rem_station);
+        fRefStationMk4ID = MHO_StationIdentifier::GetInstance().StationMk4IDFromName(fCanonicalRefStation);
+        fRemStationMk4ID = MHO_StationIdentifier::GetInstance().StationMk4IDFromName(fCanonicalRemStation);
         fBaselineMk4 = fRefStationMk4ID + fRemStationMk4ID;
     }
 
@@ -412,7 +412,7 @@ int MHO_ControlConditionEvaluator::EvaluateStation(token_iter& it)
     }
     else //multi-character station name/code
     {
-        std::string station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(station);
+        std::string station_name = MHO_StationIdentifier::GetInstance().CanonicalStationName(station);
         if(station_name == fCanonicalRefStation || station_name == fCanonicalRemStation)
         {
             return TRUE_STATE;
@@ -481,8 +481,8 @@ int MHO_ControlConditionEvaluator::EvaluateMultiCharacterBaseline(token_iter& it
     {
         std::string ref_station = baseline.substr(0, baseline.find(fDelim));
         std::string rem_station = baseline.substr(baseline.find(fDelim) + 1);
-        std::string ref_station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(ref_station);
-        std::string rem_station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(rem_station);
+        std::string ref_station_name = MHO_StationIdentifier::GetInstance().CanonicalStationName(ref_station);
+        std::string rem_station_name = MHO_StationIdentifier::GetInstance().CanonicalStationName(rem_station);
         if(ref_station_name == fCanonicalRefStation && rem_station_name == fCanonicalRemStation)
         {
             return TRUE_STATE;

@@ -196,8 +196,8 @@ int main()
 
     // CASE 14 - Multi-character station via singleton (RUN LAST - singleton state)
     {
-        MHO_StationIdentifier::GetInstance()->Insert("GGAO12M", "Gs", "G");
-        MHO_StationIdentifier::GetInstance()->Insert("WESTFORD", "Wf", "E");
+        MHO_StationIdentifier::GetInstance().Insert("GGAO12M", "Gs", "G");
+        MHO_StationIdentifier::GetInstance().Insert("WESTFORD", "Wf", "E");
 
         MHO_ControlConditionEvaluator ev2;
         ev2.SetPassInformation("Gs-Wf", "1234+567", "X", "288-210210");

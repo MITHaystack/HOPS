@@ -144,7 +144,7 @@ void MHO_VexInfoExtractor::extract_station_identities(const mho_json& vexInfo)
             MHO_StationIdentity id(val);
             if(id.GetStationCode() != "")
             {
-                MHO_StationIdentifier::GetInstance()->Insert(id);
+                MHO_StationIdentifier::GetInstance().Insert(id);
             }
         }
     }

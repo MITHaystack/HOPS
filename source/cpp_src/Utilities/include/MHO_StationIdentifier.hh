@@ -25,12 +25,11 @@ class MHO_StationIdentifier
 {
     public:
         /**
-         * @brief Getter for singleton instance
+         * @brief Getter for singleton instance (thread-safe, C++11 function-local static)
          *
-         * @return MHO_StationIdentifier* singleton instance
-         * @note This is a static function.
+         * @return MHO_StationIdentifier& singleton instance
          */
-        static MHO_StationIdentifier* GetInstance();
+        static MHO_StationIdentifier& GetInstance();
 
         int Insert(MHO_StationIdentity station_identity)
         {
@@ -115,7 +114,6 @@ class MHO_StationIdentifier
         //private for singleton
         MHO_StationIdentifier();
         virtual ~MHO_StationIdentifier();
-        static MHO_StationIdentifier* fStationIdentifier;
 
         std::vector< MHO_StationIdentity > fStationIds;
         std::set< std::string > fCodeSet;
