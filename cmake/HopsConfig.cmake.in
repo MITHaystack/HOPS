@@ -39,9 +39,15 @@ if(Hops_USE_MATPLOTPP)
 endif()
 
 include(CMakeFindDependencyMacro)
+
 if(Hops_USE_OPENMP)
     find_dependency(OpenMP)
 endif()
+
+if(Hops_USE_MPI)
+    find_dependency(MPI)
+endif()
+
 # date-tz (Howard Hinnant) is bundled under extern/date and installs its own
 # config under <prefix>/lib/cmake/date as date::date-tz.
 find_dependency(date CONFIG)
