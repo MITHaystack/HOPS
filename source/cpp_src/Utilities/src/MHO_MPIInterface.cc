@@ -31,8 +31,6 @@
 namespace hops
 {
 
-MHO_MPIInterface* MHO_MPIInterface::fMPIInterface = nullptr;
-
 MHO_MPIInterface::MHO_MPIInterface()
 {
     fGlobalProcessID = -1;
@@ -105,12 +103,8 @@ void MHO_MPIInterface::Finalize()
 
 MHO_MPIInterface* MHO_MPIInterface::GetInstance()
 {
-    //singleton interface construction
-    if(fMPIInterface == nullptr)
-    {
-        fMPIInterface = new MHO_MPIInterface();
-    }
-    return fMPIInterface;
+    static MHO_MPIInterface instance;
+    return &instance;
 }
 
 void MHO_MPIInterface::BeginSequentialProcess()

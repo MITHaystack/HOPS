@@ -314,8 +314,6 @@ class MHO_MPIInterface
         MHO_MPIInterface();
         virtual ~MHO_MPIInterface();
 
-        static MHO_MPIInterface* fMPIInterface;
-
         int fGlobalProcessID;
         int fNProcesses;
         int fLocalProcessID;
