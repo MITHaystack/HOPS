@@ -3,9 +3,6 @@
 namespace hops
 {
 
-//static initialization to nullptr
-MHO_Profiler* MHO_Profiler::fInstance = nullptr;
-
 void MHO_Profiler::AddEntry(int flag, uint64_t thread_id, std::string filename, int line_num, std::string func_name)
 {
     if(fDisabled)

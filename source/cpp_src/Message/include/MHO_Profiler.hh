@@ -83,11 +83,8 @@ class MHO_Profiler
          */
         static MHO_Profiler& GetInstance()
         {
-            if(fInstance == nullptr)
-            {
-                fInstance = new MHO_Profiler();
-            }
-            return *fInstance;
+            static MHO_Profiler instance;
+            return instance;
         }
 
         /**
@@ -156,7 +153,6 @@ class MHO_Profiler
         virtual ~MHO_Profiler(){};
 
         std::mutex fMutex;
-        static MHO_Profiler* fInstance; //static global class instance
         std::size_t fNThreads;
         bool fDisabled;
 
