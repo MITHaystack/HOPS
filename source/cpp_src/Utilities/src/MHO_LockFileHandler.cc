@@ -25,9 +25,6 @@
 namespace hops
 {
 
-//initialization to nullptr
-MHO_LockFileHandler* MHO_LockFileHandler::fInstance = nullptr;
-
 //function to handle signals (to ensure we clean up lockfiles if we get interrupted)
 void MHO_LockFileHandler::HandleSignal(int signal_value)
 {
