@@ -271,6 +271,34 @@ static int test_guards()
     return 0;
 }
 
+// Case 6: all-zero visibility -> no peak found (bin sentinels stay -1),
+//         Execute() returns false without OOB axis access.
+// Regression test for bug #3: the old code tested fCoarseMBD/SBD/DR >= 0
+// (doubles, legitimately negative) instead of the -1 bin sentinels.
+static int test_all_zero_data()
+{
+    visibility_type vis;
+    vis.Resize(1, 8, 16, 4);
+    weight_type wgt;
+    wgt.Resize(1, 8, 16, 1);
+    set_axes(vis, CHAN_FREQS, 1.0);
+    fill_constant(vis, std::complex< double >(0.0, 0.0)); // all zeros
+    fill_weights(wgt, 1.0);
+
+    MHO_MBDelaySearch search;
+    search.SetArgs(&vis);
+    search.SetWeights(&wgt);
+    search.SetReferenceFrequency(REF_FREQ);
+    REQUIRE(search.Initialize());
+    REQUIRE(search.Execute() == false);
+
+    // bin sentinels should remain at -1 (no peak found)
+    REQUIRE(search.GetMBDMaxBin() == -1);
+    REQUIRE(search.GetSBDMaxBin() == -1);
+    REQUIRE(search.GetDRMaxBin() == -1);
+    return 0;
+}
+
 int main(int /*argc*/, char** /*argv*/)
 {
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
@@ -292,6 +320,10 @@ int main(int /*argc*/, char** /*argv*/)
         return 1;
     }
     if(test_guards())
+    {
+        return 1;
+    }
+    if(test_all_zero_data())
     {
         return 1;
     }

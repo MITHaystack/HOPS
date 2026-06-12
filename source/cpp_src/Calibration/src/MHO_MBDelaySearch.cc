@@ -261,7 +261,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         fMBDAxis = std::get< 0 >(fMBDWorkspace);
 
         fMax = std::sqrt(fMax); //always calculate max that we've seen
-        if(fCoarseMBD >= 0 && fCoarseSBD >= 0 && fCoarseDR >= 0)
+        if(fMBDMaxBin >= 0 && fSBDMaxBin >= 0 && fDRMaxBin >= 0)
         {
             fCoarseMBD = fMBDAxis(fMBDMaxBin);
             fCoarseSBD = fSBDAxis(fSBDMaxBin);
@@ -389,6 +389,18 @@ void MHO_MBDelaySearch::apply_dr_boxcar_smooth(mbd_dr_type& buffer, std::vector<
             buffer(dr, mbd) = sum / (jhi - jlo + 1.0);
         }
     }
+}
+
+bool MHO_MBDelaySearch::finalize_search()
+{
+    if(fMBDMaxBin >= 0 && fSBDMaxBin >= 0 && fDRMaxBin >= 0)
+    {
+        fCoarseMBD = fMBDAxis(fMBDMaxBin);
+        fCoarseSBD = fSBDAxis(fSBDMaxBin);
+        fCoarseDR = fDRAxis(fDRMaxBin);
+        return true;
+    }
+    return false;
 }
 
 } // namespace hops
