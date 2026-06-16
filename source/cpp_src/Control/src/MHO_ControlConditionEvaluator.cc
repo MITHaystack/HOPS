@@ -536,40 +536,64 @@ int MHO_ControlConditionEvaluator::EvaluateFrequencyGroup(token_iter& it)
 
 int MHO_ControlConditionEvaluator::EvaluateScan(token_iter& it, token_iter& it_end)
 {
-    //if( it == tokens.end() ){msg_error("control", "missing argument to scan statement." << eom); return FALSE_STATE;}
+    // must have at least one token before any dereference
+    if(it == it_end)
+    {
+        msg_error("control", "missing argument to scan statement." << eom);
+        return FALSE_STATE;
+    }
 
     if(*it == "<")
     {
         ++it;
+        if(it == it_end)
+        {
+            msg_error("control", "missing value after '<' in scan statement." << eom);
+            return FALSE_STATE;
+        }
         std::string scan_value = *it;
         return ScanLessThan(scan_value);
     }
     else if(*it == ">")
     {
         ++it;
+        if(it == it_end)
+        {
+            msg_error("control", "missing value after '>' in scan statement." << eom);
+            return FALSE_STATE;
+        }
         std::string scan_value = *it;
         return ScanGreaterThan(scan_value);
     }
     else if(std::next(it) != it_end && *(std::next(it)) == "to")
     {
-        //must be a range statement
+        // must be a range statement: <low> to <high>
         std::string scan_low = *it;
-        ++it;
+
+        ++it; // advance to "to", safe, since std::next(it) != it_end was already checked
         std::string to_token = *it;
-        ++it;
+
+        ++it; // advance to <high>
+        if(it == it_end)
+        {
+            msg_error("control", "missing upper bound after 'to' in scan range statement." << eom);
+            return FALSE_STATE;
+        }
         std::string scan_high = *it;
+
         if(to_token == "to")
         {
             return ScanInBetween(scan_low, scan_high);
         }
         else
         {
+            msg_error("control", "expected 'to' keyword in scan range statement." << eom);
             return FALSE_STATE;
         }
     }
     else
     {
-        //single scan only
+        // single scan
         if(*it == fScanTime)
         {
             return TRUE_STATE;
