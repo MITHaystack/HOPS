@@ -67,10 +67,11 @@ def main():
 
     valid_pp_list = ['RX', 'RY', 'XR', 'YR', 'XR+YR', 'RX+RY', 'I', 'RR', 'XX', 'YY', 'XY', 'YX']
     #pol product:
-    for pp in polprods:
-        if pp not in valid_pp_list:
-            print("error: ", pp, "not understood, polarization products must be an element from: ", valid_pp_list)
-            sys.exit(1)
+    if not args.force_run:
+        for pp in polprods:
+            if pp not in valid_pp_list:
+                print("error: ", pp, "not understood, polarization products must be an element from: ", valid_pp_list)
+                sys.exit(1)
 
     #force all fringe files generated to save the control file
     #information in the type_222 records, unless this has been disabled
