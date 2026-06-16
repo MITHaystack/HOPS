@@ -4,9 +4,20 @@
 #include <cctype>
 #include <fstream>
 #include <stack>
+#include <string>
+#include <sstream>
 
 namespace hops
 {
+
+//check if a string is convertable to a number
+inline bool is_number(const std::string& s)
+{
+    std::stringstream ss(s);
+    double value;
+    ss >> value;
+    return !ss.fail() && ss.eof();
+}
 
 MHO_VexBlockParser::MHO_VexBlockParser()
 {
@@ -101,7 +112,7 @@ mho_json MHO_VexBlockParser::ParseBlock()
     path.push(fBlockName);
     file_node.push(&block_root);
 
-    if(fBlockLines != nullptr)
+    if(fBlockLines != nullptr && !fBlockLines->empty())
     {
         for(auto it = ++(fBlockLines->begin()); it != fBlockLines->end(); it++)
         {
@@ -170,7 +181,7 @@ mho_json MHO_VexBlockParser::ParseGlobalBlock()
         return block_root;
     }
 
-    if(fBlockLines != nullptr)
+    if(fBlockLines != nullptr && !fBlockLines->empty() )
     {
         for(auto it = ++(fBlockLines->begin()); it != fBlockLines->end(); it++)
         {
@@ -283,6 +294,17 @@ bool MHO_VexBlockParser::ProcessStartTag(const MHO_VexLine& line, std::stack< st
 bool MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line, std::stack< std::string >& path,
                                         std::stack< mho_json* >& file_node, std::stack< mho_json >& format_node)
 {
+    // we need at least the root node (depth 1) plus one open child to close,
+    //check to avoid undefined behavior on malformed input
+    if(path.size() < 2 || file_node.size() < 2 || format_node.empty())
+    {
+        msg_error("vex", "encountered '" << fStopTag
+                                         << "' without a matching '" << fStartTag
+                                         << "' in " << fBlockName
+                                         << " block, skipping." << eom);
+        return false;
+    }
+
     //close current block
     mho_json* last_obj = file_node.top();
     std::string last_obj_name = path.top();
@@ -493,6 +515,7 @@ mho_json MHO_VexBlockParser::ProcessTokens(const std::string& element_name, mho_
             break;
         case vex_compound_type: //all compound types treated the same way
             element_data = ProcessCompound(element_name, format, tokens);
+            break;
         case vex_list_compound_type:
             element_data = ProcessCompound(element_name, format, tokens);
             break;
@@ -631,7 +654,7 @@ bool MHO_VexBlockParser::MatchesType(const std::string& token, const std::string
                         tmp = tmp_tok[0];
                     }
                 }
-                if(tmp.find_first_not_of("0123456789.e+-") == std::string::npos)
+                if( is_number(tmp) )
                 {
                     return true;
                 }
