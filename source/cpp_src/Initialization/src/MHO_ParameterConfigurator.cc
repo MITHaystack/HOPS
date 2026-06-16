@@ -53,11 +53,23 @@ bool MHO_ParameterConfigurator::Configure()
             {
                 if(*tokit == "station") //next token must be station MK4 ID
                 {
+                    //ensure the station ID token exists before advancing
+                    if(std::next(tokit) == fConditions.end())
+                    {
+                        msg_error("control", "missing station ID after 'station' keyword." << eom);
+                        break;
+                    }
+
                     std::string station_id = *(++tokit);
                     //map from control file token to station name
                     std::string station_name = MHO_StationIdentifier::GetInstance().CanonicalStationName(station_id);
                     //then map from station name to 2-char station code
                     std::string station_code = MHO_StationIdentifier::GetInstance().StationCodeFromName(station_name);
+                    if(station_code.empty())
+                    {
+                        msg_error("control", "unrecognized station ID '" << station_id << "' in control file." << eom);
+                        break;
+                    }
                     std::string station_path = "/control/" + parameter_type + "/" + station_code + "/" + name;
                     explicit_paths.push_back(station_path);
                 }
