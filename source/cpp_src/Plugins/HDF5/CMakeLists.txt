@@ -31,6 +31,9 @@ if(HDF5_FOUND)
 
 
     add_library(MHO_HDF5Interface SHARED ${HDF5INTERFACE_SOURCEFILES})
+    target_include_directories(MHO_HDF5Interface PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        ${HDF5_INCLUDE_DIRS})
     target_link_libraries(MHO_HDF5Interface ${HDF5INTERFACE_LIBS})
 
     hops_install_headers (${HDF5INTERFACE_HEADERFILES})
