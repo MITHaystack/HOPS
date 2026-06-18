@@ -22,6 +22,7 @@ if(OpenMP_CXX_FOUND)
     set(HOPS_OMP_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration OpenMP::OpenMP_CXX)
 
     add_library(MHO_OpenMPPlugin SHARED ${OPENMP_PLUGIN_SOURCEFILES})
+    target_include_directories(MHO_OpenMPPlugin PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
     target_link_libraries(MHO_OpenMPPlugin ${HOPS_OMP_LIBS})
 
     hops_install_headers (${OPENMP_PLUGIN_HEADERFILES})

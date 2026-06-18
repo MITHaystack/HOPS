@@ -25,10 +25,9 @@
 #include "MHO_EstimatePCManual.hh"
 #ifdef HOPS_USE_CUDA
     #include "MHO_MBDelaySearchCUDA.hh"
-#else
-    #ifdef HOPS_USE_OPENMP
-        #include "MHO_MBDelaySearchOpenMP.hh"
-    #endif
+#endif
+#ifdef HOPS_USE_OPENMP
+    #include "MHO_MBDelaySearchOpenMP.hh"
 #endif
 
 //#define DUMP_PARAMS_ON_ERROR

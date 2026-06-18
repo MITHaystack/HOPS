@@ -25,6 +25,7 @@ set(CUDAModules_SOURCEFILES
 set(CUDAMODULES_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Containers MHO_Calibration)
 
 cuda_add_library(MHO_CUDAModules SHARED ${CUDAModules_SOURCEFILES} )
+target_include_directories(MHO_CUDAModules PUBLIC ${CUDA_INCLUDE_DIRS})
 target_link_libraries (MHO_CUDAModules ${CUDAMODULES_LIBS} ${CUDA_LIBRARIES} ${CUDA_CUFFT_LIBRARIES} )
 
 hops_install_headers( ${CUDAModules_HEADERFILES} )
