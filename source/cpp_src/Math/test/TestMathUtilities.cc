@@ -335,12 +335,12 @@ int main()
 //  Case 30: MHO_ApMeanIntegrator, multi-instance (no static-state bleed)
 {
     double coordsA[] = {0, 1, 2, 3, 4};
-    double val1A[]  = {1, 1, 1, 1, 1};
-    double val2A[]  = {0, 0, 0, 0, 0};
+    double val1A[] = {1, 1, 1, 1, 1};
+    double val2A[] = {0, 0, 0, 0, 0};
 
     double coordsB[] = {0, 1, 2, 3, 4};
-    double val1B[]  = {10, 10, 10, 10, 10};
-    double val2B[]  = {20, 20, 20, 20, 20};
+    double val1B[] = {10, 10, 10, 10, 10};
+    double val2B[] = {20, 20, 20, 20, 20};
 
     hops::MHO_ApMeanIntegrator intA;
     hops::MHO_ApMeanIntegrator intB;

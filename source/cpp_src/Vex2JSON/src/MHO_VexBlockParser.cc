@@ -3,9 +3,9 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <sstream>
 #include <stack>
 #include <string>
-#include <sstream>
 
 namespace hops
 {
@@ -181,7 +181,7 @@ mho_json MHO_VexBlockParser::ParseGlobalBlock()
         return block_root;
     }
 
-    if(fBlockLines != nullptr && !fBlockLines->empty() )
+    if(fBlockLines != nullptr && !fBlockLines->empty())
     {
         for(auto it = ++(fBlockLines->begin()); it != fBlockLines->end(); it++)
         {
@@ -298,9 +298,7 @@ bool MHO_VexBlockParser::ProcessStopTag(const MHO_VexLine& line, std::stack< std
     //check to avoid undefined behavior on malformed input
     if(path.size() < 2 || file_node.size() < 2 || format_node.empty())
     {
-        msg_error("vex", "encountered '" << fStopTag
-                                         << "' without a matching '" << fStartTag
-                                         << "' in " << fBlockName
+        msg_error("vex", "encountered '" << fStopTag << "' without a matching '" << fStartTag << "' in " << fBlockName
                                          << " block, skipping." << eom);
         return false;
     }
@@ -654,7 +652,7 @@ bool MHO_VexBlockParser::MatchesType(const std::string& token, const std::string
                         tmp = tmp_tok[0];
                     }
                 }
-                if( is_number(tmp) )
+                if(is_number(tmp))
                 {
                     return true;
                 }

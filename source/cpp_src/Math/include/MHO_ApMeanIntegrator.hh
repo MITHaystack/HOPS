@@ -59,9 +59,9 @@ class MHO_ApMeanIntegrator
         std::vector< double > x_;
         std::vector< double > y1_;
         std::vector< double > y2_;
-        int nxy_;           // effective number of entries (n + 2)
-        double begin_;      // half-open begin of valid range
-        double end_;        // half-open end of valid range
+        int nxy_;      // effective number of entries (n + 2)
+        double begin_; // half-open begin of valid range
+        double end_;   // half-open end of valid range
 };
 
 } // namespace hops

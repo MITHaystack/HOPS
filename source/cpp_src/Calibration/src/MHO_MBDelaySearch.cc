@@ -261,7 +261,10 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         fMBDAxis = std::get< 0 >(fMBDWorkspace);
 
         fMax = std::sqrt(fMax); //always calculate max that we've seen
-        if( finalize_search() ){return true;}
+        if(finalize_search())
+        {
+            return true;
+        }
         else
         {
             msg_debug("calibration", "MHO_MBDelaySearch failed to find fringe peak on this pass, max = " << fMax << eom);

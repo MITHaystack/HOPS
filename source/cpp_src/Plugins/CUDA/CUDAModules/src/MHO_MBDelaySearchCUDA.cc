@@ -250,7 +250,10 @@ bool MHO_MBDelaySearchCUDA::ExecuteImpl(const XArgType* in)
         fMBDAxis = std::get< 0 >(fMBDWorkspace);
 
         fMax = std::sqrt(fMax);
-        if(finalize_search()){return true;}
+        if(finalize_search())
+        {
+            return true;
+        }
         else
         {
             msg_debug("calibration", "MHO_MBDelaySearchCUDA failed to find fringe peak on this pass, max = " << fMax << eom);

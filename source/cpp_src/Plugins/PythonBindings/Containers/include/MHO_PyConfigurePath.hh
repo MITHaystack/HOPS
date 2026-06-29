@@ -1,15 +1,15 @@
 #ifndef MHO_PyConfigurePath_HH__
-    #define MHO_PyConfigurePath_HH__
+#define MHO_PyConfigurePath_HH__
 
-    #include <sstream>
-    #include <string>
+#include <sstream>
+#include <string>
 
-    #include "MHO_DirectoryInterface.hh"
-    #include "MHO_Message.hh"
+#include "MHO_DirectoryInterface.hh"
+#include "MHO_Message.hh"
 
-    //pybind11 stuff to interface with python
-    #include <pybind11/embed.h>
-    #include <pybind11/pybind11.h>
+//pybind11 stuff to interface with python
+#include <pybind11/embed.h>
+#include <pybind11/pybind11.h>
 namespace py = pybind11;
 
 namespace hops

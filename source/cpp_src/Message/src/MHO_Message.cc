@@ -80,7 +80,6 @@ MHO_Message& MHO_Message::SendMessage(const MHO_MessageLevel& level, const char*
     }
 
     return GetInstance();
-
 }
 
 MHO_Message& MHO_Message::operator<<(const MHO_MessageNewline&)
@@ -88,7 +87,6 @@ MHO_Message& MHO_Message::operator<<(const MHO_MessageNewline&)
     fMessageStream << '\n';
     fWasLastLineNewLine = true;
     return GetInstance();
-
 }
 
 MHO_Message& MHO_Message::operator<<(const MHO_MessageEndline&)
@@ -101,7 +99,6 @@ MHO_Message& MHO_Message::operator<<(const MHO_MessageEndline&)
     fWasLastLineNewLine = false;
     Flush();
     return GetInstance();
-
 }
 
 bool MHO_Message::PassMessage()

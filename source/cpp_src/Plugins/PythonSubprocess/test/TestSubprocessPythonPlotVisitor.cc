@@ -60,8 +60,8 @@ static int run_positive_case(const std::string& fixture_path)
 
     if(!file_exists(fixture_path))
     {
-        std::cout << "[SKIP] fixture not found: " << fixture_path
-                  << " (run chk_simplefringesearch4 first to dump fdump.json)" << std::endl;
+        std::cout << "[SKIP] fixture not found: " << fixture_path << " (run chk_simplefringesearch4 first to dump fdump.json)"
+                  << std::endl;
         return 77;
     }
 

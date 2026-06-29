@@ -169,7 +169,7 @@ int MHO_MathUtilities::ap_mean(double start, double stop, double* coords, double
     if(n > MAXSTATPER)
     {
         msg_error("math", "n (" << n << ") exceeds MAXSTATPER (" << MAXSTATPER
-                  << ") in ap_mean(), use MHO_ApMeanIntegrator for larger datasets" << eom);
+                                << ") in ap_mean(), use MHO_ApMeanIntegrator for larger datasets" << eom);
         return -1;
     }
 

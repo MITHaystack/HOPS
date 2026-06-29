@@ -5,16 +5,11 @@
 namespace hops
 {
 
-MHO_ApMeanIntegrator::MHO_ApMeanIntegrator()
-    : nxy_(0)
-    , begin_(0.0)
-    , end_(0.0)
-{
-}
+MHO_ApMeanIntegrator::MHO_ApMeanIntegrator(): nxy_(0), begin_(0.0), end_(0.0)
+{}
 
 MHO_ApMeanIntegrator::~MHO_ApMeanIntegrator()
-{
-}
+{}
 
 int MHO_ApMeanIntegrator::Initialize(int n, const double* coords, const double* val1, const double* val2)
 {
@@ -81,9 +76,8 @@ int MHO_ApMeanIntegrator::Integrate(double start, double stop, int* nstart, doub
     // Out of range: return zeros.
     if(begin_ > stop || end_ < start)
     {
-        msg_debug("math", "out of range in ap_mean(), segment (" << start << ", " << stop
-                                                                 << ") not fully in: (" << begin_ << ", " << end_ << ")"
-                                                                 << eom);
+        msg_debug("math", "out of range in ap_mean(), segment (" << start << ", " << stop << ") not fully in: (" << begin_
+                                                                 << ", " << end_ << ")" << eom);
         *result1 = 0.0;
         *result2 = 0.0;
         return 1;
