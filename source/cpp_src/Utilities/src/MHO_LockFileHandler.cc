@@ -1,6 +1,7 @@
 #include "MHO_LockFileHandler.hh"
 
 #include <cerrno>
+#include <cstddef>
 #include <ctime>
 #include <dirent.h>
 #include <random>
@@ -10,6 +11,7 @@
 #include <string.h>
 #include <sys/time.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 //wait time allowed before a lock file is declared stale (2 min)
 #define LOCK_STALE_SEC 120
@@ -25,13 +27,44 @@
 namespace hops
 {
 
+namespace
+{
+
+//bounded string copy: always NUL-terminates dst (provided dst_size > 0) and
+//returns false if src did not fit (i.e. it was truncated)
+bool safe_strcpy(char* dst, const char* src, std::size_t dst_size)
+{
+    if(dst_size == 0)
+    {
+        return false;
+    }
+    std::size_t len = strlen(src);
+    if(len >= dst_size)
+    {
+        //copy what fits, NUL-terminate, and report truncation
+        memcpy(dst, src, dst_size - 1);
+        dst[dst_size - 1] = '\0';
+        return false;
+    }
+    memcpy(dst, src, len + 1);
+    return true;
+}
+
+} // anonymous namespace
+
 //function to handle signals (to ensure we clean up lockfiles if we get interrupted)
 void MHO_LockFileHandler::HandleSignal(int signal_value)
 {
-    MHO_LockFileHandler::GetInstance().RemoveWriteLock();
-    // Call exit() so that static-duration destructors (e.g. temp-dir cleanup) run.
+    // This runs in signal context (possibly inside malloc, iostreams, etc.), so it
+    // must only touch async-signal-safe facilities. unlink() and _exit() are both on
+    // the POSIX async-signal-safe list
+    lockfile_data& data = GetInstance().fProcessLockFileData;
+    if(data.validity == LOCK_VALID)
+    {
+        unlink(data.lockfile_name);
+    }
     // Use 128 + signal_value to preserve the conventional shell exit code for signal termination.
-    exit(128 + signal_value);
+    _exit(128 + signal_value);
 }
 
 //set the write directory
@@ -94,67 +127,63 @@ void MHO_LockFileHandler::remove_lockfile(lockfile_data* data)
 
 int MHO_LockFileHandler::parse_lockfile_name(char* lockfile_name_base, lockfile_data* result)
 {
-
     init_lockfile_data(result);
 
-    strcpy(result->lockfile_name, lockfile_name_base);
+    //keep a bounded copy of the original name
+    safe_strcpy(result->lockfile_name, lockfile_name_base, MAX_LOCKNAME_LEN);
 
-    //tokenize the lockfile name base, (note: this modifies the input)
-    char* ptr;
-    ptr = strtok(lockfile_name_base, ".");
+    //Expected layout: pid.seq.time_sec.time_usec.hostname[.lock]
+    std::string name(lockfile_name_base);
 
-    if(ptr != NULL)
+    //strip a trailing ".lock" extension if present
+    static const std::string ext(".lock");
+    if(name.size() >= ext.size() && name.compare(name.size() - ext.size(), ext.size(), ext) == 0)
     {
-        sscanf(ptr, "%u", &(result->pid));
-    }
-    else
-    {
-        return LOCK_PARSE_ERROR;
+        name.erase(name.size() - ext.size());
     }
 
-    ptr = strtok(NULL, ".");
+    //locate the first four '.' separators
+    std::string::size_type p0 = name.find('.');
+    std::string::size_type p1 = (p0 == std::string::npos) ? std::string::npos : name.find('.', p0 + 1);
+    std::string::size_type p2 = (p1 == std::string::npos) ? std::string::npos : name.find('.', p1 + 1);
+    std::string::size_type p3 = (p2 == std::string::npos) ? std::string::npos : name.find('.', p2 + 1);
 
-    if(ptr != NULL)
-    {
-        sscanf(ptr, "%u", &(result->seq_number));
-    }
-    else
+    if(p0 == std::string::npos || p1 == std::string::npos || p2 == std::string::npos || p3 == std::string::npos)
     {
         return LOCK_PARSE_ERROR;
     }
 
-    ptr = strtok(NULL, ".");
+    std::string pid_tok = name.substr(0, p0);
+    std::string seq_tok = name.substr(p0 + 1, p1 - p0 - 1);
+    std::string sec_tok = name.substr(p1 + 1, p2 - p1 - 1);
+    std::string usec_tok = name.substr(p2 + 1, p3 - p2 - 1);
+    std::string host_tok = name.substr(p3 + 1); //remainder, may contain '.'
 
-    if(ptr != NULL)
-    {
-        sscanf(ptr, "%lx", &(result->time_sec));
-    }
-    else
+    //hostname must be present and non-empty
+    if(host_tok.empty())
     {
         return LOCK_PARSE_ERROR;
     }
 
-    ptr = strtok(NULL, ".");
-
-    if(ptr != NULL)
+    if(sscanf(pid_tok.c_str(), "%u", &(result->pid)) != 1)
     {
-        sscanf(ptr, "%lx", &(result->time_usec));
+        return LOCK_PARSE_ERROR;
     }
-    else
+    if(sscanf(seq_tok.c_str(), "%u", &(result->seq_number)) != 1)
+    {
+        return LOCK_PARSE_ERROR;
+    }
+    if(sscanf(sec_tok.c_str(), "%lx", &(result->time_sec)) != 1)
+    {
+        return LOCK_PARSE_ERROR;
+    }
+    if(sscanf(usec_tok.c_str(), "%lx", &(result->time_usec)) != 1)
     {
         return LOCK_PARSE_ERROR;
     }
 
-    ptr = strtok(NULL, ".");
-
-    if(ptr != NULL)
-    {
-        sscanf(ptr, "%s", &(result->hostname[0]));
-    }
-    else
-    {
-        return LOCK_PARSE_ERROR;
-    }
+    //bounded copy of the (possibly FQDN) hostname into the fixed buffer
+    safe_strcpy(result->hostname, host_tok.c_str(), sizeof(result->hostname));
 
     result->validity = LOCK_VALID;
     return 0;
@@ -176,9 +205,11 @@ int MHO_LockFileHandler::check_stale(lockfile_data* other)
     //(a) same-host liveness check: only reclaim on ESRCH ("no such process").
     //EPERM (process exists but owned by another user) is treated as alive.
     char host_name[256] = {'\0'};
-    if(gethostname(host_name, 256) == 0)
+    if(gethostname(host_name, sizeof(host_name)) == 0)
     {
-        if(strncmp(host_name, other->hostname, 256) == 0 && other->pid != 0)
+        //gethostname() is not guaranteed to NUL-terminate on truncation
+        host_name[sizeof(host_name) - 1] = '\0';
+        if(strncmp(host_name, other->hostname, sizeof(host_name)) == 0 && other->pid != 0)
         {
             if(kill(static_cast< pid_t >(other->pid), 0) != 0 && errno == ESRCH)
             {
@@ -257,12 +288,14 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
     //get the host name, need to track this
     //in case we have multiple machines modifying the same NFS space
     char host_name[256] = {'\0'};
-    int ret_val = gethostname(host_name, 256);
+    int ret_val = gethostname(host_name, sizeof(host_name));
     if(ret_val != 0)
     {
         msg_error("utilities", "error retrieving host name in create_lockfile, using 'localhost' as substitute" << eom);
-        snprintf(host_name, 10, "localhost");
-    };
+        snprintf(host_name, sizeof(host_name), "localhost");
+    }
+    //gethostname() is not guaranteed to NUL-terminate on truncation
+    host_name[sizeof(host_name) - 1] = '\0';
 
     //get the process id,
     pid_t this_pid = getpid();
@@ -283,11 +316,27 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
     }
 
     //copy in the scan directory and append the filename
-
-    strcpy(lockfile_name, directory); //fDirectory.c_str());
+    if(!safe_strcpy(lockfile_name, directory, MAX_LOCKNAME_LEN))
+    {
+        msg_error("utilities", "lock directory path too long for lock-file buffer: " << directory << eom);
+        return LOCK_FILE_ERROR;
+    }
     char* end_ptr = strrchr(lockfile_name, '/');
+    if(end_ptr == NULL)
+    {
+        msg_error("utilities", "lock directory path has no '/' separator: " << directory << eom);
+        return LOCK_FILE_ERROR;
+    }
     end_ptr++;
-    sprintf(end_ptr, "%u.%u.%lx.%lx.%s.lock", pid, sequence_to_reserve, epoch_sec, micro_sec, host_name);
+    //bound the formatted name to the space remaining after the final '/'
+    std::size_t remaining = MAX_LOCKNAME_LEN - static_cast< std::size_t >(end_ptr - lockfile_name);
+    int written =
+        snprintf(end_ptr, remaining, "%u.%u.%lx.%lx.%s.lock", pid, sequence_to_reserve, epoch_sec, micro_sec, host_name);
+    if(written < 0 || static_cast< std::size_t >(written) >= remaining)
+    {
+        msg_error("utilities", "lock-file name exceeds buffer size for directory: " << directory << eom);
+        return LOCK_FILE_ERROR;
+    }
 
     FILE* lockfile = fopen(lockfile_name, "w+");
     if(lockfile != NULL)
@@ -307,9 +356,9 @@ int MHO_LockFileHandler::create_lockfile(const char* directory, char* lockfile_n
         lock_data->pid = this_pid;
         lock_data->time_sec = epoch_sec;
         lock_data->time_usec = micro_sec;
-        strcpy(lock_data->hostname, host_name);
-        strcpy(lock_data->active_directory, directory);
-        strcpy(lock_data->lockfile_name, lockfile_name);
+        safe_strcpy(lock_data->hostname, host_name, sizeof(lock_data->hostname));
+        safe_strcpy(lock_data->active_directory, directory, MAX_LOCKNAME_LEN);
+        safe_strcpy(lock_data->lockfile_name, lockfile_name, MAX_LOCKNAME_LEN);
         msg_debug("utilities", "creating write lock file: " << std::string(lock_data->lockfile_name) << eom);
     }
     else
@@ -328,8 +377,17 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name, lo
 
     //figure out root directory
     char root_dir[MAX_LOCKNAME_LEN] = {'\0'};
-    strcpy(root_dir, directory);
+    if(!safe_strcpy(root_dir, directory, MAX_LOCKNAME_LEN))
+    {
+        msg_error("utilities", "lock directory path too long: " << directory << eom);
+        return LOCK_FILE_ERROR;
+    }
     char* end_ptr_a = strrchr(root_dir, '/');
+    if(end_ptr_a == NULL)
+    {
+        msg_error("utilities", "lock directory path has no '/' separator: " << directory << eom);
+        return LOCK_FILE_ERROR;
+    }
     end_ptr_a++;
     *end_ptr_a = '\0';
     int process_priority = LOCK_PROCESS_HAS_PRIORITY;
@@ -348,10 +406,15 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name, lo
             if(strstr(dir->d_name, ".lock") != NULL)
             {
                 //found a lock file already in the directory
-                strcpy(temp_lock_name, dir->d_name);
+                if(!safe_strcpy(temp_lock_name, dir->d_name, MAX_LOCKNAME_LEN))
+                {
+                    msg_error("utilities", "lock file name too long: " << std::string(dir->d_name) << eom);
+                    closedir(d);
+                    return LOCK_PARSE_ERROR;
+                }
                 init_lockfile_data(&temp_lock_struct);
                 int error_code = parse_lockfile_name(temp_lock_name, &temp_lock_struct);
-                strcpy(temp_lock_struct.active_directory, root_dir);
+                safe_strcpy(temp_lock_struct.active_directory, root_dir, MAX_LOCKNAME_LEN);
                 if(error_code != LOCK_STATUS_OK)
                 {
                     msg_error("utilities", "un-parsable lock file name: " << std::string(dir->d_name) << eom);
@@ -397,8 +460,17 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name, lo
         //strip out the lockfile base name
         char lockfile_base[MAX_LOCKNAME_LEN] = {'\0'};
         char* end_ptr_b = strrchr(lockfile_name, '/');
+        if(end_ptr_b == NULL)
+        {
+            //should not happen (create_lockfile always writes a path with a '/'),
+            //but guard against dereferencing a NULL result
+            msg_error("utilities", "created lock-file name has no '/' separator: " << std::string(lockfile_name) << eom);
+            remove_lockfile(lock_data);
+            lockfile_name[0] = '\0';
+            return LOCK_FILE_ERROR;
+        }
         end_ptr_b++;
-        strcpy(lockfile_base, end_ptr_b);
+        safe_strcpy(lockfile_base, end_ptr_b, MAX_LOCKNAME_LEN);
 
         //look for other lock files that may have snuck in
         d = opendir(root_dir);
@@ -408,7 +480,14 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name, lo
             {
                 if(strstr(dir->d_name, ".lock") != NULL)
                 {
-                    strcpy(temp_lock_name, dir->d_name);
+                    if(!safe_strcpy(temp_lock_name, dir->d_name, MAX_LOCKNAME_LEN))
+                    {
+                        msg_error("utilities", "lock file name too long: " << std::string(dir->d_name) << eom);
+                        closedir(d);
+                        remove_lockfile(lock_data);
+                        lockfile_name[0] = '\0';
+                        return LOCK_PARSE_ERROR;
+                    }
                     if(strcmp(lockfile_base, temp_lock_name) != 0) //not our own lock file
                     {
                         init_lockfile_data(&temp_lock_struct);
@@ -416,6 +495,9 @@ int MHO_LockFileHandler::at_front(const char* directory, char* lockfile_name, lo
                         if(error_code != 0)
                         {
                             //msg ("Error: un-parsable lock file name: %s ", 3, dir->d_name);
+                            closedir(d);
+                            remove_lockfile(lock_data);
+                            lockfile_name[0] = '\0';
                             return LOCK_PARSE_ERROR;
                         }
                         process_priority = lock_has_priority(lock_data, &temp_lock_struct);
