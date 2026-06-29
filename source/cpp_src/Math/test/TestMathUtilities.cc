@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "MHO_ApMeanIntegrator.hh"
 #include "MHO_Constants.hh"
 #include "MHO_MathUtilities.hh"
 #include "MHO_TestAssertions.hh"
@@ -275,6 +276,88 @@ int main()
     REQUIRE(rc == 1);
     CHECK_CLOSE(r1, 0.0, 1e-12);
     CHECK_CLOSE(r2, 0.0, 1e-12);
+}
+
+//  Case 26: ap_mean bounds check,  n > MAXSTATPER (3600)
+{
+    int n = 3601;
+    std::vector< double > coords(n), val1(n), val2(n);
+    for(int i = 0; i < n; i++)
+    {
+        coords[i] = (double)i;
+        val1[i] = 1.0;
+        val2[i] = 2.0;
+    }
+    int nstart = 0;
+    double r1, r2;
+    int rc = hops::MHO_MathUtilities::ap_mean(0, 10, coords.data(), val1.data(), val2.data(), n, &nstart, &r1, &r2);
+    REQUIRE(rc == -1);
+}
+
+//  Case 27: MHO_ApMeanIntegrator, constant series
+{
+    double coords[] = {0, 1, 2, 3, 4};
+    double val1[] = {2, 2, 2, 2, 2};
+    double val2[] = {3, 3, 3, 3, 3};
+    hops::MHO_ApMeanIntegrator integrator;
+    REQUIRE(integrator.Initialize(5, coords, val1, val2) == 0);
+
+    int nstart = 0;
+    double r1, r2;
+    int rc = integrator.Integrate(1, 3, &nstart, &r1, &r2);
+    REQUIRE(rc == 0);
+    CHECK_CLOSE(r1, 2.0, 1e-12);
+    CHECK_CLOSE(r2, 3.0, 1e-12);
+}
+
+//  Case 28: MHO_ApMeanIntegrator, out-of-range returns 1
+{
+    double coords[] = {10, 11, 12};
+    double val1[] = {1, 1, 1};
+    double val2[] = {1, 1, 1};
+    hops::MHO_ApMeanIntegrator integrator;
+    REQUIRE(integrator.Initialize(3, coords, val1, val2) == 0);
+
+    int nstart = 0;
+    double r1, r2;
+    int rc = integrator.Integrate(0, 5, &nstart, &r1, &r2);
+    REQUIRE(rc == 1);
+    CHECK_CLOSE(r1, 0.0, 1e-12);
+    CHECK_CLOSE(r2, 0.0, 1e-12);
+}
+
+//  Case 29: MHO_ApMeanIntegrator, Initialize with n <= 0 returns -1
+{
+    hops::MHO_ApMeanIntegrator integrator;
+    REQUIRE(integrator.Initialize(0, nullptr, nullptr, nullptr) == -1);
+}
+
+//  Case 30: MHO_ApMeanIntegrator, multi-instance (no static-state bleed)
+{
+    double coordsA[] = {0, 1, 2, 3, 4};
+    double val1A[]  = {1, 1, 1, 1, 1};
+    double val2A[]  = {0, 0, 0, 0, 0};
+
+    double coordsB[] = {0, 1, 2, 3, 4};
+    double val1B[]  = {10, 10, 10, 10, 10};
+    double val2B[]  = {20, 20, 20, 20, 20};
+
+    hops::MHO_ApMeanIntegrator intA;
+    hops::MHO_ApMeanIntegrator intB;
+    REQUIRE(intA.Initialize(5, coordsA, val1A, val2A) == 0);
+    REQUIRE(intB.Initialize(5, coordsB, val1B, val2B) == 0);
+
+    // Query both integrators interleaved, they must not share state.
+    int nstartA = 0, nstartB = 0;
+    double r1A, r2A, r1B, r2B;
+
+    REQUIRE(intA.Integrate(1, 3, &nstartA, &r1A, &r2A) == 0);
+    REQUIRE(intB.Integrate(1, 3, &nstartB, &r1B, &r2B) == 0);
+
+    CHECK_CLOSE(r1A, 1.0, 1e-12);
+    CHECK_CLOSE(r2A, 0.0, 1e-12);
+    CHECK_CLOSE(r1B, 10.0, 1e-12);
+    CHECK_CLOSE(r2B, 20.0, 1e-12);
 }
 
 return 0;

@@ -2,7 +2,6 @@
 #include "MHO_Constants.hh"
 #include "MHO_Message.hh"
 
-//TODO FIXME eliminate these in favor of dynamic allocation (ap_mean function)
 #define MAXSTATAP 100
 #define MAXSTATPER 3600
 
@@ -167,6 +166,13 @@ int MHO_MathUtilities::ap_mean(double start, double stop, double* coords, double
         return -1;
     }
 
+    if(n > MAXSTATPER)
+    {
+        msg_error("math", "n (" << n << ") exceeds MAXSTATPER (" << MAXSTATPER
+                  << ") in ap_mean(), use MHO_ApMeanIntegrator for larger datasets" << eom);
+        return -1;
+    }
+
     if(*nstart == 0)
     {
         /* extend data array beyond full interval
@@ -247,6 +253,11 @@ int MHO_MathUtilities::ap_mean(double start, double stop, double* coords, double
             return (-1);
         }
         ret = linterp(x[fst - 1], y2[fst - 1], x[fst], y2[fst], start, &val);
+        if(ret != 0)
+        {
+            msg_error("math", "interpolation error in ap_mean() (val2 at start)" << eom);
+            return -1;
+        }
         apval2[0] = val;
     }
 
@@ -311,6 +322,11 @@ int MHO_MathUtilities::ap_mean(double start, double stop, double* coords, double
             return -1;
         }
         ret = linterp(x[i - 1], y2[i - 1], x[i], y2[i], stop, &val);
+        if(ret != 0)
+        {
+            msg_error("math", "interpolation error in ap_mean() (val2 at stop)" << eom);
+            return -1;
+        }
         apval2[np] = val;
     }
     np++;

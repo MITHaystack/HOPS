@@ -1,5 +1,6 @@
 #list header files #############################################################
 set (MATH_HEADERFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ApMeanIntegrator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_BitReversalPermutation.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FastFourierTransformUtilities.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_FastFourierTransformWorkspace.hh
@@ -17,6 +18,7 @@ set (MATH_HEADERFILES
 
 #list source files #############################################################
 set( MATH_SOURCEFILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_ApMeanIntegrator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_BitReversalPermutation.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_GaussianWhiteNoiseSignal.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_SingleToneSignal.cc

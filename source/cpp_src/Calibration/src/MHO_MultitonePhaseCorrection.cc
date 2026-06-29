@@ -1,4 +1,5 @@
 #include "MHO_MultitonePhaseCorrection.hh"
+#include "MHO_ApMeanIntegrator.hh"
 #include "MHO_BitReversalPermutation.hh"
 #include "MHO_MathUtilities.hh"
 
@@ -120,18 +121,22 @@ void MHO_MultitonePhaseCorrection::InterpolatePCData(double pcal_minus_visib_tof
                 pc_imag[ap] = std::imag(val);
             }
 
-            int nstart = 0;
-            for(std::size_t ap = 0; ap < naps; ap++)
             {
-                double start = pcal_time_ax->at(ap);
-                double stop = start + ap_length;
-                double realval = 0;
-                double imagval = 0;
-                int ret = MHO_MathUtilities::ap_mean(start, stop, &(time_arr[0]), &(pc_real[0]), &(pc_imag[0]), naps, &nstart,
-                                                     &realval, &imagval);
-                if(ret == 0) //interpolation ok, so modify the pc data
+                MHO_ApMeanIntegrator integrator;
+                integrator.Initialize(static_cast< int >(naps), time_arr.data(), pc_real.data(), pc_imag.data());
+
+                int nstart = 0;
+                for(std::size_t ap = 0; ap < naps; ap++)
                 {
-                    fPCData->at(pc_pol, ap, pc_tone) = std::complex< double >(realval, imagval);
+                    double start = pcal_time_ax->at(ap);
+                    double stop = start + ap_length;
+                    double realval = 0;
+                    double imagval = 0;
+                    int ret = integrator.Integrate(start, stop, &nstart, &realval, &imagval);
+                    if(ret == 0) // interpolation ok, so modify the pc data
+                    {
+                        fPCData->at(pc_pol, ap, pc_tone) = std::complex< double >(realval, imagval);
+                    }
                 }
             }
         }
