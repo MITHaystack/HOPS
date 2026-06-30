@@ -616,7 +616,7 @@ int MHO_LockFileHandler::get_max_seq_number(std::string dir)
     {
         //look for new style fringe files
         max_seq_no = 0;
-        fDirInterface.GetFilesMatchingExtention(fringe_files, "frng");
+        fDirInterface.GetFilesMatchingExtension(fringe_files, "frng");
         for(auto it = fringe_files.begin(); it != fringe_files.end(); it++)
         {
             std::string basename = MHO_DirectoryInterface::GetBasename(*it);

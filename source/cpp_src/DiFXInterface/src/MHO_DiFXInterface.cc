@@ -67,7 +67,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
     //find the (master) .vex file (should be unique)
     fVexFile = "";
     std::vector< std::string > tmpFiles;
-    fDirInterface.GetFilesMatchingExtention(tmpFiles, "vex");
+    fDirInterface.GetFilesMatchingExtension(tmpFiles, "vex");
     if(tmpFiles.size() != 1)
     {
         fVexFile = ""; //no vex file (or non-unique vex file)
@@ -82,7 +82,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
     //by the correlator
     if(fVexFile == "")
     {
-        fDirInterface.GetFilesMatchingExtention(tmpFiles, "vex.obs");
+        fDirInterface.GetFilesMatchingExtension(tmpFiles, "vex.obs");
         if(tmpFiles.size() != 1)
         {
             fVexFile = ""; //no vex file (or non-unique vex file)
@@ -100,7 +100,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
     }
 
     //find the .v2d file (should be unique)
-    fDirInterface.GetFilesMatchingExtention(tmpFiles, "v2d");
+    fDirInterface.GetFilesMatchingExtension(tmpFiles, "v2d");
     if(tmpFiles.size() != 1)
     {
         msg_info("difx_interface", tmpFiles.size() << " .v2d files found in " << input_dir << eom);
@@ -114,7 +114,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
 
     //find the .input files
     std::vector< std::string > inputFiles;
-    fDirInterface.GetFilesMatchingExtention(inputFiles, "input");
+    fDirInterface.GetFilesMatchingExtension(inputFiles, "input");
     std::sort(inputFiles.begin(), inputFiles.end());
 
     //find the DiFX name for each scan (should be unique), derive this from the .input file list
@@ -140,7 +140,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
     //find the .im files
     std::vector< std::string > imFiles;
     std::map< std::string, bool > imPresent;
-    fDirInterface.GetFilesMatchingExtention(imFiles, "im");
+    fDirInterface.GetFilesMatchingExtension(imFiles, "im");
     for(auto it = imFiles.begin(); it != imFiles.end(); it++)
     {
         imPresent[*it] = true;
@@ -149,7 +149,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
     //find the .calc files
     std::vector< std::string > calcFiles;
     std::map< std::string, bool > calcPresent;
-    fDirInterface.GetFilesMatchingExtention(calcFiles, "calc");
+    fDirInterface.GetFilesMatchingExtension(calcFiles, "calc");
     for(auto it = calcFiles.begin(); it != calcFiles.end(); it++)
     {
         calcPresent[*it] = true;
@@ -158,7 +158,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
     //find the .flag files
     std::vector< std::string > flagFiles;
     std::map< std::string, bool > flagPresent;
-    fDirInterface.GetFilesMatchingExtention(flagFiles, "flag");
+    fDirInterface.GetFilesMatchingExtension(flagFiles, "flag");
     for(auto it = flagFiles.begin(); it != flagFiles.end(); it++)
     {
         flagPresent[*it] = true;
@@ -167,7 +167,7 @@ void MHO_DiFXInterface::InitializeFromExperimentDir(const std::string& input_dir
     //grab all of the .difx directories
     std::vector< std::string > difxDirs;
     std::map< std::string, bool > difxPresent;
-    fDirInterface.GetSubDirectoriesMatchingExtention(difxDirs, "difx");
+    fDirInterface.GetSubDirectoriesMatchingExtension(difxDirs, "difx");
     for(auto it = difxDirs.begin(); it != difxDirs.end(); it++)
     {
         difxPresent[*it] = true;

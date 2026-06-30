@@ -383,7 +383,7 @@ std::string MHO_DirectoryInterface::GetFileExtension(const std::string& aFilenam
     return ext;
 }
 
-void MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const
+void MHO_DirectoryInterface::GetFilesMatchingExtension(std::vector< std::string >& aFileList, const std::string& anExt) const
 {
     //from the current list of files, locate the ones which match the given extension
     aFileList.clear();
@@ -404,10 +404,10 @@ void MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string 
     }
 }
 
-void MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const
+void MHO_DirectoryInterface::GetFilesMatchingExtension(std::vector< std::string >& aFileList, const char* anExt) const
 {
     std::string ext(anExt);
-    return GetFilesMatchingExtention(aFileList, ext);
+    return GetFilesMatchingExtension(aFileList, ext);
 }
 
 void MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const std::string& aPrefix) const
@@ -432,7 +432,7 @@ void MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& 
     GetFilesMatchingPrefix(aFileList, prefix);
 }
 
-void MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList,
+void MHO_DirectoryInterface::GetSubDirectoriesMatchingExtension(std::vector< std::string >& aDirList,
                                                                 const std::string& anExt) const
 {
     //from the current list of files, locate the ones which match the given extension (e.g ./h_1000.difx)
@@ -453,10 +453,10 @@ void MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std
     }
 }
 
-void MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const
+void MHO_DirectoryInterface::GetSubDirectoriesMatchingExtension(std::vector< std::string >& aDirList, const char* anExt) const
 {
     std::string ext(anExt);
-    return GetSubDirectoriesMatchingExtention(aDirList, ext);
+    return GetSubDirectoriesMatchingExtension(aDirList, ext);
 }
 
 std::string MHO_DirectoryInterface::GetCurrentDirectory() const

@@ -75,9 +75,9 @@ int main(int argc, char** argv)
 
     std::cout << "directory = " << dirInterface.GetCurrentDirectory() << std::endl;
     dirInterface.GetFileList(allFiles);
-    dirInterface.GetFilesMatchingExtention(corFiles, "cor");
-    dirInterface.GetFilesMatchingExtention(staFiles, "sta");
-    dirInterface.GetFilesMatchingExtention(jsonFiles, "json");
+    dirInterface.GetFilesMatchingExtension(corFiles, "cor");
+    dirInterface.GetFilesMatchingExtension(staFiles, "sta");
+    dirInterface.GetFilesMatchingExtension(jsonFiles, "json");
 
     for(auto it = corFiles.begin(); it != corFiles.end(); it++)
     {

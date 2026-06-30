@@ -187,13 +187,13 @@ int main(int /*argc*/, char** /*argv*/)
         REQUIRE(di.ReadCurrentDirectory() == true);
 
         std::vector< std::string > txt;
-        di.GetFilesMatchingExtention(txt, std::string(".txt"));
+        di.GetFilesMatchingExtension(txt, std::string(".txt"));
         REQUIRE(txt.size() == 2);
         REQUIRE(list_contains(txt, "alpha.txt"));
         REQUIRE(list_contains(txt, "gamma.txt"));
 
         std::vector< std::string > txt2;
-        di.GetFilesMatchingExtention(txt2, ".txt"); // const char* overload
+        di.GetFilesMatchingExtension(txt2, ".txt"); // const char* overload
         REQUIRE(txt2.size() == 2);
 
         std::vector< std::string > pref;
@@ -206,12 +206,12 @@ int main(int /*argc*/, char** /*argv*/)
         REQUIRE(pref2.size() == 1);
 
         std::vector< std::string > dirext;
-        di.GetSubDirectoriesMatchingExtention(dirext, std::string(".dir"));
+        di.GetSubDirectoriesMatchingExtension(dirext, std::string(".dir"));
         REQUIRE(dirext.size() == 1);
         REQUIRE(list_contains(dirext, "subdir.dir"));
 
         std::vector< std::string > dirext2;
-        di.GetSubDirectoriesMatchingExtention(dirext2, ".dir"); // const char* overload
+        di.GetSubDirectoriesMatchingExtension(dirext2, ".dir"); // const char* overload
         REQUIRE(dirext2.size() == 1);
     }
 

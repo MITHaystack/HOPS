@@ -153,20 +153,20 @@ class MHO_DirectoryInterface
         void GetSubDirectoryList(std::vector< std::string >& aSubDirList) const;
 
         /**
-         * @brief Getter for files matching extention
+         * @brief Getter for files matching extension
          *
          * @param aFileList Output vector to store matching file names.
          * @param anExt Extension pattern to match.
          */
-        void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const std::string& anExt) const;
+        void GetFilesMatchingExtension(std::vector< std::string >& aFileList, const std::string& anExt) const;
 
         /**
-         * @brief Getter for files matching extention
+         * @brief Getter for files matching extension
          *
          * @param aFileList Output vector to store matching file names
          * @param anExt Extension to match against
          */
-        void GetFilesMatchingExtention(std::vector< std::string >& aFileList, const char* anExt) const;
+        void GetFilesMatchingExtension(std::vector< std::string >& aFileList, const char* anExt) const;
 
         /**
          * @brief Getter for files matching prefix
@@ -185,13 +185,13 @@ class MHO_DirectoryInterface
         void GetFilesMatchingPrefix(std::vector< std::string >& aFileList, const char* aPrefix) const;
 
         /**
-         * @brief Getter for sub directories matching extention
+         * @brief Getter for sub directories matching extension
          *
          * @param aDirList Output vector to store matching directories
          * @param anExt Extension to match for filtering directories
          */
-        void GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const std::string& anExt) const;
-        void GetSubDirectoriesMatchingExtention(std::vector< std::string >& aDirList, const char* anExt) const;
+        void GetSubDirectoriesMatchingExtension(std::vector< std::string >& aDirList, const std::string& anExt) const;
+        void GetSubDirectoriesMatchingExtension(std::vector< std::string >& aDirList, const char* anExt) const;
 
         //utility functions for old mk4 format files
 
@@ -242,7 +242,7 @@ class MHO_DirectoryInterface
         static std::string GetTrailingDirectory(const std::string& filename);
 
         /**
-         * @brief removes the extention (anything after last '.') from a file (base) name
+         * @brief removes the extension (anything after last '.') from a file (base) name
          */
         static std::string StripExtensionFromBasename(const std::string& file_basename);
 

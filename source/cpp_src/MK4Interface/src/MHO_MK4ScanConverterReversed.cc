@@ -46,7 +46,7 @@ int MHO_MK4ScanConverterReversed::DetermineDirectoryType(const std::string& in_d
     std::vector< std::string > corelFiles;
     std::vector< std::string > stationFiles;
     std::vector< std::string > rootFiles;
-    dirInterface.GetFilesMatchingExtention(rootFiles, ".root.json");
+    dirInterface.GetFilesMatchingExtension(rootFiles, ".root.json");
 
     //definitely a scan directory (a root file and no subdirs)
     if(rootFiles.size() >= 1 && allDirs.size() == 0)

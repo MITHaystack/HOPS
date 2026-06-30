@@ -20,10 +20,10 @@ bool MHO_ScanDataStore::Initialize()
     if(ok)
     {
         fDirInterface.GetFileList(fAllFiles);
-        fDirInterface.GetFilesMatchingExtention(fCorFiles, "cor");
-        fDirInterface.GetFilesMatchingExtention(fStaFiles, "sta");
-        fDirInterface.GetFilesMatchingExtention(fJSONFiles, "json");
-        fDirInterface.GetFilesMatchingExtention(fFringeFiles, "frng");
+        fDirInterface.GetFilesMatchingExtension(fCorFiles, "cor");
+        fDirInterface.GetFilesMatchingExtension(fStaFiles, "sta");
+        fDirInterface.GetFilesMatchingExtension(fJSONFiles, "json");
+        fDirInterface.GetFilesMatchingExtension(fFringeFiles, "frng");
 
         //determine the root file (.json)
         DetermineRootFile();

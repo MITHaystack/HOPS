@@ -28,7 +28,7 @@ static int count_locks(const std::string& dir)
     di.SetCurrentDirectory(dir);
     di.ReadCurrentDirectory();
     std::vector< std::string > locks;
-    di.GetFilesMatchingExtention(locks, ".lock");
+    di.GetFilesMatchingExtension(locks, ".lock");
     return static_cast< int >(locks.size());
 }
 

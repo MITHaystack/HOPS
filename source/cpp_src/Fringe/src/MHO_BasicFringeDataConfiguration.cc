@@ -37,7 +37,7 @@ std::string MHO_BasicFringeDataConfiguration::find_associated_root_file(std::str
     dirInter.ReadCurrentDirectory();
     std::vector< std::string > flist;
     std::string ext(".root.json");
-    dirInter.GetFilesMatchingExtention(flist, ext);
+    dirInter.GetFilesMatchingExtension(flist, ext);
 
     std::string root_file = "";
     if(flist.size() != 1)
@@ -192,7 +192,7 @@ void MHO_BasicFringeDataConfiguration::determine_scans(const std::string& initia
             dirInterface.ReadCurrentDirectory();
             std::vector< std::string > flist;
             std::string ext(".root.json");
-            dirInterface.GetFilesMatchingExtention(flist, ext);
+            dirInterface.GetFilesMatchingExtension(flist, ext);
             if(flist.size() != 0)
             {
                 scans.push_back(path + "/"); //NOTE: the trailing '/' is important!
@@ -231,7 +231,7 @@ void MHO_BasicFringeDataConfiguration::determine_baselines(const std::string& di
     MHO_DirectoryInterface dirInterface;
     dirInterface.SetCurrentDirectory(dir);
     dirInterface.ReadCurrentDirectory();
-    dirInterface.GetFilesMatchingExtention(corFiles, "cor");
+    dirInterface.GetFilesMatchingExtension(corFiles, "cor");
 
     //loop over 'cor' files and extract the baseline information
     //we expect that baseline visibility data to be stored in files with names of the form:
