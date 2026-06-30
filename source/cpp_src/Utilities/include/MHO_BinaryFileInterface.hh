@@ -351,10 +351,20 @@ class MHO_BinaryFileInterface
                 MHO_FileKey key = GenerateObjectFileKey(obj, shortname);
                 fObjectStreamer.ResetByteCount();
                 fObjectStreamer << key;
-                msg_debug("file", "wrote object key of size: " << fObjectStreamer.GetNBytesWritten() << " bytes." << eom);
+                msg_debug("file", "wrote object key of size: " << fObjectStreamer.GetNBytesWritten() << " bytes" << eom);
                 fObjectStreamer.ResetByteCount();
                 fObjectStreamer << obj;
-                msg_debug("file", "wrote object of size: " << fObjectStreamer.GetNBytesWritten() << " bytes." << eom);
+                msg_debug("file", "wrote object of size: " << fObjectStreamer.GetNBytesWritten() << " bytes" << eom);
+                //check actual streamed byte count agrees with the object's  GetSerializedSize()), if not, then every
+                //object after this one in the file will be misaligned/corrupted
+                if(fObjectStreamer.GetNBytesWritten() != key.fSize)
+                {
+                    msg_error("file", "Object serialized size mismatch for object of type: "
+                                          << MHO_ClassIdentity::ClassName(obj) << ", declared " << key.fSize
+                                          << " bytes but wrote " << fObjectStreamer.GetNBytesWritten()
+                                          << " bytes; GetSerializedSize() is out of sync with the streaming operator" << eom);
+                    return false;
+                }
                 if(fObjectStreamer.GetStream().good())
                 {
                     if(fCollectKeys && fKeyStreamer.IsOpenForWrite())
