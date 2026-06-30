@@ -150,6 +150,11 @@ void MHO_Tokenizer::GetTokens(std::vector< std::string >* tokens)
 
 void MHO_Tokenizer::MultiCharTokenize(std::vector< std::string >* tokens)
 {
+    //skip if no delim
+    if(fDelim.size() == 0)
+    {
+        return;
+    }
     //the delimiter is a multi-character string
     size_t start = 0;
     size_t end = 0;
