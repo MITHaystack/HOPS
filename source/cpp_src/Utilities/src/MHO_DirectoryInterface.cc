@@ -390,7 +390,7 @@ void MHO_DirectoryInterface::GetFilesMatchingExtention(std::vector< std::string 
     for(auto it = fCurrentFileList.begin(); it != fCurrentFileList.end(); it++)
     {
         std::string basename = GetBasename(*it);
-        std::size_t index = basename.find(anExt);
+        std::size_t index = basename.rfind(anExt);
         if(index != std::string::npos)
         {
             //make sure the extension is the very end of the string
@@ -418,7 +418,8 @@ void MHO_DirectoryInterface::GetFilesMatchingPrefix(std::vector< std::string >& 
     {
         std::string basename = GetBasename(*it);
         std::size_t index = basename.find(aPrefix);
-        if(index != std::string::npos)
+        //only match when the prefix occurs at the very start of the basename
+        if(index == 0)
         {
             aFileList.push_back(*it);
         }
@@ -439,7 +440,7 @@ void MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention(std::vector< std
     for(auto it = fCurrentSubDirectoryList.begin(); it != fCurrentSubDirectoryList.end(); it++)
     {
         std::string basename = GetBasename(*it);
-        std::size_t index = basename.find(anExt);
+        std::size_t index = basename.rfind(anExt);
         if(index != std::string::npos)
         {
             //make sure the extension is the very end of the string
