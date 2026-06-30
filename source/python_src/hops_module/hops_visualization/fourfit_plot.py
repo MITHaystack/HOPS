@@ -1090,31 +1090,42 @@ def _run_subprocess_entry(argv):
 
     Invoked by MHO_SubprocessPythonPlotVisitor as::
 
-        python -m hops_visualization.fourfit_plot <request.json>
+        python -m hops_visualization.fourfit_plot <request_file> <response_file>
 
-    This is the Python half of the no-embed default-plot backend. It reads the
-    JSON request, renders with make_fourfit_plot() (the same dict-driven
-    renderer the embedded path uses), and writes a JSON response to stdout.
+    This is the Python half of the no-embed default-plot backend. The C++ side
+    pre-creates both temp files: it writes the request into the first and reads
+    the JSON response back from the second. It reads the JSON request, renders
+    with make_fourfit_plot() (the same dict-driven renderer the embedded path
+    uses), and writes a JSON response into the response file. Returning the
+    contract through its own file (rather than stdout) means matplotlib / user
+    plot chatter cannot corrupt what the C++ side parses.
 
     JSON contract (keep in sync with MHO_PythonSubprocessContract.hh):
         request  : { schema_version, plot_dict, show_plot, disk_file }
         response : { schema_version, ok, output_file, error }
     '''
     import json
-    schema_version = 1
+    schema_version = 2
+
+    if len(argv) < 3:
+        sys.stderr.write(
+            "fourfit_plot: usage: python -m hops_visualization.fourfit_plot <request_file> <response_file>\n"
+        )
+        return 2
+    request_path = argv[1]
+    response_path = argv[2]
 
     def emit(response):
-        json.dump(response, sys.stdout)
-        sys.stdout.flush()
+        # Write the JSON contract into the response file the C++ caller reads;
+        # keeping it off stdout means matplotlib/user chatter cannot corrupt it.
+        with open(response_path, "w") as f:
+            json.dump(response, f)
 
     try:
-        if len(argv) < 2:
-            raise ValueError("no request file argument provided")
-        src = argv[1]
-        if src == "-":
+        if request_path == "-":
             request = json.load(sys.stdin)
         else:
-            with open(src, "r") as f:
+            with open(request_path, "r") as f:
                 request = json.load(f)
 
         req_version = request.get("schema_version")

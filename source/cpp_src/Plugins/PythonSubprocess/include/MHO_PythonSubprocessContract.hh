@@ -40,8 +40,12 @@ namespace python_subprocess
  *                 "error":       <string> } // present iff ok == false
  */
 
-//bump when the request/response field layout changes incompatibly
-static const int kSchemaVersion = 1;
+//bump when the request/response field layout OR the invocation convention
+//changes incompatibly. v2: the child is invoked as
+//`python -m <module> <request_file> <response_file>` and writes its JSON
+//response into <response_file> (rather than to stdout) so that stray output
+//from user control/plot code cannot corrupt the contract.
+static const int kSchemaVersion = 2;
 
 //common field names
 static const char* const kSchemaVersionKey = "schema_version";
