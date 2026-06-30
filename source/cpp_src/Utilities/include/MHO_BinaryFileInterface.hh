@@ -141,7 +141,7 @@ class MHO_BinaryFileInterface
             keys.clear();
 
             if(fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() || fKeyStreamer.IsOpenForRead() ||
-               fKeyStreamer.IsOpenForRead())
+               fKeyStreamer.IsOpenForWrite())
             {
                 msg_warn("file", "Cannot extract index file keys with active stream. Close open file first." << eom);
                 return false;
@@ -186,7 +186,7 @@ class MHO_BinaryFileInterface
             keys.clear();
 
             if(fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() || fKeyStreamer.IsOpenForRead() ||
-               fKeyStreamer.IsOpenForRead())
+               fKeyStreamer.IsOpenForWrite())
             {
                 msg_warn("file", "Cannot extract file keys with active stream. Close open file first." << eom);
                 return false;
@@ -238,7 +238,6 @@ class MHO_BinaryFileInterface
                     return false; //non-recoverable error
                 }
             }
-            Close();
         }
 
         /**
@@ -253,10 +252,11 @@ class MHO_BinaryFileInterface
                                              std::vector< std::size_t >& byte_offsets)
         {
             keys.clear();
+            byte_offsets.clear();
             std::size_t byte_count = 0;
 
             if(fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() || fKeyStreamer.IsOpenForRead() ||
-               fKeyStreamer.IsOpenForRead())
+               fKeyStreamer.IsOpenForWrite())
             {
                 msg_warn("file", "Cannot extract file keys with active stream. Close open file first." << eom);
                 return false;
@@ -310,7 +310,6 @@ class MHO_BinaryFileInterface
                     return false; //non-recoverable error
                 }
             }
-            Close();
         }
 
         /**
@@ -382,8 +381,8 @@ class MHO_BinaryFileInterface
             }
             else
             {
-                return false;
                 msg_error("file", "Failed to write object, file not open for writing." << eom);
+                return false;
             }
         }
 
