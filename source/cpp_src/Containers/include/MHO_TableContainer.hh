@@ -301,7 +301,7 @@ using ComplexF = std::complex< float >;
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Int = MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Int >;   \
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Double =                                                         \
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Double >;                                                            \
-    using MHO_TableContainer_##TYPE##_MHO_Int_AxisPack_String_String =                                                         \
+    using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_String =                                                         \
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_String >;                                                            \
                                                                                                                                \
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Int = MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Int >;   \
@@ -361,7 +361,7 @@ using ComplexF = std::complex< float >;
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_Int >;                                                           \
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_String_Double =                                                     \
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_Double >;                                                        \
-    using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_String =                                                         \
+    using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_String_String =                                                     \
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_String >;                                                        \
                                                                                                                                \
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Int_Int =                                                        \
