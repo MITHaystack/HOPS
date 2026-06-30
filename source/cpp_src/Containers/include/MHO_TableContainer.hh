@@ -226,7 +226,15 @@ class MHO_TableContainer: public MHO_TableContainerBase,
             if(fs_ptr != nullptr)
             {
                 std::fstream& pfile = fs_ptr->GetStream();
-                pfile.read(reinterpret_cast< char* >(data_ptr), dsize * sizeof(XValueType));
+                std::size_t nbytes = dsize * sizeof(XValueType);
+                pfile.read(reinterpret_cast< char* >(data_ptr), nbytes);
+                //check we didn't read a truncated/corrupt file
+                if(static_cast< std::size_t >(pfile.gcount()) != nbytes)
+                {
+                    msg_error("containers", "error reading MHO_TableContainer data block, expected "
+                                                << nbytes << " bytes but read " << pfile.gcount()
+                                                << "; file may be truncated or corrupt." << eom);
+                }
             }
             else
             {
