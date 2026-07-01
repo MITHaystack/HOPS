@@ -273,12 +273,22 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
         //std::cout<<"------"<<std::endl;
 
         //first loop over list evaluating NOTs
-        for(auto it = states.begin(); it != states.end(); it++)
+        //NOT is unary and right-associative, so a sequence of consecutive NOTs applies
+        //to the single operand that follows it. Just in case we have multiple NOTs, we loop
+        //and collapse a sequence of N 'NOT's into a single operation, based on parity, that way
+        //we can evaluate outliers like "not not X" correctly
+        for(auto it = states.begin(); it != states.end(); /* advanced below */)
         {
             if(*it == NOT_OP)
             {
-                not_count++;
-                it = states.erase(it);
+                int run = 0;
+                while(it != states.end() && *it == NOT_OP)
+                {
+                    run++;
+                    it = states.erase(it); //erase NOT, advance to next element
+                }
+                not_count++; //signal the do/while that a NOT pass did work
+
                 if(it == states.end())
                 {
                     //a 'not' with no following operand is a syntax error
@@ -286,15 +296,24 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
                                              << fStartLineNumber << "." << eom);
                     HOPS_THROW;
                 }
-                //invert the operand; use else-if since these are mutually exclusive
-                if(*it == TRUE_STATE)
+
+                if(run % 2 == 1) //odd number of NOTs => invert the operand once
                 {
-                    *it = FALSE_STATE;
+                    //invert the operand; use else-if since these are mutually exclusive
+                    if(*it == TRUE_STATE)
+                    {
+                        *it = FALSE_STATE;
+                    }
+                    else if(*it == FALSE_STATE)
+                    {
+                        *it = TRUE_STATE;
+                    }
                 }
-                else if(*it == FALSE_STATE)
-                {
-                    *it = TRUE_STATE;
-                }
+                it++; //step past the operand we just (maybe) inverted
+            }
+            else
+            {
+                it++;
             }
         }
 
@@ -378,7 +397,7 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
     }
     while(not_count || and_count || or_count); //keep looping until we have evaluated all of (not,and,or)
 
-    //if we have more than one boolean state at the end, we by default and them all together
+    //if we have more than one boolean state at the end, we by default 'AND' them all together
     //this could happen if someone wrote: "if (station A) (station B)", and failed to put an explicit 'and' in the middle
     if(states.size() > 1)
     {
@@ -399,9 +418,11 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
     }
     else
     {
-        //we have an error
-        msg_error("control", "error parsing if statement on line " << fStartLineNumber << ", assuming false." << eom);
-        return FALSE_STATE;
+        //we have an error, (e.g. an empty condition or empty '()'
+        //fail out here
+        msg_fatal("control", "cannot parse empty or malformed if statement on line " << fStartLineNumber << "." << eom);
+        HOPS_THROW;
+        return FALSE_STATE; //unreachable
     }
 }
 
