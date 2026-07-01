@@ -7,12 +7,12 @@ namespace hops
 
 MHO_Timer::MHO_Timer(): fName("generic_timer")
 {
-    fClockID = CLOCK_REALTIME; //default is wallclock
+    fClockID = CLOCK_MONOTONIC; //default is wallclock
 }
 
 MHO_Timer::MHO_Timer(std::string name): fName(name)
 {
-    fClockID = CLOCK_REALTIME; //default is wallclock
+    fClockID = CLOCK_MONOTONIC; //default is wallclock
 }
 
 MHO_Timer::~MHO_Timer()
@@ -21,7 +21,7 @@ MHO_Timer::~MHO_Timer()
 //set the clock type used
 void MHO_Timer::MeasureWallclockTime()
 {
-    fClockID = CLOCK_REALTIME;
+    fClockID = CLOCK_MONOTONIC;
 }
 
 void MHO_Timer::MeasureProcessTime()
