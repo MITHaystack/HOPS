@@ -1,13 +1,28 @@
+"""Shared fourfit fringe-plot helpers.
+
+This module holds the panel/table/text-box builders that are common to every
+Python fringe-plot renderer in this package (fourfit_plot and
+fourfit_spectral_line_plot, plus any user plugin that wraps them). Each helper
+consumes the ``plot_dict`` produced by the C++ MHO_ComputePlotData and draws
+into the current matplotlib figure.
+
+Keep this the single home for these helpers: the renderers import them with
+``from .fourfit_plot_common import *`` so a layout change lands in one place
+instead of being copy-pasted across siblings. The set of top-level ``plot_dict``
+keys read here is checked against the C++ port (MHO_BasicPlotVisitor.cc) by
+test/test_plot_renderer_drift.py.
+"""
+
 import time
 import os, sys
 import numpy as np
 import matplotlib
-#are any of these backends faster? matplotlib is abysmally slow
-# matplotlib.use("Agg")
-# matplotlib.use("TkAgg")
-# matplotlib.use('Qt5Cairo')
 
-
+# default to the headless-safe Agg backend so importing this module never
+# selects a GUI backend (GTK4's object model conflicts with pybind11 and
+# crashes in the embedded interpreter, and TkAgg needs a display). The actual
+# render paths switch to TkAgg themselves when showing on-screen.
+matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
@@ -16,13 +31,8 @@ import pylab
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import AutoMinorLocator
 
-#these don't do much, still slow
-#import matplotlib.style as mplstyle
-# mplstyle.use('fast')
-# matplotlib.rcParams['path.simplify_threshold'] = 1.0
-
 def get_numpy_version_tuple():
-    np_vers = np.__version__ 
+    np_vers = np.__version__
     parts = np_vers.split('.')[:3]
     version_nums = []
     for part in parts: #convert to integers
@@ -35,18 +45,14 @@ def get_numpy_version_tuple():
         version_nums.append(0)
     return tuple(version_nums)
 
-
 def is_version_less_than(version_tuple_check, version_tuple_reference):
     return version_tuple_check < version_tuple_reference
-    
 
 def make_sciformat(float_value, nprec, nmd, np_use_min_digits=True):
     if np_use_min_digits:
         return str(np.format_float_scientific(float_value, precision=nprec, min_digits=nmd ) )
     else:
         return str(np.format_float_scientific(float_value, precision=nprec) )
-
-
 
 def make_dr_mbd_plot(plot_dict):
 
@@ -139,8 +145,6 @@ def make_sbd_dtec_plot(plot_dict):
             ax4.tick_params(axis='x', direction='in', which='both', right=False, top=True, bottom=False, labeltop=True, labelbottom=False)
             ax3a.tick_params(axis='y', direction='in', which='both', right=False, left=False, labelleft=False, labelright=False)
             ax3a.tick_params(axis='x', direction='in', which='both', right=False, top=True, bottom=False, labeltop=True, labelbottom=False)
-            # ax4.tick_params(axis='both', direction='in', which='both', top=True, right=False)
-            # ax3.tick_params(axis='both', direction='in', which='both', top=False, right=False, left=False, bottom=False)
 
 def make_xpower_plot(plot_dict):
 
@@ -178,7 +182,6 @@ def make_xpower_plot(plot_dict):
     ax5.yaxis.label.set_color('r')
     ax5.tick_params(axis='both', direction='in', which='both')
 
-
 def make_channel_segment_plots_alt(fig, plot_dict):
 
     # This function constructs the phase/amp plots for each channel from the time-average segments
@@ -204,7 +207,7 @@ def make_channel_segment_plots_alt(fig, plot_dict):
 
     if n_seg_plots == 2:
         n_seg_plots = 1 #do not need 'all' plot if only one channel
-        
+
     # Assuming colw, n_seg_plots, n_seg, and seg_amp_arr1 are defined
     gs = fig.add_gridspec(32, colw * n_seg_plots)
     for ch in range(0,n_seg_plots):
@@ -256,66 +259,63 @@ def make_channel_segment_plots_alt(fig, plot_dict):
 
     plt.subplots_adjust(wspace=0, hspace=0)
 
-
-
-
 def make_channel_segment_validity_plots(fig,plot_dict):
 
     # This function constructs USB/LSB validity flag plots for the time-averaged segments of each channel
     n_seg = int(plot_dict["NSeg"])
     n_seg_plots = int(plot_dict["NPlots"])
     colw = 6
-    
+
     # Extract USB and LSB validity data
     usb_frac = plot_dict.get('SEG_FRAC_USB', [])
     lsb_frac = plot_dict.get('SEG_FRAC_LSB', [])
-    
+
     gs = fig.add_gridspec(256, colw*n_seg_plots)
     #USB/LSB PLOTS - excludes the last "All" channel
     n_channel_plots = n_seg_plots - 1
-    
+
     for ch in range(0, n_channel_plots):
         #make single subplot for both USB and LSB indicators
         ax7 = fig.add_subplot(gs[152:160, colw*ch:colw*(ch+1)])
-        
+
         # Extract validity data for this channel
         usb_validity = []
         lsb_validity = []
-        
+
         for seg in range(n_seg):
             idx = seg * n_channel_plots + ch
-            
+
             #extract USB validity for this segment/channel
             if idx < len(usb_frac):
                 usb_validity.append(usb_frac[idx])
             else:
                 usb_validity.append(0.0)
-                
-            #extract LSB validity for this segment/channel  
+
+            #extract LSB validity for this segment/channel
             if idx < len(lsb_frac):
                 lsb_validity.append(lsb_frac[idx])
             else:
                 lsb_validity.append(0.0)
-        
+
         # draw vertical lines for each time segment
         for seg in range(n_seg):
             x = seg + 0.5  # Center the line in the segment
-            
+
             # USB validity line (upper half: y from 0.5 to 1.0)
             if usb_validity[seg] >= 0.95:
                 ax7.plot([x, x], [0.5, 1.0], 'g-', linewidth=1.0)
             elif usb_validity[seg] > 0.0:
                 ax7.plot([x, x], [0.5, 1.0], 'r-', linewidth=1.0)
-            
+
             # LSB validity line (lower half: y from 0.0 to 0.5)
             if lsb_validity[seg] >= 0.95:
                 ax7.plot([x, x], [0.0, 0.5], 'g-', linewidth=1.0)
             elif lsb_validity[seg] > 0.0:
                 ax7.plot([x, x], [0.0, 0.5], 'r-', linewidth=1.0)
-        
+
         #draw horizontal divider line at y=0.5 to separate USB/LSB
         ax7.plot([0, n_seg], [0.5, 0.5], 'k-', linewidth=1.0)
-        
+
         # Set axis properties
         ax7.set_xlim(0, n_seg)
         ax7.set_ylim(0, 1)
@@ -326,16 +326,15 @@ def make_channel_segment_validity_plots(fig,plot_dict):
         ax7.set_yticklabels(labels=[], visible=False)
         plt.yticks(visible=False)
         plt.tick_params(left=False, bottom=False)
-        
+
         # add U/L labels for the first channel only
         if ch == 0:
-            ax7.text(-0.36, 0.65, 'U', fontsize=7, rotation=0, 
+            ax7.text(-0.36, 0.65, 'U', fontsize=7, rotation=0,
                     transform=ax7.transAxes, verticalalignment='center')
-            ax7.text(-0.33, 0.15, 'L', fontsize=7, rotation=0, 
+            ax7.text(-0.33, 0.15, 'L', fontsize=7, rotation=0,
                     transform=ax7.transAxes, verticalalignment='center')
-            
-    plt.subplots_adjust(wspace=0, hspace=0)
 
+    plt.subplots_adjust(wspace=0, hspace=0)
 
 def make_pcal_plots(fig, plot_dict):
 
@@ -614,7 +613,7 @@ def make_channel_info_table(plot_dict):
                     pass #keep original text and color if conversion fails
 
     # Set the table cell height to make it smaller
-    table.scale(1, 0.7)  # Adjust the scale factor as needed
+    table.scale(1, 0.7)
 
 def make_info_text_box(plot_dict):
     #build the text that sits to the right of the DR/MBD and xpower spectra plots
@@ -689,9 +688,6 @@ def make_info_text_box(plot_dict):
     plt.text(0.965,0.94,textstr3,transform=plt.gcf().transFigure,fontsize=8,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='r')
 
-
-
-
 def make_top_info_text(plot_dict):
     #adds the text info at the very top of the page
     plt.text(0.965,0.98,plot_dict['RootScanBaseline'].strip("'"),transform=plt.gcf().transFigure,
@@ -700,17 +696,13 @@ def make_top_info_text(plot_dict):
     plt.text(0.05,0.98,plot_dict['CorrVers'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=12,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
 
-    #ALPHA RELEASE WARNING
-    plt.text(0.05,0.96, "NOT FOR PRODUCTION",transform=plt.gcf().transFigure, color='r',
-             fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='left',fontweight='bold')
-
     plt.text(0.965,0.96, plot_dict['PolStr'].strip("'"),transform=plt.gcf().transFigure,
              fontsize=10,verticalalignment='top',family='sans-serif',horizontalalignment='right',fontweight='bold')
 
 def make_model_resid_info_text(plot_dict):
     #adds the wall of text below the p-cal table with:
     #a priori, total, and residual delay model infomation
-    
+
     useMinDigits = True
     np_vers = get_numpy_version_tuple()
     if is_version_less_than( np_vers, (1,21,0) ):
@@ -725,8 +717,8 @@ def make_model_resid_info_text(plot_dict):
     group_delay_key = "GroupDelayModel(usec)"
     if not group_delay_key in plot_dict:
         group_delay_key = "GroupDelaySBD(usec)"
-        
-        
+
+
     btmtextstr2 = make_sciformat(float(plot_dict[group_delay_key]), 11, 11, useMinDigits)  + '\n' + \
         make_sciformat(float(plot_dict["SbandDelay(usec)"]), 11, 11, useMinDigits) + '\n' + \
         make_sciformat(float(plot_dict["PhaseDelay(usec)"]), 11, 11, useMinDigits) + '\n' + \
@@ -797,7 +789,6 @@ def make_model_resid_info_text(plot_dict):
     plt.text(0.97,bottom_yoffset,btmtextstr8,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top',
              family='monospace',horizontalalignment='right',color='k')
 
-
 def make_rms_table(plot_dict):
 
     #add more text at the bottom (with the data RMS/Theor table)
@@ -844,7 +835,7 @@ def make_rms_table(plot_dict):
     # Hide the axis
     axT2.axis('off')
     # Set the table cell height to make it smaller
-    table2.scale(1, 0.7)  # Adjust the scale factor as needed
+    table2.scale(1, 0.7)
 
 def make_coord_text(plot_dict):
     #add the station sky coordinate and u-v coordinate info to the bottom
@@ -886,8 +877,6 @@ def make_coord_text(plot_dict):
         # output_file = plot_dict['extra']['output_file']
         file_info_textstr = "Control file: " + control_file + "   Input file: " + input_file; #+ "   Output file: " + output_file
         plt.text(0.01,0.03, file_info_textstr ,transform=plt.gcf().transFigure,fontsize=6,verticalalignment='top', family='monospace',horizontalalignment='left',color='k')
-        #TODO - also add information about the 'samplers' when statement is present in control file
-
 
 def make_amplitude_table(plot_dict):
     #constructs the fringe amplitude table - more text at the bottom
@@ -928,7 +917,7 @@ def make_amplitude_table(plot_dict):
     table3.set_fontsize(7)
     axT3.axis('off')
     # Set the table cell height to make it smaller
-    table3.scale(1, 0.7)  # Adjust the scale factor as needed
+    table3.scale(1, 0.7)
 
 def make_window_table(plot_dict):
 
@@ -965,7 +954,7 @@ def make_window_table(plot_dict):
     table4.set_fontsize(7)
     axT4.axis('off')
     # Set the table cell height to make it smaller
-    table4.scale(12, 0.7)  # Adjust the scale factor as needed
+    table4.scale(12, 0.7)
 
 def make_data_stats_text(plot_dict):
     #constructs the auxilliary data information text at the bottom of the page
@@ -1004,7 +993,6 @@ def make_data_stats_text(plot_dict):
     # Add the text boxes
     plt.text(0.41,0.095,textstr100,transform=plt.gcf().transFigure,fontsize=7,verticalalignment='top',family='monospace',horizontalalignment='left',color='k')
 
-
 def press_event_handler(event):
     if event.key == 'enter': #exit plot on enter
         plt.close('all')
@@ -1015,77 +1003,3 @@ def press_event_handler(event):
     if event.key == "q": #exit plot on 'q' button, and kill the program
         plt.close('all')
         sys.exit()
-
-
-def make_fourfit_plot(plot_dict, show_on_screen, filename):
-    '''
-    Function to reproduce a fourfit fringe plot.
-
-    Parameters
-    ----------
-    plot_dict : dict
-        Dictionary with key/value pairs for the plot.
-    show_on_screen : bool
-        Show the plot on-screen.
-    filename : str
-        Path of the filename to save the plot, if empty, plot will not be saved.
-
-    Returns
-    -------
-    None
-    '''
-
-    matplotlib.rcParams.update({'figure.figsize': [8.5,11]})
-
-    # Build the figure.  We'll construct this figure using many subplots, with different grid specifications.
-    fig = pylab.figure(1)
-
-    t1 = time.process_time()
-    make_dr_mbd_plot(plot_dict) #constructs the delay-rate/multiband delay twin plot
-    make_sbd_dtec_plot(plot_dict) #constructs the single-band delay and (ion-dTEC) twin plot
-    make_xpower_plot(plot_dict) #constructs the cross-power spectrum phase/amp twin plot
-    t2 = time.process_time()
-    #print("time for first few plots: ", t2 - t1)  #takes like 0.3 sec
-
-    #THESE PLOTS ARE SUPER SLOW
-    t1 = time.process_time()
-    make_channel_segment_plots_alt(fig, plot_dict) #constructs the per-channel phase/amp plots
-    make_channel_segment_validity_plots(fig, plot_dict) #constructs the USB/LSB validity flags
-    make_pcal_plots(fig, plot_dict) #constructs the per-channel p-cal plots
-    make_channel_info_table(plot_dict) #constructs the channel/pcal info table
-    t2 = time.process_time()
-    #print("time for slow functions: ", t2 - t1) #takes like 5.5 sec
-
-    t1 = time.process_time()
-    make_info_text_box(plot_dict) #constructs fringe summary text box
-    make_top_info_text(plot_dict) #constructs the title/top-page info
-    make_model_resid_info_text(plot_dict) #constructs the a priori model, totals, and residuals text at the bottom
-    make_rms_table(plot_dict) #constructs the fringe RMS table
-    make_coord_text(plot_dict) #constructs the station coordinate statements (az,el,pa,u,v)
-    make_amplitude_table(plot_dict) #constructs the amplitude table
-    make_window_table(plot_dict) #constructs the (sbd,mbd,dr,ion) window limits table
-    make_data_stats_text(plot_dict) #constructs the data statistics/summary text
-    t2 = time.process_time()
-    #print("time for rest of text functions: ", t2 - t1) #takes like .05 sec
-
-    if filename != "":
-        pylab.savefig(filename)
-
-    if show_on_screen:
-        #handler to capture key presses to exit plot and continue
-        fig.canvas.mpl_connect('key_press_event', press_event_handler)
-        pylab.show() #blocking
-
-    plt.close('all')
-    fig.canvas.flush_events()
-
-
-def make_fourfit_plot_wrapper(fringe_data_interface):
-    plot_file = "";
-    show_plot = False
-    if fringe_data_interface.get_parameter_store().is_present("/cmdline/disk_file") is True:
-        plot_file = fringe_data_interface.get_parameter_store().get_by_path("/cmdline/disk_file");
-    if fringe_data_interface.get_parameter_store().is_present("/cmdline/show_plot") is True:
-        show_plot = fringe_data_interface.get_parameter_store().get_by_path("/cmdline/show_plot");
-
-    make_fourfit_plot(fringe_data_interface.get_plot_data(), show_plot, plot_file)
