@@ -305,7 +305,7 @@ template< typename XValueType > XValueType MHO_ParameterStore::GetAs(const std::
     bool ok = Get(value_path, v);
     if(!ok)
     {
-        msg_error("utility", "failed to retrieve value: " << value_path << " returning a default value." << eom);
+        msg_error("utility", "failed to retrieve value for: " << value_path << " returning a default value" << eom);
     }
     return v;
 }
