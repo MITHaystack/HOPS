@@ -3,8 +3,12 @@ import os, sys
 import numpy as np
 import matplotlib
 
-#MUST USE TkAgg, because GTK4's object model conflicts with pybind11, and crashes
-matplotlib.use("TkAgg")
+# default to the headless-safe Agg backend so importing this module never
+# selects a GUI backend (GTK4's object model conflicts with pybind11 and
+# crashes in the embedded interpreter, and TkAgg needs a display). The actual
+# render path, make_fourfit_plot(), switches to TkAgg itself when showing
+# on-screen.
+matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
@@ -1030,6 +1034,13 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
 
     matplotlib.rcParams.update({'figure.figsize': [8.5,11]})
 
+    # pick the backend depending on display on/off (Agg/TkAgg),
+    # do not use GTK4 (its object model conflicts with pybind11)
+    if show_on_screen:
+        plt.switch_backend("TkAgg")
+    else:
+        plt.switch_backend("Agg")
+
     # Build the figure.  We'll construct this figure using many subplots, with different grid specifications.
     fig = pylab.figure(1)
 
@@ -1138,12 +1149,8 @@ def _run_subprocess_entry(argv):
         show_plot = bool(request.get("show_plot", False))
         filename = request.get("disk_file", "") or ""
 
-        # When we are not displaying on-screen, force a headless-safe backend so
-        # saving to a file works without a display / Tk (the module selects an
-        # interactive backend at import time).
-        if not show_plot:
-            plt.switch_backend("Agg")
-
+        # make_fourfit_plot() selects the backend itself (headless-safe Agg when
+        # not showing on-screen, TkAgg otherwise), so no backend switch here.
         make_fourfit_plot(plot_dict, show_plot, filename)
 
         emit({"schema_version": schema_version, "ok": True, "output_file": filename})
