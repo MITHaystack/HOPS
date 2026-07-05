@@ -207,4 +207,16 @@ function(hops_generate_cmake_config)
         NAMESPACE Hops::
         DESTINATION "${_cmake_install_reldir}"
     )
+
+    # Static (.a) twins, when enabled, go in their own export set so the shared
+    # package config above is unaffected. Consumers opt into fully-static linking
+    # via the Hops::<lib>_static imported targets (see HopsConfig.cmake.in).
+    if(HOPS_BUILD_STATIC_LIBS)
+        install(
+            EXPORT hopsStaticTargets
+            FILE HopsStaticTargets.cmake
+            NAMESPACE Hops::
+            DESTINATION "${_cmake_install_reldir}"
+        )
+    endif()
 endfunction()

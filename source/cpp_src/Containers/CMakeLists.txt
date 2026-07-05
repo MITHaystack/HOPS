@@ -63,6 +63,7 @@ target_link_libraries(MHO_Containers ${CONTAINER_LIBS})
 
 hops_install_headers (${CONTAINER_HEADERFILES})
 hops_install_libraries (MHO_Containers)
+hops_add_static_twin (MHO_Containers SOURCES ${CONTAINER_SOURCEFILES} LIBS ${CONTAINER_LIBS})
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

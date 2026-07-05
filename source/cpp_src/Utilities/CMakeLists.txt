@@ -92,6 +92,9 @@ endif(HOPS_USE_MPI)
 
 hops_install_headers (${UTILITIES_HEADERFILES})
 hops_install_libraries (MHO_Utilities)
+#NOTE: the static twin does not wire in MPI (MHO_Utilities links MPI::MPI_CXX
+#separately above); the self-contained static libs target non-MPI consumers.
+hops_add_static_twin (MHO_Utilities SOURCES ${UTILITIES_SOURCEFILES} LIBS ${UTILITIES_LIBS})
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

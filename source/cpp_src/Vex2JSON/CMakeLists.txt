@@ -34,6 +34,7 @@ target_link_libraries (MHO_Vex2JSON MHO_Utilities)
 
 hops_install_headers (${VEX2JSON_HEADERFILES})
 hops_install_libraries (MHO_Vex2JSON)
+hops_add_static_twin (MHO_Vex2JSON SOURCES ${VEX2JSON_SOURCEFILES} ${VEX2JSON_HEADERFILES} LIBS MHO_Utilities)
 
 #install vex format specification
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/format)

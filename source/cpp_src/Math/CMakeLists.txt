@@ -38,6 +38,7 @@ target_link_libraries (MHO_Math ${MATH_LIBS})
 
 hops_install_headers (${MATH_HEADERFILES})
 hops_install_libraries (MHO_Math )
+hops_add_static_twin (MHO_Math SOURCES ${MATH_SOURCEFILES} LIBS ${MATH_LIBS})
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

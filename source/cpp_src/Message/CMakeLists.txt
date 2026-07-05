@@ -29,6 +29,7 @@ target_link_libraries (MHO_Message ${MESSAGE_LIBS})
 
 hops_install_headers (${MESSAGE_HEADERFILES})
 hops_install_libraries (MHO_Message )
+hops_add_static_twin (MHO_Message SOURCES ${MESSAGE_SOURCEFILES} LIBS ${MESSAGE_LIBS})
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

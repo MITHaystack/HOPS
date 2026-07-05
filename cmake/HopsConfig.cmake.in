@@ -65,6 +65,15 @@ endif()
 # info that CMake derived from the build.
 include("${CMAKE_CURRENT_LIST_DIR}/HopsTargets.cmake")
 
+# Static (.a) library twins, present only when HOPS was built with
+# HOPS_BUILD_STATIC_LIBS=ON. These provide Hops::<lib>_static imported targets for
+# consumers linking self-contained applications. date-tz_static carries
+# Threads::Threads in its link interface, so make sure that target is defined.
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/HopsStaticTargets.cmake")
+    find_dependency(Threads)
+    include("${CMAKE_CURRENT_LIST_DIR}/HopsStaticTargets.cmake")
+endif()
+
 # Library-name lists (without the Hops:: namespace) for tooling that wants
 # to iterate, plus a flat ${Hops_LIBRARIES} of imported-target names.
 set(Hops_HOPS3_LIBRARIES "@HOPS3_LIBS@")
@@ -81,12 +90,15 @@ endforeach()
 # Patch them with the install include dir + vendored-header dirs, plus the
 # compile definitions that gate code in the public headers.
 foreach(_lib IN LISTS Hops_HOPS3_LIBRARIES Hops_HOPS4_LIBRARIES)
-    if(TARGET Hops::${_lib})
-        set_property(TARGET Hops::${_lib} APPEND PROPERTY
-            INTERFACE_INCLUDE_DIRECTORIES ${Hops_INCLUDE_DIRS})
-        set_property(TARGET Hops::${_lib} APPEND PROPERTY
-            INTERFACE_COMPILE_DEFINITIONS ${Hops_COMPILE_DEFINITIONS})
-    endif()
+    # Patch both the shared imported target and its static twin (if present).
+    foreach(_tgt Hops::${_lib} Hops::${_lib}_static)
+        if(TARGET ${_tgt})
+            set_property(TARGET ${_tgt} APPEND PROPERTY
+                INTERFACE_INCLUDE_DIRECTORIES ${Hops_INCLUDE_DIRS})
+            set_property(TARGET ${_tgt} APPEND PROPERTY
+                INTERFACE_COMPILE_DEFINITIONS ${Hops_COMPILE_DEFINITIONS})
+        endif()
+    endforeach()
 endforeach()
 
 # Convenience aggregate INTERFACE targets.

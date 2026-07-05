@@ -31,6 +31,7 @@ target_link_libraries (MHO_Control MHO_Utilities MHO_Message)
 
 hops_install_headers (${CONTROL_HEADERFILES})
 hops_install_libraries (MHO_Control)
+hops_add_static_twin (MHO_Control SOURCES ${CONTROL_SOURCEFILES} ${CONTROL_HEADERFILES} LIBS MHO_Utilities MHO_Message)
 
 #install hops control format specification
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/format)

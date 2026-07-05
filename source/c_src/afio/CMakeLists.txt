@@ -52,5 +52,6 @@ target_link_libraries (${LIBNAME} ${LIBLIST})
 
 hops_install_headers (${${LIBNAME}_HEADERFILES})
 hops_install_libraries (${LIBNAME})
+hops_add_static_twin (${LIBNAME} SOURCES ${${LIBNAME}_SOURCEFILES} ${${LIBNAME}_HEADERFILES} LIBS ${LIBLIST})
 
 legacy_hops_install_headers (${${LIBNAME}_HEADERFILES})

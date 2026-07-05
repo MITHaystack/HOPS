@@ -3,11 +3,14 @@
 # installed HOPS prefix, to smoke-test that hops4.pc and HopsConfig.cmake are
 # usable by external code.
 #
-# Builds two binaries against the same source file:
-#   probe_cmake      -- linked via find_package(Hops CONFIG)
-#   probe_pkgconfig  -- linked via pkg_check_modules(HOPS4 hops4)
+# Builds up to three binaries against the same source file:
+#   probe_cmake      -- linked via find_package(Hops CONFIG) (shared libs)
+#   probe_pkgconfig  -- linked via pkg_check_modules(HOPS4 hops4) (shared libs)
+#   probe_static     -- linked via the Hops::<lib>_static imported targets
+#                       (only present when HOPS was built -DHOPS_BUILD_STATIC_LIBS=ON)
 #
-# Either may be skipped if the corresponding config file isn't installed.
+# Any of these may be skipped if the corresponding config file / target isn't
+# installed.
 
 cmake_minimum_required(VERSION 3.10)
 project(hops_consumer_smoke CXX)
@@ -23,6 +26,19 @@ if(Hops_FOUND)
     message(STATUS "consumer_smoke_test: find_package(Hops) -> ${Hops_VERSION}")
 else()
     message(STATUS "consumer_smoke_test: find_package(Hops) -- NOT FOUND, skipping probe_cmake")
+endif()
+
+# ---- static (self-contained) path ----
+# The Hops::<lib>_static imported targets exist only when HOPS was built with
+# -DHOPS_BUILD_STATIC_LIBS=ON. Linking them should pull in NO HOPS shared
+# libraries (verified with ldd by the driver script).
+if(Hops_FOUND AND TARGET Hops::MHO_Containers_static)
+    add_executable(probe_static ${_src})
+    target_link_libraries(probe_static PRIVATE
+        Hops::MHO_Containers_static Hops::MHO_Utilities_static Hops::MHO_Message_static)
+    message(STATUS "consumer_smoke_test: static twins -> probe_static")
+else()
+    message(STATUS "consumer_smoke_test: static twins -- NOT PRESENT, skipping probe_static")
 endif()
 
 # ---- pkg-config path ----

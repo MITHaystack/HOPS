@@ -13,6 +13,46 @@ macro(hops_install_libraries)
     set_target_properties(${ARGN} PROPERTIES INSTALL_NAME_DIR ${LIB_INSTALL_DIR})
 endmacro()
 
+# hops_add_static_twin(<target> SOURCES <src...> LIBS <libs...>)
+#
+# When HOPS_BUILD_STATIC_LIBS is ON, builds a static (.a) twin of a HOPS library,
+# named <target>_static, from the same SOURCES as the existing shared <target>.
+# The twin:
+#   * is compiled with -fPIC (POSITION_INDEPENDENT_CODE) so it can be linked into
+#     either a static executable or a consumer's own shared library,
+#   * uses OUTPUT_NAME <target> so it produces lib<target>.a next to lib<target>.so
+#     (same base name, no filename collision),
+#   * links the *_static twins of any internal LIBS that have them (so the static
+#     link interface is transitively correct), passing external libs
+#     (date-tz_static, m, ${CMAKE_DL_LIBS}, ...) through unchanged,
+#   * installs into the separate hopsStaticTargets export set, exported as
+#     Hops::<target>_static (the shared hopsTargets export / hops4.pc are untouched).
+# When HOPS_BUILD_STATIC_LIBS is OFF this is a no-op.
+function(hops_add_static_twin STATIC_TWIN_TARGET)
+    if(NOT HOPS_BUILD_STATIC_LIBS)
+        return()
+    endif()
+    cmake_parse_arguments(_HST "" "" "SOURCES;LIBS" ${ARGN})
+    add_library(${STATIC_TWIN_TARGET}_static STATIC ${_HST_SOURCES})
+    set_target_properties(${STATIC_TWIN_TARGET}_static PROPERTIES
+        OUTPUT_NAME ${STATIC_TWIN_TARGET}
+        POSITION_INDEPENDENT_CODE ON)
+    #remap internal deps to their static twins where one exists; leave external
+    #libs (date-tz_static, m, dl, ...) as-is
+    set(_hst_deps "")
+    foreach(_lib ${_HST_LIBS})
+        if(TARGET ${_lib}_static)
+            list(APPEND _hst_deps ${_lib}_static)
+        else()
+            list(APPEND _hst_deps ${_lib})
+        endif()
+    endforeach()
+    target_link_libraries(${STATIC_TWIN_TARGET}_static ${_hst_deps})
+    install(TARGETS ${STATIC_TWIN_TARGET}_static
+        EXPORT hopsStaticTargets DESTINATION ${LIB_INSTALL_RELDIR})
+    set_property(GLOBAL APPEND PROPERTY MODULE_STATIC_TARGETS ${STATIC_TWIN_TARGET}_static)
+endfunction()
+
 #this installs into a prefixed directory '.../include/hops'
 macro(legacy_hops_install_headers)
     install(FILES ${ARGN} DESTINATION ${INCLUDE_INSTALL_RELDIR}/hops)
