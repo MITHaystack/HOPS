@@ -29,6 +29,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SerializableObjectFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDictionary.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerTypeTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerJSONConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
