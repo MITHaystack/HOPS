@@ -58,9 +58,10 @@ void MHO_ControlConditionEvaluator::SetPassInformation(std::string baseline, std
         //an unparseable baseline would leave every station field at its '?'
         //wildcard default, silently wildcard-matching every station/baseline
         //condition, fail loudly instead.
-        msg_fatal("control", "cannot parse baseline '" << baseline
-                                 << "': expected a 2-character mk4-style id (e.g. 'GE') or a station code delimited '"
-                                 << fDelim << "' baseline (e.g. 'Gs-Wf')." << eom);
+        msg_fatal("control", "cannot parse baseline '"
+                                 << baseline
+                                 << "': expected a 2-character mk4-style id (e.g. 'GE') or a station code delimited '" << fDelim
+                                 << "' baseline (e.g. 'Gs-Wf')." << eom);
         HOPS_THROW;
     }
 

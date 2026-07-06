@@ -4,8 +4,8 @@
 #include <string>
 
 #include "MHO_JSONHeaderWrapper.hh"
-#include "MHO_Tokenizer.hh"
 #include "MHO_Message.hh"
+#include "MHO_Tokenizer.hh"
 
 namespace hops
 {
@@ -120,7 +120,6 @@ class MHO_ParameterStore
             }
         }
 
-
         /**
          * @brief Retrieves a value by path and returns it as XValueType, using default constructor if not found.
          *
@@ -148,7 +147,6 @@ class MHO_ParameterStore
          * @return Value of type XValueType retrieved
          */
         template< typename XValueType > XValueType GetRequiredAs(const std::string& value_path) const;
-
 
         /**
          * @brief Function IsPresent, checks if path is present in parameter store
@@ -185,7 +183,6 @@ class MHO_ParameterStore
         }
 
     private:
-
         /**
          * @brief Removes leading/trailing whitespace and trailing '/' from input path string.
          *
@@ -321,7 +318,6 @@ template< typename XValueType > XValueType MHO_ParameterStore::GetRequiredAs(con
     }
     return v;
 }
-
 
 } // namespace hops
 

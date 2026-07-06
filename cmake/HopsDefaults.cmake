@@ -24,7 +24,7 @@ endmacro()
 #     (same base name, no filename collision),
 #   * links the *_static twins of any internal LIBS that have them (so the static
 #     link interface is transitively correct), passing external libs
-#     (date-tz_static, m, ${CMAKE_DL_LIBS}, ...) through unchanged,
+#     (m, ${CMAKE_DL_LIBS}, ...) through unchanged,
 #   * installs into the separate hopsStaticTargets export set, exported as
 #     Hops::<target>_static (the shared hopsTargets export / hops4.pc are untouched).
 # When HOPS_BUILD_STATIC_LIBS is OFF this is a no-op.
@@ -38,7 +38,7 @@ function(hops_add_static_twin STATIC_TWIN_TARGET)
         OUTPUT_NAME ${STATIC_TWIN_TARGET}
         POSITION_INDEPENDENT_CODE ON)
     #remap internal deps to their static twins where one exists; leave external
-    #libs (date-tz_static, m, dl, ...) as-is
+    #libs (m, dl, ...) as-is
     set(_hst_deps "")
     foreach(_lib ${_HST_LIBS})
         if(TARGET ${_lib}_static)

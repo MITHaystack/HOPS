@@ -9,7 +9,20 @@
 
 //these can someday be replaced with STL versions in C++20
 #include "date/date.h"
-#include "date/tz.h"
+
+//Leap-second / utc-tai-gps-sys clock backend selection.
+//HOPS_USE_INTERNAL_LEAP_SECONDS (default, set by CMake): use the self-contained
+//hardcoded leap-second table in hops_leap_seconds.hh, so no libdate-tz link,
+//no runtime dependency on the host tz database.
+//otherwise: fall back to the upstream compiled date/tz.h (links libdate-tz and
+//reads the installed system tz db at runtime).
+//Both backends expose the same utc_clock/tai_clock/gps_clock/get_leap_second_info functionality
+//the hops_tz namespace alias below points MHO_Clock at whichever is active.
+#ifdef HOPS_USE_INTERNAL_LEAP_SECONDS
+    #include "hops_leap_seconds.hh"
+#else
+    #include "date/tz.h"
+#endif
 
 #include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
@@ -25,6 +38,16 @@
 #define JD_TO_SEC 86400.0
 #define MINUTE_TO_SEC 60.0
 #define HOUR_TO_SEC 3600.0
+
+//alias the active leap-second/clock backend (see the include block above). The
+//internal implementation lives in namespace hops; the upstream one in date. Both
+//provide utc_clock/tai_clock/gps_clock, the utc_time/tai_time/gps_time aliases,
+//and get_leap_second_info, so MHO_Clock refers to them only through hops_tz.
+#ifdef HOPS_USE_INTERNAL_LEAP_SECONDS
+namespace hops_tz = hops;
+#else
+namespace hops_tz = date;
+#endif
 
 namespace hops
 {
@@ -63,18 +86,19 @@ class hops_clock
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
         template< typename Duration >
-        static std::chrono::time_point< date::utc_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+        static std::chrono::time_point< hops_tz::utc_clock,
+                                        typename std::common_type< Duration, std::chrono::nanoseconds >::type >
         to_utc(const std::chrono::time_point< hops_clock, Duration >&) NOEXCEPT;
 
         /**
          * @brief Converts UTC time point to hops_clock time point
          *
          * @tparam Duration Template parameter Duration
-         * @param & Parameter & of type const std::chrono::time_point< date::utc_clock, Duration
+         * @param & Parameter & of type const std::chrono::time_point< hops_tz::utc_clock, Duration
          */
         template< typename Duration >
         static std::chrono::time_point< hops_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
-        from_utc(const std::chrono::time_point< date::utc_clock, Duration >&) NOEXCEPT;
+        from_utc(const std::chrono::time_point< hops_tz::utc_clock, Duration >&) NOEXCEPT;
 
         /**
          * @brief Converts a time point from hops_clock to TAI (International Atomic Time).
@@ -83,18 +107,19 @@ class hops_clock
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
         template< typename Duration >
-        static std::chrono::time_point< date::tai_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+        static std::chrono::time_point< hops_tz::tai_clock,
+                                        typename std::common_type< Duration, std::chrono::nanoseconds >::type >
         to_tai(const std::chrono::time_point< hops_clock, Duration >&) NOEXCEPT;
 
         /**
          * @brief Converts a TAI time point to UTC and returns the corresponding Hops clock time.
          *
          * @tparam Duration Template parameter Duration
-         * @param & Parameter & of type const std::chrono::time_point< date::tai_clock, Duration
+         * @param & Parameter & of type const std::chrono::time_point< hops_tz::tai_clock, Duration
          */
         template< typename Duration >
         static std::chrono::time_point< hops_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
-        from_tai(const std::chrono::time_point< date::tai_clock, Duration >&) NOEXCEPT;
+        from_tai(const std::chrono::time_point< hops_tz::tai_clock, Duration >&) NOEXCEPT;
 
         /**
          * @brief Converts a time point to GPS clock time.
@@ -103,18 +128,19 @@ class hops_clock
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
         template< typename Duration >
-        static std::chrono::time_point< date::gps_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+        static std::chrono::time_point< hops_tz::gps_clock,
+                                        typename std::common_type< Duration, std::chrono::nanoseconds >::type >
         to_gps(const std::chrono::time_point< hops_clock, Duration >&) NOEXCEPT;
 
         /**
          * @brief Converts GPS time to Hops clock time.
          *
          * @tparam Duration Template parameter Duration
-         * @param & Parameter & of type const std::chrono::time_point< date::gps_clock, Duration
+         * @param & Parameter & of type const std::chrono::time_point< hops_tz::gps_clock, Duration
          */
         template< typename Duration >
         static std::chrono::time_point< hops_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
-        from_gps(const std::chrono::time_point< date::gps_clock, Duration >&) NOEXCEPT;
+        from_gps(const std::chrono::time_point< hops_tz::gps_clock, Duration >&) NOEXCEPT;
 
         /**
          * @brief Converts a time point from hops_clock to system clock.
@@ -298,15 +324,19 @@ class hops_clock
         /**
          * @brief returns the hops_clock epoch as a utc_time time_point
          */
-        static date::utc_time< std::chrono::nanoseconds > get_hops_epoch_utc()
+        static hops_tz::utc_time< std::chrono::nanoseconds > get_hops_epoch_utc()
         {
-            std::string frmt = "%F %T";
-            std::string j2000 = J2000_TAI_EPOCH;
-            date::tai_time< std::chrono::nanoseconds > j2000_tai_epoch;
-            std::istringstream ss(j2000);
-            std::istream stream(ss.rdbuf());
-            date::from_stream(stream, frmt.c_str(), j2000_tai_epoch);
-            return std::chrono::time_point_cast< std::chrono::nanoseconds >(date::tai_clock::to_utc(j2000_tai_epoch));
+            using namespace std::chrono;
+            //J2000 TAI epoch = 2000-01-01 11:59:27.816 (TAI wall-clock reading,
+            //see J2000_TAI_EPOCH). Build the tai_time numerically from calendar
+            //arithmetic (date::sys_days does not invovle leap seconds, no tz.h)
+            date::sys_days tai_epoch_day{date::year{1958} / date::month{1} / date::day{1}};
+            date::sys_days j2000_day{date::year{2000} / date::month{1} / date::day{1}};
+            auto days_since_tai_epoch = j2000_day - tai_epoch_day; //date::days
+            auto tod = hours{11} + minutes{59} + seconds{27} + milliseconds{816};
+            hops_tz::tai_time< nanoseconds > j2000_tai_epoch{duration_cast< nanoseconds >(days_since_tai_epoch) +
+                                                             duration_cast< nanoseconds >(tod)};
+            return time_point_cast< nanoseconds >(hops_tz::tai_clock::to_utc(j2000_tai_epoch));
         }
 
         /**
@@ -321,8 +351,8 @@ class hops_clock
         {
             auto t_start_utc = to_utc(t_start);
             auto t_end_utc = to_utc(t_end);
-            auto lp_info0 = date::get_leap_second_info(t_start_utc);
-            auto lp_info1 = date::get_leap_second_info(t_end_utc);
+            auto lp_info0 = hops_tz::get_leap_second_info(t_start_utc);
+            auto lp_info1 = hops_tz::get_leap_second_info(t_end_utc);
             int delta = lp_info1.elapsed.count() - lp_info0.elapsed.count();
             return std::chrono::seconds(delta);
         }
@@ -389,13 +419,13 @@ template< class Duration > using hops_time = std::chrono::time_point< hops_clock
  * @param t Input time duration in specified Duration.
  */
 template< class Duration >
-inline date::utc_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+inline hops_tz::utc_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
 hops_clock::to_utc(const hops_time< Duration >& t) NOEXCEPT
 {
 
     using CD = typename std::common_type< Duration, std::chrono::nanoseconds >::type;
-    date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch_utc();
-    return date::utc_time< CD >(t.time_since_epoch() + hops_epoch_start.time_since_epoch());
+    hops_tz::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch_utc();
+    return hops_tz::utc_time< CD >(t.time_since_epoch() + hops_epoch_start.time_since_epoch());
 }
 
 /**
@@ -406,10 +436,10 @@ hops_clock::to_utc(const hops_time< Duration >& t) NOEXCEPT
  */
 template< class Duration >
 inline hops_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
-hops_clock::from_utc(const date::utc_time< Duration >& t) NOEXCEPT
+hops_clock::from_utc(const hops_tz::utc_time< Duration >& t) NOEXCEPT
 {
     using CD = typename std::common_type< Duration, std::chrono::nanoseconds >::type;
-    date::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch_utc();
+    hops_tz::utc_time< std::chrono::nanoseconds > hops_epoch_start = get_hops_epoch_utc();
     return hops_time< CD >(t.time_since_epoch() - hops_epoch_start.time_since_epoch());
 }
 
@@ -420,10 +450,10 @@ hops_clock::from_utc(const date::utc_time< Duration >& t) NOEXCEPT
  * @param t Input Hops time in UTC
  */
 template< class Duration >
-inline date::tai_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+inline hops_tz::tai_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
 hops_clock::to_tai(const hops_time< Duration >& t) NOEXCEPT
 {
-    return date::tai_clock::from_utc(to_utc(t));
+    return hops_tz::tai_clock::from_utc(to_utc(t));
 }
 
 /**
@@ -434,9 +464,9 @@ hops_clock::to_tai(const hops_time< Duration >& t) NOEXCEPT
  */
 template< class Duration >
 inline hops_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
-hops_clock::from_tai(const date::tai_time< Duration >& t) NOEXCEPT
+hops_clock::from_tai(const hops_tz::tai_time< Duration >& t) NOEXCEPT
 {
-    return from_utc(date::tai_clock::to_utc(t));
+    return from_utc(hops_tz::tai_clock::to_utc(t));
 }
 
 /**
@@ -446,10 +476,10 @@ hops_clock::from_tai(const date::tai_time< Duration >& t) NOEXCEPT
  * @param t Input hops_time with Duration template parameter
  */
 template< class Duration >
-inline date::gps_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+inline hops_tz::gps_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
 hops_clock::to_gps(const hops_time< Duration >& t) NOEXCEPT
 {
-    return date::gps_clock::from_utc(to_utc(t));
+    return hops_tz::gps_clock::from_utc(to_utc(t));
 }
 
 /**
@@ -460,9 +490,9 @@ hops_clock::to_gps(const hops_time< Duration >& t) NOEXCEPT
  */
 template< class Duration >
 inline hops_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
-hops_clock::from_gps(const date::gps_time< Duration >& t) NOEXCEPT
+hops_clock::from_gps(const hops_tz::gps_time< Duration >& t) NOEXCEPT
 {
-    return from_utc(date::gps_clock::to_utc(t));
+    return from_utc(hops_tz::gps_clock::to_utc(t));
 }
 
 /**
@@ -475,7 +505,7 @@ template< class Duration >
 inline date::sys_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
 hops_clock::to_sys(const hops_time< Duration >& t) NOEXCEPT
 {
-    return date::utc_clock::to_sys(to_utc(t));
+    return hops_tz::utc_clock::to_sys(to_utc(t));
 }
 
 /**
@@ -488,7 +518,7 @@ template< class Duration >
 inline hops_time< typename std::common_type< Duration, std::chrono::nanoseconds >::type >
 hops_clock::from_sys(const date::sys_time< Duration >& t) NOEXCEPT
 {
-    return from_utc(date::utc_clock::from_sys(t));
+    return from_utc(hops_tz::utc_clock::from_sys(t));
 }
 
 /**
@@ -498,7 +528,7 @@ hops_clock::from_sys(const date::sys_time< Duration >& t) NOEXCEPT
  */
 inline hops_clock::time_point hops_clock::now()
 {
-    return from_utc(date::utc_clock::now());
+    return from_utc(hops_tz::utc_clock::now());
 }
 
 /**
@@ -512,10 +542,10 @@ inline date::local_time< typename std::common_type< Duration, std::chrono::nanos
 hops_clock::to_local(const hops_time< Duration >& t) NOEXCEPT
 {
     using CD = typename std::common_type< Duration, std::chrono::nanoseconds >::type;
-    date::utc_time< CD > hops_epoch_start = std::chrono::time_point_cast< CD >(get_hops_epoch_utc());
-    date::utc_time< CD > ut_time{t.time_since_epoch() +
-                                 std::chrono::time_point_cast< Duration >(hops_epoch_start).time_since_epoch()};
-    return date::utc_clock::to_local(ut_time);
+    hops_tz::utc_time< CD > hops_epoch_start = std::chrono::time_point_cast< CD >(get_hops_epoch_utc());
+    hops_tz::utc_time< CD > ut_time{t.time_since_epoch() +
+                                    std::chrono::time_point_cast< Duration >(hops_epoch_start).time_since_epoch()};
+    return hops_tz::utc_clock::to_local(ut_time);
 }
 
 /**
@@ -529,8 +559,8 @@ inline hops_time< typename std::common_type< Duration, std::chrono::nanoseconds 
 hops_clock::from_local(const date::local_time< Duration >& t) NOEXCEPT
 {
     using CD = typename std::common_type< Duration, std::chrono::nanoseconds >::type;
-    date::utc_time< CD > t2 = date::utc_clock::from_local(t);
-    date::utc_time< CD > hops_epoch_start = std::chrono::time_point_cast< CD >(get_hops_epoch_utc());
+    hops_tz::utc_time< CD > t2 = hops_tz::utc_clock::from_local(t);
+    hops_tz::utc_time< CD > hops_epoch_start = std::chrono::time_point_cast< CD >(get_hops_epoch_utc());
     return hops_time< CD >{t2.time_since_epoch() -
                            std::chrono::time_point_cast< Duration >(hops_epoch_start).time_since_epoch()};
 }

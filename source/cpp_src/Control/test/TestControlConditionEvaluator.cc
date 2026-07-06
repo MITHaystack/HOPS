@@ -91,12 +91,12 @@ int main()
         REQUIRE(eval_cond(ev, {"not", "not", "true"}) == true);
         REQUIRE(eval_cond(ev, {"not", "not", "false"}) == false);
         REQUIRE(eval_cond(ev, {"not", "not", "not", "true"}) == false);
-        REQUIRE(eval_cond(ev, {"not", "not", "not", "not", "true"}) == true);          // even run -> identity
-        REQUIRE(eval_cond(ev, {"not", "not", "not", "not", "false"}) == false);        // even run -> identity
-        REQUIRE(eval_cond(ev, {"not", "not", "not", "not", "not", "true"}) == false);  // odd run -> one inversion
-        REQUIRE(eval_cond(ev, {"not", "not", "not", "not", "not", "false"}) == true);  // odd run -> one inversion
-        REQUIRE(eval_cond(ev, {"not", "not", "station", "G"}) == true);  // not not(true) -> true
-        REQUIRE(eval_cond(ev, {"not", "not", "station", "Z"}) == false); // not not(false) -> false
+        REQUIRE(eval_cond(ev, {"not", "not", "not", "not", "true"}) == true);         // even run -> identity
+        REQUIRE(eval_cond(ev, {"not", "not", "not", "not", "false"}) == false);       // even run -> identity
+        REQUIRE(eval_cond(ev, {"not", "not", "not", "not", "not", "true"}) == false); // odd run -> one inversion
+        REQUIRE(eval_cond(ev, {"not", "not", "not", "not", "not", "false"}) == true); // odd run -> one inversion
+        REQUIRE(eval_cond(ev, {"not", "not", "station", "G"}) == true);               // not not(true) -> true
+        REQUIRE(eval_cond(ev, {"not", "not", "station", "Z"}) == false);              // not not(false) -> false
     }
 
     // CASE 8 - AND

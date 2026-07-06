@@ -65,33 +65,18 @@ endif()
 
 add_subdirectory(date)
 
-# Static twin of the vendored date-tz library (built alongside the shared
-# libdate-tz.so when HOPS_BUILD_STATIC_LIBS is ON) so the low-level HOPS libraries
-# can be linked into self-contained applications. The vendored CMakeLists defines
-# date-tz exactly once (type follows BUILD_SHARED_LIBS, which we force ON), so we
-# add a second STATIC target from the same single source. Its compile definitions
-# are inherited from the real target via a generator expression so there are no
-# duplicated flag literals to drift out of sync. See Review/static-libs-plan.md.
-if(HOPS_BUILD_STATIC_LIBS)
-    add_library(date-tz_static STATIC ${CMAKE_CURRENT_SOURCE_DIR}/date/src/tz.cpp)
-    set_target_properties(date-tz_static PROPERTIES
-        OUTPUT_NAME date-tz
-        POSITION_INDEPENDENT_CODE ON)
-    #tz.cpp only needs the date/include tree; set it explicitly (the vendored
-    #target wraps its include dirs in $<BUILD_INTERFACE:...>, which is awkward to
-    #copy via genex). The compile definitions (USE_OS_TZDB, AUTO_DOWNLOAD, ...) are
-    #plain strings and ARE inherited from the real target so they can't drift.
-    target_include_directories(date-tz_static PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/date/include>
-        $<INSTALL_INTERFACE:include>)
-    target_compile_definitions(date-tz_static PRIVATE
-        $<TARGET_PROPERTY:date-tz,COMPILE_DEFINITIONS>)
-    find_package(Threads REQUIRED)
-    target_link_libraries(date-tz_static PUBLIC Threads::Threads)
-    install(TARGETS date-tz_static
-        EXPORT hopsStaticTargets DESTINATION ${LIB_INSTALL_RELDIR})
-    set_property(GLOBAL APPEND PROPERTY MODULE_STATIC_TARGETS date-tz_static)
-endif()
+# Expose the header-only portion of the date library (date/date.h civil calendar)
+# as a global include, like Eigen above. MHO_Clock.hh includes "date/date.h"
+# unconditionally, and with HOPS_USE_INTERNAL_LEAP_SECONDS it needs ONLY these
+# headers (no libdate-tz link), so consumers must see the include dir directly
+# rather than inheriting it from a date-tz target usage requirement.
+hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/date/include)
+
+# NOTE: no static twin of libdate-tz is built. Static-library distribution always
+# uses the internal leap-second table (HOPS_USE_INTERNAL_LEAP_SECONDS=ON), so no
+# HOPS static library ever needs date-tz. That invariant is enforced at configure
+# time in source/cpp_src/CMakeLists.txt (fatal error if static libs are requested
+# with the internal table disabled).
 
 
 

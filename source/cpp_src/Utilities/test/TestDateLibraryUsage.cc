@@ -35,23 +35,27 @@ int main(int /*argc*/, char** /*argv*/)
     auto utc_now = hops_clock::to_utc(hops_now);
     auto gps_now = hops_clock::to_gps(hops_now);
 
+    //NOTE: hops_clock's utc/tai/gps casts return the active backend's time types
+    //(hops:: when HOPS_USE_INTERNAL_LEAP_SECONDS, date:: otherwise). Their raw
+    //counts match date's by construction, so for display we re-wrap into date::
+    //time types (this test links date-tz) to get the formatted civil date/time.
     std::cout << "hops now = " << hops_now << std::endl;
-    std::cout << "utc now = " << utc_now << std::endl;
-    std::cout << "tai now = " << tai_now << std::endl;
-    std::cout << "gps now = " << gps_now << std::endl;
+    std::cout << "utc now = " << date::utc_time< nanoseconds >{utc_now.time_since_epoch()} << std::endl;
+    std::cout << "tai now = " << date::tai_time< nanoseconds >{tai_now.time_since_epoch()} << std::endl;
+    std::cout << "gps now = " << date::gps_time< nanoseconds >{gps_now.time_since_epoch()} << std::endl;
 
     std::cout << "ticks since tai clock epoch = " << tai_now.time_since_epoch().count() << std::endl;
     std::cout << "ticks since utc clock epoch = " << utc_now.time_since_epoch().count() << std::endl;
     std::cout << "ticks since gps clock epoch = " << gps_now.time_since_epoch().count() << std::endl;
     std::cout << "ticks since hops clock epoch = " << hops_now.time_since_epoch().count() << std::endl;
 
-    auto hops_epoch_start_utc = hops_clock::get_hops_epoch_utc();
-    auto hops_epoch_start_tai = tai_clock::from_utc(hops_epoch_start_utc);
+    auto hops_epoch_start_utc = date::utc_time< nanoseconds >{hops_clock::get_hops_epoch_utc().time_since_epoch()};
+    auto hops_epoch_start_tai = date::tai_clock::from_utc(hops_epoch_start_utc);
 
     std::cout << "hops clock epoch start as UTC date/time = " << hops_epoch_start_utc << std::endl;
     std::cout << "hops clock epoch start as TAI date/time = " << hops_epoch_start_tai << std::endl;
 
-    auto info = date::get_leap_second_info(utc_now);
+    auto info = date::get_leap_second_info(date::utc_time< nanoseconds >{utc_now.time_since_epoch()});
     std::cout << "leap seconds elapsed = " << info.elapsed << std::endl;
 
     std::cout << "hops epoch nanoseconds from system utc epoch start = " << hops_epoch_start_utc.time_since_epoch().count()

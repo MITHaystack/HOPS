@@ -84,8 +84,13 @@ function(hops_generate_all_pkgconfig)
         -lMHO_Operators
         -lMHO_Utilities
         -lMHO_Vex2JSON
-        -ldate-tz
     )
+    #the compiled libdate-tz is only linked when the internal leap-second table is
+    #disabled (see HOPS_USE_INTERNAL_LEAP_SECONDS); otherwise MHO_Utilities uses only
+    #the header-only date/date.h civil calendar and no -ldate-tz is required.
+    if(NOT HOPS_USE_INTERNAL_LEAP_SECONDS)
+        list(APPEND _hops4_libs -ldate-tz)
+    endif()
 
     # Mirror the -D defines injected by hops_add_cxxflag() in the top-level
     # build so downstream consumers see the same gates as our public headers.
@@ -164,8 +169,12 @@ function(hops_generate_cmake_config)
         afio dfio ffcontrol ffcore ffio ffmath ffplot ffsearch mk4util msg vex)
     set(HOPS4_LIBS
         MHO_Calibration MHO_Containers MHO_Control MHO_Fringe MHO_Initialization
-        MHO_Math MHO_Message MHO_MK4Interface MHO_Operators MHO_Utilities
-        MHO_Vex2JSON date-tz)
+        MHO_Math MHO_Message MHO_MK4Interface MHO_Operators
+        MHO_Utilities MHO_Vex2JSON)
+    #libdate-tz only participates when the internal leap-second table is disabled
+    if(NOT HOPS_USE_INTERNAL_LEAP_SECONDS)
+        list(APPEND HOPS4_LIBS date-tz)
+    endif()
     if(HOPS_USE_MATPLOTPP)
         list(APPEND HOPS4_LIBS matplot MHO_MatplotPlugin)
     endif()

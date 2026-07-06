@@ -1,11 +1,15 @@
 #hops_require_cpp11()
 
-include_directories(${EXTERN_HLIBS}/date/include)
+#NOTE: if HOPS_USE_INTERNAL_LEAP_SECONDS is ON, we use the self-contained leap-second table in
+#hops_leap_seconds.hh, otherwise we fall back to linking against the HH date/tz.h library
 
 #list header files #############################################################
 set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/picohash.h
     ${CMAKE_CURRENT_SOURCE_DIR}/include/legacy_hops_date.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/hops_leap_seconds.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Clock.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyDateConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Types.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_TemplateTypenameDeduction.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Meta.hh
@@ -33,11 +37,9 @@ set (UTILITIES_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ParameterStore.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyRootCodeGenerator.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationCodeMap.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_Clock.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_MPIInterfaceWrapper.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_EncodeDecodeValue.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LockFileHandler.hh
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_LegacyDateConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NumpyTypeCode.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationIdentity.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_StationIdentifier.hh
@@ -56,8 +58,8 @@ set( UTILITIES_SOURCEFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyRootCodeGenerator.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationCodeMap.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LockFileHandler.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyDateConverter.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_StationIdentifier.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_LegacyDateConverter.cc
 )
 
 if (HOPS_USE_MPI)
@@ -77,7 +79,15 @@ hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
 #compile and install library ###################################################
 
 #${CMAKE_DL_LIBS} provides dladdr (used by GetHopsInstallPrefix for runtime self-location)
-set(UTILITIES_LIBS MHO_Message date-tz ${CMAKE_DL_LIBS})
+set(UTILITIES_LIBS MHO_Message ${CMAKE_DL_LIBS})
+
+#Leap-second backend: with HOPS_USE_INTERNAL_LEAP_SECONDS (default) hops_clock uses
+#the header-only internal table and no compiled date library is needed. Only the
+#opt-out path links libdate-tz (compiled lib); the header-only date/date.h
+#civil-calendar include is exposed globally in extern/CMakeLists.txt for both paths.
+if(NOT HOPS_USE_INTERNAL_LEAP_SECONDS)
+    list(APPEND UTILITIES_LIBS date-tz)
+endif()
 
 add_library (MHO_Utilities SHARED ${UTILITIES_SOURCEFILES})
 
