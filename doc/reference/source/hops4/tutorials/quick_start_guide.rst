@@ -244,12 +244,23 @@ will dump a json blob containing all of the plot data in the fringe file to stdo
 For more in-depth command-line exploration, use a tool like ``jless`` (From: `<https://jless.io/>`_) to interactively navigate the 
 file structure. 
 
-.. figure:: ../images/jless-optimized.*
-   :alt: jless navigation demo on HOPS4 data
-   :align: center
-   :width: 100%
+.. only:: html
 
-   Navigating a nested HOPS4 fringe file (converted to .json) structure with ``jless``.
+   .. figure:: ../images/jless-optimized.gif
+      :alt: jless navigation demo on HOPS4 data
+      :align: center
+      :width: 100%
+
+      Navigating a nested HOPS4 fringe file (converted to .json) structure with ``jless``.
+
+.. only:: not html
+
+   .. figure:: ../images/jless-optimized.png
+      :alt: jless navigation demo on HOPS4 data
+      :align: center
+      :width: 100%
+
+      Navigating a nested HOPS4 fringe file (converted to .json) structure with ``jless``.
 
 For more complicated data-inspection tasks for which performance is not a concern, you can also load a .json file directly into 
 a python dictionary via:
