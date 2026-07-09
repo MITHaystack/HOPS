@@ -580,7 +580,7 @@ std::string MHO_MK4StationInterfaceReversed::GetStationMode()
             }
         }
     }
-    mode == "";
+    mode = "";
     return mode;
 }
 
