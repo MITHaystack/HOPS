@@ -35,11 +35,14 @@ Key Features                                    | Inherits from MHO_FringeFitter
                                                 | Allows for multiple plotting implementations
 =============================================== ====================================================================
 
-The :hops:`MHO_FringePlotVisitor` class implements the visitor pattern for fringe 
-plotting operations. It provides an extensible framework that allows different 
+The :hops:`MHO_FringePlotVisitor` class implements the visitor pattern for fringe
+plotting operations. It provides an extensible framework that allows different
 plotting implementations to be used with the same fringe fitting infrastructure.
-The class includes a pure virtual `Plot()` method that must be implemented by 
-concrete visitor classes. 
+The class includes a pure virtual `Plot()` method that must be implemented by
+concrete visitor classes. Note that this class (and its base, `MHO_FringeFitterVisitor`)
+is implemented in the Containers library
+(``source/cpp_src/Containers/include/MHO_FringePlotVisitor.hh``); it is documented here
+because of its functional role in fringe-fitting visualization.
 
 :hops:`MHO_DefaultPythonPlotVisitor`
 ------------------------------------
@@ -53,8 +56,12 @@ Key Features                                    | Inherits from MHO_FringePlotVi
                                                 | Concrete implementation of visitor pattern
 =============================================== ====================================================================
 
-The :hops:`MHO_DefaultPythonPlotVisitor` class provides a concrete implementation 
-of the fringe plot visitor pattern using Python plotting utilities (matplotlib). It serves as 
-the default plotting implementation for the HOPS4 fringe fitting framework. 
-At the moment, it is the only plotting implementation available in HOPS4, but future 
-extensions are planned.
+The :hops:`MHO_DefaultPythonPlotVisitor` class (implemented in
+``source/cpp_src/Plugins/PythonBindings/Visitors/``, and documented here because of its
+functional role in fringe-fitting visualization) provides a concrete implementation
+of the fringe plot visitor pattern using Python plotting utilities (matplotlib). It serves as
+the default/fallback plotting implementation for the HOPS4 fringe fitting framework.
+Plugin-provided alternatives also exist and are selected at runtime via the plugin
+visitor factory machinery, including `MHO_BasicPlotVisitor` (embedded matplotlib
+plotting via the Matplot plugin) and `MHO_SubprocessPythonPlotVisitor` (a subprocess-based
+variant for builds without embedded Python).

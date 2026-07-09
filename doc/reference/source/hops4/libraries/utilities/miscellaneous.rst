@@ -94,6 +94,7 @@ The utilities library also includes several specialized utility classes/files:
 - :hops:`MHO_MPIInterface` and MHO_MPIInterfaceWrapper.hh - basic MPI environment initialization/interaction
 - :hops:`MHO_NumpyTypeCode` - Numpy type code creation
 - :hops:`MHO_ParameterStore` - Parameter storage and retrieval
+- :hops:`MHO_StationIdentity` and :hops:`MHO_StationIdentifier` - singleton-based mapping of 1-char/2-char/8-char station identifiers, constructible from VEX site metadata (see the "Legacy Compatibility Tools" page for the related :hops:`MHO_StationCodeMap`)
 
 - :hops:`MHO_Unit` - Unit representation and conversion - NOT YET IMPLEMENTED
 - picohash.h - Lightweight hashing library placed under public domain by Kazuho Oku.

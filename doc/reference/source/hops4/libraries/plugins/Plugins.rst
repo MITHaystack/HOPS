@@ -3,8 +3,11 @@
 Plugins
 =======
 
-The plugin libraries provides a collection of (optional) extensions for the HOPS4 framework. These plugins 
-include GPU acceleration (CUDA, OpenCL), HDF5 data export, and Python integration (bindings). 
+The plugin libraries provides a collection of (optional) extensions for the HOPS4 framework. This
+section documents a subset of these plugins: GPU acceleration via CUDA, HDF5 data export, and
+Python integration (bindings). Other optional plugins (e.g. OpenCL, OpenMP, Matplot++-based
+plotting, Python subprocess plotting) exist in ``source/cpp_src/Plugins/`` but are not yet
+documented here.
 
 The python bindings plugin depends only on python (python3-dev) and an integrated copy of the pybind11 header-only library 
 and does not introduce any other external dependencies. 

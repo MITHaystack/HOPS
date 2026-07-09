@@ -512,7 +512,7 @@ may use when constructing operators:
 - **fParameterStore** : ``MHO_ParameterStore*`` - retrieve control-file parameters
 - **fFormat** : ``mho_json`` - the JSON format descriptor for this keyword
 - **fAttributes** : ``mho_json`` - the fully parsed control statement (name, value, conditions)
-- **fConditions** : ``mho_json`` - the raw conditional-block tokens ("if station X …")
+- **fConditions** : ``mho_json`` - the raw conditional-block tokens ("if station X ...")
 
 Helper methods:
 
@@ -532,7 +532,7 @@ STEP 4.6 - Create the JSON format descriptor
 
 File: ``source/cpp_src/Control/format/control/<name>.json``
 
-For simple operator types (int, real, string, bool, list_\*, fixed_length_list_string):
+For simple operator types (int, real, string, bool, ``list_*``, fixed_length_list_string):
 
 .. code-block:: json
 
@@ -747,13 +747,13 @@ File: ``source/cpp_src/Calibration/CMakeLists.txt``
 
 Add to ``CALIBRATION_HEADERFILES``:
 
-.. code-block:: cmake
+.. code-block:: text
 
    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NewOperator.hh
 
 Add to ``CALIBRATION_SOURCEFILES``:
 
-.. code-block:: cmake
+.. code-block:: text
 
    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NewOperator.cc
 
@@ -763,13 +763,13 @@ File: ``source/cpp_src/Initialization/CMakeLists.txt``
 
 Add to ``INITIALIZATION_HEADERFILES``:
 
-.. code-block:: cmake
+.. code-block:: text
 
    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_NewOperatorBuilder.hh
 
 Add to ``INITIALIZATION_SOURCEFILES``:
 
-.. code-block:: cmake
+.. code-block:: text
 
    ${CMAKE_CURRENT_SOURCE_DIR}/src/MHO_NewOperatorBuilder.cc
 
@@ -1035,7 +1035,7 @@ Common Pitfalls
     ``"postfit"``, ``"finalize"``, or ``"default"``
 10. Station-specific operators should use ``GetMatchingStationIdentifiers()`` to
     filter to the stations actually present in the current baseline. For example,
-    an ``if station E or station G`` condition on an E–Y baseline should only
+    an ``if station E or station G`` condition on an EY baseline should only
     produce an operator for E, not G. ``GetMatchingStationIdentifiers()`` handles
     this filtering automatically.
 11. Always check for ``nullptr`` after ``ContainerStore::GetObject()`` - missing data

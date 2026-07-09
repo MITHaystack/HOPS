@@ -34,14 +34,14 @@ Options
    * - ``-h``, ``--help``
      - Print this help message and exit
    * - ``-o`` TEXT, ``--output-file`` TEXT
-     - Name of the output file (default: ``alist.out``)
+     - Name of the output file (default: ``alist.out``; or ``alist.json`` if ``-j`` is used without ``-o``)
    * - ``-m`` INT, ``--message-level`` INT
      - Message verbosity level, range: ``-2`` (debug) to ``5`` (silent)
    * - ``-c`` TEXT, ``--comment-character`` TEXT
      - Character indicating a comment line (default: ``*``)
    * - ``-v`` INT, ``--version`` INT
-     - Alist format version (default: ``6``)
+     - Alist format version; only ``5`` or ``6`` are accepted (default: ``6``)
    * - ``-j``, ``--json``
-     - Generate a JSON summary file instead of an alist-formatted file
+     - Generate a JSON summary file instead of an alist-formatted file; if used without ``-o``, the output defaults to ``alist.json`` instead of ``alist.out``
    * - ``-i`` TEXT ..., ``--input-files`` TEXT ... (REQUIRED)
      - List of the files to process (alternative form of positional argument)

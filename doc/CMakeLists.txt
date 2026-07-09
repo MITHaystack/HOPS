@@ -244,6 +244,28 @@ find_package(Sphinx REQUIRED)
             VERBATIM
         )
 
+        # PDF variant of the reference docs (via Sphinx's latexpdf builder). Optional:
+        # only wired up if a LaTeX toolchain (latexmk + pdflatex) is available.
+        find_program(LATEXMK_EXECUTABLE latexmk)
+        find_program(PDFLATEX_EXECUTABLE pdflatex)
+
+        if(LATEXMK_EXECUTABLE AND PDFLATEX_EXECUTABLE)
+
+            set(REF_LATEX_BUILD_DIR ${CMAKE_CURRENT_BINARY_DIR}/reference/latex)
+
+            add_custom_target(reference-pdf
+                ${SPHINX_EXECUTABLE} -M latexpdf ${CMAKE_CURRENT_BINARY_DIR}/reference/source ${REF_LATEX_BUILD_DIR}
+                COMMAND ${CMAKE_COMMAND} -E copy ${REF_LATEX_BUILD_DIR}/latex/hops.pdf ${REF_BUILD_DIR}/hops.pdf
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/reference/source
+                DEPENDS copy_doxygen_tag copy_doxygen_xml copy_doxygen_html
+                COMMENT "Generating PDF user documentation with Sphinx/LaTeX for hops"
+                VERBATIM
+            )
+
+        else()
+            message(STATUS "latexmk and/or pdflatex not found -- 'reference-pdf' target will not be available")
+        endif(LATEXMK_EXECUTABLE AND PDFLATEX_EXECUTABLE)
+
     endif(DOXYGEN_FOUND AND Sphinx_FOUND)
 
 endif(HOPS_BUILD_DOCS)

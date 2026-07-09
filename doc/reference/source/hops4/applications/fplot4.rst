@@ -38,10 +38,12 @@ Options
      - Description
    * - ``-h, --help``
      - Print this help message and exit.
-   * - ``-d, --diskfile TEXT``
+   * - ``-d, --disk_file TEXT``
      - Name of the file in which to save the fringe plot.
    * - ``-b, --baseline TEXT``
      - Baseline or baseline:frequency_group selection (e.g. ``GE`` or ``GE:X``).
+   * - ``-B, --backend TEXT``
+     - Plotting backend to use: ``gnuplot`` (default) or ``matplotlib``.
    * - ``-M, --message-categories TEXT ...``
      - Limit the allowed message categories to only those specified by the user. Available categories include:
 
@@ -57,6 +59,7 @@ Options
          mk4interface
          utilities
          vex
+         plot
          python_bindings
 
        If this option is not used, all categories are allowed by default.

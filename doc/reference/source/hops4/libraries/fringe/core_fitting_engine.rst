@@ -1,10 +1,10 @@
 Core Fringe Fitting Engine
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The core fringe fitting engine provides the main interface through which VLBI 
+The core fringe fitting engine provides the main interface through which VLBI
 fringe fitting is executed. This library provides the abstract base
 class MHO_FringeFitter which provides the main interface, as well
-as concrete implementations for single-baseline fringe fitting with or with 
+as concrete implementations for single-baseline fringe fitting with or with
 ionospheric dTEC correction.
 
 :hops:`MHO_FringeFitter`
@@ -19,11 +19,14 @@ Key Features                                    | Pure virtual interface for fri
                                                 | Operator toolbox integration
 =============================================== ====================================================================
 
-The :hops:`MHO_FringeFitter` class provides the abstract base class interface for all 
-fringe fitters in the HOPS4 framework. It defines the core workflow methods that must 
-be implemented by concrete fitter classes: Configure(), Initialize(), Run(), and Finalize().
-The class manages access to various data stores including parameter stores, scan data, 
-and container objects needed for fringe fitting operations.
+The :hops:`MHO_FringeFitter` class provides the abstract base class interface for all
+fringe fitters in the HOPS4 framework. It defines the core workflow methods that must
+be implemented by concrete fitter classes, including Configure(), Initialize(), PreRun(),
+Run(), PostRun(), IsFinished(), and Finalize().
+The class manages access to various data stores including parameter stores, scan data,
+and container objects needed for fringe fitting operations. Note that although this
+class is part of the fringe fitting engine, it is implemented in the Containers library
+(``source/cpp_src/Containers/include/MHO_FringeFitter.hh``).
 
 :hops:`MHO_BasicFringeFitter`
 -----------------------------
@@ -38,10 +41,10 @@ Key Features                                    | Implements basic workflow: con
                                                 | Visitor pattern support
 =============================================== ====================================================================
 
-The :hops:`MHO_BasicFringeFitter` class implements the basic fringe fitting algorithm 
-for single-baseline, single-polarization product data. It provides the core functionality 
-for delay and delay-rate space search. Implemented as a coarse fringe search (max bin), 
-followed by a fine peak interpolation step. This fitter includes support for 
+The :hops:`MHO_BasicFringeFitter` class implements the basic fringe fitting algorithm
+for single-baseline, single-polarization product data. It provides the core functionality
+for delay and delay-rate space search. Implemented as a coarse fringe search (max bin),
+followed by a fine peak interpolation step. This fitter includes support for
 both mixed and single sideband channel processing modes.
 
 :hops:`MHO_IonosphericFringeFitter`
@@ -56,10 +59,10 @@ Key Features                                    | Extends MHO_BasicFringeFitter 
                                                 | Ionospheric covariance calculations
 =============================================== ====================================================================
 
-The :hops:`MHO_IonosphericFringeFitter` class extends the basic fringe fitter to include 
-ionospheric dispersion correction capabilities. It performs searches in dTEC/delay/delay-rate 
+The :hops:`MHO_IonosphericFringeFitter` class extends the basic fringe fitter to include
+ionospheric dispersion correction capabilities. It performs searches in dTEC/delay/delay-rate
 space and includes an optional smoothing function step for more robust ionospheric parameter estimation.
-This fitter is essential for high-precision VLBI observations where ionospheric effects 
+This fitter is needed for high-precision VLBI observations where ionospheric effects
 must be properly modeled and corrected. This implementation is a close port of R. Cappalo's original implementation
 but has been extended to allow for an arbitrary number of points in the dTEC search space.
 
@@ -74,9 +77,27 @@ Key Features                                    | Factory pattern implementation
                                                 | Extensible for future fitter implementations
 =============================================== ====================================================================
 
-The :hops:`MHO_FringeFitterFactory` class implements the factory pattern for constructing 
-the appropriate fringe fitter based on the user's configuration parameters. 
-It provides a simple mechanism for creating Basic or Ionospheric fitters as 
-needed by the processing pipeline. This design pattern allows for easy 
+The :hops:`MHO_FringeFitterFactory` class implements the factory pattern for constructing
+the appropriate fringe fitter based on the user's configuration parameters.
+It provides a simple mechanism for creating Basic or Ionospheric fitters as
+needed by the processing pipeline. This design pattern allows for easy
 extension to support additional fitter types in the future without modification of
 any of the pre-existing fringe fitter implementations.
+
+:hops:`MHO_FringePass`
+-----------------------
+
+=============================================== ====================================================================
+Class                                           :hops:`MHO_FringePass`
+Primary Functionality                           Encapsulates a single-baseline, single-pol-product fringe-fitting pass
+Key Features                                    | Owns a MHO_FringeData instance and drives the full per-pass lifecycle
+                                                | Data initialization, control-file evaluation, and fitter construction
+                                                | Run loop and visitor dispatch (plugin, output, plot visitors)
+                                                | Shared core reused by both fourfit4 and the Python library API
+=============================================== ====================================================================
+
+The :hops:`MHO_FringePass` class encapsulates a single-baseline, single-polarization-product
+fringe-fitting pass and drives the full per-pass lifecycle: data initialization,
+control-file evaluation, fringe-fitter construction (via :hops:`MHO_FringeFitterFactory`),
+the run loop, and visitor dispatch. It is the reusable core shared between the `fourfit4`
+command-line driver and the Python library API, though it does not depend on `pybind11`.

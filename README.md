@@ -29,7 +29,7 @@ After the build is complete, you will need to put the hops binary installation l
 `source <hops-install>/bin/hops.bash`
 
 where `<hops-install>` is the HOPS4 installation directory. On the x86 architecture, the default installation directory name
-will be one level up from the build directory in: `<build-dir>/../x86_64-4.00`, but this can be changed at configuration time.
+will be one level up from the build directory in: `<build-dir>/../x86_64-4.0.3`, but this can be changed at configuration time.
 To set the install prefix to a custom path on the command line using `cmake`, you can pass the `-DCMAKE_INSTALL_PREFIX` flag as in the following example:
 
 `HOPS4_INSTALL_DIR="~/hops-install"` \

@@ -44,7 +44,7 @@ Options
    * - ``-d, --detail INT``
      - Level of detail in output. Range: 0 (low) to 4 (high). Default: 4.
    * - ``-m, --message-level INT``
-     - Set verbosity level. Range: -2 (debug) to 5 (silent).
+     - Set verbosity level. Range: -2 (debug) to 5 (silent). Default: 0.
    * - ``-p, --pretty-print UINT``
      - Indent JSON output using the specified number of spaces. Default: disabled.
    * - ``-u, --uuid TEXT`` (Excludes: ``--shortname``)

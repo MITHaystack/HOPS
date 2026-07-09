@@ -188,7 +188,7 @@ maybe or sampler names among other possibilities.
 
 It should be noted that the coordinate axes are present merely to label
 the data, but are not meant to provide a reverse look-up capability,
-(e.g example inverting the polarization-product code “LL” to infer a
+(e.g example inverting the polarization-product code "LL" to infer a
 0-th index location of 0). For efficiency, array access should still be
 done using unsigned integer index values.
 
@@ -318,6 +318,12 @@ follows:
    * - multitone_pcal_type
      - ``MHO_TableContainer< pcal_phasor_type, multitone_pcal_axis_type >``
      -  phase-cal table data
+   * - manual_pcal_type
+     - ``MHO_TableContainer< manual_pcal_element_type, manual_pcal_axis_type >``
+     - manual (per-channel) phase-cal phase offset table
+   * - manual_pcal_delay_type
+     - ``MHO_TableContainer< manual_pcal_element_type, manual_pcal_axis_type >``
+     - manual (per-channel) phase-cal delay offset table
 
 For further information on some of these concrete table container types, see the descriptions
 under:

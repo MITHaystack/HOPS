@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'HOPS'
-copyright = '2025, MIT Haystack Observatory'
+copyright = '2026, MIT Haystack Observatory'
 author = 'MIT Haystack Observatory'
 
 # The full version, including alpha/beta/rc tags
@@ -43,7 +43,10 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = [
+    'hops4/data_processing/calibration_operators/internal/not_ready',
+    'hops4/data_processing/algorithm_and_output/not_ready',
+]
 
 
 # -- Options for HTML output -------------------------------------------------

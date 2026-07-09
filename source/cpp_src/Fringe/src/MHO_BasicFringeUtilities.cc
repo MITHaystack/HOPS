@@ -633,7 +633,7 @@ double MHO_BasicFringeUtilities::calculate_sbavg(MHO_ContainerStore* conStore, M
         sbavg = 0.0;
         auto chan_ax = &(std::get< CHANNEL_AXIS >(*vis_data));
         std::size_t nchan = chan_ax->GetSize();
-        //should we also loop over weights/APs to per-channel catch edits (?)
+        //should we also loop over weights/APs to catch per-channel edits (?)
         //see fill_208.c line 129-133
         for(std::size_t ch = 0; ch < nchan; ch++)
         {

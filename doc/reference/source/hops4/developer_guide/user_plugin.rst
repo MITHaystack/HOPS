@@ -1,6 +1,6 @@
-============================
+=============================
 HOPS Python Plugin User Guide
-============================
+=============================
 
 This document describes how to add Python-based plugins to the HOPS fringe
 fitter pipeline. There are three categories of Python plugins:
@@ -9,8 +9,11 @@ fitter pipeline. There are three categories of Python plugins:
 2. **Custom Plot Functions** -- replace the default fringe plot with your own
 3. **Python Control Files** -- write the entire control config as a Python script
 
-Each category is covered below with the exact API, file placement, and
+Each category is covered below with the API, file placement, and
 control file syntax required for each extension.
+
+.. important:: In order to use the embedded python interpreter (and enable user python plugins) HOPS4 *must* be
+   built with the cmake option ``HOPS_ENABLE_EMBEDDED_PYTHON=ON`` (enabled).
 
 1. Where to Install Your Python Scripts
 ========================================
@@ -227,7 +230,7 @@ If you want explicit imports for IDE autocompletion or clarity:
 
 All list-returning methods return operators sorted by ascending priority.
 The returned operator objects are references into C++-owned memory; do not
-store them past the end of your plugin function.
+store/access them past the end of your plugin function.
 
 3.3 Complete Working Example
 -----------------------------
@@ -263,6 +266,10 @@ File: ``$HOPS_USER_PLUGINS_DIR/reconfigure_op.py``
                # Re-initialize after reconfiguration
                op.initialize()
                print(f"Adjusted phase offset for station {stid}")
+
+A working version of this same pattern ships with HOPS as
+``source/python_src/plugins/example4.py``; see :doc:`python_examples` for a
+walkthrough.
 
 
 4. Custom Plot Functions
