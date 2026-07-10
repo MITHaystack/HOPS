@@ -46,11 +46,11 @@ Algorithm
       \text{accel} = \sum_{p=2}^{N-1} p(p-1) \, c_p \, \Delta t^{p-2}
 
 9. Compute the baseline delay, rate, and acceleration as the difference between the remote and reference station values.
-10. For reference-station export quantities, correct the reference delay for clock offset and rate, adjust for the approximate time of wavefront passage, and compute the Doppler factor ``ref_doppler = 1 - rate_ref``. Re-evaluate both station splines at the adjusted time (shifted by the reference delay), then compute ``fRefDelay``, ``fRefRate`` (scaled by Doppler), and ``fRefStationDelay``.
+10. For reference-station export quantities (Mark4 I/O), correct the reference delay for clock offset and rate, adjust for the approximate time of wavefront passage, and compute the Doppler factor ``ref_doppler = 1 - rate_ref``. Re-evaluate both station splines at the adjusted time (shifted by the reference delay), then compute ``fRefDelay``, ``fRefRate`` (scaled by Doppler), and ``fRefStationDelay``.
 
 Effect on Data
 --------------
 This class does not modify any container data. It reads spline coefficients
 from ``station_coord_type`` containers and computes delay, rate, and
-acceleration values stored internally. The results are accessible 
+acceleration values stored internally. The results are accessible
 via ``GetDelay()``, ``GetRate()``, and ``GetAcceleration()`` getters.

@@ -15,8 +15,8 @@ control file syntax required for each extension.
 .. important:: In order to use the embedded python interpreter (and enable user python plugins) HOPS4 *must* be
    built with the cmake option ``HOPS_ENABLE_EMBEDDED_PYTHON=ON`` (enabled).
 
-1. Where to Install Your Python Scripts
-========================================
+Where to Install Your Python Scripts
+====================================
 
 The HOPS embedded Python interpreter searches for python plugins in two directories:
 
@@ -29,7 +29,7 @@ The HOPS embedded Python interpreter searches for python plugins in two director
     ``[main]``), which is the easiest way to confirm it.
 
 (b) User plugins directory (optional):
-    ``$HOPS_USER_PLUGINS_DIR/``
+    ``$HOPS_USER_PLUGINS_DIR``
     (set via the ``HOPS_USER_PLUGINS_DIR`` environment variable)
 
 Both directories are appended to Python's ``sys.path`` at startup.
@@ -48,20 +48,20 @@ The Python scripts you write must be importable as Python modules. This means:
 The scripts do NOT need to be compiled. They are loaded by the embedded
 interpreter at runtime. Any third-party dependencies your script requires
 (e.g. ``pandas``) must also be importable in the same Python environment
-that fourfit was built against.
+that fourfit was built against (but do not need to have been present at build time).
 
-2. Python Data Operators
-=========================
+Python Data Operators
+=====================
 
 A Python data operator injects a Python function into the fringe fitter's
 operator pipeline. The function receives an ``MHO_PyFringeDataInterface`` object
-giving it read/write access to visibilities, weights, parameters, and scan data.
+giving it read/write access to in-memory visibilities, weights, parameters, and scan data.
 While the Python operator has full read/write access to these data containers
 (exposed as numpy arrays), the C++ backend owns the memory. Any attempt to
 resize, reshape, or reallocate these arrays from Python will fail.
 
-2.1 Required API
------------------
+Required API
+------------
 
 Your Python module must define a function with the following signature. The
 name can be anything, but it must be a free function accepting a fringe data
@@ -83,8 +83,8 @@ to continue with the next pipeline stage.
    calls ``sys.exit()``, the embedded interpreter propagates it and fourfit exits
    immediately rather than logging and continuing.
 
-2.2 Available Categories and Priorities
-----------------------------------------
+Available Categories and Priorities
+-----------------------------------
 
 Python operators can be placed in any of these pipeline categories:
 
@@ -114,8 +114,8 @@ Python operators can be placed in any of these pipeline categories:
      - python_finalize
      - 9.9 (runs after fitting, plot data available)
 
-2.3 Control File Syntax
--------------------------
+Control File Syntax
+-------------------
 
 Add one line per python operator in your control file, example:
 
@@ -135,11 +135,11 @@ Example control file lines:
 
 .. code-block:: text
 
-   python_calibration   fix_noema_jumps   fix_noema_jumps
-   python_finalize      generate_pcphases  generate_pcphases   9.95
+   python_calibration   example2           fix_noema_jumps
+   python_finalize      example3  generate_pcphases   9.95
 
-2.4 Complete Working Example
------------------------------
+Complete Working Example
+------------------------
 
 File: ``$HOPS_USER_PLUGINS_DIR/my_calibration.py``
 
@@ -184,31 +184,31 @@ File: ``$HOPS_USER_PLUGINS_DIR/my_calibration.py``
        pstore.set_by_path("/control/config/my_correction_applied", True)
 
 
-3. Python Operator Toolbox Access
-==================================
+Python Operator Toolbox Access
+==============================
 
-From any Python operator (any category), you can retrieve and reconfigure
+From a Python operator (any category), you can retrieve and reconfigure
 existing C++ calibration operators that were built by the control file
 machinery. This is useful for dynamically adjusting operator parameters
 based on runtime data.
 
-3.1 Imports
-------------
+Imports
+-------
 
 ``pyMHO_Containers``, ``pyMHO_Operators``, and ``pyMHO_Calibration`` are all
 imported automatically by the embedded interpreter before any user plugin is
 called (see :ref:`sec-pre-imported-modules`). You do **not** need to import
 them in your plugin scripts for the toolbox and type downcasting to work.
 
-If you want explicit imports for IDE autocompletion or clarity:
+If you want explicit imports for IDE autocompletion or clarity, use:
 
 .. code-block:: python
 
    import pyMHO_Operators
    import pyMHO_Calibration
 
-3.2 API
---------
+API
+---
 
 .. code-block:: python
 
@@ -232,8 +232,8 @@ All list-returning methods return operators sorted by ascending priority.
 The returned operator objects are references into C++-owned memory; do not
 store/access them past the end of your plugin function.
 
-3.3 Complete Working Example
------------------------------
+Complete Working Example
+------------------------
 
 File: ``$HOPS_USER_PLUGINS_DIR/reconfigure_op.py``
 
@@ -272,13 +272,13 @@ A working version of this same pattern ships with HOPS as
 walkthrough.
 
 
-4. Custom Plot Functions
-=========================
+Custom Plot Functions
+=====================
 
 Replace the default fringe plot with your own Python matplotlib function.
 
-4.1 Required API
------------------
+Required API
+------------
 
 Your function must have this signature:
 
@@ -328,8 +328,8 @@ interface gives you access to visibilities, weights, and the parameter store,
 so you can compute any derived quantities in Python. Those computations will
 generally be slower than equivalent C++ implementations.
 
-4.2 Control File Syntax
--------------------------
+Control File Syntax
+-------------------
 
 .. code-block:: text
 
@@ -346,8 +346,8 @@ Example:
 
    python_custom_plot   custom_fourfit_plot   make_fourfit_plot_wrapper
 
-4.3 Plot Backend Selection
-----------------------------
+Plot Backend Selection
+----------------------
 
 The plot backend is controlled by the ``plot_backend`` parameter in the
 control file:
@@ -366,17 +366,17 @@ that the visitor calls. If ``python_custom_plot`` is not set, the defaults are:
 - function: ``make_fourfit_plot_wrapper``
 
 If ``plot_backend`` is not set in the control file and gnuplot support was
-compiled in, gnuplot is used instead. When gnuplot support is not compiled
-in, matplotlib is the fallback.
+compiled in, gnuplot will be used as the default. However, when gnuplot support is not compiled
+in, matplotlib will be the fallback/default.
 
-.. note::
+.. important::
 
    ``python_custom_plot`` only takes effect when ``plot_backend matplotlib``
-   is also set (or when matplotlib is selected as the fallback). Setting
+   is set (or when matplotlib is selected as the default (no gnuplot)). Setting
    ``python_custom_plot`` alone has no effect if gnuplot is active.
 
-4.4 Complete Working Example
-------------------------------
+Complete Working Example (Custom Plot)
+--------------------------------------
 
 File: ``$HOPS_USER_PLUGINS_DIR/my_simple_plot.py``
 
@@ -388,42 +388,46 @@ File: ``$HOPS_USER_PLUGINS_DIR/my_simple_plot.py``
    import numpy as np
 
    def simple_delay_rate_plot(fringe_data_interface):
-       """Plot delay rate vs time and save to file."""
+       """Plot the delay-rate search function and save to file."""
 
        plot_data = fringe_data_interface.get_plot_data()
        pstore    = fringe_data_interface.get_parameter_store()
 
-       dlyrate = plot_data.get("DLYRATE", [])
+       dlyrate   = plot_data.get("DLYRATE", [])
+       dlyrate_x = plot_data.get("DLYRATE_XAXIS", np.arange(len(dlyrate)))
 
        plt.figure(figsize=(10, 6))
-       plt.plot(dlyrate, "b-", linewidth=1.0)
-       plt.xlabel("Time integration")
-       plt.ylabel("Delay rate (ns/s)")
+       plt.plot(dlyrate_x, dlyrate, "b-", linewidth=1.0)
+       plt.xlabel("Delay rate (ns/s)")
+       plt.ylabel("Amplitude")
        plt.title("Delay Rate Search")
        plt.grid(True)
 
-       # Determine output file
+       # Determine output file: the -d command line option sets
+       # /cmdline/disk_file, but the parameter is always present and
+       # defaults to an empty string when -d was not passed
+       out_file = ""
        if pstore.is_present("/cmdline/disk_file"):
            out_file = pstore.get_by_path("/cmdline/disk_file")
-       else:
+       if not out_file:
            out_file = "simple_delay_rate.png"
 
        plt.savefig(out_file, dpi=300)
        plt.close()
 
 
-5. Python Control Files
-========================
+Python Control Files
+====================
 
 Instead of writing a fourfit domain-specific language (DSL) control file, you
 can write a Python script (``.py``) that defines the same configuration
 programmatically. This approach supports conditional logic but has some
 structural constraints described below.
 
-5.1 Required API
------------------
+Required API
+------------
 
-Your Python control file must define:
+Your Python control file must define a function as follows:
 
 .. code-block:: python
 
@@ -432,8 +436,8 @@ Your Python control file must define:
    def configure(p: PassInfo, cfg: Config):
        ...
 
-5.2 PassInfo (read-only)
---------------------------
+PassInfo (read-only)
+--------------------
 
 ``PassInfo`` is an immutable description of the fringe pass (baseline, source, etc.)
 constructed by the C++ runtime before ``configure()`` is called.
@@ -465,8 +469,8 @@ Python conditionals -- both are valid):
    p.scan_after("100-1200")  # True if current scan name > argument (lexicographic)
    p.scan_between("a", "b")  # True if a <= scan_name <= b (inclusive, lexicographic)
 
-5.3 Config (writer)
----------------------
+Config (writer)
+---------------
 
 ``Config`` accumulates control statements and serializes them into the
 intermediate representation consumed by the operator builders. Every control
@@ -547,8 +551,8 @@ Convenience shortcuts for single-predicate conditionals:
    global statements but cannot produce the station/baseline/source-conditional
    blocks that the operator pipeline needs.
 
-5.4 Complete Working Example
-------------------------------
+Complete Working Example
+------------------------
 
 File: ``my_config.py`` (used as control file directly (MUST have .py extension))
 
@@ -558,11 +562,12 @@ File: ``my_config.py`` (used as control file directly (MUST have .py extension))
 
    def configure(p: PassInfo, cfg: Config):
        # Global settings (always applied)
-       cfg.ref_freq(215000.0)
+       cfg.ref_freq(10000.0)
        cfg.pc_mode("multitone")
        cfg.pc_period(1)
        cfg.ion_smooth(True)
        cfg.weak_channel(0.1)
+       cfg.samplers(["abcdefgh", "ijklmnop", "qrstuvwx", "yzABCDEF"])
 
        # Per-station settings
        with cfg.IF().station("E"):
@@ -580,9 +585,9 @@ File: ``my_config.py`` (used as control file directly (MUST have .py extension))
            cfg.ion_npts(11)
            cfg.ion_win([-20.0, 20.0])
 
-       # Source-specific frequency override
+       # Source-specific frequency override (example only)
        with cfg.IF().source("3C279").AND().fgroup("X"):
-           cfg.ref_freq(86000.0)
+           cfg.ref_freq(8000.0)
 
 To use this as a control file, pass it to fourfit4 just like an ordinary control file (note the ``.py`` extension):
 
@@ -593,13 +598,13 @@ To use this as a control file, pass it to fourfit4 just like an ordinary control
 
 .. _sec-python-api:
 
-6. Python API Reference
-========================
+Python API Reference
+====================
 
 .. _sec-fringe-data-interface:
 
-6.1 MHO_PyFringeDataInterface (main entry point)
---------------------------------------------------
+MHO_PyFringeDataInterface (data access point)
+---------------------------------------------
 
 Methods:
 
@@ -626,8 +631,8 @@ Methods:
     ``None`` when the toolbox has not been wired up (e.g. in stand-alone
     plotting contexts); always check for ``None`` before use.
 
-6.2 MHO_PyParameterStoreInterface
------------------------------------
+MHO_PyParameterStoreInterface
+-----------------------------
 
 ``is_present(path: str)`` -> ``bool``
     Return ``True`` if a parameter exists at the given path.
@@ -649,15 +654,15 @@ Parameter paths follow the convention:
 - ``/config/<name>`` -- global config parameters
 - ``/control/config/<name>`` -- control file config parameters
 - ``/control/station/<CODE>/<name>`` -- per-station parameters
-- ``/control/fit/<name>`` -- fit-time parameters
+- ``/control/fit/<name>`` -- fit behavior parameters
 - ``/ref_station/<field>`` -- reference station info (mk4id, site_id, etc.)
 - ``/rem_station/<field>`` -- remote station info
 - ``/uuid/<object_name>`` -- UUID of named data objects
 - ``/cmdline/<option>`` -- command-line options
 - ``/status/<flag>`` -- runtime status flags (e.g. ``/status/skipped``)
 
-6.3 MHO_PyContainerStoreInterface
------------------------------------
+MHO_PyContainerStoreInterface
+-----------------------------
 
 ``is_valid()`` -> ``bool``
     Return ``True`` if the store is valid.
@@ -689,8 +694,8 @@ Useful UUID paths for runtime object lookup:
 - ``/uuid/weights`` -- weight data
 - ``/uuid/phasors`` -- fringe-fit phasor averages
 
-6.4 MHO_PyTableContainer (for visibility/weight/phasor objects)
------------------------------------------------------------------
+MHO_PyTableContainer (for visibility/weight/phasor objects)
+-----------------------------------------------------------
 
 ``get_rank()`` -> ``int``
     Return the number of dimensions (4 for ``visibility_type``).
@@ -730,8 +735,8 @@ Useful UUID paths for runtime object lookup:
 ``set_metadata(metadata: dict)``
     Replace the table-level metadata dictionary.
 
-6.5 MHO_OperatorToolbox
--------------------------
+MHO_OperatorToolbox
+-------------------
 
 ``get_operator_names()`` -> ``list[str]``
     Return the name of every operator in the toolbox, in priority order
@@ -754,8 +759,8 @@ Do **not** store them beyond the scope of your plugin function.
 downcast the base ``MHO_Operator*`` pointers to their concrete derived types
 without any explicit import in your script.
 
-6.6 Common Data Types and Array Shapes
-----------------------------------------
+Common Data Types and Array Shapes
+----------------------------------
 
 - ``visibility_type`` -- 4D complex array [polprod, channel, time, freq]
 - ``weight_type`` -- 4D real array [polprod, channel, time, freq]
@@ -765,16 +770,16 @@ without any explicit import in your script.
 
 For ``visibility_type``, the 4 axes are:
 
-- Axis 0: polarization products (e.g. "RR", "LL", "RL", "LR", "XX", "XY")
-- Axis 1: channel index (0, 1, 2, ...)
-- Axis 2: time integration index (0, 1, 2, ...)
+- Axis 0: polarization products (e.g. "RR", "LL", "RL", "LR", "XX", "XY", etc.)
+- Axis 1: channel sky frequency (3032.4, 3064.4, ...)
+- Axis 2: AP start time (0, 1, 2, ...)
 - Axis 3: spectral point within channel (frequency coordinate)
 
 
 .. _sec-pre-imported-modules:
 
-7. Pre-imported Modules
-=========================
+Pre-imported Modules
+====================
 
 The following pybind11 extension modules are imported automatically by the
 embedded interpreter before any user plugin is called:
@@ -799,8 +804,8 @@ installed alongside HOPS and can be imported normally:
    import hops_visualization                     # for plotting utilities
 
 
-8. Debugging Tips
-==================
+Debugging Tips
+==============
 
 1. **Import errors:** Make sure your script is in ``$HOPS_USER_PLUGINS_DIR``
    or the default plugins directory. The default directory path is baked into
@@ -850,8 +855,8 @@ installed alongside HOPS and can be imported normally:
    ``prefit``, ``postfit``), the plot data dict will be empty.
 
 
-9. Quick Reference: Checklist
-==============================
+Quick Reference: Checklist
+==========================
 
 To add a new Python data operator:
 

@@ -95,5 +95,4 @@ This pre-factor rotates the circular-polarization products into a common
 reference frame, compensating for the differential parallactic-angle rotation
 between the two stations. The container's axis labels and metadata are unchanged.
 
-Important! This operation is approximate, and treats the rotation as a single
-static value over the course of a scan, for long scans this may be incorrect.
+.. important:: This operation is approximate, and treats the rotation as a single static value over the course of a scan, for long duration scans this may be incorrect.

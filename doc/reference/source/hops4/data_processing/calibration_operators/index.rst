@@ -3,10 +3,10 @@
 Calibration Operator Reference
 ===============================
 
-The calibration operator reference documents every operator available in the
+This chapter documents every operator available for user configuration in the
 HOPS4 fringe-fitting pipeline. Operators are broadly divided into two groups:
 
-**Configurable operators** are triggered by, or have parameters accessible
+**Configurable operators**, which are triggered by, or have parameters accessible
 through, user-issued control file statements or ``fourfit4`` command line
 arguments.
 
@@ -27,7 +27,7 @@ runtime each category is initialized and executed in the following order:
 #. Finalize
 
 Within each category, execution order is determined by the operator's priority
-value - a lower value means earlier execution.
+value, a lower value means earlier execution.
 
 .. toctree::
     :maxdepth: 2

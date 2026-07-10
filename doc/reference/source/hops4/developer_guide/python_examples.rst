@@ -22,9 +22,8 @@ Key Features                                    | Parameter store lookup by path
                                                 | Reference/remote station identification
 =============================================== ====================================================================
 
-The simplest possible plugin: it looks up the reference and remote station
-mk4 IDs via the parameter store and prints them. Use this as a starting point
-when writing a new plugin.
+The simplest possible plugin. It only demonstrates how to access the parameters store by looking up the reference and remote station
+Mark4 IDs and prints them. You can use this as a basic starting point when writing a new plugin.
 
 **Implementation Details:**
 
@@ -54,7 +53,7 @@ Key Features                                    | Channel-specific phase correct
 =============================================== ====================================================================
 
 The NOEMA phase jump correction example demonstrates how to use the Python API
-to correct known instrumental phase jumps in visibility data involving the NOEMA telescope array.
+to correct known instrumental phase jumps in visibility data.
 
 **Implementation Details:**
 
@@ -88,7 +87,7 @@ to correct known instrumental phase jumps in visibility data involving the NOEMA
        chan_meta_data = visib_obj.get_axis_metadata(1)  # channel axis meta data object
        channel_info = chan_meta_data["index_labels"]    # channel bin label dict
 
-       #these dictionaries are truncated for this example, see the source code for entirety
+       #Note: these dictionaries are truncated for this example, see the source code for entirety
        jumps_l = {
            "a": [25.0, -1.0],
        }
@@ -132,7 +131,7 @@ Key Features                                    | Plot data analysis for phase r
                                                 | Fourfit-compatible output format generation
 =============================================== ====================================================================
 
-The phase calibration generation example shows how to extract phase calibration
+The phase calibration generation example shows how to derive manual phase calibration
 corrections from fringe fitting results and generate output compatible with
 the fourfit control file format.
 
@@ -198,7 +197,7 @@ calculation and on ``vpal.utility.limit_periodic_quantity_to_range`` (from the
 **Output Format:**
 The generated output is a single ``if station ... pc_phases ...`` line,
 matching the control-file conditional syntax, and can be pasted directly into
-a fourfit control file:
+a fourfit control file, e.g.:
 
 .. code-block:: text
 
@@ -275,7 +274,7 @@ runs.
 Python API Usage Patterns
 --------------------------
 
-The above examples demonstrate several important usage patterns for the Python API, these are:
+The previous examples demonstrate several important usage patterns for the Python API, these are:
 
 **Data Access Pattern:**
 

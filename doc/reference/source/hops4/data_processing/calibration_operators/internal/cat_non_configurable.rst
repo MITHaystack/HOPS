@@ -10,4 +10,4 @@ These include the normalization and FFT steps that transform visibility data
 from frequency space to delay/delay-rate space, the coarse and fine peak search
 operators, and internal labeling steps.
 
-Documentation for these operators is still in progress and is not yet included.
+.. note:: The documentation for these additional operators is still in progress and is not yet included here.

@@ -144,7 +144,7 @@ is applied along the FREQ\_AXIS:
 
 After rotation, negative delays appear in the first half of the array and
 positive delays in the second half, with zero delay at the center. Note that this
-operation is the same as implemented by the matlab/python function ``fftshift``.
+operation is essentially the same as implemented by the matlab/python function ``fftshift``.
 
 Lower-Sideband Conjugation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -156,7 +156,7 @@ this, the SBD slice for each LSB channel is complex-conjugated:
 .. math::
 
    \mathcal{S}'[p,\,c_{\mathrm{LSB}},\,a,\,\ell] \;\leftarrow\;
-   \bar{\mathcal{S}'[p,\,c_{\mathrm{LSB}},\,a,\,\ell]}
+   \overline{\mathcal{S}'[p,\,c_{\mathrm{LSB}},\,a,\,\ell]}
 
 This is equivalent to flipping the frequency axis before the FFT, ensuring that
 USB and LSB channels contribute coherently to the same delay space.
@@ -169,19 +169,20 @@ spectral-bins:
 
 .. math:: \mathcal{S}'[p,c,a,\ell] \;\leftarrow\; \frac{\mathcal{S}'[p,c,a,\ell]}{N_s}
 
-This normalization compensates for the FFT summation over :math:`N_s` terms.
+This normalization compensates for the FFT summation over :math:`N_s` terms, for which neither FFTW3 nor the native FFT implementation
+correct post-FFT.
 
 Output Dimensions
 ~~~~~~~~~~~~~~~~~
 
-The SBD array, \mathcal{S}', has dimensions ``[1, N_c, N_a, P*N_s]`` (one polarization
+The SBD array, :math:`\mathcal{S}'`, has dimensions ``[1, N_c, N_a, P*N_s]`` (one polarization
 product, :math:`N_c` channels, :math:`N_a` APs, :math:`P\cdot N_s` lags). The labels
 associated with the 4-th axis are now physical delay values in microseconds.
 
 Step 2: Coarse Three-Dimensional Grid Search
 ---------------------------------------------
 
-Once the the SBD array, \mathcal{S}', is generated, the coarse search,
+Once the SBD array, :math:`\mathcal{S}'`, is generated, the coarse search,
 implemented in ``MHO_MBDelaySearch.cc``, iterates over all SBD lags and,
 for each lag, computes a two-dimensional function of (delay rate, multi-band delay)
 using FFT-based methods. The result is a three-dimensional search space indexed
@@ -404,7 +405,7 @@ Quintic Lagrange Interpolation
 
 After filling the 5x5x5 amplitude cube:
 
-.. math:: \mathcal{F}[i,j,k] = |Z_{i,j,k}| \qquad i=0..2,\; j=0..4,\; k=0..4
+.. math:: \mathcal{F}[i,j,k] = |Z_{i,j,k}| \qquad i=0..4,\; j=0..4,\; k=0..4
 
 the algorithm performs an iterative refinement search (function ``max555``), which:
 
@@ -525,8 +526,5 @@ operators are present, the original visibility and weight data are cached
 and can be refreshed between iterations, allowing convergence-based
 outer loops (e.g., iterative flagging or passband estimation).
 
-
-Footnotes
----------
 
 .. [#footnote1] Note that the distinction between the `reference` and `remote` station matters, since the reversal of the station assignment results in the complex conjugation of the visibility data.

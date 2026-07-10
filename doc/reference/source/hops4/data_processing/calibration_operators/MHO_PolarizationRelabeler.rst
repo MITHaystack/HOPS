@@ -9,7 +9,7 @@ axis of multitone pcal data containers. ``MHO_PolarizationProductRelabeler``
 performs an analogous swap on two-character polarization-product
 labels (e.g., ``XX`` -> ``YY``) along the polarization-product axis of
 visibility and weight containers. Both operators are scoped to specific
-stations and are used to correct antenna feed labeling in phase-calibration and
+stations and are used to correct antenna feed labeling in both phase-calibration and
 visibility data.
 
 Control File Trigger
@@ -60,9 +60,16 @@ Both classes inherit from ``MHO_UnaryOperator`` and have no ``Initialize`` metho
    a. Call ``IsApplicable`` using the appropriate station tags (``reference_station_mk4id``/``reference_station`` or ``remote_station_mk4id``/``remote_station``).
    b. If applicable, iterate over every polarization-product index. For each product label (e.g., ``XY``), swap the character at position ``st_idx`` if it matches ``pol1`` or ``pol2``.
 
-Thus a polarization product ``XY`` on a baseline where only the reference station is targeted and the swap pair is (X, Y) becomes ``YY``: only the first character changes, and since it matches ``pol1`` (``X``), it becomes ``pol2`` (``Y``).
+Thus the polarization product ``XY`` on a baseline where only the reference station is targeted
+and the swap pair is (X, Y) becomes ``YY`` (only the first character changes).
 
-If both stations are targeted, a single operator instance processes both station positions sequentially against the same, already-partially-mutated pol-product axis within one ``ExecuteInPlace`` call. There is no separate operator per station. Starting from ``XY``, the reference-station pass (``st_idx=0``) turns it into ``YY``, then the remote-station pass (``st_idx=1``, now reading the already-mutated ``YY``) turns the second character (``Y``, matching ``pol2``) into ``pol1`` = ``X``, giving ``YX``. Targeting both stations therefore performs a genuine two-character swap, not a round-trip back to the original label.
+If both stations are targeted, a single operator instance processes both station positions sequentially against the same,
+already-partially-mutated pol-product axis within one ``ExecuteInPlace`` call.
+There is no separate operator per station. Starting from ``XY``, the
+reference-station pass (``st_idx=0``) turns it into ``YY``, then the
+remote-station pass (``st_idx=1``, now reading the already-mutated ``YY``) turns the
+second character (``Y``, matching ``pol2``) into ``pol1`` = ``X``, giving ``YX``.
+Targeting both stations therefore performs a genuine two-character swap, not a round-trip back to the original label.
 
 Effect on Data
 --------------

@@ -16,8 +16,8 @@ The signal-to-noise ratio (for a broadband continuum source) is given by:
    \mathrm{SNR} = A_{\mathrm{fringe}} \; f_2 \, f_e \, f_w \; \kappa_{\mathrm{BW}}
    \sqrt{N_{\mathrm{pol}} \cdot W_{\mathrm{tot}} \cdot \frac{\Delta t}{T_{\mathrm{samp}}}} \;
 
-where :math:`N_{\mathrm{pol}}` is the effective number of polarization products,
-:math:`W_{\mathrm{tot}}` is the total used bandwidth across all channels and APs,
+where :math:`N_{\mathrm{pol}}` is the effective number of polarizations (1 or 2),
+:math:`W_{\mathrm{tot}}` is the total summed weights (proportional to used bandwidth) across all channels and APs,
 :math:`\Delta t` is the integration time per AP, and :math:`T_{\mathrm{samp}}` is
 the sample period. The remaining factors are hard-coded correction constants, :math:`f_2 = 0.881` (2-bit sampling [#f1]_),
 :math:`f_e = 0.970` (DiFX/Mark4 empirical normalization factor), and :math:`f_w = 10^{-4}`
@@ -40,7 +40,7 @@ Residual Phase
 
 The residual phase is the argument of the coherently summed (weighted), counter-rotated
 visibility at the peak SBD lag. Note that this is done over the visibility array after
-the polarization product has been selected or a summation over pol-products has been peformed (p'=0), thus:
+the polarization product has been selected or a summation over pol-products has been performed :math:`(p'=0)`, thus:
 
 .. math::
 
@@ -82,7 +82,7 @@ Integration Time
 ~~~~~~~~~~~~~~~~
 
 The integration time is a measure of what portion of the scan's data was actually used
-by the fringe-fitter, and is given by:
+by the correlator and the fringe-fitter, and is given by:
 
 .. math::
 
@@ -112,6 +112,8 @@ where :math:`\Delta_{\mathrm{ambig}}` is an ambiguity correction applied when
    \mathrm{round}\!\left(\frac{\tau_{\mathrm{total}}^{\mathrm{SBD}}
    - \tau_{\mathrm{total}}^{\mathrm{MBD}}}{\tau_{\mathrm{amb}}}\right)
 
+and :math:`\tau_{\mathrm{amb}}` is the MBD delay ambiguity (proportional to the inverse of the MBD grid spacing).
+
 Error Estimates
 ~~~~~~~~~~~~~~~
 
@@ -119,11 +121,11 @@ The formal error estimates are:
 
 .. math::
 
-   \sigma_{\mathrm{MBD}} &= \frac{1}{2\pi \, \Delta\nu_{\mathrm{spread}} \cdot \mathrm{SNR}} \\
+   \sigma_{\mathrm{MBD}} &= \frac{1}{2\pi \, \Delta\nu_{\mathrm{spread}} \cdot \mathrm{SNR}} \\[2ex]
    \sigma_{\mathrm{SBD}} &= \frac{4\sqrt{12} \, \delta_{\mathrm{SBD}}}
-   {2\pi \, \mathrm{SNR} \, (2 - |\overline{S}|)} \\
+   {2\pi \, \mathrm{SNR} \, (2 - |\overline{S}|)} \\[2ex]
    \sigma_{\mathrm{DR}} &= \frac{\sqrt{12}}{2\pi \, \mathrm{SNR} \cdot \nu_{\mathrm{ref}}
-   \cdot N_a \cdot \Delta t} \\
+   \cdot N_a \cdot \Delta t} \\[2ex]
    \sigma_{\phi} &= \frac{180}{\pi} \cdot \frac{\sqrt{1 + 3\overline{S}^2}}{\mathrm{SNR}}
    \quad \text{(degrees)}
 

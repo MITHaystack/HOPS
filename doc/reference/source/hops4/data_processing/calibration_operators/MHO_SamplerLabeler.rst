@@ -4,7 +4,7 @@ MHO\_SamplerLabeler
 Purpose
 -------
 ``MHO_SamplerLabeler`` attaches per-channel sampler index labels to visibility
-data so that downstream operators (notably phase-calibration processing) can
+data so that downstream operators (specifically phase-calibration processing) can
 look up the station sampler delay and ambiguity information for each channel.
 It maps channel labels (e.g., ``a``, ``b``, ...) to integer sampler IDs for
 both the reference and remote stations. This information is used by
@@ -13,11 +13,11 @@ the ``MHO_MultitonePhaseCorrection`` operator during ambiguity resolution.
 Control File Trigger
 --------------------
 - **Internal operator name:** ``sampler_labeler`` (not a keyword the user writes directly;
-  it has no control-file format entry and is auto-built whenever a ``samplers`` stanza is
+  it has no control-file format entry and is auto-built whenever a ``samplers`` statement is
   present)
 - **Category:** labeling
 - **Priority:** 0.9
-- **Parameters:** None (sampler-to-channel mapping is read from the control file's ``samplers`` stanza, either globally or per-station).
+- **Parameters:** None (sampler-to-channel mapping is read from the control file's ``samplers`` statement, either globally or per-station).
 
 The sampler mapping is specified in the control file using the ``samplers``
 keyword under the ``station`` section. For example:
@@ -28,7 +28,7 @@ keyword under the ``station`` section. For example:
 
 This declares 4 samplers, each handling the channels listed after the count.
 The mapping can be provided globally (under ``/control/station/samplers``)
-or per-station (under ``/control/station/SITE/samplers``).
+or per-station (under ``/control/station/STATION_CODE/samplers``).
 
 Input Data
 ----------

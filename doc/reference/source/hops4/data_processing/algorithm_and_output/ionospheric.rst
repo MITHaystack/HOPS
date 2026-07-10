@@ -14,8 +14,8 @@ Physical Background
 ~~~~~~~~~~~~~~~~~~~
 
 The ionosphere is a plasma layer in the Earth's upper atmosphere that introduces
-a frequency-dependent phase delay to radio signals. This phase delay depends 
-on the integrated total electron content (TEC) along the propagation path. 
+a frequency-dependent phase delay to radio signals. This phase delay depends
+on the integrated total electron content (TEC) along the propagation path.
 For a particluar station *A* and source *S* the instantaneous
 line-of-sight (or slant) TEC (STEC) is given by:
 
@@ -25,15 +25,15 @@ line-of-sight (or slant) TEC (STEC) is given by:
        n_e(r,\, \theta_S,\, \phi_S,\; t)
        \,\mathrm{d}r
 
-The differential TEC (dTEC) for the baseline AB is the difference in 
-the integrated electron column density 
+The differential TEC (dTEC) for the baseline AB is the difference in
+the integrated electron column density
 along the line of sight from each of the two stations to the source:
 
 .. math::
 
     \mathrm{dTEC} = \mathrm{STEC}_B - \mathrm{STEC}_A
 
-A non-zero dTEC has the effect of accumulating a frequency dependent phase over 
+A non-zero dTEC has the effect of accumulating a frequency dependent phase over
 the VLBI visibilities, which to first order (and ignoring time dependence) is approximately [Cappallo2016]_:
 
 .. math::
@@ -90,7 +90,7 @@ in-place on the visibility tensor. For each channel, the operator:
 
 This correction is *additive* in phase space but *multiplicative*
 in the complex visibility domain. Reversing a previously applied correction
-is achieved by re-applying the operator with the *negated* dTEC value 
+is achieved by re-applying the operator with the *negated* dTEC value
 (this is used extensively during the dTEC search).
 
 Two-Stage Search Strategy
@@ -216,6 +216,7 @@ algorithm modifies the visibilities *in-place*:
 After the first dTEC trial, the algorithm caches the full SBD search window
 and, if the approximate SNR exceeds :math:`15`, narrows the SBD window to
 :math:`\pm 1` bin around the fitted SBD to accelerate subsequent trials.
+This can greatly accelerate ionospheric fringe fitting in the strong (high-SNR) fringe case.
 
 Output and Solution
 ~~~~~~~~~~~~~~~~~~~

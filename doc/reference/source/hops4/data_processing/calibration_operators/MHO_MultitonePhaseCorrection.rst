@@ -34,7 +34,7 @@ Simply checks that the ``multitone_pcal_type`` pointer is non-null. The operator
 **Execution (``ExecuteInPlace``):**
 
 1. Iterate over both stations (reference and remote). For each, call ``IsApplicable`` to check whether the station's Mk4ID or 2-character station code matches the operator's selection criteria.
-2. If applicable, compute the time offset between the pcal data start and visibility data start, then call ``InterpolatePCData`` to temporally interpolate pcal tone phasors to align with the visibility accumulation periods. This interpolation mimics the ``ap_mean`` function from the original HOPS3 ``pcal_inter.c``.
+2. If applicable, compute the time offset between the pcal data start and visibility data start, then call ``InterpolatePCData`` to temporally interpolate pcal tone phasors to align with the visibility accumulation periods. This interpolation mimics the ``ap_mean`` function from the original HOPS3 ``pcal_interp.c``.
 3. Trim the pcal data to the visibility time range using ``MHO_PhaseCalibrationTrim``.
 4. Retrieve ``pc_tonemask`` channel names and bitmasks from the pcal data (if present).
 5. For each polarization in the pcal data, match against the visibility polarization products via ``PolMatch``, then call ``ApplyPCData`` for each matching pol-product.
@@ -90,7 +90,7 @@ Let :math:`\tau_{\rm station}` and :math:`\tau_{\rm sampler}` denote the ``stati
    (in nanoseconds), where :math:`f_0, f_1` are the first two tone frequencies in MHz.
 2. Execute a forward FFT on the averaged tone phasors to find the peak in delay space.
 3. Fit a parabola to the peak and its neighbors to obtain sub-sample delay precision.
-4. Resolve the delay ambiguity by shifting the delay into the window :math:`[\tau_{\rm station} + \tau_{\rm sampler} \pm \tau_{\rm amb}/2]`. :math:`\tau_{\rm station}` is currently hardcoded to ``0.0`` here, since station delay corrections are applied separately by :hops:`MHO_StationDelayCorrection`.
+4. Resolve the delay ambiguity by shifting the delay into the window :math:`[\tau_{\rm station} + \tau_{\rm sampler} \pm \tau_{\rm amb}/2]`. Note that :math:`\tau_{\rm station}` is currently hardcoded to ``0.0`` here, since station delay corrections are applied separately by :hops:`MHO_StationDelayCorrection`.
 5. Rotate each tone phasor by the resolved delay :math:`\tau` (zero rotation at channel center frequency) and average to obtain the mean phasor:
 
    .. math::
@@ -104,7 +104,7 @@ Effect on Data
 --------------
 The operator multiplies each visibility data segment by a complex phase phasor
 derived from the injected multi-tone phase-cal tones, and optionally by a
-frequency-dependent delay correction phasor. Both corrections are conjugated
+frequency-dependent delay correction term. Both corrections are conjugated
 for the reference station (but not the remote), and the phase correction is
 additionally conjugated for USB channels. The result is that the residual
 instrumental phase and delay errors introduced by the station's receiver chain

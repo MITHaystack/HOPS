@@ -4,7 +4,7 @@ MHO\_PolProductSummation
 Purpose
 -------
 ``MHO_PolProductSummation`` coherently sums multiple polarization products
-(e.g., ``XX`` + ``YY`` -> pseudo-Stokes-I) into a single polarization-product
+(e.g., ``XX + YY + XY + YX`` -> pseudo-Stokes-I) into a single polarization-product
 entry along the polarization-product axis of visibility data. Each polarization
 product may be pre-multiplied by a parallactic-angle-dependent factor
 (see ``MHO_LinearDParCorrection`` or ``MHO_CircularFieldRotationCorrection``) before
@@ -57,11 +57,11 @@ For linear polarization products, when more than one product is summed (``fPolPr
     \begin{aligned}
     \text{XX} &: \cos(\Delta\psi) \\
     \text{YY} &: \cos(\Delta\psi) \\
-    \text{XY} &: \sin(-\Delta\psi) \\
-    \text{YX} &: \sin(\Delta\psi)
+    \text{YX} &: \sin(\Delta\psi) \\
+    \text{XY} &: \sin(-\Delta\psi)
     \end{aligned}
 
-When only a single polarization product is present, the pre-factor uses the sign of the trigonometric value rather than the value itself:
+When only a single polarization product is present, the pre-factor uses the sign of the trigonometric value rather than the value itself (see ``MHO_LinearDParCorrection``):
 
 .. math::
 

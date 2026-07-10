@@ -23,19 +23,20 @@ Input Data
 The operator works in-place on a ``visibility_type`` container. The visibility
 must carry metadata tags identifying the reference and remote stations
 (Mark4 IDs or station codes) so the operator can determine which station the
-correction applies to. The container axes are:
-
-- **POLPROD\_AXIS** -- polarization product axis
-- **CHANNEL\_AXIS** -- spectral channel axis (labeled by center frequency in MHz, with ``net_sideband`` key per channel)
-- **TIME\_AXIS** -- accumulation period axis
-- **FREQ\_AXIS** -- intra-channel frequency bin axis
+correction applies to.
 
 Algorithm
 ---------
 
 The operator loops over the two stations (reference at index 0, remote at index 1) and checks applicability for each via ``IsApplicable()``. Station matching supports both single-character Mark4 IDs and two-character station codes (case-insensitive). A wildcard identifier (``?`` for Mark4 ID, ``??`` for station code) matches any station.
 
-For an applicable station, the operator iterates over every polarization product and channel, computing a phase-correction phasor. The core equation is:
+For an applicable station, the operator iterates over every polarization product and channel, computing a phase-correction phasor:
+
+.. math::
+
+   p = e^{j\theta}
+
+with the rotation angle given by:
 
 .. math::
 
@@ -49,9 +50,6 @@ For an applicable station, the operator iterates over every polarization product
 
    \Delta t = \tau_{\rm ns} \cdot 10^{-9}
 
-.. math::
-
-   p = e^{j\theta}
 
 where :math:`f_{\rm chan}` is the channel center frequency in MHz, :math:`f_{\rm ref}` is the reference frequency in MHz, :math:`\tau_{\rm ns}` is the delay offset in nanoseconds, and :math:`j` is the imaginary unit.
 

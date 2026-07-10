@@ -22,7 +22,7 @@ copyright = '2026, MIT Haystack Observatory'
 author = 'MIT Haystack Observatory'
 
 # The full version, including alpha/beta/rc tags
-release = '4.0'
+release = '4.0.3'
 
 
 # -- General configuration ---------------------------------------------------
@@ -59,13 +59,13 @@ exclude_patterns = [
 html_theme = 'sphinx_rtd_theme'
 
 # -- Options for HTML output --------------------------
-#html_theme_options = {'body_max_width': '70%'} 
+#html_theme_options = {'body_max_width': '70%'}
 
 #needed so we can increase the page width and avoid squishing tables
 html_css_files = ['custom.css']
 
 # Doxylink tag files to pull in doxygen generated API
-# to make this work we need doxylink 
+# to make this work we need doxylink
 breathe_projects = {
   "hops": "@REF_BUILD_DIR@/_static/doxygen/xml"
 }
@@ -73,8 +73,8 @@ breathe_projects = {
 # # Define where Doxylink can find the tag file for Doxygen docs
 # doxylink = {
 #     'hops': (
-#         '@REF_BUILD_DIR@/_static/doxygen/common.tag', 
-#         '@MIT_BASE_URL@/_static/doxygen/html'  
+#         '@REF_BUILD_DIR@/_static/doxygen/common.tag',
+#         '@MIT_BASE_URL@/_static/doxygen/html'
 #     )
 # }
 
@@ -83,8 +83,8 @@ breathe_projects = {
 # as well as where the doxygen html pages are to be found
 doxylink = {
     'hops': (
-        '@REF_BUILD_DIR@/_static/doxygen/common.tag', 
-        '@DOC_BASE_URL@/_static/doxygen/html'  
+        '@REF_BUILD_DIR@/_static/doxygen/common.tag',
+        '@DOC_BASE_URL@/_static/doxygen/html'
     )
 }
 
@@ -94,7 +94,7 @@ doxylink = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_logo = '_static/hops_logo_b_small-scaled.png' 
+html_logo = '_static/hops_logo_b_small-scaled.png'
 html_use_index = True  # default is True; keep this
 html_use_modindex = True
 

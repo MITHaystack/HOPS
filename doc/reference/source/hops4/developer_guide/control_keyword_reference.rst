@@ -152,13 +152,13 @@ These keywords mark or exclude data based on quality criteria, spectral notches,
      - BOTH
      - Yes
      - MHO_DataSelectionBuilder and MHO_SelectRepack
-     - integer sec within scan selection enabled, minute-past-the-hour is not yet supported
+     - integer sec within scan selection enabled, minute-past-the-hour is not supported
    * - ``stop``
      - integer
      - BOTH
      - Yes
      - MHO_DataSelectionBuilder and MHO_SelectRepack
-     - integer sec within scan selection enabled, minute-past-the-hour is not yet supported
+     - integer sec within scan selection enabled, minute-past-the-hour is not supported
 
 
 
@@ -179,13 +179,13 @@ Calibration operators apply phase, delay, and amplitude corrections to the visib
      - Notes
    * - ``adhoc_file``
      - string
-     - BOTH
+     - EHT
      - Yes
      - MHO_AdhocPhaseCorrection
      - Tested for USB
    * - ``adhoc_file_chans``
      - string
-     - BOTH
+     - EHT
      - Yes
      - MHO_AdhocPhaseCorrection
      - Tested for USB
@@ -197,7 +197,7 @@ Calibration operators apply phase, delay, and amplitude corrections to the visib
      - Tested for USB
    * - ``adhoc_period``
      - float
-     - BOTH
+     - EHT
      - Yes
      - MHO_AdhocPhaseCorrection
      - Tested for USB
@@ -209,13 +209,13 @@ Calibration operators apply phase, delay, and amplitude corrections to the visib
      - Tested for USB
    * - ``adhoc_poly``
      - list of floats
-     - EHT?
+     - EHT
      - Yes
      - MHO_AdhocPhaseCorrection
      - Tested for USB
    * - ``adhoc_tref``
      - float
-     - BOTH
+     - EHT
      - Yes
      - MHO_AdhocPhaseCorrection
      - Tested for USB
@@ -632,13 +632,13 @@ The following keywords are parsed for backward compatibility but are **not** imp
      -
      - No
      -
-     - reserved, not yet implemented
+     - reserved, not implemented
    * - ``avxpzoom``
      -
      -
      - No
      -
-     - reserved, not yet implemented
+     - reserved, not implemented
    * - ``dec_offset``
      - deprecated
      - BOTH
@@ -648,7 +648,7 @@ The following keywords are parsed for backward compatibility but are **not** imp
    * - ``fmatch_bw_pct``
      -
      - BOTH
-     - No?
+     - No
      -
      -
    * - ``gates``
@@ -668,7 +668,7 @@ The following keywords are parsed for backward compatibility but are **not** imp
      - BOTH
      - deprecated
      - MHO_InterpolateFringePeak
-     - simul' only, iterate is not implemented
+     - 'simul' only, iterate is not implemented
    * - ``max_parity``
      -
      -
@@ -738,24 +738,24 @@ The following keywords are parsed for backward compatibility but are **not** imp
    * - ``x_crc``
      - `keep' or `discard'
      -
-     - No
+     - deprecated
      -
      -
    * - ``x_slip_sync``
      - `keep'
      -
-     - No
+     - deprecated
      -
      -
    * - ``y_crc``
      - `keep' or `discard'
      -
-     - No
+     - deprecated
      -
      -
    * - ``y_slip_sync``
      - `keep'
      -
-     - No
+     - deprecated
      -
      -

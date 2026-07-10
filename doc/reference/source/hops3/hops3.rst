@@ -1,10 +1,9 @@
 HOPS3 (Legacy)
 ==============
 
-.. warning::
+.. important::
 
-   HOPS3 is legacy software maintained for reference only. New users and
-   experiments should use :doc:`HOPS4 <../hops4/tutorials/quick_start_guide>`. This documentation
+   HOPS3 is legacy software maintained in this repository for reference only. This code and documentation
    receives no active updates.
 
 .. toctree::

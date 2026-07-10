@@ -11,8 +11,8 @@ to the MHO_ParameterStore for downstream/internal consumption, and (2) a new cal
    :local:
 
 
-1. Architecture Overview
-========================
+Architecture Overview
+=====================
 
 The HOPS data processing pipeline is driven by a text-based control file,
 whose keywords are described by JSON descriptors. The JSON format descriptors live in:
@@ -43,8 +43,8 @@ The key library modules involved are:
 - **Utilities/** : MHO_ParameterStore, MHO_ContainerStore (data containers for visiblity, etc.).
 
 
-2. The Data Flow Pipeline
-=========================
+The Data Flow Pipeline
+======================
 
 Below is a rough description of the step-by-step data flow for a single scan/baseline when processed
 via fourfit4:
@@ -103,8 +103,8 @@ via fourfit4:
    - Operators may modify visibility/weight data in-place or out-of-place
 
 
-3. Adding a New Parameter (MHO_ParameterStore)
-==============================================
+Adding a New Parameter (MHO_ParameterStore)
+===========================================
 
 A "parameter" is a control file keyword whose sole purpose is to store a value
 in the MHO_ParameterStore for later consumption by builders or operators.
@@ -123,7 +123,7 @@ Required fields:
 
 - ``"name"``: the keyword name (must match filename without .json)
 - ``"statement_type"``: ``"parameter"``
-- ``"type"``: one of the supported value types (see `5. JSON Format Descriptor Reference`_)
+- ``"type"``: one of the supported value types (see `JSON Format Descriptor Reference`_)
 
 Optional fields:
 
@@ -164,9 +164,10 @@ Example - list parameter:
    }
 
 No C++ code changes are needed to add simple parameters to the control file syntax, as long as
-they belong to the class of value types that are already allowed (see `5. JSON Format Descriptor Reference`_).
+they belong to the class of value types that are already allowed (see `JSON Format Descriptor Reference`_).
 The MHO_ParameterConfigurator handles all supported types generically, and will insert them in the parameter
-store in the locations specified by the format descriptor.
+store in the locations specified by the format descriptor. They can then be access by the C++ code or by user python plugins via
+the standard path retrieval mechanism.
 
 STEP 3.2 - Storage paths
 -------------------------
@@ -226,7 +227,7 @@ station 2-char code must be known or retrieved first:
    std::string ref_id = fParameterStore->GetAs<std::string>("/ref_station/site_id");
    std::string path = "/control/station/" + ref_id + "/mount_type";
    std::string mount = fParameterStore->GetAs<std::string>(path);
-   
+
 .. note::
 
    Parameter store access should be confined to builder classes, not to
@@ -247,8 +248,8 @@ Simply placing the file in ``format/control/`` or ``format/control_extensions/``
 is sufficient. Files are installed to ``DATA_INSTALL_DIR/control/`` at build time.
 
 
-4. Adding a New Calibration Operator
-=====================================
+Adding a New Calibration Operator
+=================================
 
 An "operator" is a control file keyword that causes a data transformation to
 be constructed, configured, and registered with the MHO_OperatorToolbox.
@@ -647,8 +648,8 @@ Also add the ``#include`` for the builder header at the top of the file. This is
 not typical, and triggering null-format builders/operators is beyond the scope of this document.
 
 
-5. JSON Format Descriptor Reference
-====================================
+JSON Format Descriptor Reference
+================================
 
 The full specification of JSON format descriptor fields is as follows:
 
@@ -703,8 +704,8 @@ Supported value types:
      - See compound format above
 
 
-6. Builder Registration and the Operator Pipeline
-=================================================
+Builder Registration and the Operator Pipeline
+==============================================
 
 The MHO_OperatorBuilderManager maintains two maps:
 
@@ -722,7 +723,7 @@ Build order (called per scan/baseline):
 5. ``BuildOperatorCategory("calibration")`` - phase/delay corrections
 6. ``BuildOperatorCategory("prefit")`` - pre-fringe-fitting ops
 7. ``BuildOperatorCategory("postfit")`` - post-fringe-fitting ops
-8. ``BuildOperatorCategory("finalize")`` - cleanup
+8. ``BuildOperatorCategory("finalize")`` - result inspection, output
 
 Within each category, operators are sorted by priority (ascending).
 
@@ -735,11 +736,11 @@ Station matching supports:
 - 1-char MK4 IDs (e.g., "E", "G")
 - 2-char site codes (e.g., "Wf", "Gs")
 - Full station names
-- Wildcards: ``"?"`` matches any single-char MK4 ID, ``"??"`` matches all
+- Wildcards: ``"?"`` matches any single-char MK4 ID, ``"??"`` matches any 2-char station code
 
 
-7. CMake Build System Modifications
-====================================
+CMake Build System Modifications
+================================
 
 For a new operator in Calibration/:
 
@@ -784,8 +785,8 @@ HOPS4 keyword set), while ``format/control_extensions/`` is the right location f
 new, experimental, or extension keywords.
 
 
-8. Checklist Summary
-====================
+Checklist Summary
+=================
 
 Adding a NEW PARAMETER:
 
@@ -845,8 +846,8 @@ Adding a NEW OPERATOR (internal, not user-accessible):
    [ ] In CreateNullFormatBuilders(), construct an inline mho_json and call
        AddBuilderTypeWithFormat<MHO_NewOperatorBuilder>("name", fmt)
 
-9. Worked Examples
-==================
+Worked Examples
+===============
 
 EXAMPLE A: Simple parameter (real scalar)
 ------------------------------------------
@@ -889,7 +890,7 @@ JSON (``mount_type.json``):
        "type": "string"
    }
 
-Stored at: ``/control/station/Wf/mount_type``, ``/control/station/Gs/mount_type``
+Values will be stored at: ``/control/station/Wf/mount_type`` and ``/control/station/Gs/mount_type`` respectively.
 
 Consumed as:
 
@@ -986,7 +987,7 @@ Builder reads:
        fAttributes["value"]["channel_names"].get<std::string>();
    std::vector<double> phases =
        fAttributes["value"]["pc_phases"].get<std::vector<double>>();
-       
+
 Note: Channel names may be comma-separated (e.g. ``a,b,c``) or concatenated
 (e.g. ``abc``). However, the legacy HOPS3 concatenated syntax is only valid
 when all channel names are single characters (limited to 64 channels). There
@@ -1016,7 +1017,7 @@ Common Pitfalls
 1.  JSON name must match filename (without ``.json`` extension)
 2.  For "station" parameters, the station code in the path is resolved from
     the "if station X" condition, not hardcoded
-3.  Compound "fields" array order matters - it defines token consumption order
+3.  Compound "fields" array order matters, it defines the token consumption order
 4.  List types in compound fields consume ALL remaining tokens, so place them
     last in the "fields" array
 5.  Optional fields must be prefixed with ``"!"`` in the "fields" array, and must come last.
@@ -1038,5 +1039,5 @@ Common Pitfalls
     an ``if station E or station G`` condition on an EY baseline should only
     produce an operator for E, not G. ``GetMatchingStationIdentifiers()`` handles
     this filtering automatically.
-11. Always check for ``nullptr`` after ``ContainerStore::GetObject()`` - missing data
-    should be treated as a fatal error in ``Build()``
+11. Always check for ``nullptr`` after ``ContainerStore::GetObject()``, missing data
+    should be treated as a fatal error in ``Build()``.

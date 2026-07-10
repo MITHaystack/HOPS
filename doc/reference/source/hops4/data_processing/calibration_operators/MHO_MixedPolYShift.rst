@@ -7,7 +7,7 @@ Purpose
 Y-polarization component of mixed linear/circular polarization products
 (e.g., ``RY`` or ``YR``). This correction ensures that mixed-polarization
 cross-products (``XR+YR`` or ``RX+RY``) sum coherently. This operator is
-primarily intended for use duringr mixed VGOS-SX observations.
+primarily intended for use during mixed VGOS-SX observations.
 
 Control File Trigger
 --------------------

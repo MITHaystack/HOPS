@@ -15,7 +15,7 @@ Control File Trigger
 - **Keyword:** ``chan_ids`` (user-supplied), category ``labeling``, priority 0.1
 - **Keyword:** ``default_chan_ids`` (internal fallback), category ``default``, priority 0.1
 
-The ``default`` category is built even earlier in the pipeline than ``labeling``.
+Note: the ``default`` category is built even earlier in the pipeline than ``labeling``.
 
 .. list-table:: Parameters for ``chan_ids``
    :header-rows: 1
@@ -46,7 +46,7 @@ Algorithm
 2. Check for double-sideband (DSB) interval labels on the channel axis. If DSB regions exist, channels within a DSB pair will receive a suffixed label (``-`` for one partner, ``+`` for the other) rather than a plain label.
 3. **Default mode** (no user-supplied map):
 
-   a. Generate labels for channel indices 0, ..., N_chan-1 using the ``EncodeValueToLabel`` utility, which maps integer indices to base-26 strings (0 -> ``a``, 1 -> ``b``, ..., 26 -> ``aa``, etc.).
+   a. Generate labels for channel indices 0, ..., N_chan-1 using the ``EncodeValueToLabel`` utility, which maps integer indices to base-52 strings (0 -> ``a``, 1 -> ``b``, ..., 26 -> ``A``, ..., 52 -> ``Z``, 53 -> ``aa``, etc.).
    b. Iterate over all channels in frequency order. For each channel that does not already have a ``channel_label``:
 
       i. Assign the next label from the generated sequence.
