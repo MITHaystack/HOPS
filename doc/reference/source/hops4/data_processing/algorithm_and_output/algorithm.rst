@@ -46,6 +46,10 @@ In HOPS4 this algorithm is implemented across several source files:
 Input Data Model
 ----------------
 
+In this document we will restrict the discussion to the visibility data, but for a complete specification of the data
+structures used by the fringe-fitting algorithm and HOPS4 see:
+:doc:`Data Object Specification </hops4/libraries/containers/Objects>`.
+
 Visibility Tensor
 ~~~~~~~~~~~~~~~~~
 
