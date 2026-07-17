@@ -87,7 +87,7 @@ Let :math:`\tau_{\rm station}` and :math:`\tau_{\rm sampler}` denote the ``stati
 
       \tau_{\rm amb} = \left| \frac{1}{f_1 - f_0} \right| \cdot 10^{-6}
 
-   (in nanoseconds), where :math:`f_0, f_1` are the first two tone frequencies in MHz.
+   (in seconds), where :math:`f_0, f_1` are the first two tone frequencies in MHz.
 2. Execute a forward FFT on the averaged tone phasors to find the peak in delay space.
 3. Fit a parabola to the peak and its neighbors to obtain sub-sample delay precision.
 4. Resolve the delay ambiguity by shifting the delay into the window :math:`[\tau_{\rm station} + \tau_{\rm sampler} \pm \tau_{\rm amb}/2]`. Note that :math:`\tau_{\rm station}` is currently hardcoded to ``0.0`` here, since station delay corrections are applied separately by :hops:`MHO_StationDelayCorrection`.

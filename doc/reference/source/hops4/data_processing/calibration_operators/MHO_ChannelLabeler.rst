@@ -28,7 +28,7 @@ Note: the ``default`` category is built even earlier in the pipeline than ``labe
      - Comma-separated channel label strings (e.g. ``a,b,c,d``).
    * - channel_frequencies
      - list_real
-     - Sky frequencies (Hz) corresponding to each label.
+     - Sky frequencies (MHz) corresponding to each label.
 
 The ``default_chan_ids`` variant takes no parameters and assigns labels in order of increasing frequency starting with ``a``.
 
