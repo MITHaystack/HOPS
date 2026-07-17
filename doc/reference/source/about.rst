@@ -24,3 +24,4 @@ License and Authorship
 -----------------------
 
 See the :doc:`license` and :doc:`authors` sections for information on license and authorship.
+

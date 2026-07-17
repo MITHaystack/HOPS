@@ -5,10 +5,10 @@ Ionospheric Fringe Fitting: Solving for Differential TEC
 
 The ``MHO_IonosphericFringeFitter`` class extends the standard three-dimensional
 fringe-fitting algorithm by adding a fourth search dimension: the differential
-Total Electron Content (dTEC) between the reference and remote stations. This
-addresses the dispersive phase delay introduced by the Earth's ionosphere, which
-scales as :math:`\nu^{-2}` with observing frequency and can severely degrade the
-coherent combination of wide-band visibility data when left uncorrected.
+Total Electron Content (dTEC) between the reference and remote stations.
+This addresses the dispersive ionospheric phase, which scales as :math:`\nu^{-1}`
+with observing frequency, and can severely degrade the coherent 
+combination of wide-band visibility data when left uncorrected.
 
 Physical Background
 ~~~~~~~~~~~~~~~~~~~

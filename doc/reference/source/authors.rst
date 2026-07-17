@@ -1,4 +1,4 @@
 .. _authors-label:
 
-.. include:: ./AUTHORS.md
+.. include:: ./authors.md
    :parser: commonmark
