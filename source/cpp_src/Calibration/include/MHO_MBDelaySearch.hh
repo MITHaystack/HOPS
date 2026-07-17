@@ -234,7 +234,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
     protected:
         void SetWindow(double* win, double low, double high);
         void GetWindow(const MHO_Axis< double >& axis, bool win_set, const double* win, double bin_width, double& low,
-                       double& high) const;
+                       double& high, std::size_t n_valid = 0) const;
 
         //workspace
         bool fInitialized;
