@@ -1,6 +1,8 @@
 HOPS - Haystack Observatory Post-processing System
 ==================================================
 
+**Version:** |release|
+
 .. toctree::
    :maxdepth: 1
    :caption: Introduction

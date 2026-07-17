@@ -10,8 +10,10 @@ purposes are basic fringe-fitting, data calibration/editing/flagging,
 and problem diagnosis, along with other correlator support and 
 visualization functions. This repository contains software from both the 
 legacy HOPS3 package as well as the currently in-development HOPS4 package.
-The user can optionally compile the HOPS3 software if they have the additional 
+The user can optionally compile the HOPS3 software if they have the additional
 required dependencies.
+
+This documentation describes **HOPS version** |release|.
 
 Getting Help
 ------------
