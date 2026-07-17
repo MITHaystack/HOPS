@@ -70,7 +70,7 @@ to the fitted multi-band delay and delay rate, and is given by:
 where:
 
 - :math:`\nu_c` is the sky frequency of channel *c* (MHz)
-- :math:`\dot{\tau}_{\mathrm{dr}}` is the fitted delay rate (:math:`\mathrm{s}^{-1}`)
+- :math:`\dot{\tau}_{\mathrm{dr}}` is the fitted delay rate (:math:`\mu\mathrm{s}/\mathrm{s}`)
 - :math:`\Delta t_a = t_a + \Delta t/2 - t_{\mathrm{FRT}}` is the time offset
   of AP *a* from the fourfit reference time (FRT), in seconds
 - :math:`\tau_{\mathrm{mbd}}` is the fitted multi-band delay (us)
@@ -87,7 +87,7 @@ by the correlator and the fringe-fitter, and is given by:
 .. math::
 
    t_{\mathrm{int}} = \frac{W_{\mathrm{tot}} \cdot \Delta t}
-   {N_{\mathrm{pol}} \cdot N_c}
+   {n_{\mathrm{summed\_polprod}} \cdot N_c}
 
 Total Delays
 ~~~~~~~~~~~~

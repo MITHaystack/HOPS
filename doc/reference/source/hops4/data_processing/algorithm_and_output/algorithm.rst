@@ -180,7 +180,7 @@ Output Dimensions
 ~~~~~~~~~~~~~~~~~
 
 The SBD array, :math:`\mathcal{S}'`, has dimensions ``[1, N_c, N_a, P*N_s]`` (one polarization
-product, :math:`N_c` channels, :math:`N_a` APs, :math:`P\cdot N_s` lags). The labels
+product, :math:`N_c` channels, :math:`N_a` APs, and :math:`P\cdot N_s` lags). The labels
 associated with the 4-th axis are now physical delay values in microseconds.
 
 Step 2: Coarse Three-Dimensional Grid Search
@@ -211,7 +211,7 @@ It constructs this grid from the following rules:
 3. **Grid size:** The grid starts at 2 points and doubles until it covers the
    full channel-frequency index range, then is extended to the next power of two
    and zero-padded by a factor of 4 for interpolation. The final grid has :math:`N_{\mathrm{grid}}`
-   points (capped at 32,768).
+   points (capped at 8192).
 
 The *delay ambiguity* is a function of the grid spacing, and given by:
 
@@ -229,34 +229,35 @@ array:
 
 .. math:: \mathcal{D}[c,\,a] = \mathcal{S}'[0,\,c,\,a,\,\ell]
 
-This slice is then transformed to the delay-rate domain via a FFT along the
+This slice is then transformed to the fringe-rate domain via a FFT along the
 TIME_AXIS.
 
-Let :math:`N_a` be the number of APs. Then delay-rate search space size is set to:
+Let :math:`N_a` be the number of APs. Then the fringe-rate search space size is set to:
 
 .. math:: N_{\mathrm{DRSP}} = 2 \cdot 2^{\lceil \log_2(N_a) \rceil}
 
-Then the actual FFT is performed on a further
-zero-padded array of size :math:`4 \cdot N_{\mathrm{DRSP}}`.
+and the actual FFT is performed on a further zero-padded array of size :math:`4 \cdot N_{\mathrm{DRSP}}`.
 
-This tranformaton is implemented in (file: ``MHO_DelayRate.cc``), and consists
+This transformation is implemented in (file: ``MHO_DelayRate.cc``), and consists
 of the following steps:
 
 1. Zero-pad the time axis to size :math:`4 \cdot N_{\mathrm{DRSP}}`.
 2. Apply weights: :math:`\mathcal{D}[c,a] \leftarrow \mathcal{D}[c,a] \cdot W[0,c,a,0]`.
 3. Forward FFT along the time axis.
 4. Cyclic rotation by :math:`2 \cdot N_{\mathrm{DRSP}}`.
-5. Linear interpolation down to :math:`N_{\mathrm{DRSP}}` delay-rate bins.
+5. Linear interpolation down to :math:`N_{\mathrm{DRSP}}` fringe-rate bins.
 
-The delay-rate axis values are:
+The fringe-rate axis values are:
 
 .. math::
 
-   \mathrm{DR}[k] = \frac{k - N_{\mathrm{DRSP}}/2}{\Delta t \cdot N_{\mathrm{DRSP}}}
+   \mathrm{FR}[k] = \frac{k - N_{\mathrm{DRSP}}/2}{\Delta t \cdot N_{\mathrm{DRSP}}}
    \qquad k = 0, \dots, N_{\mathrm{DRSP}}-1
 
-where :math:`\Delta t` is the AP period in seconds. The unit is :math:`\mathrm{s}^{-1}`,
-and the corresponding *fringe rate* is :math:`f_k = \mathrm{DR}[k] \cdot \nu_{\mathrm{ref}}`.
+where :math:`\Delta t` is the AP length (chosen at time of correlation) in seconds. The unit is :math:`\mathrm{s}^{-1}`,
+and the corresponding *delay rate* is :math:`\mathrm{DR}[k] = \frac{ \mathrm{FR}[k] }{ \nu_{\mathrm{ref}} }`. 
+The maximum span of the available delay-rate search range is: :math:`\pm \frac{1}{2\Delta t \nu_{\mathrm{ref}} }`, although
+this can be limited by control keyword ``dr_win`` to a narrower range.
 
 Scatter-Accumulate into MBD Search Buffer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -307,7 +308,8 @@ search. The half-width in bins is:
 
 The smoothing is applied to the amplitudes :math:`|\mathcal{M}[k,m]|`, and the
 result is stored back as real values (Note: the subsequent maximum search uses
-``std::norm``, which remains monotonic).
+``std::norm``, which remains monotonic). This step is normally skipped by default,
+and is only triggered by the presence of the control file keyword `t_cohere`.
 
 Maximum Search
 ~~~~~~~~~~~~~~
@@ -376,7 +378,7 @@ terms from the visibilities:
 where:
 
 - :math:`\nu_c` is the sky frequency of channel *c* (MHz)
-- :math:`\dot{\tau}_{\mathrm{dr}}` is the trial delay rate (:math:`\mathrm{s}^{-1}`)
+- :math:`\dot{\tau}_{\mathrm{dr}}` is the trial delay rate (:math:`\mu\mathrm{s}/\mathrm{s}`)
 - :math:`\Delta t_a = t_a + \Delta t/2 - t_{\mathrm{FRT}}` is the time offset
   of AP *a* from the fourfit reference time (FRT), in seconds
 - :math:`\tau_{\mathrm{mbd}}` is the trial multi-band delay (us)
