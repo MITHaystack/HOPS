@@ -1,4 +1,4 @@
-# AUTHORS
+# Authors
 
 ## ABOUT 
 The Haystack Observatory Postprocessing system (HOPS) has a long lineage
