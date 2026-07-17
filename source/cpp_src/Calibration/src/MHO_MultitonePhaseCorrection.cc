@@ -768,7 +768,7 @@ void MHO_MultitonePhaseCorrection::FitPCData(std::size_t ntones, double chan_cen
 
     //calulate the pc delay ambiguity
     double pc_amb = std::fabs(1.0 / (std::get< 0 >(fPCWorkspace)(1) - std::get< 0 >(fPCWorkspace)(0)));
-    pc_amb *= 1e-6; //TODO FIXME - document units (converts to ns)
+    pc_amb *= 1e-6; //tone freqs are in MHz, so 1/(delta f) is in us; scale by 1e-6 to get seconds
 
     //fFFTEngine already points to fPCWorkspace, so just execute
     bool ok = fFFTEngine.Execute();
