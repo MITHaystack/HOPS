@@ -300,14 +300,23 @@ void MHO_MBDelaySearch::SetWindow(double* win, double low, double high)
 }
 
 void MHO_MBDelaySearch::GetWindow(const MHO_Axis< double >& axis, bool win_set, const double* win, double bin_width,
-                                  double& low, double& high) const
+                                  double& low, double& high, std::size_t n_valid) const
 {
     low = 0.0;
     high = 0.0;
-    if(axis.GetSize() >= 2) //get the axis limits first
+    //normally the whole axis is usefule (mbd, sbd) however the delay-rate
+    //axis is special, since it is stored in an oversized array whose length is the zero-padded FFT size
+    //(4x the search-space size) but only the first NDSRP entries have valid values
+    //so make sure we only look at the valid interval
+    std::size_t sz = axis.GetSize();
+    if(n_valid != 0 && n_valid < sz)
+    {
+        sz = n_valid;
+    }
+    if(sz >= 2) //get the axis limits first
     {
         low = axis.at(0);
-        high = axis.at(axis.GetSize() - 1) + bin_width;
+        high = axis.at(sz - 1) + bin_width;
     }
     if(win_set) //if the window was set, clamp the domain to smallest region
     {
@@ -352,7 +361,9 @@ void MHO_MBDelaySearch::GetMBDWindow(double& low, double& high) const
 
 void MHO_MBDelaySearch::GetDRWindow(double& low, double& high) const
 {
-    GetWindow(fDRAxis, fDRWinSet, fDRWin, fDRBinSep, low, high);
+    //fDRAxis is the delay-rate output axis, total size = the FFT length (4x fNDRSP)
+    //however, only the first fNDRSP entries are valid, so limit the length here
+    GetWindow(fDRAxis, fDRWinSet, fDRWin, fDRBinSep, low, high, fNDRSP);
 }
 
 void MHO_MBDelaySearch::apply_dr_boxcar_smooth(mbd_dr_type& buffer, std::vector< double >& scratch)
