@@ -223,9 +223,9 @@ This can greatly accelerate ionospheric fringe fitting in the strong (high-SNR) 
 Output and Solution
 ~~~~~~~~~~~~~~~~~~~
 
-Upon completion of the hierarchical search, the final dTEC value is stored in
-the parameter store as ``/fringe/ion_diff``. The corresponding dTEC
-amplitude scan (sorted by dTEC value) is stored as two parallel arrays:
+Upon completion of the hierarchical search, the dTEC value corresponding to the maximum fringe amplitude
+is stored in the parameter store as ``/fringe/ion_diff``. The full dTEC vs. fringe amplitude
+scan (sorted by dTEC value) is also stored as two parallel arrays:
 ``/fringe/dtec_array`` and ``/fringe/dtec_amp_array``.
 
 The standard solution quantities (SNR, delays, errors, residual phase, PFD,
