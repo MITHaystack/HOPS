@@ -123,7 +123,8 @@ Forward Discrete Fourier Transform
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A one-dimensional forward DFT is applied along the (zero-padded) frequency axis
-for each (p, c, a) slice of :math:`\mathbf{V}`. For a given channel *c* and AP *a*:
+for each channel slice (p, c, a) of the visibilities, :math:`\mathbf{V}`.
+For a each channel *c* with bandwidth, :math:`B_c`, at AP *a*, we apply:
 
 .. math::
 
@@ -133,9 +134,14 @@ for each (p, c, a) slice of :math:`\mathbf{V}`. For a given channel *c* and AP *
    \qquad \ell = 0,\dots,P\cdot N_s-1
 
 The result :math:`\mathcal{S}` is the *SBD array* (short for "single-band
-delay"). Each lag :math:`\ell` corresponds to a physical time delay via the axis
-labels set by the ``MHO_SBDTableGenerator``, which maps the FFT output
-bins to delays (in microseconds) using the spectral-bin frequency spacing.
+delay"). Each lag :math:`\ell` corresponds to a time delay which is common
+to all channels. The full search range of the SDB window is determined by the
+channel bandwidth and the number of spectral points, :math:`N_s`, chosen during
+correlation, and is given by :math:`\pm \frac{N_s}{2 B_c}`. The delay resolution
+of the SBD axis is determined by the channel bandwidth and the padding factor (:math:`P = 4`),
+and is given by :math:`\delta_{\mathrm{SBD}} = \frac{1}{P B_c}`. Note that this stage of
+the search algorithm requires all channels to have the same bandwidth, or to have been
+padded out to the same bandwidth, so that the SBD axis can be aligned across all channels.
 
 Cyclic Rotation
 ~~~~~~~~~~~~~~~
@@ -173,8 +179,8 @@ spectral-bins:
 
 .. math:: \mathcal{S}'[p,c,a,\ell] \;\leftarrow\; \frac{\mathcal{S}'[p,c,a,\ell]}{N_s}
 
-This normalization compensates for the FFT summation over :math:`N_s` terms, for which neither FFTW3 nor the native FFT implementation
-correct post-FFT.
+This normalization compensates for the FFT summation over :math:`N_s` terms. Neither the library FFTW3 nor the
+native FFT implementation apply this normalization by-default, so it must be applied after the FFT.
 
 Output Dimensions
 ~~~~~~~~~~~~~~~~~
@@ -255,7 +261,7 @@ The fringe-rate axis values are:
    \qquad k = 0, \dots, N_{\mathrm{DRSP}}-1
 
 where :math:`\Delta t` is the AP length (chosen at time of correlation) in seconds. The unit is :math:`\mathrm{s}^{-1}`,
-and the corresponding *delay rate* is :math:`\mathrm{DR}[k] = \frac{ \mathrm{FR}[k] }{ \nu_{\mathrm{ref}} }`. 
+and the corresponding *delay rate* is :math:`\mathrm{DR}[k] = \frac{ \mathrm{FR}[k] }{ \nu_{\mathrm{ref}} }`.
 The maximum span of the available delay-rate search range is: :math:`\pm \frac{1}{2\Delta t \nu_{\mathrm{ref}} }`, although
 this can be limited by control keyword ``dr_win`` to a narrower range.
 
