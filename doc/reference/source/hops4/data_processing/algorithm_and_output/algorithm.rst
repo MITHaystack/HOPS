@@ -223,7 +223,7 @@ The *delay ambiguity* is a function of the grid spacing, and given by:
 
 .. math:: \tau_{\mathrm{amb}} = \frac{1}{\delta_\nu}}
 
-which is the maximum unambiguous delay range (in microseconds) Note that each channel *c* maps
+which is the maximum unambiguous delay range (in :math:`\mu\mathrm{s}`). Note that each channel *c* maps
 to a specific MBD grid bin via a precomputed lookup table stored in
 ``MHO_MBDelaySearch::fMBDBinForChannel[c]``.
 
