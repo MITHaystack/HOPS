@@ -7,7 +7,7 @@ The ``MHO_IonosphericFringeFitter`` class extends the standard three-dimensional
 fringe-fitting algorithm by adding a fourth search dimension: the differential
 Total Electron Content (dTEC) between the reference and remote stations.
 This addresses the dispersive ionospheric phase, which scales as :math:`\nu^{-1}`
-with observing frequency, and can severely degrade the coherent 
+with observing frequency, and can severely degrade the coherent
 combination of wide-band visibility data when left uncorrected.
 
 Physical Background
@@ -185,7 +185,7 @@ Inner Loop: Visibility Modification per dTEC Trial
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For each dTEC trial value :math:`\delta_{\mathrm{trial}}` in the outer loop, the
-algorithm modifies the visibilities *in-place*:
+algorithm modifies the visibilities *in-place* as follows:
 
 1. **Undo** the previous dTEC correction:
 
@@ -203,10 +203,12 @@ algorithm modifies the visibilities *in-place*:
       iono.SetDifferentialTEC(-delta_trial);
       iono.Execute();
 
-   The sign convention is such that a positive dTEC introduces a phase
-   advance at higher frequencies. The negation arises because the operator
-   *corrects* the data by removing the ionospheric effect, which
-   requires applying the *opposite* phase rotation.
+   The application of the ionospheric effect on the visibilities is done *in-place*
+   in order to avoid doubling the memory requirements. The first step is required to reset
+   the visibilities back to their original state, while the negation in the second step
+   arises because the operator *corrects* the data by removing the ionospheric effect,
+   which requires applying the *opposite* sense phase rotation as would have been
+   accumulated by the net (differential) propagation through the ionosphere.
 
 3. Execute the full coarse fringe search (``coarse_fringe_search``)
    followed by fine peak interpolation (``interpolate_peak``).
