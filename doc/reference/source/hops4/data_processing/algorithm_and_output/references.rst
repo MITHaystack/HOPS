@@ -11,4 +11,4 @@ References
    1965. (Section 25.2.15: Lagrange interpolation coefficients.)
 
 .. [Cappallo2016] R. Cappallo, "Delay and Phase Calibration in VGOS Post-Processing"
-  https://ivscc.gsfc.nasa.gov/publications/gm2016/010_cappallo.pdf
+   https://ivscc.gsfc.nasa.gov/publications/gm2016/010_cappallo.pdf

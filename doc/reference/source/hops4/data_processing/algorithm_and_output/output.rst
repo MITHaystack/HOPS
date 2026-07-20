@@ -136,10 +136,12 @@ where :math:`\overline{S}` is the SBD averaging factor from ``calculate_sbavg``,
 :math:`\Delta\nu_{\mathrm{spread}}` is the frequency spread across channels,
 :math:`\delta_{\mathrm{SBD}}` is the SBD separation, :math:`\nu_{\mathrm{ref}}` is
 the reference frequency, :math:`N_a` is the number of APs, and :math:`\Delta t` is
-the AP period.
-
-When ionospheric phase correction is active, the MBD error is recomputed
-from the ionospheric covariance matrix.
+the AP period. The mean net-sideband indicator, :math:`\overline{S}`, computed by ``calculate_sbavg``
+is given by the average over all channels of: (+1 per USB channel, -1 per LSB channel,
+and 0 per DSB channel pair). In HOPS related output files and plots, the above delay errors are quoted
+in units of :math:`\mu s`, rate errors in :math:`\mu s/s`, and phase errors in degrees.
+Note that when ionospheric phase correction is active, the MBD error is recomputed from the 
+ionospheric covariance matrix, not the formula above.
 
 Probability of False Detection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
