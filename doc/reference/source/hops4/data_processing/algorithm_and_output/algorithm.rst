@@ -135,7 +135,7 @@ For a each channel *c* with bandwidth, :math:`B_c`, at AP *a*, we apply:
 
 The result :math:`\mathcal{S}` is the *SBD array* (short for "single-band
 delay"). Each lag :math:`\ell` corresponds to a time delay which is common
-to all channels. The full search range of the SDB window is determined by the
+to all channels. The full search range (window) of the SBD is determined by the
 channel bandwidth and the number of spectral points, :math:`N_s`, chosen during
 correlation, and is given by :math:`\pm \frac{N_s}{2 B_c}`. The delay resolution
 of the SBD axis is determined by the channel bandwidth and the padding factor (:math:`P = 4`),
@@ -221,7 +221,7 @@ It constructs this grid from the following rules:
 
 The *delay ambiguity* is a function of the grid spacing, and given by:
 
-.. math:: \tau_{\mathrm{amb}} = \frac{1}{\delta_\nu}}
+.. math:: \tau_{\mathrm{amb}} = \frac{1}{\delta_\nu}
 
 which is the maximum unambiguous delay range (in :math:`\mu\mathrm{s}`). Note that each channel *c* maps
 to a specific MBD grid bin via a precomputed lookup table stored in
@@ -242,28 +242,60 @@ Let :math:`N_a` be the number of APs. Then the fringe-rate search space size is 
 
 .. math:: N_{\mathrm{DRSP}} = 2 \cdot 2^{\lceil \log_2(N_a) \rceil}
 
-and the actual FFT is performed on a further zero-padded array of size :math:`4 \cdot N_{\mathrm{DRSP}}`.
+and the actual FFT is performed on a further zero-padded array of size :math:`N_{\mathrm{fft}} = 4 \cdot N_{\mathrm{DRSP}}`.
 
 This transformation is implemented in (file: ``MHO_DelayRate.cc``), and consists
 of the following steps:
 
-1. Zero-pad the time axis to size :math:`4 \cdot N_{\mathrm{DRSP}}`.
+1. Zero-pad the time axis out to size :math:`N_{\mathrm{fft}}`.
 2. Apply weights: :math:`\mathcal{D}[c,a] \leftarrow \mathcal{D}[c,a] \cdot W[0,c,a,0]`.
-3. Forward FFT along the time axis.
-4. Cyclic rotation by :math:`2 \cdot N_{\mathrm{DRSP}}`.
-5. Linear interpolation down to :math:`N_{\mathrm{DRSP}}` fringe-rate bins.
+3. Apply a forward FFT along the time axis.
+4. Apply a cyclic rotation by :math:`N_{\mathrm{fft}}/2`, to center the rate axis at 0.
+5. Resample each channel's rate spectrum onto a common delay-rate grid of
+   :math:`N_{\mathrm{DRSP}}` bins, by linear interpolation, at positions scaled
+   by :math:`\nu_c/\nu_{\mathrm{ref}}` (see below).
 
-The fringe-rate axis values are:
+The re-sampling done in step 5 (not just a decimation) is needed because the fringe rate
+observed in channel *c* is the product of the physical delay rate and that channel's sky frequency.
+On account of this, the same physical delay rate appears in a *different* fringe-rate bin in every channel.
+In order to align the channels onto the same delay-rate grid, each channel's spectrum needs to be
+resampled with a scaling factor :math:`\nu_c/\nu_{\mathrm{ref}}`. The positions at which the
+cyclically-rotated spectrum of step 4 is sampled are given by:
+
+.. math::
+
+   \lambda_c(k) = \left[ \left(k - \frac{N_{\mathrm{DRSP}}}{2}\right) b_c
+   + \frac{N_{\mathrm{fft}}}{2} \right] \bmod N_{\mathrm{fft}},
+   \qquad
+   b_c = \frac{\nu_c}{\nu_{\mathrm{ref}}} \cdot
+   \frac{N_{\mathrm{fft}}}{N_{\mathrm{DRSP}}}
+   = 4\,\frac{\nu_c}{\nu_{\mathrm{ref}}}
+
+and the output :math:`\mathcal{R}[c,k]` (below) is formed via linear
+interpolation between the two samples bracketing :math:`\lambda_c(k)`. The effect is
+that channels above the reference frequency are compressed and channels below
+it are stretched, by a factor that converts their fringe rate to a common
+delay rate grid. This must be done before the scatter-accumulate in the following section
+so that the *k*-th bin maps to the same physical delay rate in every channel, and
+the contributions from channels at different sky frequencies can be summed coherently.
+
+The axis labels corresponding to each bin *k* are *fringe rate* (units :math:`\mathrm{s}^{-1}`), given by:
 
 .. math::
 
    \mathrm{FR}[k] = \frac{k - N_{\mathrm{DRSP}}/2}{\Delta t \cdot N_{\mathrm{DRSP}}}
    \qquad k = 0, \dots, N_{\mathrm{DRSP}}-1
 
-where :math:`\Delta t` is the AP length (chosen at time of correlation) in seconds. The unit is :math:`\mathrm{s}^{-1}`,
-and the corresponding *delay rate* is :math:`\mathrm{DR}[k] = \frac{ \mathrm{FR}[k] }{ \nu_{\mathrm{ref}} }`.
-The maximum span of the available delay-rate search range is: :math:`\pm \frac{1}{2\Delta t \nu_{\mathrm{ref}} }`, although
-this can be limited by control keyword ``dr_win`` to a narrower range.
+where :math:`\Delta t` is the AP length (chosen at time of correlation) in seconds.
+Note that despite the resampling above, the stored axis values are fringe rates, with
+the final conversion to delay rate, :math:`\mathrm{DR}[k] = \frac{ \mathrm{FR}[k] }{ \nu_{\mathrm{ref}} }`,
+being applied in ``MHO_MBDelaySearch.cc``. The delay-rate bin spacing therefore follows as:
+
+.. math:: \delta_{\mathrm{DR}} = \frac{1}{\Delta t \, N_{\mathrm{DRSP}} \, \nu_{\mathrm{ref}}}
+
+The maximum span of the available
+delay-rate search range is: :math:`\pm \frac{1}{2\Delta t \nu_{\mathrm{ref}} }`
+(which can be limited by control keyword ``dr_win`` to a narrower range).
 
 Scatter-Accumulate into MBD Search Buffer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -297,7 +329,13 @@ A forward FFT is applied along axis 1, of the buffer :math:`\mathcal{B}`:
 
 This transforms from the frequency/channel domain to the MBD delay domain.
 The MBD axis values are obtained from the axis labels after a final cyclic
-rotation by :math:`N_{\mathrm{grid}}/2`, to center the zero-delay bin.
+rotation by :math:`N_{\mathrm{grid}}/2`, to center the zero-delay bin. The MBD
+bin spacing is set by the frequency grid, and is given by:
+
+.. math::
+
+   \delta_{\mathrm{MBD}} = \frac{1}{N_{\mathrm{grid}} \, \delta_\nu}
+   = \frac{\tau_{\mathrm{amb}}}{N_{\mathrm{grid}}}
 
 Optional Incoherent Averaging
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
