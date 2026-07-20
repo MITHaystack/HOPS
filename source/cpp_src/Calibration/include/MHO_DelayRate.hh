@@ -8,10 +8,8 @@
 #include "MHO_TableContainer.hh"
 
 #include "MHO_BinaryOperator.hh"
-#include "MHO_CyclicRotator.hh"
 #include "MHO_EndZeroPadderOptimized.hh"
 #include "MHO_MultidimensionalFastFourierTransform.hh"
-#include "MHO_SubSample.hh"
 
 #ifdef HOPS_USE_FFTW3
     #include "MHO_MultidimensionalFastFourierTransformFFTW.hh"
@@ -30,6 +28,21 @@ namespace hops
 
 /**
  * @brief Class MHO_DelayRate
+ *
+ * Transforms a single SBD lag slice of the visibilities from the time (AP) domain into
+ * the delay-rate domain. The sequence is: zero-pad the time axis by kTimePadFactor,
+ * apply the data weights, forward FFT, then resample each channel onto a delay-rate grid
+ * which is common to all channels.
+ *
+ * The last step is somewhat convoluted. The fringe rate seen in a channel is
+ * (delay rate) * (that channel's sky frequency), so one physical delay rate falls in a
+ * different fringe-rate bin in every channel. Resampling channel c by nu_c/nu_ref removes
+ * that dependence, so that output bin k maps to the same delay rate in every channel and
+ * MHO_MBDelaySearch may accumulate different channels into a shared rate bin.
+ *
+ * Note that the axis labels written here are fringe rates *at the reference frequency*,
+ * i.e. nu_ref * (delay rate); the division by nu_ref is done by the caller.
+ *
  */
 class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sbd_type >
 {
@@ -40,7 +53,7 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         /**
          * @brief Setter for reference frequency
          *
-         * @param ref_freq New reference frequency value in Hertz
+         * @param ref_freq New reference frequency value in MHz
          */
         void SetReferenceFrequency(double ref_freq) { fRefFreq = ref_freq; };
 
@@ -75,7 +88,7 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
          */
         virtual bool InitializeImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out) override;
         /**
-         * @brief Executes MHO_DelayRate operations: zero padding, FFT, cyclic rotation, and interpolation.
+         * @brief Executes MHO_DelayRate operations: zero padding, weighting, FFT, and resampling.
          *
          * @param in1 Input data for interpolation
          * @param in2 Input data weights
@@ -87,14 +100,14 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
 
     private:
         std::size_t fInDims[VIS_NDIM];
-        std::size_t fOutDims[VIS_NDIM];
 
-        //precomputed per-(ch,dr) interpolation entries - avoids fmod in hot loop.
-        //Declared here so it is visible to all method signatures below.
+        //One resampling instruction: output rate bin k of channel c is the linear interpolation out:
+        //(1-frac)*spectrum[lo] + frac*spectrum[hi], the interp parameters are precomputed per (ch,dr) so the hot loop
+        //carries no fmod or index arithmetic.
         struct InterpEntry
         {
-                int l0, l1;
-                double w;
+                int lo, hi;
+                double frac;
         };
 
         /**
@@ -114,52 +127,32 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
         void ConditionallyResizeOutput(const std::size_t* dims, std::size_t size, XArgType3* out);
 
         /**
-         * @brief Applies linear interpolation and modifies delay rate axis for input data.
+         * @brief Builds fInterpTable, the per-(channel, rate-bin) resampling instructions
+         *        that put every channel onto a common delay-rate grid. See the class
+         *        comment for why this rescaling is needed.
+         *
+         * @param in1 Input data array of type XArgType1 (supplies the channel sky frequencies)
+         */
+        void BuildResamplingTable(const XArgType1* in1);
+
+        /**
+         * @brief Resamples each channel onto the common delay-rate grid and writes the
+         *        rate axis labels.
+         *        Loop order is dr(outer)->sbd(inner) so the innermost loop walks contiguous
+         *        memory via raw pointers, paying the OffsetFromStrideIndex cost once per
+         *        (pp,ch,dr) triple rather than once per element. Results are staged in
+         *        fInterpWorkspace to avoid aliasing with the source rows.
          *
          * @param in1 Input data array of type XArgType1
          * @param out Output data array of type XArgType3
          */
         void ApplyInterpolation(const XArgType1* in1, XArgType3* out);
 
-        /**
-         * @brief Optimized version of ApplyInterpolation.
-         *        Swaps loop order to dr(outer)->sbd(inner) so the innermost loop walks
-         *        contiguous memory via raw pointers, paying the OffsetFromStrideIndex cost
-         *        once per (pp,ch,dr) triple rather than once per element.
-         *        Results are staged in fInterpWorkspace to avoid aliasing with source rows.
-         *        The caller selects which interpolation table to use (fInterpTable for the
-         *        post-rotation array, fPreRotatedInterpTable for the pre-rotation array).
-         *
-         * @param in1 Input data array of type XArgType1
-         * @param out Output data array of type XArgType3
-         * @param table Interpolation table to use (l0/l1 indices into the out TIME dimension)
-         */
-        void ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out, const std::vector< InterpEntry >& table);
-
-        /**
-         * @brief Legacy execution path: ZeroPadder -> ApplyDataWeights -> FFT ->
-         *        CyclicRotator -> ApplyInterpolationOptimized(fInterpTable).
-         *        Preserved for reference and correctness comparison.
-         */
-        bool ExecuteImplLegacy(const XArgType1* in1, const XArgType2* in2, XArgType3* out);
-
-        /**
-         * @brief Optimized execution path: ZeroPadder -> ApplyDataWeights -> FFT ->
-         *        ApplyInterpolationOptimized(fPreRotatedInterpTable).
-         *        Skips the separate CyclicRotator pass by using pre-adjusted l0/l1 indices
-         *        that read directly from the post-FFT (pre-rotation) array.
-         *        Axis labels are written by ApplyInterpolationOptimized as before.
-         */
-        bool ExecuteImplOptimized(const XArgType1* in1, const XArgType2* in2, XArgType3* out);
-
 #ifdef HOPS_USE_FFTW3
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransformFFTW< visibility_type >;
 #else
         using FFT_ENGINE_TYPE = MHO_MultidimensionalFastFourierTransform< visibility_type >;
 #endif
-
-        MHO_SubSample< sbd_type > fSubSampler;
-        MHO_CyclicRotator< sbd_type > fCyclicRotator;
 
         MHO_EndZeroPadderOptimized< visibility_type > fZeroPadder;
         FFT_ENGINE_TYPE fFFTEngine;
@@ -169,14 +162,12 @@ class MHO_DelayRate: public MHO_BinaryOperator< visibility_type, weight_type, sb
 
         bool fInitialized;
 
+        //Resampling instructions, indexed [ch*fDRSPSize + dr]. The lo/hi indices already
+        //include the half-length shift that centres zero rate, so they address the raw
+        //post-FFT array directly and no separate fftshift pass is needed.
         std::vector< InterpEntry > fInterpTable;
 
-        //pre-rotated version of fInterpTable: l0/l1 adjusted by +np/2 (mod np) so that
-        //ApplyInterpolationOptimized can read directly from the post-FFT (pre-rotation) array,
-        //eliminating the separate CyclicRotator pass from ExecuteImplOptimized.
-        std::vector< InterpEntry > fPreRotatedInterpTable;
-
-        //staging buffer for ApplyInterpolationOptimized: fDRSPSize rows x nsbd columns
+        //staging buffer for ApplyInterpolation: fDRSPSize rows x nsbd columns
         std::vector< sbd_type::value_type > fInterpWorkspace;
 };
 
