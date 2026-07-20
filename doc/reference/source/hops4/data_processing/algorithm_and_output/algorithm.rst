@@ -378,7 +378,6 @@ terms from the visibilities:
    = \exp\!\Bigl(-2\pi i \bigl[
        \nu_c \, \dot{\tau}_{\mathrm{dr}} \, \Delta t_a
        + \tau_{\mathrm{mbd}} \, (\nu_c - \nu_{\mathrm{ref}})
-       + \delta_{\mathrm{SB}}(\tau_{\mathrm{mbd}}, c)
    \bigr]\Bigr)
 
 where:
@@ -389,8 +388,6 @@ where:
   of AP *a* from the fourfit reference time (FRT), in seconds
 - :math:`\tau_{\mathrm{mbd}}` is the trial multi-band delay (us)
 - :math:`\nu_{\mathrm{ref}}` is the reference frequency (MHz)
-- :math:`\delta_{\mathrm{SB}}` is a sideband correction term that accounts
-  for the zero-padding offset in the SBD domain
 
 Precomputation and Phasor Recurrence
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -412,8 +409,8 @@ The phasor for AP *a* is then advanced by recurrence:
 
 This replaces :math:`N_a` complex exponential evaluations with :math:`N_a` complex multiplications.
 
-Quintic Lagrange Interpolation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Five-point Lagrange Interpolation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After filling the 5x5x5 amplitude cube:
 
@@ -425,7 +422,7 @@ the algorithm performs an iterative refinement search (function ``max555``), whi
    dimension.
 2. Defines an 11x11x11 sub-grid within the current bounds.
 3. For each of the 1331 sub-grid points, computes the interpolated value
-   using *quintic Lagrange interpolation* [AS1965]_ (25.2.15).
+   using *five point (quartic) Lagrange interpolation* [AS1965]_ (25.2.15).
 4. Locates the maximum value and its coordinates.
 5. Relocate the center to the maximum, then reduces ``dx`` by a factor of 5.
 6. Repeats until ``dx < 1e-4`` in all dimensions.
