@@ -231,12 +231,12 @@ Delay-Rate Transform
 ~~~~~~~~~~~~~~~~~~~~
 
 For each SBD lag :math:`\ell`, the algorithm first extracts a slice of the SBD
-array:
+array (with free running indices over channels, *c*, and APs, *a*):
 
 .. math:: \mathcal{D}[c,\,a] = \mathcal{S}'[0,\,c,\,a,\,\ell]
 
 This slice is then transformed to the fringe-rate domain via a FFT along the
-TIME_AXIS.
+TIME_AXIS (APs).
 
 Let :math:`N_a` be the number of APs. Then the fringe-rate search space size is set to:
 
@@ -258,7 +258,7 @@ of the following steps:
 The re-sampling done in step 5 (not just a decimation) is needed because the fringe rate
 observed in channel *c* is the product of the physical delay rate and that channel's sky frequency.
 On account of this, the same physical delay rate appears in a *different* fringe-rate bin in every channel.
-In order to align the channels onto the same delay-rate grid, each channel's spectrum needs to be
+In order to align the channels onto the same grid, each channel's spectrum needs to be
 resampled with a scaling factor :math:`\nu_c/\nu_{\mathrm{ref}}`. The positions at which the
 cyclically-rotated spectrum of step 4 is sampled are given by:
 
@@ -274,12 +274,13 @@ cyclically-rotated spectrum of step 4 is sampled are given by:
 and the output :math:`\mathcal{R}[c,k]` (below) is formed via linear
 interpolation between the two samples bracketing :math:`\lambda_c(k)`. The effect is
 that channels above the reference frequency are compressed and channels below
-it are stretched, by a factor that converts their fringe rate to a common
-delay rate grid. This must be done before the scatter-accumulate in the following section
-so that the *k*-th bin maps to the same physical delay rate in every channel, and
+it are stretched, by a factor that maps their channel dependent fringe rates to a common
+grid at the reference frequency. This must be done before the scatter-accumulate in the following section
+so that the *k*-th bin maps to the same physical delay rate for every channel, and
 the contributions from channels at different sky frequencies can be summed coherently.
 
-The axis labels corresponding to each bin *k* are *fringe rate* (units :math:`\mathrm{s}^{-1}`), given by:
+After step 5, the axis labels corresponding to each bin *k* are fringe rates *at the reference
+frequency* (units :math:`\mathrm{s}^{-1}`), given by:
 
 .. math::
 
@@ -287,9 +288,8 @@ The axis labels corresponding to each bin *k* are *fringe rate* (units :math:`\m
    \qquad k = 0, \dots, N_{\mathrm{DRSP}}-1
 
 where :math:`\Delta t` is the AP length (chosen at time of correlation) in seconds.
-Note that despite the resampling above, the stored axis values are fringe rates, with
-the final conversion to delay rate, :math:`\mathrm{DR}[k] = \frac{ \mathrm{FR}[k] }{ \nu_{\mathrm{ref}} }`,
-being applied in ``MHO_MBDelaySearch.cc``. The delay-rate bin spacing therefore follows as:
+The final conversion to delay rate, :math:`\mathrm{DR}[k] = \frac{ \mathrm{FR}[k] }{ \nu_{\mathrm{ref}} }`,
+is applied in ``MHO_MBDelaySearch.cc``, and the delay-rate bin spacing is given by:
 
 .. math:: \delta_{\mathrm{DR}} = \frac{1}{\Delta t \, N_{\mathrm{DRSP}} \, \nu_{\mathrm{ref}}}
 
