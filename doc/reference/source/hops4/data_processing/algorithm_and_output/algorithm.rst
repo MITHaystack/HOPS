@@ -221,9 +221,9 @@ It constructs this grid from the following rules:
 
 The *delay ambiguity* is a function of the grid spacing, and given by:
 
-.. math:: \tau_{\mathrm{amb}} = \frac{1}{\delta_\nu} \quad \text{(microseconds)}
+.. math:: \tau_{\mathrm{amb}} = \frac{1}{\delta_\nu}}
 
-which is the maximum unambiguous delay range. Note that each channel *c* maps
+which is the maximum unambiguous delay range (in microseconds) Note that each channel *c* maps
 to a specific MBD grid bin via a precomputed lookup table stored in
 ``MHO_MBDelaySearch::fMBDBinForChannel[c]``.
 
@@ -530,8 +530,8 @@ Caching and Iteration
 ^^^^^^^^^^^^^^^^^^^^^
 
 The fringe fitter supports iterative refinement loops controlled by
-user-specified ``prefit`` and ``postfit`` operators. When such
-operators are present, the original visibility and weight data are cached
+user-specified ``prefit`` and ``postfit`` operators. When
+operators from both categories are present, the original visibility and weight data are cached
 and can be refreshed between iterations, allowing convergence-based
 outer loops (e.g., iterative flagging or passband estimation).
 

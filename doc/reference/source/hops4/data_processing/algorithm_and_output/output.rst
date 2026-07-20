@@ -112,7 +112,8 @@ where :math:`\Delta_{\mathrm{ambig}}` is an ambiguity correction applied when
    \mathrm{round}\!\left(\frac{\tau_{\mathrm{total}}^{\mathrm{SBD}}
    - \tau_{\mathrm{total}}^{\mathrm{MBD}}}{\tau_{\mathrm{amb}}}\right)
 
-and :math:`\tau_{\mathrm{amb}}` is the MBD delay ambiguity (proportional to the inverse of the MBD grid spacing).
+and :math:`\tau_{\mathrm{amb}} = 1/\delta_\nu` is the MBD delay ambiguity (the inverse of
+the *frequency* grid spacing :math:`\delta_\nu` (MHz) used in the transform from channel to MBD space).
 
 Error Estimates
 ~~~~~~~~~~~~~~~
