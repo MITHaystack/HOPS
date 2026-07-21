@@ -377,7 +377,7 @@ The coarse search yields integer bin indices. The fine interpolation
 (file: ``MHO_InterpolateFringePeakOptimized.cc``) refines the peak
 location to sub-bin precision using a two-step process: (1) direct evaluation
 of the fringe function on a 5x5x5 grid, followed by (2)
-iterative quintic Lagrange interpolation.
+iterative 5-point Lagrange interpolation.
 
 The 5x5x5 Grid
 ~~~~~~~~~~~~~~
