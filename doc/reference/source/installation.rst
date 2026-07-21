@@ -1,3 +1,21 @@
+====================
+Getting the software
+====================
+
+If you are comfortable using ``git``, the easiest way to get the latest version
+of the HOPS4 software is to clone it from the github repository:
+
+.. code-block:: bash
+
+   git clone https://github.com/MITHaystack/HOPS.git
+
+If you would rather not use ``git``, or want a specific tagged release version,
+you can navigate to the release page here:
+
+https://github.com/MITHaystack/HOPS/releases
+
+and download the specific package you need.
+
 =============
 Compiling
 =============
