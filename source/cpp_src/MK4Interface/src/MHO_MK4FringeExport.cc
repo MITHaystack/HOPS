@@ -62,8 +62,8 @@ int MHO_MK4FringeExport::fill_200(struct type_200* t200)
     bool ok;
     clear_200(t200);
 
-    //set to zero for now
-    t200->software_rev[0] = 0; //HOPS_SVN_REV;
+    //store a coarse version stamp for tracking (legacy stored HOPS_SVN_REV here).
+    t200->software_rev[0] = (short)(HOPS_VERSION_MAJOR * 100 + HOPS_VERSION_MINOR);
 
     std::string exper_num;
     ok = fPStore->Get("/vex/experiment_number", exper_num);
@@ -324,52 +324,47 @@ int MHO_MK4FringeExport::fill_205(struct type_203* t203, struct type_205* t205)
     int nchan;
     FillInt(nchan, "/config/nchannels", 0);
     nchan = std::min(MAX_CHAN, nchan);
+    //ffit_chan is a fixed-size array; never index past it
+    const int max_ffit_chan = (int)(sizeof(t205->ffit_chan) / sizeof(t205->ffit_chan[0]));
+    nchan = std::min(nchan, max_ffit_chan);
+
+    //Use the same channel count and synthetic index scheme as FillChannels
+    //(type_203) so the ffit_chan -> type_203 cross-references can resolve them. FillChannels
+    //writes each record at index counter = ppi*nchannels + ch, where nchannels is
+    //the visibility channel-axis size (not the clamped config value).
+    std::size_t nchannels_vis = 0;
+    visibility_type* vis_data = fCStore->GetObject< visibility_type >(std::string("vis"));
+    if(vis_data != nullptr)
+    {
+        auto chan_ax = &(std::get< CHANNEL_AXIS >(*vis_data));
+        nchannels_vis = chan_ax->GetSize();
+    }
+
+    std::vector< std::string > polprod_set;
+    fPStore->Get("/config/polprod_set", polprod_set);
+    //channels[] holds at most 4 type_203 indices (one per pol-product)
+    std::size_t npp = std::min(polprod_set.size(), (std::size_t)4);
+
     std::vector< std::string > ch_labels;
     ok = fPlotData.Get("/PLOT_INFO/#Ch", ch_labels);
-    if(ok && nchan > 0 && nchan < ch_labels.size())
+    if(ok && nchan > 0 && nchan < (int)ch_labels.size())
     {
         for(int i = 0; i < nchan; i++)
         {
             t205->ffit_chan[i].ffit_chan_id = ch_labels[i][0];
-            //this element (array 0-3) is effectively useless (we have no type_101 records to reference)
-            t205->ffit_chan[i].channels[0] = (short)i;
+            //map this fourfit channel to its type_203 record(s), one per
+            //pol-product; unused slots stay -1 (the clear_205 default).
+            for(std::size_t ppi = 0; ppi < npp; ppi++)
+            {
+                t205->ffit_chan[i].channels[ppi] = (short)(ppi * nchannels_vis + i);
+            }
         }
     }
-
-    // nfreqs = 0;
-    // for (ch=0; ch<MAXFREQ; ch++)
-    //     {
-    //     fc = pass->pass_data + ch;
-    //     if (fc->frequency == 0.0 || nfreqs >= pass->nfreq)
-    //         continue;
-    //     nfreqs++;
-    //     t205->ffit_chan[ch].ffit_chan_id = fc->freq_code;
-    //     nch = 0;
-    //     for (sb=0; sb<2; sb++)
-    //         {
-    //         ind = sb + 2 * pass->pol;
-    //         if (fc->index[ind] <= 0)
-    //             continue;
-    //         for (j=0; j<nchan; j++)
-    //             if (fc->index[ind] == t203->channels[j].index)
-    //                 break;
-    //         if (j == nchan)
-    //             {
-    //             msg ("Could not find index number %d in type 203 record",
-    //                                             2, fc->index[ind]);
-    //             return (-1);
-    //             }
-    //         if (nch >= 4)
-    //             {
-    //             msg ("Error - more than 4 correlator indices in ffit chan '%c'",
-    //                                             2, fc->freq_code);
-    //             return (-1);
-    //             }
-    //         t205->ffit_chan[ch].channels[nch] = j;
-    //         nch++;
-    //         }
-    //     }
-    //
+    else
+    {
+        msg_warn("mk4interface", "could not fill type_205 ffit_chan table; "
+                                 "plot channel labels (PLOT_INFO/#Ch) unavailable" << eom);
+    }
 
     return 0;
 }
@@ -393,6 +388,8 @@ int MHO_MK4FringeExport::fill_206(struct type_206* t206)
     t206->first_ap = first;
     t206->last_ap = last;
 
+    //NOTE: legacy intg_time also folds in the status->tot_sb_bw_aperr bandwidth-
+    //editing correction; /fringe/integration_time does not (small difference).
     FillFloat(t206->intg_time, "/fringe/integration_time");
     FillShort(t206->ratesize, "/fringe/n_drsp_points");
     FillShort(t206->mbdsize, "/fringe/n_mbd_points");
@@ -418,47 +415,215 @@ int MHO_MK4FringeExport::fill_206(struct type_206* t206)
     bool ok = fPStore->Get("/config/ap_period", acc_period);
     ok = fPStore->Get("/vex/scan/sample_period/value", samp_period);
 
-    //TODO FIXME ...THESE ARE DUMMY values
-    // we need to check these values, for now we are treating these values
-    // as if there are no per-channel/per-ap data edits!
-    // struct sidebands    accepted[64];           /* APs accepted by chan/sband */
-    // struct sbweights    weights[64];            /* Samples per channel/sideband */
-    // float               accept_ratio;           /* % ratio min/max data accepted */
-    // float               discard;                /* % data discarded */
     double samp_per_ap = acc_period / samp_period;
-    for(std::size_t fr = 0; fr < nchannels; fr++)
+
+    //Per-channel accepted-AP counts and summed weights, computed from the weight
+    //container (matches legacy status->ap_num / status->ap_frac). Each HOPS4
+    //channel carries a single net sideband, so only the matching usb/lsb slot is
+    //populated. This replaces the previous dummy values, which assumed every AP
+    //was accepted and ignored per-channel/per-AP edits.
+    weight_type* wt_data = fCStore->GetObject< weight_type >(std::string("weight"));
+    std::size_t w_nchan = (wt_data != nullptr) ? wt_data->GetDimension(CHANNEL_AXIS) : 0;
+    std::size_t w_nap = (wt_data != nullptr) ? wt_data->GetDimension(TIME_AXIS) : 0;
+    if(wt_data == nullptr)
+    {
+        msg_warn("mk4interface", "could not retrieve weight object; type_206 accept/weight "
+                                 "statistics will be zero" << eom);
+    }
+
+    //do not index past the fixed-size accepted[]/weights[] arrays
+    const std::size_t max_206_chan = sizeof(t206->accepted) / sizeof(t206->accepted[0]);
+    std::size_t nfr = std::min(nchannels, max_206_chan);
+
+    long total_accepted = 0;
+    int min_ap = -1;
+    int max_ap = 0;
+    for(std::size_t fr = 0; fr < nfr; fr++)
     {
         std::string sb;
         chan_ax->RetrieveIndexLabelKeyValue(fr, "net_sideband", sb);
-        double usb = 0.;
-        double lsb = 0.;
-        if(sb == "U")
+        bool is_usb = (sb == "U");
+        bool is_lsb = (sb == "L");
+
+        int accepted_count = 0;
+        double weight_sum = 0.0;
+        if(wt_data != nullptr && fr < w_nchan)
         {
-            usb = 1.0;
-            lsb = 0.0;
+            for(std::size_t ap = 0; ap < w_nap; ap++)
+            {
+                double w = wt_data->at(0, fr, ap, 0);
+                if(w > 0.0)
+                {
+                    accepted_count++;
+                    weight_sum += w;
+                }
+            }
         }
-        if(sb == "L")
+
+        //The notch/passband operators rescale the stored weight by
+        //1/used_bandwidth_fraction (amplitude normalization for the excised
+        //bandwidth). Legacy type_206 weights[] is the full-bandwidth time-domain
+        //sample count (ap_frac * samp_per_ap), with the bandwidth reduction handled
+        //separately on intg_time. Fix up via the used_bandwidth_fraction back in here to undo
+        //the operator's rescaling; the label is absent (=> 1.0) when no bandwidth
+        //editing ran. A fully-cut channel has zero weight already => zero samples.
+        //TODO FIXME: We need to review the full notches/passband treatment of weights...it is very confusing, 
+        //and it is not clear what the correct limit is (preserve amp or preserve snr, or perhaps neither?)
+        double used_bw_frac = 1.0;
+        chan_ax->RetrieveIndexLabelKeyValue(fr, "used_bandwidth_fraction", used_bw_frac);
+
+        t206->accepted[fr].usb = is_usb ? (short)accepted_count : 0;
+        t206->accepted[fr].lsb = is_lsb ? (short)accepted_count : 0;
+        //number of samples by freq/sband = summed (de-rescaled) AP weight * samples per AP
+        t206->weights[fr].usb = is_usb ? (weight_sum * used_bw_frac * samp_per_ap) : 0.0;
+        t206->weights[fr].lsb = is_lsb ? (weight_sum * used_bw_frac * samp_per_ap) : 0.0;
+
+        total_accepted += accepted_count;
+        if(min_ap < 0 || accepted_count < min_ap)
         {
-            usb = 0.0;
-            lsb = 1.0;
+            min_ap = accepted_count;
         }
-        t206->accepted[fr].usb = usb * (last - first);
-        t206->accepted[fr].lsb = lsb * (last - first);
-        //NOTE: the use of integration time here ignores individual channel edits!
-        t206->weights[fr].usb = t206->intg_time * (usb * samp_per_ap);
-        t206->weights[fr].lsb = t206->intg_time * (lsb * samp_per_ap);
+        if(accepted_count > max_ap)
+        {
+            max_ap = accepted_count;
+        }
     }
-    //ignore cuts ...fake/dummy values
-    t206->accept_ratio = 100;
-    t206->discard = 0.0;
+
+    //accept_ratio = percentage ratio of the min to max accepted-AP count over channels
+    t206->accept_ratio = (max_ap > 0) ? (float)(100 * min_ap) / (float)max_ap : 0.0f;
+
+    //HOPS4 has no separate filter-discard counter, so approximate the discard
+    //percentage as the fraction of the total possible APs (nchan * naps) that were
+    //not accepted (see [3.5] in fix_export_plan.txt).
+    long total_possible = (long)nfr * (long)w_nap;
+    t206->discard = (total_possible > 0)
+                        ? (float)(100 * (total_possible - total_accepted)) / (float)total_possible
+                        : 0.0f;
 
     return 0;
 }
 
+//map a HOPS4 pc_mode string to the legacy control.h enum value used in
+//type_207 pcal_mode (NORMAL=1, MANUAL=3, MULTITONE=4); default to multitone.
+static int pcmode_string_to_enum(const std::string& mode)
+{
+    if(mode == "normal")
+    {
+        return 1; //NORMAL...this doesn't exist in HOPS4
+    }
+    if(mode == "manual")
+    {
+        return 3; //MANUAL
+    }
+    return 4; //MULTITONE (HOPS4 default)
+}
+
 int MHO_MK4FringeExport::fill_207(struct type_207* t207)
 {
-    //TODO FIXME implement this
     clear_207(t207);
+
+    //resolve per-station pcal mode: generic /control/station/pc_mode, overridden
+    //by station-specific /control/station/<site_id>/pc_mode (matches the builders).
+    std::string ref_id;
+    std::string rem_id;
+    fPStore->Get("/ref_station/site_id", ref_id);
+    fPStore->Get("/rem_station/site_id", rem_id);
+
+    std::string ref_pc_mode = "multitone";
+    std::string rem_pc_mode = "multitone";
+    std::string generic_mode;
+    if(fPStore->Get("/control/station/pc_mode", generic_mode))
+    {
+        ref_pc_mode = generic_mode;
+        rem_pc_mode = generic_mode;
+    }
+    std::string tmp_mode;
+    if(fPStore->Get(std::string("/control/station/") + ref_id + "/pc_mode", tmp_mode))
+    {
+        ref_pc_mode = tmp_mode;
+    }
+    if(fPStore->Get(std::string("/control/station/") + rem_id + "/pc_mode", tmp_mode))
+    {
+        rem_pc_mode = tmp_mode;
+    }
+
+    int ref_pcmode_val = pcmode_string_to_enum(ref_pc_mode);
+    int rem_pcmode_val = pcmode_string_to_enum(rem_pc_mode);
+    t207->pcal_mode = 10 * ref_pcmode_val + rem_pcmode_val;
+
+    //NOTE: multitone pcal does not use a single tone frequency, it uses many
+    //separate tones per channel. The legacy type_207 has room for only one frequency per
+    //channel/sideband, so (as in legacy fill_207) we'll store the channel midband
+    //frequency as a representative summary value, it is not an actual tone frequency!
+    //midband in KHz = 2.5e-4 / samp_period.
+    double samp_period = 0.0;
+    fPStore->Get("/vex/scan/sample_period/value", samp_period);
+
+    //TODO FIXME, this calculation (from fill_207) is wrong!
+    double midband = (samp_period > 0.0) ? (2.5e-4 / samp_period) : 0.0;
+
+    int nchan = 0;
+    FillInt(nchan, "/config/nchannels", 0);
+    const int max_pc_chan = (int)(sizeof(t207->ref_pcamp) / sizeof(t207->ref_pcamp[0])); //64
+    nchan = std::min(nchan, max_pc_chan);
+
+    //Per-channel pcal amp/phase/offset come from the plot data (PLOT_INFO). The amp
+    //is stored there as ave_pc_mag*1000 for the plot display, so divide by 1000 to
+    //recover the raw magnitude legacy writes. Phase and
+    //offset are already in degrees. For pseudo-Stokes I the non-suffixed (first-pol)
+    //arrays are used, since type_207 only has a single ref/rem slot per channel.
+    std::vector< double > ref_amp, rem_amp, ref_phs, rem_phs, ref_off, rem_off;
+    bool ok_amp = fPlotData.Get("/PLOT_INFO/PCAmpRf", ref_amp);
+    ok_amp = fPlotData.Get("/PLOT_INFO/PCAmpRm", rem_amp) && ok_amp;
+    fPlotData.Get("/PLOT_INFO/PCPhsRf", ref_phs);
+    fPlotData.Get("/PLOT_INFO/PCPhsRm", rem_phs);
+    fPlotData.Get("/PLOT_INFO/PCOffRf", ref_off);
+    fPlotData.Get("/PLOT_INFO/PCOffRm", rem_off);
+    if(!ok_amp)
+    {
+        msg_warn("mk4interface", "pcal plot data (PLOT_INFO/PCAmp*) unavailable; "
+                                 "type_207 amp/phase/offset will be zero" << eom);
+    }
+
+    for(int i = 0; i < nchan; i++)
+    {
+        float amp_ref = (i < (int)ref_amp.size()) ? (float)(ref_amp[i] / 1000.0) : 0.0f;
+        float amp_rem = (i < (int)rem_amp.size()) ? (float)(rem_amp[i] / 1000.0) : 0.0f;
+        float phs_ref = (i < (int)ref_phs.size()) ? (float)ref_phs[i] : 0.0f;
+        float phs_rem = (i < (int)rem_phs.size()) ? (float)rem_phs[i] : 0.0f;
+        float off_ref = (i < (int)ref_off.size()) ? (float)ref_off[i] : 0.0f;
+        float off_rem = (i < (int)rem_off.size()) ? (float)rem_off[i] : 0.0f;
+
+        //legacy writes the same value to usb and lsb
+        t207->ref_pcamp[i].usb = amp_ref;
+        t207->ref_pcamp[i].lsb = amp_ref;
+        t207->rem_pcamp[i].usb = amp_rem;
+        t207->rem_pcamp[i].lsb = amp_rem;
+        t207->ref_pcphase[i].usb = phs_ref;
+        t207->ref_pcphase[i].lsb = phs_ref;
+        t207->rem_pcphase[i].usb = phs_rem;
+        t207->rem_pcphase[i].lsb = phs_rem;
+        t207->ref_pcoffset[i].usb = off_ref;
+        t207->ref_pcoffset[i].lsb = off_ref;
+        t207->rem_pcoffset[i].usb = off_rem;
+        t207->rem_pcoffset[i].lsb = off_rem;
+
+        //pcal tone frequency: multitone -> representative channel midband in usb
+        //(there is no single multitone frequency; lsb unused...convention from fill_207 (probably broken for a long time))
+        //legacy 'normal' mode is not implemented/supported, so it is left zero for now.
+        if(ref_pcmode_val == 4)
+        {
+            t207->ref_pcfreq[i].usb = (float)midband;
+        }
+        if(rem_pcmode_val == 4)
+        {
+            t207->rem_pcfreq[i].usb = (float)midband;
+        }
+    }
+
+    //ref_pcrate/rem_pcrate: not yet computed in HOPS4 (legacy status->pc_rate); leave zero.
+    //ref_errate/rem_errate: Mark4 tape-era per-track error rates, meaningless for difx; leave zero.
+
     return 0;
 }
 
@@ -566,8 +731,8 @@ int MHO_MK4FringeExport::fill_208(struct type_202* t202, struct type_208* t208)
     t208->unused1[1] = parampol + POLCHAR_OFFSET;
     t208->unused1[2] = '\0';
 
-    //not used
-    strncpy(t208->tape_qcode, "99999?", 6);
+    //legacy compute_qf writes a "999999"-style constant for difx-era data (no tape);
+    strncpy(t208->tape_qcode, "999999", 6);
 
     FillDouble(t208->adelay, "/model/adelay");
     FillDouble(t208->arate, "/model/arate");
