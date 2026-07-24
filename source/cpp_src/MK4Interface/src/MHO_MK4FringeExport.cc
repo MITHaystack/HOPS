@@ -577,11 +577,12 @@ int MHO_MK4FringeExport::fill_208(struct type_202* t202, struct type_208* t208)
     FillDouble(t208->tot_sbd, "/fringe/total_sbdelay");
     FillDouble(t208->tot_rate, "/fringe/total_drate");
 
-    TODO_FIXME_MSG("TODO FIXME -- the totals for the reference station are not yet calculated")
+    //reference-station totals are computed in MHO_BasicFringeUtilities.cc
+    //(total_*_ref / tot_phase_ref, including the mbd_anchor==sbd adjustment)
     FillDouble(t208->tot_mbd_ref, "/fringe/total_mbdelay_ref");
     FillDouble(t208->tot_sbd_ref, "/fringe/total_sbdelay_ref");
     FillDouble(t208->tot_rate_ref, "/fringe/total_rate_ref");
-    FillFloat(t208->totphase_ref, "/fringe/tot_phase_ref"); //DOES NOT EXIST YET
+    FillFloat(t208->totphase_ref, "/fringe/tot_phase_ref");
 
     FillFloat(t208->resid_mbd, "/fringe/mbdelay");
     FillFloat(t208->resid_sbd, "/fringe/sbdelay");
@@ -601,7 +602,7 @@ int MHO_MK4FringeExport::fill_208(struct type_202* t202, struct type_208* t208)
     {
         inc_avg_amp = 0.0;
     }
-    ok = fPlotData.Get("extra/inc_avg_amp_freq", inc_avg_amp_freq);
+    ok = fPlotData.Get("/extra/inc_avg_amp_freq", inc_avg_amp_freq);
     if(!ok)
     {
         inc_avg_amp_freq = 0.0;
