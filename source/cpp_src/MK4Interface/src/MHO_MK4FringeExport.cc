@@ -845,12 +845,21 @@ int MHO_MK4FringeExport::fill_221(struct type_221** t221)
     ps_file += "/mk4aux/blank.ps";
     fp = fopen(ps_file.c_str(), "r");
 
+    if(fp == NULL)
+    {
+        msg_warn("mk4interface", "could not open blank postscript template '" << ps_file
+                                     << "'; type_221 will not be written for this fringe" << eom);
+        return -1;
+    }
+
     if((fd = fileno(fp)) < 0)
     {
+        fclose(fp);
         return -1;
     }
     if(fstat(fd, &file_status) != 0)
     {
+        fclose(fp);
         return -2;
     }
 
@@ -1087,6 +1096,10 @@ int MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::strin
 
     tmp = tokens[0];
     dec_degs = std::atoi(tmp.c_str());
+    //atoi("-0") == 0 silently drops the sign for declinations in (-1, 0) degrees.
+    //The mk4 sky_coord struct only carries the sign in dec_degs, so for the -0d
+    //case we preserve it by negating dec_mins/dec_secs (handled below).
+    bool dec_negative = (tmp.find('-') != std::string::npos);
     tmp = tokens[1];
 
     fTokenizer.SetDelimiter(delim2);
@@ -1105,6 +1118,17 @@ int MHO_MK4FringeExport::convert_sky_coords(struct sky_coord& coords, std::strin
     std::size_t last = tokens[1].find_first_not_of("0123456789.e+-");
     tmp = tokens[1].substr(0, last);
     dec_secs = std::atof(tmp.c_str());
+
+    //Match the canonical legacy encoding for a -00 declination (see vex/parse_dec.c,
+    //the 2001 "Fix 0 dec bug"): since dec_degs is zero and cannot hold the sign,
+    //it has to be carried by negative dec_mins/dec_secs. sexigesimal2hrdeg.c decodes
+    //exactly this (sgn forced to +1 when dec_degs == 0), so do this in order to keep the
+    //exported coordinates consistent with fourfit3.
+    if(dec_negative && dec_degs == 0)
+    {
+        dec_mins = -dec_mins;
+        dec_secs = -dec_secs;
+    }
 
     fTokenizer.SetDelimiter(delim3);
     fTokenizer.SetString(&ra);
