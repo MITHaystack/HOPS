@@ -27,6 +27,7 @@ extern "C"
 
 #include <algorithm>
 #include <array>
+#include <cmath>
 
 #define LOCK_STATUS_OK 0
 
@@ -184,8 +185,9 @@ int MHO_MK4FringeExport::fill_202(struct type_202* t202)
 
     FillFloat(t202->ref_clockrate, "/ref_station/clock_rate");
     FillFloat(t202->rem_clockrate, "/rem_station/clock_rate");
-    FillFloat(t202->ref_clock, "/ref_station/clock_early_offset");
-    FillFloat(t202->rem_clock, "/rem_station/clock_early_offset");
+    //legacy fill_202 extrapolates the clock offset to the fourfit reference time
+    FillFloat(t202->ref_clock, "/ref_station/clock_offset_at_frt");
+    FillFloat(t202->rem_clock, "/rem_station/clock_offset_at_frt");
 
     //note that in HOPS4 these (az,el, u,v) are evaluated at the FRT,
     //so they will differ from the HOPS3 values (evaluated at scan start)
@@ -385,8 +387,9 @@ int MHO_MK4FringeExport::fill_206(struct type_206* t206)
     FillDouble(ap_period, "/config/ap_period");
     FillDouble(first_ap, "/start_offset");
     FillDouble(last_ap, "/stop_offset");
-    short first = first_ap / ap_period;
-    short last = last_ap / ap_period;
+    //round rather than truncate for the AP trim boundaries
+    short first = (short)std::round(first_ap / ap_period);
+    short last = (short)std::round(last_ap / ap_period);
     t206->first_ap = first;
     t206->last_ap = last;
 
@@ -495,12 +498,17 @@ int MHO_MK4FringeExport::fill_208(struct type_202* t202, struct type_208* t208)
 #define POLMASK_RL 8
 #define POL_IXY 31
 
-    char passpol;
-    char parampol;
+    //initialize to safe defaults so the pol-product indicator written into
+    //unused1[] is never garbage (downstream tools such as fplot's gen_psname()
+    //switch on unused1[0]); POL_LL == POL_ALL == 0 here.
+    char passpol = POL_LL;
+    char parampol = POL_ALL;
+    bool recognized_polprod = true;
     std::string polprod = fPStore->GetAs< std::string >("/config/polprod");
     if(polprod == "I")
     {
         parampol = POL_IXY;
+        passpol = POL_LL; //legacy ends up with the pass pol of the first product; POL_LL is the safe equivalent
     }
     if(polprod == "XX")
     {
@@ -541,6 +549,17 @@ int MHO_MK4FringeExport::fill_208(struct type_202* t202, struct type_208* t208)
     {
         parampol = POLMASK_RR;
         passpol = POL_RR;
+    }
+    else if(polprod != "I" && polprod != "XX" && polprod != "XY" && polprod != "YX" && polprod != "YY" &&
+            polprod != "LL" && polprod != "LR" && polprod != "RL")
+    {
+        recognized_polprod = false;
+    }
+
+    if(!recognized_polprod)
+    {
+        msg_warn("mk4interface", "unrecognized pol-product '" << polprod
+                                 << "' while filling type_208; using default pass/param pol." << eom);
     }
 
     t208->unused1[0] = passpol + POLCHAR_OFFSET;
@@ -629,7 +648,14 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212* t212)
 
     int nap = fPStore->GetAs< int >("/config/total_naps");
     t212->nap = nap;
-    t212->first_ap = 0; //pass->ap_off;
+    //AP offset of this pass relative to the scan start; must match t206 first_ap
+    //(legacy sets this to pass->ap_off). Use the same start_offset/ap_period
+    //recipe (and rounding) as fill_206 so at least the two records agree.
+    double start_offset = 0.0;
+    double ap_period = 0.0;
+    FillDouble(start_offset, "/start_offset");
+    FillDouble(ap_period, "/config/ap_period");
+    t212->first_ap = (ap_period > 0.0) ? (int)std::round(start_offset / ap_period) : 0;
     t212->channel = fr;
     t212->sbd_chan = fPStore->GetAs< int >("/fringe/max_sbd_bin"); //status->max_delchan;
 
@@ -651,9 +677,21 @@ int MHO_MK4FringeExport::fill_212(int fr, struct type_212* t212)
             {
                 pvalue = phasor_data->at(fr, ap);
                 wvalue = wt_data->at(0, fr, ap, 0);
-                t212->data[ap].amp = std::abs(pvalue);
-                t212->data[ap].phase = std::arg(pvalue);
-                t212->data[ap].weight = wvalue;
+                if(wvalue <= 0.0)
+                {
+                    //legacy fill_212 writes the value amp = -1.0 for any AP with
+                    //zero weight (flagged / no data), so downstream consumers can
+                    //distinguish "no data" from "small amplitude".
+                    t212->data[ap].amp = -1.0;
+                    t212->data[ap].phase = 0.0;
+                    t212->data[ap].weight = 0.0;
+                }
+                else
+                {
+                    t212->data[ap].amp = std::abs(pvalue);
+                    t212->data[ap].phase = std::arg(pvalue);
+                    t212->data[ap].weight = wvalue;
+                }
             }
             else
             {
@@ -1222,6 +1260,7 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
     //limit to supported number of channels
     std::size_t max_chan_records = 8 * 64; //8*MAXFREQ
     std::size_t counter = 0;
+    bool truncated = false;
 
     for(std::size_t ppi = 0; ppi < polprod_set.size(); ppi++)
     {
@@ -1243,7 +1282,14 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
 
         for(std::size_t ch = 0; ch < nchannels; ch++)
         {
-            int findex = counter;
+            if(counter >= max_chan_records)
+            {
+                msg_warn("mk4interface", "too many channel records, (" << counter << "), to export to type_203, truncating to "
+                                                                       << max_chan_records << eom);
+                truncated = true;
+                break;
+            }
+
             double bandwidth = 0;
             short index = 0;
             unsigned short int sample_rate = 0;
@@ -1256,7 +1302,6 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
             std::string rem_chan_id = "";
             std::string temp_chan_id = "";
 
-            chan_ax->RetrieveIndexLabelKeyValue(ch, "index", findex);
             chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", refsb);
             chan_ax->RetrieveIndexLabelKeyValue(ch, "net_sideband", remsb);
             chan_ax->RetrieveIndexLabelKeyValue(ch, "sky_freq", ref_freq);
@@ -1285,30 +1330,32 @@ void MHO_MK4FringeExport::FillChannels(struct ch_struct* chan_array)
                 rem_chan_id.back() = rempol;
             }
 
-            index = (short)findex;
+            //HOPS4 has no type-101 records, so we assign a deterministic synthetic
+            //correlator index that is unique per (pol-product, channel) record, generated as:
+            //counter == ppi*nchannels + ch, which is the same
+            //scheme fill_205 uses to cross-reference these records (ffit_chan).
+            index = (short)counter;
             sample_rate = (unsigned short int)(2.0 * bandwidth * 1000.0); //sample rate = 2 x bandwidth (MHz) x (1000KHz/MHz)
 
-            chan_array[ch].index = index;
-            chan_array[ch].sample_rate = sample_rate;
-            chan_array[ch].refsb = refsb[0];
-            chan_array[ch].remsb = remsb[0];
-            chan_array[ch].refpol = refpol;
-            chan_array[ch].rempol = rempol;
-            chan_array[ch].ref_freq = ref_freq * 1e6; //convert to Hz
-            chan_array[ch].rem_freq = rem_freq * 1e6; //convert to Hz
-            char_clear(&(chan_array[ch].ref_chan_id[0]), 8);
-            char_clear(&(chan_array[ch].rem_chan_id[0]), 8);
-            strncpy(&(chan_array[ch].ref_chan_id[0]), ref_chan_id.c_str(), std::min(7, (int)ref_chan_id.size()));
-            strncpy(&(chan_array[ch].rem_chan_id[0]), rem_chan_id.c_str(), std::min(7, (int)rem_chan_id.size()));
+            chan_array[counter].index = index;
+            chan_array[counter].sample_rate = sample_rate;
+            chan_array[counter].refsb = refsb[0];
+            chan_array[counter].remsb = remsb[0];
+            chan_array[counter].refpol = refpol;
+            chan_array[counter].rempol = rempol;
+            chan_array[counter].ref_freq = ref_freq * 1e6; //convert to Hz
+            chan_array[counter].rem_freq = rem_freq * 1e6; //convert to Hz
+            char_clear(&(chan_array[counter].ref_chan_id[0]), 8);
+            char_clear(&(chan_array[counter].rem_chan_id[0]), 8);
+            strncpy(&(chan_array[counter].ref_chan_id[0]), ref_chan_id.c_str(), std::min(7, (int)ref_chan_id.size()));
+            strncpy(&(chan_array[counter].rem_chan_id[0]), rem_chan_id.c_str(), std::min(7, (int)rem_chan_id.size()));
 
             counter++;
+        }
 
-            if(counter >= max_chan_records)
-            {
-                msg_warn("mk4interface", "too many channel records, (" << counter << "), to export to type_203, truncating to "
-                                                                       << max_chan_records << eom);
-                break;
-            }
+        if(truncated)
+        {
+            break;
         }
     }
 }
