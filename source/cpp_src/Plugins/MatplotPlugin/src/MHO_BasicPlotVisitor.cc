@@ -339,13 +339,27 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
 
 void MHO_BasicPlotVisitor::setup_figure_layout()
 {
-    // create figure with appropriate size (8.5 x 11 inches equivalent)
-    // TODO FIXME -- add support for A4 size paper (this may require tweaking plot/text positioning)
-    fCurrentFigure = matplot::figure(true); //must be true (quiet mode)!
-    fCurrentFigure->size(fPageWidth, fPageHeight);
-    fCurrentFigure->position({100, 100});
-    // Set white background to fix grey background issue
-    fCurrentFigure->color("white");
+    if(!fCurrentFigure)
+    {
+        fCurrentFigure = matplot::figure(true); //must be true (quiet mode)!
+        // TODO FIXME -- add support for A4 size paper (this may require tweaking plot/text positioning)
+        // create figure with appropriate size (8.5 x 11 inches equivalent)
+        fCurrentFigure->size(fPageWidth, fPageHeight);
+        fCurrentFigure->position({100, 100});
+        // set white background to fix grey background issue
+        fCurrentFigure->color("white");
+    }
+    else
+    {
+        //matplot++ never releases figures from its global registry, so creating
+        //a new plot for every pass leaks a gnuplot process + pipe
+        //see the upstream issue: github.com/alandefreitas/matplotplusplus/issues/455
+        //to avoid this problem, we'll just reuse the existing figure instead:
+        matplot::figure(fCurrentFigure); //re-establish as the current figure
+        fCurrentFigure->children({}); //drop the previous pass's axes
+    }
+    fAxes.clear();
+    fLastAxis.reset();
 }
 
 matplot::axes_handle MHO_BasicPlotVisitor::subplot2grid_wrapper(const subplot_parameters sp, double left_margin,
