@@ -357,6 +357,8 @@ class hops_clock
             return std::chrono::seconds(delta);
         }
 
+        static bool is_vex_timestamp(const std::string& s);
+
     private:
         static date::days day_of_year(date::sys_days sd)
         {
@@ -1110,6 +1112,70 @@ inline hops_clock::vex_date hops_clock::vex_date_from_legacy(const legacy_hops_d
     vdate.seconds = legacy_date.second;
     return vdate;
 }
+
+
+// checks if a string is a valid VEX timestamp like: 2026y180d12h15m08s
+// note that the seconds field may include an optional fractional part like: 08.0145s
+inline bool hops_clock::is_vex_timestamp(const std::string& s)
+{
+    std::size_t pos = 0; //location in the string
+
+    //spec out the 4 fixed width fields (seconds portion may vary)
+    const int digit_counts[4] = {4, 3, 2, 2};
+    const char separators[4]  = {'y', 'd', 'h', 'm'};
+
+    //loop over year, day, hours, minutes
+    for(int field = 0; field < 4; field++)
+    {
+        for(int i = 0; i < digit_counts[field]; i++) //check the digits
+        {
+            if(pos >= s.size() || !std::isdigit(static_cast<unsigned char>(s[pos])))
+            {
+                return false;
+            }
+            pos++;
+        }
+        //reached the end, so check the separator value (y,d,h,m)
+        if( pos >= s.size() || s[pos] != separators[field])
+        {
+            return false;
+        }
+        pos++;
+    }
+
+    //now check the seconds, first 2 digits
+    for(int i = 0; i < 2; ++i)
+    {
+        if (pos >= s.size() || !std::isdigit(static_cast<unsigned char>(s[pos])))
+        {
+            return false;
+        }
+        pos++;
+    }
+
+    //now check the (optional) fractional part: '.' followed by at least one digit
+    if (pos < s.size() && s[pos] == '.')
+    {
+        pos++; // consume '.', then next char must be a digit
+        if (pos >= s.size() || !std::isdigit(static_cast<unsigned char>(s[pos])))
+        {
+            return false;
+        }
+        //chew through the rest until we reach anything not a digit
+        while (pos < s.size() && std::isdigit(static_cast<unsigned char>(s[pos])))
+        {
+            ++pos;
+        }
+    }
+
+    //better only have the trailing 's' left
+    if (pos >= s.size() || s[pos] != 's'){return false;}
+    pos++;
+
+    //must have consumed the entire string with nothing leftover
+    return pos == s.size();
+}
+
 
 } // namespace hops
 
