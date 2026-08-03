@@ -33,4 +33,4 @@ Acknowledgments
 Work undertaken at MIT Haystack Observatory to maintain and modernize HOPS has been supported over many years
 by a variety of NASA and NSF funding sources (for geodesy and astronomy, respectively).
 Most recently, support for this work has come from the NASA Space Geodesy Project (SGP) contract 80GSFC20C0078,
-and the NSF grants: AST-1935980, AST-2034306, and AST-2535855.
+and the NSF grants: AST-1935980, AST-2034306, AST-2535855, and AST-2407283.
