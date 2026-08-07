@@ -78,7 +78,7 @@ class AFIOStructureBase(ctypes.Structure):
                 if isinstance(a, ctypes.Array):
                     if isinstance(a[0], AFIOStructureBase):
                         for i in list(range(len(a))):
-                            if not a[i].approximately_equal(b[i], pedantic, abs_tol, rel_tol):
+                            if not a[i].approximately_equal(b[i], pedantic=pedantic, verbose=verbose, abs_tol=abs_tol, rel_tol=rel_tol):
                                 if verbose:
                                     print( "within type: ", self.__class__.__name__, "at index: ", i)
                                 return False
@@ -89,7 +89,7 @@ class AFIOStructureBase(ctypes.Structure):
                                     print( "field:", field[0], "at index: ", i, "is not equal in: ", self.__class__.__name__ , "(", a, " != ", b, ")")
                                 return False
                 elif isinstance(a, AFIOStructureBase):
-                    if not a.approximately_equal(b, pedantic, abs_tol, rel_tol):
+                    if not a.approximately_equal(b, pedantic=pedantic, verbose=verbose, abs_tol=abs_tol, rel_tol=rel_tol):
                         if verbose:
                             print( "within type: ", self.__class__.__name__)
                         return False
@@ -113,7 +113,7 @@ class AFIOStructureBase(ctypes.Structure):
                 if isinstance(a, ctypes.Array):
                     if isinstance(a[0], AFIOStructureBase):
                         for i in list(range(len(a))):
-                            if not a[i].approximately_equal(b[i], pedantic, abs_tol, rel_tol):
+                            if not a[i].approximately_equal(b[i], pedantic=pedantic, verbose=verbose, abs_tol=abs_tol, rel_tol=rel_tol):
                                 if verbose:
                                     print( "within type: ", self.__class__.__name__, "at index: ", i)
                                 return False
@@ -124,7 +124,7 @@ class AFIOStructureBase(ctypes.Structure):
                                     print( "field:", field[0], "at index: ", i, "is not equal in: ", self.__class__.__name__ , "(", a, " != ", b, ")")
                                 return False
                 elif isinstance(a, AFIOStructureBase):
-                    if not a.approximately_equal(b, pedantic, abs_tol, rel_tol):
+                    if not a.approximately_equal(b, pedantic=pedantic, verbose=verbose, abs_tol=abs_tol, rel_tol=rel_tol):
                         if verbose:
                             print( "within type: ", self.__class__.__name__)
                         return False

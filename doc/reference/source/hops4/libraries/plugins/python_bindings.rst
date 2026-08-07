@@ -179,7 +179,8 @@ Python-based operators that can be integrated into the HOPS4 processing pipeline
 
 **Python Module Integration:**
 The Python bindings are organized into several modules (available via import):
-    - **mho_containers**: Container and data access functionality
-    - **mho_operators**: Operator framework and custom operator support
-    - **mho_parameters**: Parameter management and configuration
-    - **mho_scan_data**: Scan data loading and management
+
+- **pyMHO_Containers**: Container and data access functionality (``MHO_PyTableContainer``, ``MHO_PyContainerStoreInterface``, ``MHO_PyParameterStoreInterface``, ``MHO_PyScanStoreInterface``, ``MHO_PyFringeDataInterface``)
+- **pyMHO_Operators**: Operator framework and custom operator support (``MHO_PyGenericOperator``, ``MHO_PyUnaryOperator``, ``MHO_PyUnaryTableOperator``, ``MHO_PythonOperatorBuilder``)
+- **pyMHO_Calibration**: Python bindings for calibration operators
+- **pyMHO_Fringe**: Access to the fringe-fitting pass driver and pipeline, building on the interfaces provided by ``pyMHO_Containers``

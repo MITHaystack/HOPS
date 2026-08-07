@@ -226,7 +226,15 @@ class MHO_TableContainer: public MHO_TableContainerBase,
             if(fs_ptr != nullptr)
             {
                 std::fstream& pfile = fs_ptr->GetStream();
-                pfile.read(reinterpret_cast< char* >(data_ptr), dsize * sizeof(XValueType));
+                std::size_t nbytes = dsize * sizeof(XValueType);
+                pfile.read(reinterpret_cast< char* >(data_ptr), nbytes);
+                //check we didn't read a truncated/corrupt file
+                if(static_cast< std::size_t >(pfile.gcount()) != nbytes)
+                {
+                    msg_error("containers", "error reading MHO_TableContainer data block, expected "
+                                                << nbytes << " bytes but read " << pfile.gcount()
+                                                << "; file may be truncated or corrupt." << eom);
+                }
             }
             else
             {
@@ -293,7 +301,7 @@ using ComplexF = std::complex< float >;
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Int = MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Int >;   \
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_Double =                                                         \
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_Double >;                                                            \
-    using MHO_TableContainer_##TYPE##_MHO_Int_AxisPack_String_String =                                                         \
+    using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_String =                                                         \
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_String_String >;                                                            \
                                                                                                                                \
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Double_Int_Int = MHO_TableContainer< TYPE, MHO_AxisPack_Double_Int_Int >;   \
@@ -353,7 +361,7 @@ using ComplexF = std::complex< float >;
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_Int >;                                                           \
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_String_Double =                                                     \
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_Double >;                                                        \
-    using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_String_String =                                                         \
+    using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Int_String_String =                                                     \
         MHO_TableContainer< TYPE, MHO_AxisPack_Int_Int_String_String >;                                                        \
                                                                                                                                \
     using MHO_TableContainer_##TYPE##_MHO_AxisPack_Int_Double_Int_Int =                                                        \

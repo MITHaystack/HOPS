@@ -32,7 +32,7 @@ std::vector< std::string > MHO_ControlDefinitions::GetKeywordNames()
 
     dirInterface.SetCurrentDirectory(format_dir);
     dirInterface.ReadCurrentDirectory();
-    dirInterface.GetFilesMatchingExtention(keywords, "json");
+    dirInterface.GetFilesMatchingExtension(keywords, "json");
 
     for(std::size_t i = 0; i < keywords.size(); i++)
     {

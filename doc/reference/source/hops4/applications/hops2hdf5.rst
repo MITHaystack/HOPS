@@ -13,9 +13,11 @@ Usage
 Description
 -----------
 
-`hops2hdf5` converts a HOPS-format file into an HDF5 file. 
-If no output file is specified, the result will be stored as `<input-file>.hdf5`. 
+`hops2hdf5` converts a HOPS-format file into an HDF5 file.
+If no output file is specified, the result will be stored as `<input-file>.hdf5`.
 This program supports filtering by UUID or shortname to isolate a single object for export.
+
+.. note:: This application is only available when HOPS was built with ``-DHOPS_USE_HDF5=ON`` (default: ``OFF``).
 
 Positional Arguments
 --------------------

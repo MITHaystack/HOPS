@@ -68,7 +68,7 @@ fi
 # <probe>.log under the scratch dir for later inspection.
 FAILED=0
 RAN_ANY=0
-for probe in probe_cmake probe_pkgconfig; do
+for probe in probe_cmake probe_pkgconfig probe_static; do
     bin="${WORKDIR}/build/${probe}"
     if [[ -x "${bin}" ]]; then
         RAN_ANY=1
@@ -91,6 +91,26 @@ done
 if [[ ${RAN_ANY} -eq 0 ]]; then
     echo "FAIL: no probe binaries were built (consumer CMakeLists found neither path)"
     exit 1
+fi
+
+# ---------------------------------------------------------------------------
+# Self-containment check: if the static-linked probe was built, verify it
+# dragged in NO HOPS shared libraries. Only system libs (libc, libstdc++,
+# libm, libpthread, libdl, ld-linux) are allowed to remain dynamic.
+# ---------------------------------------------------------------------------
+static_bin="${WORKDIR}/build/probe_static"
+if [[ -x "${static_bin}" ]]; then
+    echo "--- ldd check: probe_static is self-contained ---"
+    ldd_out="$(ldd "${static_bin}" 2>&1)"
+    echo "${ldd_out}"
+    # Any of our shared libraries showing up here means the static link
+    # interface leaked a .so instead of pulling in the .a.
+    if echo "${ldd_out}" | grep -Eq 'libMHO_|libdate-tz|libmsg|libmk4util|libvex|libdfio|libafio'; then
+        echo "FAIL: probe_static links HOPS shared libraries (expected fully static HOPS)"
+        FAILED=1
+    else
+        echo "PASS: probe_static has no HOPS shared-library dependencies"
+    fi
 fi
 
 exit ${FAILED}

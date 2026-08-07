@@ -141,7 +141,7 @@ class MHO_BinaryFileInterface
             keys.clear();
 
             if(fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() || fKeyStreamer.IsOpenForRead() ||
-               fKeyStreamer.IsOpenForRead())
+               fKeyStreamer.IsOpenForWrite())
             {
                 msg_warn("file", "Cannot extract index file keys with active stream. Close open file first." << eom);
                 return false;
@@ -186,7 +186,7 @@ class MHO_BinaryFileInterface
             keys.clear();
 
             if(fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() || fKeyStreamer.IsOpenForRead() ||
-               fKeyStreamer.IsOpenForRead())
+               fKeyStreamer.IsOpenForWrite())
             {
                 msg_warn("file", "Cannot extract file keys with active stream. Close open file first." << eom);
                 return false;
@@ -238,7 +238,6 @@ class MHO_BinaryFileInterface
                     return false; //non-recoverable error
                 }
             }
-            Close();
         }
 
         /**
@@ -253,10 +252,11 @@ class MHO_BinaryFileInterface
                                              std::vector< std::size_t >& byte_offsets)
         {
             keys.clear();
+            byte_offsets.clear();
             std::size_t byte_count = 0;
 
             if(fObjectStreamer.IsOpenForRead() || fObjectStreamer.IsOpenForWrite() || fKeyStreamer.IsOpenForRead() ||
-               fKeyStreamer.IsOpenForRead())
+               fKeyStreamer.IsOpenForWrite())
             {
                 msg_warn("file", "Cannot extract file keys with active stream. Close open file first." << eom);
                 return false;
@@ -310,7 +310,6 @@ class MHO_BinaryFileInterface
                     return false; //non-recoverable error
                 }
             }
-            Close();
         }
 
         /**
@@ -351,10 +350,20 @@ class MHO_BinaryFileInterface
                 MHO_FileKey key = GenerateObjectFileKey(obj, shortname);
                 fObjectStreamer.ResetByteCount();
                 fObjectStreamer << key;
-                msg_debug("file", "wrote object key of size: " << fObjectStreamer.GetNBytesWritten() << " bytes." << eom);
+                msg_debug("file", "wrote object key of size: " << fObjectStreamer.GetNBytesWritten() << " bytes" << eom);
                 fObjectStreamer.ResetByteCount();
                 fObjectStreamer << obj;
-                msg_debug("file", "wrote object of size: " << fObjectStreamer.GetNBytesWritten() << " bytes." << eom);
+                msg_debug("file", "wrote object of size: " << fObjectStreamer.GetNBytesWritten() << " bytes" << eom);
+                //check actual streamed byte count agrees with the object's  GetSerializedSize()), if not, then every
+                //object after this one in the file will be misaligned/corrupted
+                if(fObjectStreamer.GetNBytesWritten() != key.fSize)
+                {
+                    msg_error("file", "Object serialized size mismatch for object of type: "
+                                          << MHO_ClassIdentity::ClassName(obj) << ", declared " << key.fSize
+                                          << " bytes but wrote " << fObjectStreamer.GetNBytesWritten()
+                                          << " bytes; GetSerializedSize() is out of sync with the streaming operator" << eom);
+                    return false;
+                }
                 if(fObjectStreamer.GetStream().good())
                 {
                     if(fCollectKeys && fKeyStreamer.IsOpenForWrite())
@@ -372,8 +381,8 @@ class MHO_BinaryFileInterface
             }
             else
             {
-                return false;
                 msg_error("file", "Failed to write object, file not open for writing." << eom);
+                return false;
             }
         }
 

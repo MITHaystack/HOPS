@@ -1,9 +1,9 @@
 CUDA Acceleration
 ~~~~~~~~~~~~~~~~~
 
-The CUDA plugin provides GPU-acceleration for computationally intensive 
-operations during VLBI fringe fitting. At the moment this is primarily focusing on the (multi-band) 
-delay search algorithm using NVIDIA's CUDA framework and cuFFT library. 
+The CUDA plugin provides GPU-acceleration for computationally intensive
+operations during VLBI fringe fitting. At the moment this is primarily focusing on the (multi-band)
+delay search algorithm using NVIDIA's CUDA framework and cuFFT library.
 
 **This plugin is experimental and not recommended for production use.**
 
@@ -20,18 +20,18 @@ Key Features                                    | Inherits from MHO_MBDelaySearc
                                                 | Accelerates inner-most loop over delay-rate/MBD space
 =============================================== ====================================================================
 
-The :hops:`MHO_MBDelaySearchCUDA` class provides a basic CUDA implementation of the 
-coarse multi-band delay (MBD) search algorithm. This implementation uses NVIDIA's 
+The :hops:`MHO_MBDelaySearchCUDA` class provides a basic CUDA implementation of the
+coarse multi-band delay (MBD) search algorithm. This implementation uses NVIDIA's
 cuFFT library to accelerate the  computationally intensive FFT operations required for delay search.
 
 **Implementation Details:**
     - Uses CUDA runtime API for device memory management
     - Integrates cuFFT for device FFT operations
-    - Supports cuComplex data types for complex number operations
+    - Uses cufftDoubleComplex (double-precision) for device-side FFT buffers
     - Requires CUDA-capable GPU hardware for execution
 
 **Performance Notes:**
-The current implementation ultra basic and very primitive with significant optimization remaining to be done.
+The current implementation is ultra basic and very primitive with significant optimization remaining to be done.
 The main current limitation is excessive data movement between host and device memory, which will be improved in future versions.
 
 **Usage Requirements:**

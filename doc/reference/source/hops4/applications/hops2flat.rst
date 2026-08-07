@@ -45,7 +45,12 @@ Options
    * - ``-h, --help``
      - Print this help message and exit.
    * - ``-d, --detail INT``
-     - Set level of detail in output (0 = low, 3 = high). Default: 3.
+     - Set level of detail in output. Levels:
+
+       - ``0``: basic quantities only (rank, dimensions, etc.)
+       - ``1``: basic quantities plus tags
+       - ``2``: basic quantities plus axes (if the object is a table)
+       - ``3``: basic quantities plus axes with interval labels (default)
    * - ``-m, --message-level INT``
      - Set verbosity level. Range: -2 (debug) to 5 (silent).
    * - ``-p, --pretty-print UINT`` (Excludes: ``--cbor``)

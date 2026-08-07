@@ -155,7 +155,9 @@ int main(int argc, char** argv)
                 }
                 else
                 {
-                    msg_error("main", "can not parse python control file, no interpreter available." << eom);
+                    msg_fatal("main", "cannot evaluate python control file '"
+                                          << ctrl << "', no python interpreter/backend available." << eom);
+                    std::exit(1);
                 }
             }
         }

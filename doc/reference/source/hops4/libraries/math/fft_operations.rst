@@ -31,7 +31,7 @@ using Bluestein's algorithm.
 -----------------------------------------
 
 =============================================== ====================================================================
-File                                            MHO_FastFourierTransformUtilities.hh
+Class                                           :hops:`MHO_FastFourierTransformUtilities`
 Category                                        FFT Operations
 Template Parameters                             XFloatType (floating-point type: float, double, long double)
 Primary Functionality                           Basic utility functions for native FFT implementations
@@ -69,9 +69,9 @@ on the transform size.
 ----------------------------------
 
 =============================================== ====================================================================
-File                                            MHO_BitReversalPermutation.hh
+Class                                           :hops:`MHO_BitReversalPermutation`
 Category                                        FFT Operations
-Template Parameters                             DataType (for array permutation functions)
+Template Parameters                             DataType (for array permutation functions only; the class itself is not a template)
 Configuration Parameters                        None
 Primary Functionality                           Bit manipulation utilities for power-of-two FFTs
 Key Features                                    | Power-of-two detection and calculations

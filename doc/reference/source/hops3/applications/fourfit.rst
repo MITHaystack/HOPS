@@ -101,7 +101,7 @@ OPTION FLAGS
     The valid choices for "display_device" are:
     ``diskfile:file.ps``  save the plot in "file.ps"
     ``hardcopy``          send the plot directly to lpr
-    ``pshardcopy``        print the plot via pplot_print.sh
+    ``pshardcopy``        print the plot via pplot_print
     ``xwindow``           show the plot in an X11 window
     ``psscreen``          the same, but allow GS_* options
 
@@ -329,7 +329,7 @@ SELECTOR KEYWORDS
 +-------------------+---------------------------------------------------------------+
 | baseline          | 2 characters                                                  |
 +-------------------+---------------------------------------------------------------+
-| source            | string of 1–8 chars                                           |
+| source            | string of 1-8 chars                                           |
 +-------------------+---------------------------------------------------------------+
 | f_group           | 1 character                                                   |
 +-------------------+---------------------------------------------------------------+
@@ -554,7 +554,7 @@ KEYWORD SEMANTICS
      - **filtering -- determines whether or not each AP is accepted**
    * - freqs
      - controls which frequency channels get included in the fit.  
-       The letters a–p correspond to the order that the frequencies appear in the root file (assuming 16 channels).  
+       The letters a-p correspond to the order that the frequencies appear in the root file (assuming 16 channels).  
        With no suffix, DSB is implied, if both sidebands are present.  
        A plus suffix denotes USB, a minus is used for LSB.  
        After 26 channels, the uppercase alphabet is used, then 10 digits, finally '$' and '%' (i.e., 64 channels).
@@ -574,13 +574,13 @@ KEYWORD SEMANTICS
      - for each frequency channel, the starting delay and duration, in seconds, of the gating waveform
    * - passband
      - lower and upper bounds (in MHz) of the spectral passband of data to be accepted, specified as RF frequencies.  
-       If the lower bound is greater than the upper bound, the range wraps around—allowing a band in the middle to be excluded.  
+       If the lower bound is greater than the upper bound, the range wraps around, allowing a band in the middle to be excluded.  
        The data is rescaled to preserve the amplitude observable (as if the excluded data were perfectly valid);  
        this means that the area under the cross-power spectral plot amplitude curve is approximately conserved.
    * - notches
      - a list of non-overlapping lower/upper bound pairs (in MHz) to exclude from the spectral passband.  
        (Passband may be applied prior to removal of these notches.)  
-       Note that the amplitude modification calculus isn’t sophisticated enough to detect overlaps between passband and notches,  
+       Note that the amplitude modification calculus isn't sophisticated enough to detect overlaps between passband and notches,  
        so be sure to keep them disjoint. A large number is supported; you'll get a complaint if you exceed it.  
        As with passband, spectral data is rescaled to preserve amplitude observables.
    * - dc_block
@@ -619,7 +619,7 @@ KEYWORD SEMANTICS
      - specify phase_cal mode:
        - normal (model linear in time is extracted from the data)
        - manual (specified totally by the user)
-       - ap_by_ap (phase cal is extracted independently for each AP) — DEPRECATED: use normal or manual with pc_period 1 or more
+       - ap_by_ap (phase cal is extracted independently for each AP) - DEPRECATED: use normal or manual with pc_period 1 or more
        - multitone (all tones in band are coherently fit, and phase is extrapolated to the center of the band)
    * - pc_phases
      - phase_cal phases in deg, for each of the listed freq channels; these offset phases are added to the underlying model, as specified by pc_mode, above. If 2 polarizations are present, the same values are applied to both pols.
@@ -670,7 +670,7 @@ KEYWORD SEMANTICS
    * - adhoc_tref
      - for both ad hoc phase models; the reference time in seconds past the most recent hour.
    * - adhoc_poly
-     - for the ad hoc phase polynomial model; from 1–6 coefficients describing a power-series model in time. (deg/sec^{n})
+     - for the ad hoc phase polynomial model; from 1-6 coefficients describing a power-series model in time. (deg/sec^{n})
    * - adhoc_flag_file
      - Name of the file containing adhoc flagging.  Lines of this
        contain times (floating point days from beginning of year) and

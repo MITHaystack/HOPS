@@ -26,7 +26,7 @@ Positional Arguments
    * - Argument
      - Description
    * - ``input_dir``
-     - REQUIRED. Path to the input directory containing Mark4 data.
+     - REQUIRED. Path to the input directory containing HOPS4-format data (a scan or experiment directory).
    * - ``output_dir``
      - Optional. Directory where output files will be written. If not specified, output is placed in the input directory.
 
@@ -46,4 +46,4 @@ Options
    * - ``-o, --output-dir TEXT``
      - Same as positional ``output_dir``; output directory path.
    * - ``-m, --message-level INT``
-     - Set verbosity level. Range: -2 (debug) to 5 (silent).
+     - Set verbosity level. Range: -2 (debug) to 5 (silent). Default: 0.

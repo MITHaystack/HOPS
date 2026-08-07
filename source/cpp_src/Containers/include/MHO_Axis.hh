@@ -73,6 +73,18 @@ class MHO_Axis: public MHO_AxisBase,
             this->SetIntervalLabelObject(&(this->fObject["interval_labels"]));
         };
 
+        //explicit assignment operator, follows the copy contructor
+        MHO_Axis& operator=(const MHO_Axis& rhs)
+        {
+            if(this != &rhs)
+            {
+                MHO_VectorContainer< XValueType >::operator=(rhs);
+                this->SetIndexLabelObject(&(this->fObject["index_labels"]));
+                this->SetIntervalLabelObject(&(this->fObject["interval_labels"]));
+            }
+            return *this;
+        };
+
         virtual ~MHO_Axis(){};
 
         //overload the CopyTags function to get special treatment of the index/interval labels

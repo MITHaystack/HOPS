@@ -1,7 +1,7 @@
 File Operation Utilities
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The utilities library provides a collection of file and directory manipulation 
+The utilities library provides a collection of file and directory manipulation
 tools for data I/O operations with HOPS4 objects.
 
 :hops:`MHO_BinaryFileInterface`
@@ -19,7 +19,7 @@ Key Features                                    | Automatic object key generatio
 =============================================== ====================================================================
 
 The :hops:`MHO_BinaryFileInterface` class provides read/write functionality on
-binary files. These operations handle object serialization, key generation, and 
+binary files. These operations handle object serialization, key generation, and
 optional .index file creation for (later) efficient data access.
 
 :hops:`MHO_BinaryFileStreamer`
@@ -35,8 +35,8 @@ Key Features                                    | Support for POD types, strings
                                                 | CBOR encoding for JSON data
 =============================================== ====================================================================
 
-The :hops:`MHO_BinaryFileStreamer` class provides low-level binary streaming 
-capabilities with support for plain-old-data types, strings, 
+The :hops:`MHO_BinaryFileStreamer` class provides low-level binary streaming
+capabilities with support for plain-old-data types, strings,
 and JSON objects (using CBOR encoding). It is used by MHO_BinaryFileInterface.
 
 :hops:`MHO_DirectoryInterface`
@@ -52,10 +52,10 @@ Key Features                                    | Directory traversal and file l
                                                 | Path manipulation utilities
 =============================================== ====================================================================
 
-The :hops:`MHO_DirectoryInterface` class provides several directory and file 
-system operations. Primarily it is responsible for directory traversal, 
-file listing, filtering, and identification. Identification of legacy MK4 
-file formats is alos supported.
+The :hops:`MHO_DirectoryInterface` class provides several directory and file
+system operations. Primarily it is responsible for directory traversal,
+file listing, filtering, and identification. Identification of legacy MK4
+file formats is also supported.
 
 :hops:`MHO_FileStreamer`
 ------------------------
@@ -70,7 +70,7 @@ Key Features                                    | Abstract interface for file I/
                                                 | Object state tracking for error handling
 =============================================== ====================================================================
 
-The :hops:`MHO_FileStreamer` class provides a base interface for file streaming operations 
+The :hops:`MHO_FileStreamer` class provides a base interface for file streaming operations
 with state management and buffered I/O capabilities.
 
 :hops:`MHO_LockFileHandler`
@@ -87,8 +87,8 @@ Key Features                                    | Singleton pattern implementati
                                                 | Process priority-based lock resolution
 =============================================== ====================================================================
 
-The :hops:`MHO_LockFileHandler` class implements a file locking mechanism to 
-prevent concurrent nameing conflicts during write operations. This mechanism 
+The :hops:`MHO_LockFileHandler` class implements a file locking mechanism to
+prevent concurrent nameing conflicts during write operations. This mechanism
 supports both legacy (Mk4) and HOPS4 (fringe) file naming conventions.
 
 
@@ -102,9 +102,9 @@ Primary Functionality                           Object description and file loca
 Key Features                                    64 byte file object key
 =============================================== ====================================================================
 
-The :hops:`MHO_FileKey` class stores object type and UUID information, as well 
-as object size and *shortname* meta-data. For every HOPS4 object serialized to file 
-it precedes the object binary data. This provides a quick indexing method into 
+The :hops:`MHO_FileKey` class stores object type and UUID information, as well
+as object size and *shortname* meta-data. For every HOPS4 object serialized to file
+it precedes the object binary data. This provides a quick indexing method into
 binary file data, and allows the file I/O mechanism to skip over unrecognized objects.
 
 
@@ -118,7 +118,7 @@ Primary Functionality                           Base class for all serializable 
 Key Features                                    Mechanisms for object version control and identification
 =============================================== ====================================================================
 
-The :hops:`MHO_Serializable` class provides an interface required by the file 
+The :hops:`MHO_Serializable` class provides an interface required by the file
 serialization library to read/write objects to disk. It provides a mechanism to
 identify objects and switch behavior based on object version. Classes which
 inherit from :hops:`MHO_Serializable` must provide a method to calculate the size

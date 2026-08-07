@@ -141,8 +141,6 @@ class MHO_OpenCLInterface
         void InitializeOpenCL();
         void FillErrorCodeMaps();
 
-        static MHO_OpenCLInterface* fOpenCLInterface;
-
         std::string fKernelPath;
 
         CL_VECTOR_TYPE< cl::Platform > fPlatforms;

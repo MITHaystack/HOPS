@@ -36,8 +36,31 @@ Key Features                                    | File-based station code initia
                                                 | Bidirectional code mapping
 =============================================== ====================================================================
 
-The :hops:`MHO_StationCodeMap` class handles mapping between 1-character 
+The :hops:`MHO_StationCodeMap` class handles mapping between 1-character
 and 2-character station representations with support for legacy code assignments.
+
+:hops:`MHO_StationIdentity` and :hops:`MHO_StationIdentifier`
+-----------------------------------------------------------------
+
+=============================================== ====================================================================
+Class Family                                    :hops:`MHO_StationIdentity`, :hops:`MHO_StationIdentifier`
+Category                                        Legacy Compatibility
+Template Parameters                             None
+Configuration Parameters                        None
+Primary Functionality                           Associates 1-char, 2-char, and 8-char station identifiers
+Key Features                                    | Stores and compares station name/code/mk4id triples (MHO_StationIdentity)
+                                                | Singleton registry mapping identifiers to station names (MHO_StationIdentifier)
+                                                | Can be built directly from VEX site data (site_ID/mk4_site_ID/site_name)
+=============================================== ====================================================================
+
+The :hops:`MHO_StationIdentity` class stores and compares the 1-character,
+2-character, and 8-character identifiers (station code, mk4 ID, and station name)
+for a single station, and can be constructed directly from a VEX site block. The
+:hops:`MHO_StationIdentifier` class is a singleton registry that maps these
+identifiers to station names. This is a newer mechanism than
+:hops:`MHO_StationCodeMap` and is not a drop-in replacement for it; both classes
+are currently used in the codebase (e.g. in the DiFX interface and fringe-fitting
+libraries).
 
 :hops:`legacy_hops_date`
 ------------------------
@@ -50,8 +73,10 @@ Configuration Parameters                        None
 Primary Functionality                           Legacy HOPS3 date structure compatibility
 Key Features                                    | Compatible with legacy HOPS3 date struct
                                                 | Prevents namespace collisions with modern *date* library
-                                                | Maintains original field layout and types
+                                                | Maintains original field layout; the `second` field is widened from `float` to `double`
 =============================================== ====================================================================
 
-The :hops:`legacy_hops_date` struct provides compatibility with the legacy HOPS3 date 
-struct.
+The :hops:`legacy_hops_date` struct provides compatibility with the legacy HOPS3 date
+struct. Note that the `second` field is widened from `float` (the original HOPS3 type)
+to `double`, which may introduce a loss of precision when converting to/from the
+actual legacy struct.

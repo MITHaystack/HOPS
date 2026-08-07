@@ -41,7 +41,7 @@ class MHO_Timer
          * @param None
          * @returns None
          */
-        void MeasureWallclockTime(); //CLOCK_REALTIME
+        void MeasureWallclockTime(); //CLOCK_MONOTONIC
 
         /*!* Get the ID for the process clock
          * @param None

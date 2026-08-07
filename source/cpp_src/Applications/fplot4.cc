@@ -181,7 +181,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
             dirInterface.ReadCurrentDirectory();
             //get file list in this directory
             std::vector< std::string > flist;
-            dirInterface.GetFilesMatchingExtention(flist, "frng");
+            dirInterface.GetFilesMatchingExtension(flist, "frng");
             if(flist.size() == 0)
             {
                 //no fringe files here, so recurse 1-level (only)
@@ -193,7 +193,7 @@ int parse_fplot_command_line(int argc, char** argv, MHO_ParameterStore* paramSto
                     dirInterface.SetCurrentDirectory(sdlist[i]);
                     dirInterface.ReadCurrentDirectory();
                     std::vector< std::string > tmp_flist;
-                    dirInterface.GetFilesMatchingExtention(tmp_flist, "frng");
+                    dirInterface.GetFilesMatchingExtension(tmp_flist, "frng");
                     flist.insert(flist.end(), tmp_flist.begin(), tmp_flist.end());
                 }
             }

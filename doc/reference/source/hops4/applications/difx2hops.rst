@@ -81,8 +81,10 @@ Options
      - Use legacy station code map for assigning Mk4 station IDs.
    * - ``-k, --mark4``
      - Export data in the legacy mark4 format (type1xx, type3xx) instead of hops format.
+   * - ``-l, --localdir``
+     - Enable difxio's ``--localdir`` option (search for ``.input`` files in the local directory).
    * - ``-g, --freq-groups TEXT ...``
-     - Include only the specified frequency groups.
+     - Include only the specified frequency groups (comma-separated list, e.g. ``-g A,B,C``).
    * - ``-w, --bandwidth FLOAT``
      - Include only channels matching this bandwidth (in MHz).
    * - ``-a, --attach-difx-input``

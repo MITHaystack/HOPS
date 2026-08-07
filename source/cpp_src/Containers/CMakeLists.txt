@@ -29,6 +29,7 @@ set (CONTAINER_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_SerializableObjectFactory.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ClassIdentityMap.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerDictionary.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerTypeTags.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerJSONConverter.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerFileInterface.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_ContainerStore.hh
@@ -63,6 +64,7 @@ target_link_libraries(MHO_Containers ${CONTAINER_LIBS})
 
 hops_install_headers (${CONTAINER_HEADERFILES})
 hops_install_libraries (MHO_Containers)
+hops_add_static_twin (MHO_Containers SOURCES ${CONTAINER_SOURCEFILES} LIBS ${CONTAINER_LIBS})
 
 if (HOPS_ENABLE_TEST)
     add_subdirectory(test)

@@ -38,6 +38,7 @@ set(PLUGIN_MANAGEMENT_LIBS
 
 #compile and install library ###################################################
 add_library(MHO_PluginManagement SHARED ${PLUGIN_MANAGEMENT_SOURCEFILES})
+target_include_directories(MHO_PluginManagement PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 target_link_libraries(MHO_PluginManagement
     PUBLIC ${PLUGIN_MANAGEMENT_LIBS}
     PRIVATE MHO_OptionalPlugins)

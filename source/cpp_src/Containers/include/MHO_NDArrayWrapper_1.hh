@@ -178,7 +178,7 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
             }
         }
 
-        void ZeroArray() { std::memset(&(fData[0]), 0, fData.size() * sizeof(XValueType)); };
+        void ZeroArray() { std::fill(fData.begin(), fData.end(), XValueType{}); }
 
         //expensive copy (as opposed to the assignment operator,
         //pointers to exernally managed memory are not transferred)
@@ -267,7 +267,7 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
         MHO_NDArrayView< XValueType, 1 > SliceView(const char* /*! unused_arg */)
         {
             //just return a 1d array view of this 1-d array
-            return MHO_NDArrayView< XValueType, 1 >(&(fData[0]), &(fDims[0]), &(fStrides[0]));
+            return MHO_NDArrayView< XValueType, 1 >(fData.data(), &(fDims[0]), &(fStrides[0]));
         }
 
         XValueType& ValueAt(const index_type& idx) { return fData[idx[0]]; }
@@ -390,7 +390,8 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
             fData.resize(fDims[0]);
             if(ptr != nullptr) //if given a ptr, copy in data from this location
             {
-                std::memcpy(&(fData[0]), ptr, fData.size() * sizeof(XValueType));
+                std::copy(ptr, ptr + fData.size(), fData.begin());
+                //std::memcpy(&(fData[0]), ptr, fData.size() * sizeof(XValueType));
             }
         }
 
@@ -402,52 +403,52 @@ template< typename XValueType > class MHO_NDArrayWrapper< XValueType, 1 >: publi
         using const_iterator = MHO_BidirectionalConstIterator< XValueType >;
         using const_stride_iterator = MHO_BidirectionalConstStrideIterator< XValueType >;
 
-        iterator begin() { return iterator(&(fData[0]), &(fData[0]), fData.size()); }
+        iterator begin() { return iterator(fData.data(), fData.data(), fData.size()); }
 
-        iterator end() { return iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size()); }
+        iterator end() { return iterator(fData.data(), fData.data() + fData.size(), fData.size()); }
 
         iterator iterator_at(std::size_t offset)
         {
-            return iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size());
+            return iterator(fData.data(), fData.data() + std::min(offset, fData.size()), fData.size());
         }
 
-        const_iterator cbegin() const { return const_iterator(&(fData[0]), &(fData[0]), fData.size()); }
+        const_iterator cbegin() const { return const_iterator(fData.data(), fData.data(), fData.size()); }
 
-        const_iterator cend() const { return const_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size()); }
+        const_iterator cend() const { return const_iterator(fData.data(), fData.data() + fData.size(), fData.size()); }
 
         const_iterator citerator_at(std::size_t offset) const
         {
-            return const_iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size());
+            return const_iterator(fData.data(), fData.data() + std::min(offset, fData.size()), fData.size());
         }
 
         stride_iterator stride_begin(std::size_t stride)
         {
-            return stride_iterator(&(fData[0]), &(fData[0]), fData.size(), stride);
+            return stride_iterator(fData.data(), fData.data(), fData.size(), stride);
         }
 
         stride_iterator stride_end(std::size_t stride)
         {
-            return stride_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size(), stride);
+            return stride_iterator(fData.data(), fData.data() + fData.size(), fData.size(), stride);
         }
 
         stride_iterator stride_iterator_at(std::size_t offset, std::size_t stride)
         {
-            return stride_iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size(), stride);
+            return stride_iterator(fData.data(), fData.data() + std::min(offset, fData.size()), fData.size(), stride);
         }
 
         const_stride_iterator cstride_begin(std::size_t stride) const
         {
-            return const_stride_iterator(&(fData[0]), &(fData[0]), fData.size(), stride);
+            return const_stride_iterator(fData.data(), fData.data(), fData.size(), stride);
         }
 
         const_stride_iterator cstride_end(std::size_t stride) const
         {
-            return const_stride_iterator(&(fData[0]), &(fData[0]) + fData.size(), fData.size(), stride);
+            return const_stride_iterator(fData.data(), fData.data() + fData.size(), fData.size(), stride);
         }
 
         const_stride_iterator cstride_iterator_at(std::size_t offset, std::size_t stride) const
         {
-            return const_stride_iterator(&(fData[0]), &(fData[0]) + std::min(offset, fData.size()), fData.size(), stride);
+            return const_stride_iterator(fData.data(), fData.data() + std::min(offset, fData.size()), fData.size(), stride);
         }
 };
 

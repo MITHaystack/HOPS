@@ -46,4 +46,4 @@ Options
    * - ``-o, --output-dir TEXT``
      - Same as positional ``output_dir``; output directory path.
    * - ``-m, --message-level INT``
-     - Set verbosity level. Range: -2 (debug) to 5 (silent).
+     - Set verbosity level. Range: -2 (debug) to 5 (silent). Default: 0.

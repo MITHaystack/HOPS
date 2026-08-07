@@ -322,12 +322,8 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
         fMBDAxis = std::get< 0 >(fMBDWorkspace);
 
         fMax = std::sqrt(fMax);
-        if(fCoarseMBD >= 0 && fCoarseSBD >= 0 && fCoarseDR >= 0)
+        if(finalize_search())
         {
-            fCoarseMBD = fMBDAxis(fMBDMaxBin);
-            fCoarseSBD = fSBDAxis(fSBDMaxBin);
-            fCoarseDR = fDRAxis(fDRMaxBin);
-
             return true;
         }
         else

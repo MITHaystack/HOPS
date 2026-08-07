@@ -25,7 +25,7 @@ all such information is called ``tags``. For example, in the ``fourfit4`` fringe
 much of the fringe-fitting parameters, and plotting data are stored in an ``MHO_ObjectTags`` object, under "/tags/parameters" and "/tags/plot_data".
 A example portion of which looks like:
 
-.. code-block:: json
+.. code-block:: text
 
     "class_name": "MHO_ObjectTags",
         "class_uuid": "330c5f9889eaa350f8955c6e709a536c",

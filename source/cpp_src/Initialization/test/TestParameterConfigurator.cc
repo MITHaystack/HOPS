@@ -41,7 +41,7 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
     // register a station so the station-parameter path maps deterministically
-    MHO_StationIdentifier::GetInstance()->Insert("WESTFORD", "Wf", "E");
+    MHO_StationIdentifier::GetInstance().Insert("WESTFORD", "Wf", "E");
 
     // full format map covering every value type
     mho_json fmt;

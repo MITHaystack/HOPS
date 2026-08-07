@@ -4,6 +4,7 @@
 #include <string>
 
 #include "MHO_JSONHeaderWrapper.hh"
+#include "MHO_Message.hh"
 #include "MHO_Tokenizer.hh"
 
 namespace hops
@@ -119,27 +120,18 @@ class MHO_ParameterStore
             }
         }
 
-        //returns true if found
         /**
          * @brief Retrieves a value by path and returns it as XValueType, using default constructor if not found.
          *
          * @tparam XValueType Template parameter XValueType
          * @param value_path Path to the value to retrieve
          * @param value (XValueType&)
-         * @return XValueType value or default constructed value if not found
+         * @return boolean returns true if found value, false if not found
          */
         template< typename XValueType > bool Get(const std::string& value_path, XValueType& value) const;
 
-        //always returns a value, if not found the value returned is XValueType()
         /**
-         * @brief Function IsPresent
-         *
-         * @tparam XValueType Template parameter XValueType
-         * @param value_path (const std::string&)
-         * @return Return value (bool)
-         */
-        /**
-         * @brief Getter for as
+         * @brief Getter, cast to type, always returns a value, if not found the value returned is XValueType()
          *
          * @tparam XValueType Template parameter XValueType
          * @param value_path Path to retrieve value from
@@ -147,6 +139,22 @@ class MHO_ParameterStore
          */
         template< typename XValueType > XValueType GetAs(const std::string& value_path) const;
 
+        /**
+         * @brief Getter, cast to type, throws an error if the path/value is not present, will not return a default
+         *
+         * @tparam XValueType Template parameter XValueType
+         * @param value_path Path to retrieve value from
+         * @return Value of type XValueType retrieved
+         */
+        template< typename XValueType > XValueType GetRequiredAs(const std::string& value_path) const;
+
+        /**
+         * @brief Function IsPresent, checks if path is present in parameter store
+         *
+         * @tparam XValueType Template parameter XValueType
+         * @param value_path (const std::string&)
+         * @return Return value (bool)
+         */
         bool IsPresent(const std::string& value_path) const
         {
             std::string path = SanitizePath(value_path);
@@ -175,7 +183,6 @@ class MHO_ParameterStore
         }
 
     private:
-        //sanitize the value_path string -- for example a trailing '/' is no good
         /**
          * @brief Removes leading/trailing whitespace and trailing '/' from input path string.
          *
@@ -295,7 +302,19 @@ template< typename XValueType > XValueType MHO_ParameterStore::GetAs(const std::
     bool ok = Get(value_path, v);
     if(!ok)
     {
-        msg_error("utility", "failed to retrieve value: " << value_path << " returning a default value." << eom);
+        msg_error("utility", "failed to retrieve value for: " << value_path << " returning a default value" << eom);
+    }
+    return v;
+}
+
+template< typename XValueType > XValueType MHO_ParameterStore::GetRequiredAs(const std::string& value_path) const
+{
+    XValueType v = XValueType(); //default constructor (zero for int, double, etc)
+    bool ok = Get(value_path, v);
+    if(!ok)
+    {
+        msg_fatal("utility", "failed to retrieve value: " << value_path << ", aborting" << eom);
+        HOPS_THROW;
     }
     return v;
 }

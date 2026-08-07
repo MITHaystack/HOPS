@@ -16,10 +16,14 @@ namespace hops
  *       plotting). One process is spawned per action (no persistent worker!),
  *       which is slow and a lot of overhead, but this is ok for a fallback.
  *
- * Implementation note: we use popen() (a unidirectional pipe) and pass the JSON
- * request as a temp file given on the child's command line, reading the JSON
- * response back off the child's stdout. This sidesteps the bidirectional-pipe
- * deadlock concerns of a hand-rolled fork/exec while keeping the code small.
+ * Implementation note: we use popen() (a unidirectional pipe) and pass two temp
+ * file paths on the child's command line -- the JSON request (which we write)
+ * and an initially-empty response file the child writes its JSON answer into.
+ * Reading the response from its own file rather than the shared stdout keeps
+ * stray output from user control/plot code from corrupting the JSON contract.
+ * The child's stdout is still drained (so a chatty child cannot block on a full
+ * pipe) but is treated as diagnostics only. This also sidesteps the
+ * bidirectional-pipe deadlock concerns of a hand-rolled fork/exec.
  *
  * Interpreter discovery: $HOPS_PYTHON if set, else "python3" on PATH.
  * Package discovery: the shipped pure-python hops_* packages are located via
@@ -37,7 +41,7 @@ class MHO_PythonSubprocessRunner
                 bool spawned = false; //!< did popen() launch a shell/interpreter at all
                 bool exited = false;  //!< did the child exit normally (vs. signalled)
                 int exit_code = -1;   //!< child exit status when exited == true
-                std::string out;      //!< captured stdout (the JSON response)
+                std::string out;      //!< the JSON response (read from the child's response file)
                 std::string err;      //!< captured stderr (python traceback, if any)
 
                 //!< convenience: launched, exited normally, with status 0
@@ -58,15 +62,16 @@ class MHO_PythonSubprocessRunner
         static std::string ResolvePackageDir();
 
         /**
-         * @brief Run `python -m <module> <request_file>`, feeding the JSON
-         * @p request_json via a temp file, and capture stdout/stderr. The
-         * child's PYTHONPATH is prepended with ResolvePackageDir() so the
+         * @brief Run `python -m <module> <request_file> <response_file>`, feeding
+         * the JSON @p request_json via a temp file and reading the JSON response
+         * back from a second temp file the child writes (stderr is captured too).
+         * The child's PYTHONPATH is prepended with ResolvePackageDir() so the
          * shipped hops packages import cleanly.
          *
          * @param module       python module to run with -m (e.g. "hops_control").
          * @param request_json the JSON request payload written to the temp file.
-         * @return Result with capture + exit status. spawned==false means the
-         *         interpreter could not be launched at all.
+         * @return Result with the response in .out + exit status. spawned==false
+         *         means the interpreter could not be launched at all.
          */
         static Result RunModule(const std::string& module, const std::string& request_json);
 };

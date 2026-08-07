@@ -1,6 +1,7 @@
 #include "MHO_VexInfoExtractor.hh"
 #include "MHO_Tokenizer.hh"
 
+#include "MHO_Clock.hh"
 #include "MHO_StationIdentifier.hh"
 
 namespace hops
@@ -144,7 +145,7 @@ void MHO_VexInfoExtractor::extract_station_identities(const mho_json& vexInfo)
             MHO_StationIdentity id(val);
             if(id.GetStationCode() != "")
             {
-                MHO_StationIdentifier::GetInstance()->Insert(id);
+                MHO_StationIdentifier::GetInstance().Insert(id);
             }
         }
     }
@@ -446,6 +447,30 @@ void MHO_VexInfoExtractor::extract_vex_info(const mho_json& vexInfo, MHO_Paramet
     mho_json::json_pointer start_jptr(start_loc);
     std::string start_string = vexInfo.at(start_jptr).get< std::string >();
     paramStore->Set("/vex/scan/start", start_string);
+
+    //apply the command-line fourfit reference time override ('-T'/--reftime), if it was supplied
+    if(paramStore->IsPresent("/cmdline/reftime"))
+    {
+        std::string cmdline_frt = paramStore->GetAs< std::string >("/cmdline/reftime");
+        if(cmdline_frt != "")
+        {
+            std::string resolved_frt;
+            if(hops_clock::is_vex_timestamp(cmdline_frt))
+            {
+                resolved_frt = cmdline_frt; //already checked, use vex timestamp
+            }
+            else
+            {
+                //it was passed as seconds after scan start
+                int offset_sec = std::stoi(cmdline_frt);
+                auto start_tp = hops_clock::from_vex_format(start_string);
+                auto frt_tp = start_tp + std::chrono::seconds(offset_sec);
+                resolved_frt = hops_clock::to_vex_format(frt_tp, true); //true -> truncate to nearest second
+            }
+            msg_info("fringe", "overriding fourfit reference time (-T) with: " << resolved_frt << eom);
+            paramStore->Set("/vex/scan/fourfit_reftime", resolved_frt);
+        }
+    }
 
     // //calculate the scan start time in seconds since Jan 1 00:00 1980
     // //this is the epoch used by alist (this is only needed for output to alist)

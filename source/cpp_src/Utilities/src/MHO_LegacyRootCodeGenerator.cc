@@ -6,7 +6,8 @@ namespace hops
 std::string MHO_LegacyRootCodeGenerator::GetCode()
 {
     fNow = time((time_t*)NULL);
-    struct tm* t = gmtime(&fNow);
+    struct tm tm_buf;
+    struct tm* t = gmtime_r(&fNow, &tm_buf);
     fYear = t->tm_year;
     fDay = t->tm_yday + 1;
     fHour = t->tm_hour;
@@ -24,7 +25,8 @@ std::vector< std::string > MHO_LegacyRootCodeGenerator::GetCodes(std::size_t N)
     for(std::size_t i = 0; i < N; i++)
     {
         time_t next = fNow + i * root_id_delta(fNow);
-        struct tm* t = gmtime(&next);
+        struct tm tm_buf;
+        struct tm* t = gmtime_r(&next, &tm_buf);
         fYear = t->tm_year;
         fDay = t->tm_yday + 1;
         fHour = t->tm_hour;

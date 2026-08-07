@@ -208,6 +208,12 @@ option(HOPS_USE_OPENCL "Use OpenCL via C++ wrapper API." OFF)
 option(HOPS_USE_CUDA "Build CUDA support." OFF)
 option(HOPS_USE_HDF5 "Build HDF5 export support." OFF)
 
+#When enabled, build static (.a) twins of the low-dependency libraries alongside
+#the shared libs, so downstream users can link self-contained applications. The
+#twins are installed into a separate export set (Hops::<lib>_static); the default
+#shared build is unaffected. See Review/static-libs-plan.md.
+option(HOPS_BUILD_STATIC_LIBS "Also build static (.a) twins of the low-level libraries alongside the shared libs" OFF)
+
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
 option(HOPS3_USE_CXX "Build HOPS3 libraries using the C++ compiler." OFF)
 mark_as_advanced(HOPS3_USE_CXX)

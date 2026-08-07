@@ -21,6 +21,7 @@ set(MATPLOTPLUGIN_LIBS MHO_Message MHO_Math MHO_Utilities MHO_Operators MHO_Cont
 
 #compile and install library ###################################################
 add_library (MHO_MatplotPlugin SHARED ${MATPLOTPLUGIN_SOURCEFILES})
+target_include_directories(MHO_MatplotPlugin PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 target_link_libraries (MHO_MatplotPlugin ${MATPLOTPLUGIN_LIBS})
 
 hops_install_headers (${MATPLOTPLUGIN_HEADERFILES})

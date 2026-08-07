@@ -30,6 +30,7 @@ mathematical utility functions ported from the original HOPS3 C code. Key functi
 - `minvert3()` - 3x3 matrix inversion
 - `linterp()` - Linear interpolation
 - `ap_mean()` - Average phase calculation
+- `average()` - Arithmetic mean of a vector of doubles
 - `angular_average()` - Angular averaging in radians
 - `DetermineChannelFrequencyLimits()` - Frequency range calculations
 - `FindIntersection()` - Interval overlap detection
@@ -62,7 +63,7 @@ properly fill the visibility data into the appropriate slots for the FFT.
 =============================================== ====================================================================
 Class                                           :hops:`MHO_FringeRotation`
 Category                                        Numerical Utilities
-Configuration Parameters                        | SBD separation, SBD max, SBD max bin
+Configuration Parameters                        | SBD separation, SBD max, SBD max bin, number of SBD bins, sideband (USB/DSB/LSB), optimize-closure flag
 Primary Functionality                           Fringe rotation functionality for VLBI data processing
 Key Features                                    | Originally ported from HOPS3 vrot.c
                                                 | Calculates fringe rotation for delay, delay-rate, time, and frequency
@@ -95,9 +96,18 @@ The :hops:`MHO_CheckForNaN` class provides a functor for NaN (Not-a-Number)
 detection for various numerical types. It includes:
 
 **Supported Types:**
-- `float`, `double`, `long double` - Using `std::isnan()` for consistency
-- `std::complex<float>`, `std::complex<double>`, `std::complex<long double>` - Checking both real and imaginary components
-- Other generic numerical types - Using `value != value` comparison
+
+.. list-table::
+    :header-rows: 1
+
+    * - Type(s)
+      - NaN Detection Method
+    * - ``float``, ``double``, ``long double``
+      - Using ``std::isnan()`` for consistency
+    * - ``std::complex<float>``, ``std::complex<double>``, ``std::complex<long double>``
+      - Checking both real and imaginary components
+    * - Other generic numerical types
+      - Using ``value != value`` comparison
 
 **Usage:**
 The class provides a static `isnan()` method that can be used with any supported 

@@ -57,6 +57,8 @@ hops_clock time_point objects to/from time stamps with the following formats:
 
 #. ISO8601
 #. VEX
+#. HOPS internal timestamp
+#. VDIF (epoch, seconds)
 #. MJD
 #. (year,floating-point-day)
 #. legacy HOPS3 date struct
@@ -73,11 +75,12 @@ The conversion routines are implemented by the associated functions listed below
     static legacy_hops_date to_legacy_hops_date(const time_point& tp);
     static time_point from_vdif_format(int& vdif_epoch, int& vdif_seconds);
     static void to_vdif_format(const time_point& tp, int& vdif_epoch, int& vdif_second);
-    static time_point from_mjd(const time_point& mjd_epoch, const double& epoch_offset, const double& mjd);
-    static double to_mjd(const time_point& mjd_epoch, const double& epoch_offset, const time_point& tp);
+    static time_point from_mjd(const time_point& mjd_epoch, double epoch_offset, double mjd);
+    static double to_mjd(const time_point& mjd_epoch, double epoch_offset, const time_point& tp);
     static time_point from_vex_format(const std::string& timestamp);
     static std::string to_vex_format(const time_point& tp, bool truncate_to_nearest_second = false);
     static time_point from_year_fpday(int year, double floating_point_days);
+    static void to_year_fpday(const time_point& tp, int& year, double& floating_point_days);
 
 
 :hops:`MHO_TimeStampConverter`

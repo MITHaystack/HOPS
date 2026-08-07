@@ -12,8 +12,8 @@ The HDF5 plugin includes a command-line application for data conversion:
 
 **hops2hdf5 Application:**
     - Converts HOPS4 files to HDF5 format
-    - Supports batch processing of multiple files
-    - Configurable output organization
+    - Processes one HOPS4 file per invocation (can be scripted/looped externally for multiple files)
+    - Supports extracting a single object by UUID or shortname (``--uuid``/``--shortname``), with automatic ``<input-file>.hdf5`` output naming and a group prefix derived from the input file's basename
 
 
 :hops:`MHO_HDF5TypeCode`

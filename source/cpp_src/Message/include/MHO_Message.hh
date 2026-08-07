@@ -114,11 +114,8 @@ class MHO_Message
         //! \return Reference to the singleton MHO_Message instance.
         static MHO_Message& GetInstance()
         {
-            if(fInstance == nullptr)
-            {
-                fInstance = new MHO_Message();
-            }
-            return *fInstance;
+            static MHO_Message instance;
+            return instance;
         }
 
         //! \brief Lock the message handler for thread-safe operations.
@@ -192,7 +189,6 @@ class MHO_Message
 
         std::mutex fMutex;
 
-        static MHO_Message* fInstance; //static global class instance
         std::ostream* fTerminalStream; //stream to terminal output
         std::set< std::string > fKeys; //keys of which messages we will accept for output
         MHO_MessageLevel fAllowedLevel;
@@ -220,7 +216,7 @@ template< class XStreamableItemType > MHO_Message& MHO_Message::operator<<(const
     {
         fMessageStream << item;
     }
-    return *fInstance;
+    return GetInstance();
 }
 
 //abuse do-while for multiline message macros

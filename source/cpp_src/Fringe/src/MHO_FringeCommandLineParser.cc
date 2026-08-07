@@ -1,13 +1,28 @@
 #include "MHO_FringeCommandLineParser.hh"
 #include "MHO_DirectoryInterface.hh"
-
 #include "MHO_FringeDataDiscovery.hh"
+#include "MHO_Clock.hh"
 
 //option parsing and help text library
 #include "CLI11.hpp"
 
+
 namespace hops
 {
+
+//helper for reftime parsing
+bool is_nonnegative_integer(const std::string& s)
+{
+    int value = -1;
+    std::stringstream ss;
+    ss << s;
+    ss >> value;
+    if( !ss.fail() && value >= 0)
+    {
+        return true;
+    }
+    return false;
+}
 
 void MHO_FringeCommandLineParser::parse_baseline_freqgrp(std::string baseline_freqgrp, std::string& baseline,
                                                          std::string& freqgrp)
@@ -127,7 +142,7 @@ int MHO_FringeCommandLineParser::sanity_check(MHO_ParameterStore* paramStore)
     std::string freqgrp = paramStore->GetAs< std::string >("/cmdline/frequency_group");
     std::string control_file = paramStore->GetAs< std::string >("/cmdline/control_file");
     std::string input_directory = paramStore->GetAs< std::string >("/cmdline/input_directory");
-    //bool estimate_time = false; //'-e' estimate run time
+    //note: '-e' has been co-opted to mean '--exclude-autocorrs' instead of legacy "estimate_time"
     int first_plot_chan = paramStore->GetAs< int >("/cmdline/first_plot_channel");
     int message_level = paramStore->GetAs< int >("/cmdline/message_level");
     int nplot_chans = paramStore->GetAs< int >("/cmdline/nplot_channels");
@@ -136,13 +151,23 @@ int MHO_FringeCommandLineParser::sanity_check(MHO_ParameterStore* paramStore)
     int ap_per_seg = paramStore->GetAs< int >("/cmdline/ap_per_seg");
     bool test_mode = paramStore->GetAs< bool >("/cmdline/test_mode");
     std::string polprod = paramStore->GetAs< std::string >("/cmdline/polprod");
-    //std::string reftime = "";
+    std::string reftime = paramStore->GetAs< std::string >("/cmdline/reftime");
     //bool xpower_output = false;
     //std::string output_file = paramStore->GetAs<std::string>("/cmdline/output_file");
 
     TODO_FIXME_MSG("TODO FIXME - fill out the sanity_check function for command line arguments")
     if(input_directory == "")
     {
+        return 1;
+    }
+
+    //validate the '-T'/--reftime argument if was passed
+    if(reftime != "" && !is_nonnegative_integer(reftime) && !hops_clock::is_vex_timestamp(reftime))
+    {
+        msg_fatal("fringe", "invalid -T/--reftime argument '"
+        << reftime
+        << "', expected a non-negative integer (seconds after scan start) or a VEX epoch (e.g. 2026y180d12h15m08s)."
+        << eom);
         return 1;
     }
 
@@ -224,7 +249,9 @@ int MHO_FringeCommandLineParser::parse_fourfit_command_line(int argc, char** arg
     app.add_option("-s,--ap-per-segment", ap_per_seg, "specify the APs to be averaged per plot-segment");
     app.add_flag("-t,--test-mode", test_mode, "if passed, then no output is written");
     app.add_option("-P,--polprod", polprod, "polarization product argument (e.g XX or I or RR+LL, etc.)");
-    app.add_option("-T,--reftime", reftime, "specify the fourfit reference time (ignored, not yet implemented)");
+    app.add_option("-T,--reftime", reftime,
+                   "specify the fourfit reference time as either a VEX epoch (e.g. 2026y180d12h15m08s) or a "
+                   "positive integer number of seconds after the scheduled scan start; overrides the root/vex value");
     //app.add_flag("-x,--xwindows", xwindows, "display plot using xwindows (ignored, deprecated)");
     app.add_option("-X,--xpower-output", xpower_output,
                    "append cross power data with fringe solution applied, specifying the axis along which data should be "
@@ -322,7 +349,7 @@ int MHO_FringeCommandLineParser::parse_fourfit_command_line(int argc, char** arg
     paramStore->Set("/cmdline/ap_per_seg", ap_per_seg);
     paramStore->Set("/cmdline/test_mode", test_mode); //TODO
     paramStore->Set("/cmdline/polprod", polprod);
-    //reftime = ""; //not implemented
+    paramStore->Set("/cmdline/reftime", reftime); //'-T' fourfit reference time override (empty string -> not specified)
     paramStore->Set("/cmdline/xpower_output", xpower_output);
     paramStore->Set("/cmdline/set_string", set_string); //TODO
     paramStore->Set("/cmdline/mk4format_output", use_mk4_output);

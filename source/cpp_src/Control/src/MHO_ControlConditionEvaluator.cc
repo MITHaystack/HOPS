@@ -40,18 +40,29 @@ void MHO_ControlConditionEvaluator::SetPassInformation(std::string baseline, std
         fBaselineMk4 = baseline;
         fRefStationMk4ID = std::string(1, fBaselineMk4[0]);
         fRemStationMk4ID = std::string(1, fBaselineMk4[1]);
-        fCanonicalRefStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(fRefStationMk4ID);
-        fCanonicalRemStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(fRemStationMk4ID);
+        fCanonicalRefStation = MHO_StationIdentifier::GetInstance().CanonicalStationName(fRefStationMk4ID);
+        fCanonicalRemStation = MHO_StationIdentifier::GetInstance().CanonicalStationName(fRemStationMk4ID);
     }
     else if(baseline.find(fDelim) != std::string::npos) //baseline is of the form: 'Gs-Wf'
     {
         std::string ref_station = baseline.substr(0, baseline.find(fDelim));
         std::string rem_station = baseline.substr(baseline.find(fDelim) + 1);
-        fCanonicalRefStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(ref_station);
-        fCanonicalRemStation = MHO_StationIdentifier::GetInstance()->CanonicalStationName(rem_station);
-        fRefStationMk4ID = MHO_StationIdentifier::GetInstance()->StationMk4IDFromName(fCanonicalRefStation);
-        fRemStationMk4ID = MHO_StationIdentifier::GetInstance()->StationMk4IDFromName(fCanonicalRemStation);
+        fCanonicalRefStation = MHO_StationIdentifier::GetInstance().CanonicalStationName(ref_station);
+        fCanonicalRemStation = MHO_StationIdentifier::GetInstance().CanonicalStationName(rem_station);
+        fRefStationMk4ID = MHO_StationIdentifier::GetInstance().StationMk4IDFromName(fCanonicalRefStation);
+        fRemStationMk4ID = MHO_StationIdentifier::GetInstance().StationMk4IDFromName(fCanonicalRemStation);
         fBaselineMk4 = fRefStationMk4ID + fRemStationMk4ID;
+    }
+    else
+    {
+        //an unparseable baseline would leave every station field at its '?'
+        //wildcard default, silently wildcard-matching every station/baseline
+        //condition, fail loudly instead.
+        msg_fatal("control", "cannot parse baseline '"
+                                 << baseline
+                                 << "': expected a 2-character mk4-style id (e.g. 'GE') or a station code delimited '" << fDelim
+                                 << "' baseline (e.g. 'Gs-Wf')." << eom);
+        HOPS_THROW;
     }
 
     msg_debug("control",
@@ -263,12 +274,22 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
         //std::cout<<"------"<<std::endl;
 
         //first loop over list evaluating NOTs
-        for(auto it = states.begin(); it != states.end(); it++)
+        //NOT is unary and right-associative, so a sequence of consecutive NOTs applies
+        //to the single operand that follows it. Just in case we have multiple NOTs, we loop
+        //and collapse a sequence of N 'NOT's into a single operation, based on parity, that way
+        //we can evaluate outliers like "not not X" correctly
+        for(auto it = states.begin(); it != states.end(); /* advanced below */)
         {
             if(*it == NOT_OP)
             {
-                not_count++;
-                it = states.erase(it);
+                int run = 0;
+                while(it != states.end() && *it == NOT_OP)
+                {
+                    run++;
+                    it = states.erase(it); //erase NOT, advance to next element
+                }
+                not_count++; //signal the do/while that a NOT pass did work
+
                 if(it == states.end())
                 {
                     //a 'not' with no following operand is a syntax error
@@ -276,15 +297,24 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
                                              << fStartLineNumber << "." << eom);
                     HOPS_THROW;
                 }
-                //invert the operand; use else-if since these are mutually exclusive
-                if(*it == TRUE_STATE)
+
+                if(run % 2 == 1) //odd number of NOTs => invert the operand once
                 {
-                    *it = FALSE_STATE;
+                    //invert the operand; use else-if since these are mutually exclusive
+                    if(*it == TRUE_STATE)
+                    {
+                        *it = FALSE_STATE;
+                    }
+                    else if(*it == FALSE_STATE)
+                    {
+                        *it = TRUE_STATE;
+                    }
                 }
-                else if(*it == FALSE_STATE)
-                {
-                    *it = TRUE_STATE;
-                }
+                it++; //step past the operand we just (maybe) inverted
+            }
+            else
+            {
+                it++;
             }
         }
 
@@ -368,7 +398,7 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
     }
     while(not_count || and_count || or_count); //keep looping until we have evaluated all of (not,and,or)
 
-    //if we have more than one boolean state at the end, we by default and them all together
+    //if we have more than one boolean state at the end, we by default 'AND' them all together
     //this could happen if someone wrote: "if (station A) (station B)", and failed to put an explicit 'and' in the middle
     if(states.size() > 1)
     {
@@ -389,9 +419,11 @@ int MHO_ControlConditionEvaluator::EvaluateBooleanOps(std::list< int > states)
     }
     else
     {
-        //we have an error
-        msg_error("control", "error parsing if statement on line " << fStartLineNumber << ", assuming false." << eom);
-        return FALSE_STATE;
+        //we have an error, (e.g. an empty condition or empty '()'
+        //fail out here
+        msg_fatal("control", "cannot parse empty or malformed if statement on line " << fStartLineNumber << "." << eom);
+        HOPS_THROW;
+        return FALSE_STATE; //unreachable
     }
 }
 
@@ -412,7 +444,7 @@ int MHO_ControlConditionEvaluator::EvaluateStation(token_iter& it)
     }
     else //multi-character station name/code
     {
-        std::string station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(station);
+        std::string station_name = MHO_StationIdentifier::GetInstance().CanonicalStationName(station);
         if(station_name == fCanonicalRefStation || station_name == fCanonicalRemStation)
         {
             return TRUE_STATE;
@@ -481,8 +513,8 @@ int MHO_ControlConditionEvaluator::EvaluateMultiCharacterBaseline(token_iter& it
     {
         std::string ref_station = baseline.substr(0, baseline.find(fDelim));
         std::string rem_station = baseline.substr(baseline.find(fDelim) + 1);
-        std::string ref_station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(ref_station);
-        std::string rem_station_name = MHO_StationIdentifier::GetInstance()->CanonicalStationName(rem_station);
+        std::string ref_station_name = MHO_StationIdentifier::GetInstance().CanonicalStationName(ref_station);
+        std::string rem_station_name = MHO_StationIdentifier::GetInstance().CanonicalStationName(rem_station);
         if(ref_station_name == fCanonicalRefStation && rem_station_name == fCanonicalRemStation)
         {
             return TRUE_STATE;
@@ -536,40 +568,64 @@ int MHO_ControlConditionEvaluator::EvaluateFrequencyGroup(token_iter& it)
 
 int MHO_ControlConditionEvaluator::EvaluateScan(token_iter& it, token_iter& it_end)
 {
-    //if( it == tokens.end() ){msg_error("control", "missing argument to scan statement." << eom); return FALSE_STATE;}
+    // must have at least one token before any dereference
+    if(it == it_end)
+    {
+        msg_error("control", "missing argument to scan statement." << eom);
+        return FALSE_STATE;
+    }
 
     if(*it == "<")
     {
         ++it;
+        if(it == it_end)
+        {
+            msg_error("control", "missing value after '<' in scan statement." << eom);
+            return FALSE_STATE;
+        }
         std::string scan_value = *it;
         return ScanLessThan(scan_value);
     }
     else if(*it == ">")
     {
         ++it;
+        if(it == it_end)
+        {
+            msg_error("control", "missing value after '>' in scan statement." << eom);
+            return FALSE_STATE;
+        }
         std::string scan_value = *it;
         return ScanGreaterThan(scan_value);
     }
     else if(std::next(it) != it_end && *(std::next(it)) == "to")
     {
-        //must be a range statement
+        // must be a range statement: <low> to <high>
         std::string scan_low = *it;
-        ++it;
+
+        ++it; // advance to "to", safe, since std::next(it) != it_end was already checked
         std::string to_token = *it;
-        ++it;
+
+        ++it; // advance to <high>
+        if(it == it_end)
+        {
+            msg_error("control", "missing upper bound after 'to' in scan range statement." << eom);
+            return FALSE_STATE;
+        }
         std::string scan_high = *it;
+
         if(to_token == "to")
         {
             return ScanInBetween(scan_low, scan_high);
         }
         else
         {
+            msg_error("control", "expected 'to' keyword in scan range statement." << eom);
             return FALSE_STATE;
         }
     }
     else
     {
-        //single scan only
+        // single scan
         if(*it == fScanTime)
         {
             return TRUE_STATE;

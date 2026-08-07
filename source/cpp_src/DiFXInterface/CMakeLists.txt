@@ -37,7 +37,7 @@ hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #compile and install library ###################################################
 
-set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities MHO_Vex2JSON MHO_Containers MHO_Operators MHO_MK4Interface date-tz)
+set(DIFXINTERFACE_LIBS MHO_Message MHO_Utilities MHO_Vex2JSON MHO_Containers MHO_Operators MHO_MK4Interface)
 
 # NOTE: this library no longer links difxio. The difxio-dependent .input parser
 # lives in the GPL-licensed difxinput2json executable (applications/difxinput2json);

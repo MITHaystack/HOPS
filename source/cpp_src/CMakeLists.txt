@@ -35,6 +35,27 @@ if(HOPS_ENABLE_DEV_TODO)
     hops_add_cxxflag(HOPS_ENABLE_DEV_TODO)
 endif()
 
+#Leap-second / TAI-GPS-UTC-sys clock backend. ON (default): use the self-contained
+#hardcoded leap-second table (hops_leap_seconds.hh) -- no libdate-tz link and no
+#runtime dependency on the host tz database (better for reproducible/relocatable
+#and manylinux distribution). OFF: fall back to upstream date/tz.h (links
+#libdate-tz, reads the installed system tz db at runtime). TestLeapSecondDrift
+#cross-checks the internal table against date-tz regardless of this setting.
+option(HOPS_USE_INTERNAL_LEAP_SECONDS "Use built-in leap-second table instead of linking libdate-tz" ON)
+if(HOPS_USE_INTERNAL_LEAP_SECONDS)
+    hops_add_cxxflag(HOPS_USE_INTERNAL_LEAP_SECONDS)
+endif()
+
+#We no longer build a static twin of libdate-tz, so a self-contained static build
+#must use the internal leap-second table. Enforce the invariant rather than emit
+#a static library with an unresolved dependency on the shared libdate-tz.
+if(HOPS_BUILD_STATIC_LIBS AND NOT HOPS_USE_INTERNAL_LEAP_SECONDS)
+    message(FATAL_ERROR
+        "HOPS_BUILD_STATIC_LIBS requires HOPS_USE_INTERNAL_LEAP_SECONDS=ON "
+        "(no static twin of libdate-tz is built). Enable the internal leap-second "
+        "table, or turn off static-library builds.")
+endif()
+
 #configure the version header
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/hops_version.hh.cmake ${CMAKE_CURRENT_BINARY_DIR}/hops_version.hh)
 hops_install_headers(${CMAKE_CURRENT_BINARY_DIR}/hops_version.hh)
@@ -44,7 +65,7 @@ hops_include_directories(${CMAKE_CURRENT_BINARY_DIR})
 # Core HOPS4 source sub directories
 # listed in order of dependence...this is important!
 add_subdirectory(${CPPSOURCE}/Message) #the messaging library
-add_subdirectory(${CPPSOURCE}/Utilities) #other generic utilities
+add_subdirectory(${CPPSOURCE}/Utilities) #other generic utilities (incl. hops_clock + legacy date converter)
 add_subdirectory(${CPPSOURCE}/Vex2JSON) #library to convert ovex to json
 add_subdirectory(${CPPSOURCE}/Math) #the generic math library
 add_subdirectory(${CPPSOURCE}/Containers) #data container base classes and generic containers

@@ -65,10 +65,11 @@ def main():
         sys.exit(1)
 
     #pol product:
-    for pp in polprods:
-        if pp not in ['XX', 'YY', 'XY', 'YX', 'I']:
-            print("error: ", pp, "not understood, polarization products must be an element from: {XX, YY, XY, YX, I}")
-            sys.exit(1)
+    if not args.force_run:
+        for pp in polprods:
+            if pp not in ['XX', 'YY', 'XY', 'YX', 'I']:
+                print("error: ", pp, "not understood, polarization products must be an element from: {XX, YY, XY, YX, I}")
+                sys.exit(1)
 
     #force all fringe files generated to save the control file
     #information in the type_222 records, unless this has been disabled
@@ -108,7 +109,7 @@ def main():
                                                      start_scan_limit=start_scan_limit, stop_scan_limit=stop_scan_limit, \
                                                      pol_products=polprods, use_progress_ticker=args.use_progress_ticker, \
                                                      log_fourfit_processes=True, use_ionex_file=args.tec_file, force_run=force_flag )
-	
+
 
 
 if __name__ == '__main__':          # official entry point

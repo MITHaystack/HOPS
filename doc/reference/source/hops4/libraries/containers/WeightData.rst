@@ -17,7 +17,7 @@ General Information
 - **Shape**: the length of each dimension (e.g. [4, 32, 30, 1] )
 - **Strides**: the stride between data in each dimension (e.g. [960, 30, 1, 1])
 - **Total Size**: the total number of data elements in the array (e.g. 3840 )
-- **Element Type**: ``float``
+- **Element Type**: ``float`` or ``double``
 
 **Aliases**
 

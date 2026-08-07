@@ -72,11 +72,8 @@ class MHO_LockFileHandler
          */
         static MHO_LockFileHandler& GetInstance()
         {
-            if(fInstance == nullptr)
-            {
-                fInstance = new MHO_LockFileHandler();
-            }
-            return *fInstance;
+            static MHO_LockFileHandler instance;
+            return instance;
         }
 
         /**
@@ -223,8 +220,6 @@ class MHO_LockFileHandler
 
         virtual ~MHO_LockFileHandler(){};
 
-        //static global class instance
-        static MHO_LockFileHandler* fInstance;
         //info of the current process
         lockfile_data fProcessLockFileData;
         //directory interface

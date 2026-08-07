@@ -206,6 +206,19 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         virtual bool ExecuteImpl(const XArgType* in) override;
 
         /**
+         * @brief Finalize the coarse search: validate bin locations, compute
+         *        coarse delay values from axis lookups, and return true only
+         *        when a valid peak was found (all bin indices >= 0).
+         *
+         * @return true if the peak was found, false otherwise.
+         *
+         * @note Called by the base, OpenMP, and CUDA ExecuteImpl after the
+         *       search loops have populated fMBDMaxBin, fSBDMaxBin, and
+         *       fDRMaxBin
+         */
+        bool finalize_search();
+
+        /**
          * @brief Applies incoherent box-car smoothing over the delay-rate dimension of the given
          * search buffer, using scratch as a temporary per-MBD amplitude row.
          * When fTCohereEnabled is false this is a no-op.
@@ -221,7 +234,7 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
     protected:
         void SetWindow(double* win, double low, double high);
         void GetWindow(const MHO_Axis< double >& axis, bool win_set, const double* win, double bin_width, double& low,
-                       double& high) const;
+                       double& high, std::size_t n_valid = 0) const;
 
         //workspace
         bool fInitialized;

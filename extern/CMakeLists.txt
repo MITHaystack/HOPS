@@ -65,6 +65,19 @@ endif()
 
 add_subdirectory(date)
 
+# Expose the header-only portion of the date library (date/date.h civil calendar)
+# as a global include, like Eigen above. MHO_Clock.hh includes "date/date.h"
+# unconditionally, and with HOPS_USE_INTERNAL_LEAP_SECONDS it needs ONLY these
+# headers (no libdate-tz link), so consumers must see the include dir directly
+# rather than inheriting it from a date-tz target usage requirement.
+hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/date/include)
+
+# NOTE: no static twin of libdate-tz is built. Static-library distribution always
+# uses the internal leap-second table (HOPS_USE_INTERNAL_LEAP_SECONDS=ON), so no
+# HOPS static library ever needs date-tz. That invariant is enforced at configure
+# time in source/cpp_src/CMakeLists.txt (fatal error if static libs are requested
+# with the internal table disabled).
+
 
 
 #Note that gnuplot is a RUNTIME dependency of matplot++

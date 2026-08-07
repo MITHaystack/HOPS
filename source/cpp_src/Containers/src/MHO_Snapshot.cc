@@ -3,9 +3,6 @@
 namespace hops
 {
 
-//initialization to nullptr
-MHO_Snapshot* MHO_Snapshot::fInstance = nullptr;
-
 void MHO_Snapshot::AddKey(const std::string& key)
 {
     fKeys.insert(key);

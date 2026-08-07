@@ -66,15 +66,13 @@ set(FRINGE_LIBS
     MHO_Initialization
 )
 
-#add cuda deps if available
+#add cuda deps if available (includes propagate via target_include_directories on MHO_CUDAModules)
 if(HOPS_USE_CUDA)
-    hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Plugins/CUDA/CUDAModules/include)
     list(APPEND FRINGE_LIBS MHO_CUDAModules ${CUDA_LIBRARIES} ${CUDA_CUFFT_LIBRARIES} )
 endif(HOPS_USE_CUDA)
 
-#add OpenMP deps if needed
+#add OpenMP deps if needed (includes propagate via target_include_directories on MHO_OpenMPPlugin)
 if(HOPS_USE_OPENMP)
-    hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Plugins/OpenMP/include)
     list(APPEND FRINGE_LIBS MHO_OpenMPPlugin OpenMP::OpenMP_CXX)
 endif(HOPS_USE_OPENMP)
 

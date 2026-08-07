@@ -130,7 +130,7 @@ void MHO_DiFXPCalProcessor::ProcessTokens()
 
         //now loop through the rest of the p-cal phasor data (4 tokens at a time)
         int itone = 0;
-        while(n < fTokens.size())
+        while(n + 4 <= fTokens.size()) //while we have at least 4 tokens left
         {
             itone = std::atoi(fTokens[n].c_str());
             pcal_phasor ph;

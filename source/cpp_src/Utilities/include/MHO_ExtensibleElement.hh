@@ -79,7 +79,7 @@ class MHO_ExtensibleElement: public MHO_Element
         void Accept(MHO_Visitor* aVisitor) override
         {
             //the MHO_ExtensibleElement class by-itself is just a container,
-            //no need to visit it by itself, just visit all the extentions
+            //no need to visit it by itself, just visit all the extensions
             for(auto it = fExtensions.begin(); it != fExtensions.end(); it++)
             {
                 (*it)->Accept(aVisitor);
@@ -122,11 +122,11 @@ class MHO_ExtensibleElement: public MHO_Element
  */
 template< class XExtensionType > inline bool MHO_ExtensibleElement::HasExtension() const
 {
-    MHO_ExtendedElement< XExtensionType >* extention;
+    MHO_ExtendedElement< XExtensionType >* extension;
     for(auto it = fExtensions.begin(); it != fExtensions.end(); it++)
     {
-        extention = dynamic_cast< MHO_ExtendedElement< XExtensionType >* >(*it);
-        if(extention != nullptr)
+        extension = dynamic_cast< MHO_ExtendedElement< XExtensionType >* >(*it);
+        if(extension != nullptr)
         {
             return true;
         }
@@ -141,20 +141,20 @@ template< class XExtensionType > inline bool MHO_ExtensibleElement::HasExtension
  */
 template< class XExtensionType > inline MHO_ExtendedElement< XExtensionType >* MHO_ExtensibleElement::MakeExtension()
 {
-    MHO_ExtendedElement< XExtensionType >* extention;
+    MHO_ExtendedElement< XExtensionType >* extension;
     for(auto it = fExtensions.begin(); it != fExtensions.end(); it++)
     {
-        extention = dynamic_cast< MHO_ExtendedElement< XExtensionType >* >(*it);
-        if(extention != nullptr)
+        extension = dynamic_cast< MHO_ExtendedElement< XExtensionType >* >(*it);
+        if(extension != nullptr)
         {
-            delete extention;
+            delete extension;
             fExtensions.erase(it);
             break;
         }
     }
-    extention = new MHO_ExtendedElement< XExtensionType >(this);
-    fExtensions.push_back(extention);
-    return extention;
+    extension = new MHO_ExtendedElement< XExtensionType >(this);
+    fExtensions.push_back(extension);
+    return extension;
 }
 
 /**
@@ -164,13 +164,13 @@ template< class XExtensionType > inline MHO_ExtendedElement< XExtensionType >* M
  */
 template< class XExtensionType > inline MHO_ExtendedElement< XExtensionType >* MHO_ExtensibleElement::AsExtension()
 {
-    MHO_ExtendedElement< XExtensionType >* extention;
+    MHO_ExtendedElement< XExtensionType >* extension;
     for(auto it = fExtensions.begin(); it != fExtensions.end(); it++)
     {
-        extention = dynamic_cast< MHO_ExtendedElement< XExtensionType >* >(*it);
-        if(extention != nullptr)
+        extension = dynamic_cast< MHO_ExtendedElement< XExtensionType >* >(*it);
+        if(extension != nullptr)
         {
-            return extention;
+            return extension;
         };
     }
     return nullptr;

@@ -1,12 +1,17 @@
 #include "MHO_DelayRate.hh"
 #include "MHO_BitReversalPermutation.hh"
 
-#include <iomanip>
-
 #include <math.h>
 
 namespace hops
 {
+
+namespace
+{
+    //Zero-padding factor applied to the time axis: the rate FFT runs on
+    //kTimePadFactor*fDRSPSize points and is then resampled back down to fDRSPSize bins.
+    const int kTimePadFactor = 4;
+} // namespace
 
 MHO_DelayRate::MHO_DelayRate(): fInitialized(false)
 {
@@ -32,56 +37,12 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
         fDRSPSize = CalculateSearchSpaceSize(fInDims[TIME_AXIS]);
         msg_debug("calibration", "delay rate search space size = " << fDRSPSize << eom);
 
-        //precompute per-(ch,dr) interpolation indices and weights
-        //num, l_fp, l_int depend only on (ch, dr) - not on pp or sbd - so compute once here
-        {
-            std::size_t nch_interp = fInDims[CHANNEL_AXIS];
-            int sz = 4 * fDRSPSize;
-            fInterpTable.resize(nch_interp * fDRSPSize);
-            for(std::size_t ch = 0; ch < nch_interp; ch++)
-            {
-                double chan_freq = std::get< CHANNEL_AXIS >(*in1)(ch);
-                double b = ((chan_freq / fRefFreq) * sz) / fDRSPSize;
-                for(int dr = 0; dr < fDRSPSize; dr++)
-                {
-                    double num = ((double)dr - (double)(fDRSPSize / 2)) * b + ((double)sz * 1.5);
-                    double l_fp = std::fmod(num, (double)sz);
-                    int l_int = (int)l_fp;
-                    if(l_int < 0)
-                    {
-                        l_int = 0;
-                    }
-                    int l_int2 = l_int + 1;
-                    if(l_int2 > (sz - 1))
-                    {
-                        l_int2 = sz - 1;
-                    }
-                    fInterpTable[ch * fDRSPSize + dr] = {l_int, l_int2, l_fp - (double)l_int};
-                }
-            }
+        BuildResamplingTable(in1);
 
-            //build fPreRotatedInterpTable: shift l0/l1 by sz/2 (mod sz) so that
-            //ExecuteImplOptimized can read directly from the post-FFT (pre-rotation) array.
-            //The CyclicRotator left-shifts by np/2 = sz/2, so element at post-FFT position p
-            //ends up at post-rotation position (p - sz/2 + sz) % sz.  Inverting: to read
-            //post-rotation index q from the pre-rotation array, read (q + sz/2) % sz.
-            fPreRotatedInterpTable.resize(nch_interp * fDRSPSize);
-            for(std::size_t ch = 0; ch < nch_interp; ch++)
-            {
-                for(int dr = 0; dr < fDRSPSize; dr++)
-                {
-                    const InterpEntry& e = fInterpTable[ch * fDRSPSize + dr];
-                    int r0 = (e.l0 + sz / 2) % sz;
-                    int r1 = (e.l1 + sz / 2) % sz;
-                    fPreRotatedInterpTable[ch * fDRSPSize + dr] = {r0, r1, e.w};
-                }
-            }
-        }
-
-        std::size_t np = fDRSPSize * 4;
+        std::size_t np = fDRSPSize * kTimePadFactor;
         ConditionallyResizeOutput(&(fInDims[0]), np, out);
 
-        //pre-allocate workspace for ApplyInterpolationOptimized
+        //pre-allocate workspace for ApplyInterpolation
         fInterpWorkspace.resize(fDRSPSize * fInDims[FREQ_AXIS]);
 
         fZeroPadder.SetArgs(in1, out);
@@ -111,15 +72,6 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
             return false;
         }
 
-        fCyclicRotator.SetOffset(TIME_AXIS, np / 2);
-        fCyclicRotator.SetArgs(out);
-        ok = fCyclicRotator.Initialize();
-        if(!ok)
-        {
-            msg_error("operators", "Could not initialize cyclic rotation in MHO_DelayRate." << eom);
-            return false;
-        }
-
         fInitialized = true;
     }
 
@@ -129,12 +81,7 @@ bool MHO_DelayRate::InitializeImpl(const XArgType1* in1, const XArgType2* in2, X
 bool MHO_DelayRate::ExecuteImpl(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
 {
     profiler_scope();
-    bool ret_val = ExecuteImplOptimized(in1, in2, out);
-    return ret_val;
-};
 
-bool MHO_DelayRate::ExecuteImplLegacy(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
-{
     if(fInitialized)
     {
         bool ok;
@@ -155,44 +102,9 @@ bool MHO_DelayRate::ExecuteImplLegacy(const XArgType1* in1, const XArgType2* in2
             return false;
         }
 
-        ok = fCyclicRotator.Execute();
-        check_step_fatal(ok, "fringe", "cyclic rotation execution." << eom);
-
-        //apply the legacy linear interpolation step -- TODO determine if this is strictly needed
-        ApplyInterpolationOptimized(in1, out, fInterpTable);
-
-        return true;
-    }
-
-    return false;
-};
-
-bool MHO_DelayRate::ExecuteImplOptimized(const XArgType1* in1, const XArgType2* in2, XArgType3* out)
-{
-    if(fInitialized)
-    {
-        bool ok;
-
-        ok = fZeroPadder.Execute();
-        if(!ok)
-        {
-            msg_error("operators", "Could not execute zero padder in MHO_DelayRate" << eom);
-            return false;
-        }
-
-        ApplyDataWeights(in2, out);
-
-        ok = fFFTEngine.Execute();
-        if(!ok)
-        {
-            msg_error("operators", "Could not execute FFT in MHO_DelayRate" << eom);
-            return false;
-        }
-
-        //skip CyclicRotator: fPreRotatedInterpTable absorbs the np/2 shift into l0/l1,
-        //so interpolation reads directly from the post-FFT array.
-        //Axis labels are written by ApplyInterpolationOptimized regardless.
-        ApplyInterpolationOptimized(in1, out, fPreRotatedInterpTable);
+        //no explicit fftshift (MHO_CyclicRotator) pass is needed here: the lo/hi indices in fInterpTable already
+        //carry the half-length shift, so the resampling reads the raw FFT output directly.
+        ApplyInterpolation(in1, out);
 
         return true;
     }
@@ -207,10 +119,7 @@ void MHO_DelayRate::ApplyDataWeights(const XArgType2* in2, XArgType3* out)
     std::size_t pprod = out->GetDimension(POLPROD_AXIS);
     std::size_t nch = out->GetDimension(CHANNEL_AXIS);
     std::size_t nap = out->GetDimension(TIME_AXIS);
-    std::size_t nsbd = out->GetDimension(FREQ_AXIS);
 
-    std::size_t wpprod = in2->GetDimension(POLPROD_AXIS);
-    std::size_t wnch = in2->GetDimension(CHANNEL_AXIS);
     std::size_t wnap = in2->GetDimension(TIME_AXIS);
 
     //make sure we don't over run the weight array bounds (since out array has been padded)
@@ -271,6 +180,64 @@ unsigned int MHO_DelayRate::CalculateSearchSpaceSize(unsigned int input_size)
     return drsp_size;
 }
 
+void MHO_DelayRate::BuildResamplingTable(const XArgType1* in1)
+{
+    const int n_dr = fDRSPSize;                     //output delay-rate bins
+    const int n_fft = kTimePadFactor * fDRSPSize;   //padded FFT length
+    const int half_dr = n_dr / 2;                   //zero-rate bin (n_dr is always even)
+    const std::size_t nch = fInDims[CHANNEL_AXIS];
+
+    fInterpTable.resize(nch * n_dr);
+    for(std::size_t ch = 0; ch < nch; ch++)
+    {
+        //The fringe rate seen in this channel is (delay rate)*(sky freq), so a single physical
+        //delay rate lands in a different fringe-rate bin in each channel. Stretching this
+        //channel's rate spectrum by chan_freq/fRefFreq removes that channel dependence and puts
+        //every channel on one shared delay-rate grid. Channels above fRefFreq compress, those
+        //below stretch; a channel exactly at fRefFreq gives stretch == kTimePadFactor, i.e. a
+        //plain 4:1 decimation of the padded spectrum.
+        double chan_freq = std::get< CHANNEL_AXIS >(*in1)(ch);
+        double stretch = kTimePadFactor * (chan_freq / fRefFreq);
+
+        for(int dr = 0; dr < n_dr; dr++)
+        {
+            //Fractional source position in the padded spectrum for output bin 'dr':
+            //  (dr - n_dr/2)   signed bin offset from zero rate
+            //  * stretch       convert to a position on this channel's rate spectrum
+            //  + n_fft/2       recentre onto the fftshift'ed (zero-rate-at-middle) ordering
+            //  + n_fft         one extra period, so the fmod argument stays non-negative
+            double pos = ((double)dr - (double)half_dr) * stretch + (double)n_fft * 1.5;
+            double pos_wrapped = std::fmod(pos, (double)n_fft);
+
+            int lo = (int)pos_wrapped;
+            //guard only: pos goes negative when chan_freq/fRefFreq > 3, which no realistic
+            //setup should reach TODO FIXME: if it ever does, then this will resample the wrong bin.
+            if(lo < 0)
+            {
+                lo = 0;
+            }
+            //NOTE: the upper neighbour is clamped rather than wrapped to 0, so at the topmost
+            //bin the blend degenerates to just spectrum[n_fft-1]. This matches legacy fourfit
+            //(delay_rate.c): TODO check this behavior against the old hops code.
+            int hi = lo + 1;
+            if(hi > (n_fft - 1))
+            {
+                hi = n_fft - 1;
+            }
+            double frac = pos_wrapped - (double)lo;
+
+            //Fold the fftshift into the indices so ApplyInterpolation can read the raw
+            //post-FFT array: post-FFT position p lands at post-shift position
+            //(p - n_fft/2 + n_fft) % n_fft, so to read post-shift index q we read
+            //(q + n_fft/2) % n_fft.
+            lo = (lo + n_fft / 2) % n_fft;
+            hi = (hi + n_fft / 2) % n_fft;
+
+            fInterpTable[ch * n_dr + dr] = {lo, hi, frac};
+        }
+    }
+}
+
 void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
 {
     profiler_scope();
@@ -278,54 +245,16 @@ void MHO_DelayRate::ApplyInterpolation(const XArgType1* in1, XArgType3* out)
     std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
     double time_delta = std::get< TIME_AXIS >(*in1)(1) - std::get< TIME_AXIS >(*in1)(0);
 
-    //linear interpolation and modification of delay rate axis (see delay_rate.c line 81)
     std::size_t nsbd = out->GetDimension(FREQ_AXIS);
 
-    //write delay-rate axis values once - they depend only on dr, not on pp/ch/sbd
+    //write the rate axis labels once, they depend only on dr, not on pp/ch/sbd,
+    //these are fringe rates *at the reference frequency* (s^-1); the caller (MBDelaySearch) divides by
+    //fRefFreq to obtain the delay rate that bin dr represents in every channel.
+    const int half_dr = fDRSPSize / 2; //zero-rate bin (fDRSPSize is always even)
     double ax_scale = 1.0 / (time_delta * (double)fDRSPSize);
     for(int dr = 0; dr < fDRSPSize; dr++)
     {
-        std::get< TIME_AXIS > (*out)(dr) = ((double)dr - (double)(fDRSPSize / 2)) * ax_scale;
-    }
-
-    std::vector< sbd_type::value_type > workspace;
-    workspace.resize(fDRSPSize);
-    for(std::size_t pp = 0; pp < pprod; pp++)
-    {
-        for(std::size_t ch = 0; ch < nch; ch++)
-        {
-            //use precomputed table to eliminate fmod and index arithmetic from innermost loop
-            const InterpEntry* tbl = &fInterpTable[ch * fDRSPSize];
-            for(std::size_t sbd = 0; sbd < nsbd; sbd++)
-            {
-                for(int dr = 0; dr < fDRSPSize; dr++)
-                {
-                    const InterpEntry& e = tbl[dr];
-                    workspace[dr] = (*out)(pp, ch, e.l0, sbd) * (1.0 - e.w) + (*out)(pp, ch, e.l1, sbd) * e.w;
-                }
-                for(int dr = 0; dr < fDRSPSize; dr++)
-                {
-                    (*out)(pp, ch, dr, sbd) = workspace[dr];
-                }
-            }
-        }
-    }
-}
-
-void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3* out, const std::vector< InterpEntry >& table)
-{
-    profiler_scope();
-    std::size_t pprod = in1->GetDimension(POLPROD_AXIS);
-    std::size_t nch = in1->GetDimension(CHANNEL_AXIS);
-    double time_delta = std::get< TIME_AXIS >(*in1)(1) - std::get< TIME_AXIS >(*in1)(0);
-
-    std::size_t nsbd = out->GetDimension(FREQ_AXIS);
-
-    //write delay-rate axis values once - they depend only on dr, not on pp/ch/sbd
-    double ax_scale = 1.0 / (time_delta * (double)fDRSPSize);
-    for(int dr = 0; dr < fDRSPSize; dr++)
-    {
-        std::get< TIME_AXIS > (*out)(dr) = ((double)dr - (double)(fDRSPSize / 2)) * ax_scale;
+        std::get< TIME_AXIS > (*out)(dr) = ((double)dr - (double)half_dr) * ax_scale;
     }
 
     using value_t = sbd_type::value_type;
@@ -334,19 +263,19 @@ void MHO_DelayRate::ApplyInterpolationOptimized(const XArgType1* in1, XArgType3*
     {
         for(std::size_t ch = 0; ch < nch; ch++)
         {
-            const InterpEntry* tbl = &table[ch * fDRSPSize];
+            const InterpEntry* tbl = &fInterpTable[ch * fDRSPSize];
 
             //Stage results into workspace: dr(outer)->sbd(inner).
-            //For each dr, l0 and l1 are constants from the table, so we obtain raw pointers
-            //to the two contiguous source sbd-rows once per dr and walk them cheaply.
+            //For each dr, lo and hi are constants from the table, so we obtain raw pointers
+            //to the two contiguous source sbd-rows once per dr and traverse them cheaply, that way
             //OffsetFromStrideIndex is called once per (pp,ch,dr) triple, not once per element.
             for(int dr = 0; dr < fDRSPSize; dr++)
             {
                 const InterpEntry& e = tbl[dr];
-                const double w1 = 1.0 - e.w;
-                const double w2 = e.w;
-                const value_t* src0 = &(*out)(pp, ch, e.l0, 0);
-                const value_t* src1 = &(*out)(pp, ch, e.l1, 0);
+                const double w1 = 1.0 - e.frac;
+                const double w2 = e.frac;
+                const value_t* src0 = &(*out)(pp, ch, e.lo, 0);
+                const value_t* src1 = &(*out)(pp, ch, e.hi, 0);
                 value_t* dst = &fInterpWorkspace[dr * nsbd];
                 for(std::size_t sbd = 0; sbd < nsbd; sbd++)
                 {

@@ -44,7 +44,7 @@ Options
      - Specifies the first channel displayed in the fringe plot (ignored, not yet implemented)
    * - ``-M`` TEXT ..., ``--message-categories`` TEXT ...
      - Limit the allowed message categories to only those which the user specifies. Available categories:
-       
+
        - ``main``
        - ``calibration``
        - ``containers``
@@ -78,10 +78,12 @@ Options
    * - ``-P`` TEXT, ``--polprod`` TEXT
      - Polarization product (e.g., ``XX``, ``I``, ``RR+LL``)
    * - ``-T`` TEXT, ``--reftime`` TEXT
-     - Fourfit reference time (ignored, not yet implemented)
+     - Specify the fourfit reference time, overriding the value from the root/vex file. The
+       argument may be given either as an absolute VEX epoch (e.g. ``2026y180d12h15m08s``) or as a
+       non-negative integer number of seconds after the scheduled scan start (e.g. ``30``).
    * - ``-X`` INT, ``--xpower-output`` INT
      - append cross power data with fringe solution applied, specifying the axis along which data should be summed, options are:
-       
+
        - ``-1``: no export (default)
        - ``0``: none
        - ``1``: channel

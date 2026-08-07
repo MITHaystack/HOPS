@@ -12,8 +12,6 @@
 namespace hops
 {
 
-MHO_OpenCLInterface* MHO_OpenCLInterface::fOpenCLInterface = 0;
-
 MHO_OpenCLInterface::MHO_OpenCLInterface()
 {
     InitializeOpenCL();
@@ -31,11 +29,8 @@ MHO_OpenCLInterface::~MHO_OpenCLInterface()
  */
 MHO_OpenCLInterface* MHO_OpenCLInterface::GetInstance()
 {
-    if(fOpenCLInterface == 0)
-    {
-        fOpenCLInterface = new MHO_OpenCLInterface();
-    }
-    return fOpenCLInterface;
+    static MHO_OpenCLInterface instance;
+    return &instance;
 }
 
 /**

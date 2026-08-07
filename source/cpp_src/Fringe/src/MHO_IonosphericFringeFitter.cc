@@ -481,7 +481,7 @@ void MHO_IonosphericFringeFitter::sort_tecs(int nion, std::vector< std::vector< 
     }
 
     fParameterStore->Set("/fringe/dtec_array", dtec_values);
-    fParameterStore->Set("/fringe/dtec_amp_array/", dtec_amp_values);
+    fParameterStore->Set("/fringe/dtec_amp_array", dtec_amp_values);
 };
 
 // experimental ion search, which performs a smoothing step of

@@ -174,10 +174,20 @@ MHO_PythonSubprocessRunner::Result MHO_PythonSubprocessRunner::RunModule(const s
 {
     Result result;
 
-    //write the JSON request and prepare a file to capture the child's stderr
+    //write the JSON request, pre-create the response file the child writes its
+    //JSON answer into, and a file to capture the child's stderr. The request and
+    //response paths are handed to the child on its command line. Keeping the
+    //response on its own file (not the shared stdout) means stray output from
+    //user control/plot code cannot corrupt the JSON contract.
     std::string req_path = write_temp_file("pyreq", request_json);
     if(req_path.empty())
     {
+        return result;
+    }
+    std::string resp_path = write_temp_file("pyresp", std::string());
+    if(resp_path.empty())
+    {
+        ::remove(req_path.c_str());
         return result;
     }
     std::string err_path = write_temp_file("pyerr", std::string());
@@ -186,7 +196,7 @@ MHO_PythonSubprocessRunner::Result MHO_PythonSubprocessRunner::RunModule(const s
     std::string interpreter = ResolveInterpreter();
     std::string child_pythonpath = compose_child_pythonpath();
 
-    //assemble: [PYTHONPATH='...'] <interp> -m <module> '<reqfile>' 2>'<errfile>'
+    //assemble: [PYTHONPATH='...'] <interp> -m <module> '<reqfile>' '<respfile>' 2>'<errfile>'
     std::string cmd;
     if(!child_pythonpath.empty())
     {
@@ -195,6 +205,7 @@ MHO_PythonSubprocessRunner::Result MHO_PythonSubprocessRunner::RunModule(const s
     cmd += shell_single_quote(interpreter);
     cmd += " -m " + shell_single_quote(module);
     cmd += " " + shell_single_quote(req_path);
+    cmd += " " + shell_single_quote(resp_path);
     if(!err_path.empty())
     {
         cmd += " 2>" + shell_single_quote(err_path);
@@ -207,6 +218,7 @@ MHO_PythonSubprocessRunner::Result MHO_PythonSubprocessRunner::RunModule(const s
     {
         msg_error("python_subprocess", "popen() failed for python subprocess: " << std::strerror(errno) << eom);
         ::remove(req_path.c_str());
+        ::remove(resp_path.c_str());
         if(!err_path.empty())
         {
             ::remove(err_path.c_str());
@@ -215,22 +227,34 @@ MHO_PythonSubprocessRunner::Result MHO_PythonSubprocessRunner::RunModule(const s
     }
     result.spawned = true;
 
-    //read the JSON response off stdout
+    //drain the child's stdout so a chatty child cannot block on a full pipe;
+    //stdout is no longer the contract channel, just any user/library noise that
+    //we forward to the debug log.
+    std::string child_stdout;
     char buf[4096];
     std::size_t n = 0;
     while((n = ::fread(buf, 1, sizeof(buf), pipe)) > 0)
     {
-        result.out.append(buf, n);
+        child_stdout.append(buf, n);
     }
 
     int status = ::pclose(pipe);
+
+    //the JSON response is read from the response file the child wrote, not stdout
+    result.out = slurp_file(resp_path);
 
     if(!err_path.empty())
     {
         result.err = slurp_file(err_path);
         ::remove(err_path.c_str());
     }
+    ::remove(resp_path.c_str());
     ::remove(req_path.c_str());
+
+    if(!child_stdout.empty())
+    {
+        msg_debug("python_subprocess", "python subprocess stdout (diagnostic): " << child_stdout << eom);
+    }
 
     if(status != -1)
     {

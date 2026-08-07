@@ -349,7 +349,7 @@ The ``type_100`` is a general data description record format. See :hops:`type_10
 +--------------+----------------+----------------+------------------------------------------------+
 | unused2      | char[6]        | 6              | Padding                                        |
 +--------------+----------------+----------------+------------------------------------------------+
-| pct_done     | float          | 4              | 0–100% of scheduled data processed             |
+| pct_done     | float          | 4              | 0-100% of scheduled data processed             |
 +--------------+----------------+----------------+------------------------------------------------+
 | start        | struct date    | 12             | Time of first AP                               |
 +--------------+----------------+----------------+------------------------------------------------+
@@ -489,7 +489,7 @@ for each element. The weight type for spectral data is effectively a single floa
 +==========+========+================+==================================================+
 | flag     | int    | 4              | Up to 32 correlation flags                       |
 +----------+--------+----------------+--------------------------------------------------+
-| weight   | float  | 4              | Spectral mode AP weight (range 0.0 – 1.0)        |
+| weight   | float  | 4              | Spectral mode AP weight (range 0.0 - 1.0)        |
 +----------+--------+----------------+--------------------------------------------------+
 
 Record length is variable, depending on the number of lags and the mode.
@@ -640,21 +640,21 @@ The ``type_202`` is the baseline information record. See :hops:`type_202` for mo
 +-------------------+-------------------+----------------+---------------------------------------------------------+
 | vf                | double            | 8              | mHz/arcsec/GHz in Declination                           |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
-| ref_clock         | float             | 4              | Reference station clock (μsec)                          |
+| ref_clock         | float             | 4              | Reference station clock (usec)                          |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
-| rem_clock         | float             | 4              | Remote station clock (μsec)                             |
+| rem_clock         | float             | 4              | Remote station clock (usec)                             |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
 | ref_clockrate     | float             | 4              | Reference station clock rate (sec/sec)                  |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
 | rem_clockrate     | float             | 4              | Remote station clock rate (sec/sec)                     |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
-| ref_idelay        | float             | 4              | Reference station instrumental delay (μsec)             |
+| ref_idelay        | float             | 4              | Reference station instrumental delay (usec)             |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
-| rem_idelay        | float             | 4              | Remote station instrumental delay (μsec)                |
+| rem_idelay        | float             | 4              | Remote station instrumental delay (usec)                |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
-| ref_zdelay        | float             | 4              | Reference station zenith atmospheric delay (μsec)       |
+| ref_zdelay        | float             | 4              | Reference station zenith atmospheric delay (usec)       |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
-| rem_zdelay        | float             | 4              | Remote station zenith atmospheric delay (μsec)          |
+| rem_zdelay        | float             | 4              | Remote station zenith atmospheric delay (usec)          |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
 | ref_elev          | float             | 4              | Elevation at reference antenna (degrees)                |
 +-------------------+-------------------+----------------+---------------------------------------------------------+
@@ -684,7 +684,7 @@ The ``type_203`` is the channel information record format. See :hops:`type_203` 
 +-------------------+------------------------+----------------+-----------------------------------------------------------+
 | unused1           | char[3]                | 3              | Reserved space                                            |
 +-------------------+------------------------+----------------+-----------------------------------------------------------+
-| channels          | ch_struct[8*MAXFREQ]   |                | Array of 512 channel info structs (8 per frequency × 64)  |
+| channels          | ch_struct[8*MAXFREQ]   |                | Array of 512 channel info structs (8 per frequency x 64)  |
 |                   |                        |                |                                                           |
 +-------------------+------------------------+----------------+-----------------------------------------------------------+
 
@@ -890,7 +890,7 @@ The ``type_207`` is the phasecal and error rate record format. See :hops:`type_2
 +-------------------+------------------------+----------------+-------------------------------------------------------------+
 | unused1           | char[3]                | 3              | Reserved space                                              |
 +-------------------+------------------------+----------------+-------------------------------------------------------------+
-| pcal_mode         | int                    | 4              | 10 × ant1 + ant2; meaning defined in `control.h`            |
+| pcal_mode         | int                    | 4              | 10 x ant1 + ant2; meaning defined in `control.h`            |
 +-------------------+------------------------+----------------+-------------------------------------------------------------+
 | unused2           | int                    | 4              | Padding                                                     |
 +-------------------+------------------------+----------------+-------------------------------------------------------------+
@@ -957,7 +957,7 @@ The ``type_208`` is the  fringe solution parameter record format. See :hops:`typ
 +---------------------+-------------+----------------+--------------------------------------------------------------+
 | arate               | double      | 8              | Apriori rate at FRT (usec/sec)                               |
 +---------------------+-------------+----------------+--------------------------------------------------------------+
-| aaccel              | double      | 8              | Apriori accel at FRT (usec/sec²)                             |
+| aaccel              | double      | 8              | Apriori accel at FRT (usec/sec^{2})                          |
 +---------------------+-------------+----------------+--------------------------------------------------------------+
 | tot_mbd             | double      | 8              | Total observed MBD (usec)                                    |
 +---------------------+-------------+----------------+--------------------------------------------------------------+
@@ -1492,6 +1492,5 @@ Details of struct `ch1_tag` (used in chan[64]):
 +----------------+---------------------+----------------+-------------------------------------------+
 | freq           | double              | 8              | Tone frequency in Hz                      |
 +----------------+---------------------+----------------+-------------------------------------------+
-| acc[64][2]     | U32                 | 4096           | Accumulators: 64 freqs × 2 quads (C, S)   |
+| acc[64][2]     | U32                 | 4096           | Accumulators: 64 freqs x 2 quads (C, S)   |
 +----------------+---------------------+----------------+-------------------------------------------+
-
