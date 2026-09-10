@@ -947,8 +947,6 @@ inline hops_clock::time_point hops_clock::from_vdif_format(int& vdif_epoch, int&
     int n_years = std::floor(vdif_epoch / 2);
     int iyear = start_year + n_years;
 
-    std::cout << "n_years = " << n_years << " iyear = " << iyear << std::endl;
-
     unsigned int imonth = 1;
     if(vdif_epoch % 2 == 1)
     {
