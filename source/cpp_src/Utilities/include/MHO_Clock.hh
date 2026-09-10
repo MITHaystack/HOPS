@@ -787,6 +787,7 @@ inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& yea
 
     double frac_day = (inanos * NANOSEC_TO_SEC + isecs + MINUTE_TO_SEC * imins + HOUR_TO_SEC * ihours) / (JD_TO_SEC);
     floating_point_days = integer_days + frac_day;
+    year = static_cast<int>(year_value);
 }
 
 inline hops_clock::time_point hops_clock::from_mjd(const time_point& mjd_epoch, double epoch_offset, double mjd)
