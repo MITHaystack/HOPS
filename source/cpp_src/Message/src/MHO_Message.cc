@@ -1,8 +1,5 @@
 #include "MHO_Message.hh"
 
-#define MSG_ALIGN_PAD 32
-constexpr const char* PADDING = "                                ";
-
 namespace hops
 {
 
@@ -115,7 +112,7 @@ std::string MHO_Message::GetCurrentPrefix(const MHO_MessageLevel& level, const s
         // std::string pad;
         // pad.resize(MSG_ALIGN_PAD,' ');
         // ss << pad;
-        ss << PADDING;
+        ss << fPadding;
         return ss.str();
     }
 

@@ -95,6 +95,8 @@ using hops::eSpecial;
 using hops::eStatus;
 using hops::eWarning;
 
+#define MSG_ALIGN_PAD 32
+
 //!uses the singleton pattern (as we only have one terminal)
 class MHO_Message
 {
@@ -181,7 +183,10 @@ class MHO_Message
         //perhaps we should also pipe information into log file(s)
         MHO_Message()
             : fTerminalStream(&std::cout), fAllowedLevel(eStatus), fCurrentLevel(eInfo), fCurrentKeyIsAllowed(false),
-              fAcceptAllKeys(false), fWasLastLineNewLine(false){};
+              fAcceptAllKeys(false), fWasLastLineNewLine(false)
+        {
+            fPadding = std::string(MSG_ALIGN_PAD, ' ');
+        };
         virtual ~MHO_Message(){};
 
         bool PassMessage();
@@ -208,6 +213,9 @@ class MHO_Message
         static std::string fColorSuffix; //color close
 
         bool fWasLastLineNewLine;
+
+        //whitespace padding
+        std::string fPadding;
 };
 
 template< class XStreamableItemType > MHO_Message& MHO_Message::operator<<(const XStreamableItemType& item)
