@@ -15,7 +15,7 @@ if(HDF5_FOUND)
     foreach( BASENAME ${SOURCE_BASENAMES} )
         add_executable( ${BASENAME} ${BASENAME}.cc )
         target_link_libraries( ${BASENAME} ${HOPS_HDF5_LIBS})
-        install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${BASENAME} DESTINATION ${BIN_INSTALL_RELDIR})
+        hops_install_executables( ${BASENAME} )
     endforeach( BASENAME )
 
 endif(HDF5_FOUND)
