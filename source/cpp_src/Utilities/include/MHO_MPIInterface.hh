@@ -6,6 +6,7 @@
 #include "MHO_Message.hh"
 #include <string>
 #include <vector>
+#include <map>
 
 #define LOCAL_RANK_MPI
 
