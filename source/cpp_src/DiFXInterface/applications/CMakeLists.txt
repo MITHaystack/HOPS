@@ -17,7 +17,7 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
     # rewrites the build-tree RPATH to the relocatable $ORIGIN install RPATH (see
     # cmake/HopsReproducible.cmake) and the binary can find the HOPS libraries
     # once it lives in <prefix>/bin.
-    install(TARGETS ${BASENAME} RUNTIME DESTINATION ${BIN_INSTALL_RELDIR})
+    hops_install_executables( ${BASENAME} )
 endforeach( BASENAME )
 
 #the statically linked difx .input file -> JSON converter (GPL-licensed)

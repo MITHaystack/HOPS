@@ -49,6 +49,6 @@ add_library (MHO_DiFXInterface SHARED ${DIFXINTERFACE_SOURCEFILES})
 target_link_libraries(MHO_DiFXInterface ${DIFXINTERFACE_LIBS})
 
 hops_install_headers (${DIFXINTERFACE_HEADERFILES})
-install(TARGETS MHO_DiFXInterface DESTINATION ${LIB_INSTALL_RELDIR})
+hops_install_libraries (MHO_DiFXInterface)
 
 add_subdirectory(applications)

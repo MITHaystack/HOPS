@@ -58,7 +58,7 @@ if(DIFXIO_STATIC_LIB)
     # That means this binary skips PIE/ASLR hardening... but that is honestly not important here
     set_target_properties(difxinput2json PROPERTIES POSITION_INDEPENDENT_CODE OFF)
     target_link_options(difxinput2json PRIVATE -no-pie)
-    install(TARGETS difxinput2json RUNTIME DESTINATION ${BIN_INSTALL_RELDIR})
+    hops_install_executables( difxinput2json )
 else()
     # in license-compat mode do not ship a non-relocatable (shared) difxio-linked difxinput2json
     # error out here so we don't distribute a broken bdist
@@ -75,5 +75,5 @@ else()
     message(STATUS "difxinput2json: static libdifxio.a not found, linking shared difxio")
     target_link_libraries(difxinput2json MHO_Message MHO_Utilities PkgConfig::DIFXIO)
     set_target_properties(difxinput2json PROPERTIES INSTALL_RPATH_USE_LINK_PATH ON)
-    install(TARGETS difxinput2json RUNTIME DESTINATION ${BIN_INSTALL_RELDIR})
+    hops_install_executables( difxinput2json )
 endif()
