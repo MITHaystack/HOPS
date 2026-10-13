@@ -130,7 +130,6 @@ void MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
         std::string pp(record->polpair, 2);
         int freqidx = record->freqindex;
         int points = record->nchan;
-        double bandwidth = 0.;
         fPolPairSet.insert(pp);
         fFreqIndexSet.insert(freqidx);
         fSpecPointSet.insert(points);
