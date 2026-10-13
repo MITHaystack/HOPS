@@ -47,6 +47,15 @@ void MHO_FringeDataDiscovery::determine_scans(const std::string& initial_dir, st
     dirInterface.ReadCurrentDirectory();
     if(root == "")
     {
+        std::vector< std::string > cor_files;
+        dirInterface.GetFilesMatchingExtension(cor_files, "cor");
+        if(!cor_files.empty())
+        {
+            msg_warn("fringe", "scan directory " << initial_dir
+                << " contains .cor files but no *.root.json file; fourfit4 cannot process "
+                "this scan without an OVEX/root.json file." << eom);
+        }
+
         //no root file was located, so we might be running over a whole experiment directory
         //we need to loop over all the sub-dirs and determine if they are scans directories
         std::vector< std::string > subdirs;
@@ -66,6 +75,17 @@ void MHO_FringeDataDiscovery::determine_scans(const std::string& initial_dir, st
             {
                 scans.push_back(path + "/"); //NOTE: the trailing '/' is important!
                 roots.push_back(flist[0]);
+            }
+            else
+            {
+                std::vector< std::string > cor_files;
+                dirInterface.GetFilesMatchingExtension(cor_files, "cor");
+                if(!cor_files.empty())
+                {
+                    msg_warn("fringe", "scan directory " << path
+                        << " contains .cor files but no *.root.json file; fourfit4 cannot "
+                        "process this scan without an OVEX/root.json file." << eom);
+                }
             }
         }
     }
