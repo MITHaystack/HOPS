@@ -23,7 +23,11 @@
 namespace hops
 {
 
-MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor(): fInput(nullptr), fV(nullptr), fW(nullptr), fStationCodeMap(nullptr)
+MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
+    fInput(nullptr),
+    fV(nullptr),
+    fW(nullptr),
+    fStationCodeMap(nullptr)
 {
     fRootCode = "unknown";
     fCorrDate = "";
@@ -51,6 +55,7 @@ MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor(): fInput(nullptr), fV(null
     fSelectByBandwidth = false;
     fOnlyBandwidth = 0;
     fHasGlobalGrid = false;
+    fSawZoomFrequencyRecord = false;
 };
 
 MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor()
@@ -81,10 +86,19 @@ void MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
     std::string sideband = "";
 
     //collect channel info
-    if(fInput && freqidx < (*fInput)["freq"].size())
+    if(fInput)
     {
-        freq = (*fInput)["freq"][freqidx]["freq"].get< double >();
-        bandwidth = (*fInput)["freq"][freqidx]["bw"].get< double >();
+        if(freqidx >= 0 && freqidx < static_cast< int >((*fInput)["freq"].size()))
+        {
+            freq = (*fInput)["freq"][freqidx]["freq"].get< double >();
+            bandwidth = (*fInput)["freq"][freqidx]["bw"].get< double >();
+        }
+        else
+        {
+            msg_warn("difx_interface", "invalid DiFX freq index " << freqidx
+                << " for baseline " << record->baseline << eom);
+            keep_record = false;
+        }
     }
 
     if(fSelectByBandwidth)
@@ -116,13 +130,11 @@ void MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
         keep_record = false;
     }
 
-    //when zoom-band VEX reconstruction is active, discard native-band records to keep root/visibility consistent
-    if(keep_record && !fZoomFreqIndices.empty())
+    if(keep_record && !fZoomFreqIndices.empty()
+        && fZoomFreqIndices.find(record->freqindex) != fZoomFreqIndices.end()
+    )
     {
-        if(fZoomFreqIndices.find(record->freqindex) == fZoomFreqIndices.end())
-        {
-            keep_record = false;
-        }
+        fSawZoomFrequencyRecord = true;
     }
 
     if(keep_record)
@@ -152,10 +164,10 @@ void MHO_DiFXBaselineProcessor::Organize()
 {
     fHaveBaselineData = true;
 
-    //Organize() is idempotent -- MHO_DiFXScanProcessor calls it once up-front (to harvest
-    //fBaselineFreqs so the scan-wide global sky-freq grid can be computed) and a second
-    //time from ConstructVisibilityFileObjects, we have to clear the per-call accumulators so the
-    //second invocation rebuilds them rather than appending dumplicates.
+    //MHO_DiFXScanProcessor calls Organize() once up-front (to harvest
+    //fBaselineFreqs so the scan-wide global sky-freq grid can be computed) however it then calls it a second
+    //time from ConstructVisibilityFileObjects, so we have to clear the per-call accumulators so the
+    //second invocation rebuilds them rather than appending duplicates.
     fBaselineFreqs.clear();
     fFreqBandLabelSet.clear();
 
@@ -164,6 +176,46 @@ void MHO_DiFXBaselineProcessor::Organize()
         msg_warn("difx_interface", "no visiblity records available for baseline: " << fBaselineID << eom);
         fHaveBaselineData = false;
         return;
+    }
+
+    //check if we are using zoom-bands
+    if(!fZoomFreqIndices.empty() && fSawZoomFrequencyRecord)
+    {
+        std::vector< MHO_DiFXVisibilityRecord* > selected_records;
+        selected_records.reserve(fRecords.size());
+        for(auto* record : fRecords)
+        {
+            if(fZoomFreqIndices.find(record->freqindex) != fZoomFreqIndices.end())
+            {
+                selected_records.push_back(record);
+            }
+            else
+            {
+                delete record;
+            }
+        }
+        fRecords.swap(selected_records);
+    }
+    else if(!fZoomFreqIndices.empty())
+    {
+        msg_debug("difx_interface", "baseline " << fBaselineID
+            << " has no zoom-frequency visibility records; retaining native frequency records" << eom);
+    }
+
+    fPolPairSet.clear();
+    fFreqIndexSet.clear();
+    fSpecPointSet.clear();
+    fBandwidthSet.clear();
+    fVisibilities.clear();
+    for(auto* record : fRecords)
+    {
+        int freqidx = record->freqindex;
+        std::string pp(record->polpair, 2);
+        fPolPairSet.insert(pp);
+        fFreqIndexSet.insert(freqidx);
+        fSpecPointSet.insert(record->nchan);
+        fBandwidthSet.insert(record->bandwidth);
+        fVisibilities[pp][freqidx].push_back(record);
     }
 
     if(fInput == nullptr)

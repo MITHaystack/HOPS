@@ -32,6 +32,7 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
     }
 
     std::size_t n_records = 0;
+    bool logged_first_record = false;
     bool keep_reading = true;
     while(keep_reading && vFile.good())
     {
@@ -113,6 +114,16 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
                     //cache the n spectral points associated with each baseline+frequency in a map
                     //so we can just grab them all at once on the next encounter
                     fNChannelsMap[std::make_pair(visRecord.baseline, visRecord.freqindex)] = visRecord.nchan;
+                }
+
+                if(!logged_first_record)
+                {
+                    msg_debug("difx_interface", "first visibility record: baseline=" << visRecord.baseline
+                        << ", freqindex=" << visRecord.freqindex
+                        << ", polpair=" << std::string(visRecord.polpair, 2)
+                        << ", nchan=" << visRecord.nchan
+                        << ", configindex=" << visRecord.configindex << eom);
+                    logged_first_record = true;
                 }
 
                 //first time seeing this baseline, so pass these parameters on construction

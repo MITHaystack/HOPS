@@ -248,7 +248,8 @@ class MHO_DiFXBaselineProcessor
         //needed to recorganized the visibilities into tables
         std::map< std::string, std::map< int, std::vector< MHO_DiFXVisibilityRecord* > > > fVisibilities;
 
-        std::set< int > fZoomFreqIndices; //when non-empty, discard native-band records keeping root/vis consistent
+        std::set< int > fZoomFreqIndices;
+        bool fSawZoomFrequencyRecord;
 
         std::set< std::string > fPolPairSet;
         std::set< int > fFreqIndexSet;
