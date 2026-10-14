@@ -26,6 +26,7 @@ target_link_libraries (MHO_MatplotPlugin ${MATPLOTPLUGIN_LIBS})
 
 hops_install_headers (${MATPLOTPLUGIN_HEADERFILES})
 hops_install_libraries (MHO_MatplotPlugin )
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/qtterminal.conf DESTINATION ${CONFIG_INSTALL_RELDIR}/gnuplot)
 
 # if (HOPS_ENABLE_TEST)
 #     add_subdirectory(test)

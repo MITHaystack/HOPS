@@ -311,7 +311,31 @@ void MHO_BasicPlotVisitor::setup_figure_layout()
 {
     if(!fCurrentFigure)
     {
+        const char* xdg = std::getenv("XDG_CONFIG_HOME");
+        std::string prev_xdg = "";
+        bool had_xdg = false;
+        if(xdg != nullptr)
+        {
+            prev_xdg = xdg;
+            had_xdg = true;
+        }
+
+        //need to point to the conf file here so we can get proper behavior when windos are resized
+        std::string qt_config_dir = MHO_DirectoryInterface::GetHopsInstallPrefix() + "/config";
+        if(MHO_DirectoryInterface::IsFile(qt_config_dir + "/gnuplot/qtterminal.conf"))
+        {
+            setenv("XDG_CONFIG_HOME", qt_config_dir.c_str(), 1);
+        }
         fCurrentFigure = matplot::figure(true); //must be true (quiet mode)!
+        if(had_xdg)
+        {
+            setenv("XDG_CONFIG_HOME", prev_xdg.c_str(), 1);
+        }
+        else
+        {
+            unsetenv("XDG_CONFIG_HOME");
+        }
+
         // TODO FIXME -- add support for A4 size paper (this may require tweaking plot/text positioning)
         // create figure with appropriate size (8.5 x 11 inches equivalent)
         fCurrentFigure->size(fPageWidth, fPageHeight);
