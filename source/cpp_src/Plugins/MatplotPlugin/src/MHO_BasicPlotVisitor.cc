@@ -7,21 +7,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <sstream>
-#include <termios.h>
 #include <unistd.h>
-
-// saved terminal state, to be restored on any exit path (including signal-driven exit())
-static termios g_saved_termios;
-static bool g_termios_saved = false;
-
-static void restore_termios_atexit()
-{
-    if(g_termios_saved)
-    {
-        tcsetattr(STDIN_FILENO, TCSANOW, &g_saved_termios);
-        g_termios_saved = false;
-    }
-}
 
 // matplot++ drives a gnuplot subprocess at runtime
 // check and true if a 'gnuplot' executable is in PATH
@@ -281,32 +267,16 @@ void MHO_BasicPlotVisitor::Plot(MHO_FringeData* data)
             msg_debug("plot", "displaying plot" << eom);
             fCurrentFigure->draw(); // don't use show();
             bool loop = true;
-            msg_info("fringe", "press a key: 's'=save (as .pdf, .eps, or .svg), 'q'=quit, other=continue" << eom);
-            // save the terminal state once before entering raw mode; the atexit handler
-            // makes sure it is restored even if the process exits via exit() (e.g. from
-            // the SIGINT handler or the 'q' branch below)
-            termios oldt;
-            tcgetattr(STDIN_FILENO, &oldt);
-            if(!g_termios_saved)
-            {
-                g_saved_termios = oldt;
-                g_termios_saved = true;
-                std::atexit(restore_termios_atexit);
-            }
             while(loop)
             {
-                // Set new terminal settings (for key-press menu)
-                termios newt = oldt;
-                newt.c_lflag &= ~(ICANON | ECHO); // Turn off canonical mode & echo
-                newt.c_cc[VMIN] = 1;              // Read returns after 1 byte
-                newt.c_cc[VTIME] = 0;             // No timeout
-                tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-
-                //get 1 character
-                char c = getchar();
-
-                // Restore inline for the normal (non-exit) path
-                tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+                msg_info("fringe", "enter 's'=save (as .pdf, .eps, or .svg), 'q'=quit, or press Enter to continue" << eom);
+                std::string choice;
+                if(!std::getline(std::cin, choice))
+                {
+                    break;
+                }
+                choice = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(choice);
+                char c = choice.empty() ? '\0' : choice[0];
 
                 switch(c)
                 {
