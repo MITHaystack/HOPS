@@ -19,7 +19,7 @@ from .fourfit_plot_common import (
     make_pcal_plots, make_channel_info_table, make_info_text_box,
     make_top_info_text, make_model_resid_info_text, make_rms_table,
     make_coord_text, make_amplitude_table, make_window_table,
-    make_data_stats_text, press_event_handler,
+    make_data_stats_text, press_event_handler, apply_page_size,
 )
 
 def make_fourfit_plot(plot_dict, show_on_screen, filename):
@@ -40,7 +40,7 @@ def make_fourfit_plot(plot_dict, show_on_screen, filename):
     None
     '''
 
-    matplotlib.rcParams.update({'figure.figsize': [8.5,11]})
+    apply_page_size()
 
     # pick the backend depending on display on/off (Agg/TkAgg),
     # do not use GTK4 (its object model conflicts with pybind11)

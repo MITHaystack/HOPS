@@ -30,30 +30,27 @@ static bool gnuplot_in_path()
     return false;
 }
 
-std::string extension_to_terminal_cmd(const std::string& ext)
+std::string extension_to_terminal_cmd(const std::string& ext, bool a4_page)
 {
     //we only support .pdf, .eps, and .svg output
+    std::string page = a4_page ? "21cm,29.7cm" : "8.5in,11in";
     if(ext == "pdf")
-        return "set term pdfcairo size 8.5in,11in fontscale 0.6";
+        return "set term pdfcairo size " + page + " fontscale 0.6";
     if(ext == "svg")
-        return "svg size 816,1056 dynamic fontscale 0.5";
+        return std::string("set term svg size ") + (a4_page ? "794,1123" : "816,1056") + " dynamic fontscale 0.5";
     if(ext == "eps")
-        return "set term postscript portrait size 8.5in,11in fontscale 0.8";
+        return "set term postscript portrait size " + page + " fontscale 0.8";
     return "";
 }
 
 namespace hops
 {
 
-MHO_BasicPlotVisitor::MHO_BasicPlotVisitor(): fShowPlot(true), fFilename("")
+MHO_BasicPlotVisitor::MHO_BasicPlotVisitor(): fShowPlot(true), fFilename(""), fA4Page(false)
 {
-    //standard 8.5"x11" letter size (100 DPI)
+    //default page size is 8.5x11
     fPageWidth = 850;
     fPageHeight = 1100;
-
-    //A4 size
-    //fPageWidth = 827;
-    //fPageHeight = 1169;
 }
 
 MHO_BasicPlotVisitor::~MHO_BasicPlotVisitor()
@@ -203,7 +200,7 @@ void MHO_BasicPlotVisitor::DirectSavePlot(std::string filename)
     //matplot++ needs special backend treatment when calling .save()
     auto backend = fCurrentFigure->backend();
     std::string ext = MHO_DirectoryInterface::GetFileExtension(filename);
-    std::string cmd = extension_to_terminal_cmd(ext);
+    std::string cmd = extension_to_terminal_cmd(ext, fA4Page);
     msg_debug("fringe", "plotting backend setup command: " << cmd << eom);
     if(cmd == "")
     {
@@ -336,8 +333,28 @@ void MHO_BasicPlotVisitor::setup_figure_layout()
             unsetenv("XDG_CONFIG_HOME");
         }
 
-        // TODO FIXME -- add support for A4 size paper (this may require tweaking plot/text positioning)
-        // create figure with appropriate size (8.5 x 11 inches equivalent)
+        //look for the page size env
+        const char* page_size = std::getenv("HOPS_PLOT_PAGESIZE");
+        if(page_size != nullptr)
+        {
+            std::string value = MHO_Tokenizer::TrimLeadingAndTrailingWhitespace(page_size);
+            std::transform(value.begin(), value.end(), value.begin(), [](unsigned char c) { return std::tolower(c); });
+            if(value == "a4")
+            {
+                fA4Page = true;
+                fPageWidth = 827;
+                fPageHeight = 1169;
+            }
+            else if(value != "letter" && !value.empty())
+            {
+                msg_warn("plot", "unrecognized HOPS_PLOT_PAGESIZE value: '" << page_size
+                    << "' (expected 'a4' or 'letter'), using letter" << eom);
+                fPageWidth = 850;
+                fPageHeight = 1100;
+            }
+        }
+
+        // create figure with the selected page size (letter or A4, see HOPS_PLOT_PAGESIZE)
         fCurrentFigure->size(fPageWidth, fPageHeight);
         fCurrentFigure->position({100, 100});
         // set white background to fix grey background issue

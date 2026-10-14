@@ -15,7 +15,7 @@ import os, sys
 from .fourfit_plot_common import *
 from .fourfit_plot_common import (
     make_dr_mbd_plot, make_sbd_dtec_plot, make_xpower_plot,
-    make_info_text_box, make_top_info_text, press_event_handler,
+    make_info_text_box, make_top_info_text, press_event_handler, apply_page_size,
 )
 
 def make_sl_dr_spectrum_plot(plot_dict):
@@ -197,7 +197,7 @@ def make_fourfit_spectral_line_plot(plot_dict, show_on_screen, filename):
     None
     '''
 
-    matplotlib.rcParams.update({'figure.figsize': [8.5,11]})
+    apply_page_size()
 
     # Build the figure.  We'll construct this figure using many subplots, with different grid specifications.
     fig = pylab.figure(1)
