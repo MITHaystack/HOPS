@@ -1,4 +1,6 @@
 #include "MHO_DiFXInputProcessor.hh"
+#include <cmath>
+#include <cstdlib>
 #include <iostream>
 
 namespace hops
@@ -29,6 +31,73 @@ void MHO_DiFXInputProcessor::LoadDiFXInputFile(std::string filename)
         msg_fatal("difx_interface", "failed to load difx input file" << eom);
         std::exit(1);
     }
+    LoadPhaseCalParameters();
+}
+
+void MHO_DiFXInputProcessor::LoadPhaseCalParameters()
+{
+    fPhaseCalDivisor.assign(fD->nDatastream, 1);
+    fPhaseCalBaseMHz.assign(fD->nDatastream, 0.0);
+
+    DifxParameters* ip = newDifxParametersfromfile(fD->job->inputFile);
+    if(ip == nullptr)
+    {
+        msg_warn("difx_interface", "could not re-read " << fD->job->inputFile
+                                                        << " for phase cal parameters, using difxio values" << eom);
+        for(int i = 0; i < fD->nDatastream; i++)
+        {
+            fPhaseCalBaseMHz[i] = fD->datastream[i].phaseCalBaseMHz;
+        }
+        return;
+    }
+
+    int r = DifxParametersfind(ip, 0, "DATASTREAM ENTRIES");
+    for(int i = 0; i < fD->nDatastream && r >= 0; i++)
+    {
+        r = DifxParametersfind(ip, r + 1, "PHASE CAL INT (MHZ)");
+        if(r < 0)
+        {
+            break;
+        }
+        int r1 = DifxParametersfind_limited(ip, r + 1, 3, "PHASE CAL DIVISOR");
+        if(r1 > 0)
+        {
+            long divisor = std::atol(DifxParametersvalue(ip, r1));
+            if(divisor > 0)
+            {
+                fPhaseCalDivisor[i] = divisor;
+            }
+            else
+            {
+                msg_warn("difx_interface", "invalid PHASE CAL DIVISOR for datastream " << i << ", using 1" << eom);
+            }
+        }
+        r1 = DifxParametersfind_limited(ip, r + 1, 3, "PHASE CAL BASE(MHZ)");
+        if(r1 > 0)
+        {
+            fPhaseCalBaseMHz[i] = std::atof(DifxParametersvalue(ip, r1));
+        }
+    }
+    deleteDifxParameters(ip);
+}
+
+int MHO_DiFXInputProcessor::GetBaselineTargetFreq(DifxBaseline* b, int f)
+{
+    #ifdef HAVE_DIFXIO_DESTFQ
+        return b->destFq[f];
+    #else
+        if(b->nPolProd[f] <= 0)
+        {
+            return -1;
+        }
+        DifxDatastream* ds = &(fD->datastream[b->dsA]);
+        int band = b->bandA[f][0];
+        if(band < ds->nRecBand)
+        {
+            return ds->recFreqId[ds->recBandFreqId[band]];
+        }
+        return ds->zoomFreqId[ds->zoomBandFreqId[band - ds->nRecBand]];
+    #endif
 }
 
 void MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
@@ -74,7 +143,7 @@ void MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
     }
 
     //loop over EOPs
-    for(int i = 0; i < fD->nSource; i++)
+    for(int i = 0; i < fD->nEOP; i++)
     {
         input["eop"].push_back(ExtractEOPQuantities(i));
     }
@@ -93,6 +162,7 @@ void MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
 
     //add the input file name
     input["difx_input_filename"] = fFilename;
+    input["difx_input_schema_version"] = 2;
 
     /****** SKIP THESE OPTIONAL TABLES FOR NOW ********************************/
     // DifxSpacecraft	*spacecraft;	/* optional table */
@@ -124,6 +194,11 @@ void MHO_DiFXInputProcessor::ExtractBaseStructQuantities(mho_json& input)
     input["nPhasedArray"] = fD->nPhasedArray;
     input["nJob"] = fD->nJob;
     input["quantBits"] = fD->quantBits;
+    if(fD->nJob > 0)
+    {
+        input["difxVersion"] = std::string(fD->job[0].difxVersion, DIFXIO_VERSION_LENGTH).c_str();
+        input["difxLabel"] = std::string(fD->job[0].difxLabel, DIFXIO_VERSION_LENGTH).c_str();
+    }
     //there are more items in fD, but most are difx specific
     //and we probably don't need them for now
 }
@@ -360,7 +435,8 @@ mho_json MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
         // 	enum DataSource dataSource;	/* MODULE, FILE, NET, other? */
 
         ds["phaseCalIntervalMHz"] = d->phaseCalIntervalMHz;
-        //ds["phaseCalBaseMHz"] = d->phaseCalBaseMHz;
+        ds["phaseCalIntervalDivisor"] = fPhaseCalDivisor[n];
+        ds["phaseCalBaseMHz"] = fPhaseCalBaseMHz[n];
         ds["tcalFrequency"] = d->tcalFrequency;
         ds["nRecTone"] = d->nRecTone;
         for(int i = 0; i < d->nRecTone; i++)
@@ -439,6 +515,12 @@ mho_json MHO_DiFXInputProcessor::ExtractBaselineQuantities(int n)
         base["dsA"] = b->dsA;
         base["dsB"] = b->dsB;
         base["nFreq"] = b->nFreq;
+        std::vector< int > dest_fq;
+        for(int i = 0; i < b->nFreq; i++)
+        {
+            dest_fq.push_back(GetBaselineTargetFreq(b, i));
+        }
+        base["destFq"] = dest_fq;
         for(int i = 0; i < b->nFreq; i++)
         {
             base["nPolProd"].push_back(b->nPolProd[i]);
@@ -482,10 +564,7 @@ mho_json MHO_DiFXInputProcessor::ExtractDifxPolyModel(DifxPolyModel* m)
             poly["az"].push_back(m->az[i]);
             poly["elcorr"].push_back(m->elcorr[i]);
             poly["elgeom"].push_back(m->elgeom[i]);
-            // poly["parangle"].push_back(m->parangle[i]);
-            TODO_FIXME_MSG(
-                "TODO FIXME, parallactic_angle in CALC may not yet be implemented, calculate it here or defer to fringe fitter")
-            poly["parangle"].push_back(0.0);
+            poly["parangle"].push_back(std::isfinite(m->parangle[i]) ? m->parangle[i] : 0.0);
             poly["u"].push_back(m->u[i]);
             poly["v"].push_back(m->v[i]);
             poly["w"].push_back(m->w[i]);
