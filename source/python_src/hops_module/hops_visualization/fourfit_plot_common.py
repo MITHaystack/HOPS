@@ -31,6 +31,26 @@ import pylab
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import AutoMinorLocator
 
+def get_page_size():
+    '''
+    Return the fringe plot page size (width, height) depending on HOPS_PLOT_PAGESIZE env var
+    '''
+    value = os.environ.get("HOPS_PLOT_PAGESIZE", "").strip().lower()
+    if value == "a4":
+        return (8.27, 11.69)
+    if value not in ("", "letter"):
+        print("WARNING: unrecognized HOPS_PLOT_PAGESIZE value: '" + os.environ["HOPS_PLOT_PAGESIZE"]
+              + "' (expected 'a4' or 'letter'), using letter", file=sys.stderr)
+    return (8.5, 11.0)
+
+def apply_page_size():
+    '''
+    Set the figure size size
+    '''
+    page = get_page_size()
+    matplotlib.rcParams.update({'figure.figsize': list(page),
+                                'ps.papersize': 'a4' if page == (8.27, 11.69) else 'letter'})
+
 def get_numpy_version_tuple():
     np_vers = np.__version__
     parts = np_vers.split('.')[:3]

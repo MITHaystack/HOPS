@@ -205,6 +205,7 @@ class MHO_BasicPlotVisitor: public MHO_FringePlotVisitor
         std::vector< matplot::axes_handle > fAxes;
         matplot::axes_handle fLastAxis;
 
+        bool fA4Page;
         int fPageWidth;
         int fPageHeight;
         float fLeftMargin;

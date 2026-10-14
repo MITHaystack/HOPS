@@ -40,6 +40,9 @@ export HOPS_VPAL_FRINGE_FITTER=@HOPS_VPAL_FOURFIT@
 #used to specify the directory where to look for user python plugins
 export HOPS_DEFAULT_PLUGINS_DIR=$HOPS_INSTALL/plugin_scripts
 
+#the page size used by fourfit4, must be 'letter' or 'a4', default is letter
+export HOPS_PLOT_PAGESIZE=${HOPS_PLOT_PAGESIZE:-letter}
+
 #needed by VEX2XML
 export HOPS_JAVACLASSPATH=$HOPS_INSTALL/lib
 
