@@ -57,8 +57,9 @@ class MHO_DiFXZoomBandRebuilder
         //If false, the rebuild should be skipped (native channels will be used).
         bool WantZoomChannels() const;
 
-        //union of all global zoom-freq indices across every datastream. Use this to set the
-        //visibility processor's zoom selection so native records are discarded.
+        //union of all global zoom-freq indices across every datastream and every baseline target
+        //(output) freq built from zoom bands. Use this to set the visibility processor's zoom
+        //selection so native records are discarded.
         std::set< int > CollectZoomFreqIndices() const;
 
         //rewrite vex_root["$FREQ"], $BBC, $IF and the station links under $MODE[mode_name]
@@ -66,6 +67,13 @@ class MHO_DiFXZoomBandRebuilder
         void RebuildFreqSections(mho_json& vex_root, const std::string& mode_name);
 
     private:
+        std::set< int > CollectZoomTargetFreqIndices() const;
+
+        std::map< int, std::vector< std::string > > CollectDatastreamTargetPols(int ds_idx,
+                                                                              const std::set< int >& targets) const;
+
+        std::map< int, std::vector< std::string > > CollectDatastreamZoomPols(const mho_json& ds) const;
+
         const mho_json* fInput;
 
         bool fSelectByBandwidth;
