@@ -928,7 +928,7 @@ double MHO_MK4StationInterfaceReversed::DeterminePCalToneSpacing()
             double delta = std::fabs(fval2 - fval);
             if(delta < spacing)
             {
-                spacing == delta;
+                spacing = delta;
             }
         }
     }

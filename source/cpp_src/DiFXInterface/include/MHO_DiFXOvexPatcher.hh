@@ -66,6 +66,8 @@ class MHO_DiFXOvexPatcher
         //defined in the station's $PHASE_CAL_DETECT block (otherwise fourfit3 aborts).
         void NormalizePhaseCalIds(mho_json& vex_root, const std::string& mode_name);
 
+        void ApplyDiFXPhaseCalComb(mho_json& vex_root, const std::string& mode_name);
+
         const mho_json* fInput;
         MHO_StationCodeMap* fStationCodeMap;
         MHO_DiFXZoomBandRebuilder* fZoomBandRebuilder;
