@@ -236,6 +236,10 @@ class MHO_MBDelaySearch: public MHO_InspectingOperator< visibility_type >
         void GetWindow(const MHO_Axis< double >& axis, bool win_set, const double* win, double bin_width, double& low,
                        double& high, std::size_t n_valid = 0) const;
 
+        //a search bin is included if its center lies within half a bin of the window edges,
+        //this matches the behavior of fourfit3 (search_windows.c) when converting windows to bin indices
+        static bool InSearchWindow(double x, const double* win, double bin_sep);
+
         //workspace
         bool fInitialized;
         std::vector< double > fChannelFreqs;

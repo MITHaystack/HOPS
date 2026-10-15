@@ -134,6 +134,38 @@ inline std::string ResolvePolarization(const mho_json& vex_root, const std::stri
     return "-";
 }
 
+inline void LinkStationToTable(mho_json& vex_root, const std::string& mode_name, const std::string& section,
+                               const std::string& station_code, const std::string& table_name)
+{
+    mho_json updated_entries = mho_json::array();
+    for(auto entry : vex_root["$MODE"][mode_name][section])
+    {
+        if(!entry.contains("qualifiers") || entry["qualifiers"].empty())
+        {
+            updated_entries.push_back(entry);
+            continue;
+        }
+        mho_json new_quals = mho_json::array();
+        for(auto& q : entry["qualifiers"])
+        {
+            if(q.get< std::string >() != station_code)
+            {
+                new_quals.push_back(q);
+            }
+        }
+        if(!new_quals.empty())
+        {
+            entry["qualifiers"] = new_quals;
+            updated_entries.push_back(entry);
+        }
+    }
+    mho_json new_entry;
+    new_entry["keyword"] = table_name;
+    new_entry["qualifiers"] = mho_json::array({station_code});
+    updated_entries.push_back(new_entry);
+    vex_root["$MODE"][mode_name][section] = updated_entries;
+}
+
 //resolve the mk4 1-char site_ID for a given 2-char vex station code (via $STATION -> $SITE link)
 //returns "" when any link is missing.
 inline std::string StationMk4SiteId(const mho_json& vex_root, const std::string& station_code)

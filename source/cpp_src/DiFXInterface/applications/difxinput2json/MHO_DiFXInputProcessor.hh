@@ -4,6 +4,9 @@
 #include "MHO_JSONHeaderWrapper.hh"
 #include "MHO_Message.hh"
 
+#include <string>
+#include <vector>
+
 #include "difxio/difx_input.h"
 
 namespace hops
@@ -135,8 +138,14 @@ class MHO_DiFXInputProcessor
          */
         std::string GetAntennaSiteTypeString(AntennaSiteType type);
 
+        void LoadPhaseCalParameters();
+
+        int GetBaselineTargetFreq(DifxBaseline* b, int f);
+
         DifxInput* fD;
         std::string fFilename;
+        std::vector< long > fPhaseCalDivisor;
+        std::vector< double > fPhaseCalBaseMHz;
 };
 
 } // namespace hops

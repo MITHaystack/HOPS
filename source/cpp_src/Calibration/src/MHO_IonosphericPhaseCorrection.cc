@@ -58,6 +58,12 @@ bool MHO_IonosphericPhaseCorrection::ExecuteInPlace(visibility_type* in)
 
             //calculate the differential ionospheric phase rotation (assume constant over length of scan)
             double ion_theta = fIonoK * fdTEC / (1e6 * chan_center_freq);
+            //conjugate for LSB channels (fourfit3 applies the ionospheric phase via the
+            //pcal phasor, which is conjugated for LSB data in norm_fx.c)
+            if(net_sideband == "L")
+            {
+                ion_theta = -1.0 * ion_theta;
+            }
             std::complex< double > ion_phasor = std::exp(fImagUnit * ion_theta);
 
             //retrieve and multiply against appropriate sub-view of the visibility array

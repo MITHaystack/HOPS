@@ -377,11 +377,11 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // do 3-D grid search using FFT's
 
             //remove the effects of the last application
-            iono.SetDifferentialTEC(last_ion_diff);
+            iono.SetDifferentialTEC(-1.0 * last_ion_diff);
             iono.Execute();
 
             //apply the current ionospheric phase
-            iono.SetDifferentialTEC(-1.0 * ion_diff);
+            iono.SetDifferentialTEC(ion_diff);
             iono.Execute();
             last_ion_diff = ion_diff;
 
@@ -407,14 +407,13 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             if(first_pass)
             {
                 //limit the SBD window to bin where the max was located
-                double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                double sbdelay = fMBDSearch->GetCoarseSBD();
                 double approx_snr = calculate_approx_snr();
                 if(approx_snr > 15.0) //but only if the SNR was high enough
                 {
                     msg_debug("fringe",
                               "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
-                    fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
+                    fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
                     first_pass = false;
                 }
             }
@@ -695,11 +694,11 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             // do 3-D grid search using FFT's
 
             //remove the effects of the last application
-            iono.SetDifferentialTEC(last_ion_diff);
+            iono.SetDifferentialTEC(-1.0 * last_ion_diff);
             iono.Execute();
 
             //apply the current ionospheric phase
-            iono.SetDifferentialTEC(-1.0 * ion_diff);
+            iono.SetDifferentialTEC(ion_diff);
             iono.Execute();
             last_ion_diff = ion_diff;
 
@@ -751,14 +750,13 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             if(first_pass)
             {
                 //limit the SBD window to bin where the max was located
-                double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                double sbdelay = fMBDSearch->GetCoarseSBD();
                 double approx_snr = calculate_approx_snr();
                 if(approx_snr > 15.0) //but only if the SNR was high enough
                 {
                     msg_debug("fringe",
                               "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
-                    fMBDSearch->SetSBDWindow(sbdelay - sbdsep, sbdelay + sbdsep);
+                    fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
                     first_pass = false;
                 }
             }

@@ -498,7 +498,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
             std::memcpy(vis_data->GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*vis_data->GetData()));
 
             ion_diff = bottom; // ilmax=1, step=0
-            iono.SetDifferentialTEC(-1.0 * ion_diff);
+            iono.SetDifferentialTEC(ion_diff);
             iono.Execute();
 
             coarse_fringe_search(false);
@@ -526,7 +526,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 //--- serial first pass (ionloop=0 of level 0) ---
                 ion_diff = bottom; // ionloop=0, step*0=0
 
-                iono.SetDifferentialTEC(-1.0 * ion_diff);
+                iono.SetDifferentialTEC(ion_diff);
                 iono.Execute();
 
                 coarse_fringe_search(true); // sets MBD/DR/SBD windows on fMBDSearch
@@ -535,15 +535,14 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 interpolate_peak();
 
                 {
-                    double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                    double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                    double sbdelay = fMBDSearch->GetCoarseSBD();
                     double approx_snr = calculate_approx_snr();
                     if(approx_snr > 15.0)
                     {
                         msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay
                                                                                                 << ")" << eom);
-                        narrowed_sbd_low = sbdelay - sbdsep;
-                        narrowed_sbd_high = sbdelay + sbdsep;
+                        narrowed_sbd_low = sbdelay;
+                        narrowed_sbd_high = sbdelay;
                         fMBDSearch->SetSBDWindow(narrowed_sbd_low, narrowed_sbd_high);
                         sbd_narrowed = true;
                         first_pass = false;
@@ -589,7 +588,7 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 std::memcpy(fPerThreadVis[tid].GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*fVisRef.GetData()));
 
                 //apply this iteration's ion correction (from clean state, no undo needed)
-                fPerThreadIono[tid]->SetDifferentialTEC(-1.0 * local_ion_diff);
+                fPerThreadIono[tid]->SetDifferentialTEC(local_ion_diff);
                 fPerThreadIono[tid]->Execute();
 
                 //coarse SBD/MBD/DR search
@@ -895,7 +894,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
             std::memcpy(vis_data->GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*vis_data->GetData()));
 
             ion_diff = bottom; // ilmax=1, step=0
-            iono.SetDifferentialTEC(-1.0 * ion_diff);
+            iono.SetDifferentialTEC(ion_diff);
             iono.Execute();
 
             coarse_fringe_search(false);
@@ -923,7 +922,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 //--- serial first pass (ionloop=0 of level 0) ---
                 ion_diff = bottom; // ionloop=0
 
-                iono.SetDifferentialTEC(-1.0 * ion_diff);
+                iono.SetDifferentialTEC(ion_diff);
                 iono.Execute();
 
                 coarse_fringe_search(true); // sets MBD/DR/SBD windows on fMBDSearch
@@ -932,15 +931,14 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 interpolate_peak();
 
                 {
-                    double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                    double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                    double sbdelay = fMBDSearch->GetCoarseSBD();
                     double approx_snr = calculate_approx_snr();
                     if(approx_snr > 15.0)
                     {
                         msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay
                                                                                                 << ")" << eom);
-                        narrowed_sbd_low = sbdelay - sbdsep;
-                        narrowed_sbd_high = sbdelay + sbdsep;
+                        narrowed_sbd_low = sbdelay;
+                        narrowed_sbd_high = sbdelay;
                         fMBDSearch->SetSBDWindow(narrowed_sbd_low, narrowed_sbd_high);
                         sbd_narrowed = true;
                         first_pass = false;
@@ -986,7 +984,7 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 std::memcpy(fPerThreadVis[tid].GetData(), fVisRef.GetData(), fVisRef.GetSize() * sizeof(*fVisRef.GetData()));
 
                 //apply this iteration's ion correction (from clean state, no undo needed)
-                fPerThreadIono[tid]->SetDifferentialTEC(-1.0 * local_ion_diff);
+                fPerThreadIono[tid]->SetDifferentialTEC(local_ion_diff);
                 fPerThreadIono[tid]->Execute();
 
                 //coarse SBD/MBD/DR search
