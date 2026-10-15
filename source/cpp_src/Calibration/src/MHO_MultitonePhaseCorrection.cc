@@ -657,14 +657,13 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                     }
                     for(std::size_t sp = 0; sp < vis_freq_ax->GetSize(); sp++)
                     {
-                        //adjusting deltaf by taking difference w.r.t to the (channel mid-point - e.g.  bandwidth/2)
-                        //accounts for the phase shift (which was originally calculated in a highly convoluted way
-                        //in norm_fx.c as follows:
+                        //offsetting deltaf by bandwidth/2 accounts for the multitone phase shift calculated in norm_fx.c as:
                         //double speriod = 1.0 / (2.0 * bandwidth * 1e6);
-                        //double phase_shift = -1.0 * pcdelay / (4.0*speriod);
-                        //so we just zero it out here, but leave this comment so we can know it has been dealt with
+                        //double phase_shift = -1.0 * pcdelay / (4.0*speriod); (negated for LSB)
+                        //this references the delay ramp to f + bandwidth/2 for USB,
+                        //and (f - bandwidth/2) for LSB channels
                         double phase_shift = 0.0;
-                        double deltaf = ((*vis_freq_ax)(sp)-bandwidth / 2.0) * 1e6; //Hz
+                        double deltaf = ( (*vis_freq_ax)(sp) - sb_sign * bandwidth / 2.0) * 1e6; //Hz
                         std::complex< double > pc_delay_phasor =
                             std::exp(-2.0 * sb_sign * M_PI * fImagUnit * (pcdelay * deltaf + phase_shift));
                         //conjugate pc phasor when applied to reference station
