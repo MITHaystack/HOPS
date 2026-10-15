@@ -1,5 +1,6 @@
 #include "MHO_DiFXScanProcessor.hh"
 #include "MHO_Clock.hh"
+#include "MHO_DiFXInputHelpers.hh"
 #include "MHO_MK4ChanId.hh"
 #include "MHO_SkyFreqGrid.hh"
 #include "MHO_VexGenerator.hh"
@@ -235,6 +236,11 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
     //visibility data consistent with the reconstructed root file
     if(fZoomBandRebuilder.HasZoomBands() && fZoomBandRebuilder.WantZoomChannels())
     {
+        if(!MHO_DiFXInputHelpers::HasTargetFreqs(fInput))
+        {
+            msg_warn("difx_interface", "DiFX input JSON has no baseline target freqs (destFq); assuming 1-to-1 zoom "
+                "band output, output may be incorrect for DiFX >= 2.7 outputbands" << eom);
+        }
         visProcessor.SetZoomFreqIndices(fZoomBandRebuilder.CollectZoomFreqIndices());
     }
 

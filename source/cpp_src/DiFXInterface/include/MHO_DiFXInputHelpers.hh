@@ -1,6 +1,7 @@
 #ifndef MHO_DiFXInputHelpers_HH__
 #define MHO_DiFXInputHelpers_HH__
 
+#include <string>
 #include <vector>
 
 #include "MHO_JSONHeaderWrapper.hh"
@@ -45,6 +46,23 @@ inline int GetDatastreamBandFreqId(const mho_json& ds, int band)
         return -1;
     }
     return ds[freq_key][local_freq].get< int >();
+}
+
+inline std::string GetDatastreamBandPol(const mho_json& ds, int band)
+{
+    int nRecBand = ds.value("nRecBand", 0);
+    const char* pol_key = "recBandPolName";
+    int local_band = band;
+    if(band >= nRecBand)
+    {
+        pol_key = "zoomBandPolName";
+        local_band = band - nRecBand;
+    }
+    if(band < 0 || !ds.contains(pol_key) || local_band >= (int)ds[pol_key].size())
+    {
+        return "";
+    }
+    return ds[pol_key][local_band].get< std::string >();
 }
 
 inline bool HasTargetFreqs(const mho_json& input)
