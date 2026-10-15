@@ -535,15 +535,14 @@ int MHO_IonosphericFringeFitterOpenMP::rjc_ion_search() //(struct type_pass *pas
                 interpolate_peak();
 
                 {
-                    double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                    double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                    double sbdelay = fMBDSearch->GetCoarseSBD();
                     double approx_snr = calculate_approx_snr();
                     if(approx_snr > 15.0)
                     {
                         msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay
                                                                                                 << ")" << eom);
-                        narrowed_sbd_low = sbdelay - sbdsep;
-                        narrowed_sbd_high = sbdelay + sbdsep;
+                        narrowed_sbd_low = sbdelay;
+                        narrowed_sbd_high = sbdelay;
                         fMBDSearch->SetSBDWindow(narrowed_sbd_low, narrowed_sbd_high);
                         sbd_narrowed = true;
                         first_pass = false;
@@ -932,15 +931,14 @@ int MHO_IonosphericFringeFitterOpenMP::ion_search_smooth()
                 interpolate_peak();
 
                 {
-                    double sbdelay = fParameterStore->GetAs< double >("/fringe/sbdelay");
-                    double sbdsep = fMBDSearch->GetSBDBinSeparation();
+                    double sbdelay = fMBDSearch->GetCoarseSBD();
                     double approx_snr = calculate_approx_snr();
                     if(approx_snr > 15.0)
                     {
                         msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay
                                                                                                 << ")" << eom);
-                        narrowed_sbd_low = sbdelay - sbdsep;
-                        narrowed_sbd_high = sbdelay + sbdsep;
+                        narrowed_sbd_low = sbdelay;
+                        narrowed_sbd_high = sbdelay;
                         fMBDSearch->SetSBDWindow(narrowed_sbd_low, narrowed_sbd_high);
                         sbd_narrowed = true;
                         first_pass = false;

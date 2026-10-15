@@ -1,6 +1,7 @@
 #ifndef MHO_InterpolateFringePeak_HH__
 #define MHO_InterpolateFringePeak_HH__
 
+#include <algorithm>
 #include <cmath>
 #include <complex>
 
@@ -91,6 +92,29 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         void SetDRAxis(const delay_rate_axis_type* dr_ax) { fDRAxis.Copy(*dr_ax); }
 
         /**
+         * @brief Setters for the (user) search windows, the interpolation is constrained to lie within
+         * these windows and +/- 1 search grid point of the peak (see interp.c)
+         *
+         * @param low Lower window limit (same units as the corresponding axis)
+         * @param high Upper window limit (same units as the corresponding axis)
+         */
+        void SetSBDWindow(double low, double high) { SetWindow(fSBDWin, fSBDWinSet, low, high); }
+
+        void SetMBDWindow(double low, double high) { SetWindow(fMBDWin, fMBDWinSet, low, high); }
+
+        void SetDRWindow(double low, double high) { SetWindow(fDRWin, fDRWinSet, low, high); }
+
+        /**
+         * @brief Removes any previously set search windows
+         */
+        void ClearWindows()
+        {
+            fSBDWinSet = false;
+            fMBDWinSet = false;
+            fDRWinSet = false;
+        }
+
+        /**
          * @brief Initializes MHO_InterpolateFringePeak object by checking and retrieving necessary data.
          *
          * @return True if initialization is successful, false otherwise.
@@ -155,6 +179,20 @@ class MHO_InterpolateFringePeak: public MHO_Operator
         delay_rate_axis_type fDRAxis;
 
         void fine_peak_interpolation();
+
+        static void SetWindow(double* win, bool& win_set, double low, double high)
+        {
+            win[0] = std::min(low, high);
+            win[1] = std::max(low, high);
+            win_set = true;
+        }
+
+        bool fSBDWinSet;
+        bool fMBDWinSet;
+        bool fDRWinSet;
+        double fSBDWin[2];
+        double fMBDWin[2];
+        double fDRWin[2];
 
         MHO_NDArrayWrapper< double, 3 > fDRF;
 

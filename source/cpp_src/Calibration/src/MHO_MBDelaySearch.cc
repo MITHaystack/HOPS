@@ -1,5 +1,7 @@
 #include "MHO_MBDelaySearch.hh"
 
+#include <cmath>
+
 namespace hops
 {
 
@@ -165,7 +167,7 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
         for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
         {
             double sbd = fSBDAxis(sbd_idx);
-            bool do_sbd_search = (fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1]);
+            bool do_sbd_search = InSearchWindow(sbd, fSBDWin, fSBDBinSep);
             if(!fSBDWinSet || do_sbd_search)
             {
                 //first select the slice of visibilities which correspond to this SBD
@@ -227,13 +229,13 @@ bool MHO_MBDelaySearch::ExecuteImpl(const XArgType* in)
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
                 {
                     double dr = fDRAxis(dr_idx);
-                    bool do_dr_search = (fDRWin[0] <= dr) && (dr <= fDRWin[1]);
+                    bool do_dr_search = InSearchWindow(dr, fDRWin, fDRBinSep);
                     if(!fDRWinSet || do_dr_search)
                     {
                         for(std::size_t mbd_idx = 0; mbd_idx < fNGridPoints; mbd_idx++)
                         {
                             double mbd = fMBDAxis(mbd_idx);
-                            bool do_mbd_search = (fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1]);
+                            bool do_mbd_search = InSearchWindow(mbd, fMBDWin, fMBDBinSep);
                             if(!fMBDWinSet || do_mbd_search)
                             {
                                 //since we don't care about the actual amplitude (just searching for the max location)
@@ -283,6 +285,12 @@ double MHO_MBDelaySearch::GetNPointsSearched() const
     //factor of 4 is due to the fact that the SBD search space
     //has been zero-padded for interpolation (e.g. all points visited are not independent)
     return fNPointsSearched / 4;
+}
+
+bool MHO_MBDelaySearch::InSearchWindow(double x, const double* win, double bin_sep)
+{
+    double half_bin = 0.5 * std::fabs(bin_sep);
+    return (win[0] - half_bin < x) && (x <= win[1] + half_bin);
 }
 
 void MHO_MBDelaySearch::SetWindow(double* win, double low, double high)
