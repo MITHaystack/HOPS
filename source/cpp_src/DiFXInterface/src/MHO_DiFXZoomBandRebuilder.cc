@@ -9,6 +9,8 @@
 #include <cctype>
 #include <cmath>
 
+#define OVEX_MAX_PHYSICAL_BBC_ID 16
+
 namespace hops
 {
 
@@ -373,7 +375,7 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
 
                 mho_json bbc_assign;
                 bbc_assign["logical_bbc_id"] = bbc_id_tag;
-                bbc_assign["physical_bbc_id"] = chidx + 1;
+                bbc_assign["physical_bbc_id"] = (chidx % OVEX_MAX_PHYSICAL_BBC_ID) + 1;
                 bbc_assign["logical_if"] = if_id_tag;
                 bbc_table["BBC_assign"].push_back(bbc_assign);
 
