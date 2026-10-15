@@ -28,8 +28,7 @@ namespace hops
  *   - synthesize $TRACKS from datastream quantBits and relink $MODE.$TRACKS
  *   - link $GLOBAL.$EOP to the first $EOP (or a dummy)
  *   - delegate zoom-band $FREQ/$BBC/$IF synthesis to MHO_DiFXZoomBandRebuilder
- *   - rewrite chan_def.phase_cal_id to match the station's $PHASE_CAL_DETECT
- *     (if not then fourfit3 do_phase_cal_detect.c aborts)
+ *   - remove $PHASE_CAL_DETECT (unused by fourfit3/4)
  *   - stamp the boilerplate $EVEX/$CORR_INIT/$LOG/$PBS_INIT junk that HOPS3 expects
  *
  */
@@ -62,10 +61,6 @@ class MHO_DiFXOvexPatcher
         static std::string ComputeFourfitReftime(const mho_json& scan_obj);
 
     private:
-        //rewrite chan_def.phase_cal_id entries so they reference a pcal_id actually
-        //defined in the station's $PHASE_CAL_DETECT block (otherwise fourfit3 aborts).
-        void NormalizePhaseCalIds(mho_json& vex_root, const std::string& mode_name);
-
         void ApplyDiFXPhaseCalComb(mho_json& vex_root, const std::string& mode_name);
 
         const mho_json* fInput;
