@@ -8,8 +8,10 @@
 
 #include "MHO_MK4CorelInterfaceReversed.hh"
 
+#include <algorithm>
 #include <cctype>
 #include <cmath>
+#include <tuple>
 
 #include <malloc.h>
 
@@ -19,6 +21,8 @@
 //tolerance to use when selecting by bandwidth
 //and frequency band
 #define FREQ_EPS 0.001
+
+#define MERGED_WEIGHT_EPS 0.001
 
 namespace hops
 {
@@ -160,6 +164,78 @@ void MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
     }
 }
 
+void MHO_DiFXBaselineProcessor::MergeSplitOutputBandRecords()
+{
+    typedef std::tuple< int, std::string, int, double, int, int > record_key;
+    std::map< record_key, MHO_DiFXVisibilityRecord* > first_records;
+
+    std::vector< MHO_DiFXVisibilityRecord* > merged_records;
+    merged_records.reserve(fRecords.size());
+
+    std::set< MHO_DiFXVisibilityRecord* > merged_targets;
+    std::size_t n_merged = 0;
+
+    for(auto* record : fRecords)
+    {
+        record_key key(record->freqindex,
+                       std::string(record->polpair, 2),
+                       record->mjd,
+                       record->seconds,
+                       record->sourceindex,
+                       record->pulsarbin);
+
+        auto it = first_records.find(key);
+        if(it == first_records.end())
+        {
+            first_records[key] = record;
+            merged_records.push_back(record);
+            continue;
+        }
+
+        MHO_DiFXVisibilityRecord* target = it->second;
+        if(target->nchan != record->nchan || target->visdata.size() != record->visdata.size())
+        {
+            msg_warn("difx_interface", "cannot merge duplicate visibility records with different spectral size on baseline "
+                << fBaselineID << ", freq index " << record->freqindex << eom);
+            merged_records.push_back(record);
+            continue;
+        }
+
+        for(std::size_t i = 0; i < target->visdata.size(); i++)
+        {
+            target->visdata[i] += record->visdata[i];
+        }
+        target->dataweight += record->dataweight;
+        merged_targets.insert(target);
+        delete record;
+        n_merged++;
+    }
+
+    if(n_merged != 0)
+    {
+        msg_debug("difx_interface", "merged " << n_merged << " partial output band visibility records on baseline "
+            << fBaselineID << eom);
+    }
+
+    std::size_t n_overweight = 0;
+    double max_weight = 0.0;
+    for(auto* target : merged_targets)
+    {
+        if(target->dataweight > 1.0 + MERGED_WEIGHT_EPS)
+        {
+            n_overweight++;
+            max_weight = std::max(max_weight, target->dataweight);
+        }
+    }
+    if(n_overweight != 0)
+    {
+        msg_warn("difx_interface", n_overweight << " merged visibility records on baseline " << fBaselineID
+            << " have a total weight > 1.0 (max: " << max_weight
+            << "), the SWIN file may contain duplicate (not partial output band) records!" << eom);
+    }
+    fRecords.swap(merged_records);
+}
+
 void MHO_DiFXBaselineProcessor::Organize()
 {
     fHaveBaselineData = true;
@@ -201,6 +277,9 @@ void MHO_DiFXBaselineProcessor::Organize()
         msg_debug("difx_interface", "baseline " << fBaselineID
             << " has no zoom-frequency visibility records; retaining native frequency records" << eom);
     }
+
+    //catch and merge any split (across datastreams/baseline) records
+    MergeSplitOutputBandRecords();
 
     fPolPairSet.clear();
     fFreqIndexSet.clear();
