@@ -18,7 +18,7 @@ endif()
 # project version (stuck with these names due to configure.ac for now)
 set(MODULE_VERSION_MAJOR 4)
 set(MODULE_VERSION_MINOR 0)
-set(MODULE_VERSION_PATCH 3)
+set(MODULE_VERSION_PATCH 4)
 set(HOPS_VERSION_NUMBER "${MODULE_VERSION_MAJOR}.${MODULE_VERSION_MINOR}.${MODULE_VERSION_PATCH}")
 project(Hops VERSION ${HOPS_VERSION_NUMBER})
 
@@ -233,7 +233,7 @@ option(HOPS3_USE_GSL "Build GSL-linked HOPS3 apps (cohfit)" ON)
 ##########################################################################################################
 #master switch to disable all MIT license incompatible linking
 #DEV NOTE: This flag must be switched to ON when building/releasing binary distributions!
-option(HOPS_BDIST_LICENSE_COMPAT_ONLY "Restrict the build to redistributable components." OFF)
+option(HOPS_BDIST_LICENSE_COMPAT_ONLY "Restrict the build to redistributable components (e.g. no PGPLOT)." OFF)
 
 #license-compatibility mode (must run before FFTW discovery!)
 #and before the extern/ subdirectory is added (since itneeds to cover matplot++'s bundled CImg)
