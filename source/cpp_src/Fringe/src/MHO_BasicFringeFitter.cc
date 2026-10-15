@@ -573,6 +573,24 @@ void MHO_BasicFringeFitter::interpolate_peak()
     fPeakInterpolator.SetMBDAxis(fMBDSearch->GetMBDAxis());
     fPeakInterpolator.SetDRAxis(fMBDSearch->GetDRAxis());
 
+    //constrain the interpolation to the user search windows (as in interp.c)
+    fPeakInterpolator.ClearWindows();
+    if(fParameterStore->IsPresent("/control/fit/sb_win"))
+    {
+        std::vector< double > sbwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/sb_win");
+        fPeakInterpolator.SetSBDWindow(sbwin[0], sbwin[1]);
+    }
+    if(fParameterStore->IsPresent("/control/fit/mb_win"))
+    {
+        std::vector< double > mbwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/mb_win");
+        fPeakInterpolator.SetMBDWindow(mbwin[0], mbwin[1]);
+    }
+    if(fParameterStore->IsPresent("/control/fit/dr_win"))
+    {
+        std::vector< double > drwin = fParameterStore->GetAs< std::vector< double > >("/control/fit/dr_win");
+        fPeakInterpolator.SetDRWindow(drwin[0], drwin[1]);
+    }
+
     fPeakInterpolator.Initialize();
     fPeakInterpolator.Execute();
 

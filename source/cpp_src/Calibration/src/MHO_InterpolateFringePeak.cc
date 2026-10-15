@@ -20,6 +20,14 @@ MHO_InterpolateFringePeak::MHO_InterpolateFringePeak()
     fDRAxis.Resize(1);
 
     fDRF.Resize(5, 5, 5);
+
+    ClearWindows();
+    fSBDWin[0] = 0.0;
+    fSBDWin[1] = 0.0;
+    fMBDWin[0] = 0.0;
+    fMBDWin[1] = 0.0;
+    fDRWin[0] = 0.0;
+    fDRWin[1] = 0.0;
 }
 
 bool MHO_InterpolateFringePeak::Initialize()
@@ -92,6 +100,16 @@ void MHO_InterpolateFringePeak::fine_peak_interpolation()
     double dr_delta = fDRAxis.at(1) - fDRAxis.at(0);
     double mbd_delta = fMBDAxis.at(1) - fMBDAxis.at(0);
 
+    //the coarse search delay-rate spectrum is referenced to the start of the data, so the coarse mbd
+    //must be corrected for the delay rate to refer it to the fourfit reference time (see update.c),
+    //this corrected value is the center of the interpolation cube in the mbd dimension
+    double tdelta0 = ap_ax->at(0) + ap_delta / 2.0 - fFRTOffset;
+    double mbd_center = fMBDAxis.at(fMBDMaxBin) - fDRAxis.at(fDRMaxBin) * tdelta0;
+    if(fMBDWinSet)
+    {
+        mbd_center = dwin(mbd_center, fMBDWin[0], fMBDWin[1]);
+    }
+
     //use the fourfit reference time
     //double fFRTOffset = fFRTOffset;//( ap_ax->at(nap-1) + ap_delta  + ap_ax->at(0) )/2.0;
     // std::cout<<"time midpoint = "<<fFRTOffset<<std::endl;
@@ -129,7 +147,7 @@ void MHO_InterpolateFringePeak::fine_peak_interpolation()
                 // std::cout<<"sbd, dr, mbd bins = "<<sbd_bin<<", "<<dr_bin<<", "<<mbd_bin<<std::endl;
 
                 sbd = sbd_ax->at((std::size_t)sbd_bin);
-                mbd = fMBDAxis.at(fMBDMaxBin) + 0.5 * (imbd - 2) * mbd_delta;
+                mbd = mbd_center + 0.5 * (imbd - 2) * mbd_delta;
                 dr = (fDRAxis.at(fDRMaxBin) + (0.5 * (idr - 2) * dr_delta)); // /fRefFreq;
 
                 //printf("idr = %d and dr = %.8f \n", idr, dr);
@@ -198,14 +216,45 @@ void MHO_InterpolateFringePeak::fine_peak_interpolation()
         }
     }
 
-    xlim[0][0] = -1; // sbd_lower;// / status.sbd_sep - status.max_delchan + nl;
-    xlim[0][1] = 1;  //sbd_upper;// / status.sbd_sep - status.max_delchan + nl;
+    //form the search bounds in all 3 dimensions (see interp.c): +/- 1 search grid point about the
+    //coarse peak, constrained to lie within the user windows (the multiband window is left alone if wide open)
+    double sbd_peak = sbd_ax->at(fSBDMaxBin);
+    double mbd_peak = mbd_center;
+    double dr_peak = fDRAxis.at(fDRMaxBin);
 
-    xlim[1][0] = -2; //mbd_lower;// - status.mbd_max_global) / status.mbd_sep;
-    xlim[1][1] = 2;  //mbd_upper;// - status.mbd_max_global) / status.mbd_sep;
+    double sbd_lo = sbd_peak - sbd_delta;
+    double sbd_hi = sbd_peak + sbd_delta;
+    if(fSBDWinSet)
+    {
+        sbd_lo = std::max(fSBDWin[0], sbd_lo);
+        sbd_hi = std::min(fSBDWin[1], sbd_hi);
+    }
 
-    xlim[2][0] = -2; //dr_lower;// - status.dr_max_global) / status.rate_sep;
-    xlim[2][1] = 2;  //dr_upper;// - status.dr_max_global) / status.rate_sep;
+    double mbd_lo = mbd_peak - mbd_delta;
+    double mbd_hi = mbd_peak + mbd_delta;
+    double mbd_ambiguity = std::fabs(mbd_delta) * fMBDAxis.GetSize();
+    if(fMBDWinSet && (fMBDWin[1] - fMBDWin[0]) < 0.9999 * mbd_ambiguity)
+    {
+        mbd_lo = dwin(mbd_lo, fMBDWin[0], fMBDWin[1]);
+        mbd_hi = dwin(mbd_hi, fMBDWin[0], fMBDWin[1]);
+    }
+
+    double dr_lo = dr_peak - dr_delta;
+    double dr_hi = dr_peak + dr_delta;
+    if(fDRWinSet)
+    {
+        dr_lo = dwin(dr_lo, fDRWin[0], fDRWin[1]);
+        dr_hi = dwin(dr_hi, fDRWin[0], fDRWin[1]);
+    }
+
+    xlim[0][0] = (sbd_lo - sbd_peak) / sbd_delta;
+    xlim[0][1] = (sbd_hi - sbd_peak) / sbd_delta;
+
+    xlim[1][0] = 2.0 * (mbd_lo - mbd_peak) / mbd_delta;
+    xlim[1][1] = 2.0 * (mbd_hi - mbd_peak) / mbd_delta;
+
+    xlim[2][0] = 2.0 * (dr_lo - dr_peak) / dr_delta;
+    xlim[2][1] = 2.0 * (dr_hi - dr_peak) / dr_delta;
     //
     // std::cout<< "xlim's "<< xlim[0][0]<<", "<< xlim[0][1] <<", "<< xlim[1][0] <<", "<< xlim[1][1] <<", " << xlim[2][0] <<", "<< xlim[2][1] <<std::endl;
     //                             // find maximum value within cube via interpolation
@@ -230,7 +279,7 @@ void MHO_InterpolateFringePeak::fine_peak_interpolation()
 
     sbd = sbd_ax->at(sbd_bin); // + 0.5*sbd_delta;
     dr = (fDRAxis.at(dr_bin)); //*(1.0/fRefFreq);
-    mbd = (fMBDAxis.at(mbd_bin));
+    mbd = mbd_center;
 
     double sbd_change = xi[0] * sbd_delta;
     double mbd_change = xi[1] * 0.5 * mbd_delta;

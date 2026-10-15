@@ -230,7 +230,7 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
             for(std::size_t sbd_idx = 0; sbd_idx < fNSBD; sbd_idx++)
             {
                 double sbd = fSBDAxis(sbd_idx);
-                if(fSBDWinSet && !((fSBDWin[0] <= sbd) && (sbd <= fSBDWin[1])))
+                if(fSBDWinSet && !InSearchWindow(sbd, fSBDWin, fSBDBinSep))
                 {
                     continue;
                 }
@@ -276,14 +276,14 @@ bool MHO_MBDelaySearchOpenMP::ExecuteImpl(const XArgType* in)
                 for(std::size_t dr_idx = 0; dr_idx < fNDRSP; dr_idx++)
                 {
                     double dr = fDRAxis(dr_idx);
-                    if(fDRWinSet && !((fDRWin[0] <= dr) && (dr <= fDRWin[1])))
+                    if(fDRWinSet && !InSearchWindow(dr, fDRWin, fDRBinSep))
                     {
                         continue;
                     }
                     for(std::size_t mbd_idx = 0; mbd_idx < fNGridPoints; mbd_idx++)
                     {
                         double mbd = fMBDAxis(mbd_idx);
-                        if(fMBDWinSet && !((fMBDWin[0] <= mbd) && (mbd <= fMBDWin[1])))
+                        if(fMBDWinSet && !InSearchWindow(mbd, fMBDWin, fMBDBinSep))
                         {
                             continue;
                         }
