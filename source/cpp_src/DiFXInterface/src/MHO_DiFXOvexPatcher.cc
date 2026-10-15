@@ -141,9 +141,10 @@ void MHO_DiFXOvexPatcher::Patch(mho_json& vex_root, const std::string& mode_name
         vex_root["$MODE"][mode_name]["$TRACKS"].push_back(trax_obj);
     }
 
-    //keep the original $MODE.$PHASE_CAL_DETECT references intact, they are required
-    //by fourfit3 to resolve each station's pcal tone setup
-    //this doesn't matter to fourfit4
+    //remove $PHASE_CAL_DETECT (as difx2mark4 does); neither fourfit3 nor fourfit4 use it, and the
+    //HOPS3 ovex parser aborts on tone-less (&NoCal) or mismatched phase_cal_detect statements
+    vex_root.erase("$PHASE_CAL_DETECT");
+    vex_root["$MODE"][mode_name].erase("$PHASE_CAL_DETECT");
 
     //link $GLOBAL.$EOP to the first $EOP (or a dummy) -- pedantic HOPS3 ovex parser
     vex_root["$GLOBAL"]["$EOP"].clear();
@@ -176,10 +177,6 @@ void MHO_DiFXOvexPatcher::Patch(mho_json& vex_root, const std::string& mode_name
     //NOTE: traditional mk4 channel naming (MHO_DiFXChannelNameConstructor::AddChannelNames)
     //runs later in MHO_DiFXScanProcessor::FinalizeAndWriteRootFile, but it needs the
     //visibility-side global sky-freq grid first.
-
-    //rewrite chan_def.phase_cal_id entries so they reference a pcal_id defined in
-    //$PHASE_CAL_DETECT for the station; keeps fourfit3's do_phase_cal_detect.c happy
-    NormalizePhaseCalIds(vex_root, mode_name);
 
     ApplyDiFXPhaseCalComb(vex_root, mode_name);
 
@@ -244,83 +241,6 @@ std::string MHO_DiFXOvexPatcher::ComputeFourfitReftime(const mho_json& scan_obj)
     auto start_tp = hops_clock::from_vex_format(start_epoch);
     auto frt_tp = start_tp + std::chrono::seconds(itime);
     return hops_clock::to_vex_format(frt_tp);
-}
-
-void MHO_DiFXOvexPatcher::NormalizePhaseCalIds(mho_json& vex_root, const std::string& mode_name)
-{
-    //fourfit3 (do_phase_cal_detect.c) requires every pcal_id listed in $PHASE_CAL_DETECT to
-    //match at least one chan_def.phase_cal_id in the station's $FREQ table, otherwise it
-    //aborts. The source VEX can sometime have chan_defs naming an undefined pcal id (e.g. &L_cal)
-    //while the referenced $PHASE_CAL_DETECT def declares a different one (e.g. &U_cal).
-    //Rewrite each chan_def.phase_cal_id to a pcal_id that is actually defined for that station.
-
-    if(!vex_root.contains("$MODE") || !vex_root["$MODE"].contains(mode_name))
-        return;
-    auto& mode = vex_root["$MODE"][mode_name];
-    if(!mode.contains("$PHASE_CAL_DETECT") || !mode.contains("$FREQ"))
-        return;
-
-    //per-station preferred pcal_id (first one declared in the station's pcal-detect def)
-    std::map< std::string, std::string > station_to_pcal_id;
-    for(auto& pcd_ref : mode["$PHASE_CAL_DETECT"])
-    {
-        std::string pcd_name = pcd_ref["keyword"].get< std::string >();
-        if(!vex_root.contains("$PHASE_CAL_DETECT") || !vex_root["$PHASE_CAL_DETECT"].contains(pcd_name))
-            continue;
-        auto& pcd_def = vex_root["$PHASE_CAL_DETECT"][pcd_name];
-        if(!pcd_def.contains("phase_cal_detect") || pcd_def["phase_cal_detect"].empty())
-            continue;
-        std::string preferred = pcd_def["phase_cal_detect"][0]["pcal_id"].get< std::string >();
-        for(auto& q : pcd_ref["qualifiers"])
-        {
-            station_to_pcal_id[q.get< std::string >()] = preferred;
-        }
-    }
-
-    //rewrite chan_def.phase_cal_id under each freq table (avoid double-work when stations share a table)
-    std::set< std::string > rewritten;
-    for(auto& freq_ref : mode["$FREQ"])
-    {
-        std::string freq_name = freq_ref["keyword"].get< std::string >();
-        if(rewritten.count(freq_name))
-            continue;
-        std::string preferred_pcal_id;
-        for(auto& q : freq_ref["qualifiers"])
-        {
-            std::string st = q.get< std::string >();
-            if(station_to_pcal_id.count(st))
-            {
-                preferred_pcal_id = station_to_pcal_id[st];
-                break;
-            }
-        }
-        if(preferred_pcal_id.empty())
-            continue;
-        if(!vex_root.contains("$FREQ") || !vex_root["$FREQ"].contains(freq_name))
-            continue;
-        auto& freq_def = vex_root["$FREQ"][freq_name];
-        if(!freq_def.contains("chan_def"))
-            continue;
-
-        std::size_t rewrites = 0;
-        for(auto& cd : freq_def["chan_def"])
-        {
-            std::string existing;
-            if(cd.contains("phase_cal_id"))
-                existing = cd["phase_cal_id"].get< std::string >();
-            if(existing != preferred_pcal_id)
-            {
-                cd["phase_cal_id"] = preferred_pcal_id;
-                rewrites++;
-            }
-        }
-        rewritten.insert(freq_name);
-        if(rewrites > 0)
-        {
-            msg_debug("difx_interface", "normalized phase_cal_id to " << preferred_pcal_id << " for " << rewrites
-                                                                      << " chan_defs in $FREQ." << freq_name << eom);
-        }
-    }
 }
 
 void MHO_DiFXOvexPatcher::ApplyDiFXPhaseCalComb(mho_json& vex_root, const std::string& mode_name)
