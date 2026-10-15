@@ -1,7 +1,9 @@
 #include "MHO_DiFXOvexPatcher.hh"
 
 #include "MHO_Clock.hh"
+#include "MHO_DiFXInputHelpers.hh"
 #include "MHO_Message.hh"
+#include "MHO_VexHelpers.hh"
 
 #include <algorithm>
 #include <cctype>
@@ -179,6 +181,8 @@ void MHO_DiFXOvexPatcher::Patch(mho_json& vex_root, const std::string& mode_name
     //$PHASE_CAL_DETECT for the station; keeps fourfit3's do_phase_cal_detect.c happy
     NormalizePhaseCalIds(vex_root, mode_name);
 
+    ApplyDiFXPhaseCalComb(vex_root, mode_name);
+
     //boilerplate $EVEX
     mho_json evex_obj;
     evex_obj["corr_exp#"] = fExperNum;
@@ -316,6 +320,60 @@ void MHO_DiFXOvexPatcher::NormalizePhaseCalIds(mho_json& vex_root, const std::st
             msg_debug("difx_interface", "normalized phase_cal_id to " << preferred_pcal_id << " for " << rewrites
                                                                       << " chan_defs in $FREQ." << freq_name << eom);
         }
+    }
+}
+
+void MHO_DiFXOvexPatcher::ApplyDiFXPhaseCalComb(mho_json& vex_root, const std::string& mode_name)
+{
+    if(fInput == nullptr || !fInput->contains("datastream") || !vex_root["$MODE"][mode_name].contains("$IF"))
+    {
+        return;
+    }
+
+    std::map< std::string, std::pair< double, double > > station_combs;
+    for(const auto& ds : (*fInput)["datastream"])
+    {
+        double interval_MHz = MHO_DiFXInputHelpers::GetPhaseCalIntervalMHz(ds);
+        double base_MHz = MHO_DiFXInputHelpers::GetPhaseCalBaseMHz(ds);
+        bool is_default = MHO_DiFXInputHelpers::GetPhaseCalIntervalDivisor(ds) == 1 && base_MHz == 0.0;
+        auto code_it = fDiFX2VexStationCodes.find(MHO_DiFXInputHelpers::GetDatastreamAntennaName(*fInput, ds));
+        if(is_default || interval_MHz <= 0.0 || code_it == fDiFX2VexStationCodes.end())
+        {
+            continue;
+        }
+
+        std::pair< double, double > comb(interval_MHz, base_MHz);
+        auto inserted = station_combs.emplace(code_it->second, comb);
+        if(!inserted.second && inserted.first->second != comb)
+        {
+            msg_warn("difx_interface", "datastreams of station " << code_it->second
+                                                                 << " use different phase cal combs, using the first" << eom);
+        }
+    }
+
+    for(const auto& sc : station_combs)
+    {
+        const std::string& vex_code = sc.first;
+        std::string if_name = MHO_VexHelpers::TableForStation(vex_root, mode_name, "$IF", vex_code);
+        if(if_name.empty() || !vex_root["$IF"].contains(if_name))
+        {
+            msg_warn("difx_interface", "no $IF table found for station " << vex_code << ", phase cal comb not applied" << eom);
+            continue;
+        }
+
+        std::string pcal_if_name = "difx_pcal_if_" + vex_code;
+        mho_json if_table = vex_root["$IF"][if_name];
+        for(auto& if_def : if_table["if_def"])
+        {
+            if_def["phase_cal_interval"] = {{"value", sc.second.first}, {"units", "MHz"}};
+            if_def["phase_cal_base"] = {{"value", sc.second.second}, {"units", "MHz"}};
+        }
+        vex_root["$IF"][pcal_if_name] = if_table;
+        MHO_VexHelpers::LinkStationToTable(vex_root, mode_name, "$IF", vex_code, pcal_if_name);
+
+        msg_debug("difx_interface", "set phase cal comb for station " << vex_code << " in $IF." << pcal_if_name << " to "
+                                                                      << sc.second.first << " MHz spacing, " << sc.second.second
+                                                                      << " MHz base" << eom);
     }
 }
 

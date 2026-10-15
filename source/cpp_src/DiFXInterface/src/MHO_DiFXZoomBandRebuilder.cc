@@ -3,6 +3,7 @@
 #include "MHO_DiFXInputHelpers.hh"
 #include "MHO_MK4ChanId.hh"
 #include "MHO_Message.hh"
+#include "MHO_VexHelpers.hh"
 
 #include <algorithm>
 #include <cctype>
@@ -217,16 +218,12 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
         }
 
         //resolve station code
-        int antennaId = ds["antennaId"].get< int >();
-        if(antennaId >= (int)input["antenna"].size())
+        int antennaId = ds.value("antennaId", -1);
+        std::string difx_code = MHO_DiFXInputHelpers::GetDatastreamAntennaName(input, ds);
+        if(difx_code.empty())
         {
             continue;
         }
-        std::string difx_code = input["antenna"][antennaId]["name"].get< std::string >();
-        //DiFX names are uppercase; strip trailing nulls/spaces
-        difx_code.erase(
-            std::find_if(difx_code.begin(), difx_code.end(), [](unsigned char c) { return !std::isalnum(c) && c != '_'; }),
-            difx_code.end());
         if(!fDiFX2VexStationCodes.count(difx_code))
         {
             msg_warn("difx_interface", "zoom-band rebuild: no VEX station code for DiFX antenna: " << difx_code << eom);
@@ -419,48 +416,14 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
         vex_root["$IF"][if_table_name] = if_table;
 
         //update $MODE: repoint this station's $FREQ/$BBC/$IF qualifiers at the new tables
-        for(const std::string& section : {"$FREQ", "$BBC", "$IF"})
+        const std::vector< std::pair< std::string, std::string > > section_tables = {
+            {"$FREQ", freq_table_name}, {"$BBC", bbc_table_name}, {"$IF", if_table_name}};
+        for(const auto& st : section_tables)
         {
-            std::string new_table_name;
-            if(section == "$FREQ")
+            if(vex_root["$MODE"][mode_name].contains(st.first))
             {
-                new_table_name = freq_table_name;
+                MHO_VexHelpers::LinkStationToTable(vex_root, mode_name, st.first, vex_code, st.second);
             }
-            else if(section == "$BBC")
-            {
-                new_table_name = bbc_table_name;
-            }
-            else
-            {
-                new_table_name = if_table_name;
-            }
-
-            if(!vex_root["$MODE"][mode_name].contains(section))
-            {
-                continue;
-            }
-
-            auto& mode_section = vex_root["$MODE"][mode_name][section];
-            mho_json updated_entries;
-            for(auto& entry : mode_section)
-            {
-                mho_json new_quals;
-                for(auto& q : entry["qualifiers"])
-                {
-                    if(q.get< std::string >() != vex_code)
-                        new_quals.push_back(q);
-                }
-                if(!new_quals.empty())
-                {
-                    entry["qualifiers"] = new_quals;
-                    updated_entries.push_back(entry);
-                }
-            }
-            mho_json new_entry;
-            new_entry["keyword"] = new_table_name;
-            new_entry["qualifiers"] = mho_json::array({vex_code});
-            updated_entries.push_back(new_entry);
-            vex_root["$MODE"][mode_name][section] = updated_entries;
         }
 
         msg_debug("difx_interface",
