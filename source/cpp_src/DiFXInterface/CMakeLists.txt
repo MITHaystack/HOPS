@@ -10,6 +10,7 @@ set (DIFXINTERFACE_HEADERFILES
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXBaselineProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXPCalProcessor.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXChannelNameConstructor.hh
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXInputHelpers.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXOvexPatcher.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXStationCoordBuilder.hh
     ${CMAKE_CURRENT_SOURCE_DIR}/include/MHO_DiFXTimeUtilities.hh
