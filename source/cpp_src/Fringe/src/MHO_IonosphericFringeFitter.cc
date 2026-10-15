@@ -377,11 +377,11 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // do 3-D grid search using FFT's
 
             //remove the effects of the last application
-            iono.SetDifferentialTEC(last_ion_diff);
+            iono.SetDifferentialTEC(-1.0 * last_ion_diff);
             iono.Execute();
 
             //apply the current ionospheric phase
-            iono.SetDifferentialTEC(-1.0 * ion_diff);
+            iono.SetDifferentialTEC(ion_diff);
             iono.Execute();
             last_ion_diff = ion_diff;
 
@@ -695,11 +695,11 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             // do 3-D grid search using FFT's
 
             //remove the effects of the last application
-            iono.SetDifferentialTEC(last_ion_diff);
+            iono.SetDifferentialTEC(-1.0 * last_ion_diff);
             iono.Execute();
 
             //apply the current ionospheric phase
-            iono.SetDifferentialTEC(-1.0 * ion_diff);
+            iono.SetDifferentialTEC(ion_diff);
             iono.Execute();
             last_ion_diff = ion_diff;
 

@@ -197,9 +197,9 @@ static int test_case5_lsb_channel()
         CHECK_CLOSE(vis(0, 0, 0, 0).imag(), expected.imag(), 1e-9);
     }
 
-    // Verify channel 1 uses LSB center frequency
+    // Verify channel 1 uses LSB center frequency, with the phase conjugated for LSB
     {
-        double theta = ion_k * dTEC / (1e6 * fc1_lsb);
+        double theta = -1.0 * ion_k * dTEC / (1e6 * fc1_lsb);
         std::complex< double > expected(std::cos(theta), std::sin(theta));
 
         for(std::size_t pp = 0; pp < vis.GetDimension(POLPROD_AXIS); pp++)
