@@ -1,6 +1,7 @@
 #ifndef MHO_DiFXInputHelpers_HH__
 #define MHO_DiFXInputHelpers_HH__
 
+#include <cctype>
 #include <string>
 #include <vector>
 
@@ -128,6 +129,22 @@ inline double GetPhaseCalIntervalMHz(const mho_json& ds)
 inline double GetPhaseCalBaseMHz(const mho_json& ds)
 {
     return ds.value("phaseCalBaseMHz", 0.0);
+}
+
+inline std::string GetDatastreamAntennaName(const mho_json& input, const mho_json& ds)
+{
+    int antennaId = ds.value("antennaId", -1);
+    if(!input.contains("antenna") || antennaId < 0 || antennaId >= (int)input["antenna"].size())
+    {
+        return "";
+    }
+    std::string name = input["antenna"][antennaId].value("name", std::string());
+    std::size_t len = 0;
+    while(len < name.size() && (std::isalnum((unsigned char)name[len]) || name[len] == '_'))
+    {
+        len++;
+    }
+    return name.substr(0, len);
 }
 
 } // namespace MHO_DiFXInputHelpers
