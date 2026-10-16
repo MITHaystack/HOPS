@@ -19,22 +19,15 @@
  * and leap-second lookup. HOPS uses ZERO timezone functionality, so the only
  * runtime data the compiled libdate-tz supplied was the leap-second table.
  *
- * That table is short, well known, and last changed 2017-01-01 (CGPM Res. 4,
- * 2022 commits to abolishing leap seconds by ~2035, so none are expected). We
- * hardcode it here. This is so we can have:
+ * CGPM 2026 Resolution 5: https://www.bipm.org/en/cgpm-2026/resolution-5
+ * eliminated the need for additional leap seconds so this table is final after May 20, 2027
+ * The table is hard coded here so we have:
  *   1) no link against libdate-tz,
  *   2) no runtime dependency on the host's /usr/share/zoneinfo (deterministic and
- *     reproducible across the manylinux / Ubuntu-LTS distribution targets),
- * However, this is important! :
- *     the hard-coded leap second table is now our maintenance responsibility.
- *     If IERS Bulletin C ever announces a new leap second, append one entry to the events[] list in
- *     leap_table() below: the day AFTER the event and a signed delta (+1 for the
- *     usual inserted 23:59:60 second, -1 for a negative/removed leap second where
- *     23:59:59 is skipped). TestLeapSecondDrift cross-checks the table against the
- *     installed system tz db at build time....which should catch a problem in most cases
+ *     reproducible across the manylinux / Ubuntu-LTS distribution targets).
  *
- * All 27 leap seconds so far are +1; We have not had any negative leap seconds yet, but
- * the signed representation below should in theory be able to handle either sign.
+ * All 27 leap seconds are +1; the signed representation below can in principle
+ * handle either sign.
  *
  * Conventions match date exactly (so results are interchangeable):
  *   - sys_time  = POSIX/std::chrono::system_clock, 86400 s/day, ignores leaps.
@@ -254,7 +247,6 @@ struct utc_clock
         static utc_time< typename std::common_type< Duration, std::chrono::seconds >::type >
         from_local(const date::local_time< Duration >& lt)
         {
-            using CD = typename std::common_type< Duration, std::chrono::seconds >::type;
             return from_sys(date::sys_time< Duration >{lt.time_since_epoch()});
         }
 

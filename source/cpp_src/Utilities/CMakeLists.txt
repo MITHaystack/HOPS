@@ -1,7 +1,6 @@
 #hops_require_cpp11()
 
-#NOTE: if HOPS_USE_INTERNAL_LEAP_SECONDS is ON, we use the self-contained leap-second table in
-#hops_leap_seconds.hh, otherwise we fall back to linking against the HH date/tz.h library
+#NOTE: leap seconds come from  hops_leap_seconds.hh, we no longer link against libdate-tz
 
 #list header files #############################################################
 set (UTILITIES_HEADERFILES
@@ -80,14 +79,6 @@ hops_internal_include_directories(${EXTERN_HLIBS}/json/include)
 
 #${CMAKE_DL_LIBS} provides dladdr (used by GetHopsInstallPrefix for runtime self-location)
 set(UTILITIES_LIBS MHO_Message ${CMAKE_DL_LIBS})
-
-#Leap-second backend: with HOPS_USE_INTERNAL_LEAP_SECONDS (default) hops_clock uses
-#the header-only internal table and no compiled date library is needed. Only the
-#opt-out path links libdate-tz (compiled lib); the header-only date/date.h
-#civil-calendar include is exposed globally in extern/CMakeLists.txt for both paths.
-if(NOT HOPS_USE_INTERNAL_LEAP_SECONDS)
-    list(APPEND UTILITIES_LIBS date-tz)
-endif()
 
 add_library (MHO_Utilities SHARED ${UTILITIES_SOURCEFILES})
 

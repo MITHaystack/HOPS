@@ -64,9 +64,7 @@ endif()
 #define and create install directories #########################################
 set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include")
 set(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
-#on some systems the tzdate library gets put here (lib64)
-#so make sure it exists and is added to the library paths
-set(LIB64_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib64")
+set(LIB64_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib64") #needed for some systems
 set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin")
 set(TEST_BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin/test")
 set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/config")
@@ -209,9 +207,7 @@ option(HOPS_USE_CUDA "Build CUDA support." OFF)
 option(HOPS_USE_HDF5 "Build HDF5 export support." OFF)
 
 #When enabled, build static (.a) twins of the low-dependency libraries alongside
-#the shared libs, so downstream users can link self-contained applications. The
-#twins are installed into a separate export set (Hops::<lib>_static); the default
-#shared build is unaffected. See Review/static-libs-plan.md.
+#the shared libs, so downstream users can link self-contained applications
 option(HOPS_BUILD_STATIC_LIBS "Also build static (.a) twins of the low-level libraries alongside the shared libs" OFF)
 
 option(HOPS3_PYTHON_EXTRAS "Build python (ctypes) interface to hops3 libraries" ON)
@@ -409,7 +405,7 @@ hops_add_cxxflag(EIGEN_MPL2_ONLY)
 #call build in the subdirectories
 add_subdirectory(${SHSOURCE}) #shell scripts
 add_subdirectory(${CSOURCE}) #mostly hops3 source
-add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies, but date (tz) library must be built
+add_subdirectory(${EXTERN_HLIBS}) #external (mostly header-only) dependencies
 
 ################################################################################
 #compiler settings (C++11 standard is the default) -- overrides anything set in EXTERN_HLIBS

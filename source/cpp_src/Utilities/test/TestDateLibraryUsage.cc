@@ -4,7 +4,6 @@
 #include <istream>
 
 #include "date/date.h"
-#include "date/tz.h"
 
 using namespace date;
 using namespace std;
@@ -35,28 +34,31 @@ int main(int /*argc*/, char** /*argv*/)
     auto utc_now = hops_clock::to_utc(hops_now);
     auto gps_now = hops_clock::to_gps(hops_now);
 
-    //NOTE: hops_clock's utc/tai/gps casts return the active backend's time types
-    //(hops:: when HOPS_USE_INTERNAL_LEAP_SECONDS, date:: otherwise). Their raw
-    //counts match date's by construction, so for display we re-wrap into date::
-    //time types (this test links date-tz) to get the formatted civil date/time.
+    //NOTE: hops_clock's utc/tai/gps casts return the hops:: (hops_leap_seconds.hh)
+    //time types, which carry no stream operators. For display, the utc instant is
+    //shown on the sys (POSIX) scale, and tai/gps as civil date/times on their own
+    //continuous scales (the same convention date/tz.h uses to print them).
+    const sys_days tai_epoch = sys_days{1958_y / January / 1};
+    const sys_days gps_epoch = sys_days{1980_y / January / Sunday[1]};
     std::cout << "hops now = " << hops_now << std::endl;
-    std::cout << "utc now = " << date::utc_time< nanoseconds >{utc_now.time_since_epoch()} << std::endl;
-    std::cout << "tai now = " << date::tai_time< nanoseconds >{tai_now.time_since_epoch()} << std::endl;
-    std::cout << "gps now = " << date::gps_time< nanoseconds >{gps_now.time_since_epoch()} << std::endl;
+    std::cout << "utc now = " << hops::utc_clock::to_sys(utc_now) << std::endl;
+    std::cout << "tai now = " << sys_time< nanoseconds >{tai_epoch} + tai_now.time_since_epoch() << std::endl;
+    std::cout << "gps now = " << sys_time< nanoseconds >{gps_epoch} + gps_now.time_since_epoch() << std::endl;
 
     std::cout << "ticks since tai clock epoch = " << tai_now.time_since_epoch().count() << std::endl;
     std::cout << "ticks since utc clock epoch = " << utc_now.time_since_epoch().count() << std::endl;
     std::cout << "ticks since gps clock epoch = " << gps_now.time_since_epoch().count() << std::endl;
     std::cout << "ticks since hops clock epoch = " << hops_now.time_since_epoch().count() << std::endl;
 
-    auto hops_epoch_start_utc = date::utc_time< nanoseconds >{hops_clock::get_hops_epoch_utc().time_since_epoch()};
-    auto hops_epoch_start_tai = date::tai_clock::from_utc(hops_epoch_start_utc);
+    auto hops_epoch_start_utc = hops_clock::get_hops_epoch_utc();
+    auto hops_epoch_start_tai = hops::tai_clock::from_utc(hops_epoch_start_utc);
 
-    std::cout << "hops clock epoch start as UTC date/time = " << hops_epoch_start_utc << std::endl;
-    std::cout << "hops clock epoch start as TAI date/time = " << hops_epoch_start_tai << std::endl;
+    std::cout << "hops clock epoch start as UTC date/time = " << hops::utc_clock::to_sys(hops_epoch_start_utc) << std::endl;
+    std::cout << "hops clock epoch start as TAI date/time = "
+              << sys_time< nanoseconds >{tai_epoch} + hops_epoch_start_tai.time_since_epoch() << std::endl;
 
-    auto info = date::get_leap_second_info(date::utc_time< nanoseconds >{utc_now.time_since_epoch()});
-    std::cout << "leap seconds elapsed = " << info.elapsed << std::endl;
+    auto info = hops::get_leap_second_info(utc_now);
+    std::cout << "leap seconds elapsed = " << info.elapsed.count() << "s" << std::endl;
 
     std::cout << "hops epoch nanoseconds from system utc epoch start = " << hops_epoch_start_utc.time_since_epoch().count()
               << std::endl;
@@ -125,8 +127,8 @@ int main(int /*argc*/, char** /*argv*/)
 
     std::cout << "n leap seconds inserted between hops (J2000) epoch and: " << vtest << " = " << n_leaps.count() << std::endl;
 
-    std::cout << "number of leap seconds in tzdb: " << get_tzdb().leap_seconds.size() << " -> should be 27 (as of 9/12/2023)"
-              << std::endl;
+    std::cout << "number of leap seconds in table: " << hops::leap_detail::leap_table().size()
+              << " -> should be 27 (final, leap seconds discontinued by CGPM 2026 Res. 5)" << std::endl;
 
     auto nom_difx_epoch = hops_clock::from_iso8601_format(DIFX_J2000_MJD_EPOCH_UTC_ISO8601);
 

@@ -71,7 +71,7 @@ endif()
 #
 # The install layout (see top-level CMakeLists.txt) places:
 #   executables in   bin/   and   bin/test/
-#   libraries   in   lib/ , lib/hops/   (and lib64/ for the bundled tz library)
+#   libraries   in   lib/ , lib/hops/   (and lib64/ just in case)
 # A single global CMAKE_INSTALL_RPATH is applied to every target, so we list all
 # the $ORIGIN-relative offsets needed to reach the lib dirs from any of those
 # locations. Entries that don't resolve for a given binary are simply ignored by

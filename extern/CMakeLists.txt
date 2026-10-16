@@ -48,13 +48,15 @@ if(HOPS_USE_PYBIND11)
     )
 endif()
 
-set_option(USE_SYSTEM_TZ_DB ON)
+set_option(USE_SYSTEM_TZ_DB OFF)
 set_option(MANUAL_TZ_DB OFF)
 set_option(USE_TZ_DB_IN_DOT OFF)
 set_option(BUILD_SHARED_LIBS ON)
 set_option(ENABLE_DATE_TESTING OFF)
 set_option(DISABLE_STRING_VIEW OFF)
-set_option(BUILD_TZ_LIB ON)
+#only the header-only date/date.h is used; leap seconds come from HOPS's own
+#table (hops_leap_seconds.hh), so the compiled tz library is not built
+set_option(BUILD_TZ_LIB OFF)
 
 #for GCC versions < 5, work around for bug in c++11 impl
 if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 5.0)
@@ -65,20 +67,10 @@ endif()
 
 add_subdirectory(date)
 
-# Expose the header-only portion of the date library (date/date.h civil calendar)
+# Expose the header-only portion of the date library (date/date.h)
 # as a global include, like Eigen above. MHO_Clock.hh includes "date/date.h"
-# unconditionally, and with HOPS_USE_INTERNAL_LEAP_SECONDS it needs ONLY these
-# headers (no libdate-tz link), so consumers must see the include dir directly
-# rather than inheriting it from a date-tz target usage requirement.
+# and needs only these headers (no libdate-tz)
 hops_internal_include_directories(${CMAKE_CURRENT_SOURCE_DIR}/date/include)
-
-# NOTE: no static twin of libdate-tz is built. Static-library distribution always
-# uses the internal leap-second table (HOPS_USE_INTERNAL_LEAP_SECONDS=ON), so no
-# HOPS static library ever needs date-tz. That invariant is enforced at configure
-# time in source/cpp_src/CMakeLists.txt (fatal error if static libs are requested
-# with the internal table disabled).
-
-
 
 #Note that gnuplot is a RUNTIME dependency of matplot++
 if(HOPS_USE_MATPLOTPP)

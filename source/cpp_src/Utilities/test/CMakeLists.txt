@@ -17,6 +17,7 @@ set(SOURCE_BASENAMES
     TestWriteAppend
     TestEncodeDecode
     TestInterval
+    TestDateLibraryUsage
 )
 
 if(HOPS_ENABLE_UNIT_TESTS)
@@ -27,7 +28,6 @@ if(HOPS_ENABLE_UNIT_TESTS)
         TestParameterStore
         TestSerializable
         TestLockFileHandler
-        #only includes MHO_LegacyDateConverter.hh; date-tz (if used) comes via MHO_Utilities
         TestLegacyDateConverter
     )
 endif()
@@ -46,21 +46,6 @@ foreach( BASENAME ${SOURCE_BASENAMES} )
 endforeach( BASENAME )
 
 hops_install_test_executables( ${SOURCE_BASENAMES} )
-
-#Leap-second / date-library tests: these include date/tz.h directly to exercise
-#the upstream backend (TestLeapSecondDrift cross-checks the internal leap-second
-#table against the installed system tz db), so they ALWAYS link date-tz regardless
-#of HOPS_USE_INTERNAL_LEAP_SECONDS. date-tz is always built (BUILD_TZ_LIB).
-set(DATE_TEST_BASENAMES
-    TestDateLibraryUsage
-    TestLeapSecondDrift
-)
-foreach( BASENAME ${DATE_TEST_BASENAMES} )
-    add_executable( ${BASENAME} ${BASENAME}.cc )
-    target_link_libraries( ${BASENAME} MHO_Message MHO_Utilities date-tz)
-    add_test(NAME ${BASENAME}_test COMMAND ${BASENAME})
-endforeach( BASENAME )
-hops_install_test_executables( ${DATE_TEST_BASENAMES} )
 
 if(HOPS_ENABLE_UNIT_TESTS)
     #multi-process write-lock contention stress test: a helper worker driven by a
