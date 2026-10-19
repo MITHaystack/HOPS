@@ -19,6 +19,7 @@ struct IonLoopResult
 {
         double famp = 0.0;
         double ion_diff = 0.0;
+        double coarse_sbd = 0.0;
 };
 
 /*!
@@ -94,9 +95,10 @@ class MHO_IonosphericFringeFitterOpenMP: public MHO_BasicFringeFitter
         /**
          * @brief Calculates approximate signal-to-noise ratio (SNR) for fringe fitting.
          *
+         * @param famp Fringe amplitude
          * @return Approximate SNR as a double
          */
-        double calculate_approx_snr();
+        double calculate_approx_snr(double famp);
 
         double fInitialSBWin[2]; //save the initial SBD window
         int ion_npts;
@@ -117,6 +119,8 @@ class MHO_IonosphericFringeFitterOpenMP: public MHO_BasicFringeFitter
 
     private:
         void initialize_ion_threads();
+        void evaluate_ion_points(int start, int stop, double bottom, double step);
+        void lock_sbd_window(int ilmax, double bottom, double step, bool& first_pass);
 };
 
 } // namespace hops
