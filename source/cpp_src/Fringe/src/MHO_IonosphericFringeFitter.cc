@@ -145,7 +145,7 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
     double last_ion_diff = 0.0;
     double win_dr[2];
     double win_sb[2];
-    double max_so_far = 0.0;
+    double prev_approx_snr = 0.0;
 
     visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
     if(vis_data == nullptr)
@@ -404,29 +404,21 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             // // more precise results
             interpolate_peak();
 
-            if(first_pass)
+            //limit the SBD window to the bin where this point's max was located if SNR is high enough
+            if(first_pass && ionloop > 0 && prev_approx_snr > 15.0)
             {
-                //limit the SBD window to bin where the max was located
                 double sbdelay = fMBDSearch->GetCoarseSBD();
-                double approx_snr = calculate_approx_snr();
-                if(approx_snr > 15.0) //but only if the SNR was high enough
-                {
-                    msg_debug("fringe",
-                              "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
-                    fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
-                    first_pass = false;
-                }
+                msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+                fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
+                first_pass = false;
             }
+            prev_approx_snr = calculate_approx_snr();
 
             // save values for iterative search
             double delres_max = fParameterStore->GetAs< double >("/fringe/famp");
             values[ionloop] = delres_max;
 
-            if(delres_max > max_so_far)
-            {
-                max_so_far = delres_max;
-                fParameterStore->Set("/fringe/ion_diff", ion_diff);
-            }
+            fParameterStore->Set("/fringe/ion_diff", ion_diff);
         }
     }
 
@@ -502,7 +494,7 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
     double last_ion_diff = 0.0;
     double win_dr[2];
     double win_sb[2];
-    double max_so_far = 0.0;
+    double prev_approx_snr = 0.0;
 
     visibility_type* vis_data = fContainerStore->GetObject< visibility_type >(std::string("vis"));
     if(vis_data == nullptr)
@@ -747,29 +739,21 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             // more precise results
             interpolate_peak();
 
-            if(first_pass)
+            //limit the SBD window to the bin where this point's max was located if SNR is high enough
+            if(first_pass && ionloop > 0 && prev_approx_snr > 15.0)
             {
-                //limit the SBD window to bin where the max was located
                 double sbdelay = fMBDSearch->GetCoarseSBD();
-                double approx_snr = calculate_approx_snr();
-                if(approx_snr > 15.0) //but only if the SNR was high enough
-                {
-                    msg_debug("fringe",
-                              "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
-                    fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
-                    first_pass = false;
-                }
+                msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+                fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
+                first_pass = false;
             }
+            prev_approx_snr = calculate_approx_snr();
 
             // save values for iterative search
             double delres_max = fParameterStore->GetAs< double >("/fringe/famp");
             values[ionloop] = delres_max;
 
-            if(delres_max > max_so_far)
-            {
-                max_so_far = delres_max;
-                fParameterStore->Set("/fringe/ion_diff", ion_diff);
-            }
+            fParameterStore->Set("/fringe/ion_diff", ion_diff);
         }
     }
     // save the final ion. point, if there is one
@@ -876,8 +860,16 @@ double MHO_IonosphericFringeFitter::calculate_approx_snr()
     double samp_period = fParameterStore->GetAs< double >("/vex/scan/sample_period/value");
     double total_summed_weights = fParameterStore->GetAs< double >("/fringe/total_summed_weights");
     double famp = fParameterStore->GetAs< double >("/fringe/famp");
-    double snr =
-        MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);
+
+    //correction needed for approx snr, (IXY mode) needs the number of summed pol-products 
+    double n_polprod = 1.0;
+    weight_type* wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
+    if(wt_data != nullptr && wt_data->Retrieve("n_summed_polprod", n_polprod) && n_polprod > 0)
+    {
+        bw_corr_factor /= std::sqrt(n_polprod);
+    }
+
+    double snr = MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);
     return snr;
 }
 
