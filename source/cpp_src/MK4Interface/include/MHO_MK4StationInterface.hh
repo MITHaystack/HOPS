@@ -200,6 +200,24 @@ class MHO_MK4StationInterface
         std::vector< std::pair< std::string, int > > GetFreqGroupPolInfo(int n309, type_309** t309, const std::string& fg,
                                                                          bool& same_size);
 
+        /**
+         * @brief Tags the pcal data with the start time (centroid of the first AP) derived from the type_309 ROT
+         *
+         * @param n309 number of type_309 records
+         * @param t309 type_309 records
+         */
+        void TagPCalStartTime(int n309, type_309** t309);
+
+        /**
+         * @brief Returns true if the type_309 ROT marks the AP centroid (difx/sfxc), false if it marks the AP start
+         */
+        bool ROTIsCentroid() const;
+
+        /**
+         * @brief Returns the number of days in the given year
+         */
+        static int DaysInYear(int year);
+
         bool fHaveStation;
         struct mk4_sdata* fStation;
         std::string fStationName;

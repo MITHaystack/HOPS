@@ -353,6 +353,91 @@ void MHO_MK4StationInterface::ExtractPCal(int n309, type_309** t309)
     fAllPCalData.Insert(std::string("station_code"), fStationCode);
     fAllPCalData.Insert(std::string("origin"), std::string("mark4")); //add tag to indicate this was converted from mark4 data
     fAllPCalData.Insert(std::string("root_code"), fRootCode);
+
+    TagPCalStartTime(n309, t309);
+}
+
+void MHO_MK4StationInterface::TagPCalStartTime(int n309, type_309** t309)
+{
+    const double sysclk = 32e6; //ROT ticks per second
+    const double seconds_per_day = 86400.0;
+    double acc_period = t309[0]->acc_period;
+
+    //ROT is measured from the start of the year in which the correlation job began
+    double sec = t309[0]->rot / sysclk;
+    if(!ROTIsCentroid())
+    {
+        sec += 0.5 * acc_period;
+    }
+
+    struct date model_start = fStation->t300->model_start;
+    int year = model_start.year;
+    if(sec / seconds_per_day + 1.0 - model_start.day > 180.0)
+    {
+        year--; //job began in the previous year
+    }
+    while(sec >= DaysInYear(year) * seconds_per_day)
+    {
+        sec -= DaysInYear(year) * seconds_per_day;
+        year++;
+    }
+
+    legacy_hops_date ldate;
+    ldate.year = year;
+    ldate.day = (short)std::floor(sec / seconds_per_day) + 1;
+    double sec_of_day = sec - (ldate.day - 1) * seconds_per_day;
+    ldate.hour = (short)std::floor(sec_of_day / 3600.0);
+    ldate.minute = (short)std::floor((sec_of_day - 3600.0 * ldate.hour) / 60.0);
+    ldate.second = sec_of_day - 3600.0 * ldate.hour - 60.0 * ldate.minute;
+
+    double mjd = 40587.0; //MJD of 1970-01-01
+    for(int y = 1970; y < year; y++)
+    {
+        mjd += DaysInYear(y);
+    }
+    mjd += sec / seconds_per_day;
+
+    fAllPCalData.Insert(std::string("start"), MHO_LegacyDateConverter::ConvertToVexFormat(ldate));
+    fAllPCalData.Insert(std::string("start_time_mjd"), mjd);
+    fAllPCalData.Insert(std::string("pcal_accumulation_period"), acc_period);
+
+    std::size_t ngaps = 0;
+    for(int ap = 1; ap < n309; ap++)
+    {
+        double dt = (t309[ap]->rot - t309[ap - 1]->rot) / sysclk;
+        if(std::fabs(dt - acc_period) > 0.01 * acc_period)
+        {
+            ngaps++;
+        }
+    }
+    if(ngaps != 0)
+    {
+        msg_warn("mk4interface", "type_309 records for station " << fStationCode << " are not contiguous in time (" << ngaps
+                                                                 << " irregular steps), pcal APs may be misaligned!" << eom);
+    }
+}
+
+bool MHO_MK4StationInterface::ROTIsCentroid() const
+{
+    //to match fourfit3 behavior (see fill_param.c, pcal_interp.c), only mk4 hardware correlators use the AP start
+    if(fHaveVex && fVex.contains("$EXPER"))
+    {
+        for(auto it = fVex["$EXPER"].begin(); it != fVex["$EXPER"].end(); it++)
+        {
+            if(it->contains("target_correlator"))
+            {
+                std::string corr = (*it)["target_correlator"].get< std::string >();
+                return (corr == "difx" || corr == "sfxc");
+            }
+        }
+    }
+    return false;
+}
+
+int MHO_MK4StationInterface::DaysInYear(int year)
+{
+    bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    return leap ? 366 : 365;
 }
 
 void MHO_MK4StationInterface::FillPCalArray(const std::string& pol, int pol_idx, multitone_pcal_type* pc, int n309,
