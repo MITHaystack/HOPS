@@ -2,6 +2,7 @@
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_LegacyDateConverter.hh"
 
+#include <cmath>
 #include <cstdlib>
 #include <cstring>
 #include <sstream>
@@ -20,6 +21,22 @@ extern "C"
 namespace hops
 {
 
+static double SecondsBetween(const std::string& vex_a, const std::string& vex_b)
+{
+    legacy_hops_date a = MHO_LegacyDateConverter::ConvertFromVexFormat(vex_a);
+    legacy_hops_date b = MHO_LegacyDateConverter::ConvertFromVexFormat(vex_b);
+    auto sec_of_year = [](const legacy_hops_date& d) {
+        return ((d.day * 24.0 + d.hour) * 60.0 + d.minute) * 60.0 + d.second;
+    };
+    double year_sec = 0.0;
+    for(int y = a.year; y < b.year; y++)
+    {
+        bool leap = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+        year_sec += (leap ? 366.0 : 365.0) * 86400.0;
+    }
+    return year_sec + sec_of_year(b) - sec_of_year(a);
+}
+
 void FillDate(struct date* destination, struct legacy_hops_date& a_date)
 {
     destination->year = a_date.year;
@@ -35,6 +52,7 @@ MHO_MK4CorelInterfaceReversed::MHO_MK4CorelInterfaceReversed()
 {
     fNPPs = 0;
     fNAPs = 0;
+    fAPOffset = 0;
     fNChannels = 0;
     fNSpectral = 0;
 }
@@ -79,6 +97,20 @@ void MHO_MK4CorelInterfaceReversed::GenerateCorelStructure()
         fNAPs = fVisibilityData->GetDimension(TIME_AXIS);
         fNChannels = fVisibilityData->GetDimension(CHANNEL_AXIS);
         fNSpectral = fVisibilityData->GetDimension(FREQ_AXIS);
+
+        //mark4 AP numbers are relative to the scan start, so offset them if the time axis does not start at zero
+        fAPOffset = 0;
+        auto& time_ax = std::get< TIME_AXIS >(*fVisibilityData);
+        std::string start, stop;
+        if(fNAPs != 0 && time_ax.at(0) > 0.0 && fVisibilityData->Retrieve("start", start) &&
+           fVisibilityData->Retrieve("stop", stop))
+        {
+            double ap_length = (SecondsBetween(start, stop) - time_ax.at(0)) / fNAPs;
+            if(ap_length > 0.0)
+            {
+                fAPOffset = (std::size_t)std::llround(time_ax.at(0) / ap_length);
+            }
+        }
 
         msg_debug("mk4interface", "visibility data dimensions are: " << fNPPs << " pol products, " << fNAPs << " APs, "
                                                                      << fNChannels << " channels, " << fNSpectral
@@ -321,8 +353,8 @@ void MHO_MK4CorelInterfaceReversed::CreateType101Record(int count, std::size_t c
     t101->post_mortem = 0;
 
     // Allocate space for APs in this index (these are deleted in clear_mk4corel)
-    fGeneratedCorel->index[count].ap_space = fNAPs;
-    fGeneratedCorel->index[count].t120 = (struct type_120**)calloc(fNAPs, sizeof(struct type_120*));
+    fGeneratedCorel->index[count].ap_space = fAPOffset + fNAPs;
+    fGeneratedCorel->index[count].t120 = (struct type_120**)calloc(fAPOffset + fNAPs, sizeof(struct type_120*));
 
     msg_debug("mk4interface",
               "Generated type_101 record " << count << " for channels " << ref_chan_id << ":" << rem_chan_id << eom);
@@ -349,7 +381,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
                     struct type_120* t120 = (struct type_120*)calloc(1, total_size);
                     clear_120(t120);
                     fAllocated.push_back(reinterpret_cast< void* >(t120));
-                    fGeneratedCorel->index[record_idx].t120[ap] = t120;
+                    fGeneratedCorel->index[record_idx].t120[fAPOffset + ap] = t120;
 
                     // Set type to SPECTRAL
                     t120->type = SPECTRAL;
@@ -371,7 +403,7 @@ void MHO_MK4CorelInterfaceReversed::GenerateType120Records()
 
                     // Set index and AP
                     t120->index = record_idx;
-                    t120->ap = ap;
+                    t120->ap = fAPOffset + ap;
 
                     // Initialize status and delay parameters
                     t120->status = 0;

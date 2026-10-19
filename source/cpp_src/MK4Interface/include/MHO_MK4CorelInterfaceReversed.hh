@@ -84,6 +84,7 @@ class MHO_MK4CorelInterfaceReversed
         // Container dimensions
         std::size_t fNPPs;
         std::size_t fNAPs;
+        std::size_t fAPOffset; //scan-relative AP number of the first AP in the visibility data
         std::size_t fNChannels;
         std::size_t fNSpectral;
 

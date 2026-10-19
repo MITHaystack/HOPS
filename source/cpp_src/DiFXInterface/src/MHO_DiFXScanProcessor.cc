@@ -17,6 +17,7 @@
 #include <time.h>
 
 #include <algorithm>
+#include <chrono>
 #include <cctype> //toupper
 
 //needed for the subprocess
@@ -371,6 +372,42 @@ void MHO_DiFXScanProcessor::FinalizeAndWriteRootFile()
     outFile.close();
 }
 
+std::vector< long > MHO_DiFXScanProcessor::MapAPsByTime(const visibility_store_type* vis,
+                                                         const visibility_store_type* ac) const
+{
+    //map each AP of vis to the AP of ac with the same absolute time (start tag + time axis), -1 if none
+    auto& vis_t = std::get< TIME_AXIS >(*vis);
+    auto& ac_t = std::get< TIME_AXIS >(*ac);
+    std::vector< long > ap_map(vis_t.GetSize(), -1);
+    std::string vis_start, ac_start;
+    if(!vis->Retrieve("start", vis_start) || !ac->Retrieve("start", ac_start))
+    {
+        msg_error("difx_interface", "missing start time tag, cannot align auto-corrs with visibilities" << eom);
+        return ap_map;
+    }
+    double offset = std::chrono::duration< double >(hops_clock::from_vex_format(vis_start) -
+                                                    hops_clock::from_vex_format(ac_start)).count();
+    double tol = 1e-3;
+    if(ac_t.GetSize() > 1)
+    {
+        tol = 0.25 * std::fabs(ac_t.at(1) - ac_t.at(0));
+    }
+    std::size_t j = 0;
+    for(std::size_t i = 0; i < vis_t.GetSize(); i++)
+    {
+        double t = vis_t.at(i) + offset;
+        while(j < ac_t.GetSize() && ac_t.at(j) < t - tol)
+        {
+            j++;
+        }
+        if(j < ac_t.GetSize() && std::fabs(ac_t.at(j) - t) <= tol)
+        {
+            ap_map[i] = (long)j;
+        }
+    }
+    return ap_map;
+}
+
 void MHO_DiFXScanProcessor::NormalizeVisibilities()
 {
     msg_debug("difx_interface", "normalizing visibilities" << eom);
@@ -450,6 +487,8 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
         {
             auto ref_ac = reduced_auto_corrs[ref_st];
             auto rem_ac = reduced_auto_corrs[rem_st];
+            std::vector< long > ref_ap_map = MapAPsByTime(vis, raw_auto_corrs[ref_st]);
+            std::vector< long > rem_ap_map = MapAPsByTime(vis, raw_auto_corrs[rem_st]);
             for(std::size_t pp = 0; pp < npp; pp++)
             {
                 //figure out the pol-mapping to the right autocorrs
@@ -478,10 +517,17 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
                 {
                     for(std::size_t ap = 0; ap < nap; ap++)
                     {
+                        if(ref_ap_map[ap] < 0 || rem_ap_map[ap] < 0)
+                        {
+                            msg_error("difx_interface", "no auto-corr data at AP " << ap << " to normalize baseline:pol-product: "
+                                                            << baseline << ":" << polprod << ", data will not be normalized."
+                                                            << eom);
+                            continue;
+                        }
                         for(std::size_t ch = 0; ch < nch; ch++)
                         {
-                            double ref_val = std::sqrt(std::real((*ref_ac)(ref_pp_idx, ch, ap, 0)));
-                            double rem_val = std::sqrt(std::real((*rem_ac)(rem_pp_idx, ch, ap, 0)));
+                            double ref_val = std::sqrt(std::real((*ref_ac)(ref_pp_idx, ch, ref_ap_map[ap], 0)));
+                            double rem_val = std::sqrt(std::real((*rem_ac)(rem_pp_idx, ch, rem_ap_map[ap], 0)));
                             double factor = 1.0;
                             if(std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
                             {

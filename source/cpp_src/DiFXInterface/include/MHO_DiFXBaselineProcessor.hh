@@ -249,7 +249,7 @@ class MHO_DiFXBaselineProcessor
         const mho_json* fInput;
         std::vector< MHO_DiFXVisibilityRecord* > fRecords;
         //for a single baseline, maps pol-pair, then freqindex to visiblity records
-        //needed to recorganized the visibilities into tables
+        //needed to recorganized the visibilities into tables, indexed by (scan AP - fAPOffset), nullptr if no data
         std::map< std::string, std::map< int, std::vector< MHO_DiFXVisibilityRecord* > > > fVisibilities;
 
         std::set< int > fZoomFreqIndices;
@@ -257,13 +257,13 @@ class MHO_DiFXBaselineProcessor
 
         std::set< std::string > fPolPairSet;
         std::set< int > fFreqIndexSet;
-        std::set< int > fAPSet;
         std::set< int > fSpecPointSet;
         std::set< double > fBandwidthSet;
         std::size_t fNPolPairs;
         std::size_t fNChannels;
         std::size_t fNAPs;
         std::size_t fNSpectralPoints;
+        int fAPOffset;    //scan-relative index of the first AP with data
         double fStartMJD; //scan start time in MJD
         std::string fStartTime;
         std::string fStopTime;

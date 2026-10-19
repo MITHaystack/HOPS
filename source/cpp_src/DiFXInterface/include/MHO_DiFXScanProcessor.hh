@@ -178,6 +178,7 @@ class MHO_DiFXScanProcessor
 
         void ConvertVisibilityFileObjects();
         void NormalizeVisibilities();
+        std::vector< long > MapAPsByTime(const visibility_store_type* vis, const visibility_store_type* ac) const;
         void ConvertStationFileObjects();
 
         //compute the union (deduped, sorted ascending) of sky_freqs across every channel

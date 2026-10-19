@@ -389,42 +389,84 @@ void MHO_DiFXBaselineProcessor::Organize()
         return;
     }
 
-    //sort the individual visiblity records in time order
-    fAPSet.clear();
-    for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
+    //bin each record onto the scan-relative AP grid using its own (mid-AP) time stamp,
+    //leading/trailing APs without data on this baseline are dropped
+    fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get< double >();
+    int start_day = (int)std::floor(fStartMJD);
+    double start_sec = (fStartMJD - start_day) * 86400.0;
+    auto scan_ap = [&](const MHO_DiFXVisibilityRecord* r) {
+        double dt = (r->mjd - start_day) * 86400.0 + (r->seconds - start_sec);
+        return (int)std::floor(dt / fAPLength);
+    };
+
+    int first_ap = -1;
+    int last_ap = -1;
+    for(auto* record : fRecords)
     {
-        std::string pp = *ppit;
-        for(auto frqit = fFreqIndexSet.begin(); frqit != fFreqIndexSet.end(); frqit++)
+        int ap = scan_ap(record);
+        if(ap < 0)
         {
-            int freqidx = *frqit;
-            std::sort(fVisibilities[pp][freqidx].begin(), fVisibilities[pp][freqidx].end(), fTimePredicate);
-            //msg_debug("difx_interface", "Number of APs on "<<fBaselineName<<" with ID: "<<fBaselineID<<" for polprod: "<<pp<<" and freqidx: "<<freqidx<< " is "<< fVisibilities[pp][freqidx].size() << eom);
-            fAPSet.insert(fVisibilities[pp][freqidx].size());
+            continue;
+        }
+        if(first_ap < 0 || ap < first_ap)
+        {
+            first_ap = ap;
+        }
+        last_ap = std::max(last_ap, ap);
+    }
+    if(first_ap < 0)
+    {
+        msg_warn("difx_interface", "no visibility records within the scan time range for baseline: " << fBaselineID << eom);
+        fHaveBaselineData = false;
+        return;
+    }
+    fAPOffset = first_ap;
+    fNAPs = last_ap - first_ap + 1;
+
+    for(auto& ppit : fVisibilities)
+    {
+        for(auto& frqit : ppit.second)
+        {
+            std::vector< MHO_DiFXVisibilityRecord* > dense(fNAPs, nullptr);
+            std::size_t nmissing = fNAPs;
+            for(auto* record : frqit.second)
+            {
+                int ap = scan_ap(record) - fAPOffset;
+                if(ap < 0)
+                {
+                    msg_warn("difx_interface", "dropping visibility record preceding scan start on baseline: "
+                                                   << fBaselineID << ", freq index: " << frqit.first << eom);
+                    continue;
+                }
+                if(dense[ap] != nullptr)
+                {
+                    msg_warn("difx_interface", "dropping duplicate visibility record for AP " << ap + fAPOffset
+                                                   << " on baseline: " << fBaselineID << ", freq index: " << frqit.first
+                                                   << eom);
+                    continue;
+                }
+                dense[ap] = record;
+                nmissing--;
+            }
+            if(nmissing != 0)
+            {
+                msg_warn("difx_interface", nmissing << " APs missing on baseline: " << fBaselineName << ", pol-product: "
+                                                    << ppit.first << ", freq index: " << frqit.first
+                                                    << ", these will be zero-weighted." << eom);
+            }
+            frqit.second.swap(dense);
         }
     }
 
-    //TODO -- what happens when we have missing/extra APs (should we truncate as below, or pad?)
-    //determine the number of APs
-    fNAPs = 0;
-    if(!fAPSet.empty())
-    {
-        fNAPs = *(fAPSet.begin());
-    } //sets are sorted in ascending order, so grab the max from end
-    if(fAPSet.size() > 1)
-    {
-        msg_error("difx_interface", "channels do not have same number of APs on baseline: "
-                                        << fBaselineName << ", ID: " << fBaselineID
-                                        << " truncating to lowest common number of APs: " << fNAPs << "." << eom);
-    }
-
-    fStartMJD = (*fInput)["scan"][fIndex]["mjdStart"].get< double >();
+    //the time axis is relative to the scan start, so the first AP with data is at fAPOffset*fAPLength
     fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
     auto start_tp = hops_clock::from_vex_format(fStartTime);
-    int64_t duration_ns = fAPLength * fNAPs * SEC_TO_NANOSEC;
-    auto stop_tp = start_tp + hops_clock::duration(duration_ns);
+    auto stop_tp =
+        start_tp + hops_clock::duration((int64_t)std::llround(fAPLength * (fAPOffset + fNAPs) * SEC_TO_NANOSEC));
     fStopTime = hops_clock::to_vex_format(stop_tp);
 
-    msg_debug("difx_interface", "scan start time is: " << fStartTime << eom);
+    msg_debug("difx_interface", "scan start time is: " << fStartTime << ", baseline " << fBaselineName
+                                                       << " first AP with data: " << fAPOffset << eom);
 
     //grab the source name (so we can add it to the data tags)
     fSourceName = (*fInput)["source"][fIndex]["name"].get< std::string >();
@@ -649,11 +691,15 @@ void MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects()
 
                 for(std::size_t ap = 0; ap < fNAPs; ap++)
                 {
-                    ap_axis->at(ap) = ap * fAPLength;
-                    wap_axis->at(ap) = ap * fAPLength;
-                    MHO_DiFXVisibilityRecord* visRec = fVisibilities[pp][freqidx][ap];
-                    (*fW)(ppidx, chidx, ap, 0) = visRec->dataweight; //set the data weight for this AP
+                    ap_axis->at(ap) = (fAPOffset + ap) * fAPLength;
+                    wap_axis->at(ap) = (fAPOffset + ap) * fAPLength;
                     wsp_axis->at(0) = 0;
+                    MHO_DiFXVisibilityRecord* visRec = fVisibilities[pp][freqidx][ap];
+                    if(visRec == nullptr)
+                    {
+                        continue;
+                    }
+                    (*fW)(ppidx, chidx, ap, 0) = visRec->dataweight; //set the data weight for this AP
                     for(std::size_t sp = 0; sp < fNSpectralPoints; sp++)
                     {
                         sp_axis->at(sp) = sp * (bw / fNSpectralPoints); //frequency offset from edge of channel
