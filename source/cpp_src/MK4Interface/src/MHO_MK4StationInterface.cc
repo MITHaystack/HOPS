@@ -434,6 +434,23 @@ bool MHO_MK4StationInterface::ROTIsCentroid() const
     return false;
 }
 
+bool MHO_MK4StationInterface::TonesInDescendingOrder(type_309* t309, int start, int stop) const
+{
+    //the tone (baseband offset) frequencies are spread through the channel records,
+    //but indexed by accumulator slot...type_309 format is bizzare
+    if(stop - start < 2 || stop > T309_MAX_CHAN)
+    {
+        return false;
+    }
+    double first = std::fabs(t309->chan[start].freq);
+    double last = std::fabs(t309->chan[stop - 1].freq);
+    if(first == 0.0 || last == 0.0)
+    {
+        return false;
+    }
+    return first > last;
+}
+
 int MHO_MK4StationInterface::DaysInYear(int year)
 {
     bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
@@ -542,18 +559,19 @@ void MHO_MK4StationInterface::FillPCalArray(const std::string& pol, int pol_idx,
             d += 1;
         } //d is first tone just beyond the channel
 
+        //accumulator slots are reversed w.r.t. sky frequency for LSB channels,
+        //this is also true for USB zoom channels if they have been derived from LSB recorded bands
+        //(difx2mark4 stores the slots in descending baseband order, even though visib are now USB)
+        //...just in case this wasn't confusing enough!
+        bool reverse = (sb == "L") != TonesInDescendingOrder(t309[0], start, stop);
+
         for(int ti = 0; ti < nt; ti++)
         {
-            TODO_FIXME_MSG("TODO FIXME -- check 309 tone order and conjugation for USB data.")
-            int acc_idx = start + ti; //USB should be: start + ti?
-
-            //tone order for LSB channels....but also for USB channels that were created from LSB channels (zoom-bands)
-            //how can we detect the zoom-bands issue?
-            if(sb == "L")
+            int acc_idx = start + ti;
+            if(reverse)
             {
                 acc_idx = (stop - 1) - ti;
             }
-            // acc_idx = (stop-1) - ti; //tone order for LSB channels
             for(ap = 0; ap < naps; ap++)
             {
                 double acc_period = t309[ap]->acc_period;

@@ -214,6 +214,11 @@ class MHO_MK4StationInterface
         bool ROTIsCentroid() const;
 
         /**
+         * @brief Returns true if the type_309 tone frequencies of accumulator slots [start, stop) are in descending order
+         */
+        bool TonesInDescendingOrder(type_309* t309, int start, int stop) const;
+
+        /**
          * @brief Returns the number of days in the given year
          */
         static int DaysInYear(int year);
