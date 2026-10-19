@@ -11,243 +11,170 @@
 
 using namespace hops;
 
-/* Build the shared USB fixture: 1 pol, 1 chan, 1 AP, 4 spectral points.
-   Channel 0: sky=8000, net_sideband="U", bandwidth=8.0.
-   FREQ_AXIS deltaf = {1.0, 3.0, 5.0, 7.0}
-   => sp_freqs = {8001, 8003, 8005, 8007}.
+/* The notch mask reproduces fourfit3 (apply_usb_notch/apply_lsb_notch):
+   spectral point i sits at sky + i*df (USB) or sky - i*df (LSB), the notch edges are
+   rounded to the nearest point index, and only points strictly between them are zeroed.
+
+   Shared fixture: 1 pol, 1 chan, 1 AP, 80 spectral points.
+   Channel 0: sky=8000, bandwidth=8.0 => df = 0.1 MHz.
    All visibilities (1,0); weights all 1.0. */
-static void build_fixture_usb(visibility_type& vis, weight_type& wt)
+static const std::size_t NPTS = 80;
+
+static void build_fixture(visibility_type& vis, weight_type& wt, const std::string& sideband)
 {
-    vis.Resize(1, 1, 1, 4);
+    vis.Resize(1, 1, 1, NPTS);
     wt.Resize(1, 1, 1, 1);
 
     auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
     chan_ax.at(0) = 8000.0;
-    chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("U"));
+    chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", sideband);
     chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 8.0);
 
     auto& freq_ax = std::get< FREQ_AXIS >(vis);
-    freq_ax.at(0) = 1.0;
-    freq_ax.at(1) = 3.0;
-    freq_ax.at(2) = 5.0;
-    freq_ax.at(3) = 7.0;
-
-    for(std::size_t sp = 0; sp < 4; sp++)
+    for(std::size_t sp = 0; sp < NPTS; sp++)
+    {
+        freq_ax.at(sp) = sp * 0.1;
         vis(0, 0, 0, sp) = std::complex< double >(1.0, 0.0);
+    }
 
     wt(0, 0, 0, 0) = 1.0;
 }
 
-/* Build the shared LSB fixture: 1 pol, 1 chan, 1 AP, 4 spectral points.
-   Channel 0: sky=8000, net_sideband="L", bandwidth=8.0.
-   FREQ_AXIS deltaf = {1.0, 3.0, 5.0, 7.0}
-   sb = -1 => sp_freqs = {7999, 7997, 7995, 7993}. */
-static void build_fixture_lsb(visibility_type& vis, weight_type& wt)
+static int run_notches(visibility_type& vis, weight_type& wt, const std::vector< double >& boundaries)
 {
-    vis.Resize(1, 1, 1, 4);
-    wt.Resize(1, 1, 1, 1);
+    MHO_Notches op;
+    op.SetNotchBoundaries(boundaries);
+    op.SetWeights(&wt);
+    op.SetArgs(&vis);
+    REQUIRE(op.Initialize());
+    REQUIRE(op.Execute());
+    return 0;
+}
 
+/* check that exactly the points in [first, last] are zeroed, and the weight/labels reflect the count */
+static int check_mask(visibility_type& vis, weight_type& wt, int first, int last)
+{
+    int count = 0;
+    for(int sp = 0; sp < (int)NPTS; sp++)
+    {
+        double expected = (sp >= first && sp <= last) ? 0.0 : 1.0;
+        if(expected == 0.0)
+        {
+            count++;
+        }
+        CHECK_CLOSE(vis(0, 0, 0, sp).real(), expected, 1e-12);
+        CHECK_CLOSE(vis(0, 0, 0, sp).imag(), 0.0, 1e-12);
+    }
+
+    double frac = (NPTS - count) / (double)NPTS;
+    double factor = (frac > 0.0) ? 1.0 / frac : 0.0;
+    CHECK_CLOSE(wt(0, 0, 0, 0), factor, 1e-12);
+
+    double ubf, rf;
     auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
-    chan_ax.at(0) = 8000.0;
-    chan_ax.InsertIndexLabelKeyValue(0, "net_sideband", std::string("L"));
-    chan_ax.InsertIndexLabelKeyValue(0, "bandwidth", 8.0);
-
-    auto& freq_ax = std::get< FREQ_AXIS >(vis);
-    freq_ax.at(0) = 1.0;
-    freq_ax.at(1) = 3.0;
-    freq_ax.at(2) = 5.0;
-    freq_ax.at(3) = 7.0;
-
-    for(std::size_t sp = 0; sp < 4; sp++)
-        vis(0, 0, 0, sp) = std::complex< double >(1.0, 0.0);
-
-    wt(0, 0, 0, 0) = 1.0;
+    REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
+    CHECK_CLOSE(ubf, frac, 1e-12);
+    REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "rescaling_factor", rf));
+    CHECK_CLOSE(rf, factor, 1e-12);
+    return 0;
 }
 
 // Test cases
 
-/* CASE 1 - Single notch zeroes interior points.
-   Notch (8002, 8006) catches sp1 (8003) and sp2 (8005).
-   sp0 (8001) and sp3 (8007) remain intact. */
-static int test_case1_single_notch()
+/* CASE 1 - USB single notch (8001.81, 8002.11).
+   Edges at 18.1 and 21.1 points => rounded to 18 and 21 => zero points 19, 20.
+   Note point 21 (8002.1) is inside the notch but is kept, as in fourfit3. */
+static int test_case1_usb_single_notch()
 {
     visibility_type vis;
     weight_type wt;
-    build_fixture_usb(vis, wt);
-
-    MHO_Notches op;
-    op.SetNotchBoundaries(std::vector< double >{8002.0, 8006.0});
-    op.SetWeights(&wt);
-    op.SetArgs(&vis);
-    REQUIRE(op.Initialize());
-    REQUIRE(op.Execute());
-
-    // sp0 (8001) and sp3 (8007) intact
-    CHECK_CLOSE(vis(0, 0, 0, 0).real(), 1.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 0).imag(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 3).real(), 1.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 3).imag(), 0.0, 1e-12);
-
-    // sp1 (8003) and sp2 (8005) zeroed
-    CHECK_CLOSE(vis(0, 0, 0, 1).real(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 1).imag(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 2).real(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 2).imag(), 0.0, 1e-12);
-
-    // count=2, npts=4, frac=0.5, factor=2.0
-    CHECK_CLOSE(wt(0, 0, 0, 0), 2.0, 1e-12);
-
-    // Labels on VIS channel axis
-    {
-        double ubf, rf;
-        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
-        REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
-        CHECK_CLOSE(ubf, 0.5, 1e-12);
-        REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "rescaling_factor", rf));
-        CHECK_CLOSE(rf, 2.0, 1e-12);
-    }
-
-    return 0;
+    build_fixture(vis, wt, "U");
+    if(run_notches(vis, wt, {8001.81, 8002.11}))
+        return 1;
+    return check_mask(vis, wt, 19, 20);
 }
 
-/* CASE 2 - Two disjoint notches accumulate count.
-   Notch A (8000.5, 8002.0) catches sp0 (8001).
-   Notch B (8004.0, 8006.0) catches sp2 (8005). */
-static int test_case2_two_notches()
+/* CASE 2 - Duplicate and overlapping notches are only counted once.
+   (8001.81, 8002.11) twice => points 19, 20;
+   (8001.96, 8002.36) => edges 19.6, 23.6 rounded to 20, 24 => points 21..23.
+   Union => points 19..23 (5 points). */
+static int test_case2_overlapping_notches()
 {
     visibility_type vis;
     weight_type wt;
-    build_fixture_usb(vis, wt);
-
-    MHO_Notches op;
-    op.SetNotchBoundaries(std::vector< double >{8000.5, 8002.0, 8004.0, 8006.0});
-    op.SetWeights(&wt);
-    op.SetArgs(&vis);
-    REQUIRE(op.Initialize());
-    REQUIRE(op.Execute());
-
-    // sp0 (8001) and sp2 (8005) zeroed
-    CHECK_CLOSE(vis(0, 0, 0, 0).real(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 0).imag(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 2).real(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 2).imag(), 0.0, 1e-12);
-
-    // sp1 (8003) and sp3 (8007) intact
-    CHECK_CLOSE(vis(0, 0, 0, 1).real(), 1.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 1).imag(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 3).real(), 1.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 3).imag(), 0.0, 1e-12);
-
-    // count=2, npts=4, factor=2.0
-    CHECK_CLOSE(wt(0, 0, 0, 0), 2.0, 1e-12);
-
-    return 0;
+    build_fixture(vis, wt, "U");
+    if(run_notches(vis, wt, {8001.81, 8002.11, 8001.81, 8002.11, 8001.96, 8002.36}))
+        return 1;
+    return check_mask(vis, wt, 19, 23);
 }
 
-/* CASE 3 - Odd-length boundary list drops the trailing value.
-   {8002.0, 8006.0, 8007.5} -> N decremented to 2, only (8002, 8006) used.
-   Identical result to CASE 1. */
+/* CASE 3 - Odd-length boundary list drops the trailing value, identical result to CASE 1. */
 static int test_case3_odd_boundary_list()
 {
     visibility_type vis;
     weight_type wt;
-    build_fixture_usb(vis, wt);
-
-    MHO_Notches op;
-    op.SetNotchBoundaries(std::vector< double >{8002.0, 8006.0, 8007.5});
-    op.SetWeights(&wt);
-    op.SetArgs(&vis);
-    REQUIRE(op.Initialize());
-    REQUIRE(op.Execute());
-
-    // sp1 (8003) and sp2 (8005) zeroed - same as CASE 1
-    CHECK_CLOSE(vis(0, 0, 0, 1).real(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 1).imag(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 2).real(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 2).imag(), 0.0, 1e-12);
-
-    // sp0 (8001) and sp3 (8007) intact
-    CHECK_CLOSE(vis(0, 0, 0, 0).real(), 1.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 0).imag(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 3).real(), 1.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 3).imag(), 0.0, 1e-12);
-
-    // count=2, npts=4, factor=2.0
-    CHECK_CLOSE(wt(0, 0, 0, 0), 2.0, 1e-12);
-
-    return 0;
+    build_fixture(vis, wt, "U");
+    if(run_notches(vis, wt, {8001.81, 8002.11, 8007.5}))
+        return 1;
+    return check_mask(vis, wt, 19, 20);
 }
 
-/* CASE 4 - LSB sign handling.
-   net_sideband="L" => sp_freqs = {7999, 7997, 7995, 7993}.
-   Notch (7994, 7998) catches sp1 (7997) and sp2 (7995). */
-static int test_case4_lsb_sign()
+/* CASE 4 - LSB mirror of CASE 1: point i sits at 8000 - i*0.1.
+   Notch (7997.89, 7998.19) => edges at 18.1 and 21.1 points from the DC edge => zero points 19, 20. */
+static int test_case4_lsb_single_notch()
 {
     visibility_type vis;
     weight_type wt;
-    build_fixture_lsb(vis, wt);
-
-    MHO_Notches op;
-    op.SetNotchBoundaries(std::vector< double >{7994.0, 7998.0});
-    op.SetWeights(&wt);
-    op.SetArgs(&vis);
-    REQUIRE(op.Initialize());
-    REQUIRE(op.Execute());
-
-    // sp1 (7997) and sp2 (7995) zeroed
-    CHECK_CLOSE(vis(0, 0, 0, 1).real(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 1).imag(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 2).real(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 2).imag(), 0.0, 1e-12);
-
-    // sp0 (7999) and sp3 (7993) intact
-    CHECK_CLOSE(vis(0, 0, 0, 0).real(), 1.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 0).imag(), 0.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 3).real(), 1.0, 1e-12);
-    CHECK_CLOSE(vis(0, 0, 0, 3).imag(), 0.0, 1e-12);
-
-    // count=2, npts=4, factor=2.0
-    CHECK_CLOSE(wt(0, 0, 0, 0), 2.0, 1e-12);
-
-    return 0;
+    build_fixture(vis, wt, "L");
+    if(run_notches(vis, wt, {7997.89, 7998.19}))
+        return 1;
+    return check_mask(vis, wt, 19, 20);
 }
 
-/* CASE 5 - Notch entirely outside the channel => no-op.
-   Notch (9000, 9100) does not overlap channel [8000, 8008]. */
+/* CASE 5 - Notch entirely outside the channel => no-op, labels still written. */
 static int test_case5_notch_outside()
 {
     visibility_type vis;
     weight_type wt;
-    build_fixture_usb(vis, wt);
+    build_fixture(vis, wt, "U");
+    if(run_notches(vis, wt, {9000.0, 9100.0}))
+        return 1;
+    return check_mask(vis, wt, 1, 0);
+}
 
-    MHO_Notches op;
-    op.SetNotchBoundaries(std::vector< double >{9000.0, 9100.0});
-    op.SetWeights(&wt);
-    op.SetArgs(&vis);
-    REQUIRE(op.Initialize());
-    REQUIRE(op.Execute());
+/* CASE 6 - Notch straddling the DC edge of a USB channel (7999.9, 8000.11).
+   Lower edge below the channel => -1, upper edge at 1.1 points => 1 => zero point 0 only. */
+static int test_case6_usb_dc_edge()
+{
+    visibility_type vis;
+    weight_type wt;
+    build_fixture(vis, wt, "U");
+    if(run_notches(vis, wt, {7999.9, 8000.11}))
+        return 1;
+    return check_mask(vis, wt, 0, 0);
+}
 
-    // vis unchanged - all (1,0)
-    for(std::size_t sp = 0; sp < 4; sp++)
-    {
-        CHECK_CLOSE(vis(0, 0, 0, sp).real(), 1.0, 1e-12);
-        CHECK_CLOSE(vis(0, 0, 0, sp).imag(), 0.0, 1e-12);
-    }
+/* CASE 7 - Notch straddling the DC edge of an LSB channel (7999.89, 8000.1).
+   Upper edge above the channel => -1, lower edge at 1.1 points from DC => 1 => zero point 0 only. */
+static int test_case7_lsb_dc_edge()
+{
+    visibility_type vis;
+    weight_type wt;
+    build_fixture(vis, wt, "L");
+    if(run_notches(vis, wt, {7999.89, 8000.1}))
+        return 1;
+    return check_mask(vis, wt, 0, 0);
+}
 
-    // count=0, npts=4, frac=1.0, factor=1.0; weight = 1.0 * 1.0 = 1.0
-    CHECK_CLOSE(wt(0, 0, 0, 0), 1.0, 1e-12);
-
-    // Labels written even on no-overlap
-    {
-        double ubf, rf;
-        auto& chan_ax = std::get< CHANNEL_AXIS >(vis);
-        REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "used_bandwidth_fraction", ubf));
-        CHECK_CLOSE(ubf, 1.0, 1e-12);
-        REQUIRE(chan_ax.RetrieveIndexLabelKeyValue(0, "rescaling_factor", rf));
-        CHECK_CLOSE(rf, 1.0, 1e-12);
-    }
-
-    return 0;
+/* CASE 8 - Notch covering the whole channel => everything zeroed, weights zeroed. */
+static int test_case8_full_channel()
+{
+    visibility_type vis;
+    weight_type wt;
+    build_fixture(vis, wt, "U");
+    if(run_notches(vis, wt, {7990.0, 8010.0}))
+        return 1;
+    return check_mask(vis, wt, 0, NPTS - 1);
 }
 
 int main(int /*argc*/, char** /*argv*/)
@@ -255,15 +182,21 @@ int main(int /*argc*/, char** /*argv*/)
     MHO_Message::GetInstance().AcceptAllKeys();
     MHO_Message::GetInstance().SetMessageLevel(eFatal);
 
-    if(test_case1_single_notch())
+    if(test_case1_usb_single_notch())
         return 1;
-    if(test_case2_two_notches())
+    if(test_case2_overlapping_notches())
         return 1;
     if(test_case3_odd_boundary_list())
         return 1;
-    if(test_case4_lsb_sign())
+    if(test_case4_lsb_single_notch())
         return 1;
     if(test_case5_notch_outside())
+        return 1;
+    if(test_case6_usb_dc_edge())
+        return 1;
+    if(test_case7_lsb_dc_edge())
+        return 1;
+    if(test_case8_full_channel())
         return 1;
 
     return 0;
