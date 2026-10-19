@@ -61,8 +61,8 @@ if [ -z "$PDD1" ]; then
     echo "No PDD file produced by fourfit3 for HK baseline"
     RET_VAL=5
 else
-    echo "Comparing: compjsonpdd.py -r 0.04 -x FringeRate(Hz),ResidRate(us/s),ResidRateError(us/s) ./fdump1.json $PDD1"
-    compjsonpdd.py -r 0.04 -x 'FringeRate(Hz),ResidRate(us/s),ResidRateError(us/s)' ./fdump1.json $PDD1
+    echo "Comparing: compjsonpdd.py -r 0.04 -x FringeRate(Hz),DelayRate(ps/s),ResidRate(us/s),ResidRateError(us/s) ./fdump1.json $PDD1"
+    compjsonpdd.py -r 0.04 -x 'FringeRate(Hz),DelayRate(ps/s),ResidRate(us/s),ResidRateError(us/s)' ./fdump1.json $PDD1
     RC=$?
     [ $RC -ne 0 ] && RET_VAL=$RC
 fi
@@ -84,8 +84,8 @@ if [ -z "$PDD2" ]; then
     RET_VAL=6
 else
     #exclude a bunch of fields (delay/delay-rate) which for an auto-corr should be zero (relative accuracy comparison fails)
-    echo "Comparing: compjsonpdd.py -r 0.04 -x FringeRate(Hz),ResidRate(us/s),ResidRateError(us/s),ResidMbd(us),PhaseDelay(usec),ResidMbdelay(usec),ResidPhdelay(usec),ResidMbdelayError(usec),GroupDelayModel(usec) ./fdump2.json $PDD2"
-    compjsonpdd.py -r 0.04 -x 'FringeRate(Hz),ResidRate(us/s),ResidRateError(us/s),ResidMbd(us),PhaseDelay(usec),ResidMbdelay(usec),ResidPhdelay(usec),ResidMbdelayError(usec),GroupDelayModel(usec)' ./fdump2.json $PDD2
+    echo "Comparing: compjsonpdd.py -r 0.04 -x FringeRate(Hz),DelayRate(ps/s),ResidRate(us/s),ResidRateError(us/s),ResidMbd(us),PhaseDelay(usec),ResidMbdelay(usec),ResidPhdelay(usec),ResidMbdelayError(usec),GroupDelayModel(usec) ./fdump2.json $PDD2"
+    compjsonpdd.py -r 0.04 -x 'FringeRate(Hz),DelayRate(ps/s),ResidRate(us/s),ResidRateError(us/s),ResidMbd(us),PhaseDelay(usec),ResidMbdelay(usec),ResidPhdelay(usec),ResidMbdelayError(usec),GroupDelayModel(usec)' ./fdump2.json $PDD2
     RC=$?
     [ $RC -ne 0 ] && RET_VAL=$RC
 fi

@@ -258,11 +258,6 @@ void MHO_MK4CorelInterface::DetermineDataDimensions()
     std::map< std::string, std::string > mk4IDToStationCode;
 
     auto mode = fVex["$MODE"][mode_key];
-    //TODO FIXME -- this is incorrect if there are multple BBC/IFs defined
-    std::string bbc_name =
-        fVex["$MODE"][mode_key]["$BBC"][0]["keyword"].get< std::string >(); //TODO FIXME if stations have different bbcs
-    std::string if_name =
-        fVex["$MODE"][mode_key]["$IF"][0]["keyword"].get< std::string >(); //TODO FIXME if stations have different ifs
 
     for(int ist = 0; ist < nst; ist++)
     {
@@ -328,23 +323,7 @@ void MHO_MK4CorelInterface::DetermineDataDimensions()
                 ref_bw = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["bandwidth"]["value"].get< double >();
                 ref_net_sb = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["net_sideband"].get< std::string >();
                 std::string bbc_id = fVex["$FREQ"][ref_freq_table]["chan_def"][nch]["bbc_id"].get< std::string >();
-                for(std::size_t nbbc = 0; nbbc < fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
-                {
-                    if(fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get< std::string >() == bbc_id)
-                    {
-                        std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get< std::string >();
-                        //finally retrieve the polarization
-                        for(std::size_t nif = 0; nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
-                        {
-                            if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get< std::string >() == if_id)
-                            {
-                                ref_pol = fVex["$IF"][if_name]["if_def"][nif]["polarization"].get< std::string >();
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
+                ref_pol = ChannelPolarization(mode_key, fRefStation, bbc_id);
                 found_ref = true;
                 break;
             }
@@ -360,24 +339,7 @@ void MHO_MK4CorelInterface::DetermineDataDimensions()
                 rem_net_sb = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["net_sideband"].get< std::string >();
 
                 std::string bbc_id = fVex["$FREQ"][rem_freq_table]["chan_def"][nch]["bbc_id"].get< std::string >();
-
-                for(std::size_t nbbc = 0; nbbc < fVex["$BBC"][bbc_name]["BBC_assign"].size(); nbbc++)
-                {
-                    if(fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_bbc_id"].get< std::string >() == bbc_id)
-                    {
-                        std::string if_id = fVex["$BBC"][bbc_name]["BBC_assign"][nbbc]["logical_if"].get< std::string >();
-                        //finally retrieve the polarization
-                        for(std::size_t nif = 0; nif < fVex["$IF"][if_name]["if_def"].size(); nif++)
-                        {
-                            if(fVex["$IF"][if_name]["if_def"][nif]["if_id"].get< std::string >() == if_id)
-                            {
-                                rem_pol = fVex["$IF"][if_name]["if_def"][nif]["polarization"].get< std::string >();
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
+                rem_pol = ChannelPolarization(mode_key, fRemStation, bbc_id);
                 found_rem = true;
                 break;
             }
@@ -777,6 +739,75 @@ int MHO_MK4CorelInterface::ExtractCorelFile()
 std::string MHO_MK4CorelInterface::getstr(const char* char_array, std::size_t max_size)
 {
     return std::string(char_array, std::min(strlen(char_array), max_size));
+}
+
+std::string MHO_MK4CorelInterface::ModeTableForStation(const std::string& mode_key, const std::string& section,
+                                                       const std::string& station_code) const
+{
+    if(!fVex.contains("$MODE") || !fVex.at("$MODE").contains(mode_key) || !fVex.at("$MODE").at(mode_key).contains(section))
+    {
+        return "";
+    }
+    const mho_json& refs = fVex.at("$MODE").at(mode_key).at(section);
+
+    //any explicit qualifier takes precendence
+    std::string default_table = "";
+    for(auto it = refs.begin(); it != refs.end(); ++it)
+    {
+        std::string keyword = it->at("keyword").get< std::string >();
+        if(!it->contains("qualifiers") || it->at("qualifiers").empty())
+        {
+            if(default_table.empty())
+            {
+                default_table = keyword;
+            }
+            continue;
+        }
+        for(auto& qual : it->at("qualifiers"))
+        {
+            if(qual.get< std::string >() == station_code)
+            {
+                return keyword;
+            }
+        }
+    }
+    if(default_table.empty() && !refs.empty())
+    {
+        default_table = refs.begin()->at("keyword").get< std::string >();
+    }
+    return default_table;
+}
+
+std::string MHO_MK4CorelInterface::ChannelPolarization(const std::string& mode_key, const std::string& station_code,
+                                                       const std::string& bbc_id) const
+{
+    std::string bbc_name = ModeTableForStation(mode_key, "$BBC", station_code);
+    std::string if_name = ModeTableForStation(mode_key, "$IF", station_code);
+    if(!fVex.contains("$BBC") || !fVex.at("$BBC").contains(bbc_name) || !fVex.contains("$IF") ||
+       !fVex.at("$IF").contains(if_name))
+    {
+        msg_warn("mk4interface", "could not resolve $BBC/$IF tables for station " << station_code << eom);
+        return "";
+    }
+
+    std::string if_id = "";
+    for(auto& bbc : fVex.at("$BBC").at(bbc_name).at("BBC_assign"))
+    {
+        if(bbc.at("logical_bbc_id").get< std::string >() == bbc_id)
+        {
+            if_id = bbc.at("logical_if").get< std::string >();
+            break;
+        }
+    }
+    for(auto& ifd : fVex.at("$IF").at(if_name).at("if_def"))
+    {
+        if(!if_id.empty() && ifd.at("if_id").get< std::string >() == if_id)
+        {
+            return ifd.at("polarization").get< std::string >();
+        }
+    }
+    msg_warn("mk4interface", "could not resolve polarization of bbc " << bbc_id << " for station " << station_code << eom);
+    return "";
 }
 
 bool MHO_MK4CorelInterface::channel_info_match(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw,
