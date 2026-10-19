@@ -260,9 +260,9 @@ bool MHO_DiFXPCalProcessor::AssignAPIndices(int& first_ap, int& last_ap)
         if(!period_warned && std::fabs(fAPLength - period_sec) / fAPLength > fTolerance)
         {
             msg_warn("difx_interface", "pcal accumulation period ("
-                << period_sec << ") of station: " << fStationCode
-                << " does not precisely match correlation accumulation period (" << fAPLength
-                << "), pcal data will be binned using correlation APs." << eom);
+                                           << period_sec << ") of station: " << fStationCode
+                                           << " does not precisely match correlation accumulation period (" << fAPLength
+                                           << "), pcal data will be binned using correlation APs." << eom);
             period_warned = true;
         }
 
@@ -282,8 +282,8 @@ bool MHO_DiFXPCalProcessor::AssignAPIndices(int& first_ap, int& last_ap)
 
     if(ndropped != 0)
     {
-        msg_warn("difx_interface", "dropped " << ndropped << " pcal records preceding the scan start for station: "
-            << fStationCode << eom);
+        msg_warn("difx_interface",
+                 "dropped " << ndropped << " pcal records preceding the scan start for station: " << fStationCode << eom);
     }
     return (first_ap >= 0);
 }
@@ -369,9 +369,9 @@ void MHO_DiFXPCalProcessor::FillPCalTable(int first_ap)
 
     if(nduplicates != 0)
     {
-        msg_warn("difx_interface", nduplicates << " pcal tone entries of station: " << fStationCode
-           << " were reported more than once in the same AP, these have been averaged together."
-           << eom);
+        msg_warn("difx_interface",
+                 nduplicates << " pcal tone entries of station: " << fStationCode
+                             << " were reported more than once in the same AP, these have been averaged together." << eom);
     }
 }
 
@@ -453,15 +453,15 @@ void MHO_DiFXPCalProcessor::FillMissingPhasors()
 
     if(n_filled != 0)
     {
-        msg_warn("difx_interface", "pcal data of station: " << fStationCode << " has " << n_missing_aps << " of " << naps
-            << " APs missing entirely and " << n_filled
-            << " missing (pol, AP, tone) entries in total, these have been filled by linear interp in time."
-            << eom);
+        msg_warn("difx_interface",
+                 "pcal data of station: "
+                     << fStationCode << " has " << n_missing_aps << " of " << naps << " APs missing entirely and " << n_filled
+                     << " missing (pol, AP, tone) entries in total, these have been filled by linear interp in time." << eom);
     }
     if(n_absent != 0)
     {
         msg_debug("difx_interface", n_absent << " (pol, tone) combinations of station: " << fStationCode
-        << " have no pcal data, treating as zero." << eom);
+                                             << " have no pcal data, treating as zero." << eom);
     }
 }
 
