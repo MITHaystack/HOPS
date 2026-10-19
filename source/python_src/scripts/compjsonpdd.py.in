@@ -61,7 +61,7 @@ def main():
         #'RA':'string',
         #'Dec':'string',
         'SbandDelay(usec)':'float',
-        #'DelayRate(ps/s)':'float', -- something is wrong with this one in pdd file, should be total delay rate, but it is residual delay rate
+        'DelayRate(ps/s)':'float',
         'PhaseDelay(usec)':'float',
         'TotalPhase(deg)':'phase_float',
         'AprioriClock(usec)':'float',

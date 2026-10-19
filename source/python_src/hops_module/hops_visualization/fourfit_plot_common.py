@@ -738,11 +738,15 @@ def make_model_resid_info_text(plot_dict):
     if not group_delay_key in plot_dict:
         group_delay_key = "GroupDelaySBD(usec)"
 
+    #older files stored the total delay rate (us/s) under "DelayRate(ps/s)"
+    total_rate_key = "TotalDelayRate(us/s)"
+    if not total_rate_key in plot_dict:
+        total_rate_key = "DelayRate(ps/s)"
 
     btmtextstr2 = make_sciformat(float(plot_dict[group_delay_key]), 11, 11, useMinDigits)  + '\n' + \
         make_sciformat(float(plot_dict["SbandDelay(usec)"]), 11, 11, useMinDigits) + '\n' + \
         make_sciformat(float(plot_dict["PhaseDelay(usec)"]), 11, 11, useMinDigits) + '\n' + \
-        make_sciformat(float(plot_dict["DelayRate(ps/s)"]), 11, 11, useMinDigits) + '\n' + \
+        make_sciformat(float(plot_dict[total_rate_key]), 11, 11, useMinDigits) + '\n' + \
         str( np.round(float(plot_dict["TotalPhase(deg)"]),1) )
 
     btmtextstr3 = 'Apriori delay (usec) ' + '\n' + \

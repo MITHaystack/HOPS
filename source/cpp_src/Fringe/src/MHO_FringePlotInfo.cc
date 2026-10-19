@@ -140,7 +140,9 @@ void MHO_FringePlotInfo::fill_plot_data(MHO_ParameterStore* paramStore, mho_json
         plot_dict["GroupDelayModel(usec)"] = paramStore->GetAs< double >("/fringe/total_mbdelay");
     }
     plot_dict["SbandDelay(usec)"] = paramStore->GetAs< double >("/fringe/total_sbdelay");
-    plot_dict["DelayRate(ps/s)"] = paramStore->GetAs< double >("/fringe/total_drate");
+    plot_dict["TotalDelayRate(us/s)"] = paramStore->GetAs< double >("/fringe/total_drate");
+    //residual delay rate in ps/s, as in the fourfit3 PDD header
+    plot_dict["DelayRate(ps/s)"] = paramStore->GetAs< double >("/fringe/drate") * 1e6;
     plot_dict["PhaseDelay(usec)"] = paramStore->GetAs< double >("/fringe/phase_delay");
     plot_dict["TotalPhase(deg)"] = paramStore->GetAs< double >("/fringe/tot_phase");
 
