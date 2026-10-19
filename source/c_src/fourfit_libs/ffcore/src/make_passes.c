@@ -164,7 +164,7 @@ int *npass)
         fc = p->pass_data;
                                         /* realloc() does not initialize */
                                         /* and we do no alloc here */
-        for (j=0; j<MAXFREQ; j++) 
+        for (j=0; j<MAX_CHAN; j++)
             p->pass_data[j].data_alloc = FALSE;
         clear_pass (p);
         for (j=0; j<4; j++)
