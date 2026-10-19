@@ -42,8 +42,8 @@ void MHO_DiFXInputProcessor::LoadPhaseCalParameters()
     DifxParameters* ip = newDifxParametersfromfile(fD->job->inputFile);
     if(ip == nullptr)
     {
-        msg_warn("difx_interface", "could not re-read " << fD->job->inputFile
-                                                        << " for phase cal parameters, using difxio values" << eom);
+        msg_warn("difx_interface",
+                 "could not re-read " << fD->job->inputFile << " for phase cal parameters, using difxio values" << eom);
         for(int i = 0; i < fD->nDatastream; i++)
         {
             fPhaseCalBaseMHz[i] = fD->datastream[i].phaseCalBaseMHz;
@@ -83,21 +83,21 @@ void MHO_DiFXInputProcessor::LoadPhaseCalParameters()
 
 int MHO_DiFXInputProcessor::GetBaselineTargetFreq(DifxBaseline* b, int f)
 {
-    #ifdef HAVE_DIFXIO_DESTFQ
-        return b->destFq[f];
-    #else
-        if(b->nPolProd[f] <= 0)
-        {
-            return -1;
-        }
-        DifxDatastream* ds = &(fD->datastream[b->dsA]);
-        int band = b->bandA[f][0];
-        if(band < ds->nRecBand)
-        {
-            return ds->recFreqId[ds->recBandFreqId[band]];
-        }
-        return ds->zoomFreqId[ds->zoomBandFreqId[band - ds->nRecBand]];
-    #endif
+#ifdef HAVE_DIFXIO_DESTFQ
+    return b->destFq[f];
+#else
+    if(b->nPolProd[f] <= 0)
+    {
+        return -1;
+    }
+    DifxDatastream* ds = &(fD->datastream[b->dsA]);
+    int band = b->bandA[f][0];
+    if(band < ds->nRecBand)
+    {
+        return ds->recFreqId[ds->recBandFreqId[band]];
+    }
+    return ds->zoomFreqId[ds->zoomBandFreqId[band - ds->nRecBand]];
+#endif
 }
 
 void MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)

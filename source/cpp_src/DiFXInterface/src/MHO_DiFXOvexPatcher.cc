@@ -266,8 +266,8 @@ void MHO_DiFXOvexPatcher::ApplyDiFXPhaseCalComb(mho_json& vex_root, const std::s
         auto inserted = station_combs.emplace(code_it->second, comb);
         if(!inserted.second && inserted.first->second != comb)
         {
-            msg_warn("difx_interface", "datastreams of station " << code_it->second
-                                                                 << " use different phase cal combs, using the first" << eom);
+            msg_warn("difx_interface",
+                     "datastreams of station " << code_it->second << " use different phase cal combs, using the first" << eom);
         }
     }
 
@@ -285,8 +285,14 @@ void MHO_DiFXOvexPatcher::ApplyDiFXPhaseCalComb(mho_json& vex_root, const std::s
         mho_json if_table = vex_root["$IF"][if_name];
         for(auto& if_def : if_table["if_def"])
         {
-            if_def["phase_cal_interval"] = {{"value", sc.second.first}, {"units", "MHz"}};
-            if_def["phase_cal_base"] = {{"value", sc.second.second}, {"units", "MHz"}};
+            if_def["phase_cal_interval"] = {
+                {"value", sc.second.first},
+                {"units", "MHz"          }
+            };
+            if_def["phase_cal_base"] = {
+                {"value", sc.second.second},
+                {"units", "MHz"           }
+            };
         }
         vex_root["$IF"][pcal_if_name] = if_table;
         MHO_VexHelpers::LinkStationToTable(vex_root, mode_name, "$IF", vex_code, pcal_if_name);

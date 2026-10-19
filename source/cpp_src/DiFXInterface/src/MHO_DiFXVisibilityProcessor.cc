@@ -118,11 +118,10 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
 
                 if(!logged_first_record)
                 {
-                    msg_debug("difx_interface", "first visibility record: baseline=" << visRecord.baseline
-                        << ", freqindex=" << visRecord.freqindex
-                        << ", polpair=" << std::string(visRecord.polpair, 2)
-                        << ", nchan=" << visRecord.nchan
-                        << ", configindex=" << visRecord.configindex << eom);
+                    msg_debug("difx_interface", "first visibility record: baseline="
+                                                    << visRecord.baseline << ", freqindex=" << visRecord.freqindex
+                                                    << ", polpair=" << std::string(visRecord.polpair, 2) << ", nchan="
+                                                    << visRecord.nchan << ", configindex=" << visRecord.configindex << eom);
                     logged_first_record = true;
                 }
 

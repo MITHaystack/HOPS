@@ -52,8 +52,9 @@ void MHO_FringeDataDiscovery::determine_scans(const std::string& initial_dir, st
         if(!cor_files.empty())
         {
             msg_warn("fringe", "scan directory " << initial_dir
-                << " contains .cor files but no *.root.json file; fourfit4 cannot process "
-                "this scan without an OVEX/root.json file." << eom);
+                                                 << " contains .cor files but no *.root.json file; fourfit4 cannot process "
+                                                    "this scan without an OVEX/root.json file."
+                                                 << eom);
         }
 
         //no root file was located, so we might be running over a whole experiment directory
@@ -83,8 +84,9 @@ void MHO_FringeDataDiscovery::determine_scans(const std::string& initial_dir, st
                 if(!cor_files.empty())
                 {
                     msg_warn("fringe", "scan directory " << path
-                        << " contains .cor files but no *.root.json file; fourfit4 cannot "
-                        "process this scan without an OVEX/root.json file." << eom);
+                                                         << " contains .cor files but no *.root.json file; fourfit4 cannot "
+                                                            "process this scan without an OVEX/root.json file."
+                                                         << eom);
                 }
             }
         }

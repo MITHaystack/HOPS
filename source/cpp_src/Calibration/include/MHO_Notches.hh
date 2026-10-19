@@ -80,13 +80,13 @@ class MHO_Notches: public MHO_UnaryOperator< visibility_type >
         virtual bool ExecuteInPlace(visibility_type* in) override;
 
     private:
-
         //flag USB spectral points in notch
-        void FlagUSBNotch(double notch_low, double notch_high, double sky_freq, double bandwidth, std::vector< bool >& flags) const;
-
+        void FlagUSBNotch(double notch_low, double notch_high, double sky_freq, double bandwidth,
+                          std::vector< bool >& flags) const;
 
         //flag LSB spectral points
-        void FlagLSBNotch(double notch_low, double notch_high, double sky_freq, double bandwidth, std::vector< bool >& flags) const;
+        void FlagLSBNotch(double notch_low, double notch_high, double sky_freq, double bandwidth,
+                          std::vector< bool >& flags) const;
 
         //flag points strictly between indexes
         void FlagIndexRange(int idx_bottom, int idx_top, std::vector< bool >& flags) const;

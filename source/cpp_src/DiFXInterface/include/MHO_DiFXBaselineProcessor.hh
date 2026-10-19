@@ -213,7 +213,7 @@ class MHO_DiFXBaselineProcessor
         void DeleteDiFXVisRecords();
 
         //in some odd cases (e.g. NOEMA) output bands/channels can end up split across datastreams
-        //this merges them back together when they match 
+        //this merges them back together when they match
         void MergeSplitOutputBandRecords();
 
         std::string ConstructCorFileName(const std::string& output_dir, const std::string& root_code,

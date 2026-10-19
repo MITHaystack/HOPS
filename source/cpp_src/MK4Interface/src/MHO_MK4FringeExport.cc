@@ -363,7 +363,8 @@ int MHO_MK4FringeExport::fill_205(struct type_203* t203, struct type_205* t205)
     else
     {
         msg_warn("mk4interface", "could not fill type_205 ffit_chan table; "
-                                 "plot channel labels (PLOT_INFO/#Ch) unavailable" << eom);
+                                 "plot channel labels (PLOT_INFO/#Ch) unavailable"
+                                     << eom);
     }
 
     return 0;
@@ -428,7 +429,8 @@ int MHO_MK4FringeExport::fill_206(struct type_206* t206)
     if(wt_data == nullptr)
     {
         msg_warn("mk4interface", "could not retrieve weight object; type_206 accept/weight "
-                                 "statistics will be zero" << eom);
+                                 "statistics will be zero"
+                                     << eom);
     }
 
     //do not index past the fixed-size accepted[]/weights[] arrays
@@ -467,7 +469,7 @@ int MHO_MK4FringeExport::fill_206(struct type_206* t206)
         //separately on intg_time. Fix up via the used_bandwidth_fraction back in here to undo
         //the operator's rescaling; the label is absent (=> 1.0) when no bandwidth
         //editing ran. A fully-cut channel has zero weight already => zero samples.
-        //TODO FIXME: We need to review the full notches/passband treatment of weights...it is very confusing, 
+        //TODO FIXME: We need to review the full notches/passband treatment of weights...it is very confusing,
         //and it is not clear what the correct limit is (preserve amp or preserve snr, or perhaps neither?)
         double used_bw_frac = 1.0;
         chan_ax->RetrieveIndexLabelKeyValue(fr, "used_bandwidth_fraction", used_bw_frac);
@@ -496,9 +498,7 @@ int MHO_MK4FringeExport::fill_206(struct type_206* t206)
     //percentage as the fraction of the total possible APs (nchan * naps) that were
     //not accepted (see [3.5] in fix_export_plan.txt).
     long total_possible = (long)nfr * (long)w_nap;
-    t206->discard = (total_possible > 0)
-                        ? (float)(100 * (total_possible - total_accepted)) / (float)total_possible
-                        : 0.0f;
+    t206->discard = (total_possible > 0) ? (float)(100 * (total_possible - total_accepted)) / (float)total_possible : 0.0f;
 
     return 0;
 }
@@ -582,7 +582,8 @@ int MHO_MK4FringeExport::fill_207(struct type_207* t207)
     if(!ok_amp)
     {
         msg_warn("mk4interface", "pcal plot data (PLOT_INFO/PCAmp*) unavailable; "
-                                 "type_207 amp/phase/offset will be zero" << eom);
+                                 "type_207 amp/phase/offset will be zero"
+                                     << eom);
     }
 
     for(int i = 0; i < nchan; i++)
@@ -715,16 +716,16 @@ int MHO_MK4FringeExport::fill_208(struct type_202* t202, struct type_208* t208)
         parampol = POLMASK_RR;
         passpol = POL_RR;
     }
-    else if(polprod != "I" && polprod != "XX" && polprod != "XY" && polprod != "YX" && polprod != "YY" &&
-            polprod != "LL" && polprod != "LR" && polprod != "RL")
+    else if(polprod != "I" && polprod != "XX" && polprod != "XY" && polprod != "YX" && polprod != "YY" && polprod != "LL" &&
+            polprod != "LR" && polprod != "RL")
     {
         recognized_polprod = false;
     }
 
     if(!recognized_polprod)
     {
-        msg_warn("mk4interface", "unrecognized pol-product '" << polprod
-                                 << "' while filling type_208; using default pass/param pol." << eom);
+        msg_warn("mk4interface",
+                 "unrecognized pol-product '" << polprod << "' while filling type_208; using default pass/param pol." << eom);
     }
 
     t208->unused1[0] = passpol + POLCHAR_OFFSET;
@@ -1013,8 +1014,8 @@ int MHO_MK4FringeExport::fill_221(struct type_221** t221)
 
     if(fp == NULL)
     {
-        msg_warn("mk4interface", "could not open blank postscript template '" << ps_file
-                                     << "'; type_221 will not be written for this fringe" << eom);
+        msg_warn("mk4interface", "could not open blank postscript template '"
+                                     << ps_file << "'; type_221 will not be written for this fringe" << eom);
         return -1;
     }
 

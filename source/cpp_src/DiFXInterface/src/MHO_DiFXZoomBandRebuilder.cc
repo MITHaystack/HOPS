@@ -251,8 +251,7 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
             {
                 continue;
             }
-            std::map< int, std::vector< std::string > > ds_freq_to_pols =
-                CollectDatastreamTargetPols(other_idx, zoom_targets);
+            std::map< int, std::vector< std::string > > ds_freq_to_pols = CollectDatastreamTargetPols(other_idx, zoom_targets);
             if(ds_freq_to_pols.empty() && other_ds.value("nZoomFreq", 0) > 0)
             {
                 ds_freq_to_pols = CollectDatastreamZoomPols(other_ds);
@@ -419,7 +418,10 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
 
         //update $MODE: repoint this station's $FREQ/$BBC/$IF qualifiers at the new tables
         const std::vector< std::pair< std::string, std::string > > section_tables = {
-            {"$FREQ", freq_table_name}, {"$BBC", bbc_table_name}, {"$IF", if_table_name}};
+            {"$FREQ", freq_table_name},
+            {"$BBC",  bbc_table_name },
+            {"$IF",   if_table_name  }
+        };
         for(const auto& st : section_tables)
         {
             if(vex_root["$MODE"][mode_name].contains(st.first))
@@ -428,8 +430,8 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
             }
         }
 
-        msg_debug("difx_interface",
-                  "rebuilt VEX freq/bbc/if sections from " << gidx_by_freq.size() << " output bands for station " << vex_code << eom);
+        msg_debug("difx_interface", "rebuilt VEX freq/bbc/if sections from "
+                                        << gidx_by_freq.size() << " output bands for station " << vex_code << eom);
     }
 }
 

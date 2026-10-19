@@ -25,9 +25,7 @@ static double SecondsBetween(const std::string& vex_a, const std::string& vex_b)
 {
     legacy_hops_date a = MHO_LegacyDateConverter::ConvertFromVexFormat(vex_a);
     legacy_hops_date b = MHO_LegacyDateConverter::ConvertFromVexFormat(vex_b);
-    auto sec_of_year = [](const legacy_hops_date& d) {
-        return ((d.day * 24.0 + d.hour) * 60.0 + d.minute) * 60.0 + d.second;
-    };
+    auto sec_of_year = [](const legacy_hops_date& d) { return ((d.day * 24.0 + d.hour) * 60.0 + d.minute) * 60.0 + d.second; };
     double year_sec = 0.0;
     for(int y = a.year; y < b.year; y++)
     {

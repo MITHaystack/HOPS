@@ -8,9 +8,9 @@ namespace hops
 
 namespace
 {
-    //Zero-padding factor applied to the time axis: the rate FFT runs on
-    //kTimePadFactor*fDRSPSize points and is then resampled back down to fDRSPSize bins.
-    const int kTimePadFactor = 4;
+//Zero-padding factor applied to the time axis: the rate FFT runs on
+//kTimePadFactor*fDRSPSize points and is then resampled back down to fDRSPSize bins.
+const int kTimePadFactor = 4;
 } // namespace
 
 MHO_DelayRate::MHO_DelayRate(): fInitialized(false)
@@ -182,9 +182,9 @@ unsigned int MHO_DelayRate::CalculateSearchSpaceSize(unsigned int input_size)
 
 void MHO_DelayRate::BuildResamplingTable(const XArgType1* in1)
 {
-    const int n_dr = fDRSPSize;                     //output delay-rate bins
-    const int n_fft = kTimePadFactor * fDRSPSize;   //padded FFT length
-    const int half_dr = n_dr / 2;                   //zero-rate bin (n_dr is always even)
+    const int n_dr = fDRSPSize;                   //output delay-rate bins
+    const int n_fft = kTimePadFactor * fDRSPSize; //padded FFT length
+    const int half_dr = n_dr / 2;                 //zero-rate bin (n_dr is always even)
     const std::size_t nch = fInDims[CHANNEL_AXIS];
 
     fInterpTable.resize(nch * n_dr);

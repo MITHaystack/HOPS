@@ -70,7 +70,7 @@ class MHO_DiFXZoomBandRebuilder
         std::set< int > CollectZoomTargetFreqIndices() const;
 
         std::map< int, std::vector< std::string > > CollectDatastreamTargetPols(int ds_idx,
-                                                                              const std::set< int >& targets) const;
+                                                                                const std::set< int >& targets) const;
 
         std::map< int, std::vector< std::string > > CollectDatastreamZoomPols(const mho_json& ds) const;
 

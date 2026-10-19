@@ -4,9 +4,9 @@
 #include "mpi.h"
 
 #include "MHO_Message.hh"
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
 #define LOCAL_RANK_MPI
 

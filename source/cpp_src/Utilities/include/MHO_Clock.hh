@@ -69,8 +69,7 @@ class hops_clock
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
         template< typename Duration >
-        static std::chrono::time_point< hops::utc_clock,
-                                        typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+        static std::chrono::time_point< hops::utc_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
         to_utc(const std::chrono::time_point< hops_clock, Duration >&) NOEXCEPT;
 
         /**
@@ -90,8 +89,7 @@ class hops_clock
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
         template< typename Duration >
-        static std::chrono::time_point< hops::tai_clock,
-                                        typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+        static std::chrono::time_point< hops::tai_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
         to_tai(const std::chrono::time_point< hops_clock, Duration >&) NOEXCEPT;
 
         /**
@@ -111,8 +109,7 @@ class hops_clock
          * @param & Parameter & of type const std::chrono::time_point< hops_clock, Duration
          */
         template< typename Duration >
-        static std::chrono::time_point< hops::gps_clock,
-                                        typename std::common_type< Duration, std::chrono::nanoseconds >::type >
+        static std::chrono::time_point< hops::gps_clock, typename std::common_type< Duration, std::chrono::nanoseconds >::type >
         to_gps(const std::chrono::time_point< hops_clock, Duration >&) NOEXCEPT;
 
         /**
@@ -318,7 +315,7 @@ class hops_clock
             auto days_since_tai_epoch = j2000_day - tai_epoch_day; //date::days
             auto tod = hours{11} + minutes{59} + seconds{27} + milliseconds{816};
             hops::tai_time< nanoseconds > j2000_tai_epoch{duration_cast< nanoseconds >(days_since_tai_epoch) +
-                                                             duration_cast< nanoseconds >(tod)};
+                                                          duration_cast< nanoseconds >(tod)};
             return time_point_cast< nanoseconds >(hops::tai_clock::to_utc(j2000_tai_epoch));
         }
 
@@ -529,7 +526,7 @@ hops_clock::to_local(const hops_time< Duration >& t) NOEXCEPT
     using CD = typename std::common_type< Duration, std::chrono::nanoseconds >::type;
     hops::utc_time< CD > hops_epoch_start = std::chrono::time_point_cast< CD >(get_hops_epoch_utc());
     hops::utc_time< CD > ut_time{t.time_since_epoch() +
-                                    std::chrono::time_point_cast< Duration >(hops_epoch_start).time_since_epoch()};
+                                 std::chrono::time_point_cast< Duration >(hops_epoch_start).time_since_epoch()};
     return hops::utc_clock::to_local(ut_time);
 }
 
@@ -770,7 +767,7 @@ inline void hops_clock::to_year_fpday(const hops_clock::time_point& tp, int& yea
 
     double frac_day = (inanos * NANOSEC_TO_SEC + isecs + MINUTE_TO_SEC * imins + HOUR_TO_SEC * ihours) / (JD_TO_SEC);
     floating_point_days = integer_days + frac_day;
-    year = static_cast<int>(year_value);
+    year = static_cast< int >(year_value);
 }
 
 inline hops_clock::time_point hops_clock::from_mjd(const time_point& mjd_epoch, double epoch_offset, double mjd)
@@ -1095,7 +1092,6 @@ inline hops_clock::vex_date hops_clock::vex_date_from_legacy(const legacy_hops_d
     return vdate;
 }
 
-
 // checks if a string is a valid VEX timestamp like: 2026y180d12h15m08s
 // note that the seconds field may include an optional fractional part like: 08.0145s
 inline bool hops_clock::is_vex_timestamp(const std::string& s)
@@ -1104,21 +1100,21 @@ inline bool hops_clock::is_vex_timestamp(const std::string& s)
 
     //spec out the 4 fixed width fields (seconds portion may vary)
     const int digit_counts[4] = {4, 3, 2, 2};
-    const char separators[4]  = {'y', 'd', 'h', 'm'};
+    const char separators[4] = {'y', 'd', 'h', 'm'};
 
     //loop over year, day, hours, minutes
     for(int field = 0; field < 4; field++)
     {
         for(int i = 0; i < digit_counts[field]; i++) //check the digits
         {
-            if(pos >= s.size() || !std::isdigit(static_cast<unsigned char>(s[pos])))
+            if(pos >= s.size() || !std::isdigit(static_cast< unsigned char >(s[pos])))
             {
                 return false;
             }
             pos++;
         }
         //reached the end, so check the separator value (y,d,h,m)
-        if( pos >= s.size() || s[pos] != separators[field])
+        if(pos >= s.size() || s[pos] != separators[field])
         {
             return false;
         }
@@ -1128,7 +1124,7 @@ inline bool hops_clock::is_vex_timestamp(const std::string& s)
     //now check the seconds, first 2 digits
     for(int i = 0; i < 2; ++i)
     {
-        if (pos >= s.size() || !std::isdigit(static_cast<unsigned char>(s[pos])))
+        if(pos >= s.size() || !std::isdigit(static_cast< unsigned char >(s[pos])))
         {
             return false;
         }
@@ -1136,28 +1132,30 @@ inline bool hops_clock::is_vex_timestamp(const std::string& s)
     }
 
     //now check the (optional) fractional part: '.' followed by at least one digit
-    if (pos < s.size() && s[pos] == '.')
+    if(pos < s.size() && s[pos] == '.')
     {
         pos++; // consume '.', then next char must be a digit
-        if (pos >= s.size() || !std::isdigit(static_cast<unsigned char>(s[pos])))
+        if(pos >= s.size() || !std::isdigit(static_cast< unsigned char >(s[pos])))
         {
             return false;
         }
         //chew through the rest until we reach anything not a digit
-        while (pos < s.size() && std::isdigit(static_cast<unsigned char>(s[pos])))
+        while(pos < s.size() && std::isdigit(static_cast< unsigned char >(s[pos])))
         {
             ++pos;
         }
     }
 
     //better only have the trailing 's' left
-    if (pos >= s.size() || s[pos] != 's'){return false;}
+    if(pos >= s.size() || s[pos] != 's')
+    {
+        return false;
+    }
     pos++;
 
     //must have consumed the entire string with nothing leftover
     return pos == s.size();
 }
-
 
 } // namespace hops
 

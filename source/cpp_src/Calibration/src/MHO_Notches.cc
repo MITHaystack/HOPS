@@ -92,7 +92,8 @@ bool MHO_Notches::ExecuteInPlace(visibility_type* in)
 }
 
 //note: spectral point index 0 is at the DC edge
-void MHO_Notches::FlagUSBNotch(double notch_low, double notch_high, double sky_freq, double bandwidth, std::vector< bool >& flags) const
+void MHO_Notches::FlagUSBNotch(double notch_low, double notch_high, double sky_freq, double bandwidth,
+                               std::vector< bool >& flags) const
 {
     int npts = flags.size();
     double bottom = sky_freq;
@@ -128,7 +129,8 @@ void MHO_Notches::FlagUSBNotch(double notch_low, double notch_high, double sky_f
     FlagIndexRange(idx_bottom, idx_top, flags);
 }
 
-void MHO_Notches::FlagLSBNotch(double notch_low, double notch_high, double sky_freq, double bandwidth, std::vector< bool >& flags) const
+void MHO_Notches::FlagLSBNotch(double notch_low, double notch_high, double sky_freq, double bandwidth,
+                               std::vector< bool >& flags) const
 {
     int npts = flags.size();
     double top = sky_freq;

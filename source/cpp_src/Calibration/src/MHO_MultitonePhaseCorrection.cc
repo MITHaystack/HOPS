@@ -663,7 +663,7 @@ void MHO_MultitonePhaseCorrection::ApplyPCData(std::size_t pc_pol, std::size_t v
                         //this references the delay ramp to f + bandwidth/2 for USB,
                         //and (f - bandwidth/2) for LSB channels
                         double phase_shift = 0.0;
-                        double deltaf = ( (*vis_freq_ax)(sp) - sb_sign * bandwidth / 2.0) * 1e6; //Hz
+                        double deltaf = ((*vis_freq_ax)(sp)-sb_sign * bandwidth / 2.0) * 1e6; //Hz
                         std::complex< double > pc_delay_phasor =
                             std::exp(-2.0 * sb_sign * M_PI * fImagUnit * (pcdelay * deltaf + phase_shift));
                         //conjugate pc phasor when applied to reference station

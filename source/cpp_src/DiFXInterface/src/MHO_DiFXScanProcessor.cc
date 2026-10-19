@@ -17,8 +17,8 @@
 #include <time.h>
 
 #include <algorithm>
-#include <chrono>
 #include <cctype> //toupper
+#include <chrono>
 
 //needed for the subprocess
 #include <cstdio>  //popen/pclose/fgets
@@ -240,7 +240,8 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         if(!MHO_DiFXInputHelpers::HasTargetFreqs(fInput))
         {
             msg_warn("difx_interface", "DiFX input JSON has no baseline target freqs (destFq); assuming 1-to-1 zoom "
-                "band output, output may be incorrect for DiFX >= 2.7 outputbands" << eom);
+                                       "band output, output may be incorrect for DiFX >= 2.7 outputbands"
+                                           << eom);
         }
         visProcessor.SetZoomFreqIndices(fZoomBandRebuilder.CollectZoomFreqIndices());
     }
@@ -372,8 +373,7 @@ void MHO_DiFXScanProcessor::FinalizeAndWriteRootFile()
     outFile.close();
 }
 
-std::vector< long > MHO_DiFXScanProcessor::MapAPsByTime(const visibility_store_type* vis,
-                                                         const visibility_store_type* ac) const
+std::vector< long > MHO_DiFXScanProcessor::MapAPsByTime(const visibility_store_type* vis, const visibility_store_type* ac) const
 {
     //map each AP of vis to the AP of ac with the same absolute time (start tag + time axis), -1 if none
     auto& vis_t = std::get< TIME_AXIS >(*vis);
@@ -385,8 +385,8 @@ std::vector< long > MHO_DiFXScanProcessor::MapAPsByTime(const visibility_store_t
         msg_error("difx_interface", "missing start time tag, cannot align auto-corrs with visibilities" << eom);
         return ap_map;
     }
-    double offset = std::chrono::duration< double >(hops_clock::from_vex_format(vis_start) -
-                                                    hops_clock::from_vex_format(ac_start)).count();
+    double offset =
+        std::chrono::duration< double >(hops_clock::from_vex_format(vis_start) - hops_clock::from_vex_format(ac_start)).count();
     double tol = 1e-3;
     if(ac_t.GetSize() > 1)
     {
@@ -519,9 +519,9 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
                     {
                         if(ref_ap_map[ap] < 0 || rem_ap_map[ap] < 0)
                         {
-                            msg_error("difx_interface", "no auto-corr data at AP " << ap << " to normalize baseline:pol-product: "
-                                                            << baseline << ":" << polprod << ", data will not be normalized."
-                                                            << eom);
+                            msg_error("difx_interface", "no auto-corr data at AP "
+                                                            << ap << " to normalize baseline:pol-product: " << baseline << ":"
+                                                            << polprod << ", data will not be normalized." << eom);
                             continue;
                         }
                         for(std::size_t ch = 0; ch < nch; ch++)

@@ -187,6 +187,7 @@ class MHO_Message
         {
             fPadding = std::string(MSG_ALIGN_PAD, ' ');
         };
+
         virtual ~MHO_Message(){};
 
         bool PassMessage();

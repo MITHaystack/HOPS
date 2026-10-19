@@ -347,8 +347,8 @@ void MHO_BasicPlotVisitor::setup_figure_layout()
             }
             else if(value != "letter" && !value.empty())
             {
-                msg_warn("plot", "unrecognized HOPS_PLOT_PAGESIZE value: '" << page_size
-                    << "' (expected 'a4' or 'letter'), using letter" << eom);
+                msg_warn("plot", "unrecognized HOPS_PLOT_PAGESIZE value: '"
+                                     << page_size << "' (expected 'a4' or 'letter'), using letter" << eom);
                 fPageWidth = 850;
                 fPageHeight = 1100;
             }
@@ -367,7 +367,7 @@ void MHO_BasicPlotVisitor::setup_figure_layout()
         //see the upstream issue: github.com/alandefreitas/matplotplusplus/issues/455
         //to avoid this problem, we'll just reuse the existing figure instead:
         matplot::figure(fCurrentFigure); //re-establish as the current figure
-        fCurrentFigure->children({}); //drop the previous pass's axes
+        fCurrentFigure->children({});    //drop the previous pass's axes
     }
     fAxes.clear();
     fLastAxis.reset();

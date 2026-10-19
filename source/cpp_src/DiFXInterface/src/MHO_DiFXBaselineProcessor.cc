@@ -27,11 +27,7 @@
 namespace hops
 {
 
-MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor():
-    fInput(nullptr),
-    fV(nullptr),
-    fW(nullptr),
-    fStationCodeMap(nullptr)
+MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor(): fInput(nullptr), fV(nullptr), fW(nullptr), fStationCodeMap(nullptr)
 {
     fRootCode = "unknown";
     fCorrDate = "";
@@ -99,8 +95,7 @@ void MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
         }
         else
         {
-            msg_warn("difx_interface", "invalid DiFX freq index " << freqidx
-                << " for baseline " << record->baseline << eom);
+            msg_warn("difx_interface", "invalid DiFX freq index " << freqidx << " for baseline " << record->baseline << eom);
             keep_record = false;
         }
     }
@@ -134,9 +129,7 @@ void MHO_DiFXBaselineProcessor::AddRecord(MHO_DiFXVisibilityRecord* record)
         keep_record = false;
     }
 
-    if(keep_record && !fZoomFreqIndices.empty()
-        && fZoomFreqIndices.find(record->freqindex) != fZoomFreqIndices.end()
-    )
+    if(keep_record && !fZoomFreqIndices.empty() && fZoomFreqIndices.find(record->freqindex) != fZoomFreqIndices.end())
     {
         fSawZoomFrequencyRecord = true;
     }
@@ -177,11 +170,7 @@ void MHO_DiFXBaselineProcessor::MergeSplitOutputBandRecords()
 
     for(auto* record : fRecords)
     {
-        record_key key(record->freqindex,
-                       std::string(record->polpair, 2),
-                       record->mjd,
-                       record->seconds,
-                       record->sourceindex,
+        record_key key(record->freqindex, std::string(record->polpair, 2), record->mjd, record->seconds, record->sourceindex,
                        record->pulsarbin);
 
         auto it = first_records.find(key);
@@ -196,7 +185,7 @@ void MHO_DiFXBaselineProcessor::MergeSplitOutputBandRecords()
         if(target->nchan != record->nchan || target->visdata.size() != record->visdata.size())
         {
             msg_warn("difx_interface", "cannot merge duplicate visibility records with different spectral size on baseline "
-                << fBaselineID << ", freq index " << record->freqindex << eom);
+                                           << fBaselineID << ", freq index " << record->freqindex << eom);
             merged_records.push_back(record);
             continue;
         }
@@ -213,8 +202,8 @@ void MHO_DiFXBaselineProcessor::MergeSplitOutputBandRecords()
 
     if(n_merged != 0)
     {
-        msg_debug("difx_interface", "merged " << n_merged << " partial output band visibility records on baseline "
-            << fBaselineID << eom);
+        msg_debug("difx_interface",
+                  "merged " << n_merged << " partial output band visibility records on baseline " << fBaselineID << eom);
     }
 
     std::size_t n_overweight = 0;
@@ -230,8 +219,9 @@ void MHO_DiFXBaselineProcessor::MergeSplitOutputBandRecords()
     if(n_overweight != 0)
     {
         msg_warn("difx_interface", n_overweight << " merged visibility records on baseline " << fBaselineID
-            << " have a total weight > 1.0 (max: " << max_weight
-            << "), the SWIN file may contain duplicate (not partial output band) records!" << eom);
+                                                << " have a total weight > 1.0 (max: " << max_weight
+                                                << "), the SWIN file may contain duplicate (not partial output band) records!"
+                                                << eom);
     }
     fRecords.swap(merged_records);
 }
@@ -274,8 +264,9 @@ void MHO_DiFXBaselineProcessor::Organize()
     }
     else if(!fZoomFreqIndices.empty())
     {
-        msg_debug("difx_interface", "baseline " << fBaselineID
-            << " has no zoom-frequency visibility records; retaining native frequency records" << eom);
+        msg_debug("difx_interface",
+                  "baseline " << fBaselineID << " has no zoom-frequency visibility records; retaining native frequency records"
+                              << eom);
     }
 
     //catch and merge any split (across datastreams/baseline) records
@@ -440,9 +431,9 @@ void MHO_DiFXBaselineProcessor::Organize()
                 }
                 if(dense[ap] != nullptr)
                 {
-                    msg_warn("difx_interface", "dropping duplicate visibility record for AP " << ap + fAPOffset
-                                                   << " on baseline: " << fBaselineID << ", freq index: " << frqit.first
-                                                   << eom);
+                    msg_warn("difx_interface", "dropping duplicate visibility record for AP "
+                                                   << ap + fAPOffset << " on baseline: " << fBaselineID
+                                                   << ", freq index: " << frqit.first << eom);
                     continue;
                 }
                 dense[ap] = record;
@@ -450,8 +441,8 @@ void MHO_DiFXBaselineProcessor::Organize()
             }
             if(nmissing != 0)
             {
-                msg_warn("difx_interface", nmissing << " APs missing on baseline: " << fBaselineName << ", pol-product: "
-                                                    << ppit.first << ", freq index: " << frqit.first
+                msg_warn("difx_interface", nmissing << " APs missing on baseline: " << fBaselineName
+                                                    << ", pol-product: " << ppit.first << ", freq index: " << frqit.first
                                                     << ", these will be zero-weighted." << eom);
             }
             frqit.second.swap(dense);
@@ -461,8 +452,7 @@ void MHO_DiFXBaselineProcessor::Organize()
     //the time axis is relative to the scan start, so the first AP with data is at fAPOffset*fAPLength
     fStartTime = get_vexdate_from_mjd_sec(fStartMJD, 0.0); //zero implies no second-offset
     auto start_tp = hops_clock::from_vex_format(fStartTime);
-    auto stop_tp =
-        start_tp + hops_clock::duration((int64_t)std::llround(fAPLength * (fAPOffset + fNAPs) * SEC_TO_NANOSEC));
+    auto stop_tp = start_tp + hops_clock::duration((int64_t)std::llround(fAPLength * (fAPOffset + fNAPs) * SEC_TO_NANOSEC));
     fStopTime = hops_clock::to_vex_format(stop_tp);
 
     msg_debug("difx_interface", "scan start time is: " << fStartTime << ", baseline " << fBaselineName

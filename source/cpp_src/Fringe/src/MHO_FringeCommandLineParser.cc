@@ -1,11 +1,10 @@
 #include "MHO_FringeCommandLineParser.hh"
+#include "MHO_Clock.hh"
 #include "MHO_DirectoryInterface.hh"
 #include "MHO_FringeDataDiscovery.hh"
-#include "MHO_Clock.hh"
 
 //option parsing and help text library
 #include "CLI11.hpp"
-
 
 namespace hops
 {
@@ -17,7 +16,7 @@ bool is_nonnegative_integer(const std::string& s)
     std::stringstream ss;
     ss << s;
     ss >> value;
-    if( !ss.fail() && value >= 0)
+    if(!ss.fail() && value >= 0)
     {
         return true;
     }
@@ -164,10 +163,12 @@ int MHO_FringeCommandLineParser::sanity_check(MHO_ParameterStore* paramStore)
     //validate the '-T'/--reftime argument if was passed
     if(reftime != "" && !is_nonnegative_integer(reftime) && !hops_clock::is_vex_timestamp(reftime))
     {
-        msg_fatal("fringe", "invalid -T/--reftime argument '"
-        << reftime
-        << "', expected a non-negative integer (seconds after scan start) or a VEX epoch (e.g. 2026y180d12h15m08s)."
-        << eom);
+        msg_fatal(
+            "fringe",
+            "invalid -T/--reftime argument '"
+                << reftime
+                << "', expected a non-negative integer (seconds after scan start) or a VEX epoch (e.g. 2026y180d12h15m08s)."
+                << eom);
         return 1;
     }
 
