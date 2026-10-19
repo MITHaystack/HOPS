@@ -789,10 +789,15 @@ void MHO_DiFXScanProcessor::ExtractPCalData()
         fPCalProcessor.SetFilename(*it);
         double ap_length = fInput["config"][0]["tInt"]; //config is a list element, grab the first item
         fPCalProcessor.SetAccumulationPeriod(ap_length);
+        fPCalProcessor.SetScanStartMJD(fInput["scan"][fFileSet->fLocalIndex]["mjdStart"].get< double >());
         fPCalProcessor.ReadPCalFile();
         fPCalProcessor.Organize();
 
         std::string station_code = fPCalProcessor.GetStationCode();
+        if(fPCalProcessor.GetPCalData()->GetSize() == 0)
+        {
+            continue;
+        }
         multitone_pcal_type* pcal = fPCalProcessor.GetPCalData()->Clone();
 
         fStationCode2PCal[station_code] = pcal;

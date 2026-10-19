@@ -45,6 +45,17 @@ class MHO_DiFXPCalProcessor
         void SetAccumulationPeriod(double ap_sec) { fAPLength = ap_sec; }
 
         /**
+         * @brief Setter for the scan start time, if not set, the first pcal record is assumed to be AP 0.
+         *
+         * @param mjd scan start time (MJD)
+         */
+        void SetScanStartMJD(double mjd)
+        {
+            fScanStartMJD = mjd;
+            fHaveScanStart = true;
+        }
+
+        /**
          * @brief Getter for station code
          *
          * @return Current station code as a string
@@ -86,11 +97,53 @@ class MHO_DiFXPCalProcessor
          */
         void ProcessTokens();
 
+        /**
+         * @brief Assigns the scan-relative AP index of each pcal record
+         *
+         * @param first_ap index of the first AP with pcal data
+         * @param last_ap index of the last AP with pcal data
+         * @return True if any pcal records remain
+         */
+        bool AssignAPIndices(int& first_ap, int& last_ap);
+
+        /**
+         * @brief Collects the sorted/unique set of tone frequencies present
+         */
+        void BuildToneAxis();
+
+        /**
+         * @brief Returns the index of a tone frequency on the tone axis, or fToneFreqs.size() if not present
+         */
+        std::size_t FindToneIndex(double tone_freq) const;
+
+        /**
+         * @brief Fills the dense (pol, ap, tone) table from the pcal records
+         *
+         * @param first_ap Scan-relative index of the first AP in the table
+         */
+        void FillPCalTable(int first_ap);
+
+        /**
+         * @brief Fills in table entries missing from the pcal records by linear interpolation
+         */
+        void FillMissingPhasors();
+
+        /**
+         * @brief Index into fPresent for a (pol, ap, tone) table entry
+         */
+        std::size_t ValidIndex(std::size_t pol, std::size_t ap, std::size_t tone) const
+        {
+            return (pol * fPCal.GetDimension(MTPCAL_TIME_AXIS) + ap) * fToneFreqs.size() + tone;
+        }
+
         std::string fFilename;
         std::string fLine;
         MHO_Tokenizer fTokenizer;
         std::vector< std::string > fTokens;
         double fAPLength;
+        double fScanStartMJD;
+        bool fHaveScanStart;
+        double fGridStartMJD; //start of AP 0 of the pcal AP grid
         bool fValid;
 
         std::string fType;
@@ -122,27 +175,12 @@ class MHO_DiFXPCalProcessor
 
         //pcal data in various forms on the way to getting it organized
         std::vector< pcal_period > fPCalData;
-        std::vector< pcal_period > fSortedPCalData;
         std::set< std::string > fPolSet;
+        std::vector< double > fToneFreqs;
+        std::vector< char > fPresent; //flags (pol, ap, tone) table entries present in the pcal records
 
         //fully organized pcal data
         multitone_pcal_type fPCal;
-
-        //for sorting phasors by tone frequency
-        struct ToneFreqLess
-        {
-                bool operator()(const pcal_phasor& a, const pcal_phasor& b) const { return (a.tone_freq < b.tone_freq); }
-        };
-
-        ToneFreqLess fPhasorToneComp;
-
-        //for sorting APs by time
-        struct APIndexLess
-        {
-                bool operator()(const pcal_period& a, const pcal_period& b) const { return (a.ap < b.ap); }
-        };
-
-        APIndexLess fAPIndexComp;
 };
 
 } // namespace hops
