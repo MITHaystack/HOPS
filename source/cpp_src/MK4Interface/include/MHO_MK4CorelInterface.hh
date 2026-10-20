@@ -146,7 +146,6 @@ class MHO_MK4CorelInterface
                                 std::string rem_net_sb);
         double calc_freq_bin(double sky_freq, double bw, std::string net_sb, int nlags, int bin_index);
 
-
         //returns the stations's vex mode
         std::string ModeTableForStation(const std::string& mode_key, const std::string& section,
                                         const std::string& station_code) const;

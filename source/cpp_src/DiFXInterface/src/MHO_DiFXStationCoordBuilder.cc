@@ -44,8 +44,7 @@ void MHO_DiFXStationCoordBuilder::Extract(std::map< std::string, station_coord_t
         const mho_json& scan_polys = input["scan"][fScanIndex]["DifxPolyModel"];
         if(n >= scan_polys.size() || scan_polys[n].size() <= phase_center || scan_polys[n][phase_center].empty())
         {
-            msg_warn("difx_interface", "no delay model for antenna " << difx_station_code
-                                                                       << ", skipping" << eom);
+            msg_warn("difx_interface", "no delay model for antenna " << difx_station_code << ", skipping" << eom);
             continue;
         }
 

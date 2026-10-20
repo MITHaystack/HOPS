@@ -1,6 +1,6 @@
 #include "MHO_DiFXBaselineProcessor.hh"
-#include "MHO_DiFXInputHelpers.hh"
 #include "MHO_BinaryFileInterface.hh"
+#include "MHO_DiFXInputHelpers.hh"
 
 #include "MHO_DiFXTimeUtilities.hh"
 #include "MHO_DoubleSidebandChannelLabeler.hh"
@@ -239,8 +239,8 @@ void MHO_DiFXBaselineProcessor::AddMissingPolFreqPairs()
             if(freq_map.find(*fqit) == freq_map.end())
             {
                 msg_warn("difx_interface", "no visibility records on baseline: "
-                    << fBaselineID << " for pol-product: " << *ppit << ", freq index: " << *fqit
-                    << ", this channel will be zero weighted." << eom);
+                                               << fBaselineID << " for pol-product: " << *ppit << ", freq index: " << *fqit
+                                               << ", this channel will be zero weighted." << eom);
                 freq_map[*fqit] = std::vector< MHO_DiFXVisibilityRecord* >();
             }
         }

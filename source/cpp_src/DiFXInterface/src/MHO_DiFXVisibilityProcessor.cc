@@ -53,7 +53,8 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
             {
                 msg_warn("difx_interface", "truncated visibility record at end of file: " << fFilename << eom);
             }
-            msg_debug("difx_interface", "stopped reading Swinburne file: " << fFilename << " after " << n_records << " records." << eom);
+            msg_debug("difx_interface",
+                      "stopped reading Swinburne file: " << fFilename << " after " << n_records << " records." << eom);
             break;
         }
 
@@ -80,7 +81,8 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
                 vFile.read(reinterpret_cast< char* >(visRecord.uvw), 3 * sizeof(double));
                 if(!vFile.good())
                 {
-                    msg_warn("difx_interface", "truncated visibility record header at end of file: " << fFilename << ", record dropped" << eom);
+                    msg_warn("difx_interface",
+                             "truncated visibility record header at end of file: " << fFilename << ", record dropped" << eom);
                     break;
                 }
 
@@ -196,8 +198,8 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
 
     if(fApplyFlags)
     {
-        msg_info("difx_interface", "excluded " << n_flagged << " visibility records maked in .flag file, from: "
-                                               << fFilename << eom);
+        msg_info("difx_interface",
+                 "excluded " << n_flagged << " visibility records maked in .flag file, from: " << fFilename << eom);
     }
 
     //close the Swinburne file
@@ -224,10 +226,10 @@ int MHO_DiFXVisibilityProcessor::ExpectedNChannels(int freqindex) const
 void MHO_DiFXVisibilityProcessor::WarnOnTruncatedRecord(const MHO_DiFXVisibilityRecord& visRecord, std::size_t npoints) const
 {
     msg_warn("difx_interface", "truncated visibility record at end of file: "
-       << fFilename << " (baseline " << visRecord.baseline << ", freqindex " << visRecord.freqindex
-       << ", pol-pair " << std::string(visRecord.polpair, 2) << ", mjd " << visRecord.mjd
-       << ", seconds " << visRecord.seconds << ", " << npoints << " of "
-       << ExpectedNChannels(visRecord.freqindex) << " points), record dropped" << eom);
+                                   << fFilename << " (baseline " << visRecord.baseline << ", freqindex " << visRecord.freqindex
+                                   << ", pol-pair " << std::string(visRecord.polpair, 2) << ", mjd " << visRecord.mjd
+                                   << ", seconds " << visRecord.seconds << ", " << npoints << " of "
+                                   << ExpectedNChannels(visRecord.freqindex) << " points), record dropped" << eom);
 }
 
 void MHO_DiFXVisibilityProcessor::LoadFlags()
@@ -245,7 +247,8 @@ void MHO_DiFXVisibilityProcessor::LoadFlags()
         }
         for(const auto& flag : job["flag"])
         {
-            fFlags.push_back(std::make_tuple(flag["mjd1"].get< double >(), flag["mjd2"].get< double >(), flag["antennaId"].get< int >()));
+            fFlags.push_back(
+                std::make_tuple(flag["mjd1"].get< double >(), flag["mjd2"].get< double >(), flag["antennaId"].get< int >()));
         }
     }
     msg_debug("difx_interface", "loaded " << fFlags.size() << " a priori antenna flags" << eom);

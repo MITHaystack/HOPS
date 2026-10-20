@@ -98,7 +98,6 @@ class MHO_DiFXInputProcessor
          */
         mho_json ExtractEOPQuantities(int n);
 
-
         //extract job quantities, include .flag files
         mho_json ExtractJobQuantities(int n);
 

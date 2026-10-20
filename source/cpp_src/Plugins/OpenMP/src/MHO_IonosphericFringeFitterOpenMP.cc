@@ -1017,7 +1017,8 @@ void MHO_IonosphericFringeFitterOpenMP::lock_sbd_window(int ilmax, double bottom
         if(calculate_approx_snr(fIonLoopResults[k - 1].famp) > 15.0)
         {
             double sbdelay = fIonLoopResults[k].coarse_sbd;
-            msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+            msg_debug("fringe",
+                      "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
             fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
             for(int t = 0; t < fNIonThreads; t++)
             {

@@ -89,7 +89,6 @@ class MHO_DiFXVisibilityProcessor
         void SetApplyFlags(bool val) { fApplyFlags = val; }
 
     private:
-
         //number of spectral points per record for this freq (nChan/specAvg)
         int ExpectedNChannels(int freqindex) const;
 

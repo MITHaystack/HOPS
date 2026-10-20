@@ -1973,7 +1973,8 @@ void MHO_BasicPlotVisitor::make_model_resid_info_text(const mho_json& plot_dict)
         MHO_PlotDataExtractor::format_scientific(MHO_PlotDataExtractor::extract_double(plot_dict, "PhaseDelay(usec)", 0.0), 11);
     std::string delay_rate = MHO_PlotDataExtractor::format_scientific(
         MHO_PlotDataExtractor::extract_double(plot_dict, "TotalDelayRate(us/s)",
-                                              MHO_PlotDataExtractor::extract_double(plot_dict, "DelayRate(ps/s)", 0.0)), 11);
+                                              MHO_PlotDataExtractor::extract_double(plot_dict, "DelayRate(ps/s)", 0.0)),
+        11);
     std::string total_phase =
         MHO_PlotDataExtractor::format_standard(MHO_PlotDataExtractor::extract_double(plot_dict, "TotalPhase(deg)", 0.0), 1, 1);
 

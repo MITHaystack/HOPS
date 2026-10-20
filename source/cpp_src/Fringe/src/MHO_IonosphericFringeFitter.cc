@@ -408,7 +408,8 @@ int MHO_IonosphericFringeFitter::rjc_ion_search() //(struct type_pass *pass)
             if(first_pass && ionloop > 0 && prev_approx_snr > 15.0)
             {
                 double sbdelay = fMBDSearch->GetCoarseSBD();
-                msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+                msg_debug("fringe",
+                          "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
                 fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
                 first_pass = false;
             }
@@ -743,7 +744,8 @@ int MHO_IonosphericFringeFitter::ion_search_smooth()
             if(first_pass && ionloop > 0 && prev_approx_snr > 15.0)
             {
                 double sbdelay = fMBDSearch->GetCoarseSBD();
-                msg_debug("fringe", "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
+                msg_debug("fringe",
+                          "ionospheric fringe search cached SBD window to: (" << sbdelay << ", " << sbdelay << ")" << eom);
                 fMBDSearch->SetSBDWindow(sbdelay, sbdelay);
                 first_pass = false;
             }
@@ -861,7 +863,7 @@ double MHO_IonosphericFringeFitter::calculate_approx_snr()
     double total_summed_weights = fParameterStore->GetAs< double >("/fringe/total_summed_weights");
     double famp = fParameterStore->GetAs< double >("/fringe/famp");
 
-    //correction needed for approx snr, (IXY mode) needs the number of summed pol-products 
+    //correction needed for approx snr, (IXY mode) needs the number of summed pol-products
     double n_polprod = 1.0;
     weight_type* wt_data = fContainerStore->GetObject< weight_type >(std::string("weight"));
     if(wt_data != nullptr && wt_data->Retrieve("n_summed_polprod", n_polprod) && n_polprod > 0)
@@ -869,7 +871,8 @@ double MHO_IonosphericFringeFitter::calculate_approx_snr()
         bw_corr_factor /= std::sqrt(n_polprod);
     }
 
-    double snr = MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);
+    double snr =
+        MHO_BasicFringeInfo::calculate_snr(eff_npols, ap_delta, samp_period, total_summed_weights, famp, bw_corr_factor);
     return snr;
 }
 

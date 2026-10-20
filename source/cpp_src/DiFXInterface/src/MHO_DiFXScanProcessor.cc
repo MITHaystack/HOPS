@@ -72,8 +72,10 @@ void MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
     if(nScan > 1)
     {
         std::string scan_id = fInput["scan"][fFileSet->fLocalIndex]["identifier"];
-        msg_error("difx_interface", "job " << fFileSet->fScanName << " contains " << nScan << " scans, multiple scans per job is not yet supported, all "
-            << "records will be written to scan " << scan_id << ". Use 'singleScan = True' in vex2difx."<< eom);
+        msg_error("difx_interface", "job " << fFileSet->fScanName << " contains " << nScan
+                                           << " scans, multiple scans per job is not yet supported, all "
+                                           << "records will be written to scan " << scan_id
+                                           << ". Use 'singleScan = True' in vex2difx." << eom);
     }
 
     if(MHO_Message::GetInstance().GetMessageLevel() == eDebugLevel)
@@ -455,8 +457,8 @@ std::vector< long > MHO_DiFXScanProcessor::MapChannelsBySkyFreq(const visibility
         if(ch_map[i] < 0)
         {
             msg_error("difx_interface", "no corresponding auto-corr of station: "
-                << station << " matches channel at sky freq: " << vis_ch.at(i) << " (" << vis_sb
-                << ") of baseline: " << baseline << ", will not normalize." << eom);
+                                            << station << " matches channel at sky freq: " << vis_ch.at(i) << " (" << vis_sb
+                                            << ") of baseline: " << baseline << ", will not normalize." << eom);
         }
     }
     return ch_map;
@@ -572,8 +574,8 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
                     {
                         msg_error("difx_interface", "remote station: " << rem_st << " autocorr data is missing" << eom);
                     }
-                    msg_error("difx_interface", "pol-product: " << polprod << " of baseline: " << baseline
-                        << " will be zero'd out" << eom);
+                    msg_error("difx_interface",
+                              "pol-product: " << polprod << " of baseline: " << baseline << " will be zero'd out" << eom);
 
                     wt->SliceView(pp, ":", ":", ":") *= 0.0;
                     vis->SliceView(pp, ":", ":", ":") *= 0.0;
@@ -615,9 +617,9 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
                                         st_code = rem_st;
                                     }
                                     msg_error("difx_interface", "zero value in auto-corrs of station: "
-                                        << st_code << ", affected data on baseline:pol-product: "
-                                        << baseline << ":" << polprod << " will be zero-weighted."
-                                        << eom);
+                                                                    << st_code
+                                                                    << ", affected data on baseline:pol-product: " << baseline
+                                                                    << ":" << polprod << " will be zero-weighted." << eom);
                                     issue_once = false;
                                 }
                                 wt->SliceView(pp, ch, ap, ":") *= 0.0;
@@ -634,7 +636,8 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
         {
             msg_error("difx_interface",
                       "cannot locate autocorrs for both stations of baseline: "
-                          << baseline << ", visibilities will be zero'd out (use raw mode to skip normalization by autocorrs)." << eom);
+                          << baseline << ", visibilities will be zero'd out (use raw mode to skip normalization by autocorrs)."
+                          << eom);
             (*wt) *= 0.0;
             (*vis) *= 0.0;
         }
