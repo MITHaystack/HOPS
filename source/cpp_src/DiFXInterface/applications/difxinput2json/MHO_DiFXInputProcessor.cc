@@ -355,6 +355,12 @@ mho_json MHO_DiFXInputProcessor::ExtractScanQuantities(int n)
         for(int i = 0; i < s->nAntenna; i++)
         {
             std::vector< std::vector< mho_json > > pj;
+            if(s->im == nullptr || s->im[i] == nullptr)
+            {
+                //no model for this antenna, so leave it empty
+                polys.push_back(pj);
+                continue;
+            }
             for(int j = 0; j <= s->nPhaseCentres; j++)
             {
                 std::vector< mho_json > pk;
