@@ -49,8 +49,11 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
 
         if(!(vFile.good()))
         {
-            msg_debug("difx_interface",
-                      "stopped reading Swinburne file: " << fFilename << " after " << n_records << " records." << eom);
+            if(vFile.gcount() != 0)
+            {
+                msg_warn("difx_interface", "truncated visibility record at end of file: " << fFilename << eom);
+            }
+            msg_debug("difx_interface", "stopped reading Swinburne file: " << fFilename << " after " << n_records << " records." << eom);
             break;
         }
 
@@ -75,6 +78,11 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
                 vFile.read(reinterpret_cast< char* >(&visRecord.pulsarbin), sizeof(int));
                 vFile.read(reinterpret_cast< char* >(&visRecord.dataweight), sizeof(double));
                 vFile.read(reinterpret_cast< char* >(visRecord.uvw), 3 * sizeof(double));
+                if(!vFile.good())
+                {
+                    msg_warn("difx_interface", "truncated visibility record header at end of file: " << fFilename << ", record dropped" << eom);
+                    break;
+                }
 
                 auto nChanIt = fNChannelsMap.find(std::make_pair(visRecord.baseline, visRecord.freqindex));
                 if(nChanIt != fNChannelsMap.end())
@@ -85,13 +93,16 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
                                visRecord.nchan * sizeof(MHO_VisibilityChunk));
                     if(!vFile.good())
                     {
-                        keep_reading = false;
+                        //short read, hit end inside record
+                        WarnOnTruncatedRecord(visRecord, vFile.gcount() / sizeof(MHO_VisibilityChunk));
+                        break;
                     }
                 }
                 else
                 {
                     //have to parcel out the visibilities one at a time
                     std::size_t npoints = 0;
+                    bool truncated = false;
                     while(true)
                     {
                         MHO_VisibilityChunk chunk;
@@ -113,9 +124,17 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
                         }
                         else
                         {
+                            //hit the EOF, check if the last record is complete
+                            int expected = ExpectedNChannels(visRecord.freqindex);
+                            truncated = (vFile.gcount() != 0) || (expected >= 0 && npoints != (std::size_t)expected);
                             keep_reading = false;
                             break;
-                        } //hit EOF
+                        }
+                    }
+                    if(truncated)
+                    {
+                        WarnOnTruncatedRecord(visRecord, npoints);
+                        break;
                     }
                     n_records++;
                     visRecord.nchan = npoints;
@@ -183,6 +202,32 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
 
     //close the Swinburne file
     vFile.close();
+}
+
+int MHO_DiFXVisibilityProcessor::ExpectedNChannels(int freqindex) const
+{
+    //expecte nChan/specAvg spectral points per record
+    if(fInput == nullptr || !fInput->contains("freq") || freqindex < 0 || freqindex >= (int)(*fInput)["freq"].size())
+    {
+        return -1; //error
+    }
+    const mho_json& freq = (*fInput)["freq"][freqindex];
+    int nchan = freq.value("nChan", -1);
+    int spec_avg = freq.value("specAvg", 1);
+    if(nchan < 0 || spec_avg <= 0)
+    {
+        return -1; //unknown
+    }
+    return nchan / spec_avg;
+}
+
+void MHO_DiFXVisibilityProcessor::WarnOnTruncatedRecord(const MHO_DiFXVisibilityRecord& visRecord, std::size_t npoints) const
+{
+    msg_warn("difx_interface", "truncated visibility record at end of file: "
+       << fFilename << " (baseline " << visRecord.baseline << ", freqindex " << visRecord.freqindex
+       << ", pol-pair " << std::string(visRecord.polpair, 2) << ", mjd " << visRecord.mjd
+       << ", seconds " << visRecord.seconds << ", " << npoints << " of "
+       << ExpectedNChannels(visRecord.freqindex) << " points), record dropped" << eom);
 }
 
 void MHO_DiFXVisibilityProcessor::LoadFlags()

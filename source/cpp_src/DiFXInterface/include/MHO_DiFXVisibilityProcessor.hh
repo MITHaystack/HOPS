@@ -90,6 +90,12 @@ class MHO_DiFXVisibilityProcessor
 
     private:
 
+        //number of spectral points per record for this freq (nChan/specAvg)
+        int ExpectedNChannels(int freqindex) const;
+
+        //report truncated record
+        void WarnOnTruncatedRecord(const MHO_DiFXVisibilityRecord& visRecord, std::size_t npoints) const;
+
         //needs (mjd1, mjd2, antennaId) flags
         void LoadFlags();
         //true if the record time falls in a flag interval of either antenna
