@@ -216,6 +216,9 @@ class MHO_DiFXBaselineProcessor
         //this merges them back together when they match
         void MergeSplitOutputBandRecords();
 
+        //gives any missing pol-product an (empty) entry for each channel
+        void AddMissingPolFreqPairs();
+
         std::string ConstructCorFileName(const std::string& output_dir, const std::string& root_code,
                                          const std::string& baseline, const std::string& baseline_shortname);
 

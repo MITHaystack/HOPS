@@ -226,6 +226,26 @@ void MHO_DiFXBaselineProcessor::MergeSplitOutputBandRecords()
     fRecords.swap(merged_records);
 }
 
+void MHO_DiFXBaselineProcessor::AddMissingPolFreqPairs()
+{
+    //every pol-product ought to get an entry for every channel on a baseline (if missing),
+    //pairs without records get filled here so all of their APs become empty (zero-weighted) slots
+    for(auto ppit = fPolPairSet.begin(); ppit != fPolPairSet.end(); ppit++)
+    {
+        auto& freq_map = fVisibilities[*ppit];
+        for(auto fqit = fFreqIndexSet.begin(); fqit != fFreqIndexSet.end(); fqit++)
+        {
+            if(freq_map.find(*fqit) == freq_map.end())
+            {
+                msg_warn("difx_interface", "no visibility records on baseline: "
+                    << fBaselineID << " for pol-product: " << *ppit << ", freq index: " << *fqit
+                    << ", this channel will be zero weighted." << eom);
+                freq_map[*fqit] = std::vector< MHO_DiFXVisibilityRecord* >();
+            }
+        }
+    }
+}
+
 void MHO_DiFXBaselineProcessor::Organize()
 {
     fHaveBaselineData = true;
@@ -287,6 +307,7 @@ void MHO_DiFXBaselineProcessor::Organize()
         fBandwidthSet.insert(record->bandwidth);
         fVisibilities[pp][freqidx].push_back(record);
     }
+    AddMissingPolFreqPairs();
 
     if(fInput == nullptr)
     {
