@@ -22,6 +22,7 @@ if(BASH_PROGRAM)
             chk_converthops2json
             chk_simplefringesearch3
             chk_simplefringesearch4
+            chk_simplefringesearch5
             chk_2charstationcodes
             chk_passband
             chk_dsb1
