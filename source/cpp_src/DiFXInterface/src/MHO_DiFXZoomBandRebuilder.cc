@@ -339,17 +339,11 @@ void MHO_DiFXZoomBandRebuilder::RebuildFreqSections(mho_json& vex_root, const st
             double bw_MHz = input["freq"][global_idx]["bw"].get< double >();
             std::string sb = input["freq"][global_idx]["sideband"].get< std::string >();
 
-            //determine band label for this sky frequency (used as band_id link value)
-            std::string band_label = "X";
-            for(const auto& btup : fFreqBands)
+            //determine band label for this sky frequency
+            std::string band_label = MHO_DiFXInputHelpers::DetermineFreqBand(fFreqBands, sky_freq_MHz);
+            if(band_label == "")
             {
-                double flow = std::get< 1 >(btup);
-                double fhigh = std::get< 2 >(btup);
-                if(sky_freq_MHz > flow && sky_freq_MHz < fhigh)
-                {
-                    band_label = std::get< 0 >(btup);
-                    break;
-                }
+                band_label = "X"; //default to "X" if none matches, so we don't get broken vex link strings
             }
 
             const std::vector< std::string >& pols = freq_to_pols[global_idx];

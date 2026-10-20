@@ -7,6 +7,7 @@ if(BASH_PROGRAM)
         chk_difx2hops
         chk_d2h_vs_d2m4
         chk_d2h_mixedmode
+        chk_d2h_k_legacy
     )
 
     foreach( BASENAME ${TEST_SCRIPT_BASENAMES} )

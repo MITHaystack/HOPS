@@ -3,6 +3,8 @@
 
 #include <cctype>
 #include <string>
+#include <tuple>
+#include <utility>
 #include <vector>
 
 #include "MHO_JSONHeaderWrapper.hh"
@@ -145,6 +147,36 @@ inline std::string GetDatastreamAntennaName(const mho_json& input, const mho_jso
         len++;
     }
     return name.substr(0, len);
+}
+
+//band label for a sky frequency (MHz)
+//when ranges overlap the narrower band gets precendence
+//returns "" on no match
+inline std::string DetermineFreqBand(const std::vector< std::tuple< std::string, double, double > >& bands, double freq)
+{
+    //decide based on sky-freq of channel (we ignore bandwidth/sideband for now)
+    //so may not be correct for extra-wide channels...but if that is the case,
+    //probably some customized fband settings should be passed by user to specify the freq band labeling
+
+    std::string fband = "";
+    double fband_width = 1e30;
+    for(const auto& band_tup : bands)
+    {
+        double low = std::get< 1 >(band_tup);
+        double high = std::get< 2 >(band_tup);
+        if(high < low)
+        {
+            std::swap(low, high);
+        }
+        double width = high - low;
+        if(freq < high && low < freq && width < fband_width)
+        {
+            fband = std::get< 0 >(band_tup);
+            fband_width = width;
+            //do not break here, so that narrower freq-bands will override larger ones
+        }
+    }
+    return fband;
 }
 
 } // namespace MHO_DiFXInputHelpers

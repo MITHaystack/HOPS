@@ -4,6 +4,7 @@
 #include <map>
 #include <sstream>
 #include <string>
+#include <tuple>
 #include <vector>
 
 #include "MHO_JSONHeaderWrapper.hh"
@@ -82,17 +83,7 @@ class MHO_DiFXChannelNameConstructor
          */
         std::string BandLabelFromSkyFreq(double sky_freq);
 
-        /**
-         * @brief Class band_range
-         */
-        struct band_range
-        {
-                double fLow;
-                double fHigh;
-                std::string fLabel;
-        };
-
-        std::vector< band_range > fBandRangeLabels;
+        std::vector< std::tuple< std::string, double, double > > fBandRangeLabels; //(label, freq_low, freq_high)
         std::string fScanID;
 
         //scan-wide canonical grid (set by SetGlobalSkyFreqGrid); used by AddChannelNames

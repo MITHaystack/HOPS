@@ -1,4 +1,5 @@
 #include "MHO_DiFXBaselineProcessor.hh"
+#include "MHO_DiFXInputHelpers.hh"
 #include "MHO_BinaryFileInterface.hh"
 
 #include "MHO_DiFXTimeUtilities.hh"
@@ -868,32 +869,7 @@ void MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords()
 
 std::string MHO_DiFXBaselineProcessor::DetermineFreqGroup(double freq)
 {
-    //decide based on sky-freq of channel (we ignore bandwidth/sideband for now)
-    //so may not be correct for extra-wide channels...but if that is the case,
-    //probably some customize fband settings should be passed by user to specify the freq band labeling
-    std::string fband = "";
-    double fband_width = 1e30;
-
-    for(auto it = fFreqBands.begin(); it != fFreqBands.end(); it++)
-    {
-        std::string b = std::get< 0 >(*it);
-        double low = std::get< 1 >(*it);
-        double high = std::get< 2 >(*it);
-        if(high < low)
-        {
-            double tmp = low;
-            low = high;
-            high = tmp;
-        } //swap if mis-ordered
-        double width = high - low;
-        if(freq < high && low < freq && width < fband_width)
-        {
-            fband = b;
-            fband_width = width;
-            //do not break here, so that narrower freq-bands will override larger ones
-        }
-    }
-    return fband; //returns "" if no matching band assignment found
+    return MHO_DiFXInputHelpers::DetermineFreqBand(fFreqBands, freq);
 }
 
 std::string MHO_DiFXBaselineProcessor::ConstructCorFileName(const std::string& output_dir, const std::string& root_code,

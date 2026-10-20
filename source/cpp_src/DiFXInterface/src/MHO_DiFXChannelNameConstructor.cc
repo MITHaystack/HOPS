@@ -1,4 +1,5 @@
 #include "MHO_DiFXChannelNameConstructor.hh"
+#include "MHO_DiFXInputHelpers.hh"
 #include "MHO_MK4ChanId.hh"
 #include "MHO_VexHelpers.hh"
 
@@ -18,12 +19,7 @@ MHO_DiFXChannelNameConstructor::~MHO_DiFXChannelNameConstructor(){};
 //add a frequency range for a specific band label
 void MHO_DiFXChannelNameConstructor::AddBandLabel(std::string band_label, double freq_low, double freq_high)
 {
-    //note that we are not checking for overlap or other error conditions
-    band_range br;
-    br.fLow = freq_low;
-    br.fHigh = freq_high;
-    br.fLabel = band_label;
-    fBandRangeLabels.push_back(br);
+    fBandRangeLabels.push_back(std::make_tuple(band_label, freq_low, freq_high));
 }
 
 void MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
@@ -180,17 +176,7 @@ void MHO_DiFXChannelNameConstructor::AddChannelNames(mho_json& vex_root)
 
 std::string MHO_DiFXChannelNameConstructor::BandLabelFromSkyFreq(double sky_freq)
 {
-    std::string label = ""; //no match, then band label is empty
-    for(auto it = fBandRangeLabels.begin(); it != fBandRangeLabels.end(); it++)
-    {
-        //assume no overlapping band assignments
-        if(sky_freq < it->fHigh && sky_freq > it->fLow)
-        {
-            label = it->fLabel;
-            return label;
-        }
-    }
-    return label;
+    return MHO_DiFXInputHelpers::DetermineFreqBand(fBandRangeLabels, sky_freq);
 }
 
 } // namespace hops
