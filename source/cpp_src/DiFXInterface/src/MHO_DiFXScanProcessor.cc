@@ -408,6 +408,42 @@ std::vector< long > MHO_DiFXScanProcessor::MapAPsByTime(const visibility_store_t
     return ap_map;
 }
 
+std::vector< long > MHO_DiFXScanProcessor::MapChannelsBySkyFreq(const visibility_store_type* vis,
+                                                                const visibility_store_type* ac, const std::string& baseline,
+                                                                const std::string& station) const
+{
+    //map each channel of vis to the auto corr, mark as -1 if none
+    auto& vis_ch = std::get< CHANNEL_AXIS >(*vis);
+    auto& auto_ch = std::get< CHANNEL_AXIS >(*ac);
+    std::vector< long > ch_map(vis_ch.GetSize(), -1);
+    double tol = 1e-6; //MHz
+    for(std::size_t i = 0; i < vis_ch.GetSize(); i++)
+    {
+        std::string vis_sb, auto_sb;
+        double vis_bw = 0.0;
+        double auto_bw = 0.0;
+        vis_ch.RetrieveIndexLabelKeyValue(i, "net_sideband", vis_sb);
+        vis_ch.RetrieveIndexLabelKeyValue(i, "bandwidth", vis_bw);
+        for(std::size_t j = 0; j < auto_ch.GetSize(); j++)
+        {
+            auto_ch.RetrieveIndexLabelKeyValue(j, "net_sideband", auto_sb);
+            auto_ch.RetrieveIndexLabelKeyValue(j, "bandwidth", auto_bw);
+            if(std::fabs(auto_ch.at(j) - vis_ch.at(i)) < tol && auto_sb == vis_sb && std::fabs(auto_bw - vis_bw) < tol)
+            {
+                ch_map[i] = (long)j;
+                break;
+            }
+        }
+        if(ch_map[i] < 0)
+        {
+            msg_error("difx_interface", "no corresponding auto-corr of station: "
+                << station << " matches channel at sky freq: " << vis_ch.at(i) << " (" << vis_sb
+                << ") of baseline: " << baseline << ", will not normalize." << eom);
+        }
+    }
+    return ch_map;
+}
+
 void MHO_DiFXScanProcessor::NormalizeVisibilities()
 {
     msg_debug("difx_interface", "normalizing visibilities" << eom);
@@ -489,6 +525,8 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
             auto rem_ac = reduced_auto_corrs[rem_st];
             std::vector< long > ref_ap_map = MapAPsByTime(vis, raw_auto_corrs[ref_st]);
             std::vector< long > rem_ap_map = MapAPsByTime(vis, raw_auto_corrs[rem_st]);
+            std::vector< long > ref_ch_map = MapChannelsBySkyFreq(vis, raw_auto_corrs[ref_st], baseline, ref_st);
+            std::vector< long > rem_ch_map = MapChannelsBySkyFreq(vis, raw_auto_corrs[rem_st], baseline, rem_st);
             for(std::size_t pp = 0; pp < npp; pp++)
             {
                 //figure out the pol-mapping to the right autocorrs
@@ -526,8 +564,12 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
                         }
                         for(std::size_t ch = 0; ch < nch; ch++)
                         {
-                            double ref_val = std::sqrt(std::real((*ref_ac)(ref_pp_idx, ch, ref_ap_map[ap], 0)));
-                            double rem_val = std::sqrt(std::real((*rem_ac)(rem_pp_idx, ch, rem_ap_map[ap], 0)));
+                            if(ref_ch_map[ch] < 0 || rem_ch_map[ch] < 0)
+                            {
+                                continue;
+                            }
+                            double ref_val = std::sqrt(std::real((*ref_ac)(ref_pp_idx, ref_ch_map[ch], ref_ap_map[ap], 0)));
+                            double rem_val = std::sqrt(std::real((*rem_ac)(rem_pp_idx, rem_ch_map[ch], rem_ap_map[ap], 0)));
                             double factor = 1.0;
                             if(std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
                             {
