@@ -98,6 +98,11 @@ class MHO_DiFXInterface
         void SetExportAsMark4False() { fExportAsMark4 = false; }
 
         /**
+         * @brief Enable/disable use of DiFX .flag file
+         */
+        void SetApplyFlags(bool val) { fApplyFlags = val; }
+
+        /**
          * @brief Setter for frequency bands (label, frequency limits)
          *
          * @param fbands Vector of tuples containing band name, start freq, and end freq
@@ -169,6 +174,7 @@ class MHO_DiFXInterface
         bool fPreserveDiFXScanNames;
         bool fAttachDiFXInput;
         bool fExportAsMark4;
+        bool fApplyFlags;
         bool fTryLocalDir; //forwarded as --localdir to the difxinput2json subprocess
 
         std::vector< std::tuple< std::string, double, double > > fFreqBands; //frequency band/group labels and ranges

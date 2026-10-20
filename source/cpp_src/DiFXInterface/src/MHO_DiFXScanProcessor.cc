@@ -46,6 +46,7 @@ MHO_DiFXScanProcessor::MHO_DiFXScanProcessor()
     fTryLocalDir = false;
     fNormalize = false;
     fExportAsMark4 = false;
+    fApplyFlags = false;
     fFreqBands.clear();
     fFreqGroups.clear();
     fSelectByBandwidth = false;
@@ -246,6 +247,7 @@ void MHO_DiFXScanProcessor::ConvertVisibilityFileObjects()
         visProcessor.SetOnlyBandwidth(fOnlyBandwidth);
     }
     visProcessor.SetDiFXInputData(&fInput);
+    visProcessor.SetApplyFlags(fApplyFlags);
     visProcessor.SetFilename(fFileSet->fVisibilityFileList[0]);
 
     //when zoom-band VEX reconstruction is active (and user has not selected a different native bandwidth),

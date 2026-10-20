@@ -16,6 +16,7 @@ MHO_DiFXVisibilityProcessor::MHO_DiFXVisibilityProcessor()
     fOnlyBandwidth = 0;
     fInput = nullptr;
     fZoomFreqIndices.clear();
+    fApplyFlags = false;
 }
 
 void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselineProcessor >& allBaselineVisibilities)
@@ -31,7 +32,14 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
         msg_error("file", "failed to open visibility file: " << fFilename << " for reading." << eom);
     }
 
+    fFlags.clear();
+    if(fApplyFlags)
+    {
+        LoadFlags();
+    }
+
     std::size_t n_records = 0;
+    std::size_t n_flagged = 0;
     bool logged_first_record = false;
     bool keep_reading = true;
     while(keep_reading && vFile.good())
@@ -125,6 +133,12 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
                     logged_first_record = true;
                 }
 
+                if(IsRecordFlagged(visRecord))
+                {
+                    n_flagged++; //increment flagged record counter
+                    continue;
+                }
+
                 //first time seeing this baseline, so pass these parameters on construction
                 if(allBaselineVisibilities.find(visRecord.baseline) == allBaselineVisibilities.end())
                 {
@@ -161,8 +175,56 @@ void MHO_DiFXVisibilityProcessor::ReadDIFXFile(std::map< int, MHO_DiFXBaselinePr
     msg_debug("difx_interface", "read " << n_records << " visibility records from " << allBaselineVisibilities.size()
                                         << " baselines, from: " << fFilename << eom);
 
+    if(fApplyFlags)
+    {
+        msg_info("difx_interface", "excluded " << n_flagged << " visibility records maked in .flag file, from: "
+                                               << fFilename << eom);
+    }
+
     //close the Swinburne file
     vFile.close();
+}
+
+void MHO_DiFXVisibilityProcessor::LoadFlags()
+{
+    if(fInput == nullptr || !fInput->contains("job"))
+    {
+        msg_warn("difx_interface", "no job/flag data in the difx input json, flags will not be applied" << eom);
+        return;
+    }
+    for(const auto& job : (*fInput)["job"])
+    {
+        if(!job.contains("flag"))
+        {
+            continue;
+        }
+        for(const auto& flag : job["flag"])
+        {
+            fFlags.push_back(std::make_tuple(flag["mjd1"].get< double >(), flag["mjd2"].get< double >(), flag["antennaId"].get< int >()));
+        }
+    }
+    msg_debug("difx_interface", "loaded " << fFlags.size() << " a priori antenna flags" << eom);
+}
+
+bool MHO_DiFXVisibilityProcessor::IsRecordFlagged(const MHO_DiFXVisibilityRecord& visRecord) const
+{
+    if(fFlags.empty())
+    {
+        return false;
+    }
+    //baseline = 256*(a1+1) + (a2+1),
+    //assuming record time is the center of the AP
+    int a1 = visRecord.baseline / 256 - 1;
+    int a2 = visRecord.baseline % 256 - 1;
+    double t = visRecord.mjd + visRecord.seconds / 86400.0;
+    for(const auto& flag : fFlags)
+    {
+        if(std::get< 0 >(flag) <= t && t <= std::get< 1 >(flag) && (std::get< 2 >(flag) == a1 || std::get< 2 >(flag) == a2))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 } // namespace hops

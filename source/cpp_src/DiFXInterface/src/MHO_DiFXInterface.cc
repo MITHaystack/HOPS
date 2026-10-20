@@ -13,6 +13,7 @@ MHO_DiFXInterface::MHO_DiFXInterface(): fInputDirectory(""), fOutputDirectory(""
     fSelectByBandwidth = false;
     fAttachDiFXInput = false;
     fExportAsMark4 = false;
+    fApplyFlags = false;
     fTryLocalDir = false;
 };
 
@@ -336,6 +337,7 @@ void MHO_DiFXInterface::ProcessScans()
         fScanProcessor.SetExperimentNumber(fExperNum);
         fScanProcessor.SetRootCode(scan_codes[i]);
         fScanProcessor.SetTryLocalDirectory(fTryLocalDir);
+        fScanProcessor.SetApplyFlags(fApplyFlags);
         fScanProcessor.SetNormalizeFalse();
         if(fNormalize)
         {

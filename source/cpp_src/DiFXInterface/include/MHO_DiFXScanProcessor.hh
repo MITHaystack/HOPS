@@ -113,6 +113,11 @@ class MHO_DiFXScanProcessor
 
         void SetExportAsMark4True() { fExportAsMark4 = true; }
 
+        /**
+         * @brief Enable/disable use of DiFX .flag file
+         */
+        void SetApplyFlags(bool val) { fApplyFlags = val; }
+
         void SetExportAsMark4False() { fExportAsMark4 = false; }
 
         /**
@@ -209,6 +214,7 @@ class MHO_DiFXScanProcessor
         int fExperNum;
         bool fNormalize;
         bool fExportAsMark4;
+        bool fApplyFlags;
 
         //place to cache the OVEX/ROOT file data
         //this object only needs to be cached if we are exporting to mark4 types

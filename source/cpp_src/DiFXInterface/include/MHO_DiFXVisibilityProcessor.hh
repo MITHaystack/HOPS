@@ -5,6 +5,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -84,7 +85,16 @@ class MHO_DiFXVisibilityProcessor
 
         void SetZoomFreqIndices(const std::set< int >& zoom_indices) { fZoomFreqIndices = zoom_indices; }
 
+        //use .flags file
+        void SetApplyFlags(bool val) { fApplyFlags = val; }
+
     private:
+
+        //needs (mjd1, mjd2, antennaId) flags
+        void LoadFlags();
+        //true if the record time falls in a flag interval of either antenna
+        bool IsRecordFlagged(const MHO_DiFXVisibilityRecord& visRecord) const;
+
         const mho_json* fInput;
 
         std::string fFilename;
@@ -97,6 +107,8 @@ class MHO_DiFXVisibilityProcessor
         bool fSelectByBandwidth;
         double fOnlyBandwidth;            //limit output to only channels of this bandwidth
         std::set< int > fZoomFreqIndices; //when non-empty, discard records not in this set (keeps root/vis consistent)
+        bool fApplyFlags;
+        std::vector< std::tuple< double, double, int > > fFlags; //(mjd1, mjd2, antennaId)
 };
 
 } // namespace hops

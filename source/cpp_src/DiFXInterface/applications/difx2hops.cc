@@ -41,6 +41,7 @@ int main(int argc, char** argv)
     bool attach_difx_input = false;
     bool difxio_localdir = false;
     bool export_as_mark4 = false;
+    bool apply_flags = false;
     double bandwidth = 0;
 
     //legacy frequency band set-up
@@ -93,6 +94,8 @@ int main(int argc, char** argv)
     app.add_option("-g,--freq-groups", freq_groups, "include data only from the specified frequency groups")->delimiter(',');
     app.add_option("-w,--bandwidth", bandwidth, "include data only channels matching this bandwidth (in MHz)");
     app.add_flag("-a,--attach-difx-input", attach_difx_input, "attach the DiFX .input data to the visibility object tags");
+    app.add_flag("-f,--apply-flags", apply_flags,
+                 "exclude visibilities flagged by DiFX .flag file from export");
 
     CLI11_PARSE(app, argc, argv);
 
@@ -196,6 +199,7 @@ int main(int argc, char** argv)
             {
                 difxInterface.SetTryLocalDirectoryTrue();
             }
+            difxInterface.SetApplyFlags(apply_flags);
             difxInterface.SetInputDirectory(input_dir);
             difxInterface.SetOutputDirectory(output_directory);
             difxInterface.SetStationCodes(&stcode_map);

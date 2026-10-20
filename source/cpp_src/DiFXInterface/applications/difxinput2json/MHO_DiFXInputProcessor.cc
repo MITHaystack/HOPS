@@ -142,6 +142,12 @@ void MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
         input["source"].push_back(ExtractSourceQuantities(i));
     }
 
+    //loop over jobs
+    for(int i = 0; i < fD->nJob; i++)
+    {
+        input["job"].push_back(ExtractJobQuantities(i));
+    }
+
     //loop over EOPs
     for(int i = 0; i < fD->nEOP; i++)
     {
@@ -162,7 +168,7 @@ void MHO_DiFXInputProcessor::ConvertToJSON(mho_json& input)
 
     //add the input file name
     input["difx_input_filename"] = fFilename;
-    input["difx_input_schema_version"] = 2;
+    input["difx_input_schema_version"] = 3;
 
     /****** SKIP THESE OPTIONAL TABLES FOR NOW ********************************/
     // DifxSpacecraft	*spacecraft;	/* optional table */
@@ -418,6 +424,27 @@ mho_json MHO_DiFXInputProcessor::ExtractEOPQuantities(int n)
         eop["yPole"] = e->yPole;
     }
     return eop;
+}
+
+mho_json MHO_DiFXInputProcessor::ExtractJobQuantities(int n)
+{
+    DifxJob* j = &(fD->job[n]);
+    mho_json job;
+    job["jobId"] = j->jobId;
+    job["jobStart"] = j->jobStart;
+    job["jobStop"] = j->jobStop;
+    job["mjdStart"] = j->mjdStart;
+    job["duration"] = j->duration;
+    job["flag"] = mho_json::array();
+    for(int i = 0; i < j->nFlag; i++)
+    {
+        mho_json flag;
+        flag["mjd1"] = j->flag[i].mjd1;
+        flag["mjd2"] = j->flag[i].mjd2;
+        flag["antennaId"] = j->flag[i].antennaId;
+        job["flag"].push_back(flag);
+    }
+    return job;
 }
 
 mho_json MHO_DiFXInputProcessor::ExtractDatastreamQuantities(int n)
