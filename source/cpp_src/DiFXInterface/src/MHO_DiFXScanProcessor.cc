@@ -454,6 +454,8 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
     std::map< std::string, visibility_store_type* > reduced_auto_corrs;
     //map baseline to visibilities
     std::map< std::string, visibility_store_type* > raw_visibilities;
+    //map baseline to weights, data which cannot be normalized is both zeroed out and zero-weighted
+    std::map< std::string, weight_store_type* > raw_weights;
 
     //first need to locate all of the auto-corrs, and visibilities
     for(auto it = fAllBaselineVisibilities.begin(); it != fAllBaselineVisibilities.end(); it++)
@@ -473,6 +475,7 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
         if(vis != nullptr)
         {
             raw_visibilities[baseline] = vis;
+            raw_weights[baseline] = it->second.GetWeights();
         }
     }
 
@@ -503,6 +506,7 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
     {
         std::string baseline = it->first;
         auto vis = it->second;
+        auto wt = raw_weights[baseline];
         std::size_t npp = vis->GetDimension(POLPROD_AXIS);
         std::size_t nap = vis->GetDimension(TIME_AXIS);
         std::size_t nch = vis->GetDimension(CHANNEL_AXIS);
@@ -550,6 +554,11 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
                     {
                         msg_error("difx_interface", "remote station: " << rem_st << " autocorr data is missing" << eom);
                     }
+                    msg_error("difx_interface", "pol-product: " << polprod << " of baseline: " << baseline
+                        << " will be zero'd out" << eom);
+
+                    wt->SliceView(pp, ":", ":", ":") *= 0.0;
+                    vis->SliceView(pp, ":", ":", ":") *= 0.0;
                 }
                 else
                 {
@@ -559,18 +568,21 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
                         {
                             msg_error("difx_interface", "no auto-corr data at AP "
                                                             << ap << " to normalize baseline:pol-product: " << baseline << ":"
-                                                            << polprod << ", data will not be normalized." << eom);
+                                                            << polprod << ", data will be zero'd out" << eom);
+                            wt->SliceView(pp, ":", ap, ":") *= 0.0;
+                            vis->SliceView(pp, ":", ap, ":") *= 0.0;
                             continue;
                         }
                         for(std::size_t ch = 0; ch < nch; ch++)
                         {
                             if(ref_ch_map[ch] < 0 || rem_ch_map[ch] < 0)
                             {
+                                wt->SliceView(pp, ch, ap, ":") *= 0.0;
+                                vis->SliceView(pp, ch, ap, ":") *= 0.0;
                                 continue;
                             }
                             double ref_val = std::sqrt(std::real((*ref_ac)(ref_pp_idx, ref_ch_map[ch], ref_ap_map[ap], 0)));
                             double rem_val = std::sqrt(std::real((*rem_ac)(rem_pp_idx, rem_ch_map[ch], rem_ap_map[ap], 0)));
-                            double factor = 1.0;
                             if(std::fabs(ref_val) == 0.0 || std::fabs(rem_val) == 0.0)
                             {
                                 if(issue_once)
@@ -585,15 +597,16 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
                                         st_code = rem_st;
                                     }
                                     msg_error("difx_interface", "zero value in auto-corrs of station: "
-                                                                    << st_code << ", normalization may not be correct." << eom);
+                                        << st_code << ", affected data on baseline:pol-product: "
+                                        << baseline << ":" << polprod << " will be zero-weighted."
+                                        << eom);
                                     issue_once = false;
                                 }
+                                wt->SliceView(pp, ch, ap, ":") *= 0.0;
+                                vis->SliceView(pp, ch, ap, ":") *= 0.0;
+                                continue;
                             }
-                            else
-                            {
-                                factor = 1.0 / (ref_val * rem_val);
-                            }
-                            vis->SliceView(pp, ch, ap, ":") *= factor;
+                            vis->SliceView(pp, ch, ap, ":") *= 1.0 / (ref_val * rem_val);
                         }
                     }
                 }
@@ -602,7 +615,10 @@ void MHO_DiFXScanProcessor::NormalizeVisibilities()
         else
         {
             msg_error("difx_interface",
-                      "cannot locate autocorrs for both stations of baseline: " << baseline << ", will not normalize." << eom);
+                      "cannot locate autocorrs for both stations of baseline: "
+                          << baseline << ", visibilities will be zero'd out (use raw mode to skip normalization by autocorrs)." << eom);
+            (*wt) *= 0.0;
+            (*vis) *= 0.0;
         }
     }
 

@@ -163,6 +163,8 @@ class MHO_DiFXBaselineProcessor
 
         visibility_store_type* GetVisibilities() { return fV; }
 
+        weight_store_type* GetWeights() { return fW; }
+
         void Clear();
 
         void SetFrequencyBands(std::vector< std::tuple< std::string, double, double > > fbands) { fFreqBands = fbands; }
