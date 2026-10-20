@@ -37,8 +37,8 @@ hops2json ${output_file}
 echo "jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump_tcohere.json"
 jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump_tcohere.json
 
-#now compare the results between fourfit3 and fourfit4
-compjsonpdd.py -r 0.0025 ./fdump_tcohere.json ./chk_tcohere/104-1228-AS-B-RR.*
+#now compare the results between fourfit3 and fourfit4, tolerance 0.01%
+compjsonpdd.py -r 0.0001 ./fdump_tcohere.json ./chk_tcohere/104-1228-AS-B-RR.*
 RET_VAL=$?
 
 exit $RET_VAL

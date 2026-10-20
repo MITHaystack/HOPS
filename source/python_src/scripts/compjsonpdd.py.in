@@ -44,8 +44,8 @@ def main():
         'Amp':'float',
         'ResPhase':'phase_float',
         #'PFD':'float',
-        'ResidSbd(us)':'float',
-        'ResidMbd(us)':'float',
+        'ResidSbd(us)':'fixed8_float', #fourfit3 prints these with %.8f
+        'ResidMbd(us)':'fixed8_float',
         'FringeRate(Hz)': 'float',
         'RefFreq(MHz)':'float',
         'AP(sec)':'float',
@@ -130,6 +130,28 @@ def main():
                     pct = (delta/denom)*100
                 print(k, t, " : percent difference: ", pct )
                 if math.fabs(pct) > rel_percent_error:
+                    print(k, ": ", val1, " not close enough to: ", val2)
+                    bad_count += 1
+                    bad_keys.append(k)
+            else:
+                if( not k in j1):
+                    print("missing ", k, " in ", f1_name)
+                if(not k in j2):
+                    print("missing ", k , " in ", f2_name)
+                if (k in j1) != (k in j2):
+                    #only flag as error if present in one file but not the other, ok if both are missing
+                    bad_count += 1
+                    bad_keys.append(k)
+
+        if t == 'fixed8_float':
+            #allow for the rounding of a value printed with 8 decimal places (half of the last digit)
+            if(k in j1 and k in j2):
+                val1 = float(j1[k])
+                val2 = float(j2[k])
+                delta = val1 - val2
+                denom = max(math.fabs(val1), math.fabs(val2))
+                print(k, t, " : absolute difference: ", delta )
+                if math.fabs(delta) > 0.5e-8 + reltol*denom:
                     print(k, ": ", val1, " not close enough to: ", val2)
                     bad_count += 1
                     bad_keys.append(k)

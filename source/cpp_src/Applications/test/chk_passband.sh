@@ -45,7 +45,7 @@ jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" | tee ./fdum
 echo "Running: fourfit3 -m 4 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk_pb freqs a b passband 216008 215979 "
 time fourfit3 -m 1 -c ./test2.cf -b AS -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk_pb freqs a b passband 216008 215979 2>&1  | tee ./ff.out
 
-compjsonpdd.py ./fdump.json ./chk_pb/104-1228-AS-B-RR.*
+compjsonpdd.py -r 0.0001 ./fdump.json ./chk_pb/104-1228-AS-B-RR.*
 RET_VAL=$?
 
 exit $RET_VAL

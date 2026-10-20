@@ -37,7 +37,7 @@ echo "Running: fourfit3 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DI
 fourfit3 -t -c ./cf_test4 -b GE -P XX ./${D2M4_EXP_NUM}/${SCAN_DIR} set plot_data_dir ./chk1 2>&1
 
 #finally compare the outputs
-compjsonpdd.py ./fdump.json ./chk1/105-1800-GE-X-XX*
+compjsonpdd.py -r 0.0001 ./fdump.json ./chk1/105-1800-GE-X-XX*
 RET_VAL=$?
 
 exit $RET_VAL

@@ -44,7 +44,7 @@ jq '.[].tags.plot_data | select( . != null )' "${output_file}.json" > ./fdump.js
 echo "Running: fourfit3 -m 4 -c ./${CONTROL_FILE} -b KN:X -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk3 "
 time fourfit3 -m 1 -c ./${CONTROL_FILE} -b KN:X -P RR ./${MK4_SCAN_DIR} set plot_data_dir ./chk4 2>&1  | tee ./ff.out
 
-compjsonpdd.py ./fdump.json ./chk4/190-1800a-KN-X-RR.*
+compjsonpdd.py -r 0.0001 ./fdump.json ./chk4/190-1800a-KN-X-RR.*
 RET_VAL=$?
 
 exit $RET_VAL

@@ -12,6 +12,7 @@ SCAN_DIR=105-1800
 CM42H_DIR=105-1800b
 H2M4_DIR=105-1800c
 cd $EXP_DIR
+export HOPS_PLOT_DATA_MASK=0x83FFFFFF
 mkdir -p ./1111
 echo "Running: mark42hops -i ./${SCAN_DIR} -o ./${CM42H_DIR}"
 rm -r ./1111/${CM42H_DIR}
@@ -31,7 +32,7 @@ time fourfit3 -m 4 -t -c ./cf_test5 -b GY -P I ./1111/${H2M4_DIR}  set plot_data
 
 pdd2json.py ./chk89/105-1800-GY-X-Ixy*
 #pdd2json.py ./chk88/105-1800c-GE-X-Ixy*
-compjsonpdd.py -r 0.0105 ./chk89/105-1800-GY-X-Ixy*.json ./chk88/105-1800c-GY-X-Ixy*
+compjsonpdd.py -r 0.0005 ./chk89/105-1800-GY-X-Ixy*.json ./chk88/105-1800c-GY-X-Ixy*
 
 RET_VAL1=$?
 
@@ -78,7 +79,7 @@ time fourfit3 -m 4 -c ./test0.cf -b AS -P RR ./${H2M4_DIR} set plot_data_dir ./c
 
 #pdd2json.py ./chk98/104-1228-AS-B-RR.*
 pdd2json.py ./chk99/104-1228c-AS-B-RR.*
-compjsonpdd.py -r 0.001 ./chk99/104-1228c-AS-B-RR.*.json ./chk98/104-1228-AS-B-RR.*
+compjsonpdd.py -r 0.0001 ./chk99/104-1228c-AS-B-RR.*.json ./chk98/104-1228-AS-B-RR.*
 
 RET_VAL2=$?
 
