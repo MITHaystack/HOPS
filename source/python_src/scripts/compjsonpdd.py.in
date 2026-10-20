@@ -46,6 +46,7 @@ def main():
         #'PFD':'float',
         'ResidSbd(us)':'fixed8_float', #fourfit3 prints these with %.8f
         'ResidMbd(us)':'fixed8_float',
+        'IonTEC(TEC)':'fixed4_float', #fourfit3 prints this with %.4f
         'FringeRate(Hz)': 'float',
         'RefFreq(MHz)':'float',
         'AP(sec)':'float',
@@ -143,15 +144,16 @@ def main():
                     bad_count += 1
                     bad_keys.append(k)
 
-        if t == 'fixed8_float':
-            #allow for the rounding of a value printed with 8 decimal places (half of the last digit)
+        if t in ('fixed8_float', 'fixed4_float'):
+            #allow for the rounding of a value printed with N decimal places (half of the last digit)
+            half_last_digit = 0.5*10**-int(t[5])
             if(k in j1 and k in j2):
                 val1 = float(j1[k])
                 val2 = float(j2[k])
                 delta = val1 - val2
                 denom = max(math.fabs(val1), math.fabs(val2))
                 print(k, t, " : absolute difference: ", delta )
-                if math.fabs(delta) > 0.5e-8 + reltol*denom:
+                if math.fabs(delta) > half_last_digit + reltol*denom:
                     print(k, ": ", val1, " not close enough to: ", val2)
                     bad_count += 1
                     bad_keys.append(k)
