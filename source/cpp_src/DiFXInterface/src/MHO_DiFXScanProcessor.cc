@@ -63,19 +63,35 @@ void MHO_DiFXScanProcessor::ProcessScan(MHO_DiFXScanFileSet& fileSet)
 {
     fFileSet = &fileSet;
     LoadInputFile(); //read .input file
+
+    //TODO FIXME
+    //jobs that contain more than one 'scan' are not yet supported
+    //everything gets concatenated into the first scan
+    std::size_t nScan = fInput["scan"].size();
+    if(nScan > 1)
+    {
+        std::string scan_id = fInput["scan"][fFileSet->fLocalIndex]["identifier"];
+        msg_error("difx_interface", "job " << fFileSet->fScanName << " contains " << nScan << " scans, multiple scans per job is not yet supported, all "
+            << "records will be written to scan " << scan_id << ". Use 'singleScan = True' in vex2difx."<< eom);
+    }
+
     if(MHO_Message::GetInstance().GetMessageLevel() == eDebugLevel)
     {
         fileSet.PrintSummary();
     }
 
     //configure the zoom-band rebuilder for this scan. fDiFX2VexStationCodes
-    //gets set later (inside PatchOvexStructures) once $SITE has been parsed.
+    //gets/sets later (inside PatchOvexStructures) once $SITE has been parsed.
     fZoomBandRebuilder.SetDiFXInputData(&fInput);
     fZoomBandRebuilder.SetFrequencyBands(fFreqBands);
     if(fSelectByBandwidth)
+    {
         fZoomBandRebuilder.SetSelectionByBandwidth(fOnlyBandwidth);
+    }
     else
+    {
         fZoomBandRebuilder.ClearSelectionByBandwidth();
+    }
 
     bool ok = CreateScanOutputDirectory();
     if(ok)
