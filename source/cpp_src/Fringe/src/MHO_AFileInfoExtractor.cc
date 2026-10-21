@@ -340,6 +340,13 @@ bool MHO_AFileInfoExtractor::SummarizeFringeFile(std::string filename, mho_json&
                     }
                 }
             }
+
+            //the alist residual delay rate units are ps/s,
+            //but the value of /fringe/drate is stored in us/s, so convert here
+            if(fsum.contains("delay_rate"))
+            {
+                fsum["delay_rate"] = fsum["delay_rate"].get< double >() * 1e6;
+            }
         }
         else
         {

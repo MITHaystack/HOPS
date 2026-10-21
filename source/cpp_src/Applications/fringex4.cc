@@ -700,7 +700,7 @@ int main(int argc, char** argv)
             // Delay / rate - residual part stored in mbdelay/delay_rate;
             // total (a-priori + residual + user offset) in total_mbdelay/total_rate
             row["mbdelay"] = seg.resid_mbdelay;  // residual + user offset (us)
-            row["delay_rate"] = seg.resid_drate; // residual rate + user offset (us/s)
+            row["delay_rate"] = seg.resid_drate; // residual rate + user offset (ps/s)
             row["total_mbdelay"] = seg.eff_total_mbdelay;
             row["total_rate"] = seg.eff_total_drate;
             row["resid_delay"] = seg.resid_delay; // v6 RESIDUALDELAY column: N*AMB + resid_mbdelay to match SBD

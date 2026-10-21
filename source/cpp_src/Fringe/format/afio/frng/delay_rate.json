@@ -3,6 +3,6 @@
 	"type": "double",
 	"source_object": "parameters",
 	"path": "/fringe/drate",
-	"description": "the fringe delay rate",
-	"units": ""
+	"description": "the residual fringe delay rate (stored in us/s, converted to ps/s for the a-file)",
+	"units": "ps/s"
 }
