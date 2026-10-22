@@ -23,6 +23,7 @@ set(SOURCE_BASENAMES
     hops2mark4
     hops2json
     hops2flat
+    cf2json
     CompareCorFiles
     ComparePcal
     fplot4
