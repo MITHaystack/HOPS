@@ -69,7 +69,7 @@ copy_309 (struct type_309 *t309,
         
         for (i=0; i<16; i++)        // loop over channels
             {
-            strcpy (t309_v0->chan[i].chan_name, t309->chan[i].chan_name);
+            cp_str (t309_v0->chan[i].chan_name, t309->chan[i].chan_name);
             cp_double (t309_v0->chan[i].freq, t309->chan[i].freq);
 
             for (j=0; j<16; j++)    // loop over tones
@@ -93,7 +93,7 @@ copy_309 (struct type_309 *t309,
         
         for (i=0; i<64; i++)        // loop over channels
             {
-            strcpy (t309_v1->chan[i].chan_name, t309->chan[i].chan_name);
+            cp_str (t309_v1->chan[i].chan_name, t309->chan[i].chan_name);
             cp_double (t309_v1->chan[i].freq, t309->chan[i].freq);
 
             for (j=0; j<64; j++)    // loop over tones

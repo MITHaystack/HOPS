@@ -71,8 +71,8 @@ copy_203 (struct type_203 *t203,
             t203_v0->channels[i].rempol = t203->channels[i].rempol;
             cp_double (t203_v0->channels[i].ref_freq, t203->channels[i].ref_freq);
             cp_double (t203_v0->channels[i].rem_freq, t203->channels[i].rem_freq);
-            strncpy (t203_v0->channels[i].ref_chan_id, t203->channels[i].ref_chan_id, 8);
-            strncpy (t203_v0->channels[i].rem_chan_id, t203->channels[i].rem_chan_id, 8);
+            cp_strn (t203_v0->channels[i].ref_chan_id, t203->channels[i].ref_chan_id, 8);
+            cp_strn (t203_v0->channels[i].rem_chan_id, t203->channels[i].rem_chan_id, 8);
             }
 
         return (sizeof (struct type_203_v0));
@@ -92,8 +92,8 @@ copy_203 (struct type_203 *t203,
             t203_v1->channels[i].rempol = t203->channels[i].rempol;
             cp_double (t203_v1->channels[i].ref_freq, t203->channels[i].ref_freq);
             cp_double (t203_v1->channels[i].rem_freq, t203->channels[i].rem_freq);
-            strncpy (t203_v1->channels[i].ref_chan_id, t203->channels[i].ref_chan_id, 8);
-            strncpy (t203_v1->channels[i].rem_chan_id, t203->channels[i].rem_chan_id, 8);
+            cp_strn (t203_v1->channels[i].ref_chan_id, t203->channels[i].ref_chan_id, 8);
+            cp_strn (t203_v1->channels[i].rem_chan_id, t203->channels[i].rem_chan_id, 8);
             }
 
         return (sizeof (struct type_203_v1));

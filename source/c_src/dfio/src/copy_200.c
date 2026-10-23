@@ -65,9 +65,9 @@ copy_200 (struct type_200 *t200,
             cp_short (t200_v0->software_rev[i], t200->software_rev[i]);
             }
         cp_int (t200_v0->expt_no, t200->expt_no);
-        strncpy (t200_v0->exper_name, t200->exper_name, 32);
-        strncpy (t200_v0->scan_name, t200->scan_name, 32);
-        strncpy (t200_v0->correlator, t200->correlator, 8);
+        cp_strn (t200_v0->exper_name, t200->exper_name, 32);
+        cp_strn (t200_v0->scan_name, t200->scan_name, 32);
+        cp_strn (t200_v0->correlator, t200->correlator, 8);
         cp_short (t200_v0->scantime.year, t200->scantime.year);
         cp_short (t200_v0->scantime.day, t200->scantime.day);
         cp_short (t200_v0->scantime.hour, t200->scantime.hour);

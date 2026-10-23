@@ -76,8 +76,8 @@ copy_120 (struct type_120 *t120,
         strncpy (t120_v0->version_no, "00", 2);
         t120_v0->type = t120->type;
         cp_short (t120_v0->nlags, t120->nlags);
-        strncpy (t120_v0->baseline, t120->baseline, 2);
-        strncpy (t120_v0->rootcode, t120->rootcode, 6);
+        cp_strn (t120_v0->baseline, t120->baseline, 2);
+        cp_strn (t120_v0->rootcode, t120->rootcode, 6);
         cp_int (t120_v0->index, t120->index);
         cp_int (t120_v0->ap, t120->ap);
         if (type == SPECTRAL)

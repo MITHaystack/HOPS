@@ -68,7 +68,7 @@ copy_308 (struct type_308 *t308,
         cp_float (t308_v0->duration, t308->duration);
         for (i=0; i<32; i++)
             {
-            strcpy (t308_v0->pcal[i].chan_id, t308->pcal[i].chan_id);
+            cp_str (t308_v0->pcal[i].chan_id, t308->pcal[i].chan_id);
             cp_float (t308_v0->pcal[i].frequency, t308->pcal[i].frequency);
             cp_float (t308_v0->pcal[i].real, t308->pcal[i].real);
             cp_float (t308_v0->pcal[i].imaginary, t308->pcal[i].imaginary);

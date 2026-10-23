@@ -26,4 +26,15 @@
 
 #endif
 
+
+// strncpy/memcpy guard/helper functions
+// these are needed to avoid undefined behavior in the copy_XXX functions when
+// source/dest buffers are the same, on AVX-512 machines glibc zeros part of the
+// buffer which clobbers any in-place string copies
+#include <string.h>
+
+#define cp_strn(a,b,n) do { if ((void *)(a) != (void *)(b)) strncpy (a, b, n); } while (0)
+#define cp_str(a,b)    do { if ((void *)(a) != (void *)(b)) strcpy (a, b); } while (0)
+#define cp_mem(a,b,n)  memmove (a, b, n)
+
 #endif

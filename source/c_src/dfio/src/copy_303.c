@@ -63,7 +63,7 @@ copy_303 (struct type_303 *t303,
         strncpy (t303_v0->version_no, "00", 2);
 
         cp_short (t303->interval, t303->interval);
-        strncpy (t303->chan_id, t303->chan_id, 32);
+        cp_strn (t303->chan_id, t303->chan_id, 32);
         for (i=0; i<6; i++)
             {
             cp_double (t303->azimuth[i], t303->azimuth[i]);

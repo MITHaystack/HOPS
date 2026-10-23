@@ -64,9 +64,9 @@ copy_100 (struct type_100 *t100,
         cp_short (t100_v0->procdate.hour, t100->procdate.hour);
         cp_short (t100_v0->procdate.minute, t100->procdate.minute);
         cp_float (t100_v0->procdate.second, t100->procdate.second);
-        strncpy (t100_v0->baseline, t100->baseline, 2);
-        strcpy (t100_v0->rootname, t100->rootname);
-        strncpy (t100_v0->qcode, t100->qcode, 2);
+        cp_strn (t100_v0->baseline, t100->baseline, 2);
+        cp_str (t100_v0->rootname, t100->rootname);
+        cp_strn (t100_v0->qcode, t100->qcode, 2);
         cp_float (t100_v0->pct_done, t100->pct_done);
         cp_short (t100_v0->start.year, t100->start.year);
         cp_short (t100_v0->start.day, t100->start.day);

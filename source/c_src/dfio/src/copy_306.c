@@ -68,7 +68,7 @@ copy_306 (struct type_306 *t306,
         cp_float (t306_v0->duration, t306->duration);
 	for (i=0; i<16; i++)
 	    {
-	    strcpy (t306_v0->stcount[i].chan_id, t306->stcount[i].chan_id);
+	    cp_str (t306_v0->stcount[i].chan_id, t306->stcount[i].chan_id);
             cp_int (t306_v0->stcount[i].bigpos, t306->stcount[i].bigpos);
             cp_int (t306_v0->stcount[i].pos, t306->stcount[i].pos);
             cp_int (t306_v0->stcount[i].neg, t306->stcount[i].neg);

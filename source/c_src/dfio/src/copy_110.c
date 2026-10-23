@@ -62,9 +62,9 @@ copy_110 (struct type_110 *t110,
 	strncpy (t110_v0->record_id, "110", 3);
 	strncpy (t110_v0->version_no, "00", 2);
 	cp_short (t110_v0->nblocks, t110->nblocks);
-	strncpy (t110_v0->baseline, t110->baseline, 2);
+	cp_strn (t110_v0->baseline, t110->baseline, 2);
 	cp_short (t110_v0->filenum, t110->filenum);
-	strncpy (t110_v0->rootcode, t110->rootcode, 6);
+	cp_strn (t110_v0->rootcode, t110->rootcode, 6);
 	cp_int (t110_v0->index, t110->index);
 	cp_int (t110_v0->ap, t110->ap);
 	cp_int (t110_v0->flag, t110->flag);

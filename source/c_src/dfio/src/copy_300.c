@@ -61,8 +61,8 @@ copy_300 (struct type_300 *t300,
         strncpy (t300_v0->version_no, "00", 2);
         t300_v0->SU_number = t300->SU_number;
         t300_v0->id = t300->id;
-        strncpy (t300_v0->intl_id, t300->intl_id, 2);
-        strncpy (t300_v0->name, t300->name, 9);
+        cp_strn (t300_v0->intl_id, t300->intl_id, 2);
+        cp_strn (t300_v0->name, t300->name, 9);
         cp_short (t300_v0->model_start.year, t300->model_start.year);
         cp_short (t300_v0->model_start.day, t300->model_start.day);
         cp_short (t300_v0->model_start.hour, t300->model_start.hour);

@@ -61,14 +61,14 @@ copy_204 (struct type_204 *t204,
         strncpy (t204_v0->version_no, "00", 2);
         cp_short (t204_v0->ff_version[0], t204->ff_version[0]);
         cp_short (t204_v0->ff_version[1], t204->ff_version[1]);
-        strncpy (t204_v0->platform, t204->platform, 8);
-        strncpy (t204_v0->control_file, t204->control_file, 96);
+        cp_strn (t204_v0->platform, t204->platform, 8);
+        cp_strn (t204_v0->control_file, t204->control_file, 96);
         cp_short (t204_v0->ffcf_date.year, t204->ffcf_date.year);
         cp_short (t204_v0->ffcf_date.day, t204->ffcf_date.day);
         cp_short (t204_v0->ffcf_date.hour, t204->ffcf_date.hour);
         cp_short (t204_v0->ffcf_date.minute, t204->ffcf_date.minute);
         cp_float (t204_v0->ffcf_date.second, t204->ffcf_date.second);
-        strncpy (t204_v0->override, t204->override, 128);
+        cp_strn (t204_v0->override, t204->override, 128);
 
         return (sizeof (struct type_204_v0));
         }

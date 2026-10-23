@@ -61,7 +61,7 @@ copy_302 (struct type_302 *t302,
 	strncpy (t302_v0->record_id, "302", 3);
 	strncpy (t302_v0->version_no, "00", 2);
         cp_short (t302_v0->interval, t302->interval);
-        strncpy (t302_v0->chan_id, t302->chan_id, 32);
+        cp_strn (t302_v0->chan_id, t302->chan_id, 32);
 	for (i=0; i<6; i++)
 	    {
 	    cp_double (t302_v0->phase_spline[i], t302->phase_spline[i]);

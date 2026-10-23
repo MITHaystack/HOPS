@@ -59,7 +59,7 @@ copy_201 (struct type_201 *t201,
         t201_v0 = (struct type_201_v0 *) *ptr;
         strncpy (t201_v0->record_id, "201", 3);
         strncpy (t201_v0->version_no, "00", 2);
-        strncpy (t201_v0->source, t201->source, 32);
+        cp_strn (t201_v0->source, t201->source, 32);
         cp_short (t201_v0->coord.ra_hrs, t201->coord.ra_hrs);
         cp_short (t201_v0->coord.ra_mins, t201->coord.ra_mins);
         cp_float (t201_v0->coord.ra_secs, t201->coord.ra_secs);

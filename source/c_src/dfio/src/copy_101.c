@@ -65,8 +65,8 @@ copy_101 (struct type_101 *t101,
         cp_short (t101_v0->nblocks, t101->nblocks);
         cp_short (t101_v0->index, t101->index);
         cp_short (t101_v0->primary, t101->primary);
-        strncpy (t101_v0->ref_chan_id, t101->ref_chan_id, 8);
-        strncpy (t101_v0->rem_chan_id, t101->rem_chan_id, 8);
+        cp_strn (t101_v0->ref_chan_id, t101->ref_chan_id, 8);
+        cp_strn (t101_v0->rem_chan_id, t101->rem_chan_id, 8);
         cp_short (t101_v0->corr_board, t101->corr_board);
         cp_short (t101_v0->corr_slot, t101->corr_slot);
         cp_short (t101_v0->ref_chan, t101->ref_chan);

@@ -63,7 +63,7 @@ copy_208 (struct type_208 *t208,
         strncpy (t208_v0->version_no, "00", 2);
         t208_v0->quality = t208->quality;
         t208_v0->errcode = t208->errcode;
-        strncpy (t208_v0->tape_qcode, t208->tape_qcode, 6);
+        cp_strn (t208_v0->tape_qcode, t208->tape_qcode, 6);
         cp_double (t208_v0->adelay, t208->adelay);
         cp_double (t208_v0->arate, t208->arate);
         cp_double (t208_v0->aaccel, t208->aaccel);
@@ -97,10 +97,10 @@ copy_208 (struct type_208 *t208,
         t208_v1 = (struct type_208_v1 *) *ptr;
         strncpy (t208_v1->record_id, "208", 3);
         strncpy (t208_v1->version_no, "01", 2);
-        strncpy (t208_v1->unused1, t208->unused1, 3);
+        cp_strn (t208_v1->unused1, t208->unused1, 3);
         t208_v1->quality = t208->quality;
         t208_v1->errcode = t208->errcode;
-        strncpy (t208_v1->tape_qcode, t208->tape_qcode, 6);
+        cp_strn (t208_v1->tape_qcode, t208->tape_qcode, 6);
         cp_double (t208_v1->adelay, t208->adelay);
         cp_double (t208_v1->arate, t208->arate);
         cp_double (t208_v1->aaccel, t208->aaccel);

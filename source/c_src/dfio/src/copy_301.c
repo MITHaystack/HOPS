@@ -61,7 +61,7 @@ copy_301 (struct type_301 *t301,
 	strncpy (t301_v0->record_id, "301", 3);
 	strncpy (t301_v0->version_no, "00", 2);
         cp_short (t301_v0->interval, t301->interval);
-        strncpy (t301_v0->chan_id, t301->chan_id, 32);
+        cp_strn (t301_v0->chan_id, t301->chan_id, 32);
 	for (i=0; i<6; i++)
 	    {
 	    cp_double (t301_v0->delay_spline[i], t301->delay_spline[i]);

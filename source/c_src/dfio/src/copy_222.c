@@ -83,11 +83,11 @@ copy_222 (struct type_222 *t222,
         cp_int (t222_v0->setstring_length, t222->setstring_length);
         cp_int (t222_v0->cf_length, t222->cf_length);
         
-        memcpy (t222_v0->control_contents, t222->control_contents, setstr_len);
+        cp_mem (t222_v0->control_contents, t222->control_contents, setstr_len);
         for(i=setstr_len; i<setstr_pad; i++){(t222_v0->control_contents)[i] = '\0';}
 
         //set the starting position of the control contents to the right place
-        memcpy ( &( (t222_v0->control_contents)[setstr_pad] ) ,  &( (t222->control_contents)[setstr_pad] ) , cf_len);
+        cp_mem (&( (t222_v0->control_contents)[setstr_pad] ) ,  &( (t222->control_contents)[setstr_pad] ) , cf_len);
         for(i=setstr_pad + cf_len; i<setstr_pad + cf_pad; i++){ (t222_v0->control_contents)[i] = '\0';}
 
         return (full_size);
