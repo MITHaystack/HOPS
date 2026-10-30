@@ -74,9 +74,9 @@ addr_110 (short version,
 	strncpy (t110->record_id, "110", 3);
 	strncpy (t110->version_no, "00", 2);
 	cp_short (t110->nblocks, t110_v0->nblocks);
-	strncpy (t110->baseline, t110_v0->baseline, 2);
+	cp_strn (t110->baseline, t110_v0->baseline, 2);
 	cp_short (t110->filenum, t110_v0->filenum);
-	strncpy (t110->rootcode, t110_v0->rootcode, 6);
+	cp_strn (t110->rootcode, t110_v0->rootcode, 6);
 	cp_int (t110->index, t110_v0->index);
 	cp_int (t110->ap, t110_v0->ap);
 	cp_int (t110->flag, t110_v0->flag);

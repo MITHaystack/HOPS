@@ -70,7 +70,7 @@ addr_302 (short version,
 	strncpy (t302->version_no, "00", 2);
 	cp_short (t302->interval, t302_v0->interval);
     if (t302 != t302_v0)
-	    strncpy (t302->chan_id, t302_v0->chan_id , 32);
+	    cp_strn (t302->chan_id, t302_v0->chan_id , 32);
 	for (i=0; i<6; i++)
 	    {
 	    cp_double (t302->phase_spline[i], t302_v0->phase_spline[i]);

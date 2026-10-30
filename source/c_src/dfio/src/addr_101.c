@@ -78,8 +78,8 @@ addr_101 (short version,
         cp_short (t101->primary, t101_v0->primary);
         if (t101 != t101_v0)
             {
-            strncpy (t101->ref_chan_id, t101_v0->ref_chan_id, 8);
-            strncpy (t101->rem_chan_id, t101_v0->rem_chan_id, 8);
+            cp_strn (t101->ref_chan_id, t101_v0->ref_chan_id, 8);
+            cp_strn (t101->rem_chan_id, t101_v0->rem_chan_id, 8);
             }
         cp_short (t101->corr_board, t101_v0->corr_board);
         cp_short (t101->corr_slot, t101_v0->corr_slot);

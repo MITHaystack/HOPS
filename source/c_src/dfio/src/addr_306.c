@@ -76,7 +76,7 @@ addr_306 (short version,
 	cp_float (t306->duration, t306_v0->duration);
 	for (i=0; i<16; i++)
 	    {
-	    strcpy (t306->stcount[i].chan_id, t306_v0->stcount[i].chan_id);
+	    cp_str (t306->stcount[i].chan_id, t306_v0->stcount[i].chan_id);
 	    cp_int (t306->stcount[i].bigpos, t306_v0->stcount[i].bigpos);
 	    cp_int (t306->stcount[i].pos, t306_v0->stcount[i].pos);
 	    cp_int (t306->stcount[i].neg, t306_v0->stcount[i].neg);

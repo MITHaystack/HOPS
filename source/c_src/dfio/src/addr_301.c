@@ -70,7 +70,7 @@ addr_301 (short version,
         strncpy (t301->version_no, "00", 2);
         cp_short (t301->interval, t301_v0->interval);
         if (t301 != t301_v0)
-            strncpy (t301->chan_id, t301_v0->chan_id , 32);
+            cp_strn (t301->chan_id, t301_v0->chan_id , 32);
         for (i=0; i<6; i++)
             {
             cp_double (t301->delay_spline[i], t301_v0->delay_spline[i]);

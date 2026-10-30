@@ -80,8 +80,8 @@ addr_203 (short version,
             t203->channels[i].rempol = t203_v0->channels[i].rempol;
             cp_double (t203->channels[i].ref_freq, t203_v0->channels[i].ref_freq);
             cp_double (t203->channels[i].rem_freq, t203_v0->channels[i].rem_freq);
-            strncpy (t203->channels[i].ref_chan_id, t203_v0->channels[i].ref_chan_id, 8);
-            strncpy (t203->channels[i].rem_chan_id, t203_v0->channels[i].rem_chan_id, 8);
+            cp_strn (t203->channels[i].ref_chan_id, t203_v0->channels[i].ref_chan_id, 8);
+            cp_strn (t203->channels[i].rem_chan_id, t203_v0->channels[i].rem_chan_id, 8);
             }
 
         return (t203);
@@ -108,8 +108,8 @@ addr_203 (short version,
             t203->channels[i].rempol = t203_v1->channels[i].rempol;
             cp_double (t203->channels[i].ref_freq, t203_v1->channels[i].ref_freq);
             cp_double (t203->channels[i].rem_freq, t203_v1->channels[i].rem_freq);
-            strncpy (t203->channels[i].ref_chan_id, t203_v1->channels[i].ref_chan_id, 8);
-            strncpy (t203->channels[i].rem_chan_id, t203_v1->channels[i].rem_chan_id, 8);
+            cp_strn (t203->channels[i].ref_chan_id, t203_v1->channels[i].ref_chan_id, 8);
+            cp_strn (t203->channels[i].rem_chan_id, t203_v1->channels[i].rem_chan_id, 8);
             }
 
         return (t203);

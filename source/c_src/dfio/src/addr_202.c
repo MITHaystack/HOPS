@@ -69,13 +69,13 @@ addr_202 (short version,
                                         /* (see bytflp.h) */
         strncpy (t202->record_id, "202", 3);
         strncpy (t202->version_no, "00", 2);
-        strncpy (t202->baseline, t202_v0->baseline, 2);
-        strncpy (t202->ref_intl_id, t202_v0->ref_intl_id, 2);
-        strncpy (t202->rem_intl_id, t202_v0->rem_intl_id, 2);
-        strncpy (t202->ref_name, t202_v0->ref_name, 8);
-        strncpy (t202->rem_name, t202_v0->rem_name, 8);
-        strncpy (t202->ref_tape, t202_v0->ref_tape, 8);
-        strncpy (t202->rem_tape, t202_v0->rem_tape, 8);
+        cp_strn (t202->baseline, t202_v0->baseline, 2);
+        cp_strn (t202->ref_intl_id, t202_v0->ref_intl_id, 2);
+        cp_strn (t202->rem_intl_id, t202_v0->rem_intl_id, 2);
+        cp_strn (t202->ref_name, t202_v0->ref_name, 8);
+        cp_strn (t202->rem_name, t202_v0->rem_name, 8);
+        cp_strn (t202->ref_tape, t202_v0->ref_tape, 8);
+        cp_strn (t202->rem_tape, t202_v0->rem_tape, 8);
         cp_short (t202->nlags, t202_v0->nlags);
         cp_double (t202->ref_xpos, t202_v0->ref_xpos);
         cp_double (t202->rem_xpos, t202_v0->rem_xpos);

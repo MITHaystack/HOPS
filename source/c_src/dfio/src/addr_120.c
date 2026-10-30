@@ -92,8 +92,8 @@ addr_120 (short version,
         cp_short (t120->nlags, t120_v0->nlags);
         if (t120 != t120_v0)            // don't do copy onto self
             {
-            strncpy (t120->baseline, t120_v0->baseline, 2);
-            strncpy (t120->rootcode, t120_v0->rootcode, 6);
+            cp_strn (t120->baseline, t120_v0->baseline, 2);
+            cp_strn (t120->rootcode, t120_v0->rootcode, 6);
             }
         cp_int (t120->index, t120_v0->index);
         cp_int (t120->ap, t120_v0->ap);

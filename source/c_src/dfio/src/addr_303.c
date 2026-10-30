@@ -73,7 +73,7 @@ addr_303 (short version,
         cp_short (t303->interval, t303->interval);
 
         if (t303 != t303)
-            strncpy (t303->chan_id, t303->chan_id , 32);
+            cp_strn (t303->chan_id, t303->chan_id , 32);
         for (i=0; i<6; i++)
             {
             cp_double (t303->azimuth[i], t303->azimuth[i]);

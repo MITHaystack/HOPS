@@ -80,7 +80,7 @@ addr_230 ( short version,
         strncpy (t230->record_id, "230", 3);
         strncpy (t230->version_no, "00", 2);
         cp_short (t230->nspec_pts, t230_v0->nspec_pts);
-/*         strncpy (t230->rootcode, t230_v0->rootcode, 6); */
+/*         cp_strn (t230->rootcode, t230_v0->rootcode, 6); */
         cp_int (t230->frq, t230_v0->frq);
         cp_int (t230->ap, t230_v0->ap);
         cp_float (t230->usbweight, t230_v0->usbweight);

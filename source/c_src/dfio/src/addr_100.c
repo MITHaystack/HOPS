@@ -75,9 +75,9 @@ addr_100 (short version,
         cp_float (t100->procdate.second, t100_v0->procdate.second);
         if (t100 != t100_v0)
             {
-            strncpy (t100->baseline, t100_v0->baseline, 2);
-            strcpy (t100->rootname, t100_v0->rootname);
-            strncpy (t100->qcode, t100_v0->qcode, 2);
+            cp_strn (t100->baseline, t100_v0->baseline, 2);
+            cp_str (t100->rootname, t100_v0->rootname);
+            cp_strn (t100->qcode, t100_v0->qcode, 2);
             }
         cp_float (t100->pct_done, t100_v0->pct_done);
         cp_short (t100->start.year, t100_v0->start.year);

@@ -69,7 +69,7 @@ addr_201 (short version,
                                         /* (see bytflp.h) */
         strncpy (t201->record_id, "201", 3);
         strncpy (t201->version_no, "00", 2);
-        strncpy (t201->source, t201_v0->source, 32);
+        cp_strn (t201->source, t201_v0->source, 32);
         cp_short (t201->coord.ra_hrs, t201_v0->coord.ra_hrs);
         cp_short (t201->coord.ra_mins, t201_v0->coord.ra_mins);
         cp_float (t201->coord.ra_secs, t201_v0->coord.ra_secs);

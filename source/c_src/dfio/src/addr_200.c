@@ -72,9 +72,9 @@ addr_200 (short version,
         for (i=0; i<10; i++) 
             cp_short (t200->software_rev[i], t200_v0->software_rev[i]);
         cp_int (t200->expt_no, t200_v0->expt_no);
-        strncpy (t200->exper_name, t200_v0->exper_name, 32);
-        strncpy (t200->scan_name, t200_v0->scan_name, 32);
-        strncpy (t200->correlator, t200_v0->correlator, 8);
+        cp_strn (t200->exper_name, t200_v0->exper_name, 32);
+        cp_strn (t200->scan_name, t200_v0->scan_name, 32);
+        cp_strn (t200->correlator, t200_v0->correlator, 8);
         cp_short (t200->scantime.year, t200_v0->scantime.year);
         cp_short (t200->scantime.day, t200_v0->scantime.day);
         cp_short (t200->scantime.hour, t200_v0->scantime.hour);

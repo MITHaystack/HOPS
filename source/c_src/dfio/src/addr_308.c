@@ -77,7 +77,7 @@ addr_308 (short version,
 	for (i=0; i<32; i++)
 	    {
             if (t308->pcal[i].chan_id != t308_v0->pcal[i].chan_id)
-                strncpy (t308->pcal[i].chan_id, t308_v0->pcal[i].chan_id, 8);
+                cp_strn (t308->pcal[i].chan_id, t308_v0->pcal[i].chan_id, 8);
 	    cp_float (t308->pcal[i].real, t308_v0->pcal[i].real);
 	    cp_float (t308->pcal[i].imaginary, t308_v0->pcal[i].imaginary);
 	    cp_float (t308->pcal[i].frequency, t308_v0->pcal[i].frequency);

@@ -77,7 +77,7 @@ addr_309 (short version,
         
         for (i=0; i<16; i++)        // loop over channels
             {
-            strcpy (t309->chan[i].chan_name, t309_v0->chan[i].chan_name);
+            cp_str (t309->chan[i].chan_name, t309_v0->chan[i].chan_name);
             cp_double (t309->chan[i].freq, t309_v0->chan[i].freq);
 
             for (j=0; j<16; j++)    // loop over tones
@@ -107,7 +107,7 @@ addr_309 (short version,
         
         for (i=0; i<64; i++)        // loop over channels
             {
-            strncpy (t309->chan[i].chan_name, t309_v1->chan[i].chan_name, 8);
+            cp_strn (t309->chan[i].chan_name, t309_v1->chan[i].chan_name, 8);
             cp_double (t309->chan[i].freq, t309_v1->chan[i].freq);
 
             for (j=0; j<64; j++)    // loop over tones

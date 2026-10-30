@@ -77,7 +77,7 @@ addr_205 (short version,
         cp_short (t205->utc_central.minute, t205_v0->utc_central.minute);
         cp_float (t205->utc_central.second, t205_v0->utc_central.second);
         cp_float (t205->offset, t205_v0->offset);
-        strncpy (t205->ffmode, t205_v0->ffmode, 8);
+        cp_strn (t205->ffmode, t205_v0->ffmode, 8);
         for (i=0; i<6; i++) cp_float (t205->search[i], t205_v0->search[i]);
         for (i=0; i<8; i++) cp_float (t205->filter[i], t205_v0->filter[i]);
         cp_short (t205->start.year, t205_v0->start.year);
@@ -120,7 +120,7 @@ addr_205 (short version,
         cp_short (t205->utc_central.minute, t205_v1->utc_central.minute);
         cp_float (t205->utc_central.second, t205_v1->utc_central.second);
         cp_float (t205->offset, t205_v1->offset);
-        strncpy (t205->ffmode, t205_v1->ffmode, 8);
+        cp_strn (t205->ffmode, t205_v1->ffmode, 8);
         for (i=0; i<6; i++) cp_float (t205->search[i], t205_v1->search[i]);
         for (i=0; i<8; i++) cp_float (t205->filter[i], t205_v1->filter[i]);
         cp_short (t205->start.year, t205_v1->start.year);

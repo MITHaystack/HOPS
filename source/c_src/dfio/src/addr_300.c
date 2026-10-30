@@ -72,8 +72,8 @@ addr_300 (short version,
         t300->id = t300_v0->id;
         if (t300 != t300_v0)
             {
-            strncpy (t300->intl_id, t300_v0->intl_id, 2);
-            strcpy (t300->name, t300_v0->name);
+            cp_strn (t300->intl_id, t300_v0->intl_id, 2);
+            cp_str (t300->name, t300_v0->name);
             }
         cp_short (t300->model_start.year, t300_v0->model_start.year);
         cp_short (t300->model_start.day, t300_v0->model_start.day);
