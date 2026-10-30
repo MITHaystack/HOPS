@@ -34,14 +34,14 @@ E3764_MIT_LINK="http://www.mit.edu/~barrettj/hops/3764.tar.gz"
 E3768_MIT_LINK="http://www.mit.edu/~barrettj/hops/3768.tar.gz"
 
 #current dropbox test data links (AE test data needs update)
-HOPS4_TESTDATA_DB_LINK="https://www.dropbox.com/scl/fi/zrgsfsf9yyfewb6trb3ik/hops4_testdata.tar.gz?rlkey=8jv5w5b0s5k9mmf18lgvro7y0&st=kbjw8ljw&dl=0"
-AE_TESTDATA_DB_LINK="https://www.dropbox.com/scl/fi/2wh4tfwxxkhc5uo1dqe4o/ae_testdata.tar.gz?rlkey=t7f067ct91h4sqhk5vklct261&st=9twsu043&dl=0"
-VT9105_DB_LINK="https://www.dropbox.com/scl/fi/oybx6gzrq41wkow0z77m4/vt9105.tar.gz?rlkey=fb6lexy4h2up520wf5vz02jsj&st=05ipz2jq&dl=0"
-E3593_DB_LINK="https://www.dropbox.com/scl/fi/0726rhxlsyd7c1s3ga2vi/3593.tar.gz?rlkey=f0353ebzjlv8nw951r0n9yzv3&st=8atbk5ay&dl=0"
-E3741_DB_LINK="https://www.dropbox.com/scl/fi/bt4rtgqkxyjxrq3gcowgr/3741.tar.gz?rlkey=0cw0ekqsh9vg0hloime3w007i&st=1p02ua5f&dl=0"
-E3764_DB_LINK="https://www.dropbox.com/scl/fi/uy553dx4fwm7e28rghfg0/3764.tar.gz?rlkey=80pinp2eais2mocobfh4z4ysf&st=jzsa0lc1&dl=0"
-E3768_DB_LINK="https://www.dropbox.com/scl/fi/csksqh09p49122swzjqha/3768.tar.gz?rlkey=8jrriqwwohfjnczel6w38qtz9&st=q61cb2cs&dl=0"
-MMODE_DB_LINK="https://www.dropbox.com/scl/fi/h6f3j6kj2mx9ppos7a0kq/mixed_mode_kt5343.tar.gz?rlkey=n71qp2x4fm1dex7ldhqfpyuvl&st=qxtgkuad&dl=0"
+HOPS4_TESTDATA_DB_LINK="https://www.dropbox.com/scl/fi/zrgsfsf9yyfewb6trb3ik/hops4_testdata.tar.gz?rlkey=8jv5w5b0s5k9mmf18lgvro7y0&st=kbjw8ljw&dl=1"
+AE_TESTDATA_DB_LINK="https://www.dropbox.com/scl/fi/2wh4tfwxxkhc5uo1dqe4o/ae_testdata.tar.gz?rlkey=t7f067ct91h4sqhk5vklct261&st=9twsu043&dl=1"
+VT9105_DB_LINK="https://www.dropbox.com/scl/fi/oybx6gzrq41wkow0z77m4/vt9105.tar.gz?rlkey=fb6lexy4h2up520wf5vz02jsj&st=05ipz2jq&dl=1"
+E3593_DB_LINK="https://www.dropbox.com/scl/fi/0726rhxlsyd7c1s3ga2vi/3593.tar.gz?rlkey=f0353ebzjlv8nw951r0n9yzv3&st=8atbk5ay&dl=1"
+E3741_DB_LINK="https://www.dropbox.com/scl/fi/bt4rtgqkxyjxrq3gcowgr/3741.tar.gz?rlkey=0cw0ekqsh9vg0hloime3w007i&st=1p02ua5f&dl=1"
+E3764_DB_LINK="https://www.dropbox.com/scl/fi/uy553dx4fwm7e28rghfg0/3764.tar.gz?rlkey=80pinp2eais2mocobfh4z4ysf&st=jzsa0lc1&dl=1"
+E3768_DB_LINK="https://www.dropbox.com/scl/fi/csksqh09p49122swzjqha/3768.tar.gz?rlkey=8jrriqwwohfjnczel6w38qtz9&st=q61cb2cs&dl=1"
+MMODE_DB_LINK="https://www.dropbox.com/scl/fi/h6f3j6kj2mx9ppos7a0kq/mixed_mode_kt5343.tar.gz?rlkey=n71qp2x4fm1dex7ldhqfpyuvl&st=qxtgkuad&dl=1"
 
 if [ -d "$DATA_DIR" ]; then
     echo "$DATA_DIR exists."
